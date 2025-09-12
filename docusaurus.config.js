@@ -103,6 +103,9 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+  markdown: {
+    format: 'detect'
+  }
 };
 
 export default config;
