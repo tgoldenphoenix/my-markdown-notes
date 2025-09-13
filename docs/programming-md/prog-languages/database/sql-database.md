@@ -4,6 +4,7 @@ SQL is a language used to interact with relational database management systems (
 
 - sql server: SA:MyStrongPass123
 - mySQL: root:password
+- pg admin: password
 
 ## CREATE TABLE & Data types
 

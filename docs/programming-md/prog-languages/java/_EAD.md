@@ -1,16 +1,10 @@
-# 02: EAD 
+# 02: EAD
 
 [link MEGA](https://mega.nz/folder/Kmo2HTDT#T46XTCNri5lRPKsS8feMuA)
 
 [link google sheet](https://docs.google.com/spreadsheets/d/1CnFiUr6hnf77XrO0z8a6g7vTvHKYNq1sGZMIc2okduM/edit?gid=0#gid=0) phải dùng mail FPT
 
 ## Thi qua môn
-
-thi qua môn cho tài chính banking. Dùng JDBC nhanh hơn. JPA nhanh hơn nhưng nhiều lỗi hơn.
-
-môn này thi 2 tables
-
-Thi cho làm reset password (bài lab4)
 
 bài thi chú ý tạo table, thầy sẽ cho khác
 
@@ -129,7 +123,7 @@ form validation dùng hibernate: add 2 library hiber trong ejb, 1 library jakart
 có 4 kiểu JDBC, mình xài kiểu 4, thông qua TCP/IP
 
 U101:123 admin Frodo
-U102 user Active Gandalf 
+U102 user Active Gandalf
 U103 user locked Samwise
 
 ## B6: MoneyTransaction-JDBC-API
@@ -148,7 +142,7 @@ Trong BankSB:transfer() có dùng .begin() .commit() để phân định các ti
 Table: Doctor, Patient
 Patient can login/register. After login they can book an appointment.
 Doctor can view all their booking record and cancel appointment.
-get appointment từ 	`vwappointment` thay vì `appointment` rồi reference 2 lần\
+get appointment từ  `vwappointment` thay vì `appointment` rồi reference 2 lần\
 combobox đổ lên từ DB(select option html)
 
 Homework: thêm phần cancel (thêm status vào database)
@@ -196,3 +190,4 @@ EL expression: Expression Language `${value here}`
 DI & IoC (Dependency Injection & Inversion of Control) model
 
 Xử lý dị bộ class thread or interface runable
+

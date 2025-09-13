@@ -1,10 +1,8 @@
-# Spring Boot notes
+# Spring, Servlet
 
 ## Terminologies
 
 `docker run --name mysql-8.0.36 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=password -d arm64v8/mysql:8.0.36-oracle`
-
-A POJO, or **Plain Old Java Object**, is a simple Java object that is not bound by any special restrictions or framework-specific requirements. It's essentially a regular Java class that can be used in any Java application and is not tied to any specific framework like EJB (Enterprise JavaBeans) or JPA.
 
 MVC SoC separation of Concern
 
@@ -55,11 +53,14 @@ groupId & artifactId là unique trên web repository của maven.
 
 ## Java Servlets, Spring MVC, Spring Boot and Spring without Boot
 
-A Java Servlet is a Java class that extends the capabilities of servers, typically web servers, by responding to various types of requests, most commonly HTTP requests. Servlets are a key component in building dynamic web applications using Java.
+A **Java Servlet** is a Java class that extends the capabilities of servers, typically web servers, by responding to various types of requests, most commonly HTTP requests. Servlets are a key component in building dynamic web applications using Java.
 
-Spring MVC is a web application framework built on top of Servlets. It provides a higher level of abstraction, simplifying web development through conventions, annotations, and a clear architectural pattern (Model-View-Controller).
+**Spring MVC** is a web application framework built on top of Servlets. It provides a higher level of abstraction, simplifying web development through conventions, annotations, and a clear architectural pattern (Model-View-Controller).  
+Không dùng react mà dùng thymeleaf cho phần "View". This is a server-side rendering (SSR) technology.
 
 Spring Boot is builds upon Spring MVC
+
+Spring web bao gồm restAPI (`@RestController`) & MVC (`@Controller`)
 
 Web container: Apache Tomcat, Glassfish, etc
 
@@ -93,6 +94,32 @@ web server only send JSON data and not the layout. Native app có layout lúc t�
 
 - `@RestController`REST api = Representational State Transer. It means you transer only the data (state) to the client not the layout.
 - `@Controller` có thể trả về client data hoặc layout (Thymeleaf, jsp - JavaServer Pages)
+
+## Model, POJO, java Bean, spring beans
+
+A POJO, or **Plain Old Java Object**, is a simple Java object that is NOT bound by any special restrictions or framework-specific requirements. It's essentially a regular Java class that can be used in any Java application and is not tied to any specific framework like EJB (Enterprise JavaBeans) or JPA.  
+POJOs are typically straightforward classes used primarily for **data storage**, often containing private fields and public getter and setter methods to access and modify these fields.
+
+These POJOs can also be considered JavaBeans if they follow the JavaBean conventions (private fields, public getters/setters, a no-argument constructor, and implementing Serializable).
+
+While these domain model POJOs/JavaBeans are used within a Spring application, they are not necessarily Spring Beans themselves unless explicitly configured as such (e.g., by annotating them with @Component, @Entity, or defining them with @Bean in a @Configuration class).
+
+### Spring bean vs. Java Beans
+
+Spring beans:
+
+- Have public default (no argument) constructors
+- allow access to their properties using accessor (getter and setter) methods
+- implement `java.io.Serializable`
+- Spring beans need not always be JavaBeans. Spring beans might not implement the java.io.Serializable interface, can have arguments in their constructors, etc.
+
+- **Spring Bean** là objects được spring quản lý trong **Application Context** hay còn gọi là **IoC Container**.
+- `@Component, @Service, @Repository, @Controller` là beans.
+
+A class annotated with `@Entity` in Java Persistence API (JPA) is not typically managed as a Spring Bean by default. Instead, JPA entities are managed by an EntityManager which handles their lifecycle (persistence, updates, deletion) in relation to a database.  
+While Spring Data JPA simplifies working with JPA entities by providing repository interfaces, the entities themselves are usually instantiated by the persistence provider (like Hibernate) and not directly by the Spring IoC container.
+
+Khi có những utility object chỉ dùng một lần thì tự `new` object khỏi xài bean cũng được.
 
 ## Controller layer
 
@@ -139,24 +166,11 @@ The Dependency Inversion Principle (DIP) is a SOLID design principle that states
 
 ## Repository layer
 
+N-Tier Architecture (the repository pattern)
+
 Các layer chỉ được gọi layer ngay bên dưới nó. Không được gọi nhảy cóc. Ví dụ controller chi được gọi service, không được gọi repository.
 
 There is no syntactic difference between a **JavaBean** and another class -- a class is a JavaBean if it follows the following standards. Java bean khác với spring bean.
-
-## Spring bean vs. Java Beans
-
-- Have public default (no argument) constructors
-- allow access to their properties using accessor (getter and setter) methods
-- implement `java.io.Serializable`
-- Spring beans need not always be JavaBeans. Spring beans might not implement the java.io.Serializable interface, can have arguments in their constructors, etc.
-
-- **Spring Bean** là objects được spring quản lý trong **Application Context** hay còn gọi là **IoC Container**.
-- `@Component, @Service, @Repository, @Controller` là beans.
-
-A class annotated with `@Entity` in Java Persistence API (JPA) is not typically managed as a Spring Bean by default. Instead, JPA entities are managed by an EntityManager which handles their lifecycle (persistence, updates, deletion) in relation to a database.  
-While Spring Data JPA simplifies working with JPA entities by providing repository interfaces, the entities themselves are usually instantiated by the persistence provider (like Hibernate) and not directly by the Spring IoC container.
-
-Khi có những utility object chỉ dùng một lần thì tự `new` object khỏi xài bean cũng được.
 
 ## IoC and Dependency Injection (DI)
 

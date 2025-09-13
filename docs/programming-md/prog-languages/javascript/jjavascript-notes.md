@@ -189,21 +189,29 @@ Some design patterns that utilize closure:
 Just like in Python, using `f-string` is much easier than casting + concatenate. For this, JS also has something called **Template literals**. Template literal uses back tick (\`) and $\{} as placeholders. In Holy C thì place holder là `%s, %f, %i`.  
 This Template literal is actually an ES6 feature, imagine before ES6 :v
 
+`String.split()` trả về 1 array, input một **separator** (`\`)
+
 ## Flow control
 
-In the normal for loop, we must use `let`:
-
-```javascript
-for (let i = 0; i < count; i++) {}
-```
-
+In the normal for loop, we must use `let`: `for (let i = 0; i < count; i++) {}`  
 But in `for...of`, we can use `const` because the variable only exists for a single iteration, not during the entire loop.
 
-The `for...of` loop dùng cho arrays, string. It iterates over elements of array.
-
+The `for...of` loop dùng cho arrays, string. It iterates over elements of array.  
 The `for...in` loop dùng cho objects. It iterates over keys in object.
 
-for loops are best used when you know the number of iterations ahead of time, whereas a **while loop** is best used when you don't know the number of iterations in advance
+```JavaScript
+const array = ["a", "b", "c"];
+for (const element of array) {
+  console.log(element);
+}
+
+const object = { a: 1, b: 2, c: 3 };
+for (const property in object) {
+  console.log(`${property}: ${object[property]}`);
+}
+```
+
+**for loops** are best used when you know the number of iterations ahead of time, whereas a **while loop** is best used when you don't know the number of iterations in advance
 
 In JavaScript, a **callback** is a function that is passed as an argument to another function, with the intention that it will be executed later, typically after the completion of an asynchronous operation or a specific event.
 
