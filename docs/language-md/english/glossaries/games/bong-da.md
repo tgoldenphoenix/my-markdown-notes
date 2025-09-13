@@ -1,0 +1,3 @@
+# Bóng đá notes
+
+Trong thể thao (đặc biệt là bóng đá), [thể thức hai lượt](https://vi.wikipedia.org/wiki/Th%E1%BB%83_th%E1%BB%A9c_hai_l%C6%B0%E1%BB%A3t), thể thức sân nhà sân khách hay thể thức lượt đi lượt về để chỉ việc tổ chức thi đấu giữa hai đội trong hai trận hay lượt trận đấu, trong đó mỗi đội đóng vai trò đội chủ nhà ở mỗi lượt. Đội thắng thường được phân định bằng tổng tỉ số tức tổng số bàn thắng hay số điểm của mỗi đội trong hai lượt trận. 

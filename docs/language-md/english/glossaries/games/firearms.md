@@ -1,0 +1,5 @@
+# Firearms notes
+
+A [magazine](https://en.wikipedia.org/wiki/Magazine_(firearms)) (băng đạn), often simply called a mag, is an ammunition storage and feeding device for a repeating firearm, either integral within the gun (internal/fixed magazine) or externally attached (detachable magazine).
+
+A [cartridge](https://en.wikipedia.org/wiki/Cartridge_(firearms)), also known as a round, is a type of pre-assembled firearm ammunition packaging a projectile (bullet, shot, or slug), a propellant substance (smokeless powder, black powder substitute, or black powder) and an ignition device (primer) within a metallic, paper, or plastic case that is precisely made to fit within the barrel chamber of a breechloading gun, for convenient transportation and handling during shooting.[3] Although in popular usage the term "bullet" is often used to refer to a complete cartridge, the correct usage only refers to the projectile. 
