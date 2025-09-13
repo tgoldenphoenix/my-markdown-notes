@@ -20,3 +20,58 @@ yarn-debug.log*
 yarn-error.log*
 
 /zz-FedericoTartarini.github.io-master
+
+# grub patterns (for file extensions)
+# Những file .gitignore trong sub-directory sẽ không chứa grub patters
+# mà chỉ chứa directory mình không muốn push lên để dễ quản lý
+
+# Không push dotfiles
+.*
+*.txt
+*.docx
+*.doc
+*.gdoc
+*.pdf
+*.ppsx
+*.xlsx
+
+*.png
+*.jpg
+*.jpeg
+*.webp
+
+*.zip
+*.rar
+
+*.mp3
+
+*.mp4
+*.mkv
+
+*.mobi
+*.epub
+
+*.eml
+
+## Programming specific
+## Chỉ push notes .md lên không push code lên làm gì cả
+
+# README.md
+# LICENSE
+
+# *.json
+# *.scss
+*.js
+# *.js.map
+
+# *.css
+# *.css.map
+# *.rtl.css
+# *.rtl.css.map
+# *.rtl.min.css
+# *.rtl.min.css.map
+# *.min.css
+# *.min.css.map
+
+# Do NOT track these folders
+assets
