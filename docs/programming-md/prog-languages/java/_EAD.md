@@ -1,20 +1,8 @@
 # 02: EAD
 
-[link MEGA](https://mega.nz/folder/Kmo2HTDT#T46XTCNri5lRPKsS8feMuA)
-
-[link google sheet](https://docs.google.com/spreadsheets/d/1CnFiUr6hnf77XrO0z8a6g7vTvHKYNq1sGZMIc2okduM/edit?gid=0#gid=0) phải dùng mail FPT
-
-## Thi qua môn
-
-bài thi chú ý tạo table, thầy sẽ cho khác
-
-bài lab06 transaction có thể biến thể làm bài thi
-
 ## Edunext
 
 The `<c:choose>` in `welcome.jsp` [here](https://www.tutorialspoint.com/jsp/jstl_core_choose_tag.htm)
-
-Account, AttendanceEmployee, Employee, Role, LeaveRequest
 
 ## B1: calculator, CRUD chưa DB, search by name
 
@@ -100,8 +88,6 @@ về làm thêm request là xong edunext nhóm mình [database design](https://s
 Một admin khi vào trang index sẽ ko thấy info của các admin khác mà chỉ thấy info user => Trong session bean, câu sql thêm 1 cái WHERE clause.
 
 Khi generate entity classes from DB: master (department table) là mờ, detail (employee) không mờ. Nhớ đổi lại tên lớp cho nó gọn, tên trong DB dài dòng (`tbEmployee` => `Employee`).
-
-**Bugs**
 
 Phải thêm `.jar` postgres driver vào Library của EJB folder nếu không sẽ gặp lỗi.
 
@@ -190,4 +176,3 @@ EL expression: Expression Language `${value here}`
 DI & IoC (Dependency Injection & Inversion of Control) model
 
 Xử lý dị bộ class thread or interface runable
-

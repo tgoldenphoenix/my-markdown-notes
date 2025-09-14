@@ -38,3 +38,8 @@ When these conventions are followed, the file automatically becomes available as
 
 `layout.txs` is auto-generated if not exist.
 
+## Layout
+
+- Pages are route-specific Ul components
+- A layout is UI that is shared between multiple pages in your app
+

@@ -1,4 +1,4 @@
-# SQL Database & other diagrams design
+# SQL Database notes
 
 SQL is a language used to interact with relational database management systems (RDBMS). Mỗi RDBMS có một flavour SQL khác nhau.
 

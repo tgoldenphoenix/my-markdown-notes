@@ -92,7 +92,7 @@ Ultimately, behind the scene, spring, particularly Spring MVC, use servlets and 
 
 web server only send JSON data and not the layout. Native app có layout lúc tải về. Web app thì có react, angular lo phần HTML.
 
-- `@RestController`REST api = Representational State Transer. It means you transer only the data (state) to the client not the layout.
+- `@RestController` REST api = Representational State Transer. It means you transer only the data (state) to the client not the layout.
 - `@Controller` có thể trả về client data hoặc layout (Thymeleaf, jsp - JavaServer Pages)
 
 ## Model, POJO, java Bean, spring beans

@@ -211,11 +211,15 @@ Prepositional phrase expressing place at the beginning of the sentence do not ne
 
 ### Adjective Clauses
 
-Adjective clause connectors:
+Adjective clausess are introduced by **relative pronouns** or **relative adverbs**. Can also be called **adjective connnectors**.
 
-- whom (for people)
-- which (for things)
+Relative pronouns (or Adjective clause connectors):
+
+- For person: who, whom, whose
+- For object/thing: which, that, of which
 - that (for people or thing)
+
+Relative adverb: where, when, why
 
 The adjective connnectors can be omitted. This omission is very common in spoken English or in casual written English. It is not as common in formal English.
 
@@ -239,16 +243,11 @@ Noun clauses & adjective clauses **KHÔNG** dùng comma.
 
 Hai loại verbs tạo thành 5 mẫu câu là **Transitive Verbs** (vt, ngoại động từ) và **Intransitive Verbs** (vi, nội động từ).
 
-- P. I uses a **Complete Intransitive** requires no Object nor Complement.
-- P. II uses an **Incomplete Intransitive** requires Subject Complement; also called **Linking Verbs**.
-- P. III IV V use Transitive Verbs always require Object.
+- Pattern I uses a **Complete Intransitive** which requires no Object nor Complement.
+- P. II uses an **Incomplete Intransitive verb** (aka Linking verb) which requires a Subject Complement
+- P. III IV V use Transitive Verbs which always require Object.
 
-Gerund (danh động từ): **Walking every day** is good for health.
-
-Infinitie (động từ nguyên mẫu): **To obey the laws** is everyone's duty.  
-Trong tiếng Nhật cũng có infinitive.
-
-Different forms of verbs in English, example verb `know`:
+Different forms of verbs in English, with the example verb `know`:
 
 - Plain form, base form (V1): `know`
 - Third-person singular (ngôi thứ ba số ít): `knows`
@@ -258,13 +257,18 @@ Different forms of verbs in English, example verb `know`:
 
 It's called "third person"" because the speaker (first person) is talking about a third party (not the speaker or the person being addressed). It's "singular" because it refers to only one person or thing. So, "third person singular" identifies the grammatical subject as a single, separate entity from the speaker and listener, such as "he," "she," "it," or a singular noun like "the boy" or "the dog"
 
-**Participle** (phân từ) is a word formed from a verb, ending in `-ing` (= the **present participle**) or `-ed, -en, etc`. (= the **past participle**). Don't be confused with **particle** (tiểu từ).
+Gerund (danh động từ): **Walking every day** is good for health.
+
+**Infinitie** (động từ nguyên mẫu): _To obey the laws_ is everyone's duty.  
+Trong tiếng Nhật cũng có infinitive.
+
+**Participle** (phân từ) is a word formed from a verb, ending in `-ing` (= the **present participle**) or `-ed, -en, etc`. (= the **past participle**).  
+Don't be confused with **particle** (tiểu từ).
+
+- A present participle is the `-ing` form of the verb. **The present participle can be (1) part of the verb or (2) an adjective**. It is part of the verb when it is accompanied by some form of the verb `be`. It is an adjective when it is not accompanied by some form of the verb `be`.
+- A **Past Participle** often ends in `-ed` but there are also many _irregular past participles_. For many verbs, including `-ed` verbs, the simple past and the past participle are the same and can be easily confused. **The `-ed` form of the verb can be (1) the simple past, (2) the past participle of a verb used in perfect tense, or (3) an adjective**.
 
 _Gerunds and present participles_ both use the `-ing` form of a verb, but they have different grammatical functions. Gerunds act as nouns, while present participles can act as adjectives or part of a verb phrase (continuous tenses).
-
-A present participle is the `-ing` form of the verb. **The present participle can be (1) part of the verb or (2) an adjective**. It is part of the verb when it is accompanied by some form of the verb `be`. It is an adjective when it is not accompanied by some form of the verb `be`.
-
-A **Past Participle** often ends in `-ed` but there are also many irregular past participles. For many verbs, including `-ed` verbs, the simple past and the past participle are the same and can be easily confused. **The `-ed` form of the verb can be (1) the simple past, (2) the past participle of a verb used in perfect tense, or (3) an adjective**.
 
 **Auxiliary verbs** (trợ động từ) help form tenses (e.g., "is running," "have finished"), moods (e.g., "was written," passive voice), and voices of main verbs. Example: `be (am, is, are, was, were), have (has, have, had), do (does, do, did)`.
 
@@ -275,7 +279,7 @@ Phía sau modal verb dùng **base form** of the verb. Ngoại trừ conditional 
 - Everyone `must` give his or her name.
 - `May` God bless you.
 
-The modal verb `will` expresses certain future actions, predictions, promises, and offers, while `would` is used for hypothetical situations (Second Conditional), polite requests, past habits, and as the past tense of `will` in reported speech. The key is context: `will` is for real future events, and "would" deals with the unreal, the polite, or the past perspective
+The modal verb `will` expresses certain future actions, predictions, promises, and offers, while `would` is used for hypothetical situations (Second Conditional), polite requests, past habits, and as the past tense of `will` in reported speech. The key is context: `will` is for real future events, and `would` deals with the unreal, the polite, or the past perspective
 
 > Auxiliary verbs and modal verbs are both types of helping verbs, but they differ in function and characteristics. Modal verbs express modality (possibility, ability, necessity, etc.) and are NOT conjugated, while auxiliary verbs help form tenses, moods, and voices of main verbs and are conjugated.
 
@@ -293,32 +297,34 @@ The modal verb `will` expresses certain future actions, predictions, promises, a
 - My friend and my boss **are** here. (Một người bạn và một người xếp đều đang ở đây)
 - She and he **are** right.
 
-When a **prepositional phrase** comes between the subject and the verb, be sure that the verb agrees with the real subject not the object of preposition:
+- When a **prepositional phrase** comes between the subject and the verb, be sure that the verb agrees with the real subject not the object of preposition:
+  * Miss Ginny with her dog **is** coming.
+  * The President together with his advisors **is** making a tour of inspection.
+  * A bandit along with some deserters **is** creating disturbance.
+  - The **first volume**, poems and storie, **is** the best.
+  - The **burden** of taxes **is** terrible for customers.
+  - The **complain** of the students **is** the many required subjects.
 
-- Miss Ginny with her dog **is** coming.
-- The President together with his dvisors **is** making a tour of inspection.
-- A bandit along with some deserters is creating disturbance.
-
-- The **first volume**, poems and storie, **is** the best.
-- The **burden** of taxes **is** terrible for customers.
-- The **complain** of the students **is** the mny required subjects.
-
-- **THE NUMBER OF** requires a **singular or plural verb**. Mostly singular.
+- **THE NUMBER OF** requires a singular or plural verb; **mostly singular**.
+  * The number of students in that class `is` small. (lớp ít học sinh)
 - **A NUMBER OF** always requires a **plural verb**.
-  - The number of students in that class `is` small. (lớp ít học sinh)
-  - A number of sheep `are` eating grass. (vài con cừu đang ăn cỏ)
-  - A number of people `are` still waiting. (còn vài người đang chờ)
+  * A number of sheep `are` eating grass. (vài con cừu đang ăn cỏ)
+  * A number of people `are` still waiting. (còn vài người đang chờ)
 
 - When **NONE** is the subject, the verb may be singulr or plural according to the noun or pronoun that follows **NONE OF**:
   - None of this `money is` mine.
   - None of `us are` coming.
   - None of the `policemen are` willing to do it.
 
-- When the subject is used with `every, each, either, neither, any`, the verb must be **singular:
-  - `Every` student `is` willing to join the picnic.
+- When the subject is used with `every, each, either, neither, any`, the verb must be **singular**:
+  - **Every student is** willing to join the picnic.
   - `Each` of the passengers `is` reading newspaper.
-  - Mr. Brown has two sons and `either` of them `is` intelligent.
-  - My parents are in but `neither` of them `is` awake.
+  - Mr. Brown has two sons and `either` of them **is** intelligent.
+  - My parents are in but `neither` of them **is** awake.
+  - **Anybody** is fine with me.
+  - I don’t mind who — **anyone** is okay.
+  - **Everybody** goes to see his show.
+  - **Nobody** goes to my birthday party.
 
 - When subjects are connected with `either... or, neither... nor`, the verb agrees with **the subject nearer to it**:
   - Either you `or I am` wrong. (Cả anh lẫn tôi đều sai)
@@ -494,6 +500,7 @@ The Third Conditional: `If + past perfect, modal + present perfect`:
 
 - If it had rained last week, the plants would not have died.
 - If I **had finished** college, I would have become a doctor.
+- It wasn’t me — I wouldn’t have done this.
 
 ## Conjunctions
 
