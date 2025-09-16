@@ -164,6 +164,19 @@ There is only one repeated number in the array.
 
 The idea of binary search is to use the information that the array is **already sorted** and reduce the time complexity to O(log n)
 
+### Find third highest value
+
+Single Traversal Approach (Efficient)
+
+**Initialize Variables**: Create three variables, `first`, `second`, and `third`, to store the highest, second highest, and third highest numbers found so far. Initialize them to a very small number (e.g., negative infinity).
+
+- **Iterate and Update**: Traverse the array once. For each element x:
+  - If `x` is greater than `first`, update `third = second`, `second = first`, and `first = x`.
+  - Else if `x` is greater than `second` (and not equal to first), update `third = second`, and `second = x`.
+  - Else if `x` is greater than `third` (and not equal to first or second), update `third = x`.
+
+**Return**: After iterating through the entire array, third will hold the third highest number.
+
 ## Other algorithms
 
 i

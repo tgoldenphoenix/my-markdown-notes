@@ -19,6 +19,15 @@ Hibernate is an ORM tool. Muốn dùng Hibernate phải tải 2 maven dependenci
 1. postgres JDBC driver. Hibernate uses JDBC under the hood.
 2. Hibernate core
 
+- `Statement`:
+  - run static SQL only once, no parameter
+  - Vulnerable to SQL injection attacks.
+- `PreparedStatement`:
+  - run many times, with parameter
+  - Safe against SQL injection since parameters are bound.
+
+JDBC chạy nhanh hơn hibernate, nhưng khó code hơn (tradeoff).
+
 ## JPA & Hibernate
 
 JPA (Java Persistence API) is a Java standard/specification (not a tool) that allows us to bind Java objects to records in a relational database. It’s one possible approach to do ORM, allowing the developer to retrieve, store, update, and delete data in a relational database using Java objects. Several implementations are available for the JPA specification.
@@ -88,4 +97,3 @@ A [SessionFactory](https://docs.jboss.org/hibernate/orm/6.5/javadocs/org/hiberna
 [jsp hibernate CRUD with source](https://www.youtube.com/watch?v=R-jy6g-DAdU)
 
 **JPA Criteria Queries API**/ dynamic SQL allows you to dynamically change your SQL query base on the user input in your form.
-

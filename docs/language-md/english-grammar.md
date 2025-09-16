@@ -79,15 +79,13 @@ An **appositive** is a noun that comes before or after another noun and has the 
 
 ## Particle & Phrasal Verbs
 
-The fundamental idea of the **particle** (tiểu từ) is to add context to the sentence, expressing a mood or indicating a specific action.
-
-A particle is a word that has a grammatical function but does not fit into the main parts of speech (i.e. noun, verb, adverb).
-
-Particles do not change.
+The fundamental idea of the **particle** (tiểu từ) is to add context to the sentence, expressing a mood or indicating a specific action.  
+A particle is a word that has a grammatical function but does not fit into the main parts of speech (i.e. noun, verb, adverb). Particles do not change.  
+Don't be confused with **articles**.
 
 The infinitive `to` in `to fly` is an example of a particle, although it can also act as a preposition, e.g. `I'm going to Spain next week`.
 
-Many words can be described as particles, e.g. conjunctions such as 'and' and 'but' and interjections such as 'oh' and 'wow'. Particles appear frequently in the teaching of **phrasal verbs**, which can be grouped for teaching purposes by particle, e.g. 'off', 'on', 'out' etc.
+Many words can be described as particles, e.g. conjunctions such as `and` and 'but' and **interjections** such as `oh` and 'wow'. Particles appear frequently in the teaching of **phrasal verbs**, which can be grouped for teaching purposes by particle, e.g. 'off', 'on', 'out' etc.
 
 **Phrasal Verbs** (cụm động từ) are made up of a verb and a particle. The particle often changes the meaning of the verb.
 
@@ -116,7 +114,9 @@ Keywords for countable and un-countable nouns:
 - For countable nouns: many, number, few, fewer
 - For un-countable nouns: much, amount, little, less
 
-- `the` is the definite article
+There are three **articles**:
+
+- `the` is the **definite article**.
 - `a/an` are the in-definite articles
 
 Plurals of Compound Nouns:
@@ -188,6 +188,8 @@ If anyone stops by while I am at the meeting, please take a message from him or 
   - Man `has always` fought aginst the weather.
   - The middle-aged man `still remains` unmarried.
   - She `usually gets up` early.
+  - He `really does not` understand. | It `really doesn’t` matter.
+  - He `really does not` like it.
 
 Generally when a word ends in `-ly`, it is an adverb. However, there are a few words ending in `-ly` that are **adjectives**, and these `-ly` adjectives can cause confusion. Example: `costly, likely, daily, early, lively, weekly, friendly, lonely, monthly, kindly, manly, ...`.
 
@@ -487,20 +489,21 @@ The `FUTURE PERFECT` is used to expres:
 
 ### Conditional
 
-The First Conditional: `If + simple present, will + base verb (simple future tense)`:
+- The First Conditional: `If + simple present, will + base verb (simple future tense)`:
+  * If he sees me again, he **will take** it back.
 
-- If he sees me again, he **will take** it back.
-
-The Second Conditional: `If + simple past, modal + base verb`. Thường dùng `would/could` as the modal verb.
-
-- If I were you, I wouldn't wait to study for the test.
-- If I had a million dollars, I could afford a bigger house.
+- The Second Conditional: `If + simple past, modal + base verb`. Thường dùng `would/could` as the modal verb.
+  * If I were you, I wouldn't wait to study for the test.
+  * If I had a million dollars, I could afford a bigger house.
 
 The Third Conditional: `If + past perfect, modal + present perfect`:
 
 - If it had rained last week, the plants would not have died.
 - If I **had finished** college, I would have become a doctor.
 - It wasn’t me — I wouldn’t have done this.
+
+The **past subjunctive** (giả định quá khứ) is a verb form, most notably using `were` instead of `was`, to express hypothetical, unreal, or contrary-to-fact situations in the present, future, or past. It is most commonly triggered by expressions like "if," "wish," and "as if" to describe wishes, unreal conditions, and situations that are not actually true. For example, in the sentence "I wish I were taller," the use of "were" signals that the speaker is not actually taller but wishes they were.
+**Indicative** là câu chỉ định (facts).
 
 ## Conjunctions
 

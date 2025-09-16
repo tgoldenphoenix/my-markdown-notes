@@ -1,4 +1,4 @@
-# Spring, Servlet
+# Spring Boot API
 
 ## Terminologies
 
@@ -55,10 +55,20 @@ groupId & artifactId là unique trên web repository của maven.
 
 A **Java Servlet** is a Java class that extends the capabilities of servers, typically web servers, by responding to various types of requests, most commonly HTTP requests. Servlets are a key component in building dynamic web applications using Java.
 
+**JSP, or JavaServer Pages**, is a server-side technology that enables developers to create dynamic web pages by embedding Java code directly within HTML. It is an extension of Java Servlets and part of the Java EE (now Jakarta EE) platform.  
+JSP is converted into servlet & HTML.
+
 **Spring MVC** is a web application framework built on top of Servlets. It provides a higher level of abstraction, simplifying web development through conventions, annotations, and a clear architectural pattern (Model-View-Controller).  
 Không dùng react mà dùng thymeleaf cho phần "View". This is a server-side rendering (SSR) technology.
 
-Spring Boot is builds upon Spring MVC
+- Spring MVC:
+  * manual configuration (XML config)
+  * Typically deployed as a WAR file in a separate application server.
+  * more boilerplate code
+- Spring Boot:
+  * opinionated default configs, reducing manual setup.
+  * Can be deployed as a standalone executable JAR with an embedded server.
+  * Minimizes boilerplate code
 
 Spring web bao gồm restAPI (`@RestController`) & MVC (`@Controller`)
 

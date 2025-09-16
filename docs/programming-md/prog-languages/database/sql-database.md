@@ -89,11 +89,10 @@ SQL có một con trỏ **duyệt qua từng dòng** check điều kiện khi `S
 Từ khóa `LIKE` dùng để tìm kiếm chuỗi 1 cách tương đối (giống regex), nhưng với điều kiện là đi kèm với các ký tự đại diện `%, _, [], [^]`. Nếu không có các ký tự đặc biệt này thì `LIKE` tương đương với `=` (match exactly).
 
 ```sql
+-- Câu Select này sẽ không liệt kê `Bilbo Baggins`, only rows with exactly `Bilbo`.
 Select * from SINHVIEN
 Where HoTenSV LIKE 'Bilbo'
 ```
-
-Câu Select trên sẽ không liệt kê `Bilbo Baggins`, only rows with exactly `Bilbo`.
 
 - Percent sign `%` matches any sequence of zero or more characters.
 - Underscore sign `_`  matches any single character.
@@ -162,10 +161,10 @@ Một bảng 3 columns `JOIN` với một bảng 2 columns sẽ trả về một
 
 Cái namespace `SV.` and `L.` chỉ cần thêm vào khi có sự trùng tên cột của 2 bảng tham gia phép nối, còn không thì không cần thêm.
 
-`INNER JOIN` returns `apple` bảng A & `apple` bảng b
+`INNER JOIN` returns ONLY the rows where there is a match in the join column(s) in both tables. Records from either table that do not have a corresponding match in the other table are excluded from the result set
 
-The `LEFT JOIN` clause joins a left table with the right table and returns all the rows from the left table that may or may not have corresponding rows in the right table. In case the values do not equal, the left join also creates a new row that contains columns from both tables and adds it to the result set (bảng tạm). However, it fills the columns of the right table with `NULL`  
-`LEFT JOIN` is the same as writing `LEFT OUTER JOIN` so you can use them interchangeably.
+The `LEFT JOIN` clause joins a left table with the right table and returns **ALL the rows from the left table** that may or may not have corresponding rows in the right table. In case the values do not equal, the left join also creates a new row that contains columns from both tables and adds it to the result set (bảng tạm). However, it fills the columns of the right table with `NULL`.  
+The clause `LEFT JOIN` is the same as writing `LEFT OUTER JOIN` so you can use them interchangeably.
 
 ```sql
 -- LEFT JOIN result
