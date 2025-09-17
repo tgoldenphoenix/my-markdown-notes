@@ -74,6 +74,28 @@ Còn trong chạy thật, khi run-time. Thì nó mới xét đến bản chất 
 - `HAS-A` (không liên quan tới inheritance): If Class A "has-a" Class B, it means Class A uses or contains an object of Class B as a part of its own structure or functionality.
   - A `Car` class "has-a" `Engine` class. This means the Car class has an Engine object as one of its fields, and it utilizes the Engine's functionalities.
 
+```java
+class Animal {}
+class Dog extends Animal {}
+// Upcasting
+Animal animal = new Dog();
+animal.eat(); // Valid because eat() is a method in Animal
+// animal.bark(); // Invalid because bark() is not a method in Animal
+
+// === Downcasting ===
+Animal animal = new Dog(); // Upcasting
+Dog dog = (Dog) animal; // Downcasting
+dog.bark(); // Now valid because dog is a reference of type Dog
+
+// Invalid Downcasting
+Animal animal = new Animal(); // Just an Animal, not a Dog
+Dog dog = (Dog) animal; // This will throw a ClassCastException at runtime
+// Casting Between Siblings (Invalid)
+Dog dog = new Dog();
+Cat cat = (Cat) dog; // INVALID: A Dog is not a Cat
+
+```
+
 - Khi ép kiểu ngầm định thì Java phải đảm bảo là việc ép kiểu xảy ra thành công thì nó mới cho biên dịch cho nên khi ép kiểu ngầm định, nó chỉ ép từ class CON về class CHA cho chắc ăn
 - Con khi ép kiểu tường minh thì Java nó chỉ xem thử là các class có quan hệ trực hệ hay ko, chứ nó ko chắc chắn là sẽ chạy ko lỗi. Lúc đó, nó sẽ đẩy trách nhiệm của việc kiểm soát lỗi trong quá trình chạy (lỗi run-time) cho lập trình viên tự lo, tự kiểm soát
 
@@ -101,7 +123,7 @@ Declare without initialize thì **mặc định** java sẽ cho `= null;` tức 
 
 Biến `sv1` không phải object mà nó là reference variable.
 
-Con trỏ trong C khi qua Java được gọi là biến tham chiếu, tiếng Anh là **reference variable**), biến này ko chứa giá trị thật như các biến kiểu nguyên thủy (int, long, double...), mà nó chứa giá trị là địa chỉ của đối tượng mà nó đang trỏ tới ví dụ `package.SinhVien@7d8a992f`.
+Con trỏ trong C khi qua Java được gọi là biến tham chiếu, tiếng Anh là **reference variable**, biến này ko chứa giá trị thật như các biến kiểu nguyên thủy (int, long, double...), mà nó chứa giá trị là địa chỉ của đối tượng mà nó đang trỏ tới ví dụ `package.SinhVien@7d8a992f`.
 
 `SinhVien sv1;` => Khai báo 1 biến tham chiếu (con trỏ) có tên là sv1. Mới declare thôi chứ chưa initialize nhưng `sv1` hứa sẽ trỏ đến 1 đối tượng của lớp SinhVien. Nhưng nó có quyền trỏ đến 1 đối tượng của lớp con, cháu của lớp SinhVien. Vd: sau khi viết dòng code này, ta viết tiếp dòng `sv1 = new SinhVienXuatSac();` sẽ không bị lỗi. Vì `SinhVienXuatSac` là con của lớp SinhVien.  
 Nhưng nếu ta viết là `sv1 = new ConMeo();` thì sẽ báo lỗi. Và nếu viết là `sv1 = new Human();` cũng không được, vì class `Human` là cha của SinhVien, chứ không phải con, cháu của SinhVien.
@@ -129,9 +151,9 @@ A **NullPointerException** (NPE) xảy ra khi cố tình truy cập tới phươ
 NullPointerException chỉ có thể xảy ra ở những dòng có dấu `.` để gọi biến hoặc hàm.
 
 - In Java nếu declare primitive variables mà không initialize value thì sẽ có default value chứ không phải `null` (Java không có `undefined` như Javascript).
-  * Với number (int, double) default là 0
-  * char: `\u0000` (the null character)
-  * Boolean default value sẽ là `false`.
+  - Với number (int, double) default là 0
+  - char: `\u0000` (the null character)
+  - Boolean default value sẽ là `false`.
 
 Còn declare object like `SinhVien sv;` mà không initialize sẽ default `sv=null`.  
 Vì String không phải là một kiểu primitive trong Java nên `String a;` thì `a=null` by default.
@@ -140,9 +162,9 @@ The `java.lang.IndexOutOfBoundsException` is a runtime exception in Java that in
 
 `if ("Hello".equals(a)){}` nếu cần so sánh string phải làm như vầy để không có lỗi NullPointerException. Viết `a.equals("Hello")` là không đúng.
 
-## String, StringBuffer
+## String, StringBuilder, StringBuffer
 
-In the Java language, strings are first-class objects of type String, with methods that help you manipulate them.
+Trong java, string không phải primitive. Nó là object được tạo từ class `String`.
 
 In C, string handling is labor-intensive because strings are null-terminated arrays of 8-bit characters that you must manipulate.
 
@@ -152,21 +174,26 @@ Because Strings are first-class objects, you can use `new` to instantiate them. 
 
 Chaining of method calls is a technique commonly used with immutable objects like String, where a modification to an immutable object always returns the modification (but doesn't change the original). You then operate on the returned, changed value.
 
-**String trong Java có nhiều nhược điểm** quá nên sinh ra StringBuffer:
+- **String trong Java có nhiều nhược điểm** quá nên sinh ra StringBuffer:
+  - Lớp String là bất biến (immutable). Lớp StringBuffer là có thể sửa đổi (mutable).
+    - Any operation that appears to modify a String actually creates a new String object.
+  - Khi bạn thực hiện nối nhiều chuỗi thì lớp String xử lý chậm và tốn nhiều bộ nhớ hơn, bởi vì mỗi lần nối thêm chuỗi nó tạo ra instance mới.
+    - Khi bạn thực hiện nối nhiều chuỗi thì lớp `StringBuffer` xử lý nhanh và tốn ít bộ nhớ hơn. Không tạo ra đối tượng rác.
+  - Lớp String ghi đề phương thức equals() của lớp Object. Vì thế bạn có thể so sánh nội dung của 2 chuỗi bằng phương thức equals().
+    - Lớp StringBuffer không ghi đề phương thức equals() của lớp Object. Muốn so sánh 2 cái StringBuffer thì phải chuyển về `String`.
 
-- Lớp String là bất biến (immutable). Lớp StringBuffer là có thể sửa đổi (mutable).
+```java
+String str = "Hello";
+str = str + " World"; // This creates a new string object
 
-- Khi bạn thực hiện nối nhiều chuỗi thì lớp String xử lý chậm và tốn nhiều bộ nhớ hơn, bởi vì mỗi lần nối thêm chuỗi nó tạo ra instance mới.
-- Khi bạn thực hiện nối nhiều chuỗi thì lớp `StringBuffer` xử lý nhanh và tốn ít bộ nhớ hơn. Không tạo ra đối tượng rác.
+StringBuilder sb = new StringBuilder("Hello");
+sb.append(" World"); // Efficiently modifies the existing StringBuilder object
+```
 
-- Lớp String ghi đề phương thức equals() của lớp Object. Vì thế bạn có thể so sánh nội dung của 2 chuỗi bằng phương thức equals().
-- Lớp StringBuffer không ghi đề phương thức equals() của lớp Object. Muốn so sánh 2 cái StringBuffer thì phải chuyển về `String`.
-
-StringBuffer so sánh StringBuilder:
-
-- StringBuffer là đồng bộ (synchronized) tức là luồng an toàn. Điều này có nghĩa là không thể có 2 luồng cùng truy cập phương thức của lớp StringBuffer đồng thời. Làm ứng dụng chat, messenger có xử lý multi-thread.
-- StringBuilder là không đồng bộ (non-synchronized) tức là luồng không an toàn. Điều này có nghĩa là có 2 luồng cùng truy cập phương thức của lớp StringBuilder đồng thời.
-- StringBuffer không hiệu quả bằng StringBuilder. StringBuilder hiệu quả hơn StringBuffer.
+- StringBuffer vs StringBuilder:
+  - `StringBuffer` là đồng bộ (synchronized) tức là luồng an toàn. Điều này có nghĩa là không thể có 2 luồng cùng truy cập phương thức của lớp StringBuffer đồng thời. Làm ứng dụng chat, messenger có xử lý multi-thread.
+  - `StringBuilder`  là không đồng bộ (non-synchronized) tức là luồng không an toàn (Not thread-safe). Điều này có nghĩa là có 2 luồng cùng truy cập phương thức của lớp StringBuilder đồng thời.
+  - StringBuffer không hiệu quả bằng StringBuilder. StringBuilder hiệu quả hơn StringBuffer.
 
 ## Collections
 
@@ -226,7 +253,7 @@ We divide modifiers into two groups:
 - Có 4 mức độ truy cập:
   1. `public`: visible to all classes everywhere; cả thế giới có thể nhìn thấy tôi.
   2. `protected`: the member can only be accessed within its own package (as with package-private) and, in addition, cho phép class con khác package kế thừa copy. Class khác package & không phải class con thì không access được.
-  3. `default`, no modifier or package-private: visible within its own package.
+  3. `default` (no modifier or package-private): visible within its own package.
   4. `private`: can only be accessed in **its own class**.
 - Có 4 mức độ nhưng chỉ có 3 bổ từ vì `default` thì không phải ghi gì cả. Classes thì chỉ có 1 bổ từ thôi.
 
@@ -289,8 +316,8 @@ Override, OR (Ghi đè, che khuất):
 - Xet về access modifiers có 2 trường hợp:
   1. cha con phải bằng nhau;
   2. con phải có khả năng được nhìn thấy (vivsibility) **cao hơn cha** ví dụ `con public > cha default`. Vay nếu cha là `default` thì con có thể là: `default`, `protected`, `public`.
-- Neu class cha khai là `private` thì class con sẽ không thể thấy để mà copy. Nên không kế thừa được hay override được `private` members của class cha.
-- Neu xét return type:
+- Nếu class cha khai là `private` thì class con sẽ không thể thấy để mà copy. Nên không kế thừa được hay override được `private` members của class cha.
+- Nếu xét return type:
   1. nếu trả về primitive types thì phải giống y chang nhau mới được không casting gì hết;
   2. nếu trả về objects of classes like `Animal, Dog` thì class con có thể trả về tất cả những kiểu mà là IS-A kiểu trả về của lớp cha. Ví dụ class cha return `Animal` thì class con khi override method có thể trả về `Dog`; `Dog` IS-A `Animal`.
 - Class con có copy, kế thừa nhưng không được override `static` methods của lớp cha. Nhưng có thể overload `static` methods copy được từ class cha. Class con gọi static methods copy được từ class cha không cần dùng `super` cứ gọi bình thường.
@@ -326,10 +353,10 @@ Implement interface **cũng** tạo ra quan hệ IS-A: `class Laptop implements 
 [colon operator : inside java method parameter](https://stackoverflow.com/questions/15600917/java-method-with-method-with-colon-in-parameter)
 
 - **Local variable**:
-  * Các biến được khai báo trong các functions (method scope)
-  * Hoặc các tham số đầu vào của các hàm
-  * Vì sao gọi là biến địa phương? Vì nó chỉ tồn tại trong hàm đó thôi. Khi method hết nhiệm vụ (ra khỏi hàm) thì các biến đó bị biến mất (giải phóng)
-  * Variables inside blocks `{}` is also local variables. Ra khỏi `{}` thì những biến này không còn tồn tại nữa. Ví dụ inside `if-else {}`, biến counter `i` trong `for loop`.
+  - Các biến được khai báo trong các functions (method scope)
+  - Hoặc các tham số đầu vào của các hàm
+  - Vì sao gọi là biến địa phương? Vì nó chỉ tồn tại trong hàm đó thôi. Khi method hết nhiệm vụ (ra khỏi hàm) thì các biến đó bị biến mất (giải phóng)
+  - Variables inside blocks `{}` is also local variables. Ra khỏi `{}` thì những biến này không còn tồn tại nữa. Ví dụ inside `if-else {}`, biến counter `i` trong `for loop`.
 
 Thường nếu dùng `try catch {}` thì phải declare variable bên ngoài.
 
@@ -348,7 +375,7 @@ Static variables & methods giúp ta tiết kiệm bộ nhớ ram vì **không ph
   1. Static chỉ chơi với static
   2. Static có thể chơi với cái chắc chắn có tồn tại: nếu anh ko phải static thì tôi vẫn chơi với anh nếu như anh chắc chắn tồn tại (bằng cách tạo object rồi gọi biến & hàm).
 
-Tuc là trong static method, muốn gọi variables & method trong 1 class thì: (1) phải là static variable/method. Còn nếu không thì phải (2) tạo object và gọi thông qua object vừa tạo.  
+Tức là trong static method (như `main()` chẳng hạn), muốn gọi variables & method trong 1 class thì: (1) phải là static variable/method. Còn nếu không thì phải (2) tạo object và gọi thông qua object vừa tạo.  
 Lý do có static context là gì liên quan tới memory management inside RAM. Khi chạy project thì java load all static methods & varibles bỏ vào một vùng đặc biệt trên RAM. Việc này được làm trước khi chạy hàm `main()`. Static context giúp ta tránh gọi `null` dẫn tới lỗi.
 
 **WARNING**: Tuyệt đối KHÔNG tạo static method to connect to database (variable thì được). Cause errors that cannot be fixed. Trong `main()` cứ tạo đối tượng rồi gọi kết nối DB.
@@ -365,21 +392,19 @@ The `main()` method is the starting point of your program. Vì sao hàm `main()`
 
 ### final & abstract
 
-The keyword `final` có thể đi với:
+- The keyword `final` có thể đi với:
+  1. variable: constant variable (không thay đổi giá trị được)
+  2. method: method cannot be Overridden (cha mẹ nói sao con làm vậy, không cãi lời)
+  3. class: Class đó không có class con (khong được `extends` kế thừa), class đó là class cuối cùng trong cây gia phả.
 
-1. variable: constant variable (không thay đổi giá trị được)
-2. method: method cannot be Overridden (cha mẹ nói sao con làm vậy, không cãi lời)
-3. class: Class đó không có class con (khong được `extends` kế thừa), class đó là class cuối cùng trong cây gia phả.
-
-`abstract`:
-
-- Không đi được với biến.
-- Abstract method: phương thức trừu tượng, chỉ có khai báo tên hàm, kiểu trả về, argument list; không có body
-- Abstract class: class có chứa 0 hoặc nhiều abstract methods
+- Keyword `abstract`:
+  * Không đi được với biến.
+  * Abstract method: phương thức trừu tượng, chỉ có khai báo tên hàm, kiểu trả về, argument list; không có body
+  * Abstract class: class có chứa 0 hoặc nhiều abstract methods
 
 - `final` cannot go together with `abstract` vì về bản chất:
-  * `final`: hứa ko thay đổi, ko có con nữa, ko ai thay thế nữa
-  * `abstract`: mơ hồ, chưa rõ ràng, hứa là sẽ có con cái triển khai ý tưởng mơ hồ của mình
+  - `final`: hứa ko thay đổi, ko có con nữa, ko ai thay thế nữa
+  - `abstract`: mơ hồ, chưa rõ ràng, hứa là sẽ có con cái triển khai ý tưởng mơ hồ của mình
 
 - Giống nhau: Đều là lời hứa.
 - Khác nhau:
@@ -402,43 +427,41 @@ In Java, an interface can extend **one or more** other interfaces. This mechanis
 - The child interface inherits all the abstract methods, default methods, static methods, and constant fields from its parent interfaces.
 - Any class that implements the child interface must provide implementations for all the abstract methods inherited from both the child interface and all its parent interfaces.
 
-- Interface methods are by default `abstract and public`. This means you do not need to explicitly add the public keyword when declaring them within an interface.
+- **Interface methods** are by default `abstract and public`. This means you do not need to explicitly add the public keyword when declaring them within an interface.
 - Interface attributes (variables) are by default `public, static and final`. This means they are accessible from anywhere without needing an object of the interface, and their values cannot be changed after initialization
 
-- Lớp trừu tượng là lớp không thể tạo đối tượng của lớp đó, nghĩa là không thể dùng từ khóa new để tạo đối tượng cho lớp đó. ---> vì lớp đó không có nhu cầu tạo đối tượng. Chỉ tạo ra với mục đích giải quyết những bài toán quan hệ giữa các đối tượng phức tạp.
-- Cấu trúc của một abstract class: Gồm có **zero** hoặc 1, hoặc nhiều, hoặc tất cả đều là phương thức trừu tượng. Có quyền không có abstract method cũng được.
-- Bên trong lớp trừu tượng **có thể** chứa phương thức cụ thể. Interface không được.
+- **Lớp trừu tượng** là lớp không thể tạo đối tượng của lớp đó, nghĩa là không thể dùng từ khóa new để tạo đối tượng cho lớp đó. ---> vì lớp đó không có nhu cầu tạo đối tượng. Chỉ tạo ra với mục đích giải quyết những bài toán quan hệ giữa các đối tượng phức tạp.
+- Cấu trúc của một abstract class: Gồm có **zero** hoặc một, hoặc nhiều, hoặc tất cả đều là phương thức trừu tượng. Có quyền không có abstract method cũng được.
+- Lớp con khi kế thừa bắt buộc phải Override abstract method (nếu có).
+- Bên trong lớp trừu tượng **có thể** chứa phương thức cụ thể. Nhưng Interface thì không được.
 - Abstract classes có thể chứa các trường dữ liệu.
 
-Ý nghĩa của lớp trừu tượng:
+- Ý nghĩa của lớp trừu tượng:
+  - Lớp trừu tượng là **lớp bất lực** và chỉ là **lớp hứa** mà thôi.
+  - Hứa cái gì? ---> Hứa hành vi (phương thức)
+  - Ai sẽ thực thực hiện lời hứa ---> Các lớp con sẽ thực hiện
+  - Vì sao phải hứa? ---> Vì nó muốn các lớp con phải có chung hành vi nhưng mỗi lớp con được phép hiện thực hóa các hành vi theo các cách khác nhau
 
-- Lớp trừu tượng là **lớp bất lực** và chỉ là **lớp hứa** mà thôi.
-- Hứa cái gì? ---> Hứa hành vi (phương thức)
-- Ai sẽ thực thực hiện lời hứa ---> Các lớp con sẽ thực hiện
-- Vì sao phải hứa? ---> Vì nó muốn các lớp con phải có chung hành vi nhưng mỗi lớp con được phép hiện thực hóa các hành vi theo các cách khác nhau
-
-Hinh Tam Giac IS-A `Hinh`. Đã là hình thì bắt buộc phải có `tinhChuVi()` và `tinhDienTich()`. Mà `tinhChuVi()` và `tinhDienTich()` chỉ là những lời hứa. Vì class Hình không biết tính chu vi và diện tích cụ thể như thế nào?  
+`HinhTamGiac` IS-A `Hinh`. Đã là hình thì bắt buộc phải có `tinhChuVi()` và `tinhDienTich()`. Mà `tinhChuVi()` và `tinhDienTich()` chỉ là những lời hứa. Vì class Hình không biết tính chu vi và diện tích cụ thể như thế nào?  
 Vậy: bên trong class Hình, 2 phương thức này sẽ là 2 phương thức trừu tượng còn trong class `HinhTamGiac` 2 phương thức này sẽ là 2 phương thức cụ thể.
 
-Phân biệt cách sử dụng Interface và abstract class:
+Phân biệt cách sử dụng Interface và abstract class. Khi gặp quan hệ IS-A thì ta xét như sau:
 
-Khi gặp quan hệ IS-A thì ta xét như sau:
-
-- Nếu là quan hệ **luôn luôn** thì chắc chắn xuất hiện Class cụ thể hoặc Abstract Class
-- Nếu là quan hệ **thỉnh thoảng** lúc có lúc không thì xuất hiện Interface
+- Nếu là quan hệ **luôn luôn** thì chắc chắn xuất hiện Class cụ thể hoặc Abstract Class.
+- Nếu là quan hệ **thỉnh thoảng** lúc có lúc không thì xuất hiện Interface.
 - Khi có nhiều hơn 1 quan hệ luôn luôn thì chắc chắn có quan hệ IS-A đa cấp tức là sẽ xuất hiện quan hệ cha-con nhiều cấp
 - Nếu class mà không cần phải tạo ra đối tượng thì ta cho nó là Abstract
 - Tính từ thường là thể hiện của 1 interface
 
-- khi hệ thống có một chức năng gì mà muốn thể hiện theo nhiều cách khác nhau thông qua các class khác nhau thì dùng interface. Ví dụ: 2 class là `BubbleSort` và InsertionSort implement interface `SortAlgorithm`; Interface `List` và các class kế thừa nó ArrayList, Vector, LinkedList.
+- khi hệ thống có một chức năng gì mà muốn thể hiện theo nhiều cách khác nhau thông qua các class khác nhau thì dùng interface. Ví dụ: 2 class là `BubbleSort` và `InsertionSort` implement interface `SortAlgorithm`; Interface `List` và các class kế thừa nó ArrayList, Vector, LinkedList.
 - khi mà chương trình của chúng ta có các đối tượng các tính chất giống nhau trong cách thể hiện thì ta nghĩ đến abstract class. Ví dụ: 2 Classes `Student`, `Teacher` extends kế thừa abstract class `Person`.
 
 Bài tập thứ nhất:
 
 - `đàn ông` luôn luôn là `con người` rồi `con người` luôn luôn là `động vật` 24/24 => Class cụ thể hoặc abstract.
 - `động vật`, `con ng`, `đàn ông` là 3 class. Có nhiều hơn 01 quan lệ **luôn luôn** nên có QH đa cấp. `động vật` > `con ng` > `đàn ông`; quan hệ ông nội - cha - con.
-- `đàn ông` là class cụ the vì nghiệp vụ bài toán chỉ quan tâm tới `dan ông` (ví dụ củ thể là `thanh niên nghiêm túc`). `con ng` và `động vật` trong đề bài không có nhu cầu tạo object nên cho làm abstract classes. Mục đích của abstract class là để giải quyết bài toán một cách dễ hiểu hơn thôi.
-- `người chồng`, `ng bạn`, `nhân viên cty` là interfaces vì nó là quan hệ **thỉnh thoảng**. Minh không có làm chồng 24/24 mỗi ngày. Về là thì đâu còn là `nhân viên` nữa, làm bạn cũng vậy. Vậy thì class `đàn ông` đôi khi sẽ `implements` `người chồng`, `ng bạn` hoặc `nhân viên`.
+- `đàn ông` phải là class cụ thể vì nghiệp vụ bài toán chỉ quan tâm tới `dan ông` (ví dụ củ thể là `thanh niên nghiêm túc`). `con ng` và `động vật` trong đề bài không có nhu cầu tạo object nên cho làm abstract classes. Mục đích của abstract class là để giải quyết bài toán một cách dễ hiểu hơn thôi.
+- `người chồng`, `ng bạn`, `nhân viên cty` là interfaces vì nó là quan hệ **thỉnh thoảng**. Minh không có làm chồng 24/24 mỗi ngày. Về là thì đâu còn là `nhân viên` nữa, làm bạn cũng vậy. Vậy thì class `đàn ông` **đôi khi** sẽ `implements` `người chồng`, `ng bạn` hoặc `nhân viên`.
 
 Bài tập thứ 02:
 
@@ -447,7 +470,7 @@ Bài tập thứ 02:
 
 Python không có interface, một class có thể kế thừa nhiều class. Vậy interface mục đích là để làm gì?
 
-- Định nghĩa interface: tương tự như 1 class trừu tượng nhưng chỉ được phép chứa phương thức trừu tượng. không được phép chứa phương thức cụ thể.
+- Định nghĩa interface: tương tự như 1 class trừu tượng nhưng **chỉ được phép chứa phương thức trừu tượng**, không được phép chứa phương thức cụ thể.
 - Ý nghĩa của interface:
   1. Sinh ra chỉ để hứa (không làm được một cái gì cụ thể hết) ---> Giống như 1 bản hợp đồng
   2. Giải quyết **bài toán đa kế thừa** một CON có nhiều CHA

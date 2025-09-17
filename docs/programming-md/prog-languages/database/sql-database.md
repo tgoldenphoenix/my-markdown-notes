@@ -90,8 +90,7 @@ Từ khóa `LIKE` dùng để tìm kiếm chuỗi 1 cách tương đối (giốn
 
 ```sql
 -- Câu Select này sẽ không liệt kê `Bilbo Baggins`, only rows with exactly `Bilbo`.
-Select * from SINHVIEN
-Where HoTenSV LIKE 'Bilbo'
+Select * from SINHVIEN Where HoTenSV LIKE 'Bilbo'
 ```
 
 - Percent sign `%` matches any sequence of zero or more characters.
@@ -120,7 +119,7 @@ Sau khi `GROUP BY`, có bao nhiêu nhóm thì trả về bấy nhiêu dòng kế
 - Có thể Select những hằng số, để tạo ra những "no name columns"
 - Không nhất thiết phải Select các cột có trong `GROUP BY` vì câu `SELECT` chạy sau cùng chứ không phải Select rồi mới có cái để `GROUP BY`.
 
-Aggregate functions perform a calculation on a set of rows and return a single row. Hàm gộp thường đi chung với `GROUPBY` và sẽ không bao giờ bị lỗi. Khi dùng hàm gộp trong `SELECT` mà không có `GROUP BY` thì nó sẽ hiểu rằng cả cái bảng là 1 nhóm được `GROUP BY`. Có 5 hàm gộp:
+Aggregate functions perform a calculation on a set of rows and return a single row. Hàm gộp thường đi chung với `GROUP BY` và sẽ không bao giờ bị lỗi. Khi dùng hàm gộp trong `SELECT` mà không có `GROUP BY` thì nó sẽ hiểu rằng cả cái bảng là 1 nhóm được `GROUP BY`. Có 5 hàm gộp:
 
 1. `AVG()`
 2. `COUNT()`
@@ -131,7 +130,7 @@ Aggregate functions perform a calculation on a set of rows and return a single r
 Vì hàm gộp dùng để tính toán giá trị **trên từng nhóm** nên phải `GROUP BY` xong mới được gọi aggregate functions:
 
 - Suy ra hàm gộp không được nằm trong `WHERE` mà phải nằm trong `HAVING` vì `WHERE` chạy trước `GROUP BY`, `HAVING` chạy sau `GROUP BY`.
-- Lý do gọi hàm gộp trong `SELECT` được vì Select chạy sau cùng (sau khi đã `GROUP BY`).
+- Lý do gọi được hàm gộp trong `SELECT` được vì Select chạy sau cùng (sau khi đã `GROUP BY`).
 
 Nếu `WHERE` là điều kiện lọc dòng (rows) thì `HAVING` là điều kiện lọc **dành cho các nhóm (groups)** trong bảng tạm được trả về từ `GROUP BY`. Nó lọc ra những nhóm mình cần lấy. Sau đó mới chạy qua `ORDER BY` rồi cuối cùng chạy `SELECT`.
 
@@ -299,8 +298,8 @@ WHERE
 ORDER BY film_id;
 ```
 
-The `EXISTS` operator is a boolean operator that checks the existence of rows in a subquery.  
-If the subquery returns at least one row, the `EXISTS` operator returns `true`. If the subquery returns no row, the EXISTS returns `false`. Note that if the subquery returns `NULL`, the EXISTS operator returns `true`.
+The `EXISTS` operator is a boolean operator that checks the **existence of rows** in a subquery.  
+If the subquery returns **at least one row**, the `EXISTS` operator returns `true`. If the subquery returns no row, the EXISTS returns `false`. Note that if the subquery returns `NULL`, the EXISTS operator returns `true`.
 
 The result of `EXISTS` operator depends on whether any row is returned by the subquery, and **NOT** on the row contents. Therefore, columns that appear in the select_list of the subquery are not important. Thường người ta `SELECT 1` trong sub-query luôn.
 
@@ -465,7 +464,7 @@ A view is a named query stored in the PostgreSQL database server. A view is defi
 
 After creating a view, you can query data from it as you would from a regular table. Behind the scenes, PostgreSQL will rewrite the query against the view and its defining query, executing it to retrieve data from the base tables.
 
-Views do not store data.
+Views **do NOT** store data.
 
 Advantage of using views:
 
