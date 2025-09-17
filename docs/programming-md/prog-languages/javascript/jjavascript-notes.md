@@ -485,9 +485,8 @@ Synchronous là "đồng bộ", Async là "bất đồng bộ"
 
 A function that does something asynchronously should provide a `callback` argument where we put the function to run after it’s complete (timer for example).
 
-AJAX: Asynchronous JavaScript And XML: Allows us to communicate with remote web servers in an asynchronous way. With AJAX calls, we can request data from web servers dynamically.
-
-- It uses `XMLHttpRequest` (XHR) objects to interact with servers. Hiện nay người ta dùng JSON.
+AJAX: Asynchronous JavaScript And XML: Allows us to communicate with remote web servers in an asynchronous way. With AJAX calls, we can request data from web servers dynamically.  
+It uses `XMLHttpRequest` (XHR) objects to interact with servers. Hiện nay người ta dùng JSON.
 
 Nesting multiple callbacks (more than 3) is not a good idea. In which case, we use `Promises`  
 A `promise` is a special JavaScript object that links the **producing code** and the “consuming code” together. The “producing code” takes whatever time it needs to produce the promised result, and the “promise” makes that result available to all of the subscribed code when it’s ready.

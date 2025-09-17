@@ -99,3 +99,4 @@ In light of the MVC design pattern, the servlet acts as a controller and JSP as 
 ## Strut
 
 Apache Struts, commonly referred to as Struts in the context of Java, is an open-source, free framework for building Java web applications. It was created by the Apache Software Foundation and primarily focuses on implementing the Model-View-Controller (MVC) architectural pattern.
+
