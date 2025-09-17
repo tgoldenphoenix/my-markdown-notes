@@ -116,6 +116,15 @@ While these domain model POJOs/JavaBeans are used within a Spring application, t
 
 ### Spring bean vs. Java Beans
 
+JavaBeans là những Class có thuộc tính được khai `private`, muốn truy cập những thuộc tính này phải dùng setters, getters. Java Bean có mục đích là:
+
+- Gather together and store related information of an object into a Class. Ví dụ `SinhVien` là một nhóm đối tượng có các thuộc tính như họ tên, giới tính. Mục đích cuối cùng là lưu trữ dữ liệu trong quá trình xử lý nghiệp vụ một cách tiện lợi nhất.
+- Vì Java Bean để lưu dữ liệu nên class JB không có chứa methods xử lý nghiệp vụ (business logic, tính toán, truy cập database).
+
+Trong DOTNET cũng có bean. Javascript cũng có bean.
+
+Nếu không có Java Bean.
+
 Spring beans:
 
 - Have public default (no argument) constructors

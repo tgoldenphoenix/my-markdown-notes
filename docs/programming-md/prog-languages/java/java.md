@@ -28,8 +28,8 @@ Primitive type:
 - `float`: Stores fractional numbers. Sufficient for storing 6 to 7 decimal digits
 - `double`: fractional numbers. Sufficient for storing 15 to 16 decimal digits. Floating-point literals (number có dùng dấu `.` like `1.0, 1.1, 1.2`) are inferred as double by **default**.
 
-- char: Stores a single character/letter or ASCII values
-- boolean: true or `false`
+- `char`: Stores a single character/letter or ASCII values
+- boolean: `true` or `false`
 
 Literal Suffix:
 
@@ -56,7 +56,7 @@ Down casting: double -> float -> long -> int -> short -> byte
 - Trong 1 expression, chỉ cần có 1 real number thì Java sẽ trả về real number: `(double) 3 / 2 = 1.5`, `1.0 / 5 = 0.2`
 - Còn nếu 2 số nguyên chia nhau thì chỉ lấy phần nguyên `3 / 2 = 1 not 1.5`
 
-Có ép kiểu primitive (trong procedural programming cũng có) và ép kiểu kế thừa OOP.
+Có 2 loại ép kiểu: (1) ép kiểu primitive (trong procedural programming cũng có) và (2) ép kiểu kế thừa OOP.
 
 Khi muốn biết kiểu của một object pointer, chỉ quan tâm kiểu được khai báo trước tên biến pointer. Còn bên phải dấu `=` nó up/down casting gì không quan tâm.
 
@@ -66,7 +66,7 @@ Trong cây quan hệ có 2 kiểu quan hệ:
 2. Chú-cháu, bác-cháu.
 
 Khi biên dịch thì IDE chỉ quan tâm đến khai báo. Miễn là khai báo có quan hệ cha-con, cháu-ông nội thì nó coi như là cho phép biên dịch.  
-Còn trong chạy thật, khi run-time. Thì nó mới xét đến bản chất thật sự của class mà biến tham chiếu đang trỏ đến và nó chỉ cho ép downcasting thật sự khi có quan hệ `IS-A`. Có thể kiểu khai báo là `HocVien` nhưng bản chất pointer trỏ đến một object `SinhVien`. Khai báo là một chuyện, bản chất là chuyện khác.
+Còn trong chạy thật, khi run-time. Thì nó mới xét đến bản chất thật sự của class mà biến tham chiếu đang trỏ đến và nó **chỉ cho ép downcasting thật sự khi có quan hệ** `IS-A`. Có thể kiểu khai báo là `HocVien` nhưng bản chất pointer trỏ đến một object `SinhVien`. Khai báo là một chuyện, bản chất là chuyện khác.
 
 - `IS-A` (liên quan tới inheritance): con cháu IS-A cha, ông nội.
   - `Dog` IS-A `Animal` but `Animal` not IS-A `Dog`
@@ -78,7 +78,7 @@ Còn trong chạy thật, khi run-time. Thì nó mới xét đến bản chất 
 - Con khi ép kiểu tường minh thì Java nó chỉ xem thử là các class có quan hệ trực hệ hay ko, chứ nó ko chắc chắn là sẽ chạy ko lỗi. Lúc đó, nó sẽ đẩy trách nhiệm của việc kiểm soát lỗi trong quá trình chạy (lỗi run-time) cho lập trình viên tự lo, tự kiểm soát
 
 The `instanceof` operator in Java is a binary operator used to determine if an object is an instance of a particular class or interface, or a subclass/implementation of that type.  
-It returns a boolean value: `true` if the object is an instance of the specified type, and `false` otherwise. `instanceof` trả lời câu hỏi "có IS-A hay không?"
+It returns a boolean value: `true` if the object is an instance of the specified type, and `false` otherwise. `instanceof` trả lời câu hỏi **có IS-A hay không?**
 
 ### Autoboxing and Unboxing
 
@@ -97,7 +97,7 @@ SinhVien sv1;
 SinhVien sv2 = null;
 ```
 
-Declare without initialize thì auto `= null;` tức là chưa trỏ đến đối tượng nào cả.
+Declare without initialize thì **mặc định** java sẽ cho `= null;` tức là chưa trỏ đến đối tượng nào cả.
 
 Biến `sv1` không phải object mà nó là reference variable.
 
@@ -109,7 +109,7 @@ Nhưng nếu ta viết là `sv1 = new ConMeo();` thì sẽ báo lỗi. Và nếu
 `SinhVienGioi` IS-A `SinhVien`
 
 `sv2 = new SinhVien(); // line 3` Tạo ra 1 đối tượng của lớp `SinhVien`. Cấp phát vùng nhớ cho đối tượng đó. Sau đó, cho `sv2` trỏ (tham chiếu) đến đối tượng đó.  
-Như vậy, sau line 3 này: `sv1` đang trỏ đến null (nghĩa là chưa trỏ đến đối tượng nào cả). Sv2 đang trỏ đến 1 đối tượng của lớp SinhVien (đối tượng đó được sinh ra ở line 3). Đối tượng này sinh ra ở dòng 3.
+Như vậy, sau line 3 này: `sv1` đang trỏ đến null (nghĩa là chưa trỏ đến đối tượng nào cả). `sv2` đang trỏ đến 1 đối tượng của lớp SinhVien (đối tượng đó được sinh ra ở line 3). Đối tượng này sinh ra ở dòng 3.
 
 `sv1 = sv2; // dòng 4` => Sau line 4, sv1 và sv2 cùng trỏ (tham chiếu) đến chung 1 đối tượng (đối tượng đó được sinh ra tại line 3). Nghĩa là có 1 đối tượng và 2 con trỏ (tham chiếu) đang trỏ đến nó.  
 **Lưu ý**: 1 đối tượng có thể được trỏ bởi bao nhiêu con trỏ cũng được hết.
@@ -128,11 +128,10 @@ Coi lại trong SQL cũng có `null` và rỗng khác nhau.
 A **NullPointerException** (NPE) xảy ra khi cố tình truy cập tới phương thức hoặc thuộc tính của một đối tượng thông qua một biến con trỏ (reference variable) mà biến con trỏ đó hiện tại là `null`.  
 NullPointerException chỉ có thể xảy ra ở những dòng có dấu `.` để gọi biến hoặc hàm.
 
-In Java nếu declare primitive variables mà không initialize value thì sẽ có default value chứ không phải `null` (Java không có `undefined` như Javascript):
-
-- Với number (int, double) default là 0
-- char: `\u0000` (the null character)
-- Boolean default value sẽ là `false`.
+- In Java nếu declare primitive variables mà không initialize value thì sẽ có default value chứ không phải `null` (Java không có `undefined` như Javascript).
+  * Với number (int, double) default là 0
+  * char: `\u0000` (the null character)
+  * Boolean default value sẽ là `false`.
 
 Còn declare object like `SinhVien sv;` mà không initialize sẽ default `sv=null`.  
 Vì String không phải là một kiểu primitive trong Java nên `String a;` thì `a=null` by default.
@@ -173,7 +172,7 @@ StringBuffer so sánh StringBuilder:
 
 Collection là một loại đối tượng có thể chứa các địa chỉ trỏ đến các đối tượng khác. Collection không chứa the objects themselves. Mỗi phần tử trong collection là một address, not object.
 
-Array trong Java có số phần tử cố định và phải khai rõ ràng lúc declare. Array is NOT collection, nó chỉ là một kiểu dữ liệu nguyên thủy trong Java.
+Array trong Java có số phần tử cố định và phải khai rõ ràng lúc declare. Array is **NOT** collection, nó chỉ là một kiểu dữ liệu nguyên thủy trong Java.
 
 `ArrayList` có cấu trúc giống Array (mảng) nhưng số phần tử là dynamic có thể resize được.  
 Mảng thì dùng sytax `[]` để access item. Còn `ArrayList` làm cái gì cũng thông qua hàm hết như `.add(), .get(), .set()`, không làm trực tiếp như mảng.
@@ -220,19 +219,16 @@ We divide modifiers into two groups:
 1. **Access Modifiers** (bổ từ quy định mức độ truy cập) - controls the access level of classes, interfaces and its members.
 2. **Non-Access Modifiers**: do not control access level, but provides other functionality. We have `final, abstract, static`.
 
-There are two levels of [access control](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html):
+- There are two levels of [access control](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html):
+  1. At the top level (classes, interfaces): `public`, or `package-private` (no explicit modifier, default).
+  2. Class members (properties, methods): `public`, `protected`, `package-private` (default no explicit modifier), `private`.
 
-1. At the top level (classes, interfaces): `public`, or `package-private` (no explicit modifier, default).
-2. Class members (properties, methods): `public`, `protected`, `package-private` (default no explicit modifier), `private`.
-
-Có 4 mức độ truy cập:
-
-1. `public`: visible to all classes everywhere; cả thế giới có thể nhìn thấy tôi.
-2. `protected`: the member can only be accessed within its own package (as with package-private) and, in addition, cho phép class con khác package kế thừa copy. Class khác package & không phải class con thì không access được.
-3. `default`, no modifier or package-private: visible within its own package.
-4. `private`: can only be accessed in **its own class**.
-
-Có 4 mức độ nhưng chỉ có 3 bổ từ vì `default` thì không phải ghi gì cả. Classes thì chỉ có 1 bổ từ thôi.
+- Có 4 mức độ truy cập:
+  1. `public`: visible to all classes everywhere; cả thế giới có thể nhìn thấy tôi.
+  2. `protected`: the member can only be accessed within its own package (as with package-private) and, in addition, cho phép class con khác package kế thừa copy. Class khác package & không phải class con thì không access được.
+  3. `default`, no modifier or package-private: visible within its own package.
+  4. `private`: can only be accessed in **its own class**.
+- Có 4 mức độ nhưng chỉ có 3 bổ từ vì `default` thì không phải ghi gì cả. Classes thì chỉ có 1 bổ từ thôi.
 
 Một class member "visible" nghĩa là ta có thể tạo object rồi access nó. Nếu nó khai `private` thì kể cả khi ta tạo được đối tượng cũng vẫn không access được.
 
@@ -323,46 +319,47 @@ ConNguoi IS-A DongVat. Lớp con IS-A lớp cha.
 - ConNguoi HAS-A Chan. Không được nói `ConNguoi` HAS-A `chanTrai`.
 - ConNguoi HAS-A String chứ không phải HAS-A hoTen. `hoTen` chỉ là cái tên biến do mình tự đặt ra thôi.
 
-Implement interface cũng tạo ra quan hệ IS-A: `class Laptop implements Computer` thì `Laptop` IS-A `Computer`.
+Implement interface **cũng** tạo ra quan hệ IS-A: `class Laptop implements Computer` thì `Laptop` IS-A `Computer`.
 
 ## Variable scope & Non-access Modifiers
 
 [colon operator : inside java method parameter](https://stackoverflow.com/questions/15600917/java-method-with-method-with-colon-in-parameter)
 
-**Local variable**:
-
-- Các biến được khai báo trong các functions (method scope)
-- Hoặc các tham số đầu vào của các hàm
-- Vì sao gọi là biến địa phương? Vì nó chỉ tồn tại trong hàm đó thôi. Khi method hết nhiệm vụ (ra khỏi hàm) thì các biến đó bị biến mất (giải phóng)
-- Variables inside blocks `{}` is also local variables. Ra khỏi `{}` thì những biến này không còn tồn tại nữa. Ví dụ inside `if-else {}`, biến counter `i` trong `for loop`.
+- **Local variable**:
+  * Các biến được khai báo trong các functions (method scope)
+  * Hoặc các tham số đầu vào của các hàm
+  * Vì sao gọi là biến địa phương? Vì nó chỉ tồn tại trong hàm đó thôi. Khi method hết nhiệm vụ (ra khỏi hàm) thì các biến đó bị biến mất (giải phóng)
+  * Variables inside blocks `{}` is also local variables. Ra khỏi `{}` thì những biến này không còn tồn tại nữa. Ví dụ inside `if-else {}`, biến counter `i` trong `for loop`.
 
 Thường nếu dùng `try catch {}` thì phải declare variable bên ngoài.
 
-**Instance variable** (biến của thể hiện, biến của đối tượng, class scope). Nếu gọi là biến toàn cục (global variable) là cách gọi sai, vì biến toàn cục là cách nói trong ngôn ngữ lập trình hướng thủ tục, còn trong OOP thì gọi là biến của thể hiện.
+**Instance variable** (biến của thể hiện, biến của đối tượng, class scope). Nếu gọi là biến toàn cục (_global variable_) là cách gọi **sai**, vì biến toàn cục là cách nói trong ngôn ngữ lập trình hướng thủ tục, còn trong OOP thì gọi là biến của thể hiện.
 
 Vì sao nó được gọi là biến của đối tượng?  
 Vì khi ta tạo 1 đối tượng thì biến loại này nó cũng được tạo theo và nó trở thành một vật sở hữu của đối tượng được tạo. Khi đối tượng mất đi, biến này sẽ phải được giải phóng
 
 In java, con trỏ = biến tham chiếu (reference variable). Ví dụ con trỏ chỉ tới một object.
 
-**Static variable** (biến của lớp, tất cả đối tượng của lớp đó được dùng chung). Cách khai báo giống instance variable, nằm ngoài methods nhưng phải thêm `static` keyword. Nên dùng cú pháp `CLassName.static_var` để truy cập và **không cần tạo object**.
+**Static variable** (biến của lớp, tất cả đối tượng của lớp đó được dùng chung). Cách khai báo giống instance variable, nằm ngoài methods nhưng phải thêm `static` keyword. Nên dùng cú pháp `CLassName.static_var` để truy cập và **không cần tạo object**.  
+Static variables & methods giúp ta tiết kiệm bộ nhớ ram vì **không phải tạo object** để gọi và có thể dùng chung.  
+`static` Attributes and methods belongs to the class, rather than an object
 
-Static variables & methods giúp ta tiết kiệm bộ nhớ ram vì **không phải tạo object** để gọi và có thể dùng chung.
+- **Static context** có nghĩa là Static chỉ chơi với 2 cái:
+  1. Static chỉ chơi với static
+  2. Static có thể chơi với cái chắc chắn có tồn tại: nếu anh ko phải static thì tôi vẫn chơi với anh nếu như anh chắc chắn tồn tại (bằng cách tạo object rồi gọi biến & hàm).
 
-**Static context** có nghĩa là Static chỉ chơi với 2 cái:
-
-1. Static chỉ chơi với static
-2. Static có thể chơi với cái chắc chắn có tồn tại: nếu anh ko phải static thì tôi vẫn chơi với anh nếu như anh chắc chắn tồn tại (bằng cách tạo object rồi gọi biến & hàm).
-
-Tuc là trong static method, muốn gọi variables & method trong 1 class thì: (1) phải là static variable & method nếu không thì phải (2) tạo object và gọi thông qua object vừa tạo.
-
+Tuc là trong static method, muốn gọi variables & method trong 1 class thì: (1) phải là static variable/method. Còn nếu không thì phải (2) tạo object và gọi thông qua object vừa tạo.  
 Lý do có static context là gì liên quan tới memory management inside RAM. Khi chạy project thì java load all static methods & varibles bỏ vào một vùng đặc biệt trên RAM. Việc này được làm trước khi chạy hàm `main()`. Static context giúp ta tránh gọi `null` dẫn tới lỗi.
 
 **WARNING**: Tuyệt đối KHÔNG tạo static method to connect to database (variable thì được). Cause errors that cannot be fixed. Trong `main()` cứ tạo đối tượng rồi gọi kết nối DB.
 
-`static` Attributes and methods belongs to the class, rather than an object
+A `static` method/attributes can be accessed without creating an object of the class first. There's only one copy of the static member, shared across all objects of that class. It's good for memory management. Nên dùng vừa phải, hợp lý.
 
-Vì sao hàm `main()` là hàm `static`?
+The `main()` method is the starting point of your program. Vì sao hàm `main()` là hàm `static`?
+
+- It's `static` because otherwise the compiler would need to make an object out of the class it's in first in order to call it.
+- It's public because otherwise it couldn't be called from the outside.
+- It's void because it can't return a value by design.
 
 [static factory method](https://www.youtube.com/watch?v=sOpbAOX5nJs) được dùng khi constructor không dùng được.
 
@@ -377,13 +374,12 @@ The keyword `final` có thể đi với:
 `abstract`:
 
 - Không đi được với biến.
-- Chỉ được đi được với method: phương thức trừu tượng, chỉ có khai báo tên hàm, kiểu trả về, argument list; không có body
-- abstract class: class có chứa 0 hoặc nhiều abstract methods
+- Abstract method: phương thức trừu tượng, chỉ có khai báo tên hàm, kiểu trả về, argument list; không có body
+- Abstract class: class có chứa 0 hoặc nhiều abstract methods
 
-`final` cannot go together with `abstract` vì về bản chất:
-
-- `final`: hứa ko thay đổi, ko có con nữa, ko ai thay thế nữa
-- `abstract`: mơ hồ, chưa rõ ràng, hứa là sẽ có con cái triển khai ý tưởng mơ hồ của mình
+- `final` cannot go together with `abstract` vì về bản chất:
+  * `final`: hứa ko thay đổi, ko có con nữa, ko ai thay thế nữa
+  * `abstract`: mơ hồ, chưa rõ ràng, hứa là sẽ có con cái triển khai ý tưởng mơ hồ của mình
 
 - Giống nhau: Đều là lời hứa.
 - Khác nhau:
@@ -396,6 +392,8 @@ The keyword `final` có thể đi với:
 **Interface** is a group of related methods with empty bodies (abstract method). An interface defines the methods that a class MUST implement. A class implement from an interface using the keyword `implements`. Bắt buộc phải implement tất cả empty methods của interface nếu không  sẽ báo compilation error. Vì methods declared within an interface are implicitly `public & abstract` by default.
 
 Abstract classes and Interfaces can NOT be instantiated directly.
+
+If you define a reference variable (biến tham chiếu) whose type is an interface, any object you assign to it must be an instance of a class that implements the interface.
 
 A class can `implements` more than one interface. But one class (including abstract classes) can only inherit `extend` from one super-class.  
 
@@ -475,10 +473,10 @@ Reference variable can only point to object not interface.
 
 The core principle is abstraction. Without it, the others couldn't exist.
 
-1. Abstraction (tính trừu tượng): Ignoring or hiding details that don’t matter, allowing us to get an overview perspective of the thing we’re implementing, instead of messing with details that don’t really matter to our implementation.
+1. **Abstraction** (tính trừu tượng): Ignoring or hiding details that don’t matter, allowing us to get an overview perspective of the thing we’re implementing, instead of messing with details that don’t really matter to our implementation.
 2. **Encapsulation** (tính đóng gói): Hide internal state (`private`, cannot accessible from outside the class) and requiring all interaction to be performed through an object's methods (access modifiers, `Getter and Setter`)
 3. **Inheritance** means specialized classes — without additional code — can **copy** the attributes and behavior of the source classes that they specialize.
-4. Polymorphism: Subclasses of a class can define their own unique behaviors and yet share some of the same functionality of the parent class. Class con có thể override class cha.
+4. **Polymorphism** (tính đa hình): Subclasses of a class can define their own unique behaviors and yet share some of the same functionality of the parent class. Class con có thể override class cha.
 
 ### Polymorphism with Interface
 
@@ -529,27 +527,10 @@ is ARM 64?
 A class's methods define its behavior. Methods fall into two main categories: **constructors** and all other methods, which come in many types.  
 A constructor method is used only to create an instance of a class. Other types of methods can be used for virtually any application behavior.
 
-Generally, two types of (non-constructor) methods are used: **instance methods** and **static methods**. Instance methods depend on the state of a specific object instance for their behavior. Static methods are also sometimes called class methods because their behavior isn't dependent on any single object's state. A static method's behavior happens at the class level.  
-Static methods are used largely for utility; you can think of them as being global methods (á la C) while keeping the code for the method with the class that defines it. For example, throughout this tutorial, you'll use the JDK `Logger` class to output information to the console. To create a `Logger` class instance, you don't instantiate a `Logger` class; instead, you invoke a static method named `getLogger()`. [Learn more](https://developer.ibm.com/learningpaths/java-get-started/java-language-basics/#listing1)  
-Other example of static methods: Connection method in util class which create a connection to the DB.
-
 **Accessor methods** là getter và setter. To encapsulate a class's data from other objects, you declare its state (variables) to be `private` and then provide accessor methods.  
 The naming of accessors follows a strict convention known as the **JavaBeans pattern**. In this pattern, any attribute Foo has a getter called `getFoo()` and a setter called `setFoo()`. The JavaBeans pattern is so common that support for it is built into the IDE.
 
-The Java language's programming paradigm is based on the concept of object-oriented programming (OOP). The Java language is a C-language derivative, so its syntax rules look much like C's.
-
 Object-oriented languages follow a different programming pattern from **structured programming languages** like C and COBOL. The structured-programming paradigm is highly _data oriented_: You have data structures, and program instructions act on that data. Object-oriented languages such as the Java language combine data and program instructions (behaviours) into objects.
-
-### JavaBean
-
-JavaBeans là những Class có thuộc tính được khai `private`, muốn truy cập những thuộc tính này phải dùng setters, getters. Java Bean có mục đích là:
-
-- Gather together and store related information of an object into a Class. Ví dụ `SinhVien` là một nhóm đối tượng có các thuộc tính như họ tên, giới tính. Mục đích cuối cùng là lưu trữ dữ liệu trong quá trình xử lý nghiệp vụ một cách tiện lợi nhất.
-- Vì Java Bean để lưu dữ liệu nên class JB không có chứa methods xử lý nghiệp vụ (business logic, tính toán, truy cập database).
-
-Trong DOTNET cũng có bean. Javascript cũng có bean.
-
-Nếu không có Java Bean.
 
 ### Constructors
 
@@ -565,16 +546,6 @@ Types of Constructors in Java:
 **Overloading** allows us to create multiple constructors in the same class with different parameter lists.
 
 The compiler automatically provides a no-argument, **default constructor** for any class without constructors. This default constructor will call the no-argument constructor of the superclass. In this situation, the compiler will complain if the superclass does not have a no-argument constructor so you must verify that it does. If your class has no explicit superclass, then it has an implicit superclass of `Object`, which does have a no-argument constructor.
-
-### normal methods
-
-A `static` method/attributes can be accessed without creating an object of the class first. There's only one copy of the static member, shared across all objects of that class. It's good for memory management. Nên dùng vừa phải, hợp lý.
-
-The `main()` method is the starting point of your program.
-
-- It's `static` because otherwise the compiler would need to make an object out of the class it's in first in order to call it.
-- It's public because otherwise it couldn't be called from the outside.
-- It's void because it can't return a value by design.
 
 ## Exception and Error Handling
 
@@ -705,8 +676,8 @@ So in Spring Boot:
 
  [This video](https://www.youtube.com/watch?v=K1iu1kXkVoA) by John explain generic good!
 
-Generic means generic classes. Using Generics, it is possible to create classes that work with different data types (generic classes). An entity such as class, interface, or method that operates on a parameterized type is a **generic entity**.
-Generic còn gọi là parameterized types.
+Generic means **generic classes**. Using Generics, it is possible to create classes that work with different data types (generic classes). An entity such as class, interface, or method that operates on a parameterized type is a **generic entity**.  
+Generic còn gọi là parameterized types.  
 Khi pass vô generics phải là reference type or wrapper classes like `Interger` không được pass primitive type (`int`).
 
 `<T>` shorts for `<Type>`

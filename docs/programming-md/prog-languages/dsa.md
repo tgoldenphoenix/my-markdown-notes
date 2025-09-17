@@ -133,18 +133,17 @@ The helper `merge()` function only merge two sorted arrays.
 Merging two sorted arrays is easy. Chạy từ left -> right, so sánh từng cặp giá trị của 2 arrays.  
 Apply the same idea to merge to base-condition arrays (which contain only one element)
 
-Time complexity
-
-- Hình dùng divide theo hình nguyên phân môn sinh học.
-- Dùng đại số tính số lần divide (number of iteration) `1=ff{N}{2^k}` => `k = log_2 N`
-- For each iteration `k`, there are always `N` element being merged. Tức là có `N` phép so sánh cần thiết để merge those arrays together. Total complexity is: `O(N . log N)`
+- Time complexity
+  - Hình dùng divide theo hình nguyên phân môn sinh học.
+  - Dùng đại số tính số lần divide (number of iteration) `1=ff{N}{2^k}` => `k = log_2 N`
+  - For each iteration `k`, there are always `N` element being merged. Tức là có `N` phép so sánh cần thiết để merge those arrays together => The Total complexity of merge sort is: `O(N . log N)`
 
 ### Quick Sort
 
 Mình phải chọn pivot. After that, whatever pivot you take, after every iteration:
 
-- All element < pivot go to left side
-- Element > pivot go to right side
+- All element less than pivot go to left side
+- Element greater than pivot go to right side
 - After every iteration, you are putting the pivot at the correct position.
 - You then use recursion to continue
 

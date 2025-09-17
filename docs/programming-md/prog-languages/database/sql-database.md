@@ -10,7 +10,7 @@ SQL is a language used to interact with relational database management systems (
 
 In SQL Server the default **schema** is `dbo`. There can be multiple schemas inside one database.
 
-Khi nào ta tạo column có dữ liệu kiểu CHAR:
+Khi nào ta tạo column có dữ liệu kiểu `CHAR`:
 
 - Khi colum đó có kiểu dữ liệu là kiểu chuỗi (nghĩa là có chữ cái hoặc chữ cái và số lộn xộn với nhau và có maxlength) và có độ dài chuỗi cố định
 - Thường dùng cho các mã (mã học sinh, mã lớp, mã đơn hàng,...) hay số cmnd
@@ -38,7 +38,7 @@ Phân biệt giữa NULL và rỗng:
 Không vì `CHAR` thường là một mã số (mã SV, mã môn học) và bắt buột phải có dữ liệu. Ví dụ `CHAR(5)` thì bắt buộc có 5 ký tự.
 
 The CHAR data type in SQL databases automatically pads values with spaces to the declared fixed length of the column.  
-This means that if you define a column as CHAR(10) and insert the value `ABC`, it will be stored as 'ABC ' (with seven trailing spaces) to fill the full 10-character length. This behavior is a fundamental characteristic of the CHAR data type, distinguishing it from VARCHAR which stores only the actual length of the string without padding.
+This means that if you define a column as `CHAR(10)` and insert the value `ABC`, it will be stored as `ABC_______` (**with seven trailing spaces**) to fill the full 10-character length. This behavior is a fundamental characteristic of the CHAR data type, distinguishing it from VARCHAR which stores only the actual length of the string without padding.
 
 Number data types:
 
@@ -116,10 +116,9 @@ Example: retrieve the total payment paid by each customer from table `payment`
 
 Sau khi `GROUP BY`, có bao nhiêu nhóm thì trả về bấy nhiêu dòng kết quả, mỗi dòng tượng trưng cho một nhóm. Đôi khi kết quả trả về sẽ giống `DISTINCT`.
 
-- Không được `SELECT` các cột không có trong mệnh đề `GROUP BY` (nếu trong câu `SELECT` có dùng `GROUP BY`).
+- Không được `SELECT` các cột **KHÔNG** có trong mệnh đề `GROUP BY` (nếu trong câu `SELECT` có dùng `GROUP BY`). Chỉ có thể dùng hàm gộp cho những cột không có trong `GROUP BY`
 - Có thể Select những hằng số, để tạo ra những "no name columns"
 - Không nhất thiết phải Select các cột có trong `GROUP BY` vì câu `SELECT` chạy sau cùng chứ không phải Select rồi mới có cái để `GROUP BY`.
-- Có thể dùng hàm gộp cho những cột không có trong `GROUP BY`
 
 Aggregate functions perform a calculation on a set of rows and return a single row. Hàm gộp thường đi chung với `GROUPBY` và sẽ không bao giờ bị lỗi. Khi dùng hàm gộp trong `SELECT` mà không có `GROUP BY` thì nó sẽ hiểu rằng cả cái bảng là 1 nhóm được `GROUP BY`. Có 5 hàm gộp:
 
@@ -131,13 +130,22 @@ Aggregate functions perform a calculation on a set of rows and return a single r
 
 Vì hàm gộp dùng để tính toán giá trị **trên từng nhóm** nên phải `GROUP BY` xong mới được gọi aggregate functions:
 
-- Suy ra hàm gộp không được nằm trong `WHERE` mà phải là `HAVING` vì `WHERE` chạy trước `GROUP BY`, `HAVING` chạy sau `GROUP BY`.
-- Gọi hàm gộp trong `SELECT` được vì Select chạy sau cùng.
+- Suy ra hàm gộp không được nằm trong `WHERE` mà phải nằm trong `HAVING` vì `WHERE` chạy trước `GROUP BY`, `HAVING` chạy sau `GROUP BY`.
+- Lý do gọi hàm gộp trong `SELECT` được vì Select chạy sau cùng (sau khi đã `GROUP BY`).
+
+Nếu `WHERE` là điều kiện lọc dòng (rows) thì `HAVING` là điều kiện lọc **dành cho các nhóm (groups)** trong bảng tạm được trả về từ `GROUP BY`. Nó lọc ra những nhóm mình cần lấy. Sau đó mới chạy qua `ORDER BY` rồi cuối cùng chạy `SELECT`.
+
+```sql
+-- select the only customers who have been spending more than 200
+SELECT customer_id, SUM (amount) amount
+FROM payment
+GROUP BY customer_id
+HAVING SUM (amount) > 200
+ORDER BY amount DESC;
+```
 
 `DISTINCT` liệt kê không trùng lặp rows trong bảng tạm trả về (chứ không phải trong bảng gốc). Nó vẫn giữ lại 1 dòng chứ không xóa hết các dòng trùng lặp. Two or more rows must have exactly the same values in all the selected columns to be viewed as duplicates by `DISTINCT`.  
 Example: how many rental rates for films from the film table?
-
-Nếu `WHERE` là điều kiện lọc dòng (rows) thì `HAVING` là điều kiện lọc **dành cho các nhóm (groups)** trong bảng tạm được trả về từ `GROUP BY`. Nó lọc ra những nhóm mình cần lấy. Sau đó mới chạy qua `ORDER BY` rồi cuối cùng chạy `SELECT`.
 
 Trong quá trình chạy từ `FROM` cho tới `ORDER BY` thì xử lý diễn ra hoàn toàn trên các dòng. Tức là các cột vẫn còn nguyên. Chỉ tới khi `SELECT` chạy sau cùng thì nó mới bỏ bớt các cột.  
 Cho nên khi `GROUP BY gioi_tinh`, ta vẫn `COUNT(dia_chi)` được mà không lỗi, vì thật ra cột `dia_chi` vẫn còn sống sót sau khi `GROUP BY`.
@@ -162,6 +170,16 @@ Một bảng 3 columns `JOIN` với một bảng 2 columns sẽ trả về một
 Cái namespace `SV.` and `L.` chỉ cần thêm vào khi có sự trùng tên cột của 2 bảng tham gia phép nối, còn không thì không cần thêm.
 
 `INNER JOIN` returns ONLY the rows where there is a match in the join column(s) in both tables. Records from either table that do not have a corresponding match in the other table are excluded from the result set
+
+```sql
+SELECT
+  customer.customer_id, customer.first_name, customer.last_name,
+  payment.amount, payment.payment_date
+FROM
+  customer INNER JOIN payment ON payment.customer_id = customer.customer_id
+  -- INNER JOIN payment USING(customer_id)
+ORDER BY payment.payment_date;
+```
 
 The `LEFT JOIN` clause joins a left table with the right table and returns **ALL the rows from the left table** that may or may not have corresponding rows in the right table. In case the values do not equal, the left join also creates a new row that contains columns from both tables and adds it to the result set (bảng tạm). However, it fills the columns of the right table with `NULL`.  
 The clause `LEFT JOIN` is the same as writing `LEFT OUTER JOIN` so you can use them interchangeably.
@@ -202,7 +220,7 @@ INNER JOIN Customers USING (CustomerID);
 
 Các phép quan hệ:
 
-- `UNION`: hợp, bỏ những dòng trùng nhau chỉ giữ lại 1 dòng. To retain the duplicate rows, you use the `UNION ALL` instead.
+- `UNION`: phép hợp, bỏ những dòng trùng nhau chỉ giữ lại 1 dòng. To retain the duplicate rows, you use the `UNION ALL` instead.
 - `INTERSECT`: giao lấy phần chung
 - `EXCEPT`: trừ (hiệu)
 - `UNION ALL`: Hợp lấy hết không thương tiếc kể cả những dòng trùng lặp (military conscription)
@@ -228,11 +246,10 @@ From SinhVien SV
 Where QueQuan='Quan Nam')
 ```
 
-2 tập hợp `SELECT` muốn `UNION` lại với nhau phải thỏa mãn điều kiện:
-
-- Cùng số lượng cột
-- Các cột tương ứng với nhau thì phải có kiểu dữ liệu tương đồng
-- Tên của cột trả về sẽ được lấy theo tập hợp ở trên
+- 2 tập hợp `SELECT` muốn `UNION` lại với nhau phải thỏa mãn điều kiện:
+  - Cùng số lượng cột
+  - Các cột tương ứng với nhau thì phải có kiểu dữ liệu tương đồng
+  - Tên của cột trả về sẽ được lấy theo tập hợp ở trên
 
 Tim những SV đang học tại trường nhưng cũng chính là giảng viên của trường đó?
 
@@ -246,16 +263,41 @@ From GiangVien)
 
 Phân biệt cách sử dụng giữa INTERSECT và JOIN
 
-- JOIN (phép nối): sau khi JOIN thì dữ liệu có khuynh hướng giữ nguyên dòng và tăng số lượng cột. Tăng theo chiều ngang chứ không theo chiều dọc.
+- JOIN (phép nối): sau khi JOIN thì dữ liệu có khuynh hướng giữ nguyên dòng và tăng số lượng cột. **Tăng theo chiều ngang** chứ không theo chiều dọc.
 - INTERSECT: sau khi INTERSECT thì dữ liệu có khuynh hướng giữ nguyên số cột và giảm số hàng.
 
 ## Sub-query, IN, EXIST
 
 subquery chạy trước trả về bảng tạm, lấy bảng tạm đó query tiếp tục. The main query will use the result of the subquery to filter data in its `WHERE` clause (sub-query cũng có một cái `WHERE` của riêng nó).
 
-Sub-query thường chỉ return một column với nhiều dòng. Main query sẽ dùng `WHERE` của nó để filter trong đám trả về đó.
+```sql
+-- select những city mà có country_id của Hoa Kỳ
+SELECT city
+FROM city
+WHERE
+  -- country_id = 103
+  country_id = (
+    SELECT country_id FROM country WHERE country = 'United States'
+  )
+ORDER BY city;
+```
+
+Sub-query thường chỉ return **một column** với nhiều dòng. Main query sẽ dùng `WHERE` của nó để filter trong đám trả về đó.
 
 A subquery can return zero or more rows. If the query returns more than one row, you can use it with the `IN` operator.
+
+```sql
+-- the film with the category Action
+SELECT film_id, title
+FROM film
+WHERE
+  film_id IN (
+    SELECT film_id
+    FROM film_category INNER JOIN category USING(category_id)
+    WHERE name = 'Action'
+  )
+ORDER BY film_id;
+```
 
 The `EXISTS` operator is a boolean operator that checks the existence of rows in a subquery.  
 If the subquery returns at least one row, the `EXISTS` operator returns `true`. If the subquery returns no row, the EXISTS returns `false`. Note that if the subquery returns `NULL`, the EXISTS operator returns `true`.
@@ -263,6 +305,28 @@ If the subquery returns at least one row, the `EXISTS` operator returns `true`. 
 The result of `EXISTS` operator depends on whether any row is returned by the subquery, and **NOT** on the row contents. Therefore, columns that appear in the select_list of the subquery are not important. Thường người ta `SELECT 1` trong sub-query luôn.
 
 To negate the EXISTS operator, you use the `NOT EXISTS` operator. The NOT EXISTS operator returns `true` if the subquery returns no row or `false` if the subquery returns at least one row.
+
+```sql
+-- check if the payment value is zero exists in the payment table
+SELECT
+  EXISTS( -- returns true of false
+    SELECT 1
+    FROM payment
+    WHERE amount = 0
+  );
+
+-- find all customers who have paid at least one rental with an amount greater than 11
+SELECT first_name, last_name
+FROM customer c
+WHERE
+  EXISTS (
+    SELECT 1
+    FROM payment p
+    WHERE p.customer_id = c.customer_id
+      AND amount > 11
+  )
+ORDER B first_name, last_name;
+```
 
 Phân biệt sự khác nhau khi sử dụng `NOT IN` và `NOT EXITS`:
 

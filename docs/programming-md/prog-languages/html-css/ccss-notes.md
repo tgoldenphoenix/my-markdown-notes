@@ -44,8 +44,9 @@ The `top, right, bottom`, and `left` properties determine the final location of 
 `position: absolute`: The element is **removed** from the normal document flow, and no space is created for the element in the page layout.  
 `position: absolute` elements need a relative parent. And if it doesn’t have an ancestor element that is positioned relative then it takes the browser window. If it has multiple relative ancestors elements, it will position based on the closest relative parent element.
 
-- `position: fixed` elements are taken _out_ of the flow of the page. Giống `absolute` nhưng không cần parent element. It does not move when you scroll. Example: call zalo, hình ảnh quảng cáo
-- `position: sticky;` is just a little different than fixed. It will stay in its normal flow until it reaches a spot that you have defined. Example: sticky header
+- `position: fixed` elements are _also taken out of the flow of the page_. Giống `absolute` nhưng không cần parent element. It does not move when you scroll. Example: call zalo, hình ảnh quảng cáo
+- `position: sticky;` is a hybrid of relative and fixed positioning. It behaves like a position: relative element until it reaches a specified offset (e.g., top: 0), at which point it becomes position: fixed relative to the viewport. Example: sticky header
+  * Sticky elements remain within the normal document flow until they become "stuck." This means they don't cause content to overlap in the same way fixed elements can.
 
 Khi dùng `fixed` and `absolute` thì block elements sẽ không còn width 100% nữa mà mình phải tự set.
 
@@ -69,19 +70,17 @@ The term **Flow layout** refers to the default way in which elements are positio
 Block displayed element by default will automatically add margin so that they take up 100% width of what is available to them (of their parent element). And they **stack** on each other as well.
 
 - inline elements only take up the width of their content unless you put extra padding on them.
-- You can NOT apply margin-top/bottom, width and height properties to inline elements.
+- You can **NOT** apply margin-top/bottom, width and height properties to inline elements.
 - padding khi apply có thể gây lỗi hiển thị
 - Inline elements can NOT have block-displayed children elements. Block elements on the other hand can have inline elements as children.
 
-`display: inline-block;` will be handy when:
+- `display: inline-block;` will be handy when:
+  * inline-block is a hybrid because it stay inline with the paragraph and do not create a new line and allow some properties that normally wouldn’t be able to be applied to an inline display.
+  * Margin/padding + height: có thể apply lên inline-block elements mà ko gây lỗi nhé
 
-- inline-block is a hybrid because it stay inline with the paragraph and do not create a new line and allow some properties that normally wouldn’t be able to be applied to an inline display.
-- Margin/padding + height: có thể apply lên inline-block elements mà ko gây lỗi nhé
-
-`display: none;` completely remove the element from the page. It is still in the html tho. But the user won’t see it.
-
-- It remove that element from the “document flow”. That means anyone using assistive technology screen reader would not be able to read anything there.
-- There are other ways to make elements in-visible but still have it in the document flow where accessibility might be still available.
+- `display: none;` completely remove the element from the document flow. It is still in the html tho. But the user won’t see it.
+  * It remove that element from the “document flow”. That means anyone using assistive technology screen reader would not be able to read anything there.
+  * There are other ways to make elements in-visible but still have it in the document flow where accessibility might be still available.
 
 ## Float
 
@@ -112,20 +111,22 @@ Properties on the **flex container**:
 
 `flex-direction`: `row (default) row-reverse column column-reverse`
 
+---
+
 Properties on the **Children (flex items)**:
 
-`flex: 0 1 auto` is default. It is shorthand for grow, shrink, and basis. So by default, item will not grow but will shrink.  
-The default `flex-basis: auto` means items' size are not equal but are based on their **content size**. If you set it with a single number value, like `flex: 5;`, that changes the flex-basis to 0 or 0% `flex: 5 1 0`. Flex items now have no original basis and the free space available are now equally distributed among them. Flex items will now have equal size (equal columns) and grow or shrink to fit the flex container.
+`flex: 0 1 auto` is default. It is shorthand for grow, shrink, and basis. So by default, item will **NOT** grow but will only shrink.  
+The default `flex-basis: auto` means items' size are NOT equal but are based on their **content size**. If you set `flex:` with a single number value, like `flex: 5;`, that changes the flex-basis to `0 or 0%` (`flex: 5 1 0`). Flex items now have no original basis and the free space available are now equally distributed among them so they now have equal size (equal columns) and will grow or shrink to fit the flex container.
 
 Setting `flex-basis: 300px` also makes flex item equal size and is `300px` width.  
 `flex-basis: 100%` also creates equal columns because all flex item start with 100% of parent with but then they shrink equally with `flex-shrink: 1` (default) => equal columns
 
-- `flex-grow: 0` is not grow. `1, 2, 3` is grow proportionally. `flex-shrink` is also proportionaly.
+Setting `flex-grow: 0` means to not grow. Set it to `1, 2, 3` means growing proportionally. `flex-shrink` is also proportionaly.
 
 `align-self` accepts the same values as `align-items`.
 
-Grid & flex items both have the `order` property which controls the order in which items appear in the flex/grid container. It default value is `0`. By default, items are laid out in the source order. Kiểu như là `-1 0 0 0 1 2 5`, bigger order stand behind. Example: `order: 1;`  
-The other property in common is `gap` (used in the container).
+Grid & flex items **both** have the `order` property which controls the order in which items appear in the flex/grid container. It default value is `0`. By default, items are laid out in the source order. Kiểu như là `-1 0 0 0 1 2 5`, bigger order stand behind. Example: `order: 1;`  
+The other property in common (both grid & flexbox) is `gap` (used in the container).
 
 You can center elements both horizontally & vertically with flexbox. It also works for multiple children.
 
@@ -135,21 +136,19 @@ Khi apply display: grid; lên 1 container element. Cái container element đó n
 
 By default, you get a one column grid.
 
-Property on **grid container**:
-
-- `grid-template-columns: 1fr 1fr`. Fraction (fr) is a unit specifically used with CSS grid layout.
-- `grid-template-columns: repeat(4, 1fr)` => repeat 4 lần “1fr”
-- `repeat(2, 1fr 2fr)` => 1fr 2fr 1fr 2fr
-- `repeat(8, 12.5%)` => eight columns each with 12.5% width
-- `grid-template-columns: 100px 3em 40%;` => any size you want. You have full control!
+- Property on the **grid container**:
+  * `grid-template-columns: 1fr 1fr`. Fraction (fr) is a unit specifically used with CSS grid layout.
+  * `grid-template-columns: repeat(4, 1fr)` => repeat 4 lần “1fr”
+  * `repeat(2, 1fr 2fr)` => 1fr 2fr 1fr 2fr
+  * `repeat(8, 12.5%)` => eight columns each with 12.5% width
+  * `grid-template-columns: 100px 3em 40%;` => any size you want. You have full control!
+  * `grid-template-columns: 50px repeat(3, 1fr) 50px;` => A 50 pixel column on the left, and a 50 pixel column on the right and three more `1fr` columns that take up the remaining space in between.
+  * `grid-template-columns: 75px 3fr 2fr;` => A 75 pixel column of weeds on the left side of your garden. 3/5 of the remaining space is growing carrots, while 2/5 has been overrun with weeds.
 
 Grid also introduces a new unit, the fractional `fr`. Each fr unit allocates one share of the available space. For example, if two elements are set to 1fr and 3fr respectively, the space is divided into 4 equal shares; the first element occupies 1/4 and the second element 3/4 of any leftover space.  
 When columns are set with pixels, percentages, or ems, any other columns set with fr will divvy up the space that's left over:
 
-- `grid-template-columns: 50px repeat(3, 1fr) 50px;` => A 50 pixel column on the left, and a 50 pixel column on the right and three more `1fr` columns that take up the remaining space in between.
-- `grid-template-columns: 75px 3fr 2fr;` => A 75 pixel column of weeds on the left side of your garden. 3/5 of the remaining space is growing carrots, while 2/5 has been overrun with weeds.
-
-Với flexbox mình không control được number of columns. Với grid mình cho template 4 column là always 4 columns. Nếu có thêm child element thì grid tự động add new row (implicit rows) but always stay 4 column. Vậy nên khi xài grid chỉ cần khai báo number of column, còn row không cần declare `grid-template-row` mà để tự nó tạo khi có child element mới.
+Với flexbox mình không control được number of columns. Với grid mình cho template 4 column thì sẽ always 4 columns. Nếu có thêm child element thì grid tự động add new row (implicit rows) but always stay 4 column. Vậy nên khi xài grid chỉ cần khai báo number of column, còn row không cần declare `grid-template-row` mà để tự nó tạo khi có child element mới.
 
 - grid-auto-rows: minmax(150px, auto);
 - minmax() CSS function: specify min value rồi tới max value
@@ -166,7 +165,7 @@ Properties on the **grid items**:
 - `grid-column: 2 / 4;` start on the 2nd vertical grid line and end on the 4th grid line.
 - `grid-column: 2 / span 3`;
 
-`grid-row-start`, `grid-row` giống y chang.
+`grid-row-start` & `grid-row` cũng dùng giống như trên.
 
 If typing out both `grid-column` and `grid-row` is too much for you, there's yet another shorthand for that. `grid-area` accepts four values separated by slashes: `grid-row-start, grid-column-start, grid-row-end, followed by grid-column-end`.
 
@@ -186,25 +185,25 @@ Nhớ add properties theo thứ tự general > specific: column > row > start > 
 
 ## Import CSS and specificity
 
-- external CSS: dùng thẻ `<link rel="stylesheet" href="style.css">` trong `<head>`
-- internal CSS: dùng thẻ `<style></style>` trong `<head>`
-- Inline CSS: dùng `style=""` attribute
+- **external CSS**: dùng thẻ `<link rel="stylesheet" href="style.css">` trong `<head>`
+- **internal CSS**: dùng thẻ `<style></style>` trong `<head>`
+- **Inline CSS**: dùng `style=""` attribute
 
-Cái `<style>` internal element không có được ưu tiên (precedency) trước external CSS `<link>`. Hình trên là đơn giản vì external CSS Line15 được đọc sau theo thứ tự top-bottom nên sẽ over-written cái internal CSS nằm trên.  
-However, the in-line CSS `style=””` attribute) does take precedent over the other 2 types of CSS because it’s applied directly to the element itself.
+Cái `<style>` internal element **không** được ưu tiên (precedency) trước external CSS `<link>`. Hình trên là đơn giản vì external CSS Line15 được đọc sau theo thứ tự top-bottom nên sẽ over-written cái internal CSS nằm trên.  
+However, the in-line CSS `style=””` attribute) **does** take precedent over the other 2 types of CSS because it’s applied directly to the element itself.
 
 The **specificity** is not a decimal number but a triad that consists of three components: A, B, and C. Specificities are compared by comparing the three components in order `(A,B,C)`
 
 - A: id-like specificity
-- B: class-like specificity: class selectors, pseudo-class, attribute selector
-- C: element-like specificity: element (HTMl type/tag selector), pseudo-element
+- B: class-like specificity: class selectors, pseudo-class (`:hover`), attribute selector
+- C: element-like specificity: element (HTMl type/tag selector), pseudo-element (`::before, ::after`)
 
 ## Selectors, combinators
 
 The CSS **Universal Selector** or wildcard selector `*` selects all elements. You typically only see this for what is called a **CSS reset**.  
 A universal selector (*) adds no specificity.
 
-The three simple selectors: type selectors (HTML tags, element selector), id and class selectors.
+The three **simple selectors**: type selectors (HTML tags, element selector), id and class selectors.
 
 Typically you should use classes and sometimes type selectors but **rarely** if ever should you use an id selector (like `#featured {}`) inside of your CSS. Id selectors do have some valid uses (in HTML to linking a form input back to a label element and other use cases in JavaScript as well). But we try to keep IDs out of CSS.  
 Class selectors are ideal because they are slightly more specific than element selectors but without the heavy-handedness of IDs.
@@ -215,13 +214,12 @@ When a complex or compound selector is used, each part of that selector adds up 
 A CSS **selector group** or **selector list** is a comma-separated list of selectors. It selects all the matching nodes. Note: tránh nhầm lẫn với **descendant combinator** which use empty spaces.  
 For example you can group multiple selectors with commas `h1, h2`. But if you forgot the comma như `h1 h2` thì nó sẽ tìm `<h2>` là children của `<h1>` để apply rules.
 
-A [compound selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors/Selector_structure#compound_selector) is a sequence of simple selectors that are not separated by any combinator (not even the empty space). It targets a single element that simultaneously matches all the conditions specified by the simple selectors within the compound selector:
-
-- `p.highlight`: Selects any `<p>` element that also has the class `highlight`. This will not select a <span> element with the class highlight, nor will it select a <p> element without that class.`
-- `div#main-content`: Selects a <div> element that has the ID of `main-content`.
-- `.button.primary`: Selects any element that possesses both the class `button` and the class `primary`.
-- `input[type="email"]`: Selects an `<input>` element with `type="email"`.
-- `a:hover`: Selects an `<a>` element when the user's mouse cursor is hovering over it.
+- A [compound selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors/Selector_structure#compound_selector) is a sequence of simple selectors that are not separated by any combinator (not even the empty space). It targets a single element that **simultaneously** matches all the conditions specified by the simple selectors within the compound selector:
+  * `p.highlight`: Selects any `<p>` element that **also** has the class `highlight`. This will not select a `<span>` element with the class highlight, nor will it select a `<p>` element without that class.`
+  * `div#main-content`: Selects a `<div>` element that also has the ID of `main-content`.
+  * `.button.primary`: Selects any element that possesses **both** the class `button` and the class `primary`.
+  * `input[type="email"]`: Selects an `<input>` element with `type="email"`.
+  * `a:hover`: Selects an `<a>` element when the user's mouse cursor is hovering over it.
 
 A **complex selector** is a sequence of one or more simple and/or compound selectors that are separated by combinators, including the white space descendant combinator.
 

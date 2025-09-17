@@ -14,6 +14,13 @@ Trong forms dùng **selection expressions**: `*{firstName}`
 
 ## Jsp servlet
 
+- JSP servlet & tất cả modern web framework có 8 chữ cốt lõi:
+  1. get-post
+  2. redirect-forward
+  3. attribute vs parameter
+  4. request vs session
+  5. rảnh thì học thêm cookie (9 chữ tất cả)
+
 an `.html` file is static while `.jsp` file is dynamic html. You can inject data into jsp html.
 
 Phải dùng JDBC, tạo statement
@@ -32,12 +39,12 @@ mỗi file servelt chỉ có một endpoint
   - No practical limit on data length.
 
 - `forward`:
-  - Cả 2 đều là chuyển trang phía server, client không liên quan.
+  - Cả 2 (forward & redirect) đều là chuyển trang phía server, client không liên quan.
   - Forward chuyển dữ liệu đi theo.
   - A forwarding is done without letting the client know that, It is used to do internal communication at server (chuyển trang phía server). The URL in Browser remains unchanged
   - request attributes and parameters are preserved during the forward.
   - If the previous scope is required, or the user doesn’t need to be informed, but the application also wants to perform an internal action then use forwarding.
-  - login thành công => forward
+  - login thành công => forward kèm theo dữ liệu user
 - `sendRedirect`:
   - Chuyển trang không kèm theo dữ liệu.
   - Redirect chạy nhanh hơn forward => ưu điểm của re-direct.
@@ -66,14 +73,6 @@ Trong java bản chất chỉ có class, jsp không phải class nên nó phải
 Unfortunately, JSPs are slow to compile, hard to debug, leave basic form validation and type conversion to the developer, and lack support for security.
 
 In light of the MVC design pattern, the servlet acts as a controller and JSP as a view.
-
-JSP servlet & tất cả modern web framework có 8 chữ cốt lõi:
-
-1. get-post
-2. redirect-forward
-3. attribute vs parameter
-4. request vs session
-5. rảnh thì học thêm cookie (9 chữ tất cả)
 
 - `setAttribute() & getAttritube()` diễn ra ở server => attribute là dữ liệu do client tự bịa đặt ra gởi cho chính server. Thằng này set attribute rồi gởi cho thằng jsp/servlet khác nhận attribute xử lý logic rồi render ra html trả về client.
   - you set an attribute in a Servlet and read it from a JSP. These can be used for any object, not just string.
