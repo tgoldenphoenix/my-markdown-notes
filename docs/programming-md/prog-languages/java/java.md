@@ -195,14 +195,45 @@ sb.append(" World"); // Efficiently modifies the existing StringBuilder object
   - `StringBuilder`  là không đồng bộ (non-synchronized) tức là luồng không an toàn (Not thread-safe). Điều này có nghĩa là có 2 luồng cùng truy cập phương thức của lớp StringBuilder đồng thời.
   - StringBuffer không hiệu quả bằng StringBuilder. StringBuilder hiệu quả hơn StringBuffer.
 
+Thanks to the immutability of Strings in Java, the JVM can optimize the amount of memory allocated for them by storing only one copy of each literal String in the **Sring Pool**. This process is called **interning**.  
+When we create a String via the `new` operator, the Java compiler will create a new object and store it in the heap space reserved for the JVM.
+
+- Khi `==` compare 2 primitive thì nó check value, không quan tâm tới tham chiếu.
+- When `==` compare two objects, it only checks that two variables are referencing the same memory address.
+
+```java
+// equality and reference checking work identically for primitives
+int a = 10;
+int b = 15;
+System.out.println(a==b); // false
+
+int c = 10;
+System.out.println(a == c); // true
+
+int d = a;
+System.out.println(a == d); // true
+```
+
+Dùng `equals()`
+
+```java
+int a = 10;
+Integer b = a;
+
+assertTrue(b.equals(10));
+```
+
 ## Collections
 
 Collection là một loại đối tượng có thể chứa các địa chỉ trỏ đến các đối tượng khác. Collection không chứa the objects themselves. Mỗi phần tử trong collection là một address, not object.
 
 Array trong Java có số phần tử cố định và phải khai rõ ràng lúc declare. Array is **NOT** collection, nó chỉ là một kiểu dữ liệu nguyên thủy trong Java.
 
-`ArrayList` có cấu trúc giống Array (mảng) nhưng số phần tử là dynamic có thể resize được.  
+`ArrayList<>` có cấu trúc giống Array (mảng) nhưng số phần tử là dynamic có thể resize được. Array thông thường phải khai báo max index  
 Mảng thì dùng sytax `[]` để access item. Còn `ArrayList` làm cái gì cũng thông qua hàm hết như `.add(), .get(), .set()`, không làm trực tiếp như mảng.
+
+- The `ArrayList` itself holds an array of references (or pointers) to the objects it contains. This array of references is stored in a single, contiguous block of memory. This contiguity is what allows for efficient random access by index.
+- `LinkedList<>` không có contiguous block.
 
 - Interface `List`, `Map`, `Set`
 - Class: `ArrayList`, `HashMap`, `HashSet`
@@ -398,9 +429,9 @@ The `main()` method is the starting point of your program. Vì sao hàm `main()`
   3. class: Class đó không có class con (khong được `extends` kế thừa), class đó là class cuối cùng trong cây gia phả.
 
 - Keyword `abstract`:
-  * Không đi được với biến.
-  * Abstract method: phương thức trừu tượng, chỉ có khai báo tên hàm, kiểu trả về, argument list; không có body
-  * Abstract class: class có chứa 0 hoặc nhiều abstract methods
+  - Không đi được với biến.
+  - Abstract method: phương thức trừu tượng, chỉ có khai báo tên hàm, kiểu trả về, argument list; không có body
+  - Abstract class: class có chứa 0 hoặc nhiều abstract methods
 
 - `final` cannot go together with `abstract` vì về bản chất:
   - `final`: hứa ko thay đổi, ko có con nữa, ko ai thay thế nữa
@@ -491,6 +522,17 @@ When you define a new interface, you are defining a new reference data type (gi�
 
 If you define a reference variable whose type is an interface, any object you assign to it must be an instance of a class that implements the interface.  
 Reference variable can only point to object not interface.
+
+### static and default methods in interfaces
+
+- Like regular interface methods, **default methods** are implicitly `public`; there’s no need to specify the public modifier.
+- Unlike regular interface methods, we declare them with the `default` keyword at the beginning of the method signature, and they provide an implementation. Class implements the interface không cần phải implement default methods.
+- Mục đích của default method là để cho phép add more method to interface mà không phải viết thêm code trong các class that had already implemented that interface. It allowes interfaces to evolve without breaking existing implementations, improving the flexibility of the language
+
+When a class implements several interfaces that define the same default methods thì: (1) class đó phải khai báo cụ thể muốn dùng default method của interface nào hoặc (2) class đó phải tự provide implementation của riêng nó cho default method (giống abstract method).
+
+- **Static method** trong interface giống static method trong class: dùng `static` keyword, interface phải provide implementation không được hứa, static method belong to the interface.
+- The same can pretty much be done with abstract classes. The main difference is that abstract classes can have constructors, state, and behavior.
 
 ## The four main principles of OOP
 
@@ -762,6 +804,33 @@ what is the `anhao/.m2` do in maven => [stack overflow](https://stackoverflow.co
 When you program for the Java platform, you write source code in `.java` files and then compile them intp bytecode (`.class` files). Bytecode is run on a JVM. In adding this level of abstraction, the Java compiler differs from other language compilers, which write out assembly-language instructions suitable for the CPU chipset the program will run on.
 
 At runtime, the JVM reads and interprets .class files and executes the program's instructions on the native hardware platform for which the JVM was written. The JVM interprets the bytecode just as a CPU would interpret assembly-language instructions. The difference is that the JVM is a piece of software written specifically for a particular platform. The JVM is the heart of the Java language's "write-once, run-anywhere" principle. Your code can run on any chipset for which a suitable JVM implementation is available. JVMs are available for major platforms like Linux and Windows, and subsets of the Java language have been implemented in JVMs for mobile phones and hobbyist chips.
+
+## Java version & History
+
+- Companies and tutorials often stick to Long-Term Support (LTS) versions, because they’re supported for many years.
+  - Java 8 → LTS
+  - Java 11 → LTS
+  - Java 17 → LTS
+- Non-LTS versions (9, 10, 12, 13, 14, 15, 16) only had 6 months of support, so many skipped them.
+
+- Java 8 (or Java SE 8, codenamed "Oak") was officially released by Oracle on March 18, 2014.
+  - stream API
+  - Lambda expression & functional interfaces: provide support for functional programming paradigms
+  - method references (the double colon operator (`::`))
+  - Optional class: A new class for handling null values safely, reducing NullPointerException errors and improving code robustness
+  - static and default methods in interfaces
+
+### Lambda expressions & functional interfaces
+
+Lambda in Java can only be used with a **Funtional Interface** which is an interface with only ONE abstract method. Lambda is a shortcut to define an implementation of a FI.
+FIs can contains other types of method (static method, default method).
+
+Lambda don't need access modifier, no return type, no method name
+
+### method references (the double colon operator (`::`))
+
+When we are using a method reference – the target reference is placed before the delimiter :: and the name of the method is provided after it.  
+`Computer::getAge;` => a method reference to the method getAge defined in the `Computer` class
 
 ## FAQs
 

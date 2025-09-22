@@ -1,4 +1,4 @@
-# Deployment notes
+# Web hosting & Domain notes
 
 Nếu là simple static front-end projects with HTML CSS javascript and do not require a server to run thì không cần dùng server như Apache. Just use static host like: Netlify, vercel, github pages
 

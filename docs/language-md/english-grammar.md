@@ -94,6 +94,13 @@ Many words can be described as particles, e.g. conjunctions such as `and` and 'b
 - It looks like rain today.
 - That coat looks expensive.
 
+## Preposition
+
+The Proposition is a word that connects a noun or noun-equivalent with a Verb, an Adjective or another Noun.
+
+- Forms of Prepositions:
+  * **Simple** Perpositions: `on, in, at, for, by, to, with, from...`
+
 ## Nouns
 
 - man (singular) > men (plural) => "a" = a man (singular); human
@@ -235,6 +242,7 @@ An adjective clause connector can also be the subject of the clause at the same 
 - Contrast: although, even though, though
 - Manner: as, in that
 - Place: where, wherever
+- Purpose, result, comparision
 
 Adverb clause connectors (also called subordinating conjunctions) cannot be the subject of the clause.
 
@@ -492,7 +500,7 @@ The `FUTURE PERFECT` is used to expres:
 - The First Conditional: `If + simple present, will + base verb (simple future tense)`:
   * If he sees me again, he **will take** it back.
 
-- The Second Conditional: `If + simple past, modal + base verb`. Thường dùng `would/could` as the modal verb.
+- The Second Conditional: `If + simple past, modal + base verb (infinitive)`. Thường dùng `would/could` as the modal verb.
   * If I were you, I wouldn't wait to study for the test.
   * If I had a million dollars, I could afford a bigger house.
 
@@ -511,7 +519,7 @@ There are three main types of conjunctions:
 
 1. **Coordinating conjunctions**, often represented by the acronym FANBOYS (`for, and, nor, but, or, yet, so`), connect words, phrases, or independent clauses of **equal grammatical** importance in a sentence.
 2. **Subordinating conjunctions**, including `although, because, that, while, after, if, when, whether`, connect a **dependent clause** to the independent clause of a sentence, indicating a specific logical relationship between the two.
-3. Correlative Conjunctions: These conjunctions work **in pairs** to connect grammatically equivalent parts of a sentence. Example: `Either/or, neither/nor, both/and`.
+3. **Correlative Conjunctions**: These conjunctions work **in pairs** to connect grammatically equivalent parts of a sentence. Example: `Either/or, neither/nor, both/and`.
 
 You can have either pasta or rice.
 

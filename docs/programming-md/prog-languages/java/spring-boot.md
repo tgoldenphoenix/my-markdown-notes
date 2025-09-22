@@ -226,6 +226,10 @@ wiring = connect. autowired = auto connect
 
 `Laptop` IS-A `Computer` nên Spring sẽ tự động biết và inject `Laptop` object vào field khai là `Computer`.
 
+## Spring security
+
+k
+
 ## Aspect Oriented Programming (AOP)
 
 In the context of Aspect-Oriented Programming (AOP), a **cross-cutting concern** refers to a functionality or aspect of a system that affects multiple, distinct parts of the application, often spanning across different modules or layers. These concerns are "cross-cutting" because they don't fit neatly into a single, isolated module but rather "cut across" the primary business logic.

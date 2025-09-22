@@ -96,6 +96,27 @@ In light of the MVC design pattern, the servlet acts as a controller and JSP as 
   - Purpose: Used to maintain stateful information about a particular user across multiple pages or requests (e.g., user login status, shopping cart contents, user preferences).
   - Example: Storing a user ID after successful login using session.setAttribute("userId", user.getId()).
 
+## DispatcherServlet
+
+The **DispatcherServlet** is the front controller in the Spring MVC framework that acts as a single entry point for all incoming HTTP requests, routing them to the appropriate controller for processing and then delegating the response to the appropriate view.
+
+## Mapping servlet
+
+- Có 2 cách mapping servlet:
+  * dùng annotation
+  * Dùng `web.xml`
+
+## JAR vs WAR
+
+- JAR (Java Archive):
+  * Purpose: Primarily used for packaging and distributing standalone Java applications, libraries, or components.
+  * Content: Contains compiled Java classes, resources (like images or property files), and a META-INF directory with metadata.
+
+- WAR (Web Application Archive):
+  * Purpose: Specifically designed for packaging and deploying web-based Java applications (servlets, JSPs, HTML, CSS, JavaScript, etc.).
+  * Content: Contains all the components of a web application, including compiled Java classes, resources, static web files, and a WEB-INF directory. The WEB-INF directory is crucial and contains web.xml (the deployment descriptor), classes (compiled Java code), and lib (dependent JAR files).
+  * Deployment: Deployed within a web server or application server environment (e.g., Apache Tomcat, Jetty, JBoss), not as a standalone executable.
+
 ## Strut
 
 Apache Struts, commonly referred to as Struts in the context of Java, is an open-source, free framework for building Java web applications. It was created by the Apache Software Foundation and primarily focuses on implementing the Model-View-Controller (MVC) architectural pattern.
