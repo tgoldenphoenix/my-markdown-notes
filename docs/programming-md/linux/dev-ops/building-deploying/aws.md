@@ -6,6 +6,8 @@ AWS is a cloud platform.
 
 Route53 is AWS's Domain Name System (DNS) service.
 
+Đối thủ của aws: **GCP, or Google Cloud Platform** (now referred to as Google Cloud)
+
 ## EC2
 
 Amazon Elastic Compute Cloud (EC2) cloud **instance** to host backend web server (nodejs, java)

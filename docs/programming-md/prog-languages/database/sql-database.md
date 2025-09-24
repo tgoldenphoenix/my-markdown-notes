@@ -96,6 +96,15 @@ Select * from SINHVIEN Where HoTenSV LIKE 'Bilbo'
 - Percent sign `%` matches any sequence of zero or more characters.
 - Underscore sign `_`  matches any single character.
 
+The `IN` operator allows us to check if an item is in a list. It is a shorthand for multiple `OR` conditions.
+
+```sql
+SELECT * FROM Customers
+WHERE Country IN ('Germany', 'France', 'UK');
+```
+
+`BETWEEN` allows range checking (range specified is inclusive of boundary values).
+
 ### ORDER BY, GROUP BY, DISTINCT, HAVING
 
 `ORDER BY` sắp xếp **các dòng** của **bảng tạm** sinh ra sau khi lọc `WHERE` dựa vào sự tăng dần hoặc giảm dần của một hay nhiều cột.

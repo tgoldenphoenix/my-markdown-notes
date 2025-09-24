@@ -160,7 +160,8 @@ Vì String không phải là một kiểu primitive trong Java nên `String a;` 
 
 The `java.lang.IndexOutOfBoundsException` is a runtime exception in Java that indicates an attempt to access an element at an invalid index within a data structure like an array, a list (e.g., ArrayList), or a string. This exception is thrown when the provided index is either negative or exceeds the valid range of indices for that particular structure.
 
-`if ("Hello".equals(a)){}` nếu cần so sánh string phải làm như vầy để không có lỗi NullPointerException. Viết `a.equals("Hello")` là không đúng.
+`if ("Hello".equals(a)){}` nếu cần so sánh string phải làm như vầy để không có lỗi NullPointerException. Viết `a.equals("Hello")` là không đúng.  
+`.equal()` nếu dùng so sánh string thì nó chỉ so sánh giá trị (content). Nếu dùng `==` check string thì nó so sánh tham chiếu.
 
 ## String, StringBuilder, StringBuffer
 
@@ -198,8 +199,9 @@ sb.append(" World"); // Efficiently modifies the existing StringBuilder object
 Thanks to the immutability of Strings in Java, the JVM can optimize the amount of memory allocated for them by storing only one copy of each literal String in the **Sring Pool**. This process is called **interning**.  
 When we create a String via the `new` operator, the Java compiler will create a new object and store it in the heap space reserved for the JVM.
 
-- Khi `==` compare 2 primitive thì nó check value, không quan tâm tới tham chiếu.
-- When `==` compare two objects, it only checks that two variables are referencing the same memory address.
+- `==` khi compare 2 primitive thì nó check value, không quan tâm tới tham chiếu.
+- `==` khi compare two objects (string), it only checks that two variables are referencing the same memory address.
+- `.equal` luôn luôn chỉ check giá trị (content), không check tham chiếu.
 
 ```java
 // equality and reference checking work identically for primitives
@@ -212,24 +214,34 @@ System.out.println(a == c); // true
 
 int d = a;
 System.out.println(a == d); // true
-```
 
-Dùng `equals()`
-
-```java
+// Dùng `.equals()`
 int a = 10;
 Integer b = a;
-
 assertTrue(b.equals(10));
+
+String a = "anhao";
+String b = "anhao";
+// true because of the string pool
+System.out.println(a == b);
+// You should only use .equal() to compare string
 ```
 
-## Collections
+## Collections, arrays
 
 Collection là một loại đối tượng có thể chứa các địa chỉ trỏ đến các đối tượng khác. Collection không chứa the objects themselves. Mỗi phần tử trong collection là một address, not object.
 
-Array trong Java có số phần tử cố định và phải khai rõ ràng lúc declare. Array is **NOT** collection, nó chỉ là một kiểu dữ liệu nguyên thủy trong Java.
+Array trong Java là fixed size & chỉ chứa duy nhất one data type.  
+Array is **NOT** collection, nó chỉ là một kiểu dữ liệu tham chiếu trong Java (giống `String`).
 
-`ArrayList<>` có cấu trúc giống Array (mảng) nhưng số phần tử là dynamic có thể resize được. Array thông thường phải khai báo max index  
+```java
+// declaration of array. reference variable is getting defined in the stack memory
+int[] arr;
+// initialisation: actual array object is being created in the memory (heap)
+arr = new int[5];
+```
+
+In java, `ArrayList<>` có cấu trúc giống Array (mảng) nhưng số phần tử là dynamic (grow & shrink). Array thông thường phải khai báo max index (fixed size).  
 Mảng thì dùng sytax `[]` để access item. Còn `ArrayList` làm cái gì cũng thông qua hàm hết như `.add(), .get(), .set()`, không làm trực tiếp như mảng.
 
 - The `ArrayList` itself holds an array of references (or pointers) to the objects it contains. This array of references is stored in a single, contiguous block of memory. This contiguity is what allows for efficient random access by index.
@@ -242,6 +254,12 @@ Mảng thì dùng sytax `[]` để access item. Còn `ArrayList` làm cái gì c
 Ánh xạ ví dụ `y = 2x`, với mỗi x chỉ cho ra một giá trị y.
 
 `Set` không chứa duplicate values.
+
+List - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own.
+
+ArrayList - a concrete class that implements the List interface.
+
+Java Collection Framework
 
 ## Package
 
@@ -564,6 +582,8 @@ At times, you need to bail out of — or terminate — a loop before the conditi
 
 `for(dataType variable : array) {}` là **for-each loop** (or enhanced loop) in Java. They are mostly used to iterate through an array or collection of variables.
 
+Trong `switch` statement nếu `case` không có `break;` thì nó chạy luôn case bên dưới.
+
 ## Classes and Objects
 
 - Objects (đối tượng) là thể hiện của 1 lớp.
@@ -774,18 +794,6 @@ The constructor for an enum type must be package-private or private access. It a
 Annotations are meta-data. Annotation is proccessed by compiler or at run-time.
 
 `@Test` annotation dùng để khi build nó biết đây là test methods.
-
-## Common data types
-
-[List vs Array vs ArrayList in Java](https://www.reddit.com/r/javahelp/comments/16gjqkb/list_vs_array_vs_arraylist/)
-
-Array have fixed size. ArrayList can grow and shrink.
-
-List - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own.
-
-ArrayList - a concrete class that implements the List interface.
-
-Java Collection Framework
 
 ## The build process, Maven && Gradle
 
