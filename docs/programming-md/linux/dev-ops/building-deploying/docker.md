@@ -43,7 +43,7 @@ In Kubernetes, each container is isolated from other processes and runs on a com
 A **Kubernetes cluster** is a collection of interconnected nodes that run containerized applications and the Kubernetes control plane. It serves as the fundamental unit for deploying, managing, and scaling containerized workloads within the Kubernetes ecosystem.
 
 - Key components of a Kubernetes cluster:
-  * Control Plane (Master Node): This component manages the overall state of the cluster.
+  * Control Plane (Master Node): This component manages the overall state of the cluster. The master node can only run on Linux not Window.
   * **(Worker) Nodes**: These are the machines (physical or virtual) that run the actual containerized applications. Một cluster phải có ít nhất một worker node.
 
 - A **pod** is a set of processes running within a cluster node. A pod within a node has:
@@ -58,6 +58,10 @@ You can absolutely use Kubernetes without Docker as the underlying container run
 Popular alternatives include: containerD, CRI-O
 
 Kubernetes deprecated Docker as a default container runtime after v1.20.
+
+- What linux you need to know:
+  * Networking
+  * software defined storage
 
 ## Terms
 

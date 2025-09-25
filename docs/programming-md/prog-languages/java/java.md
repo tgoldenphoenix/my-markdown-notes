@@ -119,7 +119,7 @@ SinhVien sv1;
 SinhVien sv2 = null;
 ```
 
-Declare without initialize thì **mặc định** java sẽ cho `= null;` tức là chưa trỏ đến đối tượng nào cả.
+All reference type, by default, when declare without initialize thì **mặc định** java sẽ cho `= null;` tức là chưa trỏ đến đối tượng nào cả.
 
 Biến `sv1` không phải object mà nó là reference variable.
 
@@ -154,6 +154,7 @@ NullPointerException chỉ có thể xảy ra ở những dòng có dấu `.` đ
   - Với number (int, double) default là 0
   - char: `\u0000` (the null character)
   - Boolean default value sẽ là `false`.
+  - Primitive không được phép `null` in Java.
 
 Còn declare object like `SinhVien sv;` mà không initialize sẽ default `sv=null`.  
 Vì String không phải là một kiểu primitive trong Java nên `String a;` thì `a=null` by default.
@@ -232,7 +233,7 @@ System.out.println(a == b);
 Collection là một loại đối tượng có thể chứa các địa chỉ trỏ đến các đối tượng khác. Collection không chứa the objects themselves. Mỗi phần tử trong collection là một address, not object.
 
 Array trong Java là fixed size & chỉ chứa duy nhất one data type.  
-Array is **NOT** collection, nó chỉ là một kiểu dữ liệu tham chiếu trong Java (giống `String`).
+Array is **NOT** collection, nó chỉ là một kiểu dữ liệu tham chiếu trong Java (giống `String`). Array không phải primitive. Arrays are stored inside heap memory.
 
 ```java
 // declaration of array. reference variable is getting defined in the stack memory
@@ -255,11 +256,11 @@ Mảng thì dùng sytax `[]` để access item. Còn `ArrayList` làm cái gì c
 
 `Set` không chứa duplicate values.
 
-List - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own.
-
+List - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own.  
 ArrayList - a concrete class that implements the List interface.
 
-Java Collection Framework
+Declare `int[5]` array mà không gián value thì defult là `[0,0,0,0,0]`  
+Declare `String[5]` array thì default là `[null, null, null, null, null]`
 
 ## Package
 

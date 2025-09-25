@@ -55,21 +55,29 @@ Every main sentence element may take one or more modifiers:
 - Object Complement Modifier `oCM`
 - Modifier of another Modifier `mM`
 
-4 kinds of sentences:
+There are 4 kinds of sentences:
 
-- Classification according to the meaning:
+- Classification according to the **meaning**:
   1. Statements
   2. Questions
   3. Commands
   4. Exclamations
-- Classification according to the structure:
-  1. Simple Sentences (câu đơn): only one Independent Clause (IC)
-  2. Compound Sentencess (câu ghép): two/more clauses joined by **co-ordinating conjunctions** (`AND BUT OR NOR SO`)
-  3. Complex Sentences (câu phức): one main clause + ONE/more SUBORDINATE clause joined by **Subordinating Conjunctions**.
+- Classification according to the **structure**:
+  1. **Simple Sentences** (câu đơn): only one Independent Clause (IC)
+  2. **Compound Sentences** (câu ghép): two/more clauses joined by **co-ordinating conjunctions** (`FOR AND NOR BUT OR YET SO`). Việc sử dụng comma `,` dường như là không bắt buộc (chỉ để cho câu dễ nhìn hơn thôi).
+  3. Complex Sentences (câu phức): one main clause + ONE/more **SUBORDINATE clause** joined by **Subordinating Conjunctions**.
   4. Mixed Sentences (Compound-complex sentence, Câu phức tổng hợp): TWO/more main clause + ONE/more SUBORDINATE clauses.
 
-- I woke up at six o'clock because I had to hit the gym, but I was too tired to get out of bed.
-- Last night, I ate a lot when I got home, but I was still hungry, so I went to the shopping center to buy some more food.
+- Compound sentence examples:
+  * I woke up at six o'clock because I had to hit the gym, but I was too tired to get out of bed.
+  * Last night, I ate a lot when I got home, but I was still hungry, so I went to the shopping center to buy some more food.
+  * It was cold `but` we still went to town.
+  * It was raining `and` we stayed indoors.
+  * Anna does not do her homework, `nor` does she learn grammar.
+  * I like reading books, `but` I don’t like reading newspapers.
+  * You should call him back, `or` he comes here to talk to you.
+  * The weather was cold and wet, `yet` we went camping.
+  * Mary missed the bus, `so` she went to school late.
 
 ## Subject
 
@@ -246,8 +254,11 @@ An adjective clause connector can also be the subject of the clause at the same 
 
 Adverb clause connectors (also called subordinating conjunctions) cannot be the subject of the clause.
 
-When the connector comes at the beginning of the sentence, a comma `,` is required in the middle of the sentence.  
+When the connector comes at **the beginning** of the sentence, a comma `,` is required in the middle of the sentence.  
 Noun clauses & adjective clauses **KHÔNG** dùng comma.
+
+- He ate because he was hungry.
+- Because he was hungry, he ate.
 
 ## Verb
 

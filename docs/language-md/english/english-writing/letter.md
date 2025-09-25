@@ -1,4 +1,4 @@
-# Letters
+# Letters & Chat message
 
 ## Friendly
 
@@ -46,3 +46,6 @@ Stick to one email thread per topic. Don't send multiple emails for the same sub
 
 Main point first, followed by context.
 
+## A message to say you're late
+
+k
