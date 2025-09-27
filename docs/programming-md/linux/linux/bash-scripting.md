@@ -54,12 +54,10 @@ diff $TMPDIR/.zshrc.mBj1SnoduX ~/.config/zsh/.zshrc
 
 `sudo apt install kitty`
 
-In the terminal:\
-Zoom In : `Ctrl + Shift + +`
-Zoom Out: `Ctrl + -`
-Zoom 100%: `Ctrl+0`
-
-**References:**
+- In the terminal:
+  - Zoom In : `Ctrl + Shift + +`
+  - Zoom Out: `Ctrl + -`
+  - Zoom 100%: `Ctrl+0`
 
 ## Scripting ideas
 
@@ -79,27 +77,106 @@ Use `sudo chmod +x myscript.sh` to set permission for .sh files
 
 Other shell: zsh, Xonsh, fish
 
-`exec bash` to switch shell. This won't affect new terminal windows or anything, but it's convenient.\
+`exec bash` to switch shell. This won't affect new terminal windows or anything, but it's convenient.  
 `echo $0` to know which shell you are using.
 
-## Redirection
+## Output redirection, streams & pipes
 
-1 'represents' stdout `>` and 2 stderr `2>`. 
+There are three standard streams, `stdin` (said standard input or standard in), `stdout` (said standard output or standard out,) and `stderr` (said standard error or standard err.) `stdin` is an input stream to a program and the other two are output streams. `stdout` for all non-error text, the normal output. `stderr` is just for error information. The numerical designations for `stdin`, `stdout` and `stderr` are 0, 1 and 2 respectively.
 
-### Output redirection & streams
+- 0: STDIN
+- 1: STDOUT
+- 2: STDERR
+
+- A `<` symbol connects the command’s STDIN to the contents of an existing file.
+- The `>` and `>>` symbols redirect STDOUT:
+  * `>` replaces the file’s existing contents
+  * `>>` appends to them.
+- To redirect both STDOUT and STDERR to the same place, use the `>&` symbol. To redirect STDERR only, use `2>`.
+
+`echo "This is a test message." > /tmp/mymessage` => stores a single line in the file /tmp/mymessage, creating the file if necessary. The command below emails the contents of that file to user johndoe.  
+`mail -s "Mail test" johndoe < /tmp/mymessage`
 
 `ls -l > file.txt` create new file/over-write existing file. Use `>>` to append
 `cat file.txt |sort |uniq` do not show duplicates
 
-There are three standard streams, `stdin` (said standard input or standard in), `stdout` (said standard output or standard out,) and `stderr` (said standard error or standard err.) `stdin` is an input stream to a program and the other two are output streams. `stdout` for all non-error text, the normal output. `stderr` is just for error information. The numerical designations for `stdin`, `stdout` and `stderr` are 0, 1 and 2 respectively.
-
-`find / -name *.log 2> /dev/null` search by name at the root `/`, capture `stderr` and redirect those to `/dev/null` (purgatory)
+`find / -name core 2> /dev/null` => only print STDOUT to the screen, re-direct all the “permission denied” error messages to null.
 
 `echo $?` the exit code of the previous command
 
+To connect the STDOUT of one command to the STDIN of another, use the pipe (`|`) symbol
+
+To execute a second command only if its precursor completes successfully (yielding an exit code of zero), you can separate the commands with an `&&` symbol.  
+Conversely, the `||` symbol executes the following command only if the preceding command fails (produces a nonzero exit status).
+
+In a script, you can use a backslash (`\`) to break a command onto multiple lines. For the converse effect—multiple commands combined onto one line—you can use a semicolon (`;`) as a statement separator.
+
+## Globbing
+
+Globbing is mainly used to match filenames or searching for content in a file. Globbing uses wildcard characters to create the pattern. The most common wildcard characters that are used for creating globbing patterns are described below.
+
+Glob mean "global commands". [/etc/glob](https://en.wikipedia.org/wiki/Glob_(programming)) is a program in UNIX V6 that would expand wildcard patterns. Soon afterward, this became a shell built-in.
+
+Globbing is used in config files such as a `.gitignore` where you might see `.cache/*`, for example
+
+Globbing is an operation that is performed by the shell itself and it happens independently of the actual command we're running. The shell will first attemp to expand the wildcard pattern to match any files that are present before passing their expanded names to the program we want to run.  
+`man 7 glob` to read more
+
+You should be aware that the value of the arguments that get passed to a given program will actually depend on the content of your file system. Your program may be passed a different number of arguments depending on how many files match the wildcard.
+
+We should note that while globbing might look similar to regular expressions, they’re fundamentally different. While the patterns seem similar, globbing doesn’t use regular expressions.
+
+`*` represents any string of any given length (zero or more chars)
+
+`?` match exactly one character
+
+`[]` range of characters. For example `[0-9]` or `[abc]`. Ranges can apply to letters as well as digits:
+
+- `[a-z]` = all lowercase characters of the alphabet
+- `[A-Z]` = all uppercase characters of the alphabet
+- `[a-zA-Z]` = all characters of the alphabet, irrespective of their case
+- `[j-p]` = lowercase characters j, k, l, m, n, o or p
+- `[a-z3-6]` = lowercase characters or the numbers 3, 4, 5 or 6
+
+`[]` is used to match the character from the range. Some of the mostly used range declarations are mentioned below.
+
+- All uppercase alphabets are defined by the range as, `[:upper:] or [A-Z]` .
+- All lowercase alphabets are defined by the range as, \[:lower:] or \[a-z].
+- All numeric digits are defined by the range as, \[:digit:] or \[0-9].
+- All uppercase and lower alphabets are defined by the range as, \[:alpha:] or \[a-zA-z].
+- All uppercase alphabets, lowercase alphabet and digits are defined by the range as, \[:alnum:] or \[a-zA-Z0-9]
+
+By default, **hidden files and folders** don’t show up in the output of ls. To apply globbing to our hidden files and folders, we have to explicitly add a leading `.` (dot).  
+`ls *` vs `ls .*`
+
+**Examples:**
+
+`ls *.txt`
+
+`ls test-?.txt` => list all text files named ‘test-‘ followed by a single digit
+
+`ls ????.txt` => all text files with a name of exactly four characters
+
+`ls *[0-9]*` => all files with a number in their name
+
+The shell treats strings enclosed in single and double quotes similarly, except that double-quoted strings are subject to globbing (the expansion of filename-match-ing metacharacters such as * and ?) and variable expansion.
+
+- We use shell-style globbing characters for pattern matching:
+  * A star (*) matches zero or more characters.
+  * A question mark (?) matches any single character. You can use `?` for multiple times for matching multiple characters.
+  * A tilde or “twiddle” (~) means the home directory of the current user
+
+### Single vs. Double Quotes
+
+Single and double quotes are often used in Linux bash commands or scripts, especially when dealing with filenames. Although both quote types prevent globbing and word splitting, it is important to pay attention to the quotes you use. The differences between the quote types make them noninterchangeable in some cases.
+
+`'!$"*<>` is typically the order of precedence for those symbols.
+
+Đôi khi phải dùng single quote to pass unchanged wildcard pattern to programs. Prevent the shell to expand them before passign to programs.
+
 ## Bash Command history
 
-`history` print bash history
+`history` print bash history  
 `!594` execute command /#594 in history
 
 Start your command with an empty space character and it will not be recorded into `history` (depend on Bash version)
@@ -132,7 +209,7 @@ Use `#!/usr/bin/bash` on Linux, use `#!/bin/bash` on MacOS. Use `which bash` to 
 
 ## Terminology
 
-crontab: tasks that need to be executed periodically - backups, updates of the system databases, cleaning of the system, rotating logs etc. 
+crontab: tasks that need to be executed periodically - backups, updates of the system databases, cleaning of the system, rotating logs etc.
 
 ## Commands
 
@@ -143,3 +220,4 @@ crontab: tasks that need to be executed periodically - backups, updates of the s
 [GNU Bash manual](https://www.gnu.org/software/bash/manual/)
 
 guides on [TLDP.org](https://tldp.org/)
+

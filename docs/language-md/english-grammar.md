@@ -69,15 +69,55 @@ There are 4 kinds of sentences:
   4. Mixed Sentences (Compound-complex sentence, Câu phức tổng hợp): TWO/more main clause + ONE/more SUBORDINATE clauses.
 
 - Compound sentence examples:
-  * I woke up at six o'clock because I had to hit the gym, but I was too tired to get out of bed.
-  * Last night, I ate a lot when I got home, but I was still hungry, so I went to the shopping center to buy some more food.
-  * It was cold `but` we still went to town.
-  * It was raining `and` we stayed indoors.
-  * Anna does not do her homework, `nor` does she learn grammar.
-  * I like reading books, `but` I don’t like reading newspapers.
-  * You should call him back, `or` he comes here to talk to you.
-  * The weather was cold and wet, `yet` we went camping.
-  * Mary missed the bus, `so` she went to school late.
+  - I woke up at six o'clock because I had to hit the gym, but I was too tired to get out of bed.
+  - Last night, I ate a lot when I got home, but I was still hungry, so I went to the shopping center to buy some more food.
+  - It was cold `but` we still went to town.
+  - It was raining `and` we stayed indoors.
+  - Anna does not do her homework, `nor` does she learn grammar.
+  - I like reading books, `but` I don’t like reading newspapers.
+  - You should call him back, `or` he comes here to talk to you.
+  - The weather was cold and wet, `yet` we went camping.
+  - Mary missed the bus, `so` she went to school late.
+
+### Conjunctions (liên từ)
+
+There are three main types of conjunctions:
+
+1. **Coordinating conjunctions** (liên từ kết hợp), often represented by the acronym **FANBOYS** (`for, and, nor, but, or, yet, so`), connect words, phrases, or independent clauses of **equal grammatical** importance in a sentence.
+2. **Subordinating conjunctions** (liên từ phụ thuộc), including `although, because, that, while, after, if, when, whether`, connect a **dependent clause** to the independent clause of a sentence, indicating a specific logical relationship between the two.
+3. **Correlative Conjunctions** (liên từ tương quan): These conjunctions work **in pairs** to connect grammatically equivalent parts of a sentence. Example: `Either/or, neither/nor, both/and`.
+
+You can have either pasta or rice.
+
+**Sentences with two clauses**: When you have two clauses in an English sentence, you must connect the two clauses correctly. One way to connect two clauses is to use `and, but, or, so or yet` (**coordinate connectors**) between the clauses. Có dùng commma.
+
+`and yet but or so for nor`
+
+### conjunctive adverb (trạng từ liên kết)
+
+A **conjunctive adverb** is an adverb (e.g., alternatively, moreover) or adverb phrase (e.g., as a result, on the other hand) that connects the ideas in different **independent** clauses or sentences.
+
+Unlike coordinating conjunctions (for, and, nor, but, or, yet, and so, known as the FANBOYS), conjunctive adverbs cannot grammatically link clauses. Instead, their main purpose is transitioning and describing the relationship between clauses; they are used more to facilitate communication than for grammar.
+
+- Example:
+  * to show contradictions (`however, on the other hand`)
+  * to continue the same point (`additionally, moreover`)
+
+The weather app said it would rain today. `However`, no clouds are in the sky.
+
+If you want to combine two independent clauses into one sentence, you can also use a semicolon.
+
+The weather app said it would rain today`; however,` no clouds are in the sky.
+
+- More examples:
+  * My father had missed the train; `therefore`, he took a taxi to work.
+  * We conducted the survey; `next`, we analyzed the results.
+
+### Just use `;`
+
+- Khi hai mệnh đề có mối quan hệ gần gũi, các mệnh đề độc lập có thể liên kết với nhau chỉ bằng dấu chấm phẩy `;`:
+  * My mom is frying fish; my father is washing vegetables.
+  * My brother just graduated from high school; he will attend Hue University of Foreign Languages.
 
 ## Subject
 
@@ -107,7 +147,7 @@ Many words can be described as particles, e.g. conjunctions such as `and` and 'b
 The Proposition is a word that connects a noun or noun-equivalent with a Verb, an Adjective or another Noun.
 
 - Forms of Prepositions:
-  * **Simple** Perpositions: `on, in, at, for, by, to, with, from...`
+  - **Simple** Perpositions: `on, in, at, for, by, to, with, from...`
 
 ## Nouns
 
@@ -228,19 +268,26 @@ Prepositional phrase expressing place at the beginning of the sentence do not ne
 
 ### Adjective Clauses
 
-Adjective clausess are introduced by **relative pronouns** or **relative adverbs**. Can also be called **adjective connnectors**.
+Adjective clauses are introduced by **relative pronouns** OR **relative adverbs** (they can also be called **adjective connnectors**).
 
-Relative pronouns (or Adjective clause connectors):
-
-- For person: who, whom, whose
-- For object/thing: which, that, of which
-- that (for people or thing)
-
-Relative adverb: where, when, why
+- Relative pronouns (or Adjective clause connectors):
+  * For person: `who, whom, whose`.
+  * For object/thing: which, that, of which
+  * that (for people or thing)
+- Relative adverb: `where, when, why`.
 
 The adjective connnectors can be omitted. This omission is very common in spoken English or in casual written English. It is not as common in formal English.
 
 An adjective clause connector can also be the subject of the clause at the same time.
+
+Noun clauses **KHÔNG** dùng comma.
+
+- ADJECTIVE CLAUSES có 02 chức năng:
+  * **Defining** rất cần cho ý nghĩa chính của câu và
+  * **Non-defining** không cần thiết, chỉ phụ thêm ý chi tiết.
+- Dùng comma (`,`) trước và sau Non-defining adjective clause:
+  * This is the boy `who broke our window`. (Defining)
+  * This boy, who lives next door, broke our window. (Non-defining)
 
 ### Adverb clause
 
@@ -319,18 +366,18 @@ The modal verb `will` expresses certain future actions, predictions, promises, a
 - She and he **are** right.
 
 - When a **prepositional phrase** comes between the subject and the verb, be sure that the verb agrees with the real subject not the object of preposition:
-  * Miss Ginny with her dog **is** coming.
-  * The President together with his advisors **is** making a tour of inspection.
-  * A bandit along with some deserters **is** creating disturbance.
+  - Miss Ginny with her dog **is** coming.
+  - The President together with his advisors **is** making a tour of inspection.
+  - A bandit along with some deserters **is** creating disturbance.
   - The **first volume**, poems and storie, **is** the best.
   - The **burden** of taxes **is** terrible for customers.
   - The **complain** of the students **is** the many required subjects.
 
 - **THE NUMBER OF** requires a singular or plural verb; **mostly singular**.
-  * The number of students in that class `is` small. (lớp ít học sinh)
+  - The number of students in that class `is` small. (lớp ít học sinh)
 - **A NUMBER OF** always requires a **plural verb**.
-  * A number of sheep `are` eating grass. (vài con cừu đang ăn cỏ)
-  * A number of people `are` still waiting. (còn vài người đang chờ)
+  - A number of sheep `are` eating grass. (vài con cừu đang ăn cỏ)
+  - A number of people `are` still waiting. (còn vài người đang chờ)
 
 - When **NONE** is the subject, the verb may be singulr or plural according to the noun or pronoun that follows **NONE OF**:
   - None of this `money is` mine.
@@ -509,11 +556,11 @@ The `FUTURE PERFECT` is used to expres:
 ### Conditional
 
 - The First Conditional: `If + simple present, will + base verb (simple future tense)`:
-  * If he sees me again, he **will take** it back.
+  - If he sees me again, he **will take** it back.
 
 - The Second Conditional: `If + simple past, modal + base verb (infinitive)`. Thường dùng `would/could` as the modal verb.
-  * If I were you, I wouldn't wait to study for the test.
-  * If I had a million dollars, I could afford a bigger house.
+  - If I were you, I wouldn't wait to study for the test.
+  - If I had a million dollars, I could afford a bigger house.
 
 The Third Conditional: `If + past perfect, modal + present perfect`:
 
@@ -523,20 +570,6 @@ The Third Conditional: `If + past perfect, modal + present perfect`:
 
 The **past subjunctive** (giả định quá khứ) is a verb form, most notably using `were` instead of `was`, to express hypothetical, unreal, or contrary-to-fact situations in the present, future, or past. It is most commonly triggered by expressions like "if," "wish," and "as if" to describe wishes, unreal conditions, and situations that are not actually true. For example, in the sentence "I wish I were taller," the use of "were" signals that the speaker is not actually taller but wishes they were.
 **Indicative** là câu chỉ định (facts).
-
-## Conjunctions
-
-There are three main types of conjunctions:
-
-1. **Coordinating conjunctions**, often represented by the acronym FANBOYS (`for, and, nor, but, or, yet, so`), connect words, phrases, or independent clauses of **equal grammatical** importance in a sentence.
-2. **Subordinating conjunctions**, including `although, because, that, while, after, if, when, whether`, connect a **dependent clause** to the independent clause of a sentence, indicating a specific logical relationship between the two.
-3. **Correlative Conjunctions**: These conjunctions work **in pairs** to connect grammatically equivalent parts of a sentence. Example: `Either/or, neither/nor, both/and`.
-
-You can have either pasta or rice.
-
-**Sentences with two clauses**: When you have two clauses in an English sentence, you must connect the two clauses correctly. One way to connect two clauses is to use `and, but, or, so or yet` (**coordinate connectors**) between the clauses. Có dùng commma.
-
-`and yet but or so for nor`
 
 ## Sentences with Reduced Clauses
 

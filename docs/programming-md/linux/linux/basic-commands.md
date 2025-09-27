@@ -2,7 +2,7 @@
 
 ## Basic Terminal commands & Keyboard shorcuts
 
-Phân biệt command option (preceded with `-` or `--`) vs command argument. The argument(s) to a command are specifications for the object(s) on which you want the command to take effect. An example is `ls /etc`, where the directory `/etc` is the argument to the **ls** command.\
+Phân biệt command option (preceded with `-` or `--`) vs command argument. The argument(s) to a command are specifications for the object(s) on which you want the command to take effect. An example is `ls /etc`, where the directory `/etc` is the argument to the **ls** command.  
 You can think of an option as a way of executing the command. The argument is what you execute it on.
 
 `which -a ls` show that the `ls` command is in the `/bin` directory (show full path)
@@ -50,7 +50,9 @@ In most cases, when issuing a command or starting a program as a non-privileged 
 
 ### Terminal line editing basic
 
-`Ctrl a` move cursor to the beginning of the command line.\
+If you like emacs, all the basic **emacs commands** are available to you when you’re editing history
+
+`Ctrl a` move cursor to the beginning of the command line.  
 `^E` Move cursor to the end of the command line.
 
 `Ctrl+W` to erase the previous word, `Ctrl+U` to erase the whole line

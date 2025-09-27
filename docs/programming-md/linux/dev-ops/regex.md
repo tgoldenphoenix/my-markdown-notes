@@ -316,36 +316,6 @@ If the multiline flag (m) is enabled, `$` will match the end of a line instead o
 
 Learn Regex on FreeCodeCamp
 
-# Glob pattern
-
-Globbing is mainly used to match filenames or searching for content in a file. Globbing uses wildcard characters to create the pattern. The most common wildcard characters that are used for creating globbing patterns are described below.
-
-## Filename Expansion
-
-## Question mark – (?)
-
-`?` is used to match any single character. You can use `?` for multiple times for matching multiple characters.
-
-## Asterisk – (*)
-
-`*` is used to match zero or more characters. If you have less information to search any file or information then you can use `*` in globbing pattern.
-
-## Square Bracket – ([])
-
-`[]` is used to match the character from the range. Some of the mostly used range declarations are mentioned below.
-
-All uppercase alphabets are defined by the range as, `[:upper:] or [A-Z]` .
-
-All lowercase alphabets are defined by the range as, \[:lower:] or \[a-z].
-
-All numeric digits are defined by the range as, \[:digit:] or \[0-9].
-
-All uppercase and lower alphabets are defined by the range as, \[:alpha:] or \[a-zA-z].
-
-All uppercase alphabets, lowercase alphabet and digits are defined by the range as, \[:alnum:] or \[a-zA-Z0-9]
-
-## Refrences
-
 [regex101](https://regex101.com/) for testing, playground
 
 [regexLearn](https://regexlearn.com/)
@@ -353,54 +323,3 @@ All uppercase alphabets, lowercase alphabet and digits are defined by the range 
 [rexegg.com](https://www.rexegg.com/) not basic, but advace
 
 Jan Goyvaerts's excellent [regular-expression.info](https://www.regular-expressions.info/) page, more tutorial style
-
-# Globbing pattern
-
-Glob mean global commands. [/etc/glob](https://en.wikipedia.org/wiki/Glob_(programming)) is a program in UNIX V6 that would expand wildcard patterns. Soon afterward, this became a shell built-in.
-
-Globbing is used in config files such as a `.gitignore` where you might see `.cache/*`, for example
-
-Globbing is an operation that is performed by the shell itself and it happens independently of the actual command we're running. The shell will first attemp to expand the wildcard pattern to match any files that are present before passing their expanded names to the program we want to run.\
-`man 7 glob` to read more
-
-You should be aware that the value of the arguments that get passed to a given program will actually depend on the content of your file system. Your program may be passed a different number of arguments depending on how many files match the wildcard.
-
-We should note that while globbing might look similar to regular expressions, they’re fundamentally different. While the patterns seem similar, globbing doesn’t use regular expressions.
-
-`*` represents any string of any given length (zero or more chars)
-
-`?` match exactly one character
-
-`[]` range of characters. For example `[0-9]` or `[abc]`\
-Ranges can apply to letters as well as digits:
-
-- `[a-z]` = all lowercase characters of the alphabet
-- `[A-Z]` = all uppercase characters of the alphabet
-- `[a-zA-Z]` = all characters of the alphabet, irrespective of their case
-- `[j-p]` = lowercase characters j, k, l, m, n, o or p
-- `[a-z3-6]` = lowercase characters or the numbers 3, 4, 5 or 6
-
-By default, **hidden files and folders** don’t show up in the output of ls. To apply globbing to our hidden files and folders, we have to explicitly add a leading `.` (dot).\
-`ls *` vs `ls .*`
-
-**Examples:**
-
-`ls *.txt`
-
-`ls test-?.txt` => list all text files named ‘test-‘ followed by a single digit
-
-`ls ????.txt` => all text files with a name of exactly four characters
-
-`ls *[0-9]*` => all files with a number in their name
-
-## Single vs. Double Quotes
-
-Single and double quotes are often used in Linux bash commands or scripts, especially when dealing with filenames. Although both quote types prevent globbing and word splitting, it is important to pay attention to the quotes you use. The differences between the quote types make them noninterchangeable in some cases.
-
-`'!$"*<>` is typically the order of precedence for those symbols.
-
-Đôi khi phải dùng single quote to pass unchanged wildcard pattern to programs. Prevent the shell to expand them before passign to programs.
-
-## Refrences
-
-[DigitalOcean glob tool](https://www.digitalocean.com/community/tools/glob?comments=true&glob=%2F%2A%2A%2F%2A.js&matches=false&tests=%2F%2F%20This%20will%20match%20as%20it%20ends%20with%20%27.js%27&tests=%2Fhello%2Fworld.js&tests=%2F%2F%20This%20won%27t%20match%21&tests=%2Ftest%2Fsome%2Fglobs) có khá nhiều pattern khác nhau
