@@ -40,15 +40,13 @@ mỗi file servelt chỉ có một endpoint
 
 - `forward`:
   - Cả 2 (forward & redirect) đều là chuyển trang phía server, client không liên quan.
-  - Forward chuyển dữ liệu đi theo.
-  - A forwarding is done without letting the client know that, It is used to do internal communication at server (chuyển trang phía server). The URL in Browser remains unchanged
-  - request attributes and parameters are preserved during the forward.
-  - If the previous scope is required, or the user doesn’t need to be informed, but the application also wants to perform an internal action then use forwarding.
+  - Forward chuyển dữ liệu đi theo. **KHÔNG** tạo request object mới mà chỉ chuyển tiếp request. The browser's URL remains unchanged.
+  - Request attributes and parameters are preserved during the forward.
+  - If the previous scope is required, but the application also wants to perform an internal action then use forwarding.
   - login thành công => forward kèm theo dữ liệu user
 - `sendRedirect`:
-  - Chuyển trang không kèm theo dữ liệu.
+  - Chuyển trang không kèm theo dữ liệu. Force the client to make a new request. The browser's URL is changed.
   - Redirect chạy nhanh hơn forward => ưu điểm của re-direct.
-  - A redirect sends an **HTTP 302** response to the browser (client), instructing it to make a new request to a different URL. Client changes to the new URL, A new request is created.
   - To discard the scope or if the new content isn’t associated with the original request – such as a redirect to a login page or completing a form submission – then use redirecting.
   - This is useful when we want to send the user to a different domain or server outside of our web application.
   - đăng nhập thất bại, thông báo server đang bị lỗi

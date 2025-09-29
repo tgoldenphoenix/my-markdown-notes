@@ -1,4 +1,4 @@
-# The File Systems
+# Access Control & The File Systems
 
 > On a UNIX system, everything is a file; if something is not a file, it is a process.
 
@@ -15,6 +15,7 @@ A Linux system, just like UNIX, makes no difference between a file and a directo
 There are special files that are more than just files (named pipes and sockets, for instance).
 
 While it is reasonably safe to suppose that everything you encounter on a Linux system is a file, there are some exceptions:
+
 - Special files: the mechanism used for input and output. Most special files are in `/dev`
 - Links: a system to make a file or directory visible in multiple parts of the system's file tree.
 - (Domain) sockets: a special file type, similar to TCP/IP sockets, providing inter-process networking protected by the file system's access control.
@@ -31,6 +32,7 @@ Usually store your scripts in `/usr/local/bin`, unless you don't want other user
 `/usr/local/bin` may be in the default PATH, but `$HOME/bin` will certainly need to be added to PATH.
 
 **Adding `$HOME/bin` to PATH:**
+
 ```bash
 PATH=${PATH}:$HOME/bin
 export PATH
@@ -83,6 +85,7 @@ To find out more about the kind of data we are dealing with, we use the **file**
 In DOS, use `dir`
 
 `ls -l` meanings:
+
 - `-` regular file
 - `d` directory
 - `l` link
@@ -92,6 +95,7 @@ In DOS, use `dir`
 - `b` block device
 
 `ls -F`
+
 - `nothing` regular files
 - `*` for executables\
 - `/` for directories\
@@ -99,7 +103,7 @@ In DOS, use `dir`
 
 As a user, you only need to deal directly with plain files, executable files, directories and links. The special file types are there for making your system do what you demand from it and are dealt with by system administrators and programmers.
 
-**Options**
+Options
 
 `ls -l -h` == `ls -lh` == `ls -hl`
 
@@ -107,7 +111,7 @@ As a user, you only need to deal directly with plain files, executable files, di
 
 ## find & locate
 
-These are the real tools, used when searching other paths beside those listed in the search path (using `which`). 
+These are the real tools, used when searching other paths beside those listed in the search path (using `which`).
 
 `find` sfind files and directory in a directory hierarchy. This command not only allows you to search file names, it can also accept file size, date of last change and other file properties as criteria for a search. The most common use is for finding file names: `find <path> -name <searchstring>`\
 This can be interpreted as "Look in all files and subdirectories contained in a given path, and print the names of the files containing the search string in their name" (not in their content).
@@ -115,7 +119,8 @@ This can be interpreted as "Look in all files and subdirectories contained in a 
 - filter by file type, file name and a number of other options.
 - Another application of find is for searching files of a certain size
 
-One of the most useful features of `find` is its ability to execute arbitrary shell commands against each file that matches the search. For example: 
+One of the most useful features of `find` is its ability to execute arbitrary shell commands against each file that matches the search. For example:
+
 - count total number of lines in all files and sub-directories under the current directory.
 - run a string replacement using `sed` against all files under the current directory
 - find all file under `.` that have the `.jpg` extension and print out the width x height of each image.
@@ -151,6 +156,7 @@ By default, grep will print the entire line of text where a match is found.\
 find and locate are often used in combination with grep to define some serious queries.
 
 **Other useful features:**\
+
 - recursive searches `-R` that look through all files & sub-directory, showing files and line numbers.
 - disabling case-sensitivity of the matching.
 - inverting matching logic by showing only lines that don't match instead.
@@ -165,7 +171,7 @@ quicky add line number counts by using `-n` flag.
 
 ### "less is more"
 
-[less](https://en.wikipedia.org/wiki/Less_(Unix)) is a terminal pager program on Unix, Windows, and Unix-like systems used to view (but not change) the contents of a text file one screen at a time. It is similar to more, but has the extended capability of allowing both forward and backward navigation through the file. `less` is the GNU version of `more` and has extra features allowing highlighting of search strings, scrolling back etc. 
+[less](https://en.wikipedia.org/wiki/Less_(Unix)) is a terminal pager program on Unix, Windows, and Unix-like systems used to view (but not change) the contents of a text file one screen at a time. It is similar to more, but has the extended capability of allowing both forward and backward navigation through the file. `less` is the GNU version of `more` and has extra features allowing highlighting of search strings, scrolling back etc.
 
 Khi dùng `less cat more` để view file, `Shift G` move to end of the file. Also works in man pages, vim.
 
@@ -191,15 +197,15 @@ less support vim key-bindings.
 
 `head` can also print out the first few character instead of the first few lines.
 
-`tail` does the opposite of `head`. The tail command has a handy feature to continuously show the last n lines of a file that changes all the time. This `-f` option is often used by system administrators to check on log files. 
+`tail` does the opposite of `head`. The tail command has a handy feature to continuously show the last n lines of a file that changes all the time. This `-f` option is often used by system administrators to check on log files.
 
 ## Environment Variables & Viewing Machine specs
 
 `echo $0` to know which shell you are using
 
-**On Linux**
+On Linux
 
-**On MacOS**
+On MacOS
 
 Use the `printenv` command to display a list of currently set environment variables. Trong này sẽ có `$PATH`, `$HOME` và nhiều cái khác.
 
@@ -232,10 +238,11 @@ All partitions are attached to the system via a mount point. The mount point def
 During system startup, all the partitions are thus mounted, as described in the file `/etc/fstab`. Some partitions are not mounted by default, for instance if they are not constantly connected to the system, such like the storage used by your digital camera. If well configured, the device will be mounted as soon as the system notices that it is connected, or it can be user-mountable, i.e. you don't need to be system administrator to attach and detach the device to and from the system.
 
 Device files defined based on the controllers they are using.
+
 1. For [IDE controllers device](https://www.ibm.com/support/pages/ide-controllers-servers) file name is - `hda, hdb, hdc..`
 2. For SCSI and SATA controllers device file name is - `sda, sdb, sdc..`
 
-**References:** 
+**References:**
 
 [What is meant by mounting a device in Linux?](https://unix.stackexchange.com/questions/3192/what-is-meant-by-mounting-a-device-in-linux)
 
@@ -249,6 +256,7 @@ One of the goals of having different partitions is to achieve higher data securi
  A simple example: a user creates a script, a program or a web application that starts filling up the disk. If the disk contains only one big partition, the entire system will stop functioning if the disk is full. If the user stores the data on a separate partition, then only that (data) partition will be affected, while the system partitions and possible other data partitions keep functioning.
 
 There are two kinds of major partitions on a Linux system:
+
 - data partition: normal Linux system data, including the root partition containing all the data to start up and run the system; and
 - swap partition: expansion of the computer's physical memory, extra memory on hard disk.
 
@@ -259,6 +267,7 @@ The standard root partition (indicated with a single forward slash, /) is about 
 Swap space (indicated with _swap_) is only accessible for the system itself, and is hidden from view during normal operation. Swap is the system that ensures, like on normal UNIX systems, that you can keep on working, whatever happens. On Linux, you will virtually never see irritating messages like _Out of memory, please close some applications first and try again_, because of this extra memory. The swap or virtual memory procedure has long been adopted by operating systems outside the UNIX world by now.
 
 Linux generally counts on having twice the amount of physical memory in the form of swap space on the hard disk. When installing a system, you have to know how you are going to do this. An example on a system with 512 MB of RAM:
+
 1. 1st possibility: one swap partition of 1 GB
 2. 2nd possibility: two swap partitions of 512 MB
 3. 3rd possibility: with two hard disks: 1 partition of 512 MB on each disk.
@@ -266,6 +275,7 @@ Linux generally counts on having twice the amount of physical memory in the form
 The kernel is on a separate partition as well in many distributions, because it is the most important file of your system. If this is the case, you will find that you also have a `/boot` partition, holding your kernel(s) and accompanying data files.
 
 The rest of the hard disk(s) is generally divided in data partitions, although it may be that all of the non-system critical data resides on one partition, for example when you perform a standard workstation installation. When non-critical data is separated on different partitions, it usually happens following a set pattern:
+
 - a partition for user programs (_/usr_)
 - a partition containing the users' personal data (_/home_)
 - a partition to store temporary data like print- and mail-queues (_/var_)
@@ -295,7 +305,11 @@ Removing the target file for a symbolic link makes the link useless. Nhìn figur
 
 The command to make links is ln. In order to create symlinks, you need to use the -s option: `ln -s targetfile linkname`
 
-# File Security & User Management
+## Access control
+
+k
+
+## File Security & User Management
 
 ### User Management
 
@@ -350,6 +364,7 @@ Example:
 This is the best way to learn and practice permissions.
 
 For a directory (file thì tương tự):
+
 - Start at 0
 - 4: read-`r` permission lets you view or read the directory.
 - 2: write-`w` permission means able to create file into that dir such as `touch`.
@@ -388,6 +403,7 @@ A file with **SUID** always executes as the user who owns the file, regardless o
 **group + s (pecial)**
 
 Commonly noted as **SGID**, this special permission has a couple of functions:
+
 - If set on a file, it allows the file to be executed as the **group** that owns the file (similar to SUID)
 - If set on a directory, any files created in the directory will have their **group** ownership set to that of the directory owner
 
@@ -405,7 +421,7 @@ Devices, generally every peripheral attachment of a PC that is not the CPU itsel
 
 [Table 3-4. Common devices](https://tldp.org/LDP/intro-linux/html/sect_03_02.html#AEN2726)
 
-# Window File system
+## Window File system
 
 In the Windows environment, you will find one of three file systems, each with different indexing methods. The first is known as the FAT (12, 16, or 32) file system. This system uses what is known as a **File Allocation Table** to index the files on the disc. This file allocation table is very simple to implement and use, but can be somewhat slow. It divides hard disks into one or more partitions (parts) that become letters, like C:, D:, etc.
 
@@ -413,13 +429,15 @@ The second file system you may encounter when using Windows is known as NTFS (Ne
 
 The third file system, exFAT, is a lightweight file system used primarily in flash storage applications and SD cards. It has large file size and partition size limits, which means you can store files over 4GB on a flash drive or SD card that is formatted with exFAT.
 
-# MacOS File system
+## MacOS File system
 
 [macOS Standard Directories: Where Files Reside](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW6)
 
 In the macOS environment you will find the HFS+ file system. **HFS Plus** or **HFS +** uses something known as a B-Tree to index the files on the hard discs. B-Trees (which are different than a binary tree) allow for fast access time, much like the binary tree.  As of June 2016, Apple has implemented their new file system “APFS,” which also uses the B-Tree to index files.  This has become the replacement for HFS+ on macOS High Sierra and onward, as well as iOS 10.3+.
 
 The `local domain` contains resources such as apps that are local to the current computer and shared among all users of that computer.
+
 - `/Applications` chứa app tải về trên mạng
 
 The `system domain` contains the system software installed by Apple. The resources in the system domain are required by the system to run. Users cannot add, remove, or alter items in this domain.
+

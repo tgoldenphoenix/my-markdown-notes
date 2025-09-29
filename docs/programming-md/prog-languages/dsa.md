@@ -4,14 +4,34 @@
 
 ### Array & Linked Lists
 
-Linked Lists are similar to array; store ordered data items. The difference is how they are stored inside the memory.
+Linked Lists are similar to array; both store **ordered** data items. The difference is how they are stored inside the memory.  
+HashMap do NOT store ordered items.
 
 Array elements must be stored beside each other and form a "contiguous block" in the memory. Linked List have pointer so the elements can be store in any location.
 
 Array's Advantage: fast at reading elements  
 Disadvantages: slow when insert & delete elements because of how array are stored inside memory
 
+---
+
 Linked Lists is the opposite of array. Slower at reading but fast whenn insert/delete.
+
+Linked list store **nodes**. Each node contains two fields: (1) data & (2) address of the next node in memory.
+
+- Deletion of a node (given a pointer to the node) requires traversing the list to find its predecessor, making it an O(n) operation.
+
+By default, we have **Singly Linked List**.  
+In a **doubly Linked List**, each node has two links: one to the next node & one to the previous node. Vẫn có field để store data nhé
+
+- Pros: Can do reverse look-up making **deletion of a node** (given a pointer to the node) can be done in O(1) time because the previous node can be accessed directly.
+- Cons: Extra memory for pointer to the previous node
+
+---
+
+- **ArrayList**: Internally uses a normal fixed-size array to store its elements. This means elements are stored in contiguous memory locations. But when the array reaches its capacity, a new, larger array is created, and the elements are copied over.
+- LinkedList: Internally uses a sequence of "nodes." Each node contains the data element and a reference (or pointer) to the next node in the sequence. In the case of a doubly linked list, it also has a reference to the previous node. Elements are not necessarily stored in contiguous memory locations
+
+Ví dụ ArrayList full ~80% its size thì nó tự động tạo array mới with double the old size and copy elements over to the new array.
 
 ### Stack and Queue
 
@@ -39,11 +59,13 @@ Terminnologies:
 - Leaf Node: A node that does not have any children or both children are null.
 - Internal Node: A node that has at least one child. This includes all nodes except the leaf nodes.
 
-### HashMaps, Hash Table
+### HashMaps, Dictionary
 
-HashMaps giống array nhưng thay vì index, nó dùng keys.
+**HashMaps (aka dictionary)** giống array nhưng thay vì index, nó dùng keys. Index chỉ có thể là integer, còn key thì có thể là string.  
+Có thể tìm element trong Hash Map bằng string key which cannot be done with array.
 
-HasMaps are un-ordered.
+- HashMaps are un-ordered
+- Search in O(1)
 
 The reason Hash Tables are sometimes preferred instead of arrays or linked lists is because searching for, adding, and deleting data can be done really quickly, even for large amounts of data.
 
@@ -51,12 +73,10 @@ The reason Hash Tables are sometimes preferred instead of arrays or linked lists
 - And finding "Bob" in an Array could be fast if we knew the index, but when we only know the name "Bob", we need to compare each element (like with Linked Lists), and that takes time.
 - With a Hash Table however, finding "Bob" is done really fast because there is a way to go directly to where "Bob" is stored, using something called a **hash function**.
 
-A hash function take in a value we want to store and return a **hash code**.
+A hash function take in a string value (key) and return a **hash code**. It converts a string into a number (giống index của array).
 
 - A **HashSet** is an implementation of a set - a collection of unique keys.
-- **HashMap and HashTable** are both implementations of a Map - a collection of key value pairs where the keys are unique (kind of like a lookup table). HashTable does not allow a null key, but HashMap does.
-
-HashMaps = Hash tables = Dictionaries
+- **HashMap and HashTable** are both implementations of a Map - a collection of key value pairs where the keys are unique (kind of like a lookup table). HashTable does NOT allow a null key, but HashMap does.
 
 ## Algorithm Terminnologies
 

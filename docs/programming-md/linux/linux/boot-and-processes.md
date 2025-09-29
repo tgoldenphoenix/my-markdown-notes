@@ -1,4 +1,4 @@
-# Processes
+# Booting & other Processes
 
 Next to files, processes are the most important things on a UNIX/Linux system.
 
@@ -30,6 +30,7 @@ The first line of **top** contains the same information displayed by the `uptime
 
 ## Life and death of a process
 
+k
 
 ## Commands
 
@@ -48,21 +49,24 @@ The first line of **top** contains the same information displayed by the `uptime
 
 `kill` get rid of processes. Foreground processes can often be killed by typing `Control-C`
 
-# Linux Boot Process & Installation
+## Linux Boot Process & Installation
 
 4 steps: system startup (hardware initialization), bootloader stage, kernel stage, and init process.
 
-A firmware/program like BIOS or UEFI load the bootloader into RAM.
+1. A firmware/program like BIOS (Basic Input/Output System) or UEFI load the **bootloader** into RAM.
+2. After being loaded into RAM, bootloader (also called first-stage bootloader or primary bootloader) will execute to load the second-stage bootloader (also called secondary bootloader).
+3. The second-stage bootloader will load the **kernel** image into memory, decompress and initialize it then pass control to this kernel image. Second-stage bootloader also performs several operation on the system such as system hardware check, mounting the root device, loading the necessary kernel modules, etc. Finally, the very first user-space process (**init** process) starts, and other high-level system initializations are performed (which involve with startup scripts).
 
-After being loaded into RAM, bootloader (also called first-stage bootloader or primary bootloader) will execute to load the second-stage bootloader (also called secondary bootloader). 
+**init** is always process number 1
 
-The second-stage bootloader will load the kernel image into memory, decompress and initialize it then pass control to this kernel image. Second-stage bootloader also performs several operation on the system such as system hardware check, mounting the root device, loading the necessary kernel modules, etc. Finally, the very first user-space process (init process) starts, and other high-level system initializations are performed (which involve with startup scripts).
-
-## System startup
+### System startup
 
 During system startup stage, the BIOS firmware is called.
 
-BIOS will respectively perform power-on self test (POST), which is to check the system hardware, then enumerate local device and finally initialize the system. For system initialization, BIOS will start by searching for the **bootable device** on the system which stores the OS. A bootable device can be storage devices like floppy disk, CD-ROM, USB flash drive, a partition on a hard disk (where a hard disk stores multiple OS, e.g Windows and Fedora), a storage device on local network, etc. A hard disk to boot Linux stores the **Master Boot Record (MBR)**, which contains the **first-stage/primary bootloader** in order to be loaded into RAM.
+BIOS will respectively perform power-on self test (POST), which is to check the system hardware, then enumerate local device and finally initialize the system.  
+For system initialization, BIOS will start by searching for the **bootable device** on the system which stores the OS. A bootable device can be storage devices like floppy disk, CD-ROM, USB flash drive, a partition on a hard disk (where a hard disk stores multiple OS, e.g Windows and Fedora), a storage device on local network, etc. A hard disk to boot Linux stores the **Master Boot Record (MBR)**, which contains the **first-stage/primary bootloader** in order to be loaded into RAM.
+
+The BIOS normally lets you select which devices you want the system to try to boot from. Once the BIOS has figured out what device to boot from, it tries to read the first block of the device. This 512-byte segment is known as the **master boot record or MBR**. The MBR contains a program that tells the computer from which partition to load a secondary boot program, the “boot loader.”
 
 IBM PC compatible replaces BIOS by UEFI. In UEFI systems, the Linux kernel can be executed directly by UEFI firmware via EFISTUB, but usually uses GRUB 2 or systemd-boot as a bootloader.
 
@@ -110,9 +114,9 @@ Grub is the GRand Unified Boot loader and is an attempt to get rid of the many d
 
 electromechanical teleprinters/teletypewriters (TeleTYpewriter, **TTY**)
 
-[getty](https://en.wikipedia.org/wiki/Getty_(software)), short for "get tty", is a Unix program running on a host computer that manages physical or virtual terminals (TTYs). When it detects a connection, it prompts for a username and runs the 'login' program to authenticate the user. 
+[getty](https://en.wikipedia.org/wiki/Getty_(software)), short for "get tty", is a Unix program running on a host computer that manages physical or virtual terminals (TTYs). When it detects a connection, it prompts for a username and runs the 'login' program to authenticate the user.
 
-## Windows & Linux: Dual Drive Dual Boot 
+## Windows & Linux: Dual Drive Dual Boot
 
 You need two hard drives for this method.
 
@@ -131,3 +135,4 @@ Nếu có window bản quyền, mình có thể copy window activation key lưu 
 [freeCodeCamp](https://www.freecodecamp.org/news/linux-boot-process-in-rhel/)
 
 [Wiki boot process](https://en.wikipedia.org/wiki/Booting_process_of_Linux)
+

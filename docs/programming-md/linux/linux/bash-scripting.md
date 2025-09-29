@@ -126,12 +126,12 @@ You should be aware that the value of the arguments that get passed to a given p
 
 We should note that while globbing might look similar to regular expressions, they’re fundamentally different. While the patterns seem similar, globbing doesn’t use regular expressions.
 
-`*` represents any string of any given length (zero or more chars)
+- We use shell-style globbing characters for pattern matching:
+  * A star (`*`) matches zero or more characters.
+  * A question mark (?) matches any single character. You can use `?` for multiple times for matching multiple characters.
+  * A tilde or “twiddle” (~) means the home directory of the current user
 
-`?` match exactly one character
-
-`[]` range of characters. For example `[0-9]` or `[abc]`. Ranges can apply to letters as well as digits:
-
+- `[]` range of characters. For example `[0-9]` or `[abc]`. Ranges can apply to letters as well as digits:
 - `[a-z]` = all lowercase characters of the alphabet
 - `[A-Z]` = all uppercase characters of the alphabet
 - `[a-zA-Z]` = all characters of the alphabet, irrespective of their case
@@ -151,22 +151,21 @@ By default, **hidden files and folders** don’t show up in the output of ls. To
 
 **Examples:**
 
-`ls *.txt`
-
-`ls test-?.txt` => list all text files named ‘test-‘ followed by a single digit
-
-`ls ????.txt` => all text files with a name of exactly four characters
-
-`ls *[0-9]*` => all files with a number in their name
-
-The shell treats strings enclosed in single and double quotes similarly, except that double-quoted strings are subject to globbing (the expansion of filename-match-ing metacharacters such as * and ?) and variable expansion.
-
-- We use shell-style globbing characters for pattern matching:
-  * A star (*) matches zero or more characters.
-  * A question mark (?) matches any single character. You can use `?` for multiple times for matching multiple characters.
-  * A tilde or “twiddle” (~) means the home directory of the current user
+- `ls *.txt`
+- `ls test-?.txt` => list all text files named ‘test-‘ followed by a single digit
+- `ls ????.txt` => all text files with a name of exactly four characters
+- `ls *[0-9]*` => all files with a number in their name
 
 ### Single vs. Double Quotes
+
+The shell treats strings enclosed in single and double quotes similarly, except that **double-quoted** strings are subject to globbing (the expansion of filename-match-ing metacharacters such as * and ?) and variable expansion.
+
+Back-ticks, are treated similarly to double quotes, but they have the additional effect of executing the contents of the string as a shell command and replacing the string with the command’s output.
+
+```bash
+$ echo "There are `wc -l /etc/passwd` lines in the passwd file." 
+There are 28 lines in the passwd file.
+```
 
 Single and double quotes are often used in Linux bash commands or scripts, especially when dealing with filenames. Although both quote types prevent globbing and word splitting, it is important to pay attention to the quotes you use. The differences between the quote types make them noninterchangeable in some cases.
 

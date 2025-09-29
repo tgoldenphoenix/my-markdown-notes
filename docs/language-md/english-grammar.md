@@ -239,6 +239,8 @@ If anyone stops by while I am at the meeting, please take a message from him or 
 - Examples of Adverb:
   - He `always` goes home late.
   - `Personally`, I can `always` help you `willingly here every day`.
+  - He is `always polite` to the teacher.
+  - She is `always kind` to her mother.
   - Man `always loves` freedom.
   - Man `has always` fought aginst the weather.
   - The middle-aged man `still remains` unmarried.
@@ -268,12 +270,15 @@ Prepositional phrase expressing place at the beginning of the sentence do not ne
 
 ### Adjective Clauses
 
+An Adjective Clause is a **subordinate one** used in the same way as an Adjective to modify a Noun or Noun-equivalent.  
 Adjective clauses are introduced by **relative pronouns** OR **relative adverbs** (they can also be called **adjective connnectors**).
 
 - Relative pronouns (or Adjective clause connectors):
   * For person: `who, whom, whose`.
-  * For object/thing: which, that, of which
+  * For object/thing: `which, that, of which, as, but`.
   * that (for people or thing)
+  * `AS` is used instead of WHO, WHOM, WHICH, THAT after `SAME, SUCH`.
+  * `BUT` is used instead of `who...not, which...not, that...not` when the main clause is also **NEGATIVE**.
 - Relative adverb: `where, when, why`.
 
 The adjective connnectors can be omitted. This omission is very common in spoken English or in casual written English. It is not as common in formal English.
@@ -288,6 +293,16 @@ Noun clauses **KHÔNG** dùng comma.
 - Dùng comma (`,`) trước và sau Non-defining adjective clause:
   * This is the boy `who broke our window`. (Defining)
   * This boy, who lives next door, broke our window. (Non-defining)
+
+- More examples:
+  * The student `who` won the first prize has lent me this book.
+  * He is always polite to the teacher `whom` he respects.
+  * He lives in the house `whose` windows are painted in grey.
+  * You should show my friend the same respect `as` you show me.
+  * There was no man `but` respected him. (Không người nào kính trọng ông ấy cả.)
+  * I cannot find any seat `but` has been taken. (Tôi không tìm được ghế nào chưa có người ngồi.)
+  * I went to the office `where` my father works.
+  * You can visit me on Sundays when I am usually free.
 
 ### Adverb clause
 

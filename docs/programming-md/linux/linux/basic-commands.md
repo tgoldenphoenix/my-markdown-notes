@@ -1,6 +1,4 @@
-# Linux everyday Survival notes
-
-## Basic Terminal commands & Keyboard shorcuts
+# Basic Terminal Commands & Keyboard shorcuts
 
 Phân biệt command option (preceded with `-` or `--`) vs command argument. The argument(s) to a command are specifications for the object(s) on which you want the command to take effect. An example is `ls /etc`, where the directory `/etc` is the argument to the **ls** command.  
 You can think of an option as a way of executing the command. The argument is what you execute it on.
@@ -48,7 +46,7 @@ In most cases, when issuing a command or starting a program as a non-privileged 
 
 `Alt` == meta key
 
-### Terminal line editing basic
+## Terminal line editing basic
 
 If you like emacs, all the basic **emacs commands** are available to you when you’re editing history
 
@@ -197,13 +195,13 @@ extract the first column.
 
 By default, `sort` uses lexicographical sort which may not always be what you want.
 
-`-n` do numerical sort.\
-`-r` sort in the reverse order\
-`-R` sort the list Randomly. You'll get a different order in each time.
+- `-n` do numerical sort.
+- `-r` sort in the reverse order
+- `-R` sort the list Randomly. You'll get a different order in each time.
 
 `sort`'s output can be piped directly into a number of other useful commands.
 
-## tsort
+### tsort
 
 `tsort` stands for [topological sort](https://en.wikipedia.org/wiki/Topological_sorting).
 
