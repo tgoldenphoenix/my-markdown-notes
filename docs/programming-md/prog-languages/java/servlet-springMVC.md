@@ -72,11 +72,15 @@ Unfortunately, JSPs are slow to compile, hard to debug, leave basic form validat
 
 In light of the MVC design pattern, the servlet acts as a controller and JSP as a view.
 
-- `setAttribute() & getAttritube()` diễn ra ở server => attribute là dữ liệu do client tự bịa đặt ra gởi cho chính server. Thằng này set attribute rồi gởi cho thằng jsp/servlet khác nhận attribute xử lý logic rồi render ra html trả về client.
-  - you set an attribute in a Servlet and read it from a JSP. These can be used for any object, not just string.
-  - Thuộc dạng string attribute-object data
-- `setParameter()` là ở phía client gởi cho server, server sẽ nhận bằng `getParameter()` (trong url) => parameter là dữ liệu client gởi cho server
-  - For example `http://example.com/servlet?parameter=1`. They can only return String.
+- **Attritube**:
+  * diễn ra ở server; attribute là dữ liệu do phía server tự bịa đặt ra attach to the request client gởi lên.
+  * Server có thể forward request cùng với attribute. Một servlet nhận request từ client, set attribute vào request đó rồi forward request cho một jsp/servlet khác nhận attribute xử lý logic rồi render ra html trả về client.
+  * you set an attribute in a Servlet and read it from a JSP. These can be used for any object, not just string.
+  * Thuộc dạng string attribute-object data
+- **Parameter**:
+  * là dữ liệu ở phía client gởi cho server (trong url), server sẽ nhận bằng `requesst.getParameter()`. Server không thể set parameter mà chỉ có thể set attribute.
+  * For example `http://example.com/servlet?parameter=1&name=anhao`
+  * Parameter can only return String. Số `1` là string không phải number
 
 - Trong Spring REST API thì:
   * `@RequestParam` là `?brand=apple`; case in-sensitive, `Apple` hay `apple` both ok;

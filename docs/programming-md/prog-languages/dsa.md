@@ -49,7 +49,7 @@ Applications of Queye: Task Scheduling
 
 Set is like array, but no duplicate item. Order does not matter. We care about whether or not an item is presence in the set.
 
-### Binary Search Tree
+### Tree
 
 Binary Tree is a non-linear and **hierarchical** data structure.
 

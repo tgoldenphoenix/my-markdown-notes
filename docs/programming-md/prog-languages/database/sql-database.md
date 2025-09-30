@@ -52,6 +52,12 @@ Date data types:
 - `datetime2`: Offers a much broader range, from January 1, 0001, to December 31, 9999. Both of them store date + time (up to mili-seconds)
 - `date`: no time portion
 
+Một bảng chỉ có duy nhất một khóa chính. Kể cả composite key (nhiều cột) vẫn được coi là một khóa chính.  
+Khóa chính là một tập hợp gồm 1 hoặc nhiều cột (field) dùng để xác định duy nhất một dòng trong bảng.
+
+- ERD là mô hình thực thể kết hợp (or thực thể quan hệ). ERD bao gồm thuộc tính (hình eclipse), thực thể (hình chữ nhật) & mối quan hệ (hình thoi). Dựa vào mô hình đó, ta chuyển nó thành lược đồ CSLD (schema).
+- Lược đồ CSDL (schema) là cái mà database GUI interface nó generate ra cho mình coi.
+
 ## Managing Tables & Modifying Data
 
 Phân biệt giữa việc xóa dữ liệu của bảng bằng `DELETE` và `TRUNCATE`:
@@ -91,19 +97,49 @@ Từ khóa `LIKE` dùng để tìm kiếm chuỗi 1 cách tương đối (giốn
 ```sql
 -- Câu Select này sẽ không liệt kê `Bilbo Baggins`, only rows with exactly `Bilbo`.
 Select * from SINHVIEN Where HoTenSV LIKE 'Bilbo'
+-- LIKE together with %
+SELECT name, population FROM world WHERE name LIKE "Vi%"
 ```
 
 - Percent sign `%` matches any sequence of zero or more characters.
-- Underscore sign `_`  matches any single character.
+- Underscore sign `_`  matches any **single character**.
 
-The `IN` operator allows us to check if an item is in a list. It is a shorthand for multiple `OR` conditions.
+The `IN` operator allows us to check if an item exist in a list. It is a shorthand for multiple `OR` conditions.
 
 ```sql
 SELECT * FROM Customers
-WHERE Country IN ('Germany', 'France', 'UK');
+  WHERE Country IN ('Germany', 'France', 'UK');
+-- WHERE Country = 'Germany' OR Country = 'France' OR Country = 'UK'
+
+-- shows the population density of China, Australia, Nigeria and France
+SELECT name, population/area FROM world
+  WHERE name IN ('China', 'Nigeria', 'France', 'Australia')
 ```
 
 `BETWEEN` allows range checking (range specified is inclusive of boundary values).
+
+```sql
+SELECT name, population FROM world
+  WHERE population BETWEEN 1000000 AND 1250000
+```
+
+Trong `WHERE` mình dùng `AND, OR` chứ không dùng `&&, ||` nhé.
+
+```sql
+--shows the countries that end in A or L 
+SELECT name FROM world WHERE name LIKE '%a' OR name LIKE '%l'
+-- show the countries with an area larger than 50000 and a population smaller than 10000000 
+SELECT name, area, population FROM world
+  WHERE area > 50000 AND population < 10000000
+```
+
+`LENGTH()` function return the length of a string.
+
+```sql
+SELECT name,length(name)
+FROM world
+WHERE length(name)=5 and region='Europe'
+```
 
 ### ORDER BY, GROUP BY, DISTINCT, HAVING
 

@@ -18,6 +18,8 @@ You also may not use `true, false, and null` to name Java constructs. Technicall
 
 ## Data type
 
+Java có 2 loại: biến nguyên thủy & biến tham chiếu.
+
 Primitive type:
 
 - `byte`: Stores whole numbers from -128 to 127
@@ -26,7 +28,7 @@ Primitive type:
 - `long`: whole numbers from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
 
 - `float`: Stores fractional numbers. Sufficient for storing 6 to 7 decimal digits
-- `double`: fractional numbers. Sufficient for storing 15 to 16 decimal digits. Floating-point literals (number có dùng dấu `.` like `1.0, 1.1, 1.2`) are inferred as double by **default**.
+- `double`: fractional numbers. Sufficient for storing 15 to 16 decimal digits. Floating-point literals (numbers có dùng dấu `.` like `1.0, 1.1, 1.2`) are inferred as double by **default** (not float).
 
 - `char`: Stores a single character/letter or ASCII values
 - boolean: `true` or `false`
@@ -36,9 +38,7 @@ Literal Suffix:
 - `D` (or `d`): This suffix is used to explicitly declare a floating-point literal as a double. While floating-point literals are double by default, using D can improve clarity, especially when mixing float and double values.
 - `F` (or `f`): This suffix is used to explicitly declare a floating-point literal as a float. Without this suffix, a literal like 3.14 would be treated as a double and require a cast to be assigned to a float variable.
 
-Reference type: String, Arrays, Classes
-
-[What does the colon (:) operator do in Java?](https://stackoverflow.com/questions/2399590/what-does-the-colon-operator-do)
+Reference type (kiểu tham chiếu): String, Arrays, Classes
 
 ### Upcasting & Downcasting (ép kiểu)
 
@@ -159,6 +159,8 @@ NullPointerException chỉ có thể xảy ra ở những dòng có dấu `.` đ
 Còn declare object like `SinhVien sv;` mà không initialize sẽ default `sv=null`.  
 Vì String không phải là một kiểu primitive trong Java nên `String a;` thì `a=null` by default.
 
+`SinhVien sv1 = new SinhVien();` => sv1 là một biến tham chiếu trỏ đến một đối tượng của class `SinhVien` chứ sv1 KHÔNG phải là đối tượng.
+
 The `java.lang.IndexOutOfBoundsException` is a runtime exception in Java that indicates an attempt to access an element at an invalid index within a data structure like an array, a list (e.g., ArrayList), or a string. This exception is thrown when the provided index is either negative or exceeds the valid range of indices for that particular structure.
 
 `if ("Hello".equals(a)){}` nếu cần so sánh string phải làm như vầy để không có lỗi NullPointerException. Viết `a.equals("Hello")` là không đúng.  
@@ -201,8 +203,8 @@ Thanks to the immutability of Strings in Java, the JVM can optimize the amount o
 When we create a String via the `new` operator, the Java compiler will create a new object and store it in the heap space reserved for the JVM.
 
 - `==` khi compare 2 primitive thì nó check value, không quan tâm tới tham chiếu.
-- `==` khi compare two objects (string), it only checks that two variables are referencing the same memory address.
-- `.equal` luôn luôn chỉ check giá trị (content), không check tham chiếu.
+- `==` khi compare two objects (string), it only checks that two variables are referencing the same memory address. == là so sánh xem thử 2 biến tham chiếu có giá trị bằng nhau hay không, nghĩa là có cùng tham chiếu (trỏ) đến cùng 1 đối tượng hay không"
+- `.equal` luôn luôn chỉ check giá trị (content), không check tham chiếu. equals() là so sánh nội dung của 2 đối tượng String, nghĩa là so sánh 2 chuỗi có giống nhau về nội dung hay không
 
 ```java
 // equality and reference checking work identically for primitives
@@ -557,10 +559,17 @@ When a class implements several interfaces that define the same default methods 
 
 The core principle is abstraction. Without it, the others couldn't exist.
 
-1. **Abstraction** (tính trừu tượng): Ignoring or hiding details that don’t matter, allowing us to get an overview perspective of the thing we’re implementing, instead of messing with details that don’t really matter to our implementation.
-2. **Encapsulation** (tính đóng gói): Hide internal state (`private`, cannot accessible from outside the class) and requiring all interaction to be performed through an object's methods (access modifiers, `Getter and Setter`)
-3. **Inheritance** means specialized classes — without additional code — can **copy** the attributes and behavior of the source classes that they specialize.
-4. **Polymorphism** (tính đa hình): Subclasses of a class can define their own unique behaviors and yet share some of the same functionality of the parent class. Class con có thể override class cha.
+- **Abstraction** (tính trừu tượng):
+  - Trừu tượng là sự mô tả các đặc tính và hành động của đối tượng ở mức chỉ quy định về **tên gọi** chứ **không mô tả cụ thể chi tiết** cách hiện thực hóa các đặc tính hay hành động đó.
+  - Trong java, chúng ta áp dụng tính chất trừu tượng bằng cách sử dụng **abstract class và interface**.
+- **Encapsulation** (tính đóng gói): Hide internal state (`private`, cannot accessible from outside the class) and requiring all interaction to be performed through an object's methods (access modifiers, `Getter and Setter`)
+  - Định nghĩa: Tính đóng gói cho phép bạn gói các dữ liệu (thuộc tính) và các phương thức (hành động) vào bên trong một đối tượng. Điều này giúp ẩn đi các chi tiết thực hiện bên trong, chỉ để lộ ra những gì cần thiết cho bên ngoài.
+  - Ví dụ: Một đối tượng `Người` có thể có các thuộc tính như `tên, tuổi, số điện thoại` và các phương thức như `ăn ngủ, làm việc`. Tính đóng gói đảm bảo rằng các thuộc tính này được bảo vệ và chỉ có thể được truy cập thông qua các phương thức công khai của đối tượng (by using access modifiers).
+  - **JavaBeans** là một class có thuộc tính `private` và có `public` getters & setters dùng để truy cập những thuộc tính private đó.
+- **Inheritance** (kế thừa) Khi một đối tượng được thừa hưởng (copy) những thuộc tính và phương thức của đối tượng cha được gọi là kế thừa. Kế thừa giúp tái sử dụng lại mã nguồn. Nó được sử dụng cho đa hình lúc runtime.
+- **Polymorphism** (tính đa hình):
+  - Khi một nhiệm vụ được thực hiện bởi nhiều cách khác nhau (hay cùng tên gọi nhưng hành xử khác nhau), tính chất này được gọi là đa hình. Ví dụ một người khi “ăn” có thể ăn bằng đũa hoặc có thể ăn bằng muỗng; hoặc là, cũng là hành động là “vẽ” nhưng các như hình tròn, hình chữ nhật, ... thì có các cách vẽ khác nhau
+  - Trong java, để áp dụng tính đa hình chúng ta sử dụng phương thức orverloading hoặc overriding. hiện tượng Override & hiện tượng Overload.
 
 ### Polymorphism with Interface
 
