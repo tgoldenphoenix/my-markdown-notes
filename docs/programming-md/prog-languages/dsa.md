@@ -66,6 +66,7 @@ Có thể tìm element trong Hash Map bằng string key which cannot be done wit
 
 - HashMaps are un-ordered
 - Search in O(1)
+- A HashMap can store duplicate values, but it cannot store duplicate keys.
 
 The reason Hash Tables are sometimes preferred instead of arrays or linked lists is because searching for, adding, and deleting data can be done really quickly, even for large amounts of data.
 

@@ -172,8 +172,6 @@ Trong java, string không phải primitive. Nó là object được tạo từ c
 
 In C, string handling is labor-intensive because strings are null-terminated arrays of 8-bit characters that you must manipulate.
 
-Because Strings are first-class objects, you can use `new` to instantiate them. Setting a variable of type String to a **string literal** has the same result, because the Java language creates **a String object** to hold the literal, and then assigns that object to the instance variable.
-
 [Why String is Immutable in Java?](https://www.scaler.com/topics/why-string-is-immutable-in-java/). But the reference to the object can be changed.
 
 Chaining of method calls is a technique commonly used with immutable objects like String, where a modification to an immutable object always returns the modification (but doesn't change the original). You then operate on the returned, changed value.
@@ -256,6 +254,8 @@ Mảng thì dùng sytax `[]` để access item. Còn `ArrayList` làm cái gì c
 `Map` (ánh xạ) là một loại collection dạng key-value  
 Ánh xạ ví dụ `y = 2x`, với mỗi x chỉ cho ra một giá trị y.
 
+A HashMap can store duplicate values, but it cannot store duplicate keys.
+
 `Set` không chứa duplicate values.
 
 List - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own.  
@@ -307,7 +307,7 @@ We divide modifiers into two groups:
   2. `protected`: the member can only be accessed within its own package (as with package-private) and, in addition, cho phép class con khác package kế thừa copy. Class khác package & không phải class con thì không access được.
   3. `default` (no modifier or package-private): visible within its own package.
   4. `private`: can only be accessed in **its own class**.
-- Có 4 mức độ nhưng chỉ có 3 bổ từ vì `default` thì không phải ghi gì cả. Classes thì chỉ có 1 bổ từ thôi.
+- !!!Lưu ý: Có 4 mức độ nhưng chỉ có 3 bổ từ vì `default` thì không phải ghi gì cả. Classes thì chỉ có 1 bổ từ thôi.
 
 Một class member "visible" nghĩa là ta có thể tạo object rồi access nó. Nếu nó khai `private` thì kể cả khi ta tạo được đối tượng cũng vẫn không access được.
 
@@ -353,7 +353,7 @@ Ngay cả khi chúng ta sử dụng `super.a` thì ta cũng đang truy cập bi�
 
 Overload, OL (Nạp chồng):
 
-- Giống: tên phương thức. Khác: danh sách tham số truyền vào(parameter types not parameter names)
+- Giống: tên phương thức. Khác: danh sách tham số truyền vào (parameter types not parameter names)
 - Khác: nội dung phương thức. Giống: Trong cùng 1 class.
 - Ban chất là **tăng cường khả năng**: `cong(int a, int b)`, `cong(int a, int b, int c)`, `cong(int a, int b, int c, int d)`.
 - Chỉ cần khác **method signature** là overload: the method's name and the parameter types (not parameter names or number of parameters). Return type cũng không tính.

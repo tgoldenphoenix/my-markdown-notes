@@ -57,6 +57,7 @@ Khóa chính là một tập hợp gồm 1 hoặc nhiều cột (field) dùng đ
 
 - ERD là mô hình thực thể kết hợp (or thực thể quan hệ). ERD bao gồm thuộc tính (hình eclipse), thực thể (hình chữ nhật) & mối quan hệ (hình thoi). Dựa vào mô hình đó, ta chuyển nó thành lược đồ CSLD (schema).
 - Lược đồ CSDL (schema) là cái mà database GUI interface nó generate ra cho mình coi.
+anki
 
 ## Managing Tables & Modifying Data
 
@@ -92,13 +93,15 @@ Mnemonic: So Few Junior Workers Go Home On-time
 `WHERE` là nơi để đặt các điều kiện **LỌC DÒNG** theo một tiêu chí nào đó. Điều kiện `WHERE` will be checked for each row of the table.  
 SQL có một con trỏ **duyệt qua từng dòng** check điều kiện khi `SELECT`.
 
-Từ khóa `LIKE` dùng để tìm kiếm chuỗi 1 cách tương đối (giống regex), nhưng với điều kiện là đi kèm với các ký tự đại diện `%, _, [], [^]`. Nếu không có các ký tự đặc biệt này thì `LIKE` tương đương với `=` (match exactly).
+Từ khóa `LIKE` dùng để tìm kiếm chuỗi 1 cách tương đối (giống regex), nhưng với điều kiện là đi kèm với các ký tự đại diện `%, _, [], [^]`. Nếu không có các ký tự đặc biệt này thì `LIKE` tương đương với so sánh `=` (match exactly).
 
 ```sql
 -- Câu Select này sẽ không liệt kê `Bilbo Baggins`, only rows with exactly `Bilbo`.
 Select * from SINHVIEN Where HoTenSV LIKE 'Bilbo'
 -- LIKE together with %
 SELECT name, population FROM world WHERE name LIKE "Vi%"
+-- Show the countries which have a name that includes the word 'United'
+SELECT name FROM world WHERE name LIKE '%United%'
 ```
 
 - Percent sign `%` matches any sequence of zero or more characters.
@@ -141,6 +144,21 @@ FROM world
 WHERE length(name)=5 and region='Europe'
 ```
 
+Trong `WHERE`, có thể dùng `>; <; >=; <=; + - * /` bình thường.
+
+```sql
+-- Give the name and the per capita GDP for those countries with a population of at least 200 million
+SELECT name, gdp/population
+FROM world WHERE population >= 200000000
+```
+
+Khi select `NULL`, không được dùng `=` mà phải dùng `IS NULL`.
+
+```sql
+-- select NULL
+SELECT name FROM teacher WHERE dept IS NULL
+```
+
 ### ORDER BY, GROUP BY, DISTINCT, HAVING
 
 `ORDER BY` sắp xếp **các dòng** của **bảng tạm** sinh ra sau khi lọc `WHERE` dựa vào sự tăng dần hoặc giảm dần của một hay nhiều cột.
@@ -175,7 +193,25 @@ Aggregate functions perform a calculation on a set of rows and return a single r
 Vì hàm gộp dùng để tính toán giá trị **trên từng nhóm** nên phải `GROUP BY` xong mới được gọi aggregate functions:
 
 - Suy ra hàm gộp không được nằm trong `WHERE` mà phải nằm trong `HAVING` vì `WHERE` chạy trước `GROUP BY`, `HAVING` chạy sau `GROUP BY`.
-- Lý do gọi được hàm gộp trong `SELECT` được vì Select chạy sau cùng (sau khi đã `GROUP BY`).
+- Lý do gọi được hàm gộp trong `SELECT` được vì Select chạy sau cùng (sau khi đã `GROUP BY`). Lúc này hàm gộp sẽ gộp các dòng trong từng group trả về từ `GROUP BY`
+
+```sql
+-- For each continent show the number of countries:
+-- Table world(name, continent, area, population, gdp)
+SELECT continent, COUNT(name) FROM world
+  GROUP BY continent
+```
+
+Có thể gọi hàm gộp mà không cần GROUP BY. Lúc này hàm gộp sẽ coi tất cả dòng là một group duy nhất.
+
+```sql
+-- The total population and GDP of Europe. 
+SELECT SUM(population), SUM(gdp)
+  FROM world
+  WHERE continent = 'Europe'
+-- Show the total population of the world.
+SELECT SUM(population) FROM world
+```
 
 Nếu `WHERE` là điều kiện lọc dòng (rows) thì `HAVING` là điều kiện lọc **dành cho các nhóm (groups)** trong bảng tạm được trả về từ `GROUP BY`. Nó lọc ra những nhóm mình cần lấy. Sau đó mới chạy qua `ORDER BY` rồi cuối cùng chạy `SELECT`.
 
@@ -188,8 +224,13 @@ HAVING SUM (amount) > 200
 ORDER BY amount DESC;
 ```
 
-`DISTINCT` liệt kê không trùng lặp rows trong bảng tạm trả về (chứ không phải trong bảng gốc). Nó vẫn giữ lại 1 dòng chứ không xóa hết các dòng trùng lặp. Two or more rows must have exactly the same values in all the selected columns to be viewed as duplicates by `DISTINCT`.  
+`DISTINCT` liệt kê không trùng lặp rows trong bảng tạm trả về (chứ không phải trong bảng gốc). Nó vẫn giữ lại 1 dòng chứ không xóa hết các dòng trùng lặp. Two or more rows must have **exactly the same values in all the selected columns** to be viewed as duplicates by `DISTINCT`.  
 Example: how many rental rates for films from the film table?
+
+```sql
+-- List all the continents - just once each. 
+SELECT DISTINCT continent FROM world
+```
 
 Trong quá trình chạy từ `FROM` cho tới `ORDER BY` thì xử lý diễn ra hoàn toàn trên các dòng. Tức là các cột vẫn còn nguyên. Chỉ tới khi `SELECT` chạy sau cùng thì nó mới bỏ bớt các cột.  
 Cho nên khi `GROUP BY gioi_tinh`, ta vẫn `COUNT(dia_chi)` được mà không lỗi, vì thật ra cột `dia_chi` vẫn còn sống sót sau khi `GROUP BY`.
@@ -213,7 +254,10 @@ Một bảng 3 columns `JOIN` với một bảng 2 columns sẽ trả về một
 
 Cái namespace `SV.` and `L.` chỉ cần thêm vào khi có sự trùng tên cột của 2 bảng tham gia phép nối, còn không thì không cần thêm.
 
-`INNER JOIN` returns ONLY the rows where there is a match in the join column(s) in both tables. Records from either table that do not have a corresponding match in the other table are excluded from the result set
+Khi muốn select cột từ nhiều bảng thì dùng JOIN. Sau đó mới đặt câu hỏi là dùng loại JOIN nào cho phù hợp.
+
+`INNER JOIN` returns ONLY the rows where there is a match in the join column(s) in both tables. Records from either table that do not have a corresponding match in the other table are excluded from the result set.  
+When the type of `JOIN` is not explicitly specified, the default JOIN is an `INNER JOIN`.
 
 ```sql
 SELECT
@@ -223,6 +267,12 @@ FROM
   customer INNER JOIN payment ON payment.customer_id = customer.customer_id
   -- INNER JOIN payment USING(customer_id)
 ORDER BY payment.payment_date;
+
+-- Show the team1, team2 and player for every goal scored by a player called Mario
+-- JOIN with aliases, default is INNER JOIN
+SELECT ga.team1, ga.team2, go.player
+FROM game ga JOIN goal go ON (ga.id = go.matchid)
+WHERE player LIKE 'Mario%';
 ```
 
 The `LEFT JOIN` clause joins a left table with the right table and returns **ALL the rows from the left table** that may or may not have corresponding rows in the right table. In case the values do not equal, the left join also creates a new row that contains columns from both tables and adds it to the result set (bảng tạm). However, it fills the columns of the right table with `NULL`.  
@@ -234,6 +284,13 @@ apple apple
 orange orange
 banana null
 cucumber null
+
+-- Note the INNER JOIN misses the teachers with no department and the departments with no teacher.
+SELECT teacher.name, dept.name
+ FROM teacher INNER JOIN dept ON (teacher.dept=dept.id)
+-- all teachers are listed
+SELECT teacher.name, dept.name
+  FROM teacher LEFT JOIN dept ON (teacher.dept=dept.id)
 ```
 
 Example:
@@ -491,7 +548,7 @@ PL/pgSQL is a block-structured language. Here’s the syntax of a block in PL/pg
     declarations ]
 begin
     statements;
-	...
+ ...
 end [ label ];
 ```
 

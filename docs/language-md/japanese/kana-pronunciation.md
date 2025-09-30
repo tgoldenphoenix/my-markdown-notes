@@ -4,10 +4,10 @@
 
 [Tofugu’s Learn Kana Quiz](https://kana-quiz.tofugu.com/)
 
-[On'yomi](https://en.wikipedia.org/wiki/On%27yomi) (音読み, \[âm độc], lit. "sound(-based) reading"), or the Sino-Japanese reading, is the reading of a kanji based on the historical Chinese pronunciation of the character.  
-On => Phồn thể âm đọc
+[On'yomi](https://en.wikipedia.org/wiki/On%27yomi) (音読み, \[âm độc], lit. "sound(-based) reading", đọc kiểu Hán), or the Sino-Japanese reading, is the reading of a kanji based on the historical Chinese pronunciation of the character.  
+On => Ph**ỒN** thể âm đọc
 
-[Kun'yomi](https://en.wikipedia.org/wiki/Kun%27yomi) (訓読み, Japanese pronunciation: \[huấn độc], lit. 'explanatory reading') is the way of reading kanji characters using the native Japanese word that matches the meaning of the Chinese character when it was introduced.
+[Kun'yomi](https://en.wikipedia.org/wiki/Kun%27yomi) (訓読み, Japanese pronunciation: \[huấn độc], lit. 'explanatory reading', đọc kiểu Nhật) is the way of reading kanji characters using the **native Japanese** word that matches the meaning of the Chinese character when it was introduced.
 
 ## Hiragana
 
