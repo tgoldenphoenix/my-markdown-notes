@@ -57,7 +57,7 @@ Khóa chính là một tập hợp gồm 1 hoặc nhiều cột (field) dùng đ
 
 - ERD là mô hình thực thể kết hợp (or thực thể quan hệ). ERD bao gồm thuộc tính (hình eclipse), thực thể (hình chữ nhật) & mối quan hệ (hình thoi). Dựa vào mô hình đó, ta chuyển nó thành lược đồ CSLD (schema).
 - Lược đồ CSDL (schema) là cái mà database GUI interface nó generate ra cho mình coi.
-anki
+enki
 
 ## Managing Tables & Modifying Data
 
@@ -136,12 +136,41 @@ SELECT name, area, population FROM world
   WHERE area > 50000 AND population < 10000000
 ```
 
+Exclusive OR (`XOR`). Show the countries that are big by area (more than 3 million) or big by population (more than 250 million) but not both.
+
+```sql
+-- Australia has a big area but a small population, it should be included.
+-- Indonesia has a big population but a small area, it should be included.
+-- China has a big population and big area, it should be excluded.
+-- United Kingdom has a small population and a small area, it should be excluded.
+SELECT name, population, area FROM world
+WHERE area>=3000000 XOR population>=250000000
+```
+
 `LENGTH()` function return the length of a string.
 
 ```sql
 SELECT name,length(name)
 FROM world
 WHERE length(name)=5 and region='Europe'
+```
+
+`ROUND(f,p)` returns f rounded to p decimal places.  
+The number of decimal places may be negative, this will round to the nearest 10 (when p is -1) or 100 (when p is -2) or 1000 (when p is -3) etc..
+
+```sql
+ROUND(7253.86, 0)    ->  7254
+ROUND(7253.86, 1)    ->  7253.9
+ROUND(7253.86,-3)    ->  7000
+-- Show the name and population in millions and the GDP in billions for the countries of the continent 'South America'.
+-- Use the ROUND function to show the values to two decimal places. 
+SELECT name, ROUND(population/1000000, 2), ROUND(gdp/1000000000, 2)
+FROM world WHERE continent = 'South America'
+
+-- Show the name and per-capita GDP for those countries with a GDP of at least one trillion (1000000000000; that is 12 zeros).
+-- Round this value to the nearest 1000 (-3). 
+SELECT name, ROUND(gdp/population,-3) FROM world
+WHERE gdp>=1000000000000
 ```
 
 Trong `WHERE`, có thể dùng `>; <; >=; <=; + - * /` bình thường.
@@ -157,6 +186,20 @@ Khi select `NULL`, không được dùng `=` mà phải dùng `IS NULL`.
 ```sql
 -- select NULL
 SELECT name FROM teacher WHERE dept IS NULL
+```
+
+The function `COALESCE()` takes any number of arguments and returns the first value that is not null.
+
+- COALESCE(x,y,z) = x if x is not NULL
+- COALESCE(x,y,z) = y if x is NULL and y is not NULL
+- COALESCE(x,y,z) = z if x and y are NULL but z is not NULL
+- COALESCE(x,y,z) = NULL if x and y and z are all NULL
+
+COALESCE can be useful when you want to replace a NULL value with some other value. In this example you show the name of the party for each MSP that has a party. For the MSP with no party (such as Canavan, Dennis) you show the string None.
+
+```sql
+SELECT name, party, COALESCE(party,'None') AS aff
+  FROM msp WHERE name LIKE 'C%'
 ```
 
 ### ORDER BY, GROUP BY, DISTINCT, HAVING

@@ -53,6 +53,10 @@ Set is like array, but no duplicate item. Order does not matter. We care about w
 
 Binary Tree is a non-linear and **hierarchical** data structure.
 
+Tree giống linked list nhưng trong LL, nodes only link to one next node. In tree, node can link to multiple next nodes.  
+When a node can only link to max two children node, it is call **Binary tree**.  
+Một node chỉ được phép có 1 parent node.
+
 Terminnologies:
 
 - An **edge** is a line that connects two nodes, specifically, a parent node to its child node.
@@ -183,6 +187,8 @@ There is only one repeated number in the array.
 ### Binary Search
 
 The idea of binary search is to use the information that the array is **already sorted** and reduce the time complexity to O(log n)
+
+`1=\ff{N}{2^k}`
 
 ### Find third highest value
 
