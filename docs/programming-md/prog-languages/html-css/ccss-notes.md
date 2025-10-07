@@ -157,6 +157,8 @@ Với flexbox mình không control được number of columns. Với grid mình 
 - `align-items: start | end | center | stretch;` => along the block (column) axis
 - `justify-content: start | end | center | stretch | space-around | space-between | space-evenly;` => along the inline (row) axis
 
+---
+
 Properties on the **grid items**:
 
 - `grid-column` Shorthand for `grid-column-start` + `grid-column-end`. The grid lines & columns start counting at `1` from left-> right. Negative values count from left<-right.

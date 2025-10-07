@@ -30,11 +30,10 @@ Phải có cả authentication key & signing key mới push lên github được
 
 `git init` (automatically create the `master or main` branch). Executing this command will create a new `.git` subdirectory in your current working directory.
 
-`git clone <repo url>`
-
-- automatically creates a remote called `origin` for fetch, push, pull
-- Create local **Remote Tracking Branches** to track the corresponding branches on the remote repository (e.g., `origin/main` for the `main` branch on the `origin` remote).
-- Create a local `main` starting at the same place as `origin/main` and configure it to track the corresponding remote branch (e.g., `origin/main`). Khi `pull push` thuận tiện hơn
+- The command `git clone <repo url>`
+  * Automatically creates a remote called `origin` for fetch, push, pull
+  * Create local **Remote Tracking Branches** to track the corresponding branches on the remote repository (e.g., `origin/main` for the `main` branch on the `origin` remote).
+  * Create a local `main` starting at the same place as `origin/main` and configure it to track the corresponding remote branch (e.g., `origin/main`). Khi `pull push` thuận tiện hơn
 
 `origin` is the default name for a remote when you run `git clone`. If you run `git clone -o booyah` instead, then you will have `booyah` as your remote name instead of `origin`.
 
@@ -148,6 +147,8 @@ You can google `gitignore generator` for templates for different kind of project
 Remember, anything that is committed in Git can almost always be recovered. Even commits that were on branches that were deleted or commits that were overwritten with an --amend commit can be recovered (see Data Recovery for data recovery). However, anything you lose that was never committed is likely never to be seen again.
 
 `git commit --amend` re-do the latest commit. **NOTE:** Only amend commits that are still local and have not been pushed somewhere.
+
+`git push -f` force push; used after `commit -amend` to overwrite the old commit on the remote repo
 
 - You can change commit message, add & change staged files
 - You end up with a single commit — the second commit replaces the results of the first.
@@ -491,12 +492,25 @@ If you are on the `main/master` branch, **NEVER** run `git rebase`. It is meant 
 NEVER rebase commits that you have shared, pushed to Github.  
 Khi làm công ty thì phải hỏi cấp trên.
 
+Never rebase on public branches (`main`)
+
 In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
 Very often you will want to bring changes from `main` to my personal branch. Merge main into our personal branch allows you to see the latest update. Đây là một thao tác rất thường hay làm. Nhưng nếu dùng `merge` thì nó có một tác dụng phụ là commit log sẽ có nhiều merge commit. Merge commits have no real meaning, they are just merging. Chính vì vậy nên người ta mới dùng `rebase`.
 
 Rebasing your branch with the master `git rebase main`. You don't want to mess up the main branch.
 
 Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue`
+
+## Other techniques
+
+cherry-pick: pick any commit by its reference & appended to the current working HEAD
+
+`git revert` invert the changes introduced by the commit and appends a new commit with the resulting inverse content. This prevents Git from losing history.
+
+- `git reset` (soft, hard, mixed)
+  - Default `--mixed` if not specify
+  - `--soft`:
+  - `--hard`
 
 ## Git Internals
 

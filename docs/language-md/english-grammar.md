@@ -100,8 +100,8 @@ A **conjunctive adverb** is an adverb (e.g., alternatively, moreover) or adverb 
 Unlike coordinating conjunctions (for, and, nor, but, or, yet, and so, known as the FANBOYS), conjunctive adverbs cannot grammatically link clauses. Instead, their main purpose is transitioning and describing the relationship between clauses; they are used more to facilitate communication than for grammar.
 
 - Example:
-  * to show contradictions (`however, on the other hand`)
-  * to continue the same point (`additionally, moreover`)
+  - to show contradictions (`however, on the other hand`)
+  - to continue the same point (`additionally, moreover`)
 
 The weather app said it would rain today. `However`, no clouds are in the sky.
 
@@ -110,14 +110,14 @@ If you want to combine two independent clauses into one sentence, you can also u
 The weather app said it would rain today`; however,` no clouds are in the sky.
 
 - More examples:
-  * My father had missed the train; `therefore`, he took a taxi to work.
-  * We conducted the survey; `next`, we analyzed the results.
+  - My father had missed the train; `therefore`, he took a taxi to work.
+  - We conducted the survey; `next`, we analyzed the results.
 
 ### Just use `;`
 
 - Khi hai mệnh đề có mối quan hệ gần gũi, các mệnh đề độc lập có thể liên kết với nhau chỉ bằng dấu chấm phẩy `;`:
-  * My mom is frying fish; my father is washing vegetables.
-  * My brother just graduated from high school; he will attend Hue University of Foreign Languages.
+  - My mom is frying fish; my father is washing vegetables.
+  - My brother just graduated from high school; he will attend Hue University of Foreign Languages.
 
 ## Subject
 
@@ -274,11 +274,11 @@ An Adjective Clause is a **subordinate one** used in the same way as an Adjectiv
 Adjective clauses are introduced by **relative pronouns** OR **relative adverbs** (they can also be called **adjective connnectors**).
 
 - Relative pronouns (or Adjective clause connectors):
-  * For person: `who, whom, whose`.
-  * For object/thing: `which, that, of which, as, but`.
-  * that (for people or thing)
-  * `AS` is used instead of WHO, WHOM, WHICH, THAT after `SAME, SUCH`.
-  * `BUT` is used instead of `who...not, which...not, that...not` when the main clause is also **NEGATIVE**.
+  - For person: `who, whom, whose`.
+  - For object/thing: `which, that, of which, as, but`.
+  - that (for people or thing)
+  - `AS` is used instead of WHO, WHOM, WHICH, THAT after `SAME, SUCH`.
+  - `BUT` is used instead of `who...not, which...not, that...not` when the main clause is also **NEGATIVE**.
 - Relative adverb: `where, when, why`.
 
 The adjective connnectors can be omitted. This omission is very common in spoken English or in casual written English. It is not as common in formal English.
@@ -288,21 +288,21 @@ An adjective clause connector can also be the subject of the clause at the same 
 Noun clauses **KHÔNG** dùng comma.
 
 - ADJECTIVE CLAUSES có 02 chức năng:
-  * **Defining** rất cần cho ý nghĩa chính của câu và
-  * **Non-defining** không cần thiết, chỉ phụ thêm ý chi tiết.
+  - **Defining** rất cần cho ý nghĩa chính của câu và
+  - **Non-defining** không cần thiết, chỉ phụ thêm ý chi tiết.
 - Dùng comma (`,`) trước và sau Non-defining adjective clause:
-  * This is the boy `who broke our window`. (Defining)
-  * This boy, who lives next door, broke our window. (Non-defining)
+  - This is the boy `who broke our window`. (Defining)
+  - This boy, who lives next door, broke our window. (Non-defining)
 
 - More examples:
-  * The student `who` won the first prize has lent me this book.
-  * He is always polite to the teacher `whom` he respects.
-  * He lives in the house `whose` windows are painted in grey.
-  * You should show my friend the same respect `as` you show me.
-  * There was no man `but` respected him. (Không người nào kính trọng ông ấy cả.)
-  * I cannot find any seat `but` has been taken. (Tôi không tìm được ghế nào chưa có người ngồi.)
-  * I went to the office `where` my father works.
-  * You can visit me on Sundays when I am usually free.
+  - The student `who` won the first prize has lent me this book.
+  - He is always polite to the teacher `whom` he respects.
+  - He lives in the house `whose` windows are painted in grey.
+  - You should show my friend the same respect `as` you show me.
+  - There was no man `but` respected him. (Không người nào kính trọng ông ấy cả.)
+  - I cannot find any seat `but` has been taken. (Tôi không tìm được ghế nào chưa có người ngồi.)
+  - I went to the office `where` my father works.
+  - You can visit me on Sundays when I am usually free.
 
 ### Adverb clause
 
@@ -627,7 +627,7 @@ Trong ngôn ngữ học, [hư từ](https://vi.wikipedia.org/wiki/H%C6%B0_t%E1%B
 
 Ngày nay người ta dùng [Bạch thoại](https://vi.wikipedia.org/wiki/B%E1%BA%A1ch_tho%E1%BA%A1i) Quan thoại.
 
-## Sound structure
+## Sound structure & Linguistics
 
 [Phonology](https://en.wikipedia.org/wiki/Phonology) (âm vị học) is the branch of linguistics that studies how languages systematically organize their phonemes or, for sign languages, their constituent parts of signs. The term can also refer specifically to the sound or sign system of a particular language variety.
 
@@ -635,18 +635,20 @@ A [diphthong](https://en.wikipedia.org/wiki/Diphthong) (**nguyên âm đôi**, f
 
 Trong tiếng việt, trung, quảng, phụ âm có thể đứng trước.
 
-thanh mẫu = initial = phụ âm phía trước ([consonant](https://en.wikipedia.org/wiki/Consonant))  
-vận mẫu = final = nguyên âm ([vowel](https://en.wikipedia.org/wiki/Vowel)). `a i u e o` are vowel in Japanese.
-
-In articulatory phonetics, a [consonant](https://en.wikipedia.org/wiki/Consonant) (phụ âm) is a speech sound that is articulated with complete or partial closure of the vocal tract, except for the h sound, which is pronounced without any stricture in the vocal tract.
-
-A [vowel](https://en.wikipedia.org/wiki/Vowel) (nguyên âm) is a speech sound pronounced without any stricture in the vocal tract, forming the nucleus of a syllable. Vowels are one of the two principal classes of speech sounds, the other being the consonant.  
-In English, the vowel are `a e i o u` and sometimes `w y`
-
-Tiếng việt, trung, cantonese ngoài vowel + consonant còn có thêm tone. A syllable is consists of three elements: initial, final, tone. A Cantonese word may be made up of one or more syllables. Mỗi một chữ hán ứng với 1 syllable.\
-Phụ âm chỉ có thể tạo thành một âm tiết hoàn chỉnh khi kết hợp với nguyên âm.
-
-Trong tiếng Trung có 21 **phụ âm** (còn gọi là **thanh mẫu**, phụ âm phía trước). Gồm 18 phụ âm đơn và 3 phụ âm kép. Còn 2 phụ âm không chính thức: `y` và **w** chính là nguyên âm **i** và **u** khi nó đừng đầu câu.
+- **Vowel** (nguyên âm):
+  * `a e i o u y` are vowel in English.
+  * Not stopped by your tongue, lips or teeth
+  * Mouth open, air flow freely from the lung
+  * The word vowel comes from the Latin word vocalis, meaning "vocal" (i.e. relating to the voice).
+  * Is the nucleus of a syllable
+- **Consonant** (phụ âm):
+  * Is pronounced with some type of constrictio of the flow of the air (with tongue or lip)
+  * Example: `b`
+  * The word consonant comes from Latin oblique stem cōnsonant-, from cōnsonāns 'sounding-together'
+- Syllable (âm tiết, chữ, tiếng):
+  * là một đơn vị cấu tạo nên một sự phối hợp trong tiếng nói
+  * Một từ gồm một âm tiết (như nước trong tiếng Việt) được gọi là đơn âm tiết (những từ như vậy được gọi là từ đơn âm tiết), trong khi những từ gồm hai âm tiết trở lên (ví dụ tivi) được gọi là đa âm tiết (từ như vậy được gọi là từ đa âm tiết).
+  * Ví dụ, từ Latinh được kết hợp từ hai âm tiết: la và tinh. Một âm tiết điển hình được cấu tạo từ một nhân âm tiết (thông thường nhất là một nguyên âm) và giới hạn trước và sau không bắt buộc (điển hình là các phụ âm).
 
 Rules:
 
@@ -656,3 +658,25 @@ Rules:
 Cantonese syllable structure [wiki](https://en.wikipedia.org/wiki/Cantonese_phonology).
 
 Standard Chinese phonology [wiki](https://en.wikipedia.org/wiki/Standard_Chinese_phonology).
+
+## Japanese Syllables
+
+In Japanese, there are five vowels: `あ い う え お`. The syllable `く` is /k/ consonant + /u/ vowel  
+For example, the word for “man” is “hito,” which is the simple combination of “hi” and “to,” and the word “katakana” can readily be broken up into four syllables: ka-ta-ka-na.
+
+You may wonder how the Japanese could have built a great civilization while having only 7 consonnants in their language.  Of course, they couldn’t have.  They also have other consonants, and they represent them with the same characters with marks to distinguish voiced, unvoiced, and explosive consonants.  For example, the “t” in “ta” is unvoiced, and if you voice it you get “d.” So “da” is obtained by using the character for “ta” and adding two marks after it.
+
+## Thanh Mẫu, Vận Mẫu và Thanh Điệu Trong Tiếng Trung
+
+Trong tiếng Trung, thanh mẫu (声母, initial), vận mẫu (韵母, final), và thanh điệu (声调) là ba yếu tố cơ bản cấu thành âm tiết của từ ngữ.
+
+- Thanh mẫu là các phụ âm đầu (initial consonant) trong một âm tiết, đóng vai trò như phần mở đầu, giúp định hình cách phát âm.
+- Vận mẫu (final vowel) là phần kết thúc của âm tiết, thường là nguyên âm hoặc tổ hợp nguyên âm, đóng vai trò chính trong việc kéo dài và làm rõ âm.
+
+Có 4 thanh điệu
+
+Tiếng việt, trung, cantonese ngoài vowel + consonant còn có thêm tone. A syllable is consists of three elements: initial, final, tone. A Cantonese word may be made up of one or more syllables. Mỗi một chữ hán ứng với 1 syllable.\
+Phụ âm chỉ có thể tạo thành một âm tiết hoàn chỉnh khi kết hợp với nguyên âm.
+
+Trong tiếng Trung có 21 **phụ âm** (còn gọi là **thanh mẫu**, phụ âm phía trước). Gồm 18 phụ âm đơn và 3 phụ âm kép. Còn 2 phụ âm không chính thức: `y` và **w** chính là nguyên âm **i** và **u** khi nó đừng đầu câu.
+

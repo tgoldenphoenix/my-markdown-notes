@@ -34,11 +34,21 @@ Compare Docker (a container) vs Virtual Machines [here](https://www.freecodecamp
 **Docker Volumes** ensure that data remains intact even when containers are stopped, removed, or replaced.  
 You can map a file in your machine with as the volume of a container.
 
-## commands
+## Docker commands
 
 `docker --version`
 
 `docker init`
+
+- `docker ps` lệnh `ls` list containers
+  - `-a, --all` Show all containers (default shows just running)
+
+`docker stop` Stop one or more running containers
+
+`docker rm` Remove one or more containers
+
+- `docker image` manage images
+  * `docker image ls` List images
 
 ## Kubernetes
 
@@ -100,4 +110,3 @@ S3 is a service that allows you to store files in the cloud. It's a simple servi
 ## Terms
 
 [containerized applications](https://cloud.google.com/discover/what-are-containerized-applications): applications run in isolated packages of code called containers.
-
