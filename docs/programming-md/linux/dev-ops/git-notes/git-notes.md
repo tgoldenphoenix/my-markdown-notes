@@ -710,6 +710,42 @@ Generally it’s better to simply use the fetch and merge commands explicitly as
 
 `git pull origin main` changes will be merged to main. Hoặc dùng `git pull origin` or just `git pull`
 
+## Rebase
+
+In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
+The rebase command can mess up your project. Rebasing re-write the commit history. You therefore shall use it carefully. You must know what you are doing.
+
+rebase can be used as:
+
+- alternative to merging
+- clean up tool (clean up commits) because it re-write the history
+
+With the rebase command, you can take all the changes that were committed on one branch and re-apply them on a different branch.
+
+You would check out the `experiment` branch, and then rebase it onto the `master` by running:
+
+```bash
+git checkout experiment
+git rebase master
+```
+
+Nếu merge thì checkout qua `master` rồi merge `feature` into `master`. Checkout to the final branch.
+
+There is no difference in the end product of the integration, but rebasing makes for a cleaner history. If you examine the log of a rebased branch, it looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
+
+If you are on the `main/master` branch, **NEVER** run `git rebase`. It is meant to be run when you are on the branches (bugfix, footer) not the main.  
+NEVER rebase commits that you have shared, pushed to Github.  
+Khi làm công ty thì phải hỏi cấp trên.
+
+Never rebase on public branches (`main`)
+
+In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
+Very often you will want to bring changes from `main` to my personal branch. Merge main into our personal branch allows you to see the latest update. Đây là một thao tác rất thường hay làm. Nhưng nếu dùng `merge` thì nó có một tác dụng phụ là commit log sẽ có nhiều merge commit. Merge commits have no real meaning, they are just merging. Chính vì vậy nên người ta mới dùng `rebase`.
+
+Rebasing your branch with the master `git rebase main`. You don't want to mess up the main branch.
+
+Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue`
+
 ## Other techniques
 
 cherry-pick: pick any commit by its reference & appended to the current working HEAD
