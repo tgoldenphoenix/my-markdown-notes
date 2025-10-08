@@ -31,9 +31,9 @@ Phải có cả authentication key & signing key mới push lên github được
 `git init` (automatically create the `master or main` branch). Executing this command will create a new `.git` subdirectory in your current working directory.
 
 - The command `git clone <repo url>`
-  * Automatically creates a remote called `origin` for fetch, push, pull
-  * Create local **Remote Tracking Branches** to track the corresponding branches on the remote repository (e.g., `origin/main` for the `main` branch on the `origin` remote).
-  * Create a local `main` starting at the same place as `origin/main` and configure it to track the corresponding remote branch (e.g., `origin/main`). Khi `pull push` thuận tiện hơn
+  - Automatically creates a remote called `origin` for fetch, push, pull
+  - Create local **Remote Tracking Branches** to track the corresponding branches on the remote repository (e.g., `origin/main` for the `main` branch on the `origin` remote).
+  - Create a local `main` starting at the same place as `origin/main` and configure it to track the corresponding remote branch (e.g., `origin/main`). Khi `pull push` thuận tiện hơn
 
 `origin` is the default name for a remote when you run `git clone`. If you run `git clone -o booyah` instead, then you will have `booyah` as your remote name instead of `origin`.
 
@@ -95,6 +95,8 @@ Mot ứng dụng nữa là đang code mà muốn copy code từ branch khác: st
 
 `git commit -a -m 'Add new benchmarks'`. The `-a` option automatically stage every file that is already tracked before doing the commit, letting you skip the `git add` part. You can use `-am` or `-a -m`
 
+When you run git commit, Git creates a new commit object and moves the branch that `HEAD` points to up to it.
+
 ### Moving, renaming & removing files
 
 `git rm file.txt` remove the file from your tracked files and also removes the file from your working directory.
@@ -110,8 +112,17 @@ Lỡ add, push lên github một folder rồi nhưng sau đó lại muốn bỏ 
 `git log` the most recent commits show up first.  
 `git log --oneline`
 
+```bash
+$ git log --oneline
+a9d6782 (HEAD -> main, origin/main, origin/HEAD) fetch demo
+f4769cf C2
+98542a4 Initial commit
+```
+
 `git log -p -2`: The `-p, --patch` option shows the difference (the patch output) introduced in each commit. You can also limit the number of log entries displayed, such as using `-2` to show only the last two entries.
 The `--stat` shows some abbreviated stats for each commit.
+
+`git log --all --decorate --oneline --graph`
 
 `git log --pretty=oneline` prints each commit on a single line, which is useful if you’re looking at a lot of commits.
 `--pretty=format` allows you to specify your own log output format
@@ -144,19 +155,211 @@ You can google `gitignore generator` for templates for different kind of project
 
 ## Undoing Things
 
+### Amend & force push
+
 Remember, anything that is committed in Git can almost always be recovered. Even commits that were on branches that were deleted or commits that were overwritten with an --amend commit can be recovered (see Data Recovery for data recovery). However, anything you lose that was never committed is likely never to be seen again.
 
-`git commit --amend` re-do the latest commit. **NOTE:** Only amend commits that are still local and have not been pushed somewhere.
-
-`git push -f` force push; used after `commit -amend` to overwrite the old commit on the remote repo
+`git commit --amend` replace (amend) the latest commit without creating an entirely new commit in the history. This command will open the editor with the latest commit message. You can then change the commit message and push it.
 
 - You can change commit message, add & change staged files
 - You end up with a single commit — the second commit replaces the results of the first.
+- Whenever you are doing amend Git will basically rewrite the entire commit and generates a **new hash** for it. This is very important to understand.
+
+`git push -f` force push (`--force`); used after `commit -amend` to overwrite the old commit on the remote repo.
+
+it is always advisable to use amend when you haven’t pushed the changes to remote or if you are pretty confident that no other developers have started using those changes or no others have pushed any new changes to the current branch.
+
+In the case you’ve pushed the commit to GitHub, there is a big difference if there are multiple people working on the same branch or if you are the only person working on the branch.
+
+Let’s say that there are three people working on the branch main. If you commit your code to main and then someone else uses your code, you should not amend your commit. The only way to ensure that no one else uses your code prior to making an amend to your commit is to not amend your public commit.
+
+However, if you’re the only person working on your branch, then it is safe to amend your commit.
+
+Problems start occurring when the commit is already pushed to GitHub but I want to edit it.
 
 `git restore <file>` to discard changes in modified files and revert them back to the latest commit snapshot version (un-modified a file). :bangbang: You will lose all your local changes to that file (`git checkout` is an old version of this).  
 You can check with the checkout command that how files look like but you can only restore the file to the last commit only. You cannot go further.
 
 `git restore --staged <file>` to unstage file (`git reset` is an old version of this). Or `git rm --cache <file>` to unstage
+
+### reset
+
+Think of Git as content manager of three different trees (collection of files not the Tree Data Structure). Git will compare between these three trees & log information to the user.
+
+1. HEAD: Last commit's snapshot, next parent
+2. Index: proposed next commit's snapshot (the "staging area")
+3. Working Directory (or working tree): the "sandbox" where you can try changes out before committing them to your staging area (index) and then to history
+
+Git will look at the `index` when you run `git commit`.
+
+- "Changes not staged for commit" => working directory differrent from Index
+- "Changes to be committed" => HEAD & Index differ
+
+Step 1: **Move HEAD** (--soft, undid commits): The first thing reset will do is move what HEAD points to. This isn’t the same as changing HEAD itself (which is what `checkout` does); reset moves the branch that HEAD is pointing to. This means if HEAD is set to the `master` branch (i.e. you’re currently on the master branch), running `git reset 9e5e6a4` will start by making master point to 9e5e6a4.  
+No matter what form of reset with a commit you invoke, this is the first thing it will always try to do. With `reset --soft`, it will simply stop there.
+
+Step 2: Updating the Index (--mixed, default, unstage everything): The next thing reset will do is to update the index with the contents of whatever snapshot HEAD now points to.
+
+It still undid your last commit, but also unstaged everything. You rolled back to before you ran all your git add and git commit commands.
+
+Step 3: Updating the Working Directory (--hard)
+
+The third thing that reset will do is to make the working directory look like the index. If you use the `--hard` option, it will continue to this stage.
+
+You undid your last commit, the git add and git commit commands, and all the work you did in your working directory.  
+This flag (--hard) is the only way to make the reset command dangerous, and one of the very few cases where Git will actually destroy data. Any other invocation of reset can be pretty easily undone, but the --hard option cannot, since it forcibly overwrites files in the working directory
+
+- The basics:
+  * `--soft` update where a branch point to, undid commits.
+  * `--mixed`, default: `--soft` + unstage everything
+  * `--hard`: Updating the Working Directory (be careful when use)
+
+Let's try each of them on the command line!
+
+**Step 1**: Add a new file `new_file` with some content in it & change the content of existing `file.txt`. After that, run `git status`.
+
+```bash
+$ echo 'new file content' > new_file
+$ git add new_file
+$ echo 'test git reset' >> file.txt
+
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   new_file
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file.txt
+```
+
+**Step 2.1**: run a **hard** reset.
+
+```bash
+$ git log --oneline
+9cda0ca (HEAD -> main, feature-branch) add feature
+5c7893c update in main
+a9d6782 (origin/main, origin/HEAD) fetch demo
+f4769cf C2
+98542a4 Initial commit
+
+$ git reset --hard
+HEAD is now at 9cda0ca add feature
+
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+```
+
+A hard reset deletes all changes in working directory & delete the staging area (permanently lose `new_file` & all changes in `file.txt`)
+
+**Step 2.2**: run a **mixed** reset.
+
+Repeat the set-up commands in **Step 1**. After that, run a `--mixed` reset (default without specifying).
+
+```bash
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   new_file
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file.txt
+
+$ git reset --mixed
+Unstaged changes after reset:
+M       file.txt
+
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        new_file
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+`new_file` is now **untracked** => mixed reset remove the staging area
+
+**Step 2.3**: run a **soft** reset.
+
+Repeat the set-up commands in **Step 1**. After that, run a `--soft` reset.
+
+```bash
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   new_file
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file.txt
+
+$ git reset --soft
+
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   new_file
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file.txt
+```
+
+In this case, `git reset --soft` seems to do nothing for us! This is because, by default, `git reset` is invoked with `HEAD` as the target commit. Let's try soft reset with `HEAD~` (the commit before HEAD).
+
+```bash
+$ git log --oneline
+9cda0ca (HEAD -> main, feature-branch) add feature
+5c7893c update in main
+a9d6782 (origin/main, origin/HEAD) fetch demo
+f4769cf C2
+98542a4 Initial commit
+
+$ git reset --soft HEAD~
+
+anhao@Anonimous MINGW64 ~/Desktop/demo-git (main)
+$ git log --oneline
+5c7893c (HEAD -> main) update in main
+a9d6782 (origin/main, origin/HEAD) fetch demo
+f4769cf C2
+98542a4 Initial commit
+```
+
+`main` now points to commit `5c7893c` & we lose the commit `9cda0ca`.
 
 ## Github
 
@@ -164,7 +367,7 @@ Issues & Github Projects: Bare-bones project management
 
 Github Actions: Automated build/release pipelines.
 
-## Fork, Pull Request and Open Source contribution
+## Fork, Pull Request & Open Source contribution
 
 Khi làm với repo công ty, người khác:
 
@@ -311,10 +514,11 @@ Khi switch branch phải có clean working state (no un-commited changes). Trư�
 
 Khi muốn bring changes from one branch (`main`) to your personal branch cũng gọi là merge.
 
-Các trường hợp merge như sau:
+Có các trường hợp merge như sau:
 
-1. fast-forward: create a branch and work on it để nếu có gì hỏng thì return back to `main`. Git just move the branch pointer forward no new commit (snapshot) created. Khi merge will have no conflict.
-2. Three-way merge: using the two snapshots pointed to by the branch tips and the common ancestor of the two. Sẽ có conflict nếu 2 branches tips changed the same file. The changes do not necessarily need to the on the same line. It only need to be on the same file, to create merge conflict. Git creates a new commit (snapshot) called **merge commit**. This merge commit points to two parent while normal commit only has one parent.
+1. **Fast-forward merge**: create a branch and work on it để nếu có gì hỏng thì return back to `main`. Git just move the branch pointer forward no new commit (snapshot) created. Khi merge will have no conflict.
+2. **Three-way merge**: using the two snapshots pointed to by the branch tips and the common ancestor of the two. Sẽ có conflict nếu 2 branches tips changed the same file. The changes do not necessarily need to the on the same line. It only need to be on the same file, to create merge conflict. Git creates a new commit (snapshot) called **merge commit**. This merge commit points to two parent while normal commit only has one parent.
+3. Rebase
 
 Nếu có merge conflict thì git không tạo merge commit mà pause để user resolve the conflict. If you want to see which files are unmerged at any point after a merge conflict, you can run `git status`. Git auto add **conflict-resolution markers** to the files that have conflicts, so you can open them manually and resolve those conflicts.
 
@@ -335,6 +539,46 @@ Khi dùng `git log --oneline` nếu có visual tool like [VSCode git graph](http
 Delete branch: `git branch -d <branch name>`. You delete branch after merging successfully.
 
 `git mergetool` fires up an appropriate visual merge tool and walks you through the conflicts
+
+### Rebase
+
+In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
+With the rebase command, you can take all the changes that were committed on one branch and re-apply them on a different branch.  
+The rebase command can mess up your project. Rebasing re-write the commit history. You therefore shall use it carefully. You must know what you are doing.
+
+Very often you will want to bring changes from `main` to my personal branch. Merge main into our personal branch allows you to see the latest update. Đây là một thao tác rất thường hay làm. Nhưng nếu dùng `merge` thì nó có một tác dụng phụ là commit log sẽ có nhiều merge commit. Merge commits have no real meaning, they are just merging. Chính vì vậy nên người ta mới dùng `rebase`.
+
+- Rebase can be used as:
+  - An alternative to merging
+  - A clean up tool (clean up commits) because it re-write the history
+
+You would check out the `experiment` branch, and then rebase it onto the `master` by running:
+
+```bash
+git checkout experiment
+git rebase master
+```
+
+Nếu merge thì checkout qua `master`
+
+After rebase, you will stand on `experiment`. You now checkout back to `master` & perform a fast-forward merge into `experiment` (now ahead of `master` after rebasing).
+
+```bash
+git checkout master
+git merge experiment
+```
+
+There is no difference in the end product of the integration, but rebasing makes for a cleaner history. If you examine the log of a rebased branch, it looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
+
+If you are on the `main/master` branch, **NEVER** run `git rebase`. It is meant to be run when you are on the branches (bugfix, footer) not the main.  
+NEVER rebase commits that you have shared, pushed to Github.  
+Khi làm công ty thì phải hỏi cấp trên.
+
+Never rebase on public branches (`main`)
+
+Rebasing your branch with the master `git rebase main`. You don't want to mess up the main branch.
+
+Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue` (giống `git merge --continue`).
 
 ### Changing a branch name
 
@@ -452,11 +696,12 @@ But, it’s generally not possible to push commits to an HTTP address (you would
 
 You make your changes in the working area (working directory) -> add them to the staging area -> commit to the local repo -> then push to remote repo. Trước khi push thì mình muốn pull changes made by colleagues on remote về để khi push lên là fresh.
 
-The `git fetch` command downloads commits, files, and refs from a remote repository into your local repo. Fetching is what you do when you want to see what everybody else has been working on. It lets you see how the central history has progressed, but it doesn’t force you to actually merge the changes into your repository. Git isolates fetched content from existing local content; it has absolutely no effect on your local development work. Fetched content has to be explicitly checked out using the git checkout command.
+The `git fetch` command downloads commits, files, and refs from a remote repository into your local repo. Fetching is what you do when you want to see what everybody else has been working on. It lets you see how the central history has progressed, but it doesn’t force you to actually merge the changes into your repository. Git isolates fetched content from existing local content; it has absolutely no effect on your local development work. Fetched content has to be **explicitly checked out** using the git checkout command.  
+After checking out the fetch, you can `merge` it into your `main`.
 
 `git fetch` simply get the data for you and let you merge it yourself. However, there is a command called git pull which is essentially a git fetch immediately followed by a `git merge` in most cases.
 
-`git fetch <remote>` fetches any new work that has been pushed to that remote server since you cloned (or last fetched from) it, stored it inside your local repo but don't put it in your working area. While `git pull` put the changes into your working area. Nếu không tin tưởng colleagues thì dùng git fetch thôi.\
+`git fetch <remote>` fetches any new work that has been pushed to that remote server since you cloned (or last fetched from) it, stored it inside your local repo but don't put it in your working area. While `git pull` put the changes into your working area. Nếu không tin tưởng colleagues thì dùng git fetch thôi.  
 git pull = git fetch + git merge
 
 While the `git fetch`  command will fetch all the changes on the server that you don’t have yet, it will not modify your working directory at all. It will simply get the data for you and let you merge it yourself. However, there is a command called `git pull` which is essentially a git fetch immediately followed by a git merge in most cases. If you have a tracking branch set up as demonstrated in the last section, either by explicitly setting it or by having it created for you by the clone or checkout commands, git pull will look up what server and branch your current branch is tracking, fetch from that server and then try to merge in that remote branch.
@@ -464,42 +709,6 @@ While the `git fetch`  command will fetch all the changes on the server that you
 Generally it’s better to simply use the fetch and merge commands explicitly as the magic of git pull can often be confusing.
 
 `git pull origin main` changes will be merged to main. Hoặc dùng `git pull origin` or just `git pull`
-
-## Rebase
-
-In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
-The rebase command can mess up your project. Rebasing re-write the commit history. You therefore shall use it carefully. You must know what you are doing.
-
-rebase can be used as:
-
-- alternative to merging
-- clean up tool (clean up commits) because it re-write the history
-
-With the rebase command, you can take all the changes that were committed on one branch and re-apply them on a different branch.
-
-You would check out the `experiment` branch, and then rebase it onto the `master` by running:
-
-```bash
-git checkout experiment
-git rebase master
-```
-
-Nếu merge thì checkout qua `master`
-
-There is no difference in the end product of the integration, but rebasing makes for a cleaner history. If you examine the log of a rebased branch, it looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
-
-If you are on the `main/master` branch, **NEVER** run `git rebase`. It is meant to be run when you are on the branches (bugfix, footer) not the main.  
-NEVER rebase commits that you have shared, pushed to Github.  
-Khi làm công ty thì phải hỏi cấp trên.
-
-Never rebase on public branches (`main`)
-
-In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
-Very often you will want to bring changes from `main` to my personal branch. Merge main into our personal branch allows you to see the latest update. Đây là một thao tác rất thường hay làm. Nhưng nếu dùng `merge` thì nó có một tác dụng phụ là commit log sẽ có nhiều merge commit. Merge commits have no real meaning, they are just merging. Chính vì vậy nên người ta mới dùng `rebase`.
-
-Rebasing your branch with the master `git rebase main`. You don't want to mess up the main branch.
-
-Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue`
 
 ## Other techniques
 
