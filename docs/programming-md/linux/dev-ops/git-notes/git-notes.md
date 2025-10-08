@@ -484,7 +484,7 @@ git checkout experiment
 git rebase master
 ```
 
-Nếu merge thì checkout qua `master`
+Nếu merge thì checkout qua `master` rồi merge `feature` into `master`. Checkout to the final branch.
 
 There is no difference in the end product of the integration, but rebasing makes for a cleaner history. If you examine the log of a rebased branch, it looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
 
