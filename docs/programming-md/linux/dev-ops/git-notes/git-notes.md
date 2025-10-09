@@ -43,7 +43,7 @@ Git SSH URLs follow a template of: `git@HOSTNAME:USERNAME/REPONAME.git`. Host na
 `git status` show file states, merge conflicts status  
 `git status -uall <file/folder>`: Nếu muốn git status show files trong folders (mặc định chỉ show folder) thì [here](https://stackoverflow.com/questions/28222633/git-status-not-showing-contents-of-newly-added-folder)
 
-`git diff` compares what is in your **working directory** with what is in your staging area. The result tells you the changes you’ve made that you haven’t yet staged with `git add`.  
+`git diff` compares **working directory** to staging area. The result tells you the changes you’ve made that you haven’t yet staged with `git add`.  
 `git diff` does not compare file A and file B (there are different tool for that). It compare the same file A in different stages: same file on different commits, staged file and the latest commit, same file but on different branch.
 
 Nếu `git status` không có file nào modified thì `git diff` không có output gì hết.
@@ -63,7 +63,7 @@ index 6b0c6cf..b37e70a 100644
 +this is a diff example
 ```
 
-`---` & `+++` do NOT means added & remove the code. They only indicate changes in the file. Changes from `a/diff_test.txt` are marked with a `---` and the changes from b/diff_test.txt are marked with the +++ symbol.
+`---` & `+++` do NOT means added & remove the code. They only indicate changes in the file. Changes from `a/diff_test.txt` are marked with a `---` and the changes from `b/diff_test.txt` are marked with the `+++` symbol.
 
 - The `---` represent file `a->` (not necessarily the previous version. It's just the file a).
 - The `+++` represent file `b->`. Note that `a->` and `b->` are the same file over time
@@ -75,10 +75,13 @@ index 6b0c6cf..b37e70a 100644
 +this is a diff example
 ```
 
-The **chunk header** `@@ -1 +1 @@` means "line one had changes".  
+The **chunk header** `@@ -1 +1 @@` means "line number one had changes". In the chunk header `+, -` means add/subtract lines  
 `@@ -34,6 +34,8 @@` means "6 lines have been extracted starting from line number 34. Additionally, 8 lines have been added starting at line number 34."
 
-Compares your staged changes to your last commit `git diff --staged` or `git diff --cached`.
+When a file path is passed to git diff the diff operation will be scoped to the specified file: `git diff HEAD ./path/to/file`  
+By default, git compare to `HEAD`. Omitting HEAD in the example above has the same effect.
+
+The `--staged or --cached` command in Git is used to display the differences between the staging area (also known as the index) and the last commit.
 
 Git diff two commit `git diff a498f47 7274899`. Or you can use the older `..` operator instead of space character such as `git diff a498f47..7274899`.  
 Nên để 2 cái commit id theo đúng thứ tự thời gian `older..newer`. Nếu để commit ngược lại thì sẽ khó hiểu lắm.
