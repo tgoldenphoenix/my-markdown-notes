@@ -1,8 +1,5 @@
 # Git & github notes
 
-Bitbucket password: ATBBtwDKEzmAzNEatPMnZCEada380D70D48C
-username: tGoldenPhoenix
-
 Check if Git is installed locally: `git --version`
 
 **Getting help**: `git help <verb>`, for example `git help config`  
@@ -14,17 +11,15 @@ Show git config: `git config --list`
 You can view all of your settings and where they are coming from using:: `git config --list --show-origin`  
 The global gitconfig file on Macbook is at: `/opt/homebrew/etc/gitconfig`
 
-Mới tải Git về thì run these commands:
-
-- `git config --global user.name "John Doe"`
-- `git config --global user.email johndoe@example.com`
+- Mới tải Git về thì run these commands:
+  - `git config --global user.name "John Doe"`
+  - `git config --global user.email johndoe@example.com`
+- Sau đó generate & add SSH key on local machine & on Github. Phải có cả authentication key & signing key (cùng một key nhưng tạo 2 chức năng).
 
 To set `main` as the default branch name do: `git config --global init.defaultBranch main`  
 GitHub changed the default branch name from `master` to `main` in mid-2020
 
 Using Visual Studio Code as your default git editor: `git config --global core.editor "code --wait"`
-
-Phải có cả authentication key & signing key mới push lên github được (I think so).
 
 ## Initializing a new repository
 
@@ -33,31 +28,55 @@ Phải có cả authentication key & signing key mới push lên github được
 - The command `git clone <repo url>`
   - Automatically creates a remote called `origin` for fetch, push, pull
   - Create local **Remote Tracking Branches** to track the corresponding branches on the remote repository (e.g., `origin/main` for the `main` branch on the `origin` remote).
-  - Create a local `main` starting at the same place as `origin/main` and configure it to track the corresponding remote branch (e.g., `origin/main`). Khi `pull push` thuận tiện hơn
+  - Create a local `main` starting at the same place as `origin/main` and configure it to track the corresponding remote branch (e.g., `origin/main`) để khi `pull & push` thuận tiện hơn.
 
 `origin` is the default name for a remote when you run `git clone`. If you run `git clone -o booyah` instead, then you will have `booyah` as your remote name instead of `origin`.
 
 Git SSH URLs follow a template of: `git@HOSTNAME:USERNAME/REPONAME.git`. Host name là Github or bitbucket
 
-## git diff, view changes
+## Viewing state: git diff, status & log
 
-There are 2 _states_ of files:
+- There are 2 _states_ of files:
+  - **tracked**: files that were in the last snapshot, as well as any newly staged files (add); they can be unmodified, modified, or staged.
+  - **untracked**: everything else
 
-- **tracked**: files that were in the last snapshot, as well as any newly staged files; they can be unmodified, modified, or staged.
-- **untracked**: everything else
-
-`git status` show file states, merge conflicts if exists  
+`git status` show file states, merge conflicts status  
 `git status -uall <file/folder>`: Nếu muốn git status show files trong folders (mặc định chỉ show folder) thì [here](https://stackoverflow.com/questions/28222633/git-status-not-showing-contents-of-newly-added-folder)
 
 `git diff` compares what is in your **working directory** with what is in your staging area. The result tells you the changes you’ve made that you haven’t yet staged with `git add`.  
 `git diff` does not compare file A and file B (there are different tool for that). It compare the same file A in different stages: same file on different commits, staged file and the latest commit, same file but on different branch.
 
-[how to read git diff output](https://stackoverflow.com/questions/2529441/how-to-read-the-output-from-git-diff)
+Nếu `git status` không có file nào modified thì `git diff` không có output gì hết.
 
-`---` & `+++` do NOT means added & remove the code. They only indicate changes in the file:
+Modify a file and run `git diff`:
+
+```bash
+$ echo "this is a diff example" > diff_test.txt
+
+$ git diff
+diff --git a/diff_test.txt b/diff_test.txt
+index 6b0c6cf..b37e70a 100644
+--- a/diff_test.txt
++++ b/diff_test.txt
+@@ -1 +1 @@
+-this is a git diff test example
++this is a diff example
+```
+
+`---` & `+++` do NOT means added & remove the code. They only indicate changes in the file. Changes from `a/diff_test.txt` are marked with a `---` and the changes from b/diff_test.txt are marked with the +++ symbol.
 
 - The `---` represent file `a->` (not necessarily the previous version. It's just the file a).
 - The `+++` represent file `b->`. Note that `a->` and `b->` are the same file over time
+
+```bash
+# A diff "chunk"
+@@ -1 +1 @@
+-this is a git diff test example
++this is a diff example
+```
+
+The **chunk header** `@@ -1 +1 @@` means "line one had changes".  
+`@@ -34,6 +34,8 @@` means "6 lines have been extracted starting from line number 34. Additionally, 8 lines have been added starting at line number 34."
 
 Compares your staged changes to your last commit `git diff --staged` or `git diff --cached`.
 
@@ -92,6 +111,7 @@ Mot ứng dụng nữa là đang code mà muốn copy code từ branch khác: st
 - `git commit` launches your shell editor. It is also used to **conclude merges**
 - `git commit -v` puts the diff of your change in the shell editor.
 - `git commit -m <message>` không mở shell editor.
+- `git commit -a` automatically stage all tracked files before the commit. Using the option `-am` allows you to add and create a message for the commit in one command.
 
 `git commit -a -m 'Add new benchmarks'`. The `-a` option automatically stage every file that is already tracked before doing the commit, letting you skip the `git add` part. You can use `-am` or `-a -m`
 
@@ -167,7 +187,7 @@ Remember, anything that is committed in Git can almost always be recovered. Even
 
 `git push -f` force push (`--force`); used after `commit -amend` to overwrite the old commit on the remote repo.
 
-it is always advisable to use amend when you haven’t pushed the changes to remote or if you are pretty confident that no other developers have started using those changes or no others have pushed any new changes to the current branch.
+It is always advisable to use amend when you haven’t pushed the changes to remote or if you are pretty confident that no other developers have started using those changes or no others have pushed any new changes to the current branch.
 
 In the case you’ve pushed the commit to GitHub, there is a big difference if there are multiple people working on the same branch or if you are the only person working on the branch.
 
@@ -181,6 +201,95 @@ Problems start occurring when the commit is already pushed to GitHub but I want 
 You can check with the checkout command that how files look like but you can only restore the file to the last commit only. You cannot go further.
 
 `git restore --staged <file>` to unstage file (`git reset` is an old version of this). Or `git rm --cache <file>` to unstage
+
+Step 01: First, add some content in README.md. After that, add, commit & push to remote repo.
+
+```bash
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+$ git commit -am "I will change this commit later"
+[main 19c419e] I will change this commit later
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git push origin main
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 372 bytes | 372.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:anhaoerv/demo-git.git
+   f52c25b..19c419e  main -> main
+```
+
+Step 02: Let's edit the content inside `README.md`, run `git add` then `git commit --amend`.
+
+```bash
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+$ git add .
+
+$ git commit --amend
+```
+
+Git will open `vim` to let you edit the commit message. After saving, we have overwitten the last commit with new content.
+
+```bash
+[main 8edb82c] I will change this commit later (already changed). OK!
+ Date: Thu Oct 9 08:46:45 2025 +0700
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git log --oneline
+8edb82c (HEAD -> main) I will change this commit later (already changed). OK!
+```
+
+But now, when we push to `origin`, we get rejected. We need to do a force push.
+
+```bash
+$ git push origin main
+To github.com:anhaoerv/demo-git.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'github.com:anhaoerv/demo-git.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. If you want to integrate the remote changes,
+hint: use 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+$ git push -f
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 399 bytes | 399.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:anhaoerv/demo-git.git
+ + 19c419e...8edb82c main -> main (forced update)
+
+$ git log --oneline
+8edb82c (HEAD -> main, origin/main, origin/HEAD) I will change this commit later (already changed). OK!
+```
+
+Our amended commit is now pushed to Github (notice the hash `8edb82c` is matching).
 
 ### reset
 
@@ -210,9 +319,9 @@ You undid your last commit, the git add and git commit commands, and all the wor
 This flag (--hard) is the only way to make the reset command dangerous, and one of the very few cases where Git will actually destroy data. Any other invocation of reset can be pretty easily undone, but the --hard option cannot, since it forcibly overwrites files in the working directory
 
 - The basics:
-  * `--soft` update where a branch point to, undid commits.
-  * `--mixed`, default: `--soft` + unstage everything
-  * `--hard`: Updating the Working Directory (be careful when use)
+  - `--soft` update where a branch point to, undid commits.
+  - `--mixed`, default: `--soft` + unstage everything
+  - `--hard`: Updating the Working Directory (be careful when use)
 
 Let's try each of them on the command line!
 
@@ -540,46 +649,6 @@ Delete branch: `git branch -d <branch name>`. You delete branch after merging su
 
 `git mergetool` fires up an appropriate visual merge tool and walks you through the conflicts
 
-### Rebase
-
-In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
-With the rebase command, you can take all the changes that were committed on one branch and re-apply them on a different branch.  
-The rebase command can mess up your project. Rebasing re-write the commit history. You therefore shall use it carefully. You must know what you are doing.
-
-Very often you will want to bring changes from `main` to my personal branch. Merge main into our personal branch allows you to see the latest update. Đây là một thao tác rất thường hay làm. Nhưng nếu dùng `merge` thì nó có một tác dụng phụ là commit log sẽ có nhiều merge commit. Merge commits have no real meaning, they are just merging. Chính vì vậy nên người ta mới dùng `rebase`.
-
-- Rebase can be used as:
-  - An alternative to merging
-  - A clean up tool (clean up commits) because it re-write the history
-
-You would check out the `experiment` branch, and then rebase it onto the `master` by running:
-
-```bash
-git checkout experiment
-git rebase master
-```
-
-Nếu merge thì checkout qua `master`
-
-After rebase, you will stand on `experiment`. You now checkout back to `master` & perform a fast-forward merge into `experiment` (now ahead of `master` after rebasing).
-
-```bash
-git checkout master
-git merge experiment
-```
-
-There is no difference in the end product of the integration, but rebasing makes for a cleaner history. If you examine the log of a rebased branch, it looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
-
-If you are on the `main/master` branch, **NEVER** run `git rebase`. It is meant to be run when you are on the branches (bugfix, footer) not the main.  
-NEVER rebase commits that you have shared, pushed to Github.  
-Khi làm công ty thì phải hỏi cấp trên.
-
-Never rebase on public branches (`main`)
-
-Rebasing your branch with the master `git rebase main`. You don't want to mess up the main branch.
-
-Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue` (giống `git merge --continue`).
-
 ### Changing a branch name
 
 `git branch --move bad-branch-name corrected-branch-name` This replaces your bad-branch-name with corrected-branch-name, but this change is only local for now. To let others see the corrected branch on the remote, push it `git push --set-upstream origin corrected-branch-name`
@@ -713,12 +782,9 @@ Generally it’s better to simply use the fetch and merge commands explicitly as
 ## Rebase
 
 In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
-The rebase command can mess up your project. Rebasing re-write the commit history. You therefore shall use it carefully. You must know what you are doing.
+Very often you will want to bring changes from `main` to my personal branch. Merge main into our personal branch allows you to see the latest update. Khi đó thường dùng rebase thay vì merge.
 
-rebase can be used as:
-
-- alternative to merging
-- clean up tool (clean up commits) because it re-write the history
+rebase can be used as a clean up tool (clean up commits)
 
 With the rebase command, you can take all the changes that were committed on one branch and re-apply them on a different branch.
 
@@ -731,20 +797,144 @@ git rebase master
 
 Nếu merge thì checkout qua `master` rồi merge `feature` into `master`. Checkout to the final branch.
 
-There is no difference in the end product of the integration, but rebasing makes for a cleaner history. If you examine the log of a rebased branch, it looks like a linear history: it appears that all the work happened in series, even when it originally happened in parallel.
-
-If you are on the `main/master` branch, **NEVER** run `git rebase`. It is meant to be run when you are on the branches (bugfix, footer) not the main.  
-NEVER rebase commits that you have shared, pushed to Github.  
-Khi làm công ty thì phải hỏi cấp trên.
-
-Never rebase on public branches (`main`)
-
-In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
-Very often you will want to bring changes from `main` to my personal branch. Merge main into our personal branch allows you to see the latest update. Đây là một thao tác rất thường hay làm. Nhưng nếu dùng `merge` thì nó có một tác dụng phụ là commit log sẽ có nhiều merge commit. Merge commits have no real meaning, they are just merging. Chính vì vậy nên người ta mới dùng `rebase`.
-
-Rebasing your branch with the master `git rebase main`. You don't want to mess up the main branch.
-
 Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue`
+
+### Rebase vs merge
+
+- When rebase `A` on-to `main` => `main` will **NOT** move. Only `HEAD->A` move (on to the tip of `main`).
+- When merge `A` in-to `main` => `HEAD->main` will move forward pointing to the newly created **merge commit**. `A` will **NOT** move.
+
+- When you need to incorporate changes from `main` into your feature branch, rebase your `feature` onto `main` to avoid unnecessary merge commits.
+- Admin will merge your submitted feature branch into `main`.
+
+Rebase cannot replace merge but merge can replace rebase.
+
+This is the starting point: two branches `A & B` branching out from `main`.
+
+```bash
+$ git log --oneline --graph --decorate --all
+* 253841a (B) B adds new feature
+| * c93f63e (A) A add new feature
+|/
+* fd85cd3 (HEAD -> main) starting point
+* a877dab another commit
+```
+
+In this snippet, I merged `B` into `main`, then rebased `A` onto `main`.
+
+```bash
+$ git log --oneline --graph --decorate --all
+* a877dab (HEAD -> A) A add new feature
+* 35ac0bd (main, B) B add new feature
+* ae58796 starting over the demo
+```
+
+In this snippet, I also merged `B` into `main` (fast-forwarding); but now I will merge `A` into `main.
+
+```bash
+$ git log --oneline --graph --decorate --all
+*   b119f81 (HEAD -> main) Merge branch 'A' into 'main'
+|\
+| * c93f63e (A) A add new feature
+* | 253841a (B) B adds new feature
+|/
+* fd85cd3 starting point
+* a877dab another commit
+```
+
+You are working on `feature` branch, your team update `main`. This results in a forked history.
+
+Now, let’s say that the new commits in main are relevant to the feature that you’re working on. To incorporate the new commits into your feature branch, you have two options: merging or rebasing.
+
+to merge changes from `main` into feature branch
+
+```bash
+git checkout feature
+git merge main
+# Or, you can condense this to a one-liner
+git merge feature main
+```
+
+This creates a new “merge commit” in the `feature` time line that has two parents (`feature & main`).
+
+`main` is not changed in any way. The `feature` branch will have an extraneous merge commit every time you need to incorporate upstream changes. If main is very active, this can pollute your feature branch’s history quite a bit.
+
+As an alternative to merging, you can rebase the feature branch onto main branch using the following commands:
+
+```bash
+git checkout feature
+git rebase main
+```
+
+This moves the entire feature branch to begin on the tip of the main branch. But `main` is still not changed in any way.
+
+### How Git calculate commit hashes
+
+Each commit in Git has a unique SHA-1 hash, which is calculated based on its content, metadata (author, timestamp, commit message), and crucially, the hash of its parent commit(s). When you rebase, the parent commit of your feature branch commits changes (they are now based on the target branch's history). This change in the parent reference, even if the content of the commit itself is identical, results in a new, different SHA-1 hash for each rebased commit.
+
+These hashes is a unique identifier for each commit and acts as a "fingerprint" for the state of the repository at that specific point in time.
+
+For a regular commit, the hash is based on its preceding commit. For a merge commit, it includes the hashes of all parent commits involved in the merge.
+
+### What if your rebase `main` into `feature`?
+
+Nếu rebase `main` onto `feature`, the rebase moves all of the commits in main onto the tip of feature. The problem is that this only happened in your repository. All of the other developers are still working with the original main. Since rebasing results in brand new commits, Git will think that your main branch’s history has diverged from everybody else’s.
+
+The only way to synchronize the two main branches is to merge them back together, resulting in an extra merge commit and two sets of commits that contain the same changes (the original ones, and the ones from your rebased branch). Needless to say, this is a very confusing situation.
+
+So, before you run git rebase, always ask yourself, “Is anyone else looking at this branch?” If the answer is yes, take your hands off the keyboard and start thinking about a non-destructive way to make your changes (e.g., the git revert command). Otherwise, you’re safe to re-write history as much as you like.
+
+When you rebase, Git essentially takes the commits from your feature branch, "removes" them temporarily, and then reapplies them one by one on top of a new base commit (typically the latest commit of the target branch, like main).  
+Instead of simply moving the existing commits, Git effectively creates new commits that represent the same changes but are now linked to the new base. The old commits still exist in the Git repository for a period (until garbage collection), but they are no longer directly accessible through the branch pointer.  
+In essence, rebase doesn't just move commits; it reconstructs them with a new lineage, leading to the creation of new commits with different hashes. This is why rebasing a branch that has already been pushed to a remote and shared with others can be problematic, as it changes the history that others might have already based their work on.
+
+Notice the commit hashes before rebasing:
+
+```bash
+$ git log --all --decorate --oneline --graph
+* 0f441e1 (HEAD -> main) main add feature two
+* abfa932 main add feature one
+| * a4d08f6 (A) A add feature two
+| * f41e65e A add feature one
+|/
+* 93fc0ad starting point
+* b119f81 another commit
+```
+
+After rebase A into `main`, the two commit of `A` is moved onto the tip of `main` and their hash is changed too. The commit name & content is the same but the hash is changed.
+
+```bash
+$ git log --all --decorate --oneline --graph
+* 60b0a10 (HEAD -> A) A add feature two
+* 738e081 A add feature one
+* 0f441e1 (main) main add feature two
+* abfa932 main add feature one
+* 93fc0ad starting point
+*   b119f81 (origin/main, origin/HEAD) Merge branch 'A' into 'main'
+```
+
+Không được thay đổi `main` mà không có review.
+
+### Interactive rebasing
+
+Interactive rebasing gives you the opportunity to alter commits as they are moved to the new branch. This is even more powerful than an automated rebase, since it offers complete control over the branch’s commit history. Typically, this is used to clean up a messy history before merging a feature branch into main.
+
+To begin an interactive rebasing session, pass the i option to the git rebase command:
+
+```bash
+git checkout feature
+git rebase -i main
+```
+
+This will open a text editor listing all of the commits that are about to be moved:
+
+```bash
+pick 33d5b7a Message for commit #1
+pick 9480b3d Message for commit #2
+pick 5c67e61 Message for commit #3
+```
+
+the following command begins an interactive rebase of only the last 3 commits: `git checkout feature git rebase -i HEAD~3`
 
 ## Other techniques
 
