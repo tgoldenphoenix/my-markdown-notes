@@ -43,7 +43,9 @@ Git SSH URLs follow a template of: `git@HOSTNAME:USERNAME/REPONAME.git`. Host na
 `git status` show file states, merge conflicts status  
 `git status -uall <file/folder>`: Nếu muốn git status show files trong folders (mặc định chỉ show folder) thì [here](https://stackoverflow.com/questions/28222633/git-status-not-showing-contents-of-newly-added-folder)
 
-`git diff` compares **working directory** to staging area. The result tells you the changes you’ve made that you haven’t yet staged with `git add`.  
+### Demo git diff
+
+`git diff` so sánh sự khác nhau của  cùng một file nhưng ở các "stage" khác nhau trong git; `git diff` không dùng để so sánh 2 file khác nhau.  
 `git diff` does not compare file A and file B (there are different tool for that). It compare the same file A in different stages: same file on different commits, staged file and the latest commit, same file but on different branch.
 
 Nếu `git status` không có file nào modified thì `git diff` không có output gì hết.
@@ -76,64 +78,52 @@ index 6b0c6cf..b37e70a 100644
 ```
 
 The **chunk header** `@@ -1 +1 @@` means "line number one had changes". In the chunk header `+, -` means add/subtract lines  
-`@@ -34,6 +34,8 @@` means "6 lines have been extracted starting from line number 34. Additionally, 8 lines have been added starting at line number 34."
+`@@ -34,6 +34,8 @@` means "Before, starting from line number 34, there were 6 lines. After, start from 34, there is now 8 lines" => Add two more lines to the file.
 
-When a file path is passed to git diff the diff operation will be scoped to the specified file: `git diff HEAD ./path/to/file`  
-By default, git compare to `HEAD`. Omitting HEAD in the example above has the same effect.
+- `git diff` compare working directory vs stating area (thay đổi chưa `add`)
+- `git diff --staged` or `--cached` compare staging area (index) vs last commit (final review before `commit`)
+- `git diff HEAD` compare working directory vs last commit. By default, git compare to `HEAD`.
+- When a file path is passed to git diff the diff operation will be scoped to the specified file: `git diff HEAD ./path/to/file`. Omitting HEAD in the example above has the same effect.
+- Git diff two commit `git diff a498f47 7274899` compare commits. Or you can use the older `..` operator instead of space character such as `git diff a498f47..7274899`. Nên để 2 cái commit id theo đúng thứ tự thời gian `older..newer`. Nếu để commit ngược lại thì sẽ khó hiểu lắm.
+- `git diff branchOne..branchTwo`
 
-The `--staged or --cached` command in Git is used to display the differences between the staging area (also known as the index) and the last commit.
+A common workflow might look like:
 
-Git diff two commit `git diff a498f47 7274899`. Or you can use the older `..` operator instead of space character such as `git diff a498f47..7274899`.  
-Nên để 2 cái commit id theo đúng thứ tự thời gian `older..newer`. Nếu để commit ngược lại thì sẽ khó hiểu lắm.
+1. Make changes to multiple files
+2. Run `git diff` to review all changes
+3. Use `git add <file>` selectively to stage logical groups of changes
+4. Run `git diff --staged` to verify what's about to be committed
+5. Commit the staged changes with `git commit -m "Your message"`
+6. Repeat for other logical groupings of changes
 
-`git diff branchOne..branchTwo`
+Cách đọc output một số tình huống git diff thường gặp
 
-## git stash
+```bash
+$ git diff
+diff --git a/README.md b/README.md
+index 6424794..e29dc2c 100644
+--- a/README.md
++++ b/README.md
+@@ -7,4 +7,4 @@ main add feature one
+ main add feature two
+ A add feature one
 
-Why you need stash:
+-A add feature two
++add feature 10/10
+```
 
-- Create a repo, work & commit on `main`
-- Switch to another branch and work on it; maybe stage some files
-- Some bugs are found on other branch (or even `main`) and you need to fix it _immediately_. But, the thing is, git won't let you switch branch if there are some tracked or untracked changes. You must either commit of stash those changes before switching branch.
+Starting at line `7`, before 4 lines, after 4 lines. Two number `4` means some thing was changed but the total number of line stay the same.
 
-Run the command `git stash` to bring your un-committed changes to the stash. After this, you can switch branch.  
-When you come back to your branch, run `git stash pop` to bring back changes that you had stashed. You can actually pop changes that are stashed from one branch to a different branch. For example changes stashed in `bugfix` can be pop out in `main`.
+Dấu `+` means add line. Dấu `-` là deleted line.
 
-You should always first run `git stash list` and only dump the stash you want using something like `git stash apply stash@{0}`
-
-Remember stashing is meant to be used temporarily. And it should be used very carefully when you work with many people.
-
-Mot ứng dụng nữa là đang code mà muốn copy code từ branch khác: stash your changes -> go to other branches for reference, copy some code from other people (Minh Lê) -> go bach to your branch.
-
-## Add & Commit
-
-`git add *` does not add deleted files. Chỉ nên dùng `git add .` or `git add -A`.
-
-`git add` is also used to mark merge conflicts as resolved.
-
-- `git commit` launches your shell editor. It is also used to **conclude merges**
-- `git commit -v` puts the diff of your change in the shell editor.
-- `git commit -m <message>` không mở shell editor.
-- `git commit -a` automatically stage all tracked files before the commit. Using the option `-am` allows you to add and create a message for the commit in one command.
-
-`git commit -a -m 'Add new benchmarks'`. The `-a` option automatically stage every file that is already tracked before doing the commit, letting you skip the `git add` part. You can use `-am` or `-a -m`
-
-When you run git commit, Git creates a new commit object and moves the branch that `HEAD` points to up to it.
-
-### Moving, renaming & removing files
-
-`git rm file.txt` remove the file from your tracked files and also removes the file from your working directory.
-
-`git rm --cached README` _keep the file in your working tree_ but remove it from your staging area.
-
-Lỡ add, push lên github một folder rồi nhưng sau đó lại muốn bỏ thì sau khi cho vào `.gitignore` rồi phải run `git rm` nhé
-
-`git mv file_from file_to` **rename** a file in Git.
+- `@@ -5,3 +5,6 @@` means 3 lines was added. Trong dây `+`, `-` chỉ có nghĩa là "after, before".
+- `@@  -2,3 +2,4 @@` => add one line
 
 ### Viewing the commit history
-
+anki
 `git log` the most recent commits show up first.  
-`git log --oneline`
+`git log --oneline`  
+`git log --oneline -n 8` show only last 8 lines, ko show hết
 
 ```bash
 $ git log --oneline
@@ -159,6 +149,51 @@ The `--stat` shows some abbreviated stats for each commit.
 `-S` takes a string and shows only those commits that changed the number of occurrences of that string
 
 Each commit bao gồm: unique hash, pointer to its parent (except the first commit) & commit info (time, user email/name)
+
+## git stash
+
+Why you need stash:
+
+- Create a repo, work & commit on `main`
+- Switch to another branch and work on it; maybe stage some files
+- Some bugs are found on other branch (or even `main`) and you need to fix it _immediately_. But, the thing is, git won't let you switch branch if there are some tracked or untracked changes. You must either commit of stash those changes before switching branch.
+
+Run the command `git stash` to bring your un-committed changes to the stash. After this, you can switch branch.  
+When you come back to your branch, run `git stash pop` to bring back changes that you had stashed. You can actually pop changes that are stashed from one branch to a different branch. For example changes stashed in `bugfix` can be pop out in `main`.
+
+You should always first run `git stash list` and only dump the stash you want using something like `git stash apply stash@{0}`
+
+Remember stashing is meant to be used temporarily. And it should be used very carefully when you work with many people.
+
+Mot ứng dụng nữa là đang code mà muốn copy code từ branch khác: stash your changes -> go to other branches for reference, copy some code from other people (Minh Lê) -> go bach to your branch.
+
+The git stash command takes your uncommitted changes (both staged and unstaged), saves them away for later use, and then reverts them from your working copy. After this, you can switch branch.  
+When you come back to your branch, run git stash pop to bring back changes that you had stashed.
+
+## Add & Commit
+
+`git add *` does not add deleted files. Chỉ nên dùng `git add .` or `git add -A`.
+
+`git add` is also used to mark merge conflicts as resolved.
+
+- `git commit` launches your shell editor. It is also used to **conclude merges**
+- `git commit -v` puts the diff of your change in the shell editor.
+- `git commit -m <message>` không mở shell editor.
+- `git commit -a` automatically stage all tracked files before the commit. Using the option `-am` allows you to add and create a message for the commit in one command.
+
+`git commit -a -m 'Add new benchmarks'`. The `-a` option automatically stage every file that is already tracked before doing the commit, letting you skip the `git add` part. You can use `-am` or `-a -m`
+
+When you run git commit, Git creates a new commit object and moves the branch that `HEAD` points to up to it.
+
+### Moving, renaming & removing files
+
+`git rm file.txt` remove the file from your tracked files and also removes the file from your working directory.
+
+`git rm --cached README` _keep the file in your working tree_ but remove it from your staging area.
+
+Lỡ add, push lên github một folder rồi nhưng sau đó lại muốn bỏ thì sau khi cho vào `.gitignore` rồi phải run `git rm` nhé
+
+`git mv file_from file_to` **rename** a file in Git.
 
 ### Commit message
 
@@ -473,6 +508,70 @@ f4769cf C2
 
 `main` now points to commit `5c7893c` & we lose the commit `9cda0ca`.
 
+### Git revert
+
+`git revert` takes a specified commit, invert its changes and appends a new commit with the resulting inverse content. The specified commits are **NOT** removed from history. `HEAD` sẽ nhảy lên cái inverse commit mới tạo ra.
+
+`git revert` undo only one specified commit each time it is run.
+
+`git revert HEAD` revert the last commit.
+
+Let's demo on the terminal. First, add 3 commits.
+
+```bash
+$ echo "add feature revert 01" >> README.md
+$ git commit -am "add feature revert 01"
+[main e4e4f47] add feature revert 01
+ 1 file changed, 1 insertion(+)
+
+$ echo "\nadd feature revert 02" >> README.md
+$ git commit -am "add feature revert 02"
+[main b2dd9a8] add feature revert 02
+ 1 file changed, 1 insertion(+)
+
+$ echo "\nadd feature revert 03" >> README.md
+$ git commit -am "add feature revert 03"
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+[main 178ebd6] add feature revert 03
+ 1 file changed, 1 insertion(+)
+```
+
+The content of `README.md` is now as following.
+
+```text
+add feature revert 01
+add feature revert 02
+add feature revert 03
+```
+
+When we revert the last commit (feature 03), we got a new commit & the content of `README.md` is updated.
+
+```bash
+$ git log --oneline
+178ebd6 (HEAD -> main) add feature revert 03
+b2dd9a8 add feature revert 02
+e4e4f47 add feature revert 01
+60b0a10 another commit
+
+$ git revert HEAD
+[main 087c9db] Revert "add feature revert 03"
+ 1 file changed, 1 deletion(-)
+
+$ git log --oneline
+087c9db (HEAD -> main) Revert "add feature revert 03"
+178ebd6 add feature revert 03
+b2dd9a8 add feature revert 02
+e4e4f47 add feature revert 01
+60b0a10 another commit
+```
+
+The content of `README.md` is now updated. Notice that the feature 03 is gone!
+
+```txt
+add feature revert 01
+add feature revert 02
+```
+
 ## Github
 
 Issues & Github Projects: Bare-bones project management
@@ -582,7 +681,7 @@ Scenario 02: I’ve Made Experimental Changes and I Want to Discard Them: You’
 
 Scenario 03: I’ve Made Experimental Changes and I Want to Keep Them: If you want to keep changes made with a detached HEAD, just create a new branch and switch to it. You can create it right after arriving at a detached HEAD or after creating one or more commits. The result is the same. The only restriction is that you should do it before returning to your normal branch.
 
-`git branch <branch name>` creates a **new branch** which points to the same commit you’re currently on (`HEAD` point to it). Note that this command does not switch to the newly created branch.  
+`git branch <branch name>` creates a **new branch** which points to the same commit you’re currently on (`HEAD` point to it). Note that this command does not switch to the newly created branch như `git checkout -b`.  
 Now there are two branches point to the same commit object.
 
 - `git branch` list **local** branches. The current local branch will be marked with an asterisk (the branch that `HEAD` points to).
@@ -943,12 +1042,11 @@ the following command begins an interactive rebase of only the last 3 commits: `
 
 cherry-pick: pick any commit by its reference & appended to the current working HEAD
 
-`git revert` invert the changes introduced by the commit and appends a new commit with the resulting inverse content. This prevents Git from losing history.
+Nhánh `development` sẽ được merge vào nhánh `release`
 
-- `git reset` (soft, hard, mixed)
-  - Default `--mixed` if not specify
-  - `--soft`:
-  - `--hard`
+Người dùng sẽ sử dụng nhánh `main/master`. Nhánh `release` chứa những commits được scheduled để merge vào `main`.
+
+Nhánh `hotfix` chỉ nhảy ra từ `main` hoặc `release`
 
 ## Git Internals
 
