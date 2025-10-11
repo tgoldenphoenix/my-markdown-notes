@@ -21,6 +21,30 @@ GitHub changed the default branch name from `master` to `main` in mid-2020
 
 Using Visual Studio Code as your default git editor: `git config --global core.editor "code --wait"`
 
+### ssh key config
+
+Authentication key: prove your identity (log in) when communicating with Github (push code). It replace github password.
+
+- Signing key:
+  - used to cryptographically sign your commits and tags, proving that you made them and they weren’t tampered with.
+  - Không bắt buộc khi push code.
+
+Một ssh generate ra từ một local machine can only be used for one account on github. Nhưng một ssh key generate ra từ một laptop thinkpad có thể add cho một account github & một account nữa trên backlog git.
+
+Nếu không được "Add as Collaborators" trên github thì chỉ có quyền `clone` repo, không được push.
+
+Sau khi add collaborator thì được quyền push.
+
+SSH key is stored in `/Users/anhao/.ssh/`. Trong này chứa cả private & public key pair. Cái file `.pub` là public key còn cái file `id_ed25519` là private key.
+
+With SSH keys, if someone gains access to your computer, the attacker can gain access to every system that uses that key. To add an extra layer of security, you can add a passphrase to your SSH key. To avoid entering the passphrase every time you connect, you can securely save your passphrase in the SSH agent.
+
+When you set up SSH, you will need to generate a new private SSH key and add it to the SSH agent on your local machine. You must also add the public SSH key to your account on GitHub before you use the key to authenticate or sign commits.
+
+When you generate an SSH key, you can add a **passphrase** to further secure the key. Whenever you use the key, you must enter the passphrase. If your key has a passphrase and you don't want to enter the passphrase every time you use the key, you can add your key to the SSH agent. The SSH agent manages your SSH keys and remembers your passphrase.
+
+If you haven't used your SSH key for a year, then GitHub will automatically delete your inactive SSH key as a security precaution.
+
 ## Initializing a new repository
 
 `git init` (automatically create the `master or main` branch). Executing this command will create a new `.git` subdirectory in your current working directory.
@@ -120,6 +144,7 @@ Dấu `+` means add line. Dấu `-` là deleted line.
 - `@@  -2,3 +2,4 @@` => add one line
 
 ### Viewing the commit history
+
 anki
 `git log` the most recent commits show up first.  
 `git log --oneline`  
@@ -572,53 +597,6 @@ add feature revert 01
 add feature revert 02
 ```
 
-## Github
-
-Issues & Github Projects: Bare-bones project management
-
-Github Actions: Automated build/release pipelines.
-
-## Fork, Pull Request & Open Source contribution
-
-Khi làm với repo công ty, người khác:
-
-- fork project về github cá nhân
-- clone project vừa fork về máy tính
-- add thêm remote url chính (của repo công ty)
-- Đứng từ main branch, checkout sang branch làm việc mới. Làm xong rồi merge vào master. Rồi lại checkout ra làm funtion khác. Không code trực tiếp vào master.
-- Làm xong push lên git repo cá nhân, sau đó mở remote công ty tạo **pull request**. Không push `main` mà push cái branch mình làm ví dụ `hotfix, tinh_nang_2`
-
-Không dùng `git push origin main` mà dùng `git push origin [your branch name]`. Sau khi push rồi thì tạo pull request. Có thể tạo pull request bằng GUI trên github.
-
-Review pull request
-
-- Nếu pull request sau khi review thấy cần phải sửa lại code
-- Sửa lại code trên local. `git add`
-- `git commit --amend` trên local
-- `git push origin add_header -f` force push lên cái pull request
-
-Pull request is code reviews.
-
-Open issues để talk to people trước khi viết bất cứ dòng code nào.
-
-To contribute to an open source remote repo: create a fork (or just download the zip file) into your account. Clone the fork from your account to your local machine. Create another branch to work onto it, fix a bug, add a feature. Then you `add`, `commit` on your branch. Then you push `git push origin navbar` (your branch not `main`).
-
-Pull request: Hey I've made some changes and I want to send them changes to the owner of the repo from which I forked. Title & description of the PR must be written carefully. It helps the maintainer to understand what you want to push. Sau khi mình gởi PR rồi thì repo owner bên kia họ sẽ review, check your description, commit diffs, how many files were changed/added. Somebody from the maintainer team must manually go through this. It cannot be automated. Because this is a PR directory to `main`. Maintainer có thể merge PR nếu thấy ổn.
-
-Reference:
-
-[Trung quân dev hướng dẫn git](https://www.youtube.com/watch?v=swlrBlriFPE&list=PLP6tw4Zpj-RLzH_NrF8j6SvZLuPk6t948&index=4)
-
-Basic Git workflow with a remote hosting service [here](https://www.atlassian.com/git)
-
-[Solo Development Use Cases](https://www.youtube.com/watch?v=NkIAMP8uTik&t=262s)
-
-[Github Workflow for a Single Developer Project](https://www.youtube.com/watch?v=5smG5Dr-93E)
-
-[cách contribute to open source](https://www.youtube.com/watch?v=zTjRZNkhiEU) by Hitesh Choudhary
-
-[folder practice hosted by Hitesh Choudhary](https://github.com/hiteshchoudhary/open-source-contribution)
-
 ## Tagging
 
 A **tag** is like a branch[^1] that doesn’t change. Unlike branches, tags, after being created, have no further history of commits.
@@ -751,137 +729,7 @@ Delete branch: `git branch -d <branch name>`. You delete branch after merging su
 
 `git mergetool` fires up an appropriate visual merge tool and walks you through the conflicts
 
-### Changing a branch name
-
-`git branch --move bad-branch-name corrected-branch-name` This replaces your bad-branch-name with corrected-branch-name, but this change is only local for now. To let others see the corrected branch on the remote, push it `git push --set-upstream origin corrected-branch-name`
-
-`git branch --all` List both remote-tracking branches and local branches
-
-`git push origin --delete bad-branch-name` delete bad-branch-name remote branch
-
-### Changing the master branch name
-
-`git branch --move master main` Rename your local master branch into main. To let others see the new main branch, you need to push it to the remote. This makes the renamed branch available on the remote: `git push --set-upstream origin main`
-`git push origin --delete master` delete the master branch on remote
-
-### Remote Branches
-
-`master` was the default branch name for Git repositories until GitHub changed the default to `main` in October 2020.
-
-We can check out a commit the same way we’d check out branches. Remember, branches are just names for commits.
-
-The refs for local branches are stored in the `./.git/refs/heads/`. Remote branch refs live in the `./.git/refs/remotes/` directory.
-
-**Remote references** are references (pointers) in your remote repositories (not in your local repo), including branches, tags, and so on.  
-You can get a full list of remote references explicitly with `git ls-remote <remote>`, or `git remote show <remote>` for remote branches as well as more information  
-`git remote -v` show remote repos names and their URLs và loại truy cập (fetch hoặc push)
-
-**Remote tracking branches** are local branch pointers to the state of remote branches. They’re **local** references that you **can’t move**; Git moves them for you whenever you do any network communication. Example `origin/master` show you what the `master` branch on your `origin` remote repo looked like as of the last time you communicated with it. Một ví dụ nữa là `teamone/master` for another remote repo.
-
-- remote tracking branches like `origin/master` only move (update themselves) when you run `git fetch <remote>`
-- local branch like `master` move when you commit locally
-- Silimar: both are local branch pointer
-
-Với remote tracking branches, `fetch, pull, push` can omit the remote and branch names, as Git automatically knows where to pull from and push to.
-
-`git fetch --all` update all your remote-tracking branches like `origin/main` with the online repo.  
-`git fetch origin` update & download all branches from the remote as remote tracking branches
-
-`git remote add <name> <URL>` add new remote server (`origin`, `teamone`, `teamtwo`)
-
-`git remote add <your_name_of_choice> <remote_repo_url>` to add a new remote reference.
-
-You can only push to remote servers in which you have write access (your own repo or forked repo). Run `git push <remote> <branch>`
-
-- `git push origin serverfix` => Take my `serverfix` local branch and make it the remote’s `serverfix` branch.
-- `git push origin serverfix:anhao` => Take my `serverfix` local branch and make it the remote's `anhao` branch. You can use this format to push a local branch into a remote branch that is named differently.
-
-`git push <remote_name> <local_branch_name>` This command will push the local branch `<local_branch_name >` to the remote repo at `< remote_name >`. For example: `git push origin master` push your local `master` branch to your `origin` server (cloning generally sets up both of those names for you automatically).
-
-`git push -u origin main` push into origin from my main. Instead of main, you can push from `production` or maybe `deploy` branch.  
-The `-u` option is short for `--set-upstream` and it sets up an upstream that allow you to run future commands of `git push`. Nếu không có upstream thì mỗi lần push phải specify origin & main.
-
-`git push origin main` This command works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime. If you and someone else clone at the same time and they push upstream and then you push upstream, your push will rightly be rejected. You’ll have to fetch their work first and incorporate it into yours before you’ll be allowed to push.
-
-You can also do `git push origin serverfix:serverfix`, which does the same thing — it says, “Take my serverfix and make it the remote’s serverfix.” You can use this format to push a local branch into a remote branch that is named differently. If you didn’t want it to be called serverfix on the remote, you could instead run `git push origin serverfix:awesomebranch` to push your local serverfix branch to the awesomebranch branch on the remote project.
-
-### Tracking branches
-
-It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new `serverfix` branch — you have only an `origin/serverfix` pointer that you can’t modify.
-To merge this work into your current working branch, you can run `git merge origin/serverfix`. If you want your own serverfix branch that you can work on, you can base it off your remote-tracking branch:
-
-```git
-$ git checkout -b serverfix origin/serverfix
-Branch serverfix set up to track remote branch serverfix from origin.
-Switched to a new branch 'serverfix'
-```
-
-This create a new local **tracking branch** named `serverfix` that you can work on that starts where `origin/serverfix` is.
-
-Checking out a local branch from a remote-tracking branch automatically creates what is called a **tracking branch** (and the branch it tracks is called an **upstream branch** like `origin/hotfix`). Tracking branches are local branches that have a direct relationship to a remote branch. If you’re on a tracking branch and type `git pull`, Git automatically knows which server to `fetch` from and which branch to `merge` in.
-
-- `git push`  # Automatically pushes to the tracked remote branch
-- `git pull`  # Automatically pulls from the tracked remote branch
-
-When you clone a repository, it generally automatically creates a `master` branch that tracks `origin/master`. However, you can set up other tracking branches if you wish — ones that track branches on other remotes, or don’t track the master branch. The simple case is the example you just saw, running `git checkout -b <branch> <remote>/<branch>`.
-
-`git branch -vv` list out your local branches with more information including what each branch is tracking and if your local branch is ahead, behind or both.
-
-- **ahead by two** means that we have two commits locally that are not `pushed` to the server
-- **ahead by three and behind by one** means that there is one commit on the server we haven’t merged in yet and three commits locally that we haven’t pushed.
-- It’s important to note that these numbers are only since the last time you fetched from each server. This command does not reach out to the servers, it’s telling you about what it has cached from these servers locally. If you want totally up to date ahead and behind numbers, you’ll need to fetch from all your remotes right before running this. You could do that like this: `git fetch --all; git branch -vv`.
-
-## Pushing code to github & working with remotes
-
-SSH key is stored in `/Users/anhao/.ssh/`. Trong này chứa cả private & public key pair. Cái file `.pub` là public key còn cái file `id_ed25519` là private key.
-
-With SSH keys, if someone gains access to your computer, the attacker can gain access to every system that uses that key. To add an extra layer of security, you can add a passphrase to your SSH key. To avoid entering the passphrase every time you connect, you can securely save your passphrase in the SSH agent.
-
-When you set up SSH, you will need to generate a new private SSH key and add it to the SSH agent on your local machine. You must also add the public SSH key to your account on GitHub before you use the key to authenticate or sign commits.
-
-When you generate an SSH key, you can add a **passphrase** to further secure the key. Whenever you use the key, you must enter the passphrase. If your key has a passphrase and you don't want to enter the passphrase every time you use the key, you can add your key to the SSH agent. The SSH agent manages your SSH keys and remembers your passphrase.
-
-If you haven't used your SSH key for a year, then GitHub will automatically delete your inactive SSH key as a security precaution.
-
-`git branch -M main` is used to change your branch name from master -> main.
-
-The git remote command is essentially an interface for managing a list of remote entries that are stored in the repository's `./.git/config file`.
-
-`git remote` lists the shortnames of each remote handle you’ve specified.  
-To see your remotes & their URLs: `git remote -v` the `-v` option shows you the URLs that Git has stored for the shortname to be used when reading and writing to that remote.
-
-`git remove add <NAME> <URL>`. For example `git remote add origin https://github.com/tgoldenphoenix/learn-git.git` the origin is the name.  
-Thật ra khi muốn push 1 local repo lên github mình chỉ cần tạo rồi lấy cái URL là xong. Không cần example commands mà nó gợi ý.
-
-`git remote show <remote>` see more information about a particular remote
-
-`git remote rename oldname newname` rename remote
-
-`git remote remove NAME` or `git remote rm` remove a remote
-
-Two of the easiest ways to access a remote repo are via the HTTP and the SSH protocols. HTTP is an easy way to allow anonymous, read-only access to a repository.
-
-But, it’s generally not possible to push commits to an HTTP address (you wouldn’t want to allow anonymous pushes anyways). For read-write access, you should use SSH instead:
-
-### Fetch & Pull
-
-You make your changes in the working area (working directory) -> add them to the staging area -> commit to the local repo -> then push to remote repo. Trước khi push thì mình muốn pull changes made by colleagues on remote về để khi push lên là fresh.
-
-The `git fetch` command downloads commits, files, and refs from a remote repository into your local repo. Fetching is what you do when you want to see what everybody else has been working on. It lets you see how the central history has progressed, but it doesn’t force you to actually merge the changes into your repository. Git isolates fetched content from existing local content; it has absolutely no effect on your local development work. Fetched content has to be **explicitly checked out** using the git checkout command.  
-After checking out the fetch, you can `merge` it into your `main`.
-
-`git fetch` simply get the data for you and let you merge it yourself. However, there is a command called git pull which is essentially a git fetch immediately followed by a `git merge` in most cases.
-
-`git fetch <remote>` fetches any new work that has been pushed to that remote server since you cloned (or last fetched from) it, stored it inside your local repo but don't put it in your working area. While `git pull` put the changes into your working area. Nếu không tin tưởng colleagues thì dùng git fetch thôi.  
-git pull = git fetch + git merge
-
-While the `git fetch`  command will fetch all the changes on the server that you don’t have yet, it will not modify your working directory at all. It will simply get the data for you and let you merge it yourself. However, there is a command called `git pull` which is essentially a git fetch immediately followed by a git merge in most cases. If you have a tracking branch set up as demonstrated in the last section, either by explicitly setting it or by having it created for you by the clone or checkout commands, git pull will look up what server and branch your current branch is tracking, fetch from that server and then try to merge in that remote branch.
-
-Generally it’s better to simply use the fetch and merge commands explicitly as the magic of git pull can often be confusing.
-
-`git pull origin main` changes will be merged to main. Hoặc dùng `git pull origin` or just `git pull`
-
-## Rebase
+### Rebase
 
 In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
 Very often you will want to bring changes from `main` to my personal branch. Merge main into our personal branch allows you to see the latest update. Khi đó thường dùng rebase thay vì merge.
@@ -1038,6 +886,225 @@ pick 5c67e61 Message for commit #3
 
 the following command begins an interactive rebase of only the last 3 commits: `git checkout feature git rebase -i HEAD~3`
 
+### Changing a branch name
+
+`git branch --move bad-branch-name corrected-branch-name` This replaces your bad-branch-name with corrected-branch-name, but this change is only local for now. To let others see the corrected branch on the remote, push it `git push --set-upstream origin corrected-branch-name`
+
+`git branch --all` List both remote-tracking branches and local branches
+
+`git push origin --delete bad-branch-name` delete bad-branch-name remote branch
+
+### Changing the master branch name
+
+`git branch --move master main` Rename your local master branch into main. To let others see the new main branch, you need to push it to the remote. This makes the renamed branch available on the remote: `git push --set-upstream origin main`
+`git push origin --delete master` delete the master branch on remote
+
+## Working with Remote
+
+`master` was the default branch name for Git repositories until GitHub changed the default to `main` in October 2020.
+
+We can check out a commit the same way we’d check out branches. Remember, branches are just names for commits.
+
+The refs for local branches are stored in the `./.git/refs/heads/`. Remote branch refs live in the `./.git/refs/remotes/` directory.
+
+**Remote references** are references (pointers) in your remote repositories (not in your local repo), including branches, tags, and so on.  
+You can get a full list of remote references explicitly with `git ls-remote <remote>`, or `git remote show <remote>` for remote branches as well as more information  
+`git remote -v` show remote repos names and their URLs và loại truy cập (fetch hoặc push)
+
+**Remote tracking branches** are local branch pointers to the state of remote branches. They’re **local** references that you **can’t move**; Git moves them for you whenever you do any network communication. Example `origin/master` show you what the `master` branch on your `origin` remote repo looked like as of the last time you communicated with it. Một ví dụ nữa là `teamone/master` for another remote repo.
+
+- remote tracking branches like `origin/master` only move (update themselves) when you run `git fetch <remote>`
+- local branch like `master` move when you commit locally
+- Silimar: both are local branch pointer
+
+Với remote tracking branches, `fetch, pull, push` can omit the remote and branch names, as Git automatically knows where to pull from and push to.
+
+`git fetch --all` update all your remote-tracking branches like `origin/main` with the online repo.  
+`git fetch origin` update & download all branches from the remote as remote tracking branches
+
+`git remote add <name> <URL>` add new remote server (`origin`, `teamone`, `teamtwo`)
+
+`git remote add <your_name_of_choice> <remote_repo_url>` to add a new remote reference.
+
+You can only push to remote servers in which you have write access (your own repo or forked repo). Run `git push <remote> <branch>`
+
+- `git push origin serverfix` => Take my `serverfix` local branch and make it the remote’s `serverfix` branch.
+- `git push origin serverfix:anhao` => Take my `serverfix` local branch and make it the remote's `anhao` branch. You can use this format to push a local branch into a remote branch that is named differently.
+
+`git push <remote_name> <local_branch_name>` This command will push the local branch `<local_branch_name >` to the remote repo at `< remote_name >`. For example: `git push origin main` push your local `main` branch to your `origin` server (cloning generally sets up both of those names for you automatically).
+
+`git push -u origin main` push into origin from my main. Instead of main, you can push from `production` or maybe `deploy` branch.  
+The `-u` option is short for `--set-upstream` and it sets up an upstream that allow you to run future commands of `git push`. Nếu không có upstream thì mỗi lần push phải specify origin & main.
+
+`git push origin main` This command works only if you cloned from a server to which you have write access and if nobody has pushed in the meantime. If you and someone else clone at the same time and they push upstream and then you push upstream, your push will rightly be rejected. You’ll have to fetch their work first and incorporate it into yours before you’ll be allowed to push.
+
+You can also do `git push origin serverfix:serverfix`, which does the same thing — it says, “Take my serverfix and make it the remote’s serverfix.” You can use this format to push a local branch into a remote branch that is named differently. If you didn’t want it to be called serverfix on the remote, you could instead run `git push origin serverfix:awesomebranch` to push your local serverfix branch to the awesomebranch branch on the remote project.
+
+Nếu remote's `main` move forward, có commit mới mà local push `origin main` thì sẽ lỗi này:
+
+```bash
+$ git push origin main
+To github.com:anhaoerv/demo-git.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'github.com:anhaoerv/demo-git.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+Git nó không có `fetch` lúc mình push. Chỉ đơn giản là lúc push lên nếu git thấy remote có commit mà local chưa có thì nó reject. Lúc này local phải merge những commit đó vào. Nếu chỉ `fetch`, không merge và `push` lên nửa thì cũng bị reject nhưng với một message khác chút xíu. Trong trường hợp bên dưới sau khi `fetch` về rồi `log` ra không còn thấy `origin/main` luôn.
+
+```bash
+❯ git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 939 bytes | 78.00 KiB/s, done.
+From github.com:anhaoerv/demo-git
+   3512a03..8a02d1e  main       -> origin/main
+
+~/Desktop/demo-git on  main ⇕ ......................................................................................................................3s
+❯ git log --oneline -n 6
+6ab407b (HEAD -> main) made some changes on mac
+3512a03 test ssh on mac
+b119f81 Merge branch 'A' into 'main'
+253841a B adds new feature
+c93f63e A add new feature
+fd85cd3 starting point
+
+## vẫn bị reject nhưng message khác
+~/Desktop/demo-git on  main ⇕ ........................................................................................................................
+❯ git push origin main
+To github.com:anhaoerv/demo-git.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'github.com:anhaoerv/demo-git.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+Lúc này phải `fetch` & `merge origin/main` rồi mới `push` được.
+
+```bash
+# khong có commit "made some changes on mac"
+❯ git log origin/main --oneline -n 5
+8a02d1e (origin/main, origin/HEAD) made some changes to main
+3512a03 test ssh on mac
+b119f81 Merge branch 'A' into 'main'
+253841a B adds new feature
+c93f63e A add new feature
+```
+
+`git pull` = `git fetch origin` + `git merge origin/main` (resolve nếu có merge conflict). Sau đó `push` lên.
+
+The git remote command is essentially an interface for managing a list of remote entries that are stored in the repository's `./.git/config file`.
+
+`git remote` lists the shortnames of each remote handle you’ve specified.  
+To see your remotes & their URLs: `git remote -v` the `-v` option shows you the URLs that Git has stored for the shortname to be used when reading and writing to that remote.
+
+`git remove add <NAME> <URL>`. For example `git remote add origin https://github.com/tgoldenphoenix/learn-git.git` the origin is the name.  
+Thật ra khi muốn push 1 local repo lên github mình chỉ cần tạo rồi lấy cái URL là xong. Không cần example commands mà nó gợi ý.
+
+`git remote show <remote>` see more information about a particular remote
+
+`git remote rename oldname newname` rename remote
+
+`git remote remove NAME` or `git remote rm` remove a remote
+
+Two of the easiest ways to access a remote repo are via the HTTP and the SSH protocols. HTTP is an easy way to allow anonymous, read-only access to a repository.
+
+But, it’s generally not possible to push commits to an HTTP address (you wouldn’t want to allow anonymous pushes anyways). For read-write access, you should use SSH instead:
+
+### Tracking branches
+
+It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new `serverfix` branch — you have only an `origin/serverfix` pointer that you can’t modify.
+To merge this work into your current working branch, you can run `git merge origin/serverfix`. If you want your own serverfix branch that you can work on, you can base it off your remote-tracking branch:
+
+```git
+$ git checkout -b serverfix origin/serverfix
+Branch serverfix set up to track remote branch serverfix from origin.
+Switched to a new branch 'serverfix'
+```
+
+This create a new local **tracking branch** named `serverfix` that you can work on that starts where `origin/serverfix` is.
+
+Checking out a local branch from a remote-tracking branch automatically creates what is called a **tracking branch** (and the branch it tracks is called an **upstream branch** like `origin/hotfix`). Tracking branches are local branches that have a direct relationship to a remote branch. If you’re on a tracking branch and type `git pull`, Git automatically knows which server to `fetch` from and which branch to `merge` in.
+
+- `git push`  # Automatically pushes to the tracked remote branch
+- `git pull`  # Automatically pulls from the tracked remote branch
+
+When you clone a repository, it generally automatically creates a `master` branch that tracks `origin/master`. However, you can set up other tracking branches if you wish — ones that track branches on other remotes, or don’t track the master branch. The simple case is the example you just saw, running `git checkout -b <branch> <remote>/<branch>`.
+
+`git branch -vv` list out your local branches with more information including what each branch is tracking and if your local branch is ahead, behind or both.
+
+- **ahead by two** means that we have two commits locally that are not `pushed` to the server
+- **ahead by three and behind by one** means that there is one commit on the server we haven’t merged in yet and three commits locally that we haven’t pushed.
+- It’s important to note that these numbers are only since the last time you fetched from each server. This command does not reach out to the servers, it’s telling you about what it has cached from these servers locally. If you want totally up to date ahead and behind numbers, you’ll need to fetch from all your remotes right before running this. You could do that like this: `git fetch --all; git branch -vv`.
+
+### Fetch & Pull
+
+You make your changes in the working area (working directory) -> add them to the staging area -> commit to the local repo -> then push to remote repo. Trước khi push thì mình muốn pull changes made by colleagues on remote về để khi push lên là fresh.
+
+The `git fetch` command downloads commits, files, and refs from a remote repository into your local repo. Fetching is what you do when you want to see what everybody else has been working on. It lets you see how the central history has progressed, but it doesn’t force you to actually merge the changes into your repository. Git isolates fetched content from existing local content; it has absolutely no effect on your local development work. Fetched content has to be **explicitly checked out** using the git checkout command.  
+After checking out the fetch, you can `merge` it into your `main`.
+
+`git fetch` simply get the data for you and let you merge it yourself. However, there is a command called git pull which is essentially a git fetch immediately followed by a `git merge` in most cases.
+
+`git fetch <remote>` fetches any new work that has been pushed to that remote server since you cloned (or last fetched from) it, stored it inside your local repo but don't put it in your working area. While `git pull` put the changes into your working area. Nếu không tin tưởng colleagues thì dùng git fetch thôi.  
+git pull = git fetch + git merge
+
+While the `git fetch`  command will fetch all the changes on the server that you don’t have yet, it will not modify your working directory at all. It will simply get the data for you and let you merge it yourself. However, there is a command called `git pull` which is essentially a git fetch immediately followed by a git merge in most cases. If you have a tracking branch set up as demonstrated in the last section, either by explicitly setting it or by having it created for you by the clone or checkout commands, git pull will look up what server and branch your current branch is tracking, fetch from that server and then try to merge in that remote branch.
+
+Generally it’s better to simply use the fetch and merge commands explicitly as the magic of git pull can often be confusing.
+
+`git pull origin main` changes will be merged to main. Hoặc dùng `git pull origin` or just `git pull`
+
+### Fork, Pull Request & Open Source contribution
+
+Khi làm với repo công ty, người khác:
+
+- fork project về github cá nhân. Nếu có quyền push branch thì clone về luôn khỏi fork.
+- clone project vừa fork về máy tính
+- add thêm remote url chính (của repo công ty) nếu fork.
+- Đứng từ `main` branch, checkout sang branch làm việc mới. Vừa làm vừa rebase vào `main`. Không code trên `main`.
+- Làm xong push lên git repo cá nhân, sau đó mở remote công ty tạo **pull request**. Không push `main` mà push cái branch mình làm ví dụ `hotfix, tinh_nang_2` rồi tạo pull request. `main` chỉ có quyền `fetch` về thôi.
+
+Không dùng `git push origin main` mà dùng `git push origin [your branch name]`. Sau khi push rồi thì tạo pull request. Có thể tạo pull request bằng GUI trên github.
+
+- Review pull request
+  - Nếu pull request sau khi review thấy cần phải sửa lại code
+  - Sửa lại code trên local. `git add`
+  - `git commit --amend` trên local
+  - `git push origin add_header -f` force push lên cái pull request
+
+Pull request is code reviews.
+
+Open issues để talk to people trước khi viết bất cứ dòng code nào.
+
+To contribute to an open source remote repo: create a fork (or just download the zip file) into your account. Clone the fork from your account to your local machine. Create another branch to work onto it, fix a bug, add a feature. Then you `add`, `commit` on your branch. Then you push `git push origin navbar` (your branch not `main`).
+
+Pull request: Hey I've made some changes and I want to send them changes to the owner of the repo from which I forked. Title & description of the PR must be written carefully. It helps the maintainer to understand what you want to push. Sau khi mình gởi PR rồi thì repo owner bên kia họ sẽ review, check your description, commit diffs, how many files were changed/added. Somebody from the maintainer team must manually go through this. It cannot be automated. Because this is a PR directory to `main`. Maintainer có thể merge PR nếu thấy ổn.
+
+### Creating a pull request from a fork
+
+If you want to create a new branch for your pull request and do not have write permissions to the repository, you can fork the repository first.
+
+## Github
+
+Issues & Github Projects: Bare-bones project management
+
+Github Actions: Automated build/release pipelines.
+
+[Gists](https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists) provide a simple way to share **code snippets** with others. Every gist is a Git repository, which means that it can be forked and cloned. If you are signed in to GitHub when you create a gist, the gist will be associated with your account and you will see it in your list of gists when you navigate to your gist home page.
+
+A [codespace](https://docs.github.com/en/codespaces/overview) is a development environment that's hosted in the cloud. You can customize your project for GitHub Codespaces by committing configuration files to your repository (often known as Configuration-as-Code), which creates a repeatable codespace configuration for all users of your project. See "Introduction to dev containers."
+
+[stack overflow](https://stackoverflow.com/questions/23611669/how-to-find-the-created-date-of-a-repository-project-on-github) How to find the created date of a repository project on GitHub? using github api
+
 ## Other techniques
 
 cherry-pick: pick any commit by its reference & appended to the current working HEAD
@@ -1056,24 +1123,3 @@ The SHA-1 checksum is a 40 hexadecimal digits number.
 
 Hooks are scripts that are executed automatically in certain conditions.
 
-## Other Github features
-
-[Gists](https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists) provide a simple way to share **code snippets** with others. Every gist is a Git repository, which means that it can be forked and cloned. If you are signed in to GitHub when you create a gist, the gist will be associated with your account and you will see it in your list of gists when you navigate to your gist home page.
-
-A [codespace](https://docs.github.com/en/codespaces/overview) is a development environment that's hosted in the cloud. You can customize your project for GitHub Codespaces by committing configuration files to your repository (often known as Configuration-as-Code), which creates a repeatable codespace configuration for all users of your project. See "Introduction to dev containers."
-
-[stack overflow](https://stackoverflow.com/questions/23611669/how-to-find-the-created-date-of-a-repository-project-on-github) How to find the created date of a repository project on GitHub? using github api
-
-## Terminology
-
-## References
-
-[How to Use Git and GitHub in a Team like a Pro – Featuring Harry and Hermione 🧙](https://www.freecodecamp.org/news/how-to-use-git-and-github-in-a-team-like-a-pro/)
-
-[how to git push](https://devconnected.com/how-to-push-git-branch-to-remote/) mình dùng trong edunext
-
-atlassian.com/git
-
-[How GIT works under the HOOD?](https://www.youtube.com/watch?v=RxHJdapz2p0&t=410s)
-
-[learn git by Hitesh Choudhary](https://www.youtube.com/watch?v=zTjRZNkhiEU) beginner friendly, very good.
