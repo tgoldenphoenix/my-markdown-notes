@@ -612,13 +612,38 @@ As a good practice, an **asynchronous action should always return a promise**. T
 
 ### Async/await
 
-The word `async` before a function means one simple thing: **an async function always returns a promise**. Other values are automatically wrapped in a resolved promise.
+The word `async` before a function means one simple thing: **an async function always returns a promise**. Other values are automatically wrapped in a **resolved** promise.
+
+```javascript
+// This function returns a resolved promise with the result of `1`
+async function f() {
+  return 1;
+}
+f().then(alert); // 1
+```
 
 - When you declare a function with the `async` keyword, it implicitly returns a promise.
 - If the function returns a non-promise value, JavaScript automatically wraps that value in a resolved promise like `Promise.resolve(1)`.
 - If the async function throws an error, it returns a rejected promise.
 
-The keyword `await` only works in `async` function. The keyword makes JavaScript wait until that promise settles and returns its result (either `resolve('result')` or `reject(error object)`). That doesn’t cost any CPU resources, because the JavaScript engine can do other jobs in the meantime: execute other scripts, handle events, etc.
+The keyword `await` only works in `async` function. It stop the `async` function until the promise **settles** and returns its result (either `resolve('result')` or `reject(error object)`). That doesn’t cost any CPU resources, because the JavaScript engine can do other jobs in the meantime: execute other scripts, handle events, etc.
+
+```javascript
+async function f() {
+
+  let promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve("done!"), 1000)
+  });
+
+  let result = await promise; // wait until the promise resolves (*)
+
+  alert(result); // "done!"
+}
+
+f();
+```
+
+The function execution “pauses” at the line (*) and resumes when the promise settles, with result becoming its result. So the code above shows “done!” in one second.
 
 `await` is just a more elegant syntax of getting the promise result than `promise.then`. And, it’s easier to read and write.
 
@@ -633,6 +658,10 @@ You can `await` a promise to be fulfilled like [here](https://developer.mozilla.
 `await` makes JavaScript wait, but it doesn’t Block the Event Loop.  
 When await is used inside an async function, The function execution is paused at the await statement. This pause only affects the function where await is used, not the entire JavaScript execution.  
 If the awaited operation takes time (e.g., an API call), it runs independently, while the event loop continues processing other tasks.
+
+```javascript
+
+```
 
 ### Compare with Async in Java
 
