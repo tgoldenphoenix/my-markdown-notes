@@ -485,32 +485,70 @@ Synchronous là "đồng bộ", Async là "bất đồng bộ"
 
 A function that does something asynchronously should provide a `callback` argument where we put the function to run after it’s complete (timer for example).
 
-AJAX: Asynchronous JavaScript And XML: Allows us to communicate with remote web servers in an asynchronous way. With AJAX calls, we can request data from web servers dynamically.  
+**AJAX (Asynchronous JavaScript And XML)** Allows us to communicate with remote web servers in an asynchronous way. With AJAX calls, we can request data from web servers dynamically.  
 It uses `XMLHttpRequest` (XHR) objects to interact with servers. Hiện nay người ta dùng JSON.
 
 Nesting multiple callbacks (more than 3) is not a good idea. In which case, we use `Promises`  
 A `promise` is a special JavaScript object that links the **producing code** and the “consuming code” together. The “producing code” takes whatever time it needs to produce the promised result, and the “promise” makes that result available to all of the subscribed code when it’s ready.
 
+`new Promise()` return a **promise object**. The **executor function** passed to `new Promises()` has two arguments: `resolve` and `reject`. They are callbacks provided by the JavaScript engine itself.
+
 ```javascript
 let promise = new Promise(function(resolve, reject) {
-  // executor (the producing code, "singer")
+  // The executor function
+  // the function is executed automatically when the promise is constructed
+
+  // after 1 second signal that the job is done with the result "done"
+  setTimeout(() => resolve("done"), 1000);
 });
 ```
 
-The **executor function** passed to `new Promises()` has two arguments: `resolve` and `reject`. They are callbacks provided by the JavaScript engine itself.
-
 - You can call `reject()` with a string error message. But it is recommended to use `Error` objects (or objects that inherit from Error).
 - You can call them without any parameter
-- The executor function do NOT run when we defined it with `new Promise()`, it only run when we call `promise.then()` on the promise object.
+
+The executor function runs **immediately**, synchronously, as soon as new Promise() is called. It does not wait for .then() or await.
+
+But the resolution (then-callback) runs asynchronously. If you add a `.then()`, the callback inside .then() runs later, after the promise is resolved (even if it resolves instantly).  
+This is because .then() callbacks are queued in the microtask queue — meaning they always run after the current synchronous code finishes.
+
+```javascript
+console.log("Before");
+
+const promise = new Promise((resolve, reject) => {
+  console.log("Inside executor");
+  setTimeout(() => resolve("Done!"), 1000);
+});
+
+console.log("After");
+
+/* output:
+Before
+Inside executor
+After
+*/
+
+const p = new Promise((resolve) => {
+  console.log("Executor runs now");
+  resolve("Done");
+});
+
+p.then(value => console.log("Then runs later"));
+console.log("After creating promise");
+
+/*Output:
+Executor runs now
+After creating promise
+Then runs later
+*/
+```
 
 - `resolve("done!")` will return a string `"done"` and become the input for `.then`
 - `reject( new Error("Whoops!") )` returns an error object as the input for `.catch`
 
-The `new Promise` constructor return a **promise object** that has two internal properties:
-
-- `state` — initially `pending`, then changes to either `fulfilled` when `resolve(value)` is called or `rejected` when `reject(error)` is called.
-- `result` — initially `undefined`, then changes to `value` when `resolve(value)` is called or `error` when reject(error) is called. This will become the input of `.then, .catch & await`
-- A promise that is either resolved or rejected is called `settled`, as opposed to an initially `pending` promise.
+- The `new Promise` constructor return a **promise object** that has two internal properties:
+  * `state` — initially `pending`, then changes to either `fulfilled` when `resolve(value)` is called or `rejected` when `reject(error)` is called.
+  * `result` — initially `undefined`, then changes to `value` when `resolve(value)` is called or `error` when reject(error) is called. This will become the input of `.then, .catch & await`
+  * A promise that is either resolved or rejected is called `settled`, as opposed to an initially `pending` promise.
 
 A Promise object serves as a link between the executor (the “producing code” or “singer”) and the consuming functions (the “fans”), which will receive the result or error. **Consuming functions** (promise handlers) can be registered (subscribed) using the methods `.then` and `.catch` (don't confused with the `try...catch` construct. We say that we "add handlers" (subscribing functions) to the promise object using `.then()`.
 
@@ -531,7 +569,35 @@ We can add many `.then` on a single promise. Each time, we’re adding a new “
 
 - Promise chaining works because every call to a `.then(handler)` always returns a new promise with a new `resolve(result)`, so that we can call the next `.then` on it just like we attach .then to a normal promise.
 - When a handler returns a value, it becomes the (new) fulfilled result of that promise, so the next `.then` is called with it (synchronously).
-- A handler can also create and return a promise like [this](https://javascript.info/promise-chaining#returning-promises). Returning promises like this allows us to build chains of asynchronous actions. This is a useful technique. While if `.then` only return a value, it is only synchronous.
+- A handler can also create and return a promise. In that case further handlers wait until it settles, and then get its result. Returning promises like this allows us to build chains of asynchronous actions. This is a useful technique. While if `.then` only return a value, it is only synchronous.
+
+```javascript
+new Promise(function(resolve, reject) {
+
+  setTimeout(() => resolve(1), 1000);
+
+}).then(function(result) {
+
+  alert(result); // 1
+
+  return new Promise((resolve, reject) => { // (*)
+    setTimeout(() => resolve(result * 2), 1000);
+  });
+
+}).then(function(result) { // (**)
+
+  alert(result); // 2
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(result * 2), 1000);
+  });
+
+}).then(function(result) {
+
+  alert(result); // 4
+
+});
+```
 
 Returning promises in `.then` allows us to build chains of asynchronous actions.
 A normal `return` statement in `.then` only return a new resolved result and is synchronous.

@@ -5,6 +5,12 @@ Check if Git is installed locally: `git --version`
 **Getting help**: `git help <verb>`, for example `git help config`  
 `git <verb> -h` show a short list of available options
 
+## Terminologies
+
+Working tree = working directory
+
+How to read git synopsis: [stack overflow](https://stackoverflow.com/questions/60906410/how-do-i-read-git-synopsis-documentation)
+
 ## git config
 
 Show git config: `git config --list`  
@@ -143,12 +149,15 @@ Dấu `+` means add line. Dấu `-` là deleted line.
 - `@@ -5,3 +5,6 @@` means 3 lines was added. Trong dây `+`, `-` chỉ có nghĩa là "after, before".
 - `@@  -2,3 +2,4 @@` => add one line
 
-### Viewing the commit history
+### `git log` - Viewing the commit history
 
-anki
-`git log` the most recent commits show up first.  
+`git log` the most recent commits show up first. Each commit bao gồm: unique hash, pointer to its parent (except the first commit) & commit info (time, user email/name)  
 `git log --oneline`  
-`git log --oneline -n 8` show only last 8 lines, ko show hết
+`git log -n 8 --oneline` show only last 8 lines, ko show hết  
+`git log -n 8 --oneline origin/main` default là show `log` của `HEAD`.  
+By default, `git log` only show the commit history reachable from `HEAD` (below the branch you are standing on). To show commit history for the desired branch, run `git log origin/main`.  
+To show all of the branches, add `--all` to your `git log` command.  
+Git graph on the terminal: `git log --all --decorate --oneline --graph`. Tùy version có thể omit `--decorate` vì nó default.
 
 ```bash
 $ git log --oneline
@@ -160,40 +169,11 @@ f4769cf C2
 `git log -p -2`: The `-p, --patch` option shows the difference (the patch output) introduced in each commit. You can also limit the number of log entries displayed, such as using `-2` to show only the last two entries.
 The `--stat` shows some abbreviated stats for each commit.
 
-`git log --all --decorate --oneline --graph`
-
-`git log --pretty=oneline` prints each commit on a single line, which is useful if you’re looking at a lot of commits.
-`--pretty=format` allows you to specify your own log output format
-
-`--graph` adds a nice little ASCII graph showing your branch and merge history
-
 `--since`, `--until`: time-limiting options (useful)
 
 `--author`, `--grep` filter options (useful)
 
 `-S` takes a string and shows only those commits that changed the number of occurrences of that string
-
-Each commit bao gồm: unique hash, pointer to its parent (except the first commit) & commit info (time, user email/name)
-
-## git stash
-
-Why you need stash:
-
-- Create a repo, work & commit on `main`
-- Switch to another branch and work on it; maybe stage some files
-- Some bugs are found on other branch (or even `main`) and you need to fix it _immediately_. But, the thing is, git won't let you switch branch if there are some tracked or untracked changes. You must either commit of stash those changes before switching branch.
-
-Run the command `git stash` to bring your un-committed changes to the stash. After this, you can switch branch.  
-When you come back to your branch, run `git stash pop` to bring back changes that you had stashed. You can actually pop changes that are stashed from one branch to a different branch. For example changes stashed in `bugfix` can be pop out in `main`.
-
-You should always first run `git stash list` and only dump the stash you want using something like `git stash apply stash@{0}`
-
-Remember stashing is meant to be used temporarily. And it should be used very carefully when you work with many people.
-
-Mot ứng dụng nữa là đang code mà muốn copy code từ branch khác: stash your changes -> go to other branches for reference, copy some code from other people (Minh Lê) -> go bach to your branch.
-
-The git stash command takes your uncommitted changes (both staged and unstaged), saves them away for later use, and then reverts them from your working copy. After this, you can switch branch.  
-When you come back to your branch, run git stash pop to bring back changes that you had stashed.
 
 ## Add & Commit
 
@@ -201,18 +181,20 @@ When you come back to your branch, run git stash pop to bring back changes that 
 
 `git add` is also used to mark merge conflicts as resolved.
 
-- `git commit` launches your shell editor. It is also used to **conclude merges**
+- `git commit` launches your shell editor. It is also used to **conclude merges** (nên dùng `merge --continue`).
 - `git commit -v` puts the diff of your change in the shell editor.
 - `git commit -m <message>` không mở shell editor.
-- `git commit -a` automatically stage all tracked files before the commit. Using the option `-am` allows you to add and create a message for the commit in one command.
-
-`git commit -a -m 'Add new benchmarks'`. The `-a` option automatically stage every file that is already tracked before doing the commit, letting you skip the `git add` part. You can use `-am` or `-a -m`
+- `git commit -a` automatically stage all _tracked files_ before doing the commit (skip `git add`). To add & commit in one command, run: `git commit -am "message here"`.
 
 When you run git commit, Git creates a new commit object and moves the branch that `HEAD` points to up to it.
 
+anki
+
 ### Moving, renaming & removing files
 
-`git rm file.txt` remove the file from your tracked files and also removes the file from your working directory.
+`git rm <filepath>` remove the file from index & working directory, example is if you add your file with passwords.
+
+`git rm file.txt`
 
 `git rm --cached README` _keep the file in your working tree_ but remove it from your staging area.
 
@@ -597,37 +579,6 @@ add feature revert 01
 add feature revert 02
 ```
 
-## Tagging
-
-A **tag** is like a branch[^1] that doesn’t change. Unlike branches, tags, after being created, have no further history of commits.
-
-`git tag` lists all the tags in alphabetical order; the order in which they are displayed has no real importance.
-`git tag -l "v1.8.5*"` If you’re interested only in looking at the 1.8.5 series. Must include `-l` or `--list`
-
-`git tag -a v1.4 -m "my version 1.4"` create an annotated tag
-`git tag -a v1.2 9fceb02` tag commits after you’ve moved past them. You specify the commit checksum (or part of it) at the end of the command
-`git tag v1.4-lw` create a lightweight tag, only provide a tag name
-
-`git show <tag name>` show the tag data along with the commit that was tagged
-
-`git push origin <tagname>` push tags to a shared server after you have created them
-`git push origin --tags` transfer all of your tags to the remote server that are not already there
-`git push <remote> --follow-tags` only annotated tags will be pushed to the remote.
-
-`git tag -d <tagname>` delete tag
-`git push origin --delete <tagname>` delete tag from remote server
-
-`git checkout <tag name>` view the versions of files a tag is pointing to
-
-## Git Aliases
-
-Here are some example:
-
-- `git config --global alias.co checkout`
-- `git config --global alias.br branch`
-- `git config --global alias.ci commit`
-- `git config --global alias.st status`
-
 ## Git branching
 
 A Git repository is a collection of **objects** and **references**:
@@ -669,15 +620,8 @@ Now there are two branches point to the same commit object.
 - `git branch --merged` see which branches are already merged into the branch you’re on. Branches on this list without the `*` in front of them are generally fine to delete.
 - `git branch --no-merged` see all the branches that contain work you haven’t yet merged in
 
-- `git log --oneline --decorate` The `--decorate` option shows you where the branch pointers are pointing
-- `git log --oneline --decorate --graph --all` print out the history of your commits, showing where your branch pointers are and how your history has diverged.
-
-By default, `git log` will only show commit history below the branch you’ve checked out.  
-To show commit history for the desired branch you have to explicitly specify it: `git log testing`.  
-To show all of the branches, add `--all` to your `git log` command.
-
 Switch to an existing branch `git checkout <branch name>`. This effectively moves `HEAD` to point to `<branch name>` branch and reverts the files in your working directory back to the snapshot that branch points to.  
-`git checkout -b <newbranchname>` create a new branch and switch to that new branch in just one command. Giống `-c` của git switch.
+`git checkout -b <new branch name>` create a new branch and switch to that new branch in just one command. Giống `-c` của git switch.
 
 `git checkout <HASH-f9f4f1c>` will put you in detach HEAD. You get to the detached HEAD state by checking out a commit directly instead of a branch name.
 
@@ -899,6 +843,26 @@ the following command begins an interactive rebase of only the last 3 commits: `
 `git branch --move master main` Rename your local master branch into main. To let others see the new main branch, you need to push it to the remote. This makes the renamed branch available on the remote: `git push --set-upstream origin main`
 `git push origin --delete master` delete the master branch on remote
 
+### git stash
+
+Why you need stash:
+
+- Create a repo, work & commit on `main`
+- Switch to another branch and work on it; maybe stage some files
+- Some bugs are found on other branch (or even `main`) and you need to fix it _immediately_. But, the thing is, git won't let you switch branch if there are some tracked or untracked changes. You must either commit of stash those changes before switching branch.
+
+Run the command `git stash` to bring your un-committed changes to the stash. After this, you can switch branch.  
+When you come back to your branch, run `git stash pop` to bring back changes that you had stashed. You can actually pop changes that are stashed from one branch to a different branch. For example changes stashed in `bugfix` can be pop out in `main`.
+
+You should always first run `git stash list` and only dump the stash you want using something like `git stash apply stash@{0}`
+
+Remember stashing is meant to be used temporarily. And it should be used very carefully when you work with many people.
+
+Mot ứng dụng nữa là đang code mà muốn copy code từ branch khác: stash your changes -> go to other branches for reference, copy some code from other people (Minh Lê) -> go bach to your branch.
+
+The git stash command takes your uncommitted changes (both staged and unstaged), saves them away for later use, and then reverts them from your working copy. After this, you can switch branch.  
+When you come back to your branch, run git stash pop to bring back changes that you had stashed.
+
 ## Working with Remote
 
 `master` was the default branch name for Git repositories until GitHub changed the default to `main` in October 2020.
@@ -918,6 +882,14 @@ You can get a full list of remote references explicitly with `git ls-remote <rem
 - Silimar: both are local branch pointer
 
 Với remote tracking branches, `fetch, pull, push` can omit the remote and branch names, as Git automatically knows where to pull from and push to.
+
+Snippet below, có 4 pointer chĩa vào `commit B`. `HEAD` chĩa vào `main` indicate current standing branch. `origin/main` & `origin/HEAD` là tên nhánh giống như `main` chỉ có thêm dấu `/` thôi.
+
+```bash
+❯ git log --oneline
+d1d9d1d (HEAD -> main, origin/main, origin/HEAD, feature) commit B
+6ab407b commit A
+```
 
 `git fetch --all` update all your remote-tracking branches like `origin/main` with the online repo.  
 `git fetch origin` update & download all branches from the remote as remote tracking branches
@@ -1063,7 +1035,12 @@ Generally it’s better to simply use the fetch and merge commands explicitly as
 
 `git pull origin main` changes will be merged to main. Hoặc dùng `git pull origin` or just `git pull`
 
+git pull fromBranch toBranch (Pulls commits that are different from one branch into another branch so that merging two branches together is easy)
+
 ### Fork, Pull Request & Open Source contribution
+
+- Head branch: The branch whose changes are combined into the base branch when you merge a pull request. Also known as the "compare branch." Ví dụ `feature`.
+- Base branch: `main` or `release`.
 
 Khi làm với repo công ty, người khác:
 
@@ -1089,9 +1066,68 @@ To contribute to an open source remote repo: create a fork (or just download the
 
 Pull request: Hey I've made some changes and I want to send them changes to the owner of the repo from which I forked. Title & description of the PR must be written carefully. It helps the maintainer to understand what you want to push. Sau khi mình gởi PR rồi thì repo owner bên kia họ sẽ review, check your description, commit diffs, how many files were changed/added. Somebody from the maintainer team must manually go through this. It cannot be automated. Because this is a PR directory to `main`. Maintainer có thể merge PR nếu thấy ổn.
 
+Start from `main` > `checkout -b feature` > add new feature > commit on `feature` > `git push origin feature`
+
+```bash
+❯ git log -n 6 --oneline
+3d2dff2 (HEAD -> feature) made a new feature
+d1d9d1d (origin/main, origin/HEAD, main) Merge remote-tracking branch 'origin/main'
+6ab407b made some changes on mac
+
+❯ git push origin feature
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 322 bytes | 322.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote:
+remote: Create a pull request for 'feature' on GitHub by visiting:
+remote:      https://github.com/anhaoerv/demo-git/pull/new/feature
+remote:
+To github.com:anhaoerv/demo-git.git
+ * [new branch]      feature -> feature
+```
+
+Lên Github, chọn `Compare & pull request` hoặc tạo pull request manually. Github sẽ cho mình coi `diff` và merge conflict nếu có.
+
+If the pull request has merge conflicts, you can check out the pull request locally and merge it using the command line.
+
 ### Creating a pull request from a fork
 
 If you want to create a new branch for your pull request and do not have write permissions to the repository, you can fork the repository first.
+
+## Tagging
+
+A **tag** is like a branch[^1] that doesn’t change. Unlike branches, tags, after being created, have no further history of commits.
+
+`git tag` lists all the tags in alphabetical order; the order in which they are displayed has no real importance.
+`git tag -l "v1.8.5*"` If you’re interested only in looking at the 1.8.5 series. Must include `-l` or `--list`
+
+`git tag -a v1.4 -m "my version 1.4"` create an annotated tag
+`git tag -a v1.2 9fceb02` tag commits after you’ve moved past them. You specify the commit checksum (or part of it) at the end of the command
+`git tag v1.4-lw` create a lightweight tag, only provide a tag name
+
+`git show <tag name>` show the tag data along with the commit that was tagged
+
+`git push origin <tagname>` push tags to a shared server after you have created them
+`git push origin --tags` transfer all of your tags to the remote server that are not already there
+`git push <remote> --follow-tags` only annotated tags will be pushed to the remote.
+
+`git tag -d <tagname>` delete tag
+`git push origin --delete <tagname>` delete tag from remote server
+
+`git checkout <tag name>` view the versions of files a tag is pointing to
+
+## Git Aliases
+
+Here are some example:
+
+- `git config --global alias.co checkout`
+- `git config --global alias.br branch`
+- `git config --global alias.ci commit`
+- `git config --global alias.st status`
 
 ## Github
 
@@ -1122,4 +1158,8 @@ The SHA-1 checksum is a 40 hexadecimal digits number.
 ## Git Hooks
 
 Hooks are scripts that are executed automatically in certain conditions.
+
+## Further readings
+
+[git from the bottom up](https://jwiegley.github.io/git-from-the-bottom-up/) learn the internal of git (blobs, trees, commits, and refs). How git organize its database.
 

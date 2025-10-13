@@ -227,7 +227,7 @@ Use the`unset` command to remove an environment variable.
 
 The primary use of the `eval` command  is to interpret and execute dynamic or complex commands stored in strings or variables. This allows you to generate and run commands dynamically.
 
-**References**
+References
 
 [how to add folder to PATH](https://phoenixnap.com/kb/linux-add-to-path) by PHOENIXNAP very informative
 
@@ -315,7 +315,7 @@ k
 
 If root access is needed and a user has root access, they can run a command as root instead with the sudo command. The `sudo` command (superuser do) is used to run a command with root access. There is a file called the `/etc/sudoers` file, this file lists users who can run sudo. You can edit this file with the `visudo` command.
 
-**/etc/passwd & /etc/shadow**
+/etc/passwd & /etc/shadow
 
 Remember that usernames aren't really identifications for users. The system uses a **user ID (UID)** to identify a user. To find out what users are mapped to what ID, look at the `/etc/passwd` file: `cat /etc/passwd`. Other information in this file includes: user's shell, home directory\
 The password is not really stored in this file, it's usually stored in the `/etc/shadow` file. If you see an `x` that means the password is stored in the /etc/shadow file, a `*` means the user doesn't have login access and if there is a blank field that means the user doesn't have a password.
@@ -349,7 +349,7 @@ You should know what your user name is. If you don't, it can be displayed using 
 
 There are two main ways of assigning permissions: Symbolic method and Numeric method.
 
-**Symbolic method**
+Symbolic method
 
 - u,g,o,a (user, group, other, all)
 - +, -, = (add, remove, set exact)
@@ -421,13 +421,24 @@ Devices, generally every peripheral attachment of a PC that is not the CPU itsel
 
 [Table 3-4. Common devices](https://tldp.org/LDP/intro-linux/html/sect_03_02.html#AEN2726)
 
-## Window File system
+## Window Subsystem for Linux
 
 In the Windows environment, you will find one of three file systems, each with different indexing methods. The first is known as the FAT (12, 16, or 32) file system. This system uses what is known as a **File Allocation Table** to index the files on the disc. This file allocation table is very simple to implement and use, but can be somewhat slow. It divides hard disks into one or more partitions (parts) that become letters, like C:, D:, etc.
 
 The second file system you may encounter when using Windows is known as NTFS (New Technology File System). NTFS uses binary trees that, while complex, allow for very fast access times. It builds on the features of FAT, adds new features, and changes a few others. It is a recoverable file system, which means that it keeps track of actions in the file system.
 
-The third file system, exFAT, is a lightweight file system used primarily in flash storage applications and SD cards. It has large file size and partition size limits, which means you can store files over 4GB on a flash drive or SD card that is formatted with exFAT.
+The third file system, exFAT, is a lightweight file system used primarily in flash storage applications and SD cards. It has large file size and partition size limits, which means you can store files over 4GB on a flash drive or SD card that is formatted with exFAT.
+
+- Your Windows filesystem is mounted under `/mnt/c/`. So for example:
+  - Your Windows Desktop: `/mnt/c/Users/<YourWindowsName>/Desktop`.
+  - Your Documents: `/mnt/c/Users/<YourWindowsName>/Documents`.
+
+Where linux actually live on Windows: `C:\Users\<YourWindowsName>\AppData\Local\Packages\<DistroName>\LocalState\ext4.vhdx`.  
+That’s a virtual Linux disk. You shouldn’t modify it directly from Windows — only through WSL — or you risk corrution.
+
+You can create a symbolic link in WSL: `ln -s /mnt/c/Users/<YourWindowsName>/Desktop ~/desktop`.
+
+Or open the current WSL directory in File Explorer: `explorer.exe .`
 
 ## MacOS File system
 
@@ -440,4 +451,3 @@ The `local domain` contains resources such as apps that are local to the current
 - `/Applications` chứa app tải về trên mạng
 
 The `system domain` contains the system software installed by Apple. The resources in the system domain are required by the system to run. Users cannot add, remove, or alter items in this domain.
-

@@ -228,7 +228,16 @@ System.out.println(a == b);
 // You should only use .equal() to compare string
 ```
 
-## Collections, arrays
+## Collections Framework, arrays
+
+The **Java Collections Framework** provides a set of **interfaces** (like `List`, `Set`, and `Map`) and a set of classes (ArrayList, HashSet, HashMap, etc.) that implement those interfaces.  
+All of these are part of the java.util package.
+
+- Interfaces:
+  - `List`: Ordered collection that allows duplicates
+  - `Map`: Stores key-value pairs with unique keys
+  - `Set`: Collection of unique elements
+- Class: `ArrayList`, `HashMap`, `HashSet`
 
 Collection là một loại đối tượng có thể chứa các địa chỉ trỏ đến các đối tượng khác. Collection không chứa the objects themselves. Mỗi phần tử trong collection là một address, not object.
 
@@ -247,9 +256,6 @@ Mảng thì dùng sytax `[]` để access item. Còn `ArrayList` làm cái gì c
 
 - The `ArrayList` itself holds an array of references (or pointers) to the objects it contains. This array of references is stored in a single, contiguous block of memory. This contiguity is what allows for efficient random access by index.
 - `LinkedList<>` không có contiguous block.
-
-- Interface `List`, `Map`, `Set`
-- Class: `ArrayList`, `HashMap`, `HashSet`
 
 `Map` (ánh xạ) là một loại collection dạng key-value  
 Ánh xạ ví dụ `y = 2x`, với mỗi x chỉ cho ra một giá trị y.
@@ -861,14 +867,6 @@ NetBeans là 1 Java IDE được phát triển bởi Apache Software Foundation.
 `java --version`
 
 [Guide to Java Versions and Features](https://dzone.com/articles/a-guide-to-java-versions-and-features) by my man Marco Behler
-
-## JUnit test framework
-
-Unit cần test trong Java là 1 class or 1 method inside class
-
-Move cursor inside the class, hit `Cmd S t` to create unit test
-
-[Junit test netbean video](https://www.youtube.com/watch?v=A6EDxG4lxu4) or the [blog post](https://netbeans.apache.org/tutorial/main/kb/docs/java/junit-intro/)
 
 ## Shotkeys
 

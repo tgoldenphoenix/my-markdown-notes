@@ -1,9 +1,5 @@
 # 02: EAD
 
-## Edunext
-
-The `<c:choose>` in `welcome.jsp` [here](https://www.tutorialspoint.com/jsp/jstl_core_choose_tag.htm)
-
 ## B1: calculator, CRUD chưa DB, search by name
 
 table: account

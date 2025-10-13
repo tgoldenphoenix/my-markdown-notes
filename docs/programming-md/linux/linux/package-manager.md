@@ -32,9 +32,52 @@ Find CPU architecture: `uname -m`. Máy dell là x86_64. Máy mac là `arm64`
 
 apt: Advanced Package Tool
 
-## Install from binary
+## Install manually from binary archive
 
-k
+tarBall
+
+- `.tar.gz`
+  * .tar = tape archive, a single bundle of files (like .zip).
+  * `.gz` = `gzip` compression, to make it smaller.
+- So `.tar.gz` ≈ a compressed archive similar to a .zip file on Windows.
+- Require `tar` & `gzip`.
+
+You can extract it using: `tar -xvzf filename.tar.gz`
+
+- The meaning of -xvzf is
+  * `-x --extract` = extract files from an archive
+  * `-v, --verbose` = verbosely list files processed
+  * `-z, --gzip` = gzipped files eg. for tar.gz packages
+  * -f, --file ARCHIVE = use archive file or device ARCHIVE
+
+The `tar` command comes pre-install on Linux.
+
+- There are two kinds of .tar.gz archives you might see:
+  * Source `.tar.gz` Contains source code; you must compile it yourself (using `make`, `cmake`, `gcc`, etc.)
+  * **Binary** `.tar.gz` Contains already compiled executable files — ready to run directly on your system
+- So a **binary tar.gz** saves you the build step — it’s prebuilt for your architecture (e.g., x86_64 Linux).
+
+Tải `.tar.gz` về > extract ra > move to `/usr/local/` > add to PATH.
+
+- Binary tarballs are often used when:
+  * The software is not available in your package manager (e.g., apt, dnf, pacman).
+  * You want a specific version or portable installation (no installation required).
+
+There are 2 file extensions because the files are first rolled into a tar file, which combines multiple files and folders into one while keeping all the properties, but does not do any compression. Then the compression algorithm is ran on the combined file, resulting in a compressed archive. You can do this with other compressors as well, like bzip2 (.tar.bz2), xz (.tar.xz) and zstd (.tar.zst). GZip isn't the fastest or most efficient, but it's available everywhere, so it's the standard for compressing stuff on Linux.
+
+### Binary ZIP archive
+
+A binary `.zip` archive is simply a compressed ZIP file that contains precompiled executable files (binaries) instead of source code.
+
+`.zip` is common on **Windows**.
+
+`unzip file.zip`
+
+The `unzip` command is pre-install on Mac.
+
+### curl
+
+i
 
 ## Homebrew notes
 
