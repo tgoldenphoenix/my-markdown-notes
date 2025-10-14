@@ -2,7 +2,7 @@
 
 apt & Homebrew
 
-## Package Management on Debian-based Distributions
+## Ubuntu `apt`
 
 Trước khi tải package nào mới về thì phải update -> upgrage.
 
@@ -31,6 +31,18 @@ Find CPU architecture: `uname -m`. Máy dell là x86_64. Máy mac là `arm64`
 [stack exchange](https://unix.stackexchange.com/questions/590027/what-does-the-error-line-prefix-w-mean-like-from-apt-get-or-other-similar) meaning of error line prefixes: E, W, N
 
 apt: Advanced Package Tool
+
+`apt` is newer, `apt-get` is older.
+
+`apt search <command-name>`
+
+`apt list --installed` show một đống
+
+`apt list --installed | less` more manageable output
+
+`apt list --installed | grep <package_name>`  search for a specific package
+
+`apt list --manual-installed`
 
 ## Install manually from binary archive
 

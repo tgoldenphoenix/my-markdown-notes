@@ -1,5 +1,20 @@
 # Servlet, JSP, Spring MVC - Thymeleaf
 
+## Java EE
+
+Java EE (now called Jakarta EE) is primarily used for building enterprise-level web-based application (web app, backends, api).
+
+- javax
+  * Java EE (Enterprise Edition)
+  * The **older** namespace for Java EE APIs, such as javax.servlet and javax.persistence
+  * Applications using Java EE 8 and earlier versions use javax packages.
+- jakarta
+  * Jakarta EE (Jakarta Enterprise Edition)
+  * The new namespace for Jakarta EE APIs, such as jakarta.servlet and jakarta.persistence
+  * Applications built on Jakarta EE 9 and later versions use jakarta packages.
+- Reason for change: Trademark and intellectual property issues after Oracle donated Java EE to the Eclipse Foundation; To comply with the new branding and avoid trademark restrictions
+- Migrating to Jakarta EE requires updating all import statements from `javax.*` to `jakarta.*`
+
 ## Spring MVC
 
 chỉ có `@GetMapping` & `@PostMapping`, API mới có Put, Delete

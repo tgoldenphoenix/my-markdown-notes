@@ -18,7 +18,7 @@ You can view all of your settings and where they are coming from using:: `git co
 The global gitconfig file on Macbook is at: `/opt/homebrew/etc/gitconfig`
 
 - Mới tải Git về thì run these commands:
-  - `git config --global user.name "John Doe"`
+  - `git config --global user.name "tgoldenphoenix"`
   - `git config --global user.email johndoe@example.com`
 - Sau đó generate & add SSH key on local machine & on Github. Phải có cả authentication key & signing key (cùng một key nhưng tạo 2 chức năng).
 
@@ -26,6 +26,25 @@ To set `main` as the default branch name do: `git config --global init.defaultBr
 GitHub changed the default branch name from `master` to `main` in mid-2020
 
 Using Visual Studio Code as your default git editor: `git config --global core.editor "code --wait"`
+
+Nếu không config --global thì lại gặp lỗi này
+
+```bash
+ Anonimous% git commit -m "add autohotkey for window"
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: empty ident name (for <anhao@Anonimous.localdomain>) not allowed
+```
 
 ### ssh key config
 
@@ -50,6 +69,16 @@ When you set up SSH, you will need to generate a new private SSH key and add it 
 When you generate an SSH key, you can add a **passphrase** to further secure the key. Whenever you use the key, you must enter the passphrase. If your key has a passphrase and you don't want to enter the passphrase every time you use the key, you can add your key to the SSH agent. The SSH agent manages your SSH keys and remembers your passphrase.
 
 If you haven't used your SSH key for a year, then GitHub will automatically delete your inactive SSH key as a security precaution.
+
+- account github `anhaoerv` có 1 ssh add vào git (window) think pad
+- account github `anhaophamx` có 2 ssh add vào:
+  - thinkpad git WSL
+  - macbook ở nhà
+- Chạy ngon OK!
+
+Không cần `git config --global` gì hết. Chỉ cần add ssh key là được.
+
+Generate ssh key with your github email > add to ssh-agen > add to github
 
 ## Initializing a new repository
 
@@ -1037,6 +1066,45 @@ Generally it’s better to simply use the fetch and merge commands explicitly as
 
 git pull fromBranch toBranch (Pulls commits that are different from one branch into another branch so that merging two branches together is easy)
 
+Demo fetch & merge
+
+```bash
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+$ git fetch
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 936 bytes | 133.00 KiB/s, done.
+From github.com:anhaoerv/demo-git
+   4896e14..88c3f0e  main       -> origin/main
+
+$ git log --oneline origin/main
+88c3f0e (origin/main, origin/HEAD) add content on github
+4896e14 (HEAD -> main) Merge remote-tracking branch 'origin/main'
+d26bd16 update readme
+c93bf4b Merge pull request #4 from anhaoerv/feature
+
+$ git status
+On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+
+anhao@Anonimous MINGW64 ~/Desktop/demo-git (main)
+$ git merge origin/main
+Updating 4896e14..88c3f0e
+Fast-forward
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+```
+
 ### Fork, Pull Request & Open Source contribution
 
 - Head branch: The branch whose changes are combined into the base branch when you merge a pull request. Also known as the "compare branch." Ví dụ `feature`.
@@ -1093,6 +1161,8 @@ To github.com:anhaoerv/demo-git.git
 Lên Github, chọn `Compare & pull request` hoặc tạo pull request manually. Github sẽ cho mình coi `diff` và merge conflict nếu có.
 
 If the pull request has merge conflicts, you can check out the pull request locally and merge it using the command line.
+
+Tạo branch > commit > push > đã tạo pull request > cần phải sửa pull request, có conflict. Sau đó phải `push -f`
 
 ### Creating a pull request from a fork
 
@@ -1162,4 +1232,3 @@ Hooks are scripts that are executed automatically in certain conditions.
 ## Further readings
 
 [git from the bottom up](https://jwiegley.github.io/git-from-the-bottom-up/) learn the internal of git (blobs, trees, commits, and refs). How git organize its database.
-

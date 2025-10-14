@@ -18,7 +18,7 @@ To switch from one shell to another, just enter the name of the new shell in the
 
 If you don't know which shell you are using, either check the line for your account in `/etc/passwd` or type the command `echo $SHELL`
 
-## zsh
+## zsh - The Z shell
 
 `~/.config/zsh/`. Cái `~/.zshrc` bị override.
 
@@ -40,15 +40,11 @@ External programs you can use to improve your Zsh experience.
 
 diff $TMPDIR/.zshrc.mBj1SnoduX ~/.config/zsh/.zshrc
 
-### Autocompletion
+`.zcompdump` refers to the Zsh completion cache file. This file is a cached version of the completion functions found and initialized by the compinit command when starting a Zsh session.
 
-[Github](https://github.com/marlonrichert/zsh-autocomplete)
+The `compinit` command, which initializes Zsh's programmable completion system, is responsible for creating and updating the zcompdump file.
 
-**References:**
-
-[Configuring Zsh Without Dependencies](https://thevaluable.dev/zsh-install-configure-mouseless/)
-
-[How Do Zsh Configuration Files Work?](https://www.freecodecamp.org/news/how-do-zsh-configuration-files-work/)
+By default, zcompdump files are typically found in your home directory (e.g., `~/.zcompdump-<hostname>-<zsh-version>`). However, their location can be customized using the compinit -d <dumpfile> option or by setting the `ZSH_COMPDUMP` environment variable.
 
 ## Terminal Emulator (Kitty)
 
