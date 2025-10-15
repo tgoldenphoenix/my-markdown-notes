@@ -544,6 +544,71 @@ f4769cf C2
 
 `main` now points to commit `5c7893c` & we lose the commit `9cda0ca`.
 
+### Demo reset repo về commit đầu tiên
+
+Chạy các câu lệnh sau
+
+```bash
+$ git log --oneline
+93950ee (HEAD -> main, origin/main, origin/HEAD) update README
+49b0394 update README
+325d909 update README
+50b00fc update README
+cde5881 update README all vietnamese
+21126aa remove image from README
+696d983 test README use image link on backlog instead of local
+1d3df0e refactor script.js, update README
+52aa0e5 test image on remote git
+be3b275 update README vietnamese
+a512a6c hide apiKey
+f27c0b9 first commit
+
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (main)
+$ git reset f27c0b9
+Unstaged changes after reset:
+M       README.md
+M       script.js
+
+$ git log --oneline
+f27c0b9 (HEAD -> main) first commit
+```
+
+Xóa 2 file `script.js` và `README.md` sau đó chạy lệnh.
+
+```bash
+$ git status
+On branch main
+Your branch is behind 'origin/main' by 11 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    README.md
+        deleted:    script.js
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (main)
+$ git add .
+
+$ git commit --amend -m "reset repository state" --allow-empty
+[main d710cfb] reset repository state
+ Date: Fri Oct 10 16:04:47 2025 +0700
+
+$ git push --force origin main
+Enumerating objects: 2, done.
+Counting objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 186 bytes | 186.00 KiB/s, done.
+Total 2 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To ever-rise.git.backlog.jp:/VN_PRO/backlog-wiki-page-kankopi-button.git
+ + 93950ee...d710cfb main -> main (forced update)
+```
+
+Repository trên backlog hiện tại chỉ còn duy nhất một  commit. Tất cả commit trước kia đã được xóa.
+
+Repo sau khi hiện tại là empty không chứa file nào cả.
+
 ### Git revert
 
 `git revert` takes a specified commit, invert its changes and appends a new commit with the resulting inverse content. The specified commits are **NOT** removed from history. `HEAD` sẽ nhảy lên cái inverse commit mới tạo ra.

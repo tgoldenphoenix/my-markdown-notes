@@ -41,6 +41,25 @@ By replacing dependencies with mock objects, we can prevent tests from depending
 
 **Test-Driven Development (TDD)** is a software development approach where tests are written before the actual code.
 
+```java
+package com.springinaction.knights;
+import static org.mockito.Mockito.*;
+import org.junit.Test;
+public class BraveKnightTest {
+  @Test
+  public void knightShouldEmbarkOnQuest() {
+    Quest mockQuest = mock(Quest.class);
+    BraveKnight knight = new BraveKnight(mockQuest);
+    knight.embarkOnQuest();
+    verify(mockQuest, times(1)).embark();
+  }
+}
+```
+
+`verify(mockQuest, times(1)).embark();` verifies that the method embark() was called exactly once on the mock object `mockQuest`.
+
+You call `verify()` **after** you call `.embarkOnQuest()`
+
 ## Temporary directory/file
 
 k

@@ -19,6 +19,10 @@ Java EE (now called Jakarta EE) is primarily used for building enterprise-level 
 
 chỉ có `@GetMapping` & `@PostMapping`, API mới có Put, Delete
 
+`DispatcherServlet` = front controller = central `Servlet`
+
+EJB  (Enterprise JavaBeans) cũng là một technologies used for developing enterprise Java applications nhưng nó khác Spring.
+
 ## Thymeleaf
 
 Trong forms dùng **selection expressions**: `*{firstName}`
@@ -133,6 +137,10 @@ The **DispatcherServlet** is the front controller in the Spring MVC framework th
   * Purpose: Specifically designed for packaging and deploying web-based Java applications (servlets, JSPs, HTML, CSS, JavaScript, etc.).
   * Content: Contains all the components of a web application, including compiled Java classes, resources, static web files, and a WEB-INF directory. The WEB-INF directory is crucial and contains web.xml (the deployment descriptor), classes (compiled Java code), and lib (dependent JAR files).
   * Deployment: Deployed within a web server or application server environment (e.g., Apache Tomcat, Jetty, JBoss), not as a standalone executable.
+
+## XML
+
+`xmlns` là viết tắt của `XML namespace`, dùng để định danh các thẻ và thuộc tính trong tài liệu XML, giúp phân biệt các yếu tố có tên giống nhau nhưng thuộc các bộ khác nhau.
 
 ## Strut
 

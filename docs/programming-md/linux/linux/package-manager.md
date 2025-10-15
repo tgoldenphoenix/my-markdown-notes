@@ -89,7 +89,30 @@ The `unzip` command is pre-install on Mac.
 
 ### curl
 
-i
+The `--remote-name` or `-O` option will download & save the file using the name provided in the URL.
+
+```bash
+$ curl -O https://starship.rs/install.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 14180    0 14180    0     0  20380      0 --:--:-- --:--:-- --:--:-- 20402
+```
+
+`curl -sS https://starship.rs/install.sh | sh`
+
+- `curl -sS`: downloads the install script from the official Starship site quietly (`-s`) but still shows errors (-`S`).
+- `https://starship.rs/install.sh`: is the official installer URL.
+- `| sh`: pipes the downloaded script to the shell to execute it.
+
+Starship nằm trong `usr/local/bin`
+
+```bash
+Finished. Restart your shell or reload config file.
+   source ~/.bashrc  # bash
+   source /home/anhao/.config/zsh/.zshrc   # zsh
+
+Use uninstall script to remove fzf.
+```
 
 ## Homebrew notes
 
