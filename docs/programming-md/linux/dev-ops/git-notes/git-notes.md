@@ -719,6 +719,8 @@ Switch to an existing branch `git checkout <branch name>`. This effectively move
 
 `git checkout <HASH-f9f4f1c>` will put you in detach HEAD. You get to the detached HEAD state by checking out a commit directly instead of a branch name.
 
+`git checkout -b [<new-branch>] [<start-point>]`
+
 go two commits prior to this one: `git checkout HEAD~2`. If you are currently on commit 04, it will move you to commit 01. This command also put you in detached HEAD. [read more](https://stackoverflow.com/questions/45924056/why-cannot-the-tilde-sign-be-part-of-a-valid-git-branch-name)
 
 If you’ve reached the detached HEAD state by **accident**—that is to say, you didn’t mean to check out a commit—going back is easy. Just check out the branch you were in before: `git checkout/switch <branch-name>` for example `git checkout/switch main`. You can do this because `main` is stored inside `.git/refs/heads`  
@@ -786,6 +788,8 @@ git rebase master
 Nếu merge thì checkout qua `master` rồi merge `feature` into `master`. Checkout to the final branch.
 
 Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue`
+
+git rebase `their vs --our`: `our` thực chất là `main` chứ không phải nhánh của mình => dễ bị nhầm
 
 ### Rebase vs merge
 
@@ -1080,6 +1084,8 @@ Thật ra khi muốn push 1 local repo lên github mình chỉ cần tạo rồi
 `git remote rename oldname newname` rename remote
 
 `git remote remove NAME` or `git remote rm` remove a remote
+
+`git branch -d --remote origin/VN_PRO-768` delete remote tracking branh ở local
 
 Two of the easiest ways to access a remote repo are via the HTTP and the SSH protocols. HTTP is an easy way to allow anonymous, read-only access to a repository.
 
