@@ -82,7 +82,7 @@ Không cần `git config --global` gì hết. Chỉ cần add ssh key là đư�
 
 Generate ssh key with your github email > add to ssh-agen > add to github
 
-## Initializing a new repository
+### Initializing a new repository
 
 `git init` (automatically create the `master or main` branch). Executing this command will create a new `.git` subdirectory in your current working directory.
 
@@ -101,7 +101,7 @@ Git SSH URLs follow a template of: `git@HOSTNAME:USERNAME/REPONAME.git`. Host na
   - **tracked**: files that were in the last snapshot, as well as any newly staged files (add); they can be unmodified, modified, or staged.
   - **untracked**: everything else
 
-`git status` show file states, merge conflicts status  
+`git status` view **current status** (show file states, merge conflicts status)  
 `git status -uall <file/folder>`: Nếu muốn git status show files trong folders (mặc định chỉ show folder) thì [here](https://stackoverflow.com/questions/28222633/git-status-not-showing-contents-of-newly-added-folder)
 
 ### git diff
@@ -136,14 +136,14 @@ index 6b0c6cf..b37e70a 100644
 ```
 
 - The **chunk header** `@@ -1 +1 @@` means "line number one had changes":
-  * `-1` means from the A version file (the minus `-` sign), extracting one line starting at line 1.
-  * `+1` means from the B version file (the plus `+` sign), extracting one line starting at line 1.
-  * Đừng có hiểu `+ -` theo nghĩa add/remove line.
+  - `-1` means from the A version file (the minus `-` sign), extracting one line starting at line 1.
+  - `+1` means from the B version file (the plus `+` sign), extracting one line starting at line 1.
+  - Đừng có hiểu `+ -` theo nghĩa add/remove line.
 
 - `@@ -34,6 +34,8 @@` means:
-  * From file a (`-`), starting from line number 34, extract 6 lines.
-  * From file b (`+`), start from line 34, extract 8 lines.
-  * Vậy suy ra có two more lines added to the file.
+  - From file a (`-`), starting from line number 34, extract 6 lines.
+  - From file b (`+`), start from line 34, extract 8 lines.
+  - Vậy suy ra có two more lines added to the file.
 
 Cách đọc output một số tình huống git diff thường gặp
 
@@ -165,12 +165,12 @@ index 6424794..e29dc2c 100644
 - `@@ -5,3 +5,6 @@` means 3 lines was added. Trong dây `+`, `-` chỉ có nghĩa là "after, before".
 - `@@  -2,3 +2,4 @@` => add one line
 
-- `git diff` compare current working directory vs staging area (thay đổi chưa `add`)
+- `git diff` with no parameter compare current working directory vs staging area (thay đổi chưa `add`)
 - `git diff --staged` or `--cached` compare staging area (index) vs last commit (final review before `commit`)
-- `git diff HEAD` compare working directory vs last commit. By default, git compare to `HEAD`.
+- `git diff HEAD` compare working directory vs last commit.
 - When a file path is passed to git diff the diff operation will be scoped to the specified file: `git diff HEAD ./path/to/file`. Omitting HEAD in the example above has the same effect.
 - Git diff two commit `git diff a498f47 7274899` compare commits. Or you can use the older `..` operator instead of space character such as `git diff a498f47..7274899`. Nên để 2 cái commit id theo đúng thứ tự thời gian `older..newer`. Nếu để commit ngược lại thì sẽ khó hiểu lắm.
-- `git diff branchOne..branchTwo`??
+- Trong bối cảnh `git diff` thì `..` giống y chang dùng space character. Còn `...` là để view the changes on the branch containing and up to the second commit, starting at a common ancestor of both commit.
 
 A common workflow might look like:
 
@@ -191,13 +191,13 @@ In theory, this makes it possible to compare a stack of commits prior to **rebas
 
 On the other hand, if you had to handle merge conflicts as part of the rebase, or if you rebased onto a different commit, then you might expect there to be changes, and these would be shown by git range-diff
 
-[read more](https://andrewlock.net/verifiying-tricky-git-rebases-with-range-diffs/)
+[đọc & take note khi có thời gian](https://andrewlock.net/verifiying-tricky-git-rebases-with-range-diffs/)
 
 ### `git log` - Viewing the commit history
 
 `git log` the most recent commits show up first. Each commit bao gồm: unique hash, pointer to its parent (except the first commit) & commit info (time, user email/name)  
 `git log --oneline`  
-`git log -n 8 --oneline` show only last 8 lines, ko show hết  
+`git log -n 8 --oneline` or shorter `git log -8` show only last 8 lines, ko show hết  
 `git log -n 8 --oneline origin/main` default là show `log` của `HEAD`.  
 By default, `git log` only show the commit history reachable from `HEAD` (below the branch you are standing on). To show commit history for the desired branch, run `git log origin/main`.  
 To show all of the branches, add `--all` to your `git log` command.  
@@ -210,8 +210,14 @@ f4769cf C2
 98542a4 Initial commit
 ```
 
-`git log -p -2`: The `-p, --patch` option shows the difference (the patch output) introduced in each commit. You can also limit the number of log entries displayed, such as using `-2` to show only the last two entries.
+`git log -p -2`: The `-p, --patch` option shows the `diff` introduced in each commit. You can also limit the number of log entries displayed, such as using `-2` to show only the last two entries.
 The `--stat` shows some abbreviated stats for each commit.
+
+`git log <hash>`
+
+`git log --since="5 hours"` look at commits only from the last five hours  
+`git log --before="5 hours" -1` skip the last five hours and view only those commits older than that
+`--since="24 hours"`, `--since="1 minute"`, `--before="2008-10.01"`
 
 `--since`, `--until`: time-limiting options (useful)
 
@@ -219,9 +225,70 @@ The `--stat` shows some abbreviated stats for each commit.
 
 `-S` takes a string and shows only those commits that changed the number of occurrences of that string
 
+### Ancestry References
+
+If you place a `^` (caret) **at the end** of a reference, Git resolves it to mean the parent of that commit. Example: `HEAD^`.
+
+You can also specify a number after the `^` to identify which parent you want; for example, `d921970^2` means “the second parent of d921970.” This syntax is useful only for merge commits, which have more than one parent — the first parent of a merge commit is from the branch you were on when you merged (frequently master), while the second parent of a merge commit is from the branch that was merged (say, topic).
+
+The other main ancestry specification is the `~` (tilde). This also refers to the first parent, so `HEAD~` and `HEAD^` are equivalent. The difference becomes apparent when you specify a number. `HEAD~2` means “the first parent of the first parent,” or “the grandparent” — it traverses the first parents the number of times you specify.
+
+Git use zero-based indexing.
+
+### Commit range selection
+
+The double-dot syntax `..` asks Git to resolve a range of commits that are reachable from one commit but aren’t reachable from another.
+
+`git log master..experiment` all commits reachable from experiment that aren’t reachable from `master` = what is in your experiment branch that hasn’t yet been merged into your `master` branch. Khi log ra cũng theo thứ tự newest on top, oldest bottom.
+
+`experiment..main` all commits in master that aren’t in experiment = shows you everything in master not reachable from experiment.
+
+See what you’re about to push to a remote: `git log origin/master..HEAD`  
+This command shows you any commits in your current branch that aren’t in the master branch on your origin remote.  
+You can also leave off one side of the syntax to have Git assume `HEAD`. For example, you can get the same results as in the previous example by typing `git log origin/master..` — Git substitutes `HEAD` if one side is missing.
+
+The triple-dot syntax `...` specifies all the commits that are reachable by either of two references but not by both of them (lloạii commit chung ra).
+
+`git log master...experiment` to see what is in master or experiment but not any common references.
+
+Trong bối cảnh của lệnh `git diff` thì `..` và `...` có ý nghĩa khác.
+
+You can also pass ranges of commits in by separating two revisions with `git log oldest-revision..newest-revision`. You should always specify the oldest revision first so Git can understand what you want. If you don’t do that, Git won’t complain; it just won’t show you anything:
+
+```bash
+prompt> git log 18f822e..0bb3dfb
+commit 0bb3dfb752fa3c890ffc781fd6bd5dc5d34cd3be
+Author: Travis Swicegood <development@domain51.com>
+Date: Sat Oct 4 11:06:47 2008 -0500
+add link to twitter
+```
+
+At first glance, that output looks wrong. We told it to show us the log from revision 18f822e to revision 0bb3dfb. The first time I used a com-mand similar to this, I thought it would include 18f822e, but Git doesn’t. Instead, Git interprets that range to mean every commit after 18f822e to 5ef8.
+
+`git log 18f822e..HEAD`  
+You can drop the final HEAD from that range because Git assumes HEAD is what you mean if you leave the last value blank: `git log 18f822e..`
+
+With ranges, you can swap out the commit name for a tag name too. This is useful for seeing what has changed since a particular tag and for looking at the revision history between two tags.
+
+```bash
+prompt> git log --pretty=format:"%h %s" 1.0..HEAD
+0bb3dfb add link to twitter
+18f822e add contact page
+217a88e add the skeleton of an about page
+9a23464 rename to more appropriate name
+6f1bf6f Change biography link and add contact link
+4333289 add in a bio link
+```
+
 ### reflog
 
-k
+One of the things Git does in the background while you’re working away is keep a “reflog” — a log of where your HEAD and branch references have been for the last few months.
+
+Every time your branch tip is updated for any reason, Git stores that information for you in this temporary history. You can use your reflog data to refer to older commits as well.
+
+### git show
+
+show one commit (using hash) & its diff
 
 ## Add & Commit
 
@@ -236,9 +303,20 @@ k
 
 When you run git commit, Git creates a new commit object and moves the branch that `HEAD` points to up to it.
 
+`git add -i` interactive add. Có thể add patch mode.
+
+`git add -p` go straight to patch mode, skip interactive. In patch mode, có thể stage only a portion of a file chứ không stage hết entire file.
+
+Không bắt buộc phải stage toàn bộ changes rồi mới được commit. Có thể select only what you want to stage.
+
 anki
 
-### Moving, renaming & removing files
+How to write atomic commit messages:
+
+one commit for one change. 10 bugs -> 10 commits  
+present tense, imperative; give order to codebase; no case
+
+### Managing files
 
 `git rm <filepath>` remove the file from index & working directory, example is if you add your file with passwords.
 
@@ -249,12 +327,6 @@ anki
 Lỡ add, push lên github một folder rồi nhưng sau đó lại muốn bỏ thì sau khi cho vào `.gitignore` rồi phải run `git rm` nhé
 
 `git mv file_from file_to` **rename** a file in Git.
-
-### Commit message
-
-How to write atomic commit messages:
-one commit for one change. 10 bugs -> 10 commits  
-present tense, imperative; give order to codebase; no case
 
 ### Git ignore
 
@@ -388,7 +460,7 @@ $ git log --oneline
 
 Our amended commit is now pushed to Github (notice the hash `8edb82c` is matching).
 
-### reset
+### Reset
 
 Think of Git as content manager of three different trees (collection of files not the Tree Data Structure). Git will compare between these three trees & log information to the user.
 
@@ -397,8 +469,8 @@ Think of Git as content manager of three different trees (collection of files no
 3. **Working Directory (or Working tree)**: the "sandbox" where you can try changes out before committing them to your staging area (index) and then to history
 
 - Your "repository" is not a tree, it is the commit history stored inside the `.git/` directory:
-  * You have your **local repository** and...
-  * The **upstream repository** or the public repository thường ở trên Github.
+  - You have your **local repository** and...
+  - The **upstream repository** or the public repository thường ở trên Github.
 
 Git will look at the `index` when you run `git commit`.
 
@@ -412,12 +484,12 @@ Step 2: Updating the Index (--mixed, default, unstage everything): The next thin
 
 It still undid your last commit, but also unstaged everything. You rolled back to before you ran all your git add and git commit commands.
 
-Step 3: Updating the Working Directory (--hard)
+- **Step 3**: Updating the Working Directory (`--hard`):
+  * The third thing that reset will do is to make the working directory **look like the index**. If you use the `--hard` option, it will continue to this stage.
+  * You undid your last commit, the git add and git commit commands, and **all the work you did in your working directory**.
+  * This flag (--hard) is the only way to make the reset command dangerous, and one of the very few cases where Git will actually destroy data. Any other invocation of reset can be pretty easily undone, but the --hard option cannot, since it forcibly overwrites files in the working directory
 
-The third thing that reset will do is to make the working directory look like the index. If you use the `--hard` option, it will continue to this stage.
-
-You undid your last commit, the git add and git commit commands, and all the work you did in your working directory.  
-This flag (--hard) is the only way to make the reset command dangerous, and one of the very few cases where Git will actually destroy data. Any other invocation of reset can be pretty easily undone, but the --hard option cannot, since it forcibly overwrites files in the working directory
+`git reset --hard HEAD^` remove the last commit.
 
 - The basics:
   - `--soft` update where a branch point to, undid commits.
@@ -734,6 +806,9 @@ Scenario 03: I’ve Made Experimental Changes and I Want to Keep Them: If you wa
 `git branch <branch name>` creates a **new branch** which points to the same commit you’re currently on (`HEAD` point to it). Note that this command does not switch to the newly created branch như `git checkout -b`.  
 Now there are two branches point to the same commit object.
 
+`git branch new_branch master` create `new_branch` from `master` instead of the current branch. `checkout -b` cũng giống như vậy.  
+`git branch <new_branch> <tag_name>` tạo branch từ tag (thường là để fix lỗi sau khi release).
+
 - `git branch` list **local** branches. The current local branch will be marked with an asterisk (the branch that `HEAD` points to).
 - To see all **remote branch** names, run `git branch -r`
 - To see all local and remote branches, run `git branch -a`
@@ -747,6 +822,8 @@ Switch to an existing branch `git checkout <branch name>`. This effectively move
 `git checkout <HASH-f9f4f1c>` will put you in detach HEAD. You get to the detached HEAD state by checking out a commit directly instead of a branch name.
 
 `git checkout -b [<new-branch>] [<start-point>]`
+
+Delete branch: `git branch -d <branch name>`. You delete branch after merging successfully.
 
 go two commits prior to this one: `git checkout HEAD~2`. If you are currently on commit 04, it will move you to commit 01. This command also put you in detached HEAD. [read more](https://stackoverflow.com/questions/45924056/why-cannot-the-tilde-sign-be-part-of-a-valid-git-branch-name)
 
@@ -766,6 +843,17 @@ From Git version 2.23 onwards you can use `git switch` instead of `git checkout`
 
 Khi switch branch phải có clean working state (no un-commited changes). Trước khi switch branch phải commit hết. Nếu không thì phải stashing & commit amending.
 
+`git branch -m <old_name> <new_name>` re-name an existing branch.
+
+`git branch --move bad-branch-name corrected-branch-name` This replaces your bad-branch-name with corrected-branch-name, but this change is only local for now. To let others see the corrected branch on the remote, push it `git push --set-upstream origin corrected-branch-name`
+
+`git branch --all` List both remote-tracking branches and local branches
+
+`git push origin --delete bad-branch-name` delete bad-branch-name remote branch
+
+`git branch --move master main` Rename your local master branch into main. To let others see the new main branch, you need to push it to the remote. This makes the renamed branch available on the remote: `git push --set-upstream origin main`
+`git push origin --delete master` delete the master branch on remote
+
 ### Merging branches
 
 Khi muốn bring changes from one branch (`main`) to your personal branch cũng gọi là merge.
@@ -780,7 +868,6 @@ Nếu có merge conflict thì git không tạo merge commit mà pause để user
 
 Phân biệt git diff marker & git conflict markers.
 
-[Git conflict markers](https://stackoverflow.com/questions/7901864/git-conflict-markers).  
 Keep whatever you want, remove markers & save. You can manually remove the markers `<<<<<` & `=====` or some editor provide buttons that you can just click.  
 Sau khi resolve merge conflict manually in your editor, run `git add` on each file to mark it as resolved. Staging the file marks it as resolved in Git. Run `git status` again to verify that all conflicts have been resolved. Sau đó `git commit -m "resolve merge conflict"`.
 
@@ -790,11 +877,19 @@ Vì merge branch sẽ tạo ra 1 commit mới nên nó cũng cần có message g
 
 Ví dụ merge hotfix into main: `git merge hotfix-branch` when standing on `main` branch even though `main` is behind `hotfix-branch`.
 
-Khi dùng `git log --oneline` nếu có visual tool like [VSCode git graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph) sẽ dễ hình dung hơn. Merge 2-> 1 có conflict hay không thì khi nhìn graph timeline cũng giống y chang nhau.
-
-Delete branch: `git branch -d <branch name>`. You delete branch after merging successfully.
-
 `git mergetool` fires up an appropriate visual merge tool and walks you through the conflicts
+
+How to read conflict marker:
+
+```html
+<<<<<<< HEAD:about.html
+<li>Javascript</li>
+=======
+<li>EMCAScript</li>
+>>>>>>> about2:about.html
+```
+
+Any code that is preceded by “<<<<<<<” is the code in your current branch, and any code suffixed with “>>>>>>>” is from the other branch.
 
 ### Rebase
 
@@ -848,10 +943,10 @@ e3eeaa0 anhao add 02
 ```
 
 - `feature` có 2 commit khác `main` thì sau khi rebase:
-  * `main` không đổi
-  * `feature` vẫn có 2 commit nhưng on the tip of `main`
-  * `feature` không có thêm merge commit
-  * `feature` không bị mất commit, chỉ bị "rabase"
+  - `main` không đổi
+  - `feature` vẫn có 2 commit nhưng on the tip of `main`
+  - `feature` không có thêm merge commit
+  - `feature` không bị mất commit, chỉ bị "rabase"
 
 `git rabase` có conflict khi sửa cùng một dòng. Sửa cùng một file nhưng khác dòng rabase không có conflict.
 
@@ -1008,32 +1103,71 @@ Normally when I'm rewriting history I use git rebase -i in combination with git 
 
 Đọc thêm về cách "squash" commit bằng interactive rebase
 
-### Changing a branch name
+### Squashing Commits
 
-`git branch --move bad-branch-name corrected-branch-name` This replaces your bad-branch-name with corrected-branch-name, but this change is only local for now. To let others see the corrected branch on the remote, push it `git push --set-upstream origin corrected-branch-name`
+Squashed commits take the history of one branch and compress— or “squash”—it into one commit on top of another branch.
 
-`git branch --all` List both remote-tracking branches and local branches
+Git takes all the history of one branch and compresses it into one commit in the other branch.
 
-`git push origin --delete bad-branch-name` delete bad-branch-name remote branch
+Example: You have two commits in your `contact` branch. You can squash these two commits back into the `master` branch as one commit.
 
-### Changing the master branch name
+```bash
+$ git checkout master
+Switched to branch "master"
 
-`git branch --move master main` Rename your local master branch into main. To let others see the new main branch, you need to push it to the remote. This makes the renamed branch available on the remote: `git push --set-upstream origin main`
-`git push origin --delete master` delete the master branch on remote
+$ git merge --squash contact
+Updating 217a88e..2f30ccd
+Fast forward
+Squash commit -- not updating HEAD
+contact.html | 19 +++++++++++++++++++
+1 files changed, 19 insertions(+), 0 deletions(-)
+create mode 100644 contact.html
+```
 
-## git-filter-repo
+The `--squash` option tells `git merge` to take all the commits from the other branch and squash them into one commit.  
+Now both of your commits from contact have been applied to your work-ing tree and are staged for a commit, but they have not been committed.
 
-This is for rewriting an entire repository history.
+All that’s left now is for you to commit the change like any other commit: `git commit -m "message"`.
 
-## git stash
+### Cherry pick
+
+cherry-pick: pick any commit by its reference & appended to the current working HEAD
+
+Cherry-picking a commit pulls a single commit from a different branch and applies it to the current branch.
+
+Sometimes you need to merge only one commit between branches and don’t need to do a full merge. The full merge might be a bad idea because the branch has features that you can’t use yet or other changes that aren’t ready for this branch yet.
+
+```bash
+$ git checkout contact
+Switched to branch "contact"
+
+$ git commit -m "add link to twitter" -a
+Created commit 321d76f: add link to twitter
+1 files changed, 4 insertions(+), 0 deletions(-)
+
+$ git checkout master
+Switched to branch "master"
+
+$ git cherry-pick 321d76f
+Finished one cherry-pick.
+Created commit 294655e: add link to twitter
+1 files changed, 4 insertions(+), 0 deletions(-)
+```
+
+By default, a new commit is created with the changes from that cherry-picked commit.
+
+This is OK in most cases, but what if the code you need is in several commits?  
+To cherry-pick multiple commits, give git cherry-pick the `-n` parameter. That tells Git to do the merge but stop before creating a commit.
+
+### Stash
 
 Why you need stash:
 
 - Create a repo, work & commit on `main`
 - Switch to another branch and work on it; maybe stage some files
-- Some bugs are found on other branch (or even `main`) and you need to fix it _immediately_. But, the thing is, git won't let you switch branch if there are some tracked or untracked changes. You must either commit of stash those changes before switching branch.
+- Some bugs are found on other branch (or even `main`) and you need to fix it _immediately_. Cần phải switch branch nhưng hiện tại chưa commit được thì phải `stash`.
 
-Run the command `git stash` to bring your un-committed changes to the stash. After this, you can switch branch.  
+Run the command `git stash` to bring your un-committed changes to the stash (both your modified tracked files and staged changes). After this, you can switch branch.  
 When you come back to your branch, run `git stash pop` to bring back changes that you had stashed. You can actually pop changes that are stashed from one branch to a different branch. For example changes stashed in `bugfix` can be pop out in `main`.
 
 You should always first run `git stash list` and only dump the stash you want using something like `git stash apply stash@{0}`
@@ -1044,6 +1178,26 @@ Mot ứng dụng nữa là đang code mà muốn copy code từ branch khác: st
 
 The git stash command takes your uncommitted changes (both staged and unstaged), saves them away for later use, and then reverts them from your working copy. After this, you can switch branch.  
 When you come back to your branch, run git stash pop to bring back changes that you had stashed.
+
+The git stash command and git stash push command are functionally equivalent in most common use cases.
+
+- git stash:
+  - When executed without any arguments, git stash implicitly performs the action of git stash push. It takes your current uncommitted changes (modified tracked files and staged changes) and stores them in a temporary "stash" list, reverting your working directory to a clean state matching the last commit.
+- git stash push:
+  - This is the explicit command for creating a new stash entry. It offers additional options for more granular control over what is stashed. For instance, you can use:
+  - git stash push -m "Descriptive message": To add a custom message to your stash entry, making it easier to identify later.
+  - git stash push --include-untracked: To also stash untracked files in addition to modified tracked files and staged changes.
+  - git stash push --keep-index: To stash only the modified tracked files, leaving the staged changes in the index.
+
+In essence, git stash push provides the same core functionality as a bare git stash but with the added flexibility of specifying options to control the stashing behavior and provide more descriptive messages. For simple stashing of current changes, either command will achieve the same result.
+
+To see which stashes you’ve stored, you can use `git stash list`.
+
+You can also run `git stash pop` to apply the stash and then immediately drop it from your stack.
+
+## git-filter-repo
+
+This is for rewriting an entire repository history.
 
 ## Working with Remote
 
@@ -1331,6 +1485,8 @@ A **tag** is like a branch[^1] that doesn’t change. Unlike branches, tags, aft
 `git tag` lists all the tags in alphabetical order; the order in which they are displayed has no real importance.
 `git tag -l "v1.8.5*"` If you’re interested only in looking at the 1.8.5 series. Must include `-l` or `--list`
 
+`git tag 1.0 RB_1.0` adds tag name `1.0` to branch `RB_1.0`. "RB" stands for "release branch".
+
 `git tag -a v1.4 -m "my version 1.4"` create an annotated tag
 `git tag -a v1.2 9fceb02` tag commits after you’ve moved past them. You specify the commit checksum (or part of it) at the end of the command
 `git tag v1.4-lw` create a lightweight tag, only provide a tag name
@@ -1349,6 +1505,8 @@ A **tag** is like a branch[^1] that doesn’t change. Unlike branches, tags, aft
 Tags are used to track milestones of the project. They mark a certain point in the history of the repository so you can easily reference them later.
 
 A tag is simply a name that you can use to mark some specific point in the repository’s history. Tags help you keep track of the history of your repository by assigning an easy-to-remember name to a certain revision.
+
+Thường là tạo tag sau đó delete branch. Sau này nếu cần fix có thể tạo branch từ cái tag.
 
 ## Git Aliases
 
@@ -1372,8 +1530,6 @@ A [codespace](https://docs.github.com/en/codespaces/overview) is a development e
 [stack overflow](https://stackoverflow.com/questions/23611669/how-to-find-the-created-date-of-a-repository-project-on-github) How to find the created date of a repository project on GitHub? using github api
 
 ## Other techniques
-
-cherry-pick: pick any commit by its reference & appended to the current working HEAD
 
 Nhánh `development` sẽ được merge vào nhánh `release`
 

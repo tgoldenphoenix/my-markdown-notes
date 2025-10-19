@@ -452,6 +452,12 @@ You can create a symbolic link in WSL: `ln -s /mnt/c/Users/<YourWindowsName>/Des
 
 Or open the current WSL directory in File Explorer: `explorer.exe .`
 
+### Máy everrise
+
+`C:\Users\anhao\AppData\Local\Programs\`
+
+MySQL: 3306
+
 ## MacOS File system
 
 [macOS Standard Directories: Where Files Reside](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW6)

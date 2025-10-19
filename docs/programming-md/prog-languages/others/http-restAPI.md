@@ -45,21 +45,21 @@ You can see HTTP messages in a browser's **Network tab** in the developer tools,
 There are two types of HTTP messages, requests and responses, each with its own format.
 
 - Request:
-  * The **start-line** (first line) contains, in order:
-    * An HTTP method: `GET, POST, PUT, DELETE`
-    * **Resource path** without the protocol (`http://`), domain name (`developer.mozilla.org`) or the TCP port (here, `80`). Example looks like `/images/2025/`, `/users`.
-    * Version of the HTTP protocol
-  * Optional **headers block** for additional information for the servers: language, MIME types, allowed formats trả về. Thông tin dưới dạng key-value pairs.
-  * An **empty line** indicating the header of the message is complete.
-  * A body which contain the resource sent. **Only** `PATCH, POST, and PUT` requests have a body. Example: JSON, data in multiple parts, a string of key-value pais.
+  - The **start-line** (first line) contains, in order:
+    - An HTTP method: `GET, POST, PUT, DELETE`
+    - **Resource path** without the protocol (`http://`), domain name (`developer.mozilla.org`) or the TCP port (here, `80`). Example looks like `/images/2025/`, `/users`.
+    - Version of the HTTP protocol
+  - Optional **headers block** for additional information for the servers: language, MIME types, allowed formats trả về. Thông tin dưới dạng key-value pairs.
+  - An **empty line** indicating the header of the message is complete.
+  - A body which contain the resource sent. **Only** `PATCH, POST, and PUT` requests have a body. Example: JSON, data in multiple parts, a string of key-value pais.
 - Response:
-  * The **start-line** (called a **status line** in responses) contains, in order:
-    * Protocol version
-    * Status code: indicating if the request was successful or not, and why.
-    * A **status message**: a non-authoritative short description of the status code.
-  * A headers block, like those for requests. Example: format trả về
-  * An **empty line** indicating the header of the message is complete.
-  * Optionally, a body containing the fetched resource. Example: HTML code, JSON
+  - The **start-line** (called a **status line** in responses) contains, in order:
+    - Protocol version
+    - Status code: indicating if the request was successful or not, and why.
+    - A **status message**: a non-authoritative short description of the status code.
+  - A headers block, like those for requests. Example: format trả về
+  - An **empty line** indicating the header of the message is complete.
+  - Optionally, a body containing the fetched resource. Example: HTML code, JSON
 
 The start-line and headers of the HTTP message are collectively known as the head of the requests, and the part afterwards that contains its content is known as the body.
 
@@ -79,6 +79,12 @@ Có dạng chung là: `type/subtype;parameter=value`. Trong đó `type & subtype
 
 Example: `text/plain;charset=UTF-8`
 
+There are two classes of type: discrete and multipart. Discrete types are types which represent a single file or medium, such as a single text or music file, or a single video. A multipart type represents a document that's comprised of multiple component parts, each of which may have its own individual MIME type; or, a multipart type may encapsulate multiple files being sent together in one transaction.
+
+- The discrete types are:
+  - `application`: Any kind of binary data that doesn't fall explicitly into one of the other types; either data that will be executed or interpreted in some way or binary data that requires a specific application or category of application to use. Generic binary data (or binary data whose true type is unknown) is application/octet-stream. Other common examples include application/pdf, application/pkcs8, and application/zip
+  - `audio`; example `audio/mpeg, audio/vorbis`
+
 ## Response status codes
 
 Responses are grouped into five classes: informational responses, successful responses, redirects, client errors, and server errors.
@@ -92,3 +98,9 @@ Responses are grouped into five classes: informational responses, successful res
 - Client-Side Caching: The client can cache responses to avoid redundant requests to the server. This is especially useful for static resources such as images, configuration files, or infrequently changing data.
 - Server-Side Caching: Servers can implement caching for resources that are commonly requested. This improves response times and reduces the load on the server, ensuring better scalability.
 
+## parameter
+
+- Trong Spring REST API thì:
+  - `@RequestParam` là `?brand=apple`; case in-sensitive, `Apple` hay `apple` both ok;
+  - `@PathVariable` là `product/{productId}`
+  - `RequestBody` là raw json inside body
