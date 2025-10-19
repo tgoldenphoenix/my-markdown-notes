@@ -21,7 +21,7 @@ GCP (google cloud platform)
 
 book clean code
 
-so sánh .equal vs ==: String vs Long
+[x] so sánh .equal vs ==: String vs Long
 
 --- Share ---
 
@@ -36,11 +36,11 @@ so sánh .equal vs ==: String vs Long
   - <https://www.joshwcomeau.com/svg/friendly-introduction-to-svg/>
   - <https://discourse.mozilla.org/t/solved-svg-path-does-not-show/98813>
 
-`git push origin HEAD` => nhanh hơn
-
 nếu rebase không được thì tạo nhánh mới + cherry pick
 
 sau khi rebase (kể cả không có conflict) cũng phải diff commit để tránh trường hợp rebase auto-merge không theo ý muốn
+
+Tìm hiểu thêm stash & reflog
 
 `useMemo()` react hook
 
@@ -49,13 +49,15 @@ sau khi rebase (kể cả không có conflict) cũng phải diff commit để tr
 
 code dùng dependency do người khác viết, trước khi rebase chạy code ok. Nhưng người kia change dependency mình dùng. Sau khi rebase (dù ko có conflict) sẽ không chạy OK nữa.
 
-`rebase -i HEAD`
+`rebase -i HEAD` to re-write commit history, squash, re-order
 
 rebase khi nào có conflict?
 
 so sánh .equal vs ==: String vs Long
 
 Tìm sách đọc để hiểu hơn về HTTP protocol, tập dùng `fetch API`, HTTP requests in web application.
+
+`gitk` command show graph
 
 git fech origin main chỉ fetch duy nhất main thôi
 

@@ -11,6 +11,8 @@ Working tree = working directory
 
 How to read git synopsis: [stack overflow](https://stackoverflow.com/questions/60906410/how-do-i-read-git-synopsis-documentation)
 
+Git is a **distributed** version control system (DVCS). In comparison with a centralized VCS.
+
 ## git config
 
 Show git config: `git config --list`  
@@ -102,10 +104,10 @@ Git SSH URLs follow a template of: `git@HOSTNAME:USERNAME/REPONAME.git`. Host na
 `git status` show file states, merge conflicts status  
 `git status -uall <file/folder>`: Nếu muốn git status show files trong folders (mặc định chỉ show folder) thì [here](https://stackoverflow.com/questions/28222633/git-status-not-showing-contents-of-newly-added-folder)
 
-### Demo git diff
+### git diff
 
 `git diff` so sánh sự khác nhau của  cùng một file nhưng ở các "stage" khác nhau trong git; `git diff` không dùng để so sánh 2 file khác nhau.  
-`git diff` does not compare file A and file B (there are different tool for that). It compare the same file A in different stages: same file on different commits, staged file and the latest commit, same file but on different branch.
+`git diff` does **NOT** compare file A and file B (there are different tool for that). It compare the same file A in different stages: same file on different commits, staged file and the latest commit, same file but on different branch.
 
 Nếu `git status` không có file nào modified thì `git diff` không có output gì hết.
 
@@ -124,10 +126,7 @@ index 6b0c6cf..b37e70a 100644
 +this is a diff example
 ```
 
-`---` & `+++` do NOT means added & remove the code. They only indicate changes in the file. Changes from `a/diff_test.txt` are marked with a `---` and the changes from `b/diff_test.txt` are marked with the `+++` symbol.
-
-- The `---` represent file `a->` (not necessarily the previous version. It's just the file a).
-- The `+++` represent file `b->`. Note that `a->` and `b->` are the same file over time
+`---` & `+++` do **NOT** means added & remove the code, nó là ký hiệu mà git assign cho từng file. File a là `---`, file b là `+++`.
 
 ```bash
 # A diff "chunk"
@@ -136,24 +135,15 @@ index 6b0c6cf..b37e70a 100644
 +this is a diff example
 ```
 
-The **chunk header** `@@ -1 +1 @@` means "line number one had changes". In the chunk header `+, -` means add/subtract lines  
-`@@ -34,6 +34,8 @@` means "Before, starting from line number 34, there were 6 lines. After, start from 34, there is now 8 lines" => Add two more lines to the file.
+- The **chunk header** `@@ -1 +1 @@` means "line number one had changes":
+  * `-1` means from the A version file (the minus `-` sign), extracting one line starting at line 1.
+  * `+1` means from the B version file (the plus `+` sign), extracting one line starting at line 1.
+  * Đừng có hiểu `+ -` theo nghĩa add/remove line.
 
-- `git diff` compare working directory vs stating area (thay đổi chưa `add`)
-- `git diff --staged` or `--cached` compare staging area (index) vs last commit (final review before `commit`)
-- `git diff HEAD` compare working directory vs last commit. By default, git compare to `HEAD`.
-- When a file path is passed to git diff the diff operation will be scoped to the specified file: `git diff HEAD ./path/to/file`. Omitting HEAD in the example above has the same effect.
-- Git diff two commit `git diff a498f47 7274899` compare commits. Or you can use the older `..` operator instead of space character such as `git diff a498f47..7274899`. Nên để 2 cái commit id theo đúng thứ tự thời gian `older..newer`. Nếu để commit ngược lại thì sẽ khó hiểu lắm.
-- `git diff branchOne..branchTwo`
-
-A common workflow might look like:
-
-1. Make changes to multiple files
-2. Run `git diff` to review all changes
-3. Use `git add <file>` selectively to stage logical groups of changes
-4. Run `git diff --staged` to verify what's about to be committed
-5. Commit the staged changes with `git commit -m "Your message"`
-6. Repeat for other logical groupings of changes
+- `@@ -34,6 +34,8 @@` means:
+  * From file a (`-`), starting from line number 34, extract 6 lines.
+  * From file b (`+`), start from line 34, extract 8 lines.
+  * Vậy suy ra có two more lines added to the file.
 
 Cách đọc output một số tình huống git diff thường gặp
 
@@ -171,12 +161,37 @@ index 6424794..e29dc2c 100644
 +add feature 10/10
 ```
 
-Starting at line `7`, before 4 lines, after 4 lines. Two number `4` means some thing was changed but the total number of line stay the same.
-
-Dấu `+` means add line. Dấu `-` là deleted line.
-
+- `@@ -7,4 +7,4 @@` => Starting at line `7`, before 4 lines, after 4 lines. Two number `4` means some thing was changed but the total number of line stay the same.
 - `@@ -5,3 +5,6 @@` means 3 lines was added. Trong dây `+`, `-` chỉ có nghĩa là "after, before".
 - `@@  -2,3 +2,4 @@` => add one line
+
+- `git diff` compare current working directory vs staging area (thay đổi chưa `add`)
+- `git diff --staged` or `--cached` compare staging area (index) vs last commit (final review before `commit`)
+- `git diff HEAD` compare working directory vs last commit. By default, git compare to `HEAD`.
+- When a file path is passed to git diff the diff operation will be scoped to the specified file: `git diff HEAD ./path/to/file`. Omitting HEAD in the example above has the same effect.
+- Git diff two commit `git diff a498f47 7274899` compare commits. Or you can use the older `..` operator instead of space character such as `git diff a498f47..7274899`. Nên để 2 cái commit id theo đúng thứ tự thời gian `older..newer`. Nếu để commit ngược lại thì sẽ khó hiểu lắm.
+- `git diff branchOne..branchTwo`??
+
+A common workflow might look like:
+
+1. Make changes to multiple files
+2. Run `git diff` to review all changes
+3. Use `git add <file>` selectively to stage logical groups of changes
+4. Run `git diff --staged` to verify what's about to be committed
+5. Commit the staged changes with `git commit -m "Your message"`
+6. Repeat for other logical groupings of changes
+
+### git range-diff
+
+`git range-diff` is available from git 2.19
+
+`git range-diff` is used to compare two ranges of commits (compared to `git diff` which compares the state at two different commits directly). It's best to think of git range-diff as performing a `diff` of two `git-diff`s—because that's literally how it works behind the scenes!
+
+In theory, this makes it possible to compare a stack of commits prior to **rebasing** with the stack of commits after rebasing and to show the differences between them. If the rebase was simply rearranging and squashing commits then you would expect the diffs to be identical, and the diff of diffs would show that.
+
+On the other hand, if you had to handle merge conflicts as part of the rebase, or if you rebased onto a different commit, then you might expect there to be changes, and these would be shown by git range-diff
+
+[read more](https://andrewlock.net/verifiying-tricky-git-rebases-with-range-diffs/)
 
 ### `git log` - Viewing the commit history
 
@@ -203,6 +218,10 @@ The `--stat` shows some abbreviated stats for each commit.
 `--author`, `--grep` filter options (useful)
 
 `-S` takes a string and shows only those commits that changed the number of occurrences of that string
+
+### reflog
+
+k
 
 ## Add & Commit
 
@@ -260,6 +279,10 @@ Remember, anything that is committed in Git can almost always be recovered. Even
 - Whenever you are doing amend Git will basically rewrite the entire commit and generates a **new hash** for it. This is very important to understand.
 
 `git push -f` force push (`--force`); used after `commit -amend` to overwrite the old commit on the remote repo.
+
+`--force` overwrites a remote branch with your local branch.
+
+`--force-with-lease` is a safer option that will not overwrite any work on the remote branch if more commits were added to the remote branch (by another team-member or coworker or what have you). It ensures you do not overwrite someone elses work by force pushing.
 
 It is always advisable to use amend when you haven’t pushed the changes to remote or if you are pretty confident that no other developers have started using those changes or no others have pushed any new changes to the current branch.
 
@@ -371,7 +394,11 @@ Think of Git as content manager of three different trees (collection of files no
 
 1. HEAD: Last commit's snapshot, next parent
 2. Index: proposed next commit's snapshot (the "staging area")
-3. Working Directory (or working tree): the "sandbox" where you can try changes out before committing them to your staging area (index) and then to history
+3. **Working Directory (or Working tree)**: the "sandbox" where you can try changes out before committing them to your staging area (index) and then to history
+
+- Your "repository" is not a tree, it is the commit history stored inside the `.git/` directory:
+  * You have your **local repository** and...
+  * The **upstream repository** or the public repository thường ở trên Github.
 
 Git will look at the `index` when you run `git commit`.
 
@@ -791,6 +818,43 @@ Khi rebase nếu có conflict thì cũng resolve giống như merge bình thư�
 
 git rebase `their vs --our`: `our` thực chất là `main` chứ không phải nhánh của mình => dễ bị nhầm
 
+```bash
+anhao@Anonimous MINGW64 ~/desktop/demo-git (anhao)
+$ git log --oneline
+b6be74d (HEAD -> anhao) anhao add 03
+d40d7ba anhao add 02
+3a19186 (origin/main, origin/HEAD, main) Merge pull request #7 from anhaoerv/anhao
+
+anhao@Anonimous MINGW64 ~/desktop/demo-git (anhao)
+$ git log --oneline
+b6be74d (HEAD -> anhao) anhao add 03
+d40d7ba anhao add 02
+3a19186 (origin/main, origin/HEAD, main) Merge pull request #7 from anhaoerv/anhao
+
+$ git checkout anhao
+Switched to branch 'anhao'
+
+anhao@Anonimous MINGW64 ~/desktop/demo-git (anhao)
+$ git rebase main
+Successfully rebased and updated refs/heads/anhao.
+
+anhao@Anonimous MINGW64 ~/desktop/demo-git (anhao)
+$ git log --oneline
+b239e35 (HEAD -> anhao) anhao add 03
+e3eeaa0 anhao add 02
+2807118 (main) main add 02
+324eb0d main add 01
+3a19186 (origin/main, origin/HEAD) Merge pull request #7 from anhaoerv/anhao
+```
+
+- `feature` có 2 commit khác `main` thì sau khi rebase:
+  * `main` không đổi
+  * `feature` vẫn có 2 commit nhưng on the tip of `main`
+  * `feature` không có thêm merge commit
+  * `feature` không bị mất commit, chỉ bị "rabase"
+
+`git rabase` có conflict khi sửa cùng một dòng. Sửa cùng một file nhưng khác dòng rabase không có conflict.
+
 ### Rebase vs merge
 
 - When rebase `A` on-to `main` => `main` will **NOT** move. Only `HEAD->A` move (on to the tip of `main`).
@@ -909,7 +973,11 @@ Không được thay đổi `main` mà không có review.
 
 ### Interactive rebasing
 
-Interactive rebasing gives you the opportunity to alter commits as they are moved to the new branch. This is even more powerful than an automated rebase, since it offers complete control over the branch’s commit history. Typically, this is used to clean up a messy history before merging a feature branch into main.
+Interactive rebasing gives you the opportunity to alter commits as they are moved to the new branch. This is even more powerful than an automated rebase, since it offers complete control over the branch’s commit history. Typically, this is used to clean up a messy history before merging a feature branch into main. You can do editing, deleting, and squashing.
+
+To tell Git where to start the interactive rebase, use the SHA-1 or index of the commit that immediately precedes the commit you want to modify.
+
+Interactive rebasing will create new SHA-1’s therefore it is best to use interactive rebasing on commits you have not pushed to a remote branch.
 
 To begin an interactive rebasing session, pass the i option to the git rebase command:
 
@@ -926,7 +994,19 @@ pick 9480b3d Message for commit #2
 pick 5c67e61 Message for commit #3
 ```
 
+In git log the most recent commit is on top. In interactive rebasing view, the most recent commit is on bottom (reverse order).
+
 the following command begins an interactive rebase of only the last 3 commits: `git checkout feature git rebase -i HEAD~3`
+
+Git use zero-based indexing, so `HEAD~1` the last commit & `HEAD~0` is where you are standing on.
+
+Make lots of small commits and tidy them up later using interactive rebase. Use `git push origin --force-with-lease`.
+
+Normally when I'm rewriting history I use git rebase -i in combination with git reset HEAD~. This lets me squash commits together, pause to split them apart, reorder them, or remove them entirely. This is used to modify your pull request to make it easier to review.
+
+[read & note khi có thời gian](https://hackernoon.com/beginners-guide-to-interactive-rebasing-346a3f9c3a6d)
+
+Đọc thêm về cách "squash" commit bằng interactive rebase
 
 ### Changing a branch name
 
@@ -941,7 +1021,11 @@ the following command begins an interactive rebase of only the last 3 commits: `
 `git branch --move master main` Rename your local master branch into main. To let others see the new main branch, you need to push it to the remote. This makes the renamed branch available on the remote: `git push --set-upstream origin main`
 `git push origin --delete master` delete the master branch on remote
 
-### git stash
+## git-filter-repo
+
+This is for rewriting an entire repository history.
+
+## git stash
 
 Why you need stash:
 
@@ -999,6 +1083,7 @@ d1d9d1d (HEAD -> main, origin/main, origin/HEAD, feature) commit B
 You can only push to remote servers in which you have write access (your own repo or forked repo). Run `git push <remote> <branch>`
 
 - `git push origin serverfix` => Take my `serverfix` local branch and make it the remote’s `serverfix` branch.
+- `git push origin HEAD` => faster than writing out the branch name
 - `git push origin serverfix:anhao` => Take my `serverfix` local branch and make it the remote's `anhao` branch. You can use this format to push a local branch into a remote branch that is named differently.
 
 `git push <remote_name> <local_branch_name>` This command will push the local branch `<local_branch_name >` to the remote repo at `< remote_name >`. For example: `git push origin main` push your local `main` branch to your `origin` server (cloning generally sets up both of those names for you automatically).
@@ -1261,6 +1346,10 @@ A **tag** is like a branch[^1] that doesn’t change. Unlike branches, tags, aft
 
 `git checkout <tag name>` view the versions of files a tag is pointing to
 
+Tags are used to track milestones of the project. They mark a certain point in the history of the repository so you can easily reference them later.
+
+A tag is simply a name that you can use to mark some specific point in the repository’s history. Tags help you keep track of the history of your repository by assigning an easy-to-remember name to a certain revision.
+
 ## Git Aliases
 
 Here are some example:
@@ -1291,6 +1380,12 @@ Nhánh `development` sẽ được merge vào nhánh `release`
 Người dùng sẽ sử dụng nhánh `main/master`. Nhánh `release` chứa những commits được scheduled để merge vào `main`.
 
 Nhánh `hotfix` chỉ nhảy ra từ `main` hoặc `release`
+
+## Git principles
+
+commit often & commit small. Viết ra cái gì xong & code vẫn build run OK thì cứ commit.
+
+Every new idea for the same problem require a new branch.
 
 ## Git Internals
 

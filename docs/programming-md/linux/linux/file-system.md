@@ -21,30 +21,42 @@ While it is reasonably safe to suppose that everything you encounter on a Linux 
 - (Domain) sockets: a special file type, similar to TCP/IP sockets, providing inter-process networking protected by the file system's access control.
 - Named pipes: act more or less like sockets and form a way for processes to communicate with each other, without using network socket semantics.
 
-Depending on which type of Linux environment you are running, you may run into several different file systems. Some of them are **ext2, ext3, and ext4**. **XFS, JFS**, and a few others are also used. `ext3` is a journaling extension to the ext2 file system on Linux. ext4 is the successor to ext3. Journaling is a method of recording data that results in massively reduced time spent recovering a file system after a crash. XFS is very fast and also uses B-Trees for its file indexing.
+Depending on which type of Linux environment you are running, you may run into several different file systems. Some of them are **ext2, ext3, and ext4**. **XFS, JFS**, and a few others are also used. `ext3` is a journaling extension to the ext2 file system on Linux. ext4 is the successor to ext3. Journaling is a method of recording data that results in massively reduced time spent recovering a file system after a crash. XFS is very fast and also uses B-Trees for its file indexing.
 
-Though `*/bin` seems to suggest by name that the contents therein are BINaries, the BS* `hier` man-page does **not** seem to suggest it. It only seems to suggest that the contents be executable. So you can store your bash scripts inside bin directories.
+## Purpose of each directory
 
-Mind the difference between `/`, the root directory and `/root`, the home directory of the root user.
+Mind the difference between `/` (the root directory) vs `/root` (the home directory of the root user).
 
-Usually store your scripts in `/usr/local/bin`, unless you don't want other users to have access to them, in which case `$HOME/bin`.
+- Những directories `*/bin` chứa binaries, bash scripts, executables.
+- Store your scripts in `/usr/local/bin`, unless you don't want other users to have access to them, in which case `$HOME/bin`.
+- `/usr/local/bin` may be in the default PATH, but `$HOME/bin` will certainly need to be added to PATH manually.
 
-`/usr/local/bin` may be in the default PATH, but `$HOME/bin` will certainly need to be added to PATH.
-
-**Adding `$HOME/bin` to PATH:**
+Adding `$HOME/bin` to PATH:
 
 ```bash
 PATH=${PATH}:$HOME/bin
 export PATH
 ```
 
-`/usr`—Contains non-essential command-line binaries, libraries, header files, and other data. At least it is non-essential to the system. The dotfiles is actually essential to the users.
+`/usr` Contains non-essential command-line binaries, libraries, header files, and other data. At least it is non-essential to the system. The dotfiles is actually essential to the users.
 
 Khi cắm USB external hard drive vào ubuntu thì nó sẽ ở `/media/anhao/<hard drive name>`
 
-[Distinguish all the */bin and */sbin and /top on the file system](https://unix.stackexchange.com/questions/8656/usr-bin-vs-usr-local-bin-on-linux)
+## The /etc directory
+
+Originally, there was `/bin` for programs (essentially, executable binaries), and very soon `/dev` for device files and `/lib` for extra executable code loaded by programs (libraries). `/usr` also came in very early, first for user data, then as an extra OS area with its own `bin` and `lib` and then `man` containing the manual in electronic form. The source code was also often provided somewhere under /usr.
+
+And there were a few files in the operating system that didn't fit in any of the existing categories. This included a passwd file containing users' passwords, and an mtab file written by mount, and the init and later rc programs executed at boot time, and over time more and more programs that were intended to be executed only for administration purpose and not as part of normal usage.
+
+On modern unix systems, almost all system-wide configuration files are under /etc, but not all files in /etc are configuration files. `/etc` is for for critical system and configuration files.
+
+`/var` store system-specific data
 
 ## Basic Commands
+
+Tên file có space thì phải để trong double quote.
+
+`less "My excellent file.txt"`
 
 - `cp` to copy files
 - `mv` to move & rename files
@@ -359,7 +371,7 @@ Example:
 
 `chmod ug+rw test.txt` add the read and write permissions to a file named test.txt for user and group
 
-**Numeric method**
+Numeric method
 
 This is the best way to learn and practice permissions.
 
@@ -396,11 +408,11 @@ If you add a colon and groupname after the user you can set both the user and gr
 
 Special permissions make up a fourth access level in addition to **user**, **group**, and **other**. Special permissions allow for additional privileges over the standard permission sets (as the name suggests). There is a special permission option for each access level.
 
-**user + s (pecial)**
+user + s (pecial)
 
 A file with **SUID** always executes as the user who owns the file, regardless of the user passing the command. If the file owner doesn't have execute permissions, then use an uppercase **S** here.
 
-**group + s (pecial)**
+group + s (pecial)
 
 Commonly noted as **SGID**, this special permission has a couple of functions:
 

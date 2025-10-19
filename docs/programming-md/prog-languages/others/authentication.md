@@ -1,4 +1,4 @@
-# API Authentication
+# API Authentication: JWT
 
 ## HTTP headers
 

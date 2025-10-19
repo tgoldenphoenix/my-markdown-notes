@@ -104,10 +104,29 @@ It returns a boolean value: `true` if the object is an instance of the specified
 
 ### Autoboxing and Unboxing
 
-- **Auto-boxing** is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object wrapper classes.
+- **Auto-boxing** is the automatic conversion that the Java compiler makes between the primitive types and their corresponding object **wrapper classes**.
 - Boxing là convert primitive thành Object. Unboxing là ngược lại từ wrapper class => primitive types.
 
 Every primitive type in the Java language has a JDK counterpart class. [xem table 4](https://developer.ibm.com/learningpaths/java-get-started/java-language-basics/#listing1)
+
+- Primitives:
+  * Live in the stack, access fast
+  * Need the least amount of memory (they are primitive)
+- Object wrapper counterparts:
+  * Live in the heap, access slow
+  * Need more memory (bytes)
+- Đây không phải vấn đề lớn cần để tâm.
+
+```java
+// declare long primitive
+long largeNumber = 987654321098765432L; // Explicitly declared as long
+long anotherNumber = 100L;
+
+// Long wrapper
+Long id1 = 123L;
+Long id2 = 123L;
+System.out.println(id1 == id2); // false
+```
 
 Strictly speaking, you don't need to box and unbox primitives explicitly. Instead, you can use the Java language's auto-boxing and auto-unboxing
 
