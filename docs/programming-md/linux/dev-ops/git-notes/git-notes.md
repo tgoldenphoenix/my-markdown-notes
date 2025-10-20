@@ -181,6 +181,10 @@ A common workflow might look like:
 5. Commit the staged changes with `git commit -m "Your message"`
 6. Repeat for other logical groupings of changes
 
+`git diff <hash>` diff với một hash thay vì compare with the last commit. Có thể dùng với tags.
+
+`git diff --stat 1.0`: dùng với tag `1.0`, `--stat` hiển thị number of lines was changed. Git assumes you want to compare against the HEAD if you don’t give it a second revision.
+
 ### git range-diff
 
 `git range-diff` is available from git 2.19
@@ -235,6 +239,10 @@ The other main ancestry specification is the `~` (tilde). This also refers to th
 
 Git use zero-based indexing.
 
+You can also use multiple carets: 18f822e∧∧ is two revisions prior to 18f822e, and so on.
+
+`~N`: The tilde and a number operator subtracts N from the commit name. Using the last examples, `18f822e~1` is the revision prior to 18f822e, and `18f822e~2` is two revisions prior to 18f822e.
+
 ### Commit range selection
 
 The double-dot syntax `..` asks Git to resolve a range of commits that are reachable from one commit but aren’t reachable from another.
@@ -286,9 +294,27 @@ One of the things Git does in the background while you’re working away is keep
 
 Every time your branch tip is updated for any reason, Git stores that information for you in this temporary history. You can use your reflog data to refer to older commits as well.
 
+What happens when you accidentally delete a branch using `git branch -D` or a `git rebase -i` goes wrong?1 This is where Git’s reflog comes in.
+
+The reflog keeps track of when a branch changes. Viewing it, you can find the commit you need to check out to restore a branch.
+
+git gc, which we talked about in Section 9.1, Compacting Repository History, on page 123, will cause some older reflog entries to expire. For example, the commits we just restored are normally deleted after thirty days. This can be changed by changing the gc.reflogExpireUnreachable config setting. Likewise, normal reflog entries are expired after ninety days, unless you change gc.reflogExpire to something else. That is to keep the reflog from getting too large.
+You’ll rarely need to use the reflog, but when you do, it can be a life-saver. Rewriting history can be dangerous, and git reflog is a safety net to help keep you safe from yourself.
+
 ### git show
 
 show one commit (using hash) & its diff
+
+### git blame
+
+`git blame hello.html` prefixes every line with the commit name, committer, and timestamp. Dùng `git blame` khi muốn narrow xuống chỉ còn một block of code trong một file.
+
+`git blame -L 12,13 hello.html` => The `-L` option tells Git to display only a certain set of line ranges. It takes single parameter—a <start>,<end>.
+
+The ending number doesn’t have to be a specific number. You can spec-ify it as +N or -N to specify a range.
+
+- `git blame -L 12,+2 hello.html`
+- `git blame -L 12,-2 hello.html
 
 ## Add & Commit
 
@@ -485,9 +511,9 @@ Step 2: Updating the Index (--mixed, default, unstage everything): The next thin
 It still undid your last commit, but also unstaged everything. You rolled back to before you ran all your git add and git commit commands.
 
 - **Step 3**: Updating the Working Directory (`--hard`):
-  * The third thing that reset will do is to make the working directory **look like the index**. If you use the `--hard` option, it will continue to this stage.
-  * You undid your last commit, the git add and git commit commands, and **all the work you did in your working directory**.
-  * This flag (--hard) is the only way to make the reset command dangerous, and one of the very few cases where Git will actually destroy data. Any other invocation of reset can be pretty easily undone, but the --hard option cannot, since it forcibly overwrites files in the working directory
+  - The third thing that reset will do is to make the working directory **look like the index**. If you use the `--hard` option, it will continue to this stage.
+  - You undid your last commit, the git add and git commit commands, and **all the work you did in your working directory**.
+  - This flag (--hard) is the only way to make the reset command dangerous, and one of the very few cases where Git will actually destroy data. Any other invocation of reset can be pretty easily undone, but the --hard option cannot, since it forcibly overwrites files in the working directory
 
 `git reset --hard HEAD^` remove the last commit.
 
@@ -643,6 +669,13 @@ f4769cf C2
 
 `main` now points to commit `5c7893c` & we lose the commit `9cda0ca`.
 
+git reset takes a commit name as its parameter. It defaults to HEAD if you don’t provide one.
+You can use the ∧ and ~ commit name modifiers to specify a revision. HEAD^ would reset two commits, while `540ecb7~3` would reset to three commits before 540ecb7.
+
+git reset updates the repository and stages the changes for you to com-mit. This is useful when you notice an error in your previous commit and want to fix it.
+Add --soft when you want to stage all the previous commits but not commit them. This gives you a chance to modify the previous commit by adding to or taking away from it.
+The final option is --hard, and it should be used with care. It removes the commit from your repository and from your working tree. It’s the equivalent of a delete button on your repository with no “undo.”
+
 ### Demo reset repo về commit đầu tiên
 
 Chạy các câu lệnh sau
@@ -770,6 +803,28 @@ The content of `README.md` is now updated. Notice that the feature 03 is gone!
 ```txt
 add feature revert 01
 add feature revert 02
+```
+
+Amend the last commit with `git commit -C HEAD -a --amend` => The option `-C` tells Git to use the log message from the commit specified—in this case HEAD, but it could have been any valid commit name as well—instead of explicitly providing a new message. You use the parameter in its lowercase form, -c, to tell Git to launch the editor with the message already filled in so you tweak it before finalizing the commit.
+
+Amending a commit should be done only when you are working with the last commit. If you made a mistake and need to correct it after other commits have been made, you want to use `git revert`.
+
+Normally Git commits the reversal immediately, but you can add the -n parameter to tell Git not to commit. This is useful when you need to revert multiple commits. Just run multiple git revert commands with the -n parameter, and Git stages all the changes and waits for you to commit them.
+
+You must provide it with a commit name so it knows what to revert. For example, if you wanted to revert the commit 540ecb7 and HEAD, use the following. Always revert backward—the most recent first. That makes sure you don’t have any unnecessary conflicts to work through when reverting multiple commits.
+
+```bash
+prompt> git revert -n HEAD
+Finished one revert.
+
+prompt> git revert -n 540ecb7
+Removed copy.txt
+Finished one revert.
+
+prompt> git commit -m "revert 45eaf98 and 540ecb7"
+Created commit 2b3c1de: revert 45eaf98 and 540ecb7
+2 files changed, 0 insertions(+), 10 deletions(-)
+delete mode 100644 copy.txt
 ```
 
 ## Git branching
@@ -1103,6 +1158,14 @@ Normally when I'm rewriting history I use git rebase -i in combination with git 
 
 Đọc thêm về cách "squash" commit bằng interactive rebase
 
+re-order commit => run `rebase -i` > change the order of the commits lines
+
+squashing commits => `rebase -` > change `pick` into `squash`
+
+khi `rebase -i` thì order ngược lại với `git log`
+
+Breaking One Commit into multiple commits
+
 ### Squashing Commits
 
 Squashed commits take the history of one branch and compress— or “squash”—it into one commit on top of another branch.
@@ -1356,6 +1419,40 @@ When you clone a repository, it generally automatically creates a `master` branc
 - **ahead by three and behind by one** means that there is one commit on the server we haven’t merged in yet and three commits locally that we haven’t pushed.
 - It’s important to note that these numbers are only since the last time you fetched from each server. This command does not reach out to the servers, it’s telling you about what it has cached from these servers locally. If you want totally up to date ahead and behind numbers, you’ll need to fetch from all your remotes right before running this. You could do that like this: `git fetch --all; git branch -vv`.
 
+The HTTP protocol is generally considered the protocol of last resort. It is the least efficient way to pull changes and requires much more net-work overhead, but it is almost always allowed by the strictest firewalls and is relatively quick and easy to set up.
+
+Run `git branch -r` to show remote branches
+
+```bash
+prompt> git branch -r
+origin/HEAD
+origin/master
+```
+
+You can check out those branches like a normal branch, but you should not change them. If you want to make a change to them, create a local branch from them first, and then make your change.
+
+Running git fetch updates your remote branches; it doesn’t merge the changes into your local branch.
+
+git pull takes two parameters, the remote repository you want to pull from and the branch you want to pull—without the `origin/` prefix.
+
+Speaking of the origin/ prefix in the remote branch name, that’s to keep the remote branches separate from your local branches. origin is the default remote repository name assigned to a repository that you create a clone from.
+
+Git makes a few assumptions when you call git push without any param-eters. First, it assumes you’re pushing to your origin repository. Second, it assumes you’re pushing the current branch on your repository to its counterpart on the remote repository1 if that branch exists remotely.
+
+Git pushes only what has been checked in, so any changes you have in your working tree or have staged are not pushed
+
+You can also specify the repository you want to push to, just like git pull. The syntax is the same: git push <repository> <refspec>. The <repository> can be any valid repository. Any of the URLs  will work, as will any named repository.
+
+The <refspec> in its simplest form is a tag, a branch, or a special key-word such as HEAD. You can use it to specify which branches to push and where you want them to be pushed. For example, you can use git push origin mybranch:master to push the changes from mybranch to the remote master.
+
+```bash
+prompt> git remote add erin git://ourcompany.com/dev-erin.git
+
+prompt> git pull erin HEAD
+```
+
+Now, you can use erin instead of the full repository any time you need to push or pull some changes.
+
 ### Fetch & Pull
 
 You make your changes in the working area (working directory) -> add them to the staging area -> commit to the local repo -> then push to remote repo. Trước khi push thì mình muốn pull changes made by colleagues on remote về để khi push lên là fresh.
@@ -1507,6 +1604,29 @@ Tags are used to track milestones of the project. They mark a certain point in t
 A tag is simply a name that you can use to mark some specific point in the repository’s history. Tags help you keep track of the history of your repository by assigning an easy-to-remember name to a certain revision.
 
 Thường là tạo tag sau đó delete branch. Sau này nếu cần fix có thể tạo branch từ cái tag.
+
+Tags act like bookmarks in your repository. You can use them to jump back to the point in the repository that you tagged. You can tag any commit in Git for any purpose you can think of.
+
+The most common use of tags is to mark when the code in your project is released. That allows you to go back to the code you released if you need to fix or change something later.
+
+Tags in Git are read-only, unlike the tags you might be familiar with if you’re coming from Subversion. This means you can’t make a change to the contents of a tag as if it were a normal branch. This is a much better way to handle tags. You can be sure that the tag is exactly what was tagged and hasn’t changed since it was created.
+
+Có thể checkout ra tags nhưng không thay đổi được. Muốn thay đổi thì từ tag tạo branch.
+
+## git submodule
+
+Sometimes you need to track multiple repositories as if they’re all in the same repository. This might be because of a dependency on some third-party library or possibly because your in-house project has been divided into multiple projects to help make them more manageable.
+Git allows you to track external repositories through what it calls sub-modules. These allow you to store a repository within another repository while keeping the two histories completely independent
+
+Once a month, or about every 100 or so commits, it’s a good idea to run `git gc` to tidy things up by optimizing the way Git stores its history internally. It doesn’t change the history, only the way it is stored.
+
+The --onto parameter provides another interesting way to rewrite your history. For example, you have three branches: master, the contacts branch that was created from master, and the search branch that was created from contacts.
+The history of those branches might go something like this. You started with contact code, but partway into it you decide to add new search code too.
+After you finish with the new search code, you realize that it would work directly without requiring any of the changes that are in your contact branch.
+This is what the --onto parameter does. It takes one parameter, the branch you want to rebase onto. Your command to rebase search onto the master branch looks like this:
+prompt> git rebase --onto master contact search
+
+This breaks the search branch off the contact branch and moves it to the master branch. This is useful if you need to merge the search branch back into master but don’t need everything in the contact branch. Of course, search has to be completely independent to keep from having any merge conflicts when the rebase starts replaying the changes.
 
 ## Git Aliases
 

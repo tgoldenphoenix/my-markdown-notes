@@ -33,6 +33,28 @@ In Java:
 - `null` is a special literal value that represents the absence of a reference to an object.
 - `null` is not an object or a type itself, but it can be assigned to reference variables of any type.
 
+## undefined in javascript and java
+
+Local Variables (Variables within a method, constructor, or block):
+Local variables are declared inside a method, constructor, or a block of code.
+Unlike instance and static variables, local variables are NOT automatically initialized.
+You must explicitly initialize a local variable before using it; otherwise, the Java compiler will produce a "variable might not have been initialized" error.
+
+```java
+public class MyProgram {
+    public static void main(String[] args) {
+        int x; // Declared, but not initialized
+        // System.out.println(x); // This would cause a compile-time error
+        x = 10; // Initialized
+        System.out.println(x); // Now it can be used
+    }
+}
+```
+
+javascript không có default value mà nếu không initialize biến thì cho = undefined
+
+khi nào trả về undefined trong javascript???
+
 ## ES6
 
 Từ ES6 (2015, 9 years ago) về sau gọi là Modern JavaScript. React uses ES6.
