@@ -23,7 +23,7 @@ Test functions always return `void`.
 
 ## Test Annotations
 
-@Test: Indicates that a method is a test case.
+`@Test`: Indicates that a method is a test case.
 
 ## Parameterized Tests
 

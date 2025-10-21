@@ -18,6 +18,10 @@ Through authentication, an application identifies a user(a  person  or  another 
 
 We classify data as “at rest” or “in transition.” In this context, data at restrefers  to  data  in  computer  storage  or,  in  other  words,  persisted  data. Data  intransition applies to all the data that’s exchanged from one point to another.Different security measures should, therefore, be enforced, depending on thetype of data.
 
+Security is a cross-cutting concern that you should consider from the beginning of a software project
+
+Spring Boot được dùng trong microservice vì nó giảm boilerplate code configuration code phải viết.
+
 ## Vulnerabilities
 
 An excellent start to understanding vulnerabilities is being aware of the Open WebApplication  Security  Project,  also  known  as  OWASP  (<https://www.owasp.org>).  AtOWASP, you’ll find descriptions of the most common vulnerabilities that you shouldavoid  in  your  applications.
@@ -49,3 +53,49 @@ Be careful of what your server returns to the client, especially, but not limite
 If your appencounters  a NullPointerException  because  the  request  is  wrong  (part  of  it  ismissing,  for  example),  then  the  exception  shouldn’t  appear  in  the  body  of  theresponse.  At  the  same  time,  the  HTTP  status  should  be  400  rather  than  500.  HTTPstatus  codes  of  type  4XX  are  designed  to  represent  problems  on  the  client  side.  Awrong  request  is,  in  the  end,  a  client  issue,  so  the  application  should  represent  itaccordingly. HTTP status codes of type 5XX are designed to inform you that there is aproblem on the server.
 
 Having exception stacks in the response is not a good choice either
+
+## Architecture
+
+Những entities trong Spring Security Authentication Architecture
+
+1. The `authentication filter` captures the request.
+2. The `authentication manager` takes on the responsibility for authentication.
+3. The authentication manager employs the `authentication provider` to execute the authentication logic.
+4. The authentication provider finds the user with a `user details service` and validates the     password using a `password encoder`.
+5. The result of the authentication is returned to the `authentication filter`.
+6. Details about the authenticated entity are stored in the `security context`.
+
+Những entities kể trên là beans và có thể configure theo nhu cầu.
+
+ ---
+
+The authentication filer delegates the authentication request to the authentication manager, and based on the response, it configures the security context.
+
+- The authentication provider implements the authentication logic:
+  * The user details service implements user management responsibility, which the authentication provider uses in the authentication logic.
+  * The password encoder implements password management, which the authenti-cation provider uses in the authentication logic.
+
+The `security context` keeps the authentication data after the authentication pro-cess. The security context will hold the data until the action ends. Usually, in a thread-per-request  app,  that  means  until the  app  sends  a  response back to the client
+
+- The PasswordEncoder does two things: 
+  * Encodes a password (usually using an encryption or a hashing algorithm)
+  * Verifies if the password matches an existing encoding
+- Còn store/get username & password (persist vào database) là việc của `UserDetailService`.
+
+Spring Boot also chooses an authentication method when configuring the defaults: **HTTP Basic access authentication**. It’s the most straightforward access authentication method. Basic authentication only requires the client to send a username and a pass-word through the HTTP Authorization header. In the value of the header, the client attaches the prefix Basic, followed by the Base64 encoding of the string that contains the username and password, separated by a colon (:)
+
+## Customize entities
+
+Spring Boot sẽ có những default configurations cho Spring Security. Có thể override.  
+With the default configuration, the app has two different authentication mechanisms in place: HTTP Basic authentication and Form Login.
+
+HTTP Basic authentication is a way in which a web app authenticates a user by means of a set of credentials (username and password) that the app gets in the header of the HTTP request. 
+
+You have the option to create your own implementation or to use a pre-defined one provided by Spring Security
+
+Interfaces in Java define contracts between objects. In the class design of the application, we use interfaces to decouple objects that use one another. To enforce this interface characteristic when discussing those in this book, I mainly refer to them as **contracts**.
+
+You’ll sometimes see that I use var in the code. Java 10 introduced the reserved type name var, and you can only use it for local declarations. Although in  some  cases  the  way var  is  used  in  this  book  could  be  considered  a  bad approach from a clean coding perspective, it is done to make the syntax shorter, as  well  as  to  hide  the  variable  type.  This  approach  helps  you  focus  on  what  is relevant  for  the  given  example.  We’ll  discuss  the  types  hidden  by var  in  later chapters, so you don’t have to worry about that type until it’s time to analyze it properly.
+
+`Customizeris` a contract you implement to define the customization for either Spring Security ele-ment  you  configure:  the  authentication,  the  authorization,  or  particular  protection mechanisms  such  as  CSRF  or  CORS.  
+Customizer is a functional interface (so we can use lambda expressions to implement it)

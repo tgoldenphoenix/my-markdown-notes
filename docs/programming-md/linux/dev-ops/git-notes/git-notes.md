@@ -9,9 +9,13 @@ Check if Git is installed locally: `git --version`
 
 Working tree = working directory
 
+Index = staging area
+
+HEAD = Commit tree
+
 How to read git synopsis: [stack overflow](https://stackoverflow.com/questions/60906410/how-do-i-read-git-synopsis-documentation)
 
-Git is a **distributed** version control system (DVCS). In comparison with a centralized VCS.
+Git is a **distributed** version control system (DVCS). In comparison with a **centralized** VCS.
 
 ## git config
 
@@ -25,11 +29,11 @@ The global gitconfig file on Macbook is at: `/opt/homebrew/etc/gitconfig`
 - Sau đó generate & add SSH key on local machine & on Github. Phải có cả authentication key & signing key (cùng một key nhưng tạo 2 chức năng).
 
 To set `main` as the default branch name do: `git config --global init.defaultBranch main`  
-GitHub changed the default branch name from `master` to `main` in mid-2020
+GitHub changed the default branch name from `master` to `main` in **mid-2020**
 
 Using Visual Studio Code as your default git editor: `git config --global core.editor "code --wait"`
 
-Nếu không config --global thì lại gặp lỗi này
+Nếu không config --global thì sẽ lại gặp lỗi này
 
 ```bash
  Anonimous% git commit -m "add autohotkey for window"
@@ -50,13 +54,19 @@ fatal: empty ident name (for <anhao@Anonimous.localdomain>) not allowed
 
 ### ssh key config
 
-Authentication key: prove your identity (log in) when communicating with Github (push code). It replace github password.
+**Authentication key**: prove your identity (log in) when communicating with Github (push code). It replaces github password.
 
 - Signing key:
-  - used to cryptographically sign your commits and tags, proving that you made them and they weren’t tampered with.
-  - Không bắt buộc khi push code.
+  * used to cryptographically sign your commits and tags, proving that you made them and they weren’t tampered with.
+  * Không bắt buộc khi push code.
 
 Một ssh generate ra từ một local machine can only be used for one account on github. Nhưng một ssh key generate ra từ một laptop thinkpad có thể add cho một account github & một account nữa trên backlog git.
+
+- account github `anhaoerv` có 1 ssh add vào git (window) think pad
+- account github `anhaophamx` có 2 ssh add vào:
+  - thinkpad git WSL
+  - macbook ở nhà
+- Chạy ngon OK!
 
 Nếu không được "Add as Collaborators" trên github thì chỉ có quyền `clone` repo, không được push.
 
@@ -72,20 +82,12 @@ When you generate an SSH key, you can add a **passphrase** to further secure the
 
 If you haven't used your SSH key for a year, then GitHub will automatically delete your inactive SSH key as a security precaution.
 
-- account github `anhaoerv` có 1 ssh add vào git (window) think pad
-- account github `anhaophamx` có 2 ssh add vào:
-  - thinkpad git WSL
-  - macbook ở nhà
-- Chạy ngon OK!
-
-Không cần `git config --global` gì hết. Chỉ cần add ssh key là được.
-
 Generate ssh key with your github email > add to ssh-agen > add to github
 
 ### Initializing a new repository
 
 `git init` (automatically create the `master or main` branch). Executing this command will create a new `.git` subdirectory in your current working directory.
-
+anki
 - The command `git clone <repo url>`
   - Automatically creates a remote called `origin` for fetch, push, pull
   - Create local **Remote Tracking Branches** to track the corresponding branches on the remote repository (e.g., `origin/main` for the `main` branch on the `origin` remote).
@@ -334,8 +336,6 @@ When you run git commit, Git creates a new commit object and moves the branch th
 `git add -p` go straight to patch mode, skip interactive. In patch mode, có thể stage only a portion of a file chứ không stage hết entire file.
 
 Không bắt buộc phải stage toàn bộ changes rồi mới được commit. Có thể select only what you want to stage.
-
-anki
 
 How to write atomic commit messages:
 
@@ -879,6 +879,20 @@ Switch to an existing branch `git checkout <branch name>`. This effectively move
 `git checkout -b [<new-branch>] [<start-point>]`
 
 Delete branch: `git branch -d <branch name>`. You delete branch after merging successfully.
+
+Delete all branch except `main`: `git branch | grep -v "main" | xargs git branch -D`  
+This command lists all branches, filters out the main branch, and deletes the rest.
+
+To delete local branches that have already been merged into the current branch (commonly the main branch): `git branch --merged | grep -v "\*" | xargs git branch -d`  
+This command skips any branches that contain unmerged changes.
+
+Before cleaning remote branches, synchronize your branch list with: `git fetch --prune`  
+This updates your local copy of the remote branch list and removes any references to branches that have been deleted remotely.
+
+Delete local remote-tracking branches: `git remote prune origin`  
+This will remove all references to the remote branch that you may have locally. These references are called "remote tracking branches".
+
+delete the branch from the remote repository: `git push origin --delete <branch-name>`
 
 go two commits prior to this one: `git checkout HEAD~2`. If you are currently on commit 04, it will move you to commit 01. This command also put you in detached HEAD. [read more](https://stackoverflow.com/questions/45924056/why-cannot-the-tilde-sign-be-part-of-a-valid-git-branch-name)
 

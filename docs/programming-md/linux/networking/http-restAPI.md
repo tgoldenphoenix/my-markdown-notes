@@ -38,6 +38,12 @@ HTTP is generally designed to be human-readable,
 
 HTTP is stateless, but not sessionless: While the core of HTTP itself is stateless, HTTP cookies allow the use of stateful sessions. Using header extensibility, HTTP Cookies are added to the workflow, allowing session creation on each HTTP request to share the same context, or the same state.
 
+## HTTP vs HTTPS
+
+You might have observed that in the examples presented, I only use HTTP. In practice, however, your applications communicate only over HTTPS. For the examples we discuss in this book, the configurations related to Spring Security aren’t different, whether we use HTTP or HTTP.
+
+In any of these configuration scenarios, you need a certificate signed by a certification authority (CA). Using this certificate, the client that calls the endpoint knows whether the response comes from the authentication server and that nobody intercepted the com-munication. You can buy such a certificate if you need it. If you only need to configure HTTPS to test your application, you can generate a self-signed certificate using a tool such as OpenSSL (<https://www.openssl.org/>)
+
 ## HTTP messages
 
 You can see HTTP messages in a browser's **Network tab** in the developer tools, or if you print HTTP messages to the console using CLI tools such as curl
@@ -92,6 +98,12 @@ Responses are grouped into five classes: informational responses, successful res
 - 200: OK. The request has succeeded.
 - 301: Moved Permanently. This response code means that the URI of requested resource has been changed.
 - 404: Not Found. The server cannot find the requested resource.
+
+- `401`: Unauthorized => The HTTP `401` Unauthorized status code is a bit ambiguous. Usually, it’s used to represent a **failed authentication** rather than an authorization. Develop-ers employ it in the design of the application for cases such as missing or incor-rect credentials. For a failed authorization, we’d probably use the 403 Forbidden status. Generally, an HTTP 403 means that the server identified the caller of the request, but they don’t have the needed privileges for the call that they are trying to make.
+
+## Request headers
+
+The HTTP `Authorization` request header can be used to provide credentials that authenticate a user agent with a server, allowing access to protected resources.
 
 ## Caching
 
