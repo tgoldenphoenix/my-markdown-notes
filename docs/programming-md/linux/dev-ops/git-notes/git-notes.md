@@ -57,8 +57,8 @@ fatal: empty ident name (for <anhao@Anonimous.localdomain>) not allowed
 **Authentication key**: prove your identity (log in) when communicating with Github (push code). It replaces github password.
 
 - Signing key:
-  * used to cryptographically sign your commits and tags, proving that you made them and they weren’t tampered with.
-  * Không bắt buộc khi push code.
+  - used to cryptographically sign your commits and tags, proving that you made them and they weren’t tampered with.
+  - Không bắt buộc khi push code.
 
 Một ssh generate ra từ một local machine can only be used for one account on github. Nhưng một ssh key generate ra từ một laptop thinkpad có thể add cho một account github & một account nữa trên backlog git.
 
@@ -88,6 +88,7 @@ Generate ssh key with your github email > add to ssh-agen > add to github
 
 `git init` (automatically create the `master or main` branch). Executing this command will create a new `.git` subdirectory in your current working directory.
 anki
+
 - The command `git clone <repo url>`
   - Automatically creates a remote called `origin` for fetch, push, pull
   - Create local **Remote Tracking Branches** to track the corresponding branches on the remote repository (e.g., `origin/main` for the `main` branch on the `origin` remote).
@@ -922,6 +923,48 @@ Khi switch branch phải có clean working state (no un-commited changes). Trư�
 
 `git branch --move master main` Rename your local master branch into main. To let others see the new main branch, you need to push it to the remote. This makes the renamed branch available on the remote: `git push --set-upstream origin main`
 `git push origin --delete master` delete the master branch on remote
+
+### prune
+
+```bash
+$ git log --oneline
+e1f685b (HEAD -> main, origin/main, origin/HEAD) Merge pull request #19 VN_PRO-787-use-const into main
+804c9ce (origin/VN_PRO-787-use-const, VN_PRO-787-use-const) VN_PRO-787 再代入しない変
+数を const で書き換える
+6e503c4 Merge pull request #17 VN_PRO-782-anonymous-handleclick into main
+6e8f1be (origin/VN_PRO-782-anonymous-handleclick, VN_PRO-782-anonymous-handleclick) VN_PRO-782 [Kankopi Button] Remove the handleClick function and rewrite it simply as an anonymous function.
+24187bd Merge pull request #15 VN_PRO-781 into main
+521dcab VN_PRO-781 Sửa cách trình bày tiêu đề trong file Readme - Readmeファイル内の書き方を変更します。
+4cbde82 Merge pull request #16 VN_PRO-780-refactor-handleclick into main
+c18e493 (origin/VN_PRO-780-refactor-handleclick, VN_PRO-780-refactor-handleclick) VN_PRO-780 [Kankopi Button] Refactor method handleClick() cho nút Copy
+906945a Merge pull request #14 VN_PRO-770 into main
+4302b66 Dịch Readme sang tiếng Nhật
+
+$ git branch | grep -v "main" | xargs git branch -D
+Deleted branch VN_PRO-780-refactor-handleclick (was c18e493).
+Deleted branch VN_PRO-782-anonymous-handleclick (was 6e8f1be).
+Deleted branch VN_PRO-787-use-const (was 804c9ce).
+
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (main)
+$ git remote prune origin
+Pruning origin
+URL: ever-rise@ever-rise.git.backlog.jp:/VN_PRO/backlog-wiki-page-kankopi-button.git
+ * [pruned] origin/VN_PRO-780-refactor-handleclick
+ * [pruned] origin/VN_PRO-782-anonymous-handleclick
+ * [pruned] origin/VN_PRO-787-use-const
+
+$ git log --oneline
+e1f685b (HEAD -> main, origin/main, origin/HEAD) Merge pull request #19 VN_PRO-787-use-const into main
+804c9ce VN_PRO-787 再代入しない変数を const で書き換える
+6e503c4 Merge pull request #17 VN_PRO-782-anonymous-handleclick into main
+6e8f1be VN_PRO-782 [Kankopi Button] Remove the handleClick function and rewrite it simply as an anonymous function.
+24187bd Merge pull request #15 VN_PRO-781 into main
+521dcab VN_PRO-781 Sửa cách trình bày tiêu đề trong file Readme - Readmeファイル内の書き方を変更します。
+4cbde82 Merge pull request #16 VN_PRO-780-refactor-handleclick into main
+c18e493 VN_PRO-780 [Kankopi Button] Refactor method handleClick() cho nút Copy
+906945a Merge pull request #14 VN_PRO-770 into main
+4302b66 Dịch Readme sang tiếng Nhật
+```
 
 ### Merging branches
 

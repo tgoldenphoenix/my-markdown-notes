@@ -72,14 +72,14 @@ Những entities kể trên là beans và có thể configure theo nhu cầu.
 The authentication filer delegates the authentication request to the authentication manager, and based on the response, it configures the security context.
 
 - The authentication provider implements the authentication logic:
-  * The user details service implements user management responsibility, which the authentication provider uses in the authentication logic.
-  * The password encoder implements password management, which the authenti-cation provider uses in the authentication logic.
+  - The user details service implements user management responsibility, which the authentication provider uses in the authentication logic.
+  - The password encoder implements password management, which the authenti-cation provider uses in the authentication logic.
 
 The `security context` keeps the authentication data after the authentication pro-cess. The security context will hold the data until the action ends. Usually, in a thread-per-request  app,  that  means  until the  app  sends  a  response back to the client
 
-- The PasswordEncoder does two things: 
-  * Encodes a password (usually using an encryption or a hashing algorithm)
-  * Verifies if the password matches an existing encoding
+- The PasswordEncoder does two things:
+  - Encodes a password (usually using an encryption or a hashing algorithm)
+  - Verifies if the password matches an existing encoding
 - Còn store/get username & password (persist vào database) là việc của `UserDetailService`.
 
 Spring Boot also chooses an authentication method when configuring the defaults: **HTTP Basic access authentication**. It’s the most straightforward access authentication method. Basic authentication only requires the client to send a username and a pass-word through the HTTP Authorization header. In the value of the header, the client attaches the prefix Basic, followed by the Base64 encoding of the string that contains the username and password, separated by a colon (:)
@@ -89,7 +89,7 @@ Spring Boot also chooses an authentication method when configuring the defaults:
 Spring Boot sẽ có những default configurations cho Spring Security. Có thể override.  
 With the default configuration, the app has two different authentication mechanisms in place: HTTP Basic authentication and Form Login.
 
-HTTP Basic authentication is a way in which a web app authenticates a user by means of a set of credentials (username and password) that the app gets in the header of the HTTP request. 
+HTTP Basic authentication is a way in which a web app authenticates a user by means of a set of credentials (username and password) that the app gets in the header of the HTTP request.
 
 You have the option to create your own implementation or to use a pre-defined one provided by Spring Security
 
@@ -99,3 +99,13 @@ You’ll sometimes see that I use var in the code. Java 10 introduced the reserv
 
 `Customizeris` a contract you implement to define the customization for either Spring Security ele-ment  you  configure:  the  authentication,  the  authorization,  or  particular  protection mechanisms  such  as  CSRF  or  CORS.  
 Customizer is a functional interface (so we can use lambda expressions to implement it)
+
+## Reading book
+
+Spring security book: <https://studylib.net/doc/27897532/spring-security-in-action>  
+current page: 59/440  
+Search keyword: defining custom authentication logic  
+Chapter: 2.3.4
+
+[marco behler blog](https://www.marcobehler.com/guides/spring-security-oauth2)
+

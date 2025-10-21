@@ -53,6 +53,8 @@ code dùng dependency do người khác viết, trước khi rebase chạy code 
 
 rebase khi nào có conflict?
 
+lambda method in java
+
 so sánh .equal vs ==: String vs Long
 
 Tìm sách đọc để hiểu hơn về HTTP protocol, tập dùng `fetch API`, HTTP requests in web application.
