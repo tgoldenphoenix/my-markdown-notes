@@ -105,6 +105,25 @@ Responses are grouped into five classes: informational responses, successful res
 
 The HTTP `Authorization` request header can be used to provide credentials that authenticate a user agent with a server, allowing access to protected resources.
 
+## Request body
+
+`POST`; `Content-Type:application/x-www-form-urlencoded`; Form parameters => trong request body sẽ có dạng:
+
+```
+POST /api/v2/wikis?apiKey=xmnb1h2nlENjJcfqQEYhGS7B0eQ6ZE7l9tGtWPGFM6cjRZ5k2kL99ByUNeO2tXlU HTTP/1.1
+User-Agent: PostmanRuntime/7.49.0
+Accept: */*
+Cache-Control: no-cache
+Postman-Token: e6ce50d3-828f-459c-ac12-42f16f291d13
+Host: ever-rise.backlog.jp
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 137
+ 
+projectId=40038&name=page_created_by_script&content=An%20Hao%20created%20this%20page%20by%20calling%20Backlog's%20API.&mailNotify=false
+```
+
 ## Caching
 
 - Client-Side Caching: The client can cache responses to avoid redundant requests to the server. This is especially useful for static resources such as images, configuration files, or infrequently changing data.
