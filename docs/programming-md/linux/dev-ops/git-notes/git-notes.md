@@ -1062,6 +1062,48 @@ e3eeaa0 anhao add 02
 
 `git rabase` có conflict khi sửa cùng một dòng. Sửa cùng một file nhưng khác dòng rabase không có conflict.
 
+rebase rồi `push --force` lên để làm đẹp nhánh
+
+```bash
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (VN_PRO-785-const-var-first)
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (main)
+$ git pull
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (4/4), 1.03 KiB | 65.00 KiB/s, done.
+From ever-rise.git.backlog.jp:/VN_PRO/backlog-wiki-page-kankopi-button
+   9d36d53..1244eaa  main       -> origin/main
+Updating 9d36d53..1244eaa
+Fast-forward
+ README.md | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (main)
+$ git checkout -
+Switched to branch 'VN_PRO-785-const-var-first'
+
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (VN_PRO-785-const-var-first)
+$ git rebase main
+Successfully rebased and updated refs/heads/VN_PRO-785-const-var-first.
+
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (VN_PRO-785-const-var-first)
+$ git push --force origin HEAD
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 531 bytes | 531.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+To ever-rise.git.backlog.jp:/VN_PRO/backlog-wiki-page-kankopi-button.git
+ + 0dc60b2...b685f99 HEAD -> VN_PRO-785-const-var-first (forced update)
+```
+
 ### Rebase vs merge
 
 - When rebase `A` on-to `main` => `main` will **NOT** move. Only `HEAD->A` move (on to the tip of `main`).

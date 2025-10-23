@@ -875,6 +875,10 @@ Lambda don't need access modifier, no return type, no method name
 When we are using a method reference – the target reference is placed before the delimiter :: and the name of the method is provided after it.  
 `Computer::getAge;` => a method reference to the method getAge defined in the `Computer` class
 
+## Stream API
+
+k
+
 ## FAQs
 
 [Cách viết javadoc cho methods](https://stackoverflow.com/questions/11763803/how-to-document-my-method-in-java-like-java-docs); [shorkey cho java doc trong netbean](https://stackoverflow.com/questions/2280261/adding-java-docs-to-a-program-in-netbeans)

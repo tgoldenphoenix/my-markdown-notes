@@ -49,6 +49,23 @@ There are two main types of partition tables: MBR and GPT
 
 ### MBR (Master Boot Record)
 
+## Format USB on Window
+
+`Win + R` > `diskpart`
+
+```bash
+list disk
+#####
+select disk <your_usb_number>
+clean
+#####
+create partition primary
+```
+
+Right-click USB → Format → choose FAT32 or exFAT.
+
+`exFAT` Cross-platform (Win/Mac/Linux); Works everywhere, supports large files
+
 ## Mounting
 
 [explain](https://unix.stackexchange.com/questions/3192/what-is-meant-by-mounting-a-device-in-linux)

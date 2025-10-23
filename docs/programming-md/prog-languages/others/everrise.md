@@ -66,3 +66,17 @@ git fech origin main chỉ fetch duy nhất main thôi
 Thêm demo vào return a new promise  in `.then` vs return a normal value
 
 Cách resolve commit with ide not on web
+
+## task hiện tai
+
+```javascript
+const anhao = "anhao";
+const regex = new RegExp(`^${anhao} (.$`);
+console.log(regex.test("anhao 9"));
+
+// const exactPattern = /^anhao \(.\)$/;
+// const anhao = "anhao";
+// const regex = `/^${anhao} \(.\)$/`;
+
+// console.log(regex.test("anhao (9)"));
+```

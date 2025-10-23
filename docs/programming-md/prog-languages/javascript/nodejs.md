@@ -128,6 +128,14 @@ Show version `node -v`
 
 Distinguish `npm init` vs `npm install`
 
+## install node  on window
+
+cài [nvm for window](https://github.com/coreybutler/nvm-windows?tab=readme-ov-file#usage)
+
+nvm sẽ cài node vào `C:\Users\anhao\AppData\Local\nvm\v22.21.0`
+
+vào `C:\Users\anhao` tạo `.bashrc` thêm path của node để xài node trong git bash (thay vì power shell cmd).
+
 ## Terminologies
 
 npm: Node Package Manager || nvm: Node Version Manager [Distinguish npm vs nvm](https://stackoverflow.com/questions/32660993/difference-between-npm-and-nvm)
