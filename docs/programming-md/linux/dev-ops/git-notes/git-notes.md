@@ -677,6 +677,53 @@ git reset updates the repository and stages the changes for you to com-mit. This
 Add --soft when you want to stage all the previous commits but not commit them. This gives you a chance to modify the previous commit by adding to or taking away from it.
 The final option is --hard, and it should be used with care. It removes the commit from your repository and from your working tree. It’s the equivalent of a delete button on your repository with no “undo.”
 
+Demo using `git reset --soft` to rewrite commit history
+
+```bash
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (test-regex)
+$ git log --all --decorate --oneline --graph
+* adb08c2 (HEAD -> test-regex, origin/test-regex) end of day commit
+* 0433e70 regex working ok
+* 68504d2 dang test thu regex
+*   1de439a (origin/main, origin/HEAD, main) Merge pull request #39 VN_PRO-805 into main
+|\
+| * ee01528 (origin/VN_PRO-805, VN_PRO-805) VN_PRO-805 コメントとシグネチャ、仕
+様を一致させる - Làm cho comment, signature và spec thống nhất với nhau
+|/
+*   076c31e Merge pull request #38 VN_PRO-803-transaction into main
+
+$ git reset --soft HEAD~3
+
+anhao@Anonimous MINGW64 ~/desktop/backlog-new (test-regex)
+$ git log --all --decorate --oneline --graph -8
+* adb08c2 (origin/test-regex) end of day commit
+* 0433e70 regex working ok
+* 68504d2 dang test thu regex
+*   1de439a (HEAD -> test-regex, origin/main, origin/HEAD, main) Merge pull request #39 VN_PRO-805 into main
+|\
+| * ee01528 (origin/VN_PRO-805, VN_PRO-805) VN_PRO-805 コメントとシグネチャ、仕
+様を一致させる - Làm cho comment, signature và spec thống nhất với nhau
+|/
+*   076c31e Merge pull request #38 VN_PRO-803-transaction into main
+
+git add .
+git commit
+
+$ git log --all --decorate --oneline --graph -8
+* e565a08 (HEAD -> test-regex) VN_PRO-802 関数内部で現在時を参照しない - Không tham chiếu thời gian hiện tại bên trong hàm
+| * adb08c2 (origin/test-regex) end of day commit
+| * 0433e70 regex working ok
+| * 68504d2 dang test thu regex
+|/
+*   1de439a (origin/main, origin/HEAD, main) Merge pull request #39 VN_PRO-805 into main
+|\
+| * ee01528 (origin/VN_PRO-805, VN_PRO-805) VN_PRO-805 コメントとシグネチャ、仕様を一致させる - Làm cho comment, signature và spec thống nhất với nhau
+|/
+*   076c31e Merge pull request #38 VN_PRO-803-transaction into main
+```
+
+sau đó có thể pull `main` về, rebase  rồi push lại lên `origin`.
+
 ### Demo reset repo về commit đầu tiên
 
 Chạy các câu lệnh sau
@@ -892,6 +939,13 @@ This updates your local copy of the remote branch list and removes any reference
 
 Delete local remote-tracking branches: `git remote prune origin`  
 This will remove all references to the remote branch that you may have locally. These references are called "remote tracking branches".
+
+delete remote-tracking branches
+
+```bash
+$ git branch -dr origin/test-regex
+Deleted remote-tracking branch origin/test-regex (was adb08c2).
+```
 
 delete the branch from the remote repository: `git push origin --delete <branch-name>`
 

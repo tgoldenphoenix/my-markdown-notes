@@ -816,6 +816,16 @@ In addition to having generic classes, you can also have have generic methods. T
 
 [Java extends vs implements](https://stackoverflow.com/questions/10839131/implements-vs-extends-when-to-use-whats-the-difference)
 
+```java
+interface Predicate<T> {
+    boolean test(T t);
+}
+```
+
+Interfaces do not have arguments. The `Predicate<T>` means "this is a generic Interface". In `test(T t);`, `t` is just the name of the parameter.
+
+`?` is the **wildcard generic**. It means: “Some type, but I don’t know (or care) exactly which one.”
+
 ## Enums
 
 You should use enum types any time you need to represent a fixed set of constants. That includes natural enum types such as the planets in our solar system and data sets where you know all possible values at compile time—for example, the choices on a menu, command line flags, and so on.
@@ -847,37 +857,6 @@ what is the `anhao/.m2` do in maven => [stack overflow](https://stackoverflow.co
 When you program for the Java platform, you write source code in `.java` files and then compile them intp bytecode (`.class` files). Bytecode is run on a JVM. In adding this level of abstraction, the Java compiler differs from other language compilers, which write out assembly-language instructions suitable for the CPU chipset the program will run on.
 
 At runtime, the JVM reads and interprets .class files and executes the program's instructions on the native hardware platform for which the JVM was written. The JVM interprets the bytecode just as a CPU would interpret assembly-language instructions. The difference is that the JVM is a piece of software written specifically for a particular platform. The JVM is the heart of the Java language's "write-once, run-anywhere" principle. Your code can run on any chipset for which a suitable JVM implementation is available. JVMs are available for major platforms like Linux and Windows, and subsets of the Java language have been implemented in JVMs for mobile phones and hobbyist chips.
-
-## Java version & History
-
-- Companies and tutorials often stick to Long-Term Support (LTS) versions, because they’re supported for many years.
-  - Java 8 → LTS
-  - Java 11 → LTS
-  - Java 17 → LTS
-- Non-LTS versions (9, 10, 12, 13, 14, 15, 16) only had 6 months of support, so many skipped them.
-
-- Java 8 (or Java SE 8, codenamed "Oak") was officially released by Oracle on March 18, 2014.
-  - stream API
-  - Lambda expression & functional interfaces: provide support for functional programming paradigms
-  - method references (the double colon operator (`::`))
-  - Optional class: A new class for handling null values safely, reducing NullPointerException errors and improving code robustness
-  - static and default methods in interfaces
-
-### Lambda expressions & functional interfaces
-
-Lambda in Java can only be used with a **Funtional Interface** which is an interface with only ONE abstract method. Lambda is a shortcut to define an implementation of a FI.
-FIs can contains other types of method (static method, default method).
-
-Lambda don't need access modifier, no return type, no method name
-
-### method references (the double colon operator (`::`))
-
-When we are using a method reference – the target reference is placed before the delimiter :: and the name of the method is provided after it.  
-`Computer::getAge;` => a method reference to the method getAge defined in the `Computer` class
-
-## Stream API
-
-k
 
 ## FAQs
 
