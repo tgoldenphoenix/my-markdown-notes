@@ -91,25 +91,15 @@ There are two classes of type: discrete and multipart. Discrete types are types 
   - `application`: Any kind of binary data that doesn't fall explicitly into one of the other types; either data that will be executed or interpreted in some way or binary data that requires a specific application or category of application to use. Generic binary data (or binary data whose true type is unknown) is application/octet-stream. Other common examples include application/pdf, application/pkcs8, and application/zip
   - `audio`; example `audio/mpeg, audio/vorbis`
 
-## Response status codes
+## Request headers & body
 
-Responses are grouped into five classes: informational responses, successful responses, redirects, client errors, and server errors.
+The HTTP `"Authorization":` request header can be used to provide credentials that authenticate a user agent with a server, allowing access to protected resources.
 
-- 200: OK. The request has succeeded.
-- 301: Moved Permanently. This response code means that the URI of requested resource has been changed.
-- 404: Not Found. The server cannot find the requested resource.
-
-- `401`: Unauthorized => The HTTP `401` Unauthorized status code is a bit ambiguous. Usually, it’s used to represent a **failed authentication** rather than an authorization. Develop-ers employ it in the design of the application for cases such as missing or incor-rect credentials. For a failed authorization, we’d probably use the 403 Forbidden status. Generally, an HTTP 403 means that the server identified the caller of the request, but they don’t have the needed privileges for the call that they are trying to make.
-
-## Request headers
-
-The HTTP `Authorization` request header can be used to provide credentials that authenticate a user agent with a server, allowing access to protected resources.
-
-## Request body
+In a POST request, the `"Content-Type":` header tells the server the format of the request's body.
 
 `POST`; `Content-Type:application/x-www-form-urlencoded`; Form parameters => trong request body sẽ có dạng:
 
-```
+```text
 POST /api/v2/wikis?apiKey=xmnb1h2nlENjJcfqQEYhGS7B0eQ6ZE7l9tGtWPGFM6cjRZ5k2kL99ByUNeO2tXlU HTTP/1.1
 User-Agent: PostmanRuntime/7.49.0
 Accept: */*
@@ -124,6 +114,47 @@ Content-Length: 137
 projectId=40038&name=page_created_by_script&content=An%20Hao%20created%20this%20page%20by%20calling%20Backlog's%20API.&mailNotify=false
 ```
 
+The HTTP GET method typically does not include a request body. The HTTP specification defines that a GET request body has no semantic meaning, and therefore, servers are not obligated to process or understand it. In `fetch()`, you cannot include a body with `GET`.
+
+- You can supply the **body** as an instance of any of the following types:
+  - a string
+  - ArrayBuffer
+  - TypedArray
+  - DataView
+  - `Blob`
+  - File
+  - `URLSearchParams` object to encode form data
+  - FormData
+  - ReadableStream
+- Other objects are converted to strings using their toString() method.
+
+GET requests don't have a body, but you can still send data to the server by appending it to the URL as a query string. This is a common way to send form data to the server. You can do this by using `URLSearchParams` to encode the data, and then appending it to the URL
+
+```javascript
+const params = new URLSearchParams();
+params.append("username", "example");
+
+// GET request sent to https://example.org/login?username=example
+const response = await fetch(`https://example.org/login?${params}`);
+```
+
+## Including credentials
+
+- In the context of the Fetch API, a credential is an extra piece of data sent along with the request that the server may use to authenticate the user. All the following items are considered to be credentials:
+  - HTTP cookies
+  * TLS (Transport Layer Security) client certificates
+  * The Authorization and Proxy-Authorization headers.
+
+## Response status codes
+
+Responses are grouped into five classes: informational responses, successful responses, redirects, client errors, and server errors.
+
+- 200: OK. The request has succeeded.
+- 301: Moved Permanently. This response code means that the URI of requested resource has been changed.
+- 404: Not Found. The server cannot find the requested resource.
+
+- `401`: Unauthorized => The HTTP `401` Unauthorized status code is a bit ambiguous. Usually, it’s used to represent a **failed authentication** rather than an authorization. Develop-ers employ it in the design of the application for cases such as missing or incor-rect credentials. For a failed authorization, we’d probably use the 403 Forbidden status. Generally, an HTTP 403 means that the server identified the caller of the request, but they don’t have the needed privileges for the call that they are trying to make.
+
 ## Caching
 
 - Client-Side Caching: The client can cache responses to avoid redundant requests to the server. This is especially useful for static resources such as images, configuration files, or infrequently changing data.
@@ -135,3 +166,51 @@ projectId=40038&name=page_created_by_script&content=An%20Hao%20created%20this%20
   - `@RequestParam` là `?brand=apple`; case in-sensitive, `Apple` hay `apple` both ok;
   - `@PathVariable` là `product/{productId}`
   - `RequestBody` là raw json inside body
+
+## Fetch API
+
+Fetch is the modern replacement for `XMLHttpRequest`: unlike XMLHttpRequest, which uses callbacks, Fetch is promise-based.
+
+The `fetch()` function returns a Promise which is fulfilled with a Response object representing the server's response. You can then check the request status and extract the body of the response in various formats, including text and JSON, by calling the appropriate method on the response.
+
+```javascript
+async function getData() {
+  const url = "https://example.org/products.json";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+```
+
+The fetch() function will reject the promise on some errors, but not if the server responds with an error status like 404: so we also check the response status and throw if it is not OK.
+
+Otherwise, we fetch the response body content as JSON by calling the json() method of Response, and log one of its values. Note that like fetch() itself, json() is asynchronous, as are all the other methods to access the response body content.
+
+### Handling the response
+
+As soon as the browser has received the response status and headers from the server (and potentially before the response body itself has been received), the promise returned by fetch() is fulfilled with a `Response` object.
+
+The promise returned by fetch() will reject on some errors, such as a network error or a bad scheme. However, if the server responds with an error like 404, then fetch() fulfills with a Response, so we have to check the status before we can read the response body.
+
+- The Response interface provides a number of methods to retrieve the entire body contents in a variety of different formats:
+Response.arrayBuffer()
+  * Response.blob()
+  * Response.formData()
+  * Response.json()
+  * Response.text()
+
+These are all asynchronous methods, returning a Promise which will be fulfilled with the body content.
+
+## Blob
+
+j
+
+## Axios

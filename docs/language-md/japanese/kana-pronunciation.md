@@ -207,7 +207,7 @@ Since ta-chi-tsu-te-to không có âm **ti** nên dùng `テ + vowel`. Example: 
 Just like there is no native **ti** syllable in Japanese, there also isn’t a **tu syllable** (because ツ is pronounced "tsu" not "tu"). Therefore, the digraph トゥ (tu, type `twu` or `to xu`; nếu type `tu` thì thành ツ). Adding dakuten to トゥ and we get ドゥ (“du” sound, type `dwu`).
 
 - ドゥ = `dwu` like "dew" | ヅ (du)
-- ディ = DI like "candy" (Type `dhi`) | ヂ (di)
+- ディ = DI like in: "candy, ready" (Type `dhi`) | Compare with ヂ (di)
 - イェ = `Ye` or i xe
 
 If you want to type the small characters, you need to put x or l before the Kana. ex) イェ→ixe/ile

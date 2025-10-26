@@ -1,4 +1,4 @@
-# Basic Terminal Commands & Keyboard shorcuts
+# Basic Surviving Linux
 
 Phân biệt command option (preceded with `-` or `--`) vs command argument. The argument(s) to a command are specifications for the object(s) on which you want the command to take effect. An example is `ls /etc`, where the directory `/etc` is the argument to the **ls** command.  
 You can think of an option as a way of executing the command. The argument is what you execute it on.
@@ -16,7 +16,7 @@ You can think of an option as a way of executing the command. The argument is wh
 
 `clear` (alias `c`)
 
-`ls` stands for list storage/
+`ls` stands for list storage
 
 `ls -l` (recommended) `ll` is an alias of it (not an actual linux command). Hình như `la` cũng vậy. Nhưng mình không biết setting nằm ở file nào.
 
@@ -48,26 +48,23 @@ In most cases, when issuing a command or starting a program as a non-privileged 
 
 ## Terminal line editing basic
 
-If you like emacs, all the basic **emacs commands** are available to you when you’re editing history
-
-`Ctrl a` move cursor to the beginning of the command line.  
-`^E` Move cursor to the end of the command line.
-
-`Ctrl+W` to erase the previous word, `Ctrl+U` to erase the whole line
-
-`^L`  == `clear`
-
-`Ctrl d`, `exit` or `logout` Log out of the current shell session
-
-`^C` End a running program and return the prompt.
-
-Search command history: `Ctrl R` -> type a sub-string that appears in your `history` commands -> press `Enter` or press right/left arrow key to make changes before running.
-
-`^Z` Suspend a program
+- Emac mode shell key bindings
+  - `^b` & `^f` move backward/forward one char
+  - `Alt b/f` move backward/forward one word
+  - `^a` & `^e` go to start/end of prompt
+  - `^p` & `^n` steps backward/forward through commands in `history`.
+  - `^r` searches incrementally through your history to find old commands.
+  - `^k` delete from cursor to end of line
+  - `^w` delete the previous word
+  - `^u` delete the whole line
+  - `^l` == `clear`
+  - `^d`, `exit` or `logout` Log out of the current shell session
+  - `^c` End a running program and return the prompt.
+  - `^z` Suspend a program
 
 `cd` between two directories with long path names. Go back to the last directory that you were in `cd -`. To go back even further, use `pushd` and `popd`. `cd` in deeply nested file system.
 
-`/` to enter search mode. `n` to go jump to the next match (spam `n` as fast as you can). `Shift N` to jump back up.\
+`/` to enter search mode. `n` to go jump to the next match (spam `n` as fast as you can). `Shift N` to jump back up.  
 Works in man pages, vim, less, git logs. This is because programs like man pages and git actually use `less` as their **text pager**. When you type `man something` and start scrolling down, you're actually interacting with the `less` program, not `man`. You can test this out by pressing `h`, you'll be greeted by the documentation for the `less` program.
 
 `Alt .` auto copy-paste the last argument of the last command (the previously-ran comman). Usages: `cp` file then `vim` that file
@@ -80,7 +77,7 @@ Shift+PageUp and `Shift+PageDown` Browse terminal buffer (to see text that has "
 
 **Tips:**
 
-Quickly read files and raw data using `less`. \
+Quickly read files and raw data using `less`.  
 Also by piping the output of commands into `less`, you can read through it and then discard the output all without needing to create temporary files.
 
 **References:**
@@ -153,14 +150,6 @@ The [ArchWiki](https://wiki.archlinux.org/title/Main_page) page
 
 [Mastering Linux Man Pages - A Definitive Guide](https://www.youtube.com/watch?v=RzAkjX_9B7E) by Linux Training Academy
 
-## wc
-
-obtain word and line counts from text files and streams.
-
-How many lines are in this file?
-
-Count the number of byte present too.
-
 ## Alias
 
 `alias` list all alias in your terminal
@@ -170,6 +159,10 @@ Count the number of byte present too.
 ## fzf
 
 fzf
+
+## cut
+
+> separate lines into fields
 
 ## sed - search & replace
 
@@ -193,13 +186,34 @@ extract the first column.
 
 ## sort
 
-By default, `sort` uses lexicographical sort which may not always be what you want.
-
-- `-n` do numerical sort.
-- `-r` sort in the reverse order
-- `-R` sort the list Randomly. You'll get a different order in each time.
+> sort lines
 
 `sort`'s output can be piped directly into a number of other useful commands.
+
+- Options:
+  - `-t`: Set field separator (the default is whitespace)
+  - `-k` Specify the columns that form the sort key
+  - `-n` do numerical sort. By default, `sort` uses lexicographical sort (dictionary sort)
+  - `-r` sort in the reverse order
+  - `-R` sort the list Randomly. You'll get a different order in each time.
+  - `-u` Output unique records only
+
+Both commands below use the `-t:` and `-k3,3` options to sort the /etc/group file by its third colon-separated field, the group ID. The first sorts numerically and the second alphabetically.
+
+```bash
+$ sort -t: -k3,3 -n /etc/group1
+root:x:0:
+bin:x:1:daemon
+daemon:x:2:
+…
+$ sort -t: -k3,3 /etc/group 
+root:x:0:
+bin:x:1:daemon
+users:x:100:
+…
+```
+
+sort accepts the key specification `-k3` (rather than `-k3,3`), but it probably doesn’t do what you expect. Without the terminating field number, the sort key continues to the end of the line.
 
 ### tsort
 
@@ -207,9 +221,34 @@ By default, `sort` uses lexicographical sort which may not always be what you wa
 
 ## tee
 
+> copy input to two places
+
 split off a stream so that its output can be simultaneously sent to a file and stdout. Named after the T-splitter in plumping.
 
 Debug why a complicated shell pipe ins't working. Dùng để tạo `.log` files for debugging shell pipes.
+
+The device `/dev/tty` is a synonym for the current terminal. For example,
+
+```bash
+find / -name core | tee /dev/tty | wc -l
+```
+
+prints both the pathnames of files named core and a count of the number of core files that were found.
+
+## head & tail, less & more
+
+> read the beginning or end of a file
+
+These commands display ten lines by default.
+
+For interactive use, head is more or less obsoleted by the `less` command, which paginates files for display. But head still finds plenty of use within scripts.
+
+Instead of exiting immediately after printing the requested number of lines, `tail -f` waits for new lines to be added to the end of the file and prints them as they appear— great for monitoring log files.  
+Type `<Control-C>` to stop monitoring.
+
+## grep
+
+> search text
 
 ## comm
 
@@ -221,11 +260,37 @@ Btw, you should learn [set theory](https://en.wikipedia.org/wiki/Set_theory) (l�
 
 ## uniq
 
-Answer questions about the uniqueness of lines in a file. Just like `comm`, this command also requires that its input be sorted first.
+> print unique lines
 
-List of unique products that are found in the sales information.
+Just like `comm`, this command also requires that its input be sorted first (usually by being run through `sort`).
 
-`-c` count
+- `uniq` is similar in spirit to `sort -u`, but it has some useful options that sort does not emulate:
+  - `-c` to count the number of instances of each line
+  - `-d` to show only dupli-cated lines
+  - `-u` to show only nonduplicated lines
+
+For example, the command below shows that 20 users have `/bin/bash` as their login shell and that 12 have /bin/false. (The latter are either pseudo-users or users whose accounts have been disabled.)
+
+```bash
+$ cut -d: -f7 /etc/passwd | sort | uniq -c
+   20 /bin/bash
+   12 /bin/false
+```
+
+## wc (word cound)
+
+> count lines, words, and characters
+
+Run without options, it displays all three counts:
+
+```bash
+$ wc /etc/passwd
+ 32  77 2003 /etc/passwd
+```
+
+Count the number of byte present too.
+
+In the context of scripting, it is more common to supply a `-l, -w, or -c` option to make wc’s output consist of a single number.
 
 ## tr
 

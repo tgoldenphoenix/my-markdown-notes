@@ -7,11 +7,9 @@ Check if Git is installed locally: `git --version`
 
 ## Terminologies
 
-Working tree = working directory
-
-Index = staging area
-
-HEAD = Commit tree
+- Working tree = working directory
+- Index = staging area
+- HEAD = Commit tree
 
 How to read git synopsis: [stack overflow](https://stackoverflow.com/questions/60906410/how-do-i-read-git-synopsis-documentation)
 
@@ -36,7 +34,7 @@ Using Visual Studio Code as your default git editor: `git config --global core.e
 Nếu không config --global thì sẽ lại gặp lỗi này
 
 ```bash
- Anonimous% git commit -m "add autohotkey for window"
+Anonimous% git commit -m "add autohotkey for window"
 Author identity unknown
 
 *** Please tell me who you are.
@@ -86,8 +84,9 @@ Generate ssh key with your github email > add to ssh-agen > add to github
 
 ### Initializing a new repository
 
-`git init` (automatically create the `master or main` branch). Executing this command will create a new `.git` subdirectory in your current working directory.
 anki
+
+`git init` (automatically create the `master or main` branch). Executing this command will create a new `.git` subdirectory in your current working directory.
 
 - The command `git clone <repo url>`
   - Automatically creates a remote called `origin` for fetch, push, pull
@@ -293,15 +292,29 @@ prompt> git log --pretty=format:"%h %s" 1.0..HEAD
 
 ### reflog
 
-One of the things Git does in the background while you’re working away is keep a “reflog” — a log of where your HEAD and branch references have been for the last few months.
-
-Every time your branch tip is updated for any reason, Git stores that information for you in this temporary history. You can use your reflog data to refer to older commits as well.
+One of the things Git does in the background while you’re working away is keep a reference log (reflog) — a log of where your HEAD and branch references have been for the last few months.  
+Every time your branch tip is updated for any reason (`checkout, reset, merge`), Git stores that information for you in this temporary history. You can use your reflog data to refer to older commits as well.
 
 What happens when you accidentally delete a branch using `git branch -D` or a `git rebase -i` goes wrong?1 This is where Git’s reflog comes in.
 
 The reflog keeps track of when a branch changes. Viewing it, you can find the commit you need to check out to restore a branch.
 
-git gc, which we talked about in Section 9.1, Compacting Repository History, on page 123, will cause some older reflog entries to expire. For example, the commits we just restored are normally deleted after thirty days. This can be changed by changing the gc.reflogExpireUnreachable config setting. Likewise, normal reflog entries are expired after ninety days, unless you change gc.reflogExpire to something else. That is to keep the reflog from getting too large.
+`git reflog` == `git reflog show HEAD`. This will output the HEAD reflog (current branch). You should see output similar to:
+
+```bash
+eff544f HEAD@{0}: commit: migrate existing content
+bf871fd HEAD@{1}: commit: Add Git Reflog outline
+9a4491f HEAD@{2}: checkout: moving from main to git_reflog
+9a4491f HEAD@{3}: checkout: moving from Git_Config to main
+39b159a HEAD@{4}: commit: expand on git context 
+9b3aa71 HEAD@{5}: commit: more color clarification
+f34388b HEAD@{6}: commit: expand on color support 
+9962aed HEAD@{7}: commit: a git editor -> the Git editor
+```
+
+The syntax to access a git ref is `name@{qualifier}`. In addition to HEAD refs, other branches, tags, remotes, and the Git stash can be referenced as well.
+
+`git gc`, which we talked about in Section 9.1, Compacting Repository History, on page 123, will cause some older reflog entries to expire. For example, the commits we just restored are normally deleted after thirty days. This can be changed by changing the gc.reflogExpireUnreachable config setting. Likewise, normal reflog entries are expired after ninety days, unless you change gc.reflogExpire to something else. That is to keep the reflog from getting too large.
 You’ll rarely need to use the reflog, but when you do, it can be a life-saver. Rewriting history can be dangerous, and git reflog is a safety net to help keep you safe from yourself.
 
 ### git show
@@ -1392,24 +1405,16 @@ Remember stashing is meant to be used temporarily. And it should be used very ca
 
 Mot ứng dụng nữa là đang code mà muốn copy code từ branch khác: stash your changes -> go to other branches for reference, copy some code from other people (Minh Lê) -> go bach to your branch.
 
-The git stash command takes your uncommitted changes (both staged and unstaged), saves them away for later use, and then reverts them from your working copy. After this, you can switch branch.  
-When you come back to your branch, run git stash pop to bring back changes that you had stashed.
-
 The git stash command and git stash push command are functionally equivalent in most common use cases.
 
 - git stash:
   - When executed without any arguments, git stash implicitly performs the action of git stash push. It takes your current uncommitted changes (modified tracked files and staged changes) and stores them in a temporary "stash" list, reverting your working directory to a clean state matching the last commit.
-- git stash push:
+- `git stash push`:
   - This is the explicit command for creating a new stash entry. It offers additional options for more granular control over what is stashed. For instance, you can use:
-  - git stash push -m "Descriptive message": To add a custom message to your stash entry, making it easier to identify later.
-  - git stash push --include-untracked: To also stash untracked files in addition to modified tracked files and staged changes.
-  - git stash push --keep-index: To stash only the modified tracked files, leaving the staged changes in the index.
-
-In essence, git stash push provides the same core functionality as a bare git stash but with the added flexibility of specifying options to control the stashing behavior and provide more descriptive messages. For simple stashing of current changes, either command will achieve the same result.
-
-To see which stashes you’ve stored, you can use `git stash list`.
-
-You can also run `git stash pop` to apply the stash and then immediately drop it from your stack.
+  * `git stash push -m "Descriptive message"`: To add a custom message to your stash entry, making it easier to identify later.
+  * `git stash push --include-untracked`: To also stash untracked files in addition to modified tracked files and staged changes.
+  * `git stash push --keep-index`: To stash only the modified tracked files, leaving the staged changes in the index.
+  * In essence, git stash push provides the same core functionality as a bare git stash but with the added flexibility of specifying options to control the stashing behavior and provide more descriptive messages. For simple stashing of current changes, either command will achieve the same result.
 
 ## git-filter-repo
 

@@ -1,5 +1,0 @@
-# Axios & Jest
-
-## Interceptors
-
-k

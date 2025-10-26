@@ -36,17 +36,17 @@ book clean code
 [x] so sánh .equal vs ==: String vs Long
 
 - Chủ đề tuần sau
-  * Java: so sánh == và equals() với kiểu dữ liệu Long (Vĩ)
-  * Một số vấn đề thắc mắc về Git (các bạn mới có thể chuẩn bị câu hỏi nếu có)
+  - Java: so sánh == và equals() với kiểu dữ liệu Long (Vĩ)
+  - Một số vấn đề thắc mắc về Git (các bạn mới có thể chuẩn bị câu hỏi nếu có)
 Vấn đề tiếp theo của Clean Code (đến giờ vẫn chưa có người phụ trách)
 Refactor code (Mr Hào chuẩn bị phần này, xoáy vào những vấn đề được sếp yêu cầu thay đổi của phần Javascript thực hiện nút Copy backlog)
 ....VÀ những vấn đề gặp phải trong 2 tuần (4,6,8,10 tuần) vừa qua. Nói tóm lại khi gặp phải vấn đề thì note lại để chia sẻ, nếu hôm đó chưa có thời gian nói thì tiếp tục để hôm tiếp theo (có thể đăng ký trước nội dung cho tuần sau)
 
+### Nội dung được giao phải chuẩn bị
+
+k
+
 ## Read if have time
-
-học thêm fetch api, trả về cái gì?
-
-git stash để tránh mất code của bản thân
 
 - java 8:
   - Stream API
@@ -64,7 +64,9 @@ sau khi rebase (kể cả không có conflict) cũng phải diff commit để tr
 3. <https://github.com/donnemartin/system-design-primer>
 4. <https://missing.csail.mit.edu/>
 
-Tìm hiểu thêm stash & reflog
+- Demo 2 commands:
+  - `git rebase -i origin/main`  
+  - `rebase -i HEAD` to re-write commit history, squash, re-order
 
 assert equal
 assert that
@@ -72,25 +74,12 @@ Tạo mock object
 temporary file/folder
 test với dữ liệu từ file .csv file thay vì dùng database thực
 
-`useMemo()` react hook
-
-- Lear more about rebase:
-  - <https://dev.to/joemsak/git-rebase-explained-and-eventually-illustrated-5hlb>
-
 code dùng dependency do người khác viết, trước khi rebase chạy code ok. Nhưng người kia change dependency mình dùng. Sau khi rebase (dù ko có conflict) sẽ không chạy OK nữa.
-
-`rebase -i HEAD` to re-write commit history, squash, re-order
-
-rebase khi nào có conflict?
-
-lambda method in java
 
 unit vs integration test in java
 
 so sánh .equal vs ==: String vs Long  
 bài học rút ra là sử dụng .equal, không dùng `==` để so sánh
-
-Tìm sách đọc để hiểu hơn về HTTP protocol, tập dùng `fetch API`, HTTP requests in web application.
 
 `gitk` command show graph
 

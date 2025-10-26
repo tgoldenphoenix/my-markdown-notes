@@ -76,36 +76,74 @@ Other shell: zsh, Xonsh, fish
 `exec bash` to switch shell. This won't affect new terminal windows or anything, but it's convenient.  
 `echo $0` to know which shell you are using.
 
-## Output redirection, streams & pipes
+## Output Redirection, streams & pipes
 
-There are three standard streams, `stdin` (said standard input or standard in), `stdout` (said standard output or standard out,) and `stderr` (said standard error or standard err.) `stdin` is an input stream to a program and the other two are output streams. `stdout` for all non-error text, the normal output. `stderr` is just for error information. The numerical designations for `stdin`, `stdout` and `stderr` are 0, 1 and 2 respectively.
-
-- 0: STDIN
-- 1: STDOUT
-- 2: STDERR
+- Every process has at least three standard communication channels (streams) available to it:
+  - `0: STDIN` (said standard input or standard in)
+  - `1: STDOUT` (said standard output or standard out) for all non-error text, the normal output
+  - `2: STDERR` (said standard error or standard err.) is just for error information
+- The kernel sets up these channels on the process’s behalf, so the process itself doesn’t necessarily know where they lead. They might connect to a terminal win-dow, a file, a network connection, or a channel belonging to another process, to name a few possibilities.
+- Most commands accept their input from STDIN and write their output to STD-OUT. They write error messages to STDERR. This convention lets you string commands together like building blocks to create composite pipelines.
 
 - A `<` symbol connects the command’s STDIN to the contents of an existing file.
 - The `>` and `>>` symbols redirect STDOUT:
-  * `>` replaces the file’s existing contents
-  * `>>` appends to them.
+  - `>` replaces the file’s existing contents
+  - `>>` appends to the existing conntent.
 - To redirect both STDOUT and STDERR to the same place, use the `>&` symbol. To redirect STDERR only, use `2>`.
-
-`echo "This is a test message." > /tmp/mymessage` => stores a single line in the file /tmp/mymessage, creating the file if necessary. The command below emails the contents of that file to user johndoe.  
-`mail -s "Mail test" johndoe < /tmp/mymessage`
-
-`ls -l > file.txt` create new file/over-write existing file. Use `>>` to append
-`cat file.txt |sort |uniq` do not show duplicates
-
-`find / -name core 2> /dev/null` => only print STDOUT to the screen, re-direct all the “permission denied” error messages to null.
+- To connect the STDOUT of one command to the STDIN of another, use the pipe (`|`) symbol
 
 `echo $?` the exit code of the previous command
 
-To connect the STDOUT of one command to the STDIN of another, use the pipe (`|`) symbol
-
 To execute a second command only if its precursor completes successfully (yielding an exit code of zero), you can separate the commands with an `&&` symbol.  
-Conversely, the `||` symbol executes the following command only if the preceding command fails (produces a nonzero exit status).
+For example `lpr /tmp/t2 && rm /tmp/t2` removes `/tmp/t2` if and only if it is successfully queued for printing.  
+Conversely, the `||` symbol executes the following command only if the preceding command fails (produces a **nonzero exit status**).
 
-In a script, you can use a backslash (`\`) to break a command onto multiple lines. For the converse effect—multiple commands combined onto one line—you can use a semicolon (`;`) as a statement separator.
+In a script, you can use a backslash (`\`) to break a command onto multiple lines, help-ing to distinguish the error-handling code from the rest of the command pipeline:
+
+```bash
+cp --preserve --recursive /etc/* /spare/backup \
+|| echo "Did NOT make backup"
+```
+
+For the converse effect—multiple commands combined onto one line—you can use a semicolon (`;`) as a statement separator.
+
+## Variables
+
+Do not put spaces around the `=` symbol or the shell will mistake your variable name for a command name.
+
+```bash
+$ etcdir='/etc'
+$ echo $etcdir
+/etc
+```
+
+You can surround variable with curly braces `{}`:
+
+```bash
+$ echo "Saved ${rev}th version of mdadm.conf." 
+Saved 8th version of mdadm.conf.
+```
+
+Local variables are all lowercase & snake_case (case sensitive).
+
+Some environment variables, such as `PWD` for the current working directory, are maintained automatically by the shell.
+
+The shell treats strings enclosed in single and double quotes similarly, except that **double-quoted** strings are subject to globbing (the expansion of filename-match-ing metacharacters such as `*` and ?) and variable expansion. For example:
+
+```bash
+$ mylang="Pennsylvania Dutch" 
+$ echo "I speak ${mylang}."
+I speak Pennsylvania Dutch. 
+$ echo 'I speak ${mylang}.'
+I speak ${mylang}.
+```
+
+Back quotes, also known as back-ticks, are treated similarly to double quotes, but they have the additional effect of executing the contents of the string as a shell command and replacing the string with the command’s output. For example,
+
+```bash
+$ echo "There are `wc -l /etc/passwd` lines in the passwd file." 
+There are 28 lines in the passwd file.
+```
 
 ## Globbing
 
@@ -123,9 +161,9 @@ You should be aware that the value of the arguments that get passed to a given p
 We should note that while globbing might look similar to regular expressions, they’re fundamentally different. While the patterns seem similar, globbing doesn’t use regular expressions.
 
 - We use shell-style globbing characters for pattern matching:
-  * A star (`*`) matches zero or more characters.
-  * A question mark (?) matches any single character. You can use `?` for multiple times for matching multiple characters.
-  * A tilde or “twiddle” (~) means the home directory of the current user
+  - A star (`*`) matches zero or more characters.
+  - A question mark (?) matches any single character. You can use `?` for multiple times for matching multiple characters.
+  - A tilde or “twiddle” (~) means the home directory of the current user
 
 - `[]` range of characters. For example `[0-9]` or `[abc]`. Ranges can apply to letters as well as digits:
 - `[a-z]` = all lowercase characters of the alphabet
@@ -215,4 +253,3 @@ crontab: tasks that need to be executed periodically - backups, updates of the s
 [GNU Bash manual](https://www.gnu.org/software/bash/manual/)
 
 guides on [TLDP.org](https://tldp.org/)
-

@@ -42,9 +42,9 @@ File sync between drives, comparison between drives
 
 Nautilus (or "Files" on GNOME): simple, chỉ có điều nó là GNOME application, nếu dùng với KDE thì khó tương thích.
 
-**Functions I need**
-- Remember your position after closing.
-- Dual-panel mode
+- Functions I need
+  - Remember your position after closing.
+  - Dual-panel mode
 
 ### fzf, zoxide
 
@@ -60,17 +60,17 @@ zoxide is a better `cd`
 
 Desktop Environment such as GNOME, KDE có nhiều programs, Window Manager là một trong những programs đó. Otherwise, you can choose to build your own desktop environment _around your Window Manager of choice_.
 
-[KDE Plasma](https://en.wikipedia.org/wiki/KDE_Plasma) is a set of graphical shells developed by KDE for Unix-like operating systems. 
+[KDE Plasma](https://en.wikipedia.org/wiki/KDE_Plasma) is a set of graphical shells developed by KDE for Unix-like operating systems.
 
-[GNOME Shell](https://en.wikipedia.org/wiki/GNOME_Shell) is the [graphical shell](https://en.wikipedia.org/wiki/Shell_(computing)#GUI) of the GNOME desktop environment starting with version 3, which was released on April 6, 2011. It provides basic functions like launching applications and switching between windows. GNOME Shell is written in C and JavaScript as a plugin for Mutter. 
+[GNOME Shell](https://en.wikipedia.org/wiki/GNOME_Shell) is the [graphical shell](https://en.wikipedia.org/wiki/Shell_(computing)#GUI) of the GNOME desktop environment starting with version 3, which was released on April 6, 2011. It provides basic functions like launching applications and switching between windows. GNOME Shell is written in C and JavaScript as a plugin for Mutter.
 
-In contrast to the [KDE Plasma Workspaces](https://en.wikipedia.org/wiki/KDE_Plasma), a software framework intended to facilitate the creation of multiple graphical shells for different devices, the GNOME Shell is intended to be used on desktop computers with large screens operated via keyboard and mouse, as well as portable computers with smaller screens operated via their keyboard, touchpad or touchscreen. 
+In contrast to the [KDE Plasma Workspaces](https://en.wikipedia.org/wiki/KDE_Plasma), a software framework intended to facilitate the creation of multiple graphical shells for different devices, the GNOME Shell is intended to be used on desktop computers with large screens operated via keyboard and mouse, as well as portable computers with smaller screens operated via their keyboard, touchpad or touchscreen.
 
 [GTK](https://en.wikipedia.org/wiki/GTK) (formerly **GIMP ToolKit** and GTK+) is a free software cross-platform widget toolkit for creating graphical user interfaces (GUIs). It is licensed under the terms of the GNU Lesser General Public License, allowing both free and proprietary software to use it. It is one of the most popular toolkits for the Wayland and X11 windowing systems.
 
 GTK, GTK+, and Qt are GUI toolkits. These are [libraries](https://en.wikipedia.org/wiki/Library_\(computing\)) that developers use to design graphical interfaces, all running on top of the [X.org Server](https://en.wikipedia.org/wiki/X.Org_Server) or [Wayland](https://askubuntu.com/a/11561/101186). These are things that you need to install as dependencies. They're the Linux "equivalent" to Windows' GDI/GDI+. When an application uses any of these, it will usually have a general "look and feel".
 
-[Wayland](https://en.wikipedia.org/wiki/Wayland_(protocol)) is a communication protocol that specifies the communication between a display server and its clients, as well as a C library implementation of that protocol. A display server using the Wayland protocol is called a Wayland compositor, because it additionally performs the task of a compositing window manager. 
+[Wayland](https://en.wikipedia.org/wiki/Wayland_(protocol)) is a communication protocol that specifies the communication between a display server and its clients, as well as a C library implementation of that protocol. A display server using the Wayland protocol is called a Wayland compositor, because it additionally performs the task of a compositing window manager.
 
 GNOME by default use Wayland.
 
@@ -116,7 +116,7 @@ To **restart** i3 in place (and thus get into a clean state if there is a bug, o
 
 chỉnh kill thành super q, bỏ shift
 
-**References**
+References
 
 [i3 official doc](https://i3wm.org/docs/userguide.html)
 
@@ -124,7 +124,7 @@ chỉnh kill thành super q, bỏ shift
 
 Kitty có tích hợp multi-plexer giống tmux.
 
-**Commands**
+Commands
 
 To enter Command mode, press `Prefix :` (the colon) from within a running tmux session.
 
@@ -176,6 +176,7 @@ The **hyper key** is just one key that you can press that will act like you are 
 Mod1 (Alt), Mod4 (Super), and Mod5 (Hyper)
 
 Other application-specific key name:\
+
 - Leader key của neovim: spacebar
 
 Application key: ?
@@ -187,10 +188,12 @@ Hàng Shift, Caps lock và TAB thì giống nhau ở các loại layout bàn ph�
 You can remap escape to caps lock as well if you want to retain a caps lock button.
 
 **Mappings**
+
 - Tap Capslock -> Escape
 - Hold Capslock -> Ctrl (easier to use Ctrl)
 
 **Current problem**
+
 - Tìm giải pháp upgrade cái tiling window manager super key. Hiện tại xài Cmd/Alt là cũng closest to the spacebar cũng khá ngon rồi.
 - Tìm cách khôi phục chức năng toggle capslock đễ gõ Vietnamese có dấu mà không phải hold Capslock
 
@@ -207,6 +210,7 @@ You can remap escape to caps lock as well if you want to retain a caps lock butt
 Use `chsh` to change login shell. Phải biết path của shell trước.
 
 **TODOs:**
+
 - [x] PowerLevel 10k
 
 ### Bash
@@ -258,6 +262,7 @@ You should go through [the configuration files of random Github users](https://g
 Zinit này tự tải plugin về và lưu trong `~/.local/share/zinit/plugins/`
 
 promt, PowerLevel 10k
+
 - config file trong `~/.config/zsh/.p10k.zsh`
 - Nó tự cài và chỉnh emulator xài nerd font MesloLGS NF
 
@@ -280,6 +285,7 @@ Zoom in/out of terminal: `C +` or `C -`. Also work in terminal applications like
 font are stored in `/Users/anhao/Library/Fonts`
 
 Những chỗ cần chỉnh font:
+
 - VS Code: vào setting
 
 Tóm lại cài font bằng homebrew hay gì gì đó thôi là chưa đủ. Sau khi cài phải vào chỉnh cho nhưng phần mềm như VS Code, terminal emulator dùng cái font mình vừa cài nữa.
@@ -317,5 +323,4 @@ stow -R <packagename> # restows package
 
 ## Terms
 
-[X.Org Server](https://en.wikipedia.org/wiki/X.Org_Server) is the free and open-source implementation of the X Window System (X11) display server stewarded by the X.Org Foundation. 
-
+[X.Org Server](https://en.wikipedia.org/wiki/X.Org_Server) is the free and open-source implementation of the X Window System (X11) display server stewarded by the X.Org Foundation.
