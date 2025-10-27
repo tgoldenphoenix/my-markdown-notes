@@ -2,6 +2,10 @@
 
 Giải quyết nhu cầu **Persistence data** in Java application.
 
+## Terminologies
+
+data-access objects (DAO)
+
 ## JDBC
 
 Java Database Connectivity (JDBC) API and the Java Persistence API (JPA).

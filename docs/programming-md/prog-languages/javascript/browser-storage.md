@@ -1,10 +1,25 @@
 # JavaScript Cookies vs Local Storage vs Session Storage
 
-Local Storage
+## Local Storage
 
 1. Khả năng lưu trữ vô thời hạn: Có nghĩa là chỉ bị xóa bằng JavaScript, hoặc xóa bộ nhớ trình duyệt, hoặc xóa bằng localStorage API.
 2. Lưu trữ được 5MB: Local Storage cho phép bạn lưu trữ thông tin tương đối lớn lên đến 5MB, lưu được lượng thông tin lớn nhất trong 3 loại.
 3. Không gửi thông tin lên server như Cookie nên bảo mật tốt hơn.
+
+```javascript
+// Set a value in the browser's storage
+localStorage.setItem('username', 'js-user');
+
+// This is a NEW script, but it can read the saved data
+const user = localStorage.getItem('username');
+
+if (user) { 
+    console.log('Hello from Page 2! I see you are ' + user);
+    document.getElementById('welcome').textContent = 'Welcome back, ' + user; 
+}
+// Clean up the storage if you don't need it anymore
+localStorage.removeItem('username');
+```
 
 ## Session Storage
 

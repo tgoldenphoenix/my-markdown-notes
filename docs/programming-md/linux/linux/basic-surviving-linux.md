@@ -46,7 +46,7 @@ In most cases, when issuing a command or starting a program as a non-privileged 
 
 `Alt` == meta key
 
-## Terminal line editing basic
+## Moving in the Terminal prompt
 
 - Emac mode shell key bindings
   - `^b` & `^f` move backward/forward one char
@@ -249,6 +249,22 @@ Type `<Control-C>` to stop monitoring.
 ## grep
 
 > search text
+
+`grep` searches its input text and prints the lines that match a given pattern. Its name is based on the **g**/regular-expression/**p** command from the old **ed** editor that came with the earliest versions of UNIX (and still does).
+
+- Options:
+  * `-c` to print a count of matching lines
+  * `-i` to ignore case when matching
+  * `-v` to print nonmatching (rather than matching) lines
+  * `-l` (lowercase L) makes grep print only the names of matching files rather than printing each line that matches.
+
+```bash
+$ sudo grep -l mdadm /var/log/* 
+/var/log/auth.log 
+/var/log/syslog.0
+```
+
+Above command shows that log entries from mdadm have appeared in two different log files.
 
 ## comm
 

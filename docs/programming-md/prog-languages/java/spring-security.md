@@ -100,6 +100,24 @@ You’ll sometimes see that I use var in the code. Java 10 introduced the reserv
 `Customizeris` a contract you implement to define the customization for either Spring Security ele-ment  you  configure:  the  authentication,  the  authorization,  or  particular  protection mechanisms  such  as  CSRF  or  CORS.  
 Customizer is a functional interface (so we can use lambda expressions to implement it)
 
+## Spring security
+
+A servlet container, also known as a **web container**, provides the runtime environment for Java servlets and Java Server Pages (JSP). It manages the lifecycle of servlets, handles incoming HTTP requests, and generates responses.  
+Spring Boot applications often use embedded servlet containers like Tomcat, Jetty, or Undertow. These containers are bundled directly within the application's executable JAR file, eliminating the need for a separate external server installation.
+
+In a Spring MVC application, the servlet container maps all incoming requests to the `DispatcherServlet` (front-controller). This central servlet then delegates the requests to the appropriate controllers and handlers within the Spring application, enabling Spring MVC to manage the request-handling lifecycle.
+
+In spring web, every `@Controller` gets converted into servlets.
+
+- Client send HTTP request into the servlet container (tomcat web container). Inside the servlet container, request **lần lượt** đi qua các bước sau:
+  * filter chain (spring security)
+  * front controller (dispatcher servlet)
+  * Nhiều servlet khác nhau (`@Controller`)
+
+### CSRF
+
+k
+
 ## Reading book
 
 Spring security book: <https://studylib.net/doc/27897532/spring-security-in-action>  

@@ -1,4 +1,4 @@
-# Spring Boot API
+# Spring Framework
 
 ## Terminologies
 
@@ -191,7 +191,13 @@ Các layer chỉ được gọi layer ngay bên dưới nó. Không được g�
 
 There is no syntactic difference between a **JavaBean** and another class -- a class is a JavaBean if it follows the following standards. Java bean khác với spring bean.
 
+## Spring MVC
+
+Spring MVC chỉ có `@GetMapping` & `@PostMapping`, API mới có Put, Delete
+
 ## IoC and Dependency Injection (DI)
+
+DI and AOP are central to everything in Spring. Thus you must understand how to use these principal functions of Spring to be able to use the rest of the framework.
 
 - 1 and only one service instance can be used by multiple classes.
 - The classes that use DI can be shorter and easier to understand.
@@ -216,6 +222,8 @@ Object are created inside the JVM. Spring has its own container inside the JVM c
 
 Spring will create object inside its IoC container. Nếu tự tạo bằng `new` thì tạo trong JVM không tạo trong IoC container.
 
+DI is a way of associating application objects such that the objects don’t need to know where their dependencies come from or how they’re implemented. Rather than acquiring dependencies on their own, dependent objects are given the objects that they depend on. Because dependent objects often only know about their injected objects through interfaces, coupling is kept low.
+
 ### Autowiring
 
 `main()` need object of `Developer`. `Developer` lại muốn dùng object của `Laptop`.
@@ -226,27 +234,13 @@ wiring = connect. autowired = auto connect
 
 `Laptop` IS-A `Computer` nên Spring sẽ tự động biết và inject `Laptop` object vào field khai là `Computer`.
 
-## Spring security
-
-A servlet container, also known as a **web container**, provides the runtime environment for Java servlets and Java Server Pages (JSP). It manages the lifecycle of servlets, handles incoming HTTP requests, and generates responses.  
-Spring Boot applications often use embedded servlet containers like Tomcat, Jetty, or Undertow. These containers are bundled directly within the application's executable JAR file, eliminating the need for a separate external server installation.
-
-In a Spring MVC application, the servlet container maps all incoming requests to the `DispatcherServlet` (front-controller). This central servlet then delegates the requests to the appropriate controllers and handlers within the Spring application, enabling Spring MVC to manage the request-handling lifecycle.
-
-In spring web, every `@Controller` gets converted into servlets.
-
-- Client send HTTP request into the servlet container (tomcat web container). Inside the servlet container, request **lần lượt** đi qua các bước sau:
-  * filter chain (spring security)
-  * front controller (dispatcher servlet)
-  * Nhiều servlet khác nhau (`@Controller`)
-
-### CSRF
-
-k
-
 ## Aspect Oriented Programming (AOP)
 
 In the context of Aspect-Oriented Programming (AOP), a **cross-cutting concern** refers to a functionality or aspect of a system that affects multiple, distinct parts of the application, often spanning across different modules or layers. These concerns are "cross-cutting" because they don't fit neatly into a single, isolated module but rather "cut across" the primary business logic.
+
+Like DI, AOP supports **loose coupling** of application objects. But with AOP, **application-wide concerns** (such as transactions and security) are decoupled from the objects to which they’re applied.
+
+AOP enables you to centralize in one place—an aspect—logic that would normally be scattered throughout an application. When Spring wires your beans together, these aspects can be woven in at runtime, effectively giving the beans new behavior.
 
 ## Bugs & fixes
 

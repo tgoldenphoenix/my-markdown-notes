@@ -1,4 +1,4 @@
-# Servlet, JSP, Spring MVC - Thymeleaf
+# Servlet, JSP & Thymeleaf
 
 ## Java EE
 
@@ -15,10 +15,6 @@ Java EE (now called Jakarta EE) is primarily used for building enterprise-level 
 - Reason for change: Trademark and intellectual property issues after Oracle donated Java EE to the Eclipse Foundation; To comply with the new branding and avoid trademark restrictions
 - Migrating to Jakarta EE requires updating all import statements from `javax.*` to `jakarta.*`
 
-## Spring MVC
-
-chỉ có `@GetMapping` & `@PostMapping`, API mới có Put, Delete
-
 `DispatcherServlet` = front controller = central `Servlet`
 
 EJB  (Enterprise JavaBeans) cũng là một technologies used for developing enterprise Java applications nhưng nó khác Spring.
@@ -31,7 +27,7 @@ Trong forms dùng **selection expressions**: `*{firstName}`
 
 **Link expression** `@{manage/edit}`
 
-## Jsp servlet
+## JSP Servlet
 
 - JSP servlet & tất cả modern web framework có 8 chữ cốt lõi:
   1. get-post
