@@ -86,6 +86,19 @@ Also by piping the output of commands into `less`, you can read through it and t
 
 ## man pages and get help
 
+- Anything between square brackets (`[` and `]`) is optional.
+- Anything followed by an ellipsis (`…`) can be repeated.
+- Curly braces (`{` and `}`) mean that you should select one of the items 
+separated by vertical bars (`|`).
+
+For example, the specification:  
+`bork [ -x ] { on | off } filename …`  
+would match any of the following commands:
+
+`bork on /etc/passwd`
+`bork -x off /etc/passwd /etc/smartd.conf`
+`bork off /usr/lib/tmac`
+
 `man COMMAND` view man page
 
 shell-builtins do not have man pages. Phải search trong `man bash` such as `help`, `type`  
@@ -105,19 +118,21 @@ An **ellipsis** `...`  consists of three evenly spaced periods. In the context o
 
 Run `man man` or `man 7 man-pages` to learn how to use man pages.
 
-Manual sections:
+Sections of the man pages:
 
-1. General commands; Executable programs or shell commands
-2. System calls (functions provided by the kernel)
+1. General commands; Executable programs or shell commands; User-level commands and applications
+2. System calls (functions provided by the kernel) and kernel error codes
 3. Library calls or sub-routines (functions within program libraries covering in particular the C standard library)
-4. Special files (usually devices, those found in `/dev`) and [drivers](https://en.wikipedia.org/wiki/Device_driver)
-5. File formats and conventions, e.g. `/etc/passwd`
-6. Video Games, Screensavers and user-maintained programs
-7. Miscellaneous (including macro packages and conventions), e.g. man(7), groff(7)
+4. Special files (usually devices, those found in `/dev`) and [drivers](https://en.wikipedia.org/wiki/Device_driver); Device drivers and network protocols
+5. Standard file formats and conventions, e.g. `/etc/passwd`
+6. Video Games, Screensavers, demonstrations and user-maintained programs
+7. Miscellaneous files and documents (including macro packages and conventions), e.g. man(7), groff(7)
 8. System administration commands and [daemons](https://en.wikipedia.org/wiki/Daemon_(computing)) (usually only for root)
-9. Kernel routines \[Non standard] (FreeBSD, SVR4, Linux)
+9. Kernel routines \[Non standard] (FreeBSD, SVR4, Linux); Obscure kernel specs and interfaces
 
 Section 2 and 3 is for low-level Linux programming.
+
+The exact structure of the sections isn’t important for most topics because man finds the appropriate page wherever it is stored. You only need to be aware of the section definitions when a topic with the same name appears in multiple sections. For example, `passwd` is both a command and a configuration file, so it has entries in both section 1 and section 4 or 5.
 
 There might be multiple pages for the same keyword in different sections. For example, running the command `man chown` by default will open section 1 `CHOWN(1)`. You can explicitly look into section 2 using `man 2 chown`.
 
@@ -129,6 +144,12 @@ There might be multiple pages for the same keyword in different sections. For ex
 - SEE ALSO: A list of related commands or functions.
 
 Other sections may be present, but these are not well standardized across man pages. Common examples include: OPTIONS, EXIT STATUS, RETURN VALUE, ENVIRONMENT, BUGS, FILES, AUTHOR, REPORTING BUGS, HISTORY and COPYRIGHT.
+
+### Read man panges
+
+`man <title>` formats a specific manual page and sends it to your terminal through `more`, `less`, or whatever program is specified in your `PAGER` environment vari-able. title is usually a command, device, filename, or name of a library routine. The sections of the manual are searched in roughly numeric order, although sec-tions that describe commands (sections 1, 8, and 6) are usually searched first.
+
+The form `man section title` gets you a man page from a particular section. Thus, on most systems, `man sync` gets you the man page for the sync command, and `man 2 sync` gets you the man page for the sync system call. 
 
 **Alternatives:**
 
@@ -146,7 +167,7 @@ GNU project invented info pages. Có support hyperlink through the documentation
 
 The [ArchWiki](https://wiki.archlinux.org/title/Main_page) page
 
-**References:**\
+References:
 
 [Mastering Linux Man Pages - A Definitive Guide](https://www.youtube.com/watch?v=RzAkjX_9B7E) by Linux Training Academy
 

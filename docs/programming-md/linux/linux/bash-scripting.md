@@ -245,23 +245,31 @@ Variables are global within a script, but functions can create their own lo cal 
 
 ## Globbing
 
-Globbing is mainly used to match filenames or searching for content in a file. Globbing uses wildcard characters to create the pattern. The most common wildcard characters that are used for creating globbing patterns are described below.
+`grep` uses regular expressions (regex).  
+The filename matching and expansion performed by the shell when it interprets command lines such as `wc -l *.pl` is not a form of regex matching. It’s a different system called **shell globbing,** and it uses a different and simpler syntax.
 
 Glob mean "global commands". [/etc/glob](https://en.wikipedia.org/wiki/Glob_(programming)) is a program in UNIX V6 that would expand wildcard patterns. Soon afterward, this became a shell built-in.
 
-Globbing is used in config files such as a `.gitignore` where you might see `.cache/*`, for example
+Globbing is mainly used to match filenames or searching for content in a file. Globbing uses wildcard characters to create the pattern.
 
-Globbing is an operation that is performed by the shell itself and it happens independently of the actual command we're running. The shell will first attemp to expand the wildcard pattern to match any files that are present before passing their expanded names to the program we want to run.  
-`man 7 glob` to read more
+Globbing is used in config files such as a `.gitignore` where you might see `.cache/*`, for example.
+
+Globbing is the expansion of simple pattern-matching characters such as * and ? to form filenames or lists of file-names)
+
+Globbing is an operation that is performed by the shell itself and it happens **independently** of the actual command we're running. The shell will **first** attemp to expand the wildcard pattern to match any files that are present before passing their expanded names to the program we want to run.  
+`man 7 glob` to read more.
 
 You should be aware that the value of the arguments that get passed to a given program will actually depend on the content of your file system. Your program may be passed a different number of arguments depending on how many files match the wildcard.
 
 We should note that while globbing might look similar to regular expressions, they’re fundamentally different. While the patterns seem similar, globbing doesn’t use regular expressions.
 
 - We use shell-style globbing characters for pattern matching:
-  - A star (`*`) matches zero or more characters.
-  - A question mark (?) matches any single character. You can use `?` for multiple times for matching multiple characters.
-  - A tilde or “twiddle” (~) means the home directory of the current user
+  * A star (`*`) matches zero or more characters.
+  * A question mark (`?`) matches any single character. You can use `?` for multiple times for matching multiple characters.
+  * A tilde or “twiddle” (`~`) means the home directory of the current user
+  * `~user` means the home directory of user.
+
+For example, we might refer to the startup script directories `/etc/rc0.d`, `/etc/rc1.d`, and so on with the shorthand pattern `/etc/rc*.d`.
 
 - `[]` range of characters. For example `[0-9]` or `[abc]`. Ranges can apply to letters as well as digits:
 - `[a-z]` = all lowercase characters of the alphabet
@@ -352,6 +360,37 @@ The table below shows the bash comparison operators for numbers and strings. bas
 | x >= y | x -ge y | x is greater than or equal to y |
 | -n x   | -       | x is not null                   |
 | -z x   | -       | x is null                       |
+
+`bash` shines in its options for evaluating the properties of files (again, courtesy of its `/bin/test` legacy). Table below shows a few of bash’s many file-testing and file-comparison operators.
+
+| Operator        | True if                           |
+|-----------------|-----------------------------------|
+| -d file         | file exists and is a directory    |
+| -e file         | file exists                       |
+| -f file         | file exists and is a regular file |
+| -r file         | You have read permission on file  |
+| -s file         | file exists and is not empty      |
+| -w file         | You have write permission on file |
+| file1 -nt file2 | file1 is newer than file2         |
+| file1 -ot file2 | file1 is older than file2         |
+
+Ngoài `elif` thì `bash` còn có `case` giống như switch-case.
+
+### Loops
+
+Có `for...in` loop.
+
+Có traditional `for` loop.
+
+```bash
+for (( i=0 ; i < $CPU_COUNT ; i++ )); do
+    CPU_LIST="$CPU_LIST $i" 
+done
+```
+
+Any whitespace-separated list of things, including the contents of a vari-able, works as a target of `for…in`. 
+
+Có `while` loop
 
 ## The Shebang
 
