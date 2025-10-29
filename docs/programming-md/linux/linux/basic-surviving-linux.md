@@ -84,6 +84,14 @@ Also by piping the output of commands into `less`, you can read through it and t
 
 `man readline` default shortcuts in the terminal
 
+## Ctrl-d vs exit command
+
+`Ctrl+D` Sends the End-of-File (EOF) character or signal. When a shell (like Bash) receives an EOF signal on an empty command line, it interprets it as a signal to terminate the current session.
+
+`exit` is an explicit shell command that tells the shell to terminate immediately.
+
+How about `Ctrl c` and `Ctrl z`?
+
 ## man pages and get help
 
 - Anything between square brackets (`[` and `]`) is optional.
@@ -382,6 +390,10 @@ In computing, [tar](https://en.wikipedia.org/wiki/Tar_(computing)) is a computer
 On MacOS, curl comes pre-installed.
 
 You can use curl with a REST-api.
+
+## Terminologies
+
+An **interactive shell** in Linux is a command-line interface where you type commands and get responses back directly. It's the primary way many users interact with the operating system.
 
 ## FAQs
 

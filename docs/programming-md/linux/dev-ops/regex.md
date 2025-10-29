@@ -1,6 +1,4 @@
-# Regular Expressions & Glob pattern
-
-shell expansion
+# Regular Expressions
 
 ## Basics & Terminologies
 
@@ -9,6 +7,8 @@ shell expansion
 [Escape character](#escaped-characters)
 
 [metacharacter](https://www.tutorialsteacher.com/regex/metacharacters): `.`, `\d`, `\w`, etc
+
+Regular expressions are neither procedural nor functional languages. Rather, they are a logic-based or declarative language, a class of languages that also includes Prolog and Makefiles. And BNFs. One might also call them rule-based languages. I prefer to call them declarative languages myself.”
 
 flag = modifier
 
@@ -30,6 +30,12 @@ camelCase: first word lower, after that thì uppercase.
 - **PascalCase** is used for Class names
 - CONSTANT variable will be all uppercase
 
+## The basics
+
+Matching is case sensitive by default.
+
+Many special constructs, such as + and |, affect the matching of the “thing” to their left or right. In general, a “thing” is a single character, a subpattern enclosed in parentheses, or a character class enclosed in square brackets. 
+
 ## My regex patterns
 
 Validate email: ``
@@ -38,7 +44,7 @@ Validate email: ``
 
 The **wildcard character** `.` will match one single character of any kind, including special characters and white space characters (except line breaks). The wildcard is also called dot and period. For example, if you wanted to match ==hug, huh, hut, and hum==, you can use the regex `/hu./` to match all four words.
 
-The escaped character `\.` matches a single dot.
+The escaped character `\.` matches a single literal dot character.
 
 ## Flags
 
@@ -50,9 +56,13 @@ The **global flag** `//g` causes the expression to select all matches. If not sp
 
 Regex by default will sees all text as one line. But we can use the multiline flag `//m` to handle each line separately. In this way, the expressions we write to identify patterns at the end of lines work separately for each line not just the last line.
 
-## Quantifiers: +, *, ?
+Many regex systems (including Perl’s) support an `x` option that ignores literal whitespace in the pattern and enables comments, allowing the pattern to be spaced out and split over multiple lines.
 
-### `+` - Characters that occur ONE or more times in a row
+## Quantifiers: `+ * ?`
+
+### `+`
+
+`+` allows **one** or more matches of the preceding element => Cộng **một**.
 
 Sometimes, you need to match a single character (or group of characters) that appears **ONE or more** times in a row. This means it occurs at least once, and may be repeated => use the `+` symbol (also known as the **Kleene plus**)
 
@@ -65,10 +75,15 @@ Example: `/a+/g` when applies to:
 - "abab" => "a", "a"
 - "bcd" => []
 
-### `*` - Characters that occur ZERO of more times in a row
+### `*`
 
-The asterisk or star `*` matches characters that occur **ZERO or more** times.  
-**DISTINGUISH** `*` vs the wildcard character `.` which will match any one character.
+`*` allows zero, one, or many matches of the preceding element.
+
+Distinguish: 
+
+- Regex's wildcard is `.` which match any one character.
+- Globbing's wildcard is `*`which match any sequence of zero or more characters.
+- The regex version of the star `*` is a quantifier and it needs something to modify; otherwise, it won’t do what you expect. Use `.*` if any sequence of characters (including no characters at all) is an acceptable match.
 
 These quantifiers can be used with any character or special metacharacters, for example `a+` (one or more a's), `[abc]+` (one or more of any a, b, or c character) and `.*` (zero or more of any character).
 
@@ -77,47 +92,65 @@ Example:
 - `.*` => match an element of unlimited length.
 - `/.*buy.*/` => match & filter out all lines/phrases that contain "buy"
 
-### The ? symbol
+### `?`
 
-Greedy matching vs lazy matching
+The `?` symbol có 2 chức năng: optional matching & lazy matching  
+`?` symbol is also used in [Lookaround](#lookaround-lookaround)
 
-You can apply the regex `/t[a-z]*i/` to the string "titanic". This regex is basically a pattern that starts with t, ends with i, and has some letters in between. Regular expressions are **by default greedy**, so the match would return "titani". It finds the largest sub-string possible to fit the pattern. However, you can add a `?` after `*` or `+` symbol to change it to **lazy matching**. "titanic" matched against the adjusted regex of `/t[a-z]*?i/` returns "ti".
+Optional symbol `?` allows zero **or one** match of the preceding element.
 
-Optional symbol ?: zero or one
+To accommodate either a five-digit zip code or an extended zip+4: `^\d{5}(-\d{4})?$`  
+The parentheses group the dash and extra digits together so that they are consid-ered one optional unit. For example, the regex won’t match a five-digit zip code followed by a dash. If the dash is present, the four-digit extension must be present as well or there is no match.
+
+### Greediness, laziness & catastrophic backtracking
+
+Regular expressions match from left to right. Each component of the pattern matches the longest possible string before yielding to the next component, a char-acteristic known as **greediness**.
+
+Even though regex notation makes greedy operators the default, they 
+probably shouldn’t be. Use lazy operators.
+
+You can apply the regex `/t[a-z]*i/` to the string "titanic". This regex is basically a pattern that starts with t, ends with i, and has some letters in between. Regular expressions are **by default greedy**, so the match would return "titani". It finds the largest sub-string possible to fit the pattern.
+
+However, you can add a `?` after `*` or `+` symbol to change it to **lazy matching**. The string "titanic" matched against the adjusted regex of `/t[a-z]*?i/` returns "ti".
 
 Sometimes the patterns you want to search for may have parts of it that may or may not exist. However, it may be important to check for them nonetheless. You can specify the possible existence of an element with a question mark `?`. It checks for **zero or one** of the preceding element. You can think of this symbol as saying the previous element is optional.
 
-For example, there are slight differences in American and British English and you can use the question mark to match both spellings.
+You  can  also  use  lazy  (as  opposed  to  greedy)  wild  card  operators : `*?` instead of `*`, and `+?` instead of `+`. These versions match as few characters of the input as they can. If that fails, they match more. In many situations, these operators are more efficient and closer to what you want than the greedy versions.
 
-`?` symbol is also used in [Lookaround](#lookaround-lookaround)
+## Upper-Lower Number of matches `{}`
 
-## Upper, Lower number of matches \{\}
+Recall that you use `+` to look for one or more characters and the asterisk `*` to look for zero or more characters. These are convenient but sometimes you want to match _a certain range_ of patterns.  
+You can specify the lower and upper number of patterns with `{} `**quantity specifiers** (quantifier).
 
-Recall that you use the plus sign + to look for one or more characters and the asterisk `*` to look for zero or more characters. These are convenient but sometimes you want to match _a certain range_ of patterns.
+- `{n}` Matches exactly n instances of the preceding element 
+- `{min,}` Matches at least min instances (note the comma)
+- `{min,max}` Matches any number of instances from min to max
 
-You can specify the lower and upper number of patterns with **quantity specifiers** (quantifier). Quantity specifiers are used with curly brackets (`{` and `}`). You put two numbers between the curly brackets - for the lower and upper number of patterns.
+Match only the string "hah" with the letter "a" appearing **at least** 3 times: `/ha{3,}h/`.
 
-Match only the string "hah" with the letter "a" appearing **at least** 3 times, your regex would be `/ha{3,}h/`.
+Match only the letter `a` appearing **between** 3 and 5 times in the string "ah": `/a{3,5}h/`.
 
-Match only the letter `a` appearing **between** 3 and 5 times in the string "ah", your regex would be `/a{3,5}h/`.
+ Match the word "haaah" with the letter "a" repeat exactly 3 times (no more no less): `/ha{3}h/`.
 
- Match the word "haaah" with the letter "a" repeat exactly 3 times (no more no less), your regex would be `/ha{3}h/`.
+- This quantifier can be used with any character, or special metacharacters, for example:
+  * `w{3}` (three w's)
+  * `[wxy]{5}` (five characters, each of which can be a w, x, or y)
+  * `.{2,6}` (between two and six of any character)
 
-This quantifier can be used with any character, or special metacharacters, for example **w{3}** (three w's), **[wxy]{5}** (five characters, each of which can be a w, x, or y) and **.{2,6}** (between two and six of any character).
-
-## Character classes/sets [], ranges and negated character sets
+## Character Classes/Sets `[]`, Ranges & Negated Character Sets
 
 If one of the characters in a word can be in a set of diffrent characters, we put then in **character set/class** notated with square brackets `[]`.
 
 Using the hyphen `-` to match a range of characters is not limited to letters. It also works to match a range of numbers. For example, `/[0-5]/` matches any number between 0 and 5, _including themself_.
 
-So far, you have created a set of characters that you want to match, but you could also create a set of characters that you **do NOT** want to match. These types of character sets are called **negated character sets**. To create a negated character set, you place a caret character `^` after the opening bracket and before the characters you do not want to match.
+So far, you have created a set of characters that you want to match, but you could also create a set of characters that you **do NOT** want to match. These types of character sets are called **negated character sets**. To create a negated character set, you place a caret character `^` after the opening bracket and before the characters you do not want to match `[^chars]`.
 
-**Special characters that need to be escaped inside character class:**\
+`^` also means to Matches the beginning of a line.
 
-- `[ and ]`: start & end of the character class
-- `\`: for escaping `[\\]`
-- `- and ^`: character range & class negation
+- Special characters that need to be escaped inside character class:
+  - `[ and ]`: start & end of the character class
+  - `\`: for escaping `[\\]`
+  - `- and ^`: character range & class negation
 
 For example, `/[^aeiou]/gi` matches all characters that are not a vowel. Note that characters like ., !, [, @, / and white space are matched - the negated vowel character set only excludes the vowel characters.
 
@@ -133,17 +166,21 @@ For example, `/[^aeiou]/gi` matches all characters that are not a vowel. Note th
 
 `/[Gg]r[ae]y/` => match 4 different spellings and capitalization of the word "gray/grey" at once.
 
-## Character set [] shorthands
+### Character Set `[]` Shorthands
 
 Using character sets [], you were able to search for all letters of the alphabet with `[a-z]`. This kind of character class is common enough that there is a shorthand for it, although it still includes a few characters to learn.
 
-Mấy cái này dùng syntax `\` giống escaped characters
+Mấy cái này dùng syntax `\` giống escaped characters.
+
+---
 
 **\w and \W (alphanumeric & underscore)**
 
 The first shorthand is `\w`. This shortcut is equal to `[A-Za-z0-9\_]`. Match alphanumeric & underscore.
 
-The opposite of the \w is \W. Note, the opposite pattern uses a capital letter. This shortcut is the same as `[^A-Za-z0-9\_]`. Including: `[empty space].:!?`
+The opposite of the \w is `\W`. Note, the opposite pattern uses a capital letter. This shortcut is the same as `[^A-Za-z0-9\_]`. Including: `[empty space].:!?`
+
+---
 
 **\d - Any digit**
 
@@ -151,16 +188,20 @@ The shortcut to look for digit characters is `\d`, with a lowercase d. This is e
 
 The shortcut to look for non-digit characters is `\D`. This is equal to the character class `[^0-9]`, which looks for a single character that is not a number between zero and nine.
 
+---
+
 **Match white spaces**
 
 The most common forms of whitespace you will use with regular expressions are the **space** `␣`, the **tab** `\t`, the **new line** `\n` and the carriage return `\r` (useful in Windows environments), and these special characters match each of their respective whitespaces.
 
-You can search for whitespace characters using `\s`, which is a lowercase s. This pattern not only matches spaces characters, but also carriage return (enter key), tab, form feed, and new line characters or line breaks. You can think of it as similar to the character class `[ \r\t\f\n\v]`.
+You can search for whitespace characters using `\s`, which is a lowercase s. This pattern not only matches whitespaces characters, but also carriage return (enter key), tab, form feed, and new line characters or line breaks. You can think of it as similar to the character class `[\r\t\f\n\v]` (that is, a space, a form feed, a tab, a newline, or a return).
 
-Search for non-whitespace using `\S`, which is an uppercase s. This pattern will not match whitespace, carriage return, tab, form feed, and new line characters. You can think of it being similar to the character class [^ \r\t\f\n\v].
+Search for non-whitespace using `\S`, equal to the character class `[^ \r\t\f\n\v]`.
 
-\W là "except word character"
-\D là "except digit"
+---
+
+`\W` là "except word character"
+`\D` là "except digit"
 \S là "except white space"
 
 You can specify the lower and upper number of patterns with quantity specifiers (quantifier). Quantity specifiers are used with curly brackets ({ and }). You put two numbers between the curly brackets - for the lower and upper number of patterns. Both {}, +, \*, ? đều thuộc category 'quantifiers'. For example, to match only the letter a appearing between 3 and 5 times in the string ah, your regex would be /a{3,5}h/.
@@ -173,17 +214,48 @@ Sometimes you only want a specific number of matches. To specify a certain numb
 
 Additionally, there is a special metacharacter \b which matches the boundary between a word and a non-word character. It's most useful in capturing entire words (for example by using the pattern \w+\b).
 
-## Capture groups ()
+## Capture Groups `()`
 
 We can group an expression and use these groups to reference or enforce some rules. To group an expression, we enclose them in parentheses `()`.
 
+`(expr)`: Limits scope, groups elements, allows matches to be captured
+
+`(){}` capture groups with min-max
+
+`([AEae]l[- ])?` two character sets inside capture group & optional `?` quantifier
+
+### CGs with Alternation Symbol `|`
+
+Pipe character `|` also called the "Or" operator.
+
+It allows to specify that an expression can be in different expressions. Thus, all possible statements are written separated by the pipe sign `|`. This differs from charset `[abc]`, charsets operate at the character level while (`|`) alternatives are at the expression level. For example, the following expression would select both "cat" and "rat": `/(c|r)at/g`.
+
+If you want to find either Penguin or Pumpkin in a string, you can use the following regex: `/P(engu|umpk)in/g`
+
+For the | character, however, thingness extends indefinitely to both left and right. If you want to limit the scope of the vertical bar, enclose the bar and both things in their own set of parentheses. For example,
+
+`I am the (walrus|egg man)\.`
+
+matches either “I am the walrus.” or “I am the egg man.”. This example also dem-onstrates escaping of special characters (here, the dot).
+
 ### Reuse patterns using Capture Groups ()
+
+When a match succeeds, every set of parentheses becomes a “capture group” that records the actual text that it matched.
+
+Since parentheses can nest, how do you know which match is which? Easy—the matches arrive in the same order as the opening parentheses. There are as many captures as there are opening parentheses, regardless of the role (or lack of role) that each parenthesized group played in the actual matching. When a parenthe-sized group is not used (e.g., `Mu(')?ammar` when matched against “Muammar”), its corresponding capture is empty.
+
+If a group is matched more than once, only the contents of the last match are returned. For example, with the pattern `(I am the (walrus|egg man)\. ?){1,2}` matching the text "I am the egg man. I am the walrus." There are two results, one for each set of parentheses:
+
+1. I am the walrus. 
+2. walrus
+
+Note that both capture groups actually matched twice. However, only the last text to match each set of parentheses is actually captured.
 
 This is also know as referencing a group. Say you want to match a word that occurs multiple times.
 
 The substring matched by the group is saved to a temporary "variable", which can be accessed within the same regex using a backslash and the number of the capture group (e.g. \1). Capture groups are automatically numbered by the position of their opening parentheses (left to right), starting at 1.
 
-All the quantifiers including the star \*, plus +, repetition {m,n} and the question mark ? can all be used within the capture group patterns. This is the only way to apply quantifiers on sequences of characters instead of the individual characters themselves.
+All the quantifiers including the star `*`, `+`, repetition {m,n} and the question mark ? can all be used within the capture group patterns. This is the only way to apply quantifiers on sequences of characters instead of the individual characters themselves.
 
 The example below matches a word that occurs thrice separated by spaces:
 
@@ -201,23 +273,11 @@ The nested groups are read from left to right in the pattern, with the first cap
 
 For the following strings, write an expression that matches and captures both the full date, as well as the year of the date.
 
-## Use Capture Groups to search and replace
+### Use Capture Groups to search and replace
 
 You can search and replace text in a string using .replace() on a string. The inputs for .replace() is first the regex pattern you want to search for. The second parameter is the string to replace the match or a function to do something.
 
 You can also access capture groups in the replacement string with dollar signs ($).
-
-## Capture Groups with Alternation symbol |
-
-Pipe character `|` also called the "Or" operator
-
-It allows to specify that an expression can be in different expressions. Thus, all possible statements are written separated by the pipe sign |. This differs from charset `[abc]`, charsets operate at the character level. Alternatives are at the expression level. For example, the following expression would select both "cat" and "rat": `/(c|r)at|dog/g`
-
-Hình trên nếu không dùng capture group () thì /t|The/g will match either “t” or “The” which is not what we want.
-
-If you want to find either Penguin or Pumpkin in a string, you can use the following Regular Expression: /P(engu|umpk)in/g
-
-“|” is the pipe character. It allows to specify that an expression can be in different expressions. Thus, all possible statements are written separated by the pipe sign |. This differs from charset [abc], charsets operate at the character level. Alternatives are at the expression level. For example, the following expression would select both cat and rat. Add another pipe sign | to the end of the expression and type dog so that all words are selected.
 
 ## Lookaround {lookaround}
 
@@ -286,15 +346,13 @@ There are special characters that we use when writing regex. { } [ ] / \ + \* . 
 
 `\\` => dùng để escape a bach slash
 
-## Beginning-ending of string
-
-**Match beginning string pattern**
+## Match Beginning & Ending of a String
 
 In an earlier challenge, you used the caret character `^` inside a character set `[]` to create a [negated character set](#character-sets--ranges-and-negated-character-sets) in the form `[^thingsThatWillNotBeMatched]`. But **outside** of a character set, the caret is used to search for patterns at the **beginning of strings**.
 
-If the multiline flag (m) is enabled, `^` will match the beginning of lines instead of the whole string. Dùng khi có 1 big string là 1 paragraph contains multiple lines. Nếu không có (m) flag thì "^" chỉ match the beginning of the first line.
+If the multiline flag (`m`) is enabled, `^` will match the beginning of lines instead of the whole string. Dùng khi có 1 big string là 1 paragraph contains multiple lines. Nếu không có (m) flag thì "^" chỉ match the beginning of the first line.
 
-**Match ending string pattern**
+---
 
 You can search the end of strings using the dollar sign character `$` at the end of the regex.
 
@@ -308,7 +366,9 @@ If the multiline flag (m) is enabled, `$` will match the end of a line instead o
 
 `/^http[^s].*/` => match "<http://httpstatus.io/>"; "http" at the beginning
 
-## Regex References
+In `^\d{5}$`, The `^` and $ match the beginning and end of the search text but do not actually correspond to characters in the text; they are **zero-width assertions.** These char-acters ensure that only texts consisting of exactly five digits match the regular expression—the regex will not match five digits within a larger string. The \d es-cape matches a digit, and the quantifier {5} says that there must be exactly five digit matches.
+
+## References
 
 [regexLearn.com](https://regexlearn.com/learn)
 

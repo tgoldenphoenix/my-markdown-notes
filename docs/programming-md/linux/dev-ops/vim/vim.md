@@ -37,20 +37,19 @@ To learn more about `vim` command in the terminal, check out `man vim`.
 
 Keymap in Vim do not require all the button to be pressed at once.
 
-**Vim Grammar:**
-Many command in vim are: operator (d, y, c) + \[number] + motion. The order can change like `2dw` and `d2w` are the same. You should use `d2w` and `2w`.
+Many command in vim have this "grammar": operator (d, y, c) + \[number] + motion. The order can change like `2dw` and `d2w` are the same. You should use `d2w` and `2w`.
 
-Undo `u` | redo `Ctrl r` or `<C-r>` (undo the undos of `u`)\
-The capital `U` return the whole line to its original state. It undo all the changes on a line.
+- Undo `u` | redo `Ctrl r` or `<C-r>` (undo the undos of `u`)\
+- The capital `U` return the whole line to its original state. It undo all the changes on a line.
 
-Copy whole line: `yy` or `Y` (including the linebreak character at the end of each line)\
-To yank everything from your current location to the end of the line: `y$`.
+- Copy whole line: `yy` or `Y` (including the linebreak character at the end of each line)
+- To yank everything from your current location to the end of the line: `y$`.
 
 `yiw` yank in a word, copy word if you're in the middle of it
 
-### deleting | changing
+### Change & Delete
 
-**Note**: Cần phân biệt các khái niệm delete vs change,  in vs around.
+**Note**: Cần phân biệt các khái niệm delete vs change;  in vs around.
 
 Both `d` and `c` save deleted text into register.
 
@@ -58,16 +57,21 @@ Press `x` to delete the character under the (block) cursor in normal mode.
 
 `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
 
-`de` - to the end of the current word, INCLUDING the last character. Cái này hơi weird, nên dùng `dw`. \
-`ce` change until the end of a word.
+- `de` - to the end of the current word, INCLUDING the last character. Cái này hơi weird, nên dùng `dw`.  
+- `dd` deleta whole line
+- `d$` - to the end of the line, INCLUDING the last character & the cursor. `d0` delete to beginning of line.
+- `di"` to delete inside quote. If you are in the middle of a word: `diw` or delete-in-word.
 
- `d$` - to the end of the line, INCLUDING the last character & the cursor. `d0` delete to beginning of line.
+The change operator `c` requires a motion command immediately following it to specify what text to change. It deletes the text defined by the motion and then puts you into Insert mode.
 
-`di"` to delete inside quote. If you are in the middle of a word: `diw` or delete-in-word.
-
-`ciw` Change in word
-`ci"` Change in quotes.  Example: `print("Tran Kim Phuong")`. You can also use it with square brackets `()` and curly brackets `{}`.
-`ca"` Change around quotes. Giống change in quote nhưng sẽ delete (cut) luôn 2 cái `""` quotes
+- `cw` change word
+- `ce` change until the end of a word.
+- `ciw` Change in word
+- `ci"` Change inside double quotes.  Example: `print("Tran Kim Phuong")`. You can also use it with square brackets `()` and curly brackets `{}`.
+- `ca"` Change around quotes. Giống change in quote nhưng sẽ delete (cut) luôn 2 cái `""` quotes
+- `C` (uppercase) == `c$`
+- `s` == `cl` changes (deletes) the single character under the cursor and puts you into Insert mode. `l` alone move one character to the right.
+- `S` (upper-case) == `cc` == `^C` (upper-case) change the entire current line.
 
 Vim with **markup (like HTML tags)**
 
@@ -81,39 +85,42 @@ Delete the rest of the line from cursor block -> EOL: `D` (uppercase `d`) | `C` 
 `dd` + `p`, will put the deleted line to the line below the cursored line not after the cursor.
 To put back text that has just been deleted, type   p .  This puts the deleted text AFTER the cursor (if a line was deleted it will go on the line below the cursor).
 
+### Indentation
+
+- `>>` shift current line to the right
+- `<<` shift current line to the left\
+- If you have selected the whole line in `visual mode`, you just press `>` once
+
+automatically indent: `==` can also be used on selection of code\
+Auto-indent the whole file: `gg=G`
+
+`>G` increases the indentation from the current line until the end of **the file**.
+
 ## Vim motions
 
-Count Your Move.
+- Go to beginning of the line:
+  - `0` Moves the cursor to the absolute start of the line (column 1).
+  - `^` Moves the cursor to the first non-whitespace character on the line.
+- Go to end of the line: `$`
+- `g_` to go to the last non-blank character in the current line.
 
-A **hard wrap** inserts actual line breaks in the text at wrap points, with soft wrapping the actual text is still on the same line but looks like it's divided into several lines.
+If you want to go to the column `n` in the current line, you can use `n|`.
 
-word & WORD navigation:
+### Word Navigation
 
-- Go to the beginning of the _next_ word/WORD: `w` | `W`. Dùng capital `W` để jump css class names like `display-sm-none`. `W` will also skip hyphens.
-- Jump of the end of the next word: `e` & `E`. Giống dùng `w`.
+- Go to the beginning of the next word: `w` or `W`:
+  - `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace.
+  - `W` defines a "WORD" is simply a sequence of any non-blank characters, separated only by whitespace (spaces, tabs, newlines).
+- Use `w` for smaller jumps between code elements/punctuation, and `W` for bigger jumps across code separated only by spaces.
 
-- Jump to the beginning of the _previous_ word: `b` or `B` (works similar to `w` and `W`).\
+- Jump of the end of the current word: `e` & `E`
+
+- Jump to the beginning of the previous word: `b` or `B` (works similar to `w` and `W`).
 - Go to the end of the previous word `ge` or `gE`
 
 So what are the similarities and differences between a word and a WORD? Both word and WORD are separated by blank characters. A word is a sequence of characters containing only `a-zA-Z0-9_` (alphanumeric + `_`). A WORD is a sequence of all characters except white space (a white space means either space, tab, and EOL). To learn more, check out :h word and :h WORD and [this article](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md)
 
-- Go to beginning of the line: `0`
-- Go to end of the line: `$`
-
-Additionally, you can use `^` to go to the first non-blank character in the current line and `g_` to go to the last non-blank character in the current line. If you want to go to the column `n` in the current line, you can use `n|`.
-
-You can scan for next character with `f{char}`/`t{char}`. `f` takes you to the first letter of the match and `t` takes you till (right before) the first letter of the match. So:
-
-- If you want to search for "h" and land on "h", use `fh`.
-- If you want to search for first "h" and land right before the match, use `th`.
-
-If you want to go to the _next_ occurrence of the last `f` search, use `;`. To go to the previous occurrence of the last current line match, use `,`. A good tip to go anywhere in a line is to look for least-common-letters like "j", "x", "z" near your target.
-
-`F` and `T` are the backward counterparts of `f` and `t`. To search backwards for "h", run `Fh`. To keep searching for "h" in the same direction, use `;`. Note that `;` after a `Fh` searches backward and `,` after `Fh` searches forward.
-
-Scan document for next/previous match: `/pattern<CR>` or `?pattern<CR>`
-
-### Sentence and Paragraph Navigation
+### Sentence & Paragraph Navigation
 
 Let's talk about what a sentence is first. A sentence ends with either `. ! ?` followed by an EOL, a space, or a tab. You can jump to the next sentence with `)` and the previous sentence with `(`.
 
@@ -169,48 +176,7 @@ Vim key bindings can be combined with number keys
 
 Almost every key commands can be combine with numbers
 
-[This article] from `Learn Vim the Smart Way` explain Vim's Text Objects
-
-### indentation
-
-`>>` shift current line to the right\
-`<<` shift current line to the left\
-If you have selected the whole line in `visual mode`, you just press `>` once
-
-automatically indent: `==` can also be used on selection of code\
-Auto-indent the whole file: `gg=G`
-
-### Vim Composability and Grammar
-
-Vim grammar is subset of Vim's composability feature. Composability means having a set of general commands that can be combined (composed) to perform more complex commands. The true power of Vim's composability shines when it integrates with external programs. Vim has a filter operator (!) to use external programs. Learn more [here](https://github.com/iggredible/Learn-Vim/blob/master/ch04_vim_grammar.md#composability-and-grammar)
-
-### Search in file & substitute
-
-Search is a form of Command Line mode. Depending on how we entered Command Line mode, we can browse our Ex Command or search history with the `<Down>` and `<Up>` keys.
-
-The search command: `/<search phrase>` search forward | `?<search phrase>` search backward
-`n` to jump to the next instance | `N` jump to previous instance
-
-To go back to where you came from press  `CTRL-o`  (Keep Ctrl down while pressing the letter o).  Repeat to go back further.  `CTRL-I` goes forward. Cái này giống `n` và `N` ở trên.
-
-NOTE: When the search reaches the end of the file it will continue at the start, unless the 'wrapscan' option has been reset.
-
-In normal mode, move the cursor to any word. Press `*` to search forwards for the next occurrence of that word, or press `#` to search backwards.
-
-MATCHING PARENTHESES search: type  `%`  to find a matching ),], or }. You can jump from the open parentheses to the closing one and vice versa. **NOTE**: This is very useful in debugging a program with unmatched parentheses!
-
-[Find and replace](https://vegastack.com/tutorials/find-and-replace-in-vim-vi/#:~:text=The%20%3Asubstitute%20(%3As)%20command,other%20mode%20to%20regular%20mode.)
-
-Learn Vim the Smart Way's [article](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md#search-navigation) covers in much more detail
-
-The substitute command
-
-`:s/thee/the` substitute 'the' for 'thee'. Note that this command only changes the _first occurrence_ of "thee" in the cursored line.  
-Type  `:s/thee/the/g`. Adding the  g  flag means to substitute globally in _the line_, change all occurrences of "thee" in the line.
-
-To change every occurrence of a character string between two lines, type   `:#,#s/old/new/g` where #,# are the line numbers of the range of lines where the substitution is to be done.
-Type  `:%s/old/new/g`       to change every occurrence in the whole file.
-Type   `:%s/old/new/gc`    to find every occurrence in the whole file, with a prompt whether to substitute or not.
+Vim grammar is subset of Vim's **composability feature**. Composability means having a set of general commands that can be combined (composed) to perform more complex commands. The true power of Vim's composability shines when it integrates with external programs. Vim has a filter operator (!) to use external programs. Learn more [here](https://github.com/iggredible/Learn-Vim/blob/master/ch04_vim_grammar.md#composability-and-grammar)
 
 ### Marking positions
 
@@ -246,7 +212,71 @@ To paste the text from register a ten times, do `10"ap`
 
 ## The Dot Command
 
-## Different modes of Vim
+> The dot command lets us repeat the last change.
+
+A change could act at the level of individual characters, entire lines, or even the whole file.
+
+`@:` can be used to repeat any Ex command
+
+- Execute a sequence of changes: `qx{changes}q`
+- repeat: `@x`
+- reverse: `u`
+
+## Search in File & Substitution
+
+Search is a form of Command Line mode. Depending on how we entered Command Line mode, we can browse our Ex Command or search history with the `<Down>` and `<Up>` keys.
+
+- You can scan for next character with `f{char}` or `t{char}`.
+- `f` takes you to the first letter of the match and `t` takes you till (right before) the first letter of the match. So:
+  - If you want to search for "h" and land on "h", use `fh`.
+  - If you want to search for first "h" and land right before the match, use `th`.
+
+- If you want to go to the **next occurrence** of the last `f` search, use `;`. 
+- To go to the **previous occurrence** of the last current line match, use `,`.
+- A good tip to go anywhere in a line is to look for least-common-letters like "j", "x", "z" near your target.
+
+- `F` and `T` are the backward counterparts of `f` and `t`.
+- To search backwards for "h", run `Fh`. To keep searching for "h" in the same direction, use `;`. Note that `;` after a `Fh` searches backward and `,` after `Fh` searches forward.
+
+- Scan document for next/previous match: `/pattern<CR>` or `?pattern<CR>`
+- Use `n` and `N` to repeat and reverse (jump to next and previous instance).
+
+Khi đọc `help` của vim: To go back to where you came from press  `CTRL-o`  (Keep Ctrl down while pressing the letter o).  Repeat to go back further.  `CTRL-I` goes forward. Cái này giống `n` và `N` ở trên.
+
+When the search reaches the end of the file it will continue at the start, unless the `wrapscan` option has been reset.
+
+In normal mode, move the cursor to any **word** (not character) > press `*` to search forwards for the next occurrence of that word, or press `#` to search backwards. Sau đó dùng `n` and `N`.
+
+- The `%` motion command jumps to the next matching bracket `(), [] or {}}`. You can jump from the open parentheses to the closing one and vice versa.
+  * If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
+  * If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
+  * It's useful for quickly navigating code blocks or checking if brackets are balanced.
+
+### The `:substitute` command
+
+The `:substitute` command in Vim (often shortened to `:s`) is used to find and replace text.
+
+It is an Ex command.
+
+`:s/target/replacement`
+
+we can repeat the last `:substitute` command (which itself happens to be an Ex command as well) by pressing `&`.
+
+Use `u` to reverse substitution.
+
+`:%s/content/copy/g` change all "content" to "copy"
+
+- `:%` Specifies the **range** as "all lines in the current file". It's equivalent to the range `1,$` (from line 1 to the last line).
+- `g` The global flag, meaning replace all occurrences on each line, not just the first one.
+
+`:s/thee/the` substitute 'the' for 'thee'. Note that this command only changes the _first occurrence_ of "thee" in the cursored line.  
+Type  `:s/thee/the/g`. Adding the  g  flag means to substitute globally in _the line_, change all occurrences of "thee" in the line.
+
+To change every occurrence of a character string between two lines, type   `:#,#s/old/new/g` where #,# are the line numbers of the range of lines where the substitution is to be done.
+Type  `:%s/old/new/g`       to change every occurrence in the whole file.
+Type   `:%s/old/new/gc`    to find every occurrence in the whole file, with a prompt whether to substitute or not.
+
+## Different Modes in Vim
 
 The default mode is **normal mode**. Pressing `Esc` to go back into normal mode.
 
@@ -260,10 +290,10 @@ NOTE:  You can also read the output of an external command.  For example, `:r !l
 
 `:e ~/.vimrc` switch to editing a new file.
 
-To enter **insert mode**:\
-`i` before the focus block | `I` insert to beginning of the line\
-after the cursor (appending): `a` | `A` append to end of line\
-open a new line below the cursor: `o` | `O` open new line above.
+- To enter insert mode:
+  * `i` before the focus block or `I` to insert to beginning of the line (equal `^i`)
+  * After the cursor (appending): `a` or `A` append to end of line (equal `$a`)
+  * open a new line below the cursor: `o` | `O` (upper-case) open new line above (equal `ko`).
 
 **Visual mode** is used for selection for yank, deleting, change. . Press `v` to enter visual mode. Capital `Shift v` will enter visual line mode (select the current line).
 
@@ -310,6 +340,10 @@ If you are trying to get Vim to auto wrap the contents of the current buffer at 
 Section 4 of [this article](https://vimandgit.com/posts/vim/beginners/neovim-and-vim-install-mac-linux-set-up-and-configure-vim.html) explain the `tabstop` and `expandtab` settings in combination
 
 Vim stores its settings in the `~/.vimrc` configuration file. Neovim stores its settings in the `~/.config/nvim/init.vim` configuration file. You can use your existing `.vimrc` settings with Neovim: Just add `source ~/.vimrc` to `~/.config/nvim/init.vim`. This tells Neovim to source your `~/.vimrc` on startup. There are a few Vim features that won't work in Neovim. These features were intentionally removed from Neovim and they are [listed here](https://neovim.io/doc/user/vim_diff.html "Vim features that are removed from Neovim").
+
+## Line wrapping
+
+A **hard wrap** inserts actual line breaks in the text at wrap points, with soft wrapping the actual text is still on the same line but looks like it's divided into several lines.
 
 ## The help commands
 
@@ -359,11 +393,11 @@ Read `:h notation` and `:h key-notation`
 The E tags in vim help [read here](https://vi.stackexchange.com/questions/31114/what-are-the-e-tags-in-vim-help)
 [difference between marks and tags in Vim?](https://vi.stackexchange.com/questions/16870/difference-between-marks-and-tags)
 
-## Vimscript
-
 ## Terminology
 
 [What is Ex command in Vim](https://www.cduan.com/technical/vi/vi-2.shtml). Ex command có dạng `:command` bắt đầu bằng ":". Ex command == command-line commands
+
+What is **text objects** in vim??
 
 ## References
 

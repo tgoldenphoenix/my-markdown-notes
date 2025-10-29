@@ -53,6 +53,10 @@ Some people have attempted writing alternatives to and replacements for X. macOS
 
 [unit vs service](https://unix.stackexchange.com/questions/714674/what-is-the-difference-between-systemds-service-and-service-and-daemon-and-syst)
 
+## Virtual Memory System
+
+Linux uses a virtual memory system primarily to manage memory more efficiently and securely than using direct physical memory addresses.
+
 ## Driver
 
 The kernel depends on individual pieces of software to control each individual piece of hardware, called device drivers. Device drivers contain instructions, like a manual for the kernel, on how to make the hardware perform a requested function. The OS calls the driver, and the driver “drives” the device. These software pieces exist for all hardware, and are often specialized for things like video cards, network adapters, input devices and sound cards. OSs typically use basic drivers that will simply make devices work, but not operate at their full potential. To fully use a device, the user should locate the latest available device driver (either from an included disc, or from the vendor’s website).

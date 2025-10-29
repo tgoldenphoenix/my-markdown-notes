@@ -1,8 +1,23 @@
-# Booting & other Processes
+# Booting & Other Processes
 
 Next to files, processes are the most important things on a UNIX/Linux system.
 
 Not every command starts a single process. Some commands initiate a series of processes, such as **mozilla**; others, like **ls**, are executed as a single command.
+
+## Kernel Space vs. User Space
+
+- Kernel Space: This is where the core operating system (the Linux kernel) runs. Processes in kernel space have privileged access to hardware and manage system resources. They are part of the OS itself.
+- User Space: This is where regular applications and system services run. Processes in user space have restricted access and must ask the kernel (via system calls) to perform privileged operations or interact with hardware.
+
+`init` (or its modern equivalent like `systemd`) is considered a **user process** in Linux because it runs in **user space**, not kernel space.
+
+`init` is always `PID 1`
+
+While the kernel _starts_ the `init` process as the very last step of its boot sequence, `init` itself is a program (`/sbin/init` or `/lib/systemd/systemd`) that executes in user space.
+
+Like any other user process, `init` interacts with the kernel using **system calls** to perform its tasks (e.g., mounting filesystems, starting other services/processes using `fork()` and `exec()`).
+
+The kernel schedules `init` just like any other process (though it often has high priority).
 
 ## Process types
 
@@ -53,11 +68,11 @@ k
 
 4 steps: system startup (hardware initialization), bootloader stage, kernel stage, and init process.
 
-1. A firmware/program like BIOS (Basic Input/Output System) or UEFI load the **bootloader** into RAM.
+1. A firmware/program like BIOS (Basic Input/Output System) or UEFI, **initial boot code** load the **bootloader** (secondary boot program) into RAM.
 2. After being loaded into RAM, bootloader (also called first-stage bootloader or primary bootloader) will execute to load the second-stage bootloader (also called secondary bootloader).
 3. The second-stage bootloader will load the **kernel** image into memory, decompress and initialize it then pass control to this kernel image. Second-stage bootloader also performs several operation on the system such as system hardware check, mounting the root device, loading the necessary kernel modules, etc. Finally, the very first user-space process (**init** process) starts, and other high-level system initializations are performed (which involve with startup scripts).
 
-**init** is always process number 1
+`init` is always process number 1
 
 ### System startup
 
@@ -87,6 +102,38 @@ BIOS uses the Master Boot Record (MBR) method, while UEFI uses the GUID Partitio
 ## Bootloader stage
 
 After a menu entry is chosen and optional parameters are given, GRUB loads the linux kernel into memory and passes control to it.
+
+GRUB (the GRand Unified Boot loader), developed by the GNU project, is the **default boot loader** for most UNIX and Linux systems with Intel processors. GRUB ships with most Linux distributions.  
+GRUB’s job is to choose a kernel from a previously assembled list and to load that kernel with op-tions specified by the administrator.
+
+## `init` & Startup Scripts
+
+`init` executes the system startup scripts. These scripts are really just garden-variety shell scripts that are interpreted by sh or bash. The exact location, content, and organization of the scripts vary enormously among vendors.
+
+- Some tasks that are often performed in the startup scripts are:
+  * Setting the name of the computer 
+  * Setting the time zone 
+  * Checking the disks with fsck
+  * Mounting the system’s disks
+  * Removing old files from the /tmp directory
+  * Configuring network interfaces
+  * Starting up daemons and network services
+
+`init` is one of the most important daemon. It always has a PID of 1 and is an ancestor of all user processes and all but a few system processes.
+
+- init defines at least seven run levels, each of which represents a particular comple-ment of services that the system should be running:
+  - At level 0, the system is completely shut down.
+  - Levels 1 and S represent single-user mode.
+  - Levels 2 through 5 include support for networking.
+  - Level 6 is a “reboot” level.
+
+Levels 0 and 6 are special in that the system can’t actually remain in them; it shuts down or reboots as a side effect of entering them. On most systems, the general default run level is 2 or 3. Under Linux, run level 5 is often used for X Windows login processes. Run level 4 is rarely used.
+
+The `/etc/inittab` file tells init what to do at each run level. Its format varies from system to system, but the basic idea is that inittab defines commands that are to be run (or kept running) when the system enters each level.
+
+As the machine boots, init ratchets its way up from run level 0 to the default run level, which is also set in `/etc/inittab`. To accomplish the transition between each pair of adjacent run levels, init runs the actions spelled out for that transition in /etc/inittab. The same progression is made in reverse order when the machine is shut down.
+
+Starting with Feisty Fawn in early 2007, Ubuntu replaced the traditional init with `Upstart`, an event-driven **service management system** that is also used by some other Linux distributions. Upstart handles transitions in system state—such as hardware changes—more elegantly than does init. It also significantly reduces boot times
 
 ## Kernel stage (Init)
 

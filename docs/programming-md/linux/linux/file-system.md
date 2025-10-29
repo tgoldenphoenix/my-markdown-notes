@@ -1,4 +1,4 @@
-# Access Control & The File Systems
+# The File Systems
 
 > On a UNIX system, everything is a file; if something is not a file, it is a process.
 
@@ -177,13 +177,15 @@ find and locate are often used in combination with grep to define some serious q
 
 ### cat
 
-sort for concatenate. It allows you to concatenate multiple files together and have the aggregate input piped into another command.
+`cat` is sort for "concatenate". It allows you to concatenate multiple files together and have the aggregate input piped into another command.
 
 quicky add line number counts by using `-n` flag.
 
 ### "less is more"
 
-[less](https://en.wikipedia.org/wiki/Less_(Unix)) is a terminal pager program on Unix, Windows, and Unix-like systems used to view (but not change) the contents of a text file one screen at a time. It is similar to more, but has the extended capability of allowing both forward and backward navigation through the file. `less` is the GNU version of `more` and has extra features allowing highlighting of search strings, scrolling back etc.
+[less](https://en.wikipedia.org/wiki/Less_(Unix)) is a terminal pager program used to view (but not change) the contents of a text file one screen at a time. It is similar to `more`, but has the extended capability of allowing both forward and backward navigation through the file.
+
+`less` is the GNU version of `more` and has extra features allowing highlighting of search strings, scrolling back etc.
 
 Khi dùng `less cat more` để view file, `Shift G` move to end of the file. Also works in man pages, vim.
 
@@ -317,35 +319,7 @@ Removing the target file for a symbolic link makes the link useless. Nhìn figur
 
 The command to make links is ln. In order to create symlinks, you need to use the -s option: `ln -s targetfile linkname`
 
-## Access control
-
-k
-
-## File Security & User Management
-
-### User Management
-
-If root access is needed and a user has root access, they can run a command as root instead with the sudo command. The `sudo` command (superuser do) is used to run a command with root access. There is a file called the `/etc/sudoers` file, this file lists users who can run sudo. You can edit this file with the `visudo` command.
-
-/etc/passwd & /etc/shadow
-
-Remember that usernames aren't really identifications for users. The system uses a **user ID (UID)** to identify a user. To find out what users are mapped to what ID, look at the `/etc/passwd` file: `cat /etc/passwd`. Other information in this file includes: user's shell, home directory\
-The password is not really stored in this file, it's usually stored in the `/etc/shadow` file. If you see an `x` that means the password is stored in the /etc/shadow file, a `*` means the user doesn't have login access and if there is a blank field that means the user doesn't have a password.
-
-`/etc/passwd` contains other users which are not human (system users). Remember that users are really only on the system to run processes with different permissions. Sometimes we want to run processes with pre-determined permissions. For example, the daemon user is used for daemon processes.
-
-The `/etc/shadow` file is used to store information about user authentication. It requires superuser read permissions.\
-In most distributions today, user authentication doesn't rely on just the /etc/shadow file, there are other mechanisms in place such as PAM (Pluggable Authentication Modules) that replace authentication.
-
-`/etc/group` store group names and users inside that group. You can also use the command `groups`
-
-You can use the `adduser` or the `useradd` command. The adduser command contains more helpful features such as making a home directory and more. There are configuration files for adding new users that can be customized depending on what you want to allocate to a default user. Example: `$ sudo useradd bob`
-
-To remove a user, you can use the `userdel` command.
-
-Change the password of yourself or another user (if you are root): `$ passwd bob`
-
-### Permissions
+## Permissions
 
 View permission of a specific file `ls -l /etc/shadow`.
 
@@ -420,6 +394,8 @@ Commonly noted as **SGID**, this special permission has a couple of functions:
 - If set on a directory, any files created in the directory will have their **group** ownership set to that of the directory owner
 
 ## Access Control Lists (ACLs)
+
+j
 
 ## Configuration files
 
