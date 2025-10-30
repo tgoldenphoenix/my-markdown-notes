@@ -1,11 +1,11 @@
-# Basic Surviving Linux
+# Basic Linux Surviving
 
 Phân biệt command option (preceded with `-` or `--`) vs command argument. The argument(s) to a command are specifications for the object(s) on which you want the command to take effect. An example is `ls /etc`, where the directory `/etc` is the argument to the **ls** command.  
 You can think of an option as a way of executing the command. The argument is what you execute it on.
 
 `which -a ls` show that the `ls` command is in the `/bin` directory (show full path)
 
-`.` and `..` acts as hard links.  
+`.` and `..` acts as hard links.
 `./a.out` => run files
 
 `echo tran kim phuong`, `whoami`, `touch <file name>`
@@ -55,6 +55,7 @@ In most cases, when issuing a command or starting a program as a non-privileged 
   - `^p` & `^n` steps backward/forward through commands in `history`.
   - `^r` searches incrementally through your history to find old commands.
   - `^k` delete from cursor to end of line
+  - `^h` delete the previous character (equal to backspace)
   - `^w` delete the previous word
   - `^u` delete the whole line
   - `^l` == `clear`
@@ -179,6 +180,75 @@ References:
 
 [Mastering Linux Man Pages - A Definitive Guide](https://www.youtube.com/watch?v=RzAkjX_9B7E) by Linux Training Academy
 
+## Basic Commands
+
+Tên file có space thì phải để trong double quote.
+
+`less "My excellent file.txt"`
+
+- `cp` to copy files
+- `mv` to move & rename files
+
+`rm` to remove files `rmdir` to remove empty directories. (Use **ls `-a`** to check whether a directory is empty or not). The rm command also has options for removing non-empty directories with all their subdirectories, read the Info pages for these rather dangerous options.\
+The interactive behavior of the rm, cp and mv commands can be activated using the -i option. In that case the system won't immediately act upon request. Instead it will ask for confirmation, so it takes an additional click on the Enter key to inflict the damage. Customize your shell environment to make this option the default.
+
+`mv ../filename.txt .` move to current directory
+
+rename directory `mv Oldfolder Newfolder`
+
+`mkdir dir1 dir2` create multiple directories in one go
+
+`mkdir -p x/y/z` create nested directories in a single command. The `-p` switch create parents directories.
+
+cp 2 files into 1 directory: `cp <filename> <filename1> <foldername>/`
+
+`cp -r /path/to/source/directory /path/to/destination/directory` cp directory. Lưu ý là `directory` chứ ko phải `directory/` (sẽ copy content). [Read more](https://www.freecodecamp.org/news/how-to-copy-a-directory-in-linux-with-the-cp-command/).
+
+`-R` recursive copy (copy all underlying files and subdirectories). The general syntax is `cp [-R] fromfile tofile`
+
+`df` (which stands for _disk full_ or _disk free_) show how much of your disk is still free; information about the partitions and their mount points\
+supports the `-h` or _human readable_ option which greatly improves readability
+
+How can you find out which partition a directory is on? Using the `df` command with a dot (.) as an option shows the partition the current directory belongs to, and informs about the amount of space used on this partition
+
+The **df** command only displays information about active non-swap partitions. These can include partitions from other networked systems
+
+since the search path contains only paths to directories containing executable programs, **which** doesn't work for ordinary files. The **which** command is useful when troubleshooting "Command not Found" problems.\
+Using the `which` command also checks to see if a command is an alias for another command `which -a ls`. If this does not work on your system, use the alias command: `alias ls`
+
+## find & locate
+
+These are the real tools, used when searching other paths beside those listed in the search path (using `which`).
+
+`find` sfind files and directory in a directory hierarchy. This command not only allows you to search file names, it can also accept file size, date of last change and other file properties as criteria for a search. The most common use is for finding file names: `find <path> -name <searchstring>`\
+This can be interpreted as "Look in all files and subdirectories contained in a given path, and print the names of the files containing the search string in their name" (not in their content).
+
+- filter by file type, file name and a number of other options.
+- Another application of find is for searching files of a certain size
+
+One of the most useful features of `find` is its ability to execute arbitrary shell commands against each file that matches the search. For example:
+
+- count total number of lines in all files and sub-directories under the current directory.
+- run a string replacement using `sed` against all files under the current directory
+- find all file under `.` that have the `.jpg` extension and print out the width x height of each image.
+
+ When using `which` to remove files, it is best to first test without the `-exec` option that the correct files are selected, after that the command can be rerun to delete the selected files.
+
+After cloning a repository or un-zipping an archive. You'll wonder "How many files are here and where is everything?" => `find .`. Nếu nhiều quá thì `find . | less` and use `/` to search for something you might be interested in.
+
+**Examples:**
+
+`find .` print all files and directories in and under the current directory.
+
+`find . -name *.py`\
+`find . -not -name *.py`
+
+`find . -not -name '*.py' -delete` => delete all, keep only `.py`. Use single quote to pass wildcard pattern _unchange_ in this case.
+
+### locate
+
+Later on (in 1999 according to the man pages, after 20 years of find), `locate` was developed. This program is easier to use, but more restricted than find, since its output is based on a file index database that is updated only once every day. On the other hand, a search in the locate database uses less resources than find and therefore shows the results nearly instantly. Most Linux distributions use `slocate` these days, security enhanced locate, the modern version of locate that prevents users from getting output they have no right to read.  On most systems, locate is a symbolic link to the slocate program
+
 ## Alias
 
 `alias` list all alias in your terminal
@@ -277,7 +347,7 @@ Type `<Control-C>` to stop monitoring.
 
 ## grep
 
-> search text
+> search text in files
 
 `grep` searches its input text and prints the lines that match a given pattern. Its name is based on the **g**/regular-expression/**p** command from the old **ed** editor that came with the earliest versions of UNIX (and still does).
 
@@ -294,6 +364,95 @@ $ sudo grep -l mdadm /var/log/*
 ```
 
 Above command shows that log entries from mdadm have appeared in two different log files.
+
+Search for pieces of matching text in text files such as a csv file that store historical purchase information for products in a store giống dạng excel.
+
+`grep Sneaker sales.csv` Only show lines in file `sales.csv` that contain the string "Sneaker". Work with millions of lines of text.
+
+`grep` can be used with _regular expression_. Ex: extract all the different model number from a csv of sale record.
+
+By default, grep will print the entire line of text where a match is found.\
+`-o` flag extract only the matched part of the text.
+
+find and locate are often used in combination with grep to define some serious queries.
+
+**Other useful features:**\
+
+- recursive searches `-R` that look through all files & sub-directory, showing files and line numbers.
+- disabling case-sensitivity of the matching.
+- inverting matching logic by showing only lines that don't match instead.
+
+## Viewing file content
+
+### cat
+
+`cat` is sort for "concatenate". It allows you to concatenate multiple files together and have the aggregate input piped into another command.
+
+quicky add line number counts by using `-n` flag.
+
+### "less is more"
+
+[less](https://en.wikipedia.org/wiki/Less_(Unix)) is a terminal pager program used to view (but not change) the contents of a text file one screen at a time. It is similar to `more`, but has the extended capability of allowing both forward and backward navigation through the file.
+
+`less` is the GNU version of `more` and has extra features allowing highlighting of search strings, scrolling back etc.
+
+Khi dùng `less cat more` để view file, `Shift G` move to end of the file. Also works in man pages, vim.
+
+`q` to quit less
+
+`spacebar` next page, `b` to go back one page
+
+`h` open documentation of `less`
+
+`/` to search
+
+less support vim key-bindings.
+
+`^` means Ctrl
+
+`^F` `Ctrl F` Forward one window
+
+### head & tail
+
+`head` selectively output only the first few lines of a file or stream. Ex: the first 10 lines.
+
+`-n` negative number thì count backward from the end of the file
+
+`head` can also print out the first few character instead of the first few lines.
+
+`tail` does the opposite of `head`. The tail command has a handy feature to continuously show the last n lines of a file that changes all the time. This `-f` option is often used by system administrators to check on log files.
+
+## Environment Variables & Viewing Machine specs
+
+`echo $0` to know which shell you are using
+
+On Linux
+
+On MacOS
+
+Use the `printenv` command to display a list of currently set environment variables. Trong này sẽ có `$PATH`, `$HOME` và nhiều cái khác.
+
+Hiển thị one environment variable: `echo $[variable name]`
+
+`$PATH` environment variable stores a list of directories with executable files, and thus saves the user a lot of typing and memorizing locations of commands.
+
+If you want to display the complete list of shell variables, use the `set` command. The output is very long.
+
+`$HOME`: /Users/anhao
+
+The value you assign to a **temporary** environment variable only lasts until you close the terminal session. This is useful for variables you need to use for one session only or to avoid typing the same value multiple times.
+
+Assign a temporary environment variable with the `export` command. The export command also allows you to add new values to existing environment variables with the `:$` syntax.
+
+**Permanent** environment variables are added to the `.bash_profile` file. Cũng dùng `export` command. Execute the new `.bash_profile` by either restarting the terminal window or using `source ~/.bash-profile`
+
+Use the`unset` command to remove an environment variable.
+
+The primary use of the `eval` command  is to interpret and execute dynamic or complex commands stored in strings or variables. This allows you to generate and run commands dynamically.
+
+References
+
+[how to add folder to PATH](https://phoenixnap.com/kb/linux-add-to-path) by PHOENIXNAP very informative
 
 ## comm
 

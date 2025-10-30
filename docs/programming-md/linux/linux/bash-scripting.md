@@ -118,6 +118,10 @@ Quy trình viết bash scripts:
 
 bash’s built-in command `fc` is a lot like `<Control-P>`, but instead of returning the last command to the command line, it transfers the com-mand to your editor of choice.
 
+## xargs
+
+`xargs` reads items from standard input (usually separated by spaces or newlines) and builds and executes command lines using those items as arguments.
+
 ## Input & Output
 
 The `echo` command is crude but easy. For more control over your output, use `printf`. It is a bit less convenient because you must explicitly put newlines where you want them (use “`\n`”), but it gives you the option to use tabs and enhanced number formatting in your the output.

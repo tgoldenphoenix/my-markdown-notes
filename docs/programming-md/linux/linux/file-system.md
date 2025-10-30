@@ -23,9 +23,42 @@ While it is reasonably safe to suppose that everything you encounter on a Linux 
 
 Depending on which type of Linux environment you are running, you may run into several different file systems. Some of them are **ext2, ext3, and ext4**. **XFS, JFS**, and a few others are also used. `ext3` is a journaling extension to the ext2 file system on Linux. ext4 is the successor to ext3. Journaling is a method of recording data that results in massively reduced time spent recovering a file system after a crash. XFS is very fast and also uses B-Trees for its file indexing.
 
-## Purpose of each directory
+In the shell and in scripts, spaceful filenames can be quoted to keep their pieces together. For example, the command:
 
-Mind the difference between `/` (the root directory) vs `/root` (the home directory of the root user).
+`$ less "My excellent file.txt"`
+
+preserves `My excellent file.txt` as a single argument to less. You can also escape individual spaces with a backslash.
+
+## Terminologies
+
+- File tree: the overall layout
+- filesystem: the chunks attached to the tree
+
+- `/`: the root directory/filesystem
+- `/root`: the home directory of the root user
+
+## Mounting
+
+- File tree: the overall layout
+- filesystem: the chunks attached to the tree
+
+In most situations, filesystems are attached to the tree with the `mount` command. mount maps a directory within the existing file tree, called the **mount point**, to the root of the newly attached filesystem.
+
+`$ sudo mount /dev/sda4 /users`
+
+installs the filesystem stored on the disk partition represented by /dev/sda4 under the path /users. You could then use ls /users to see that filesystem’s contents.
+
+A list of the filesystems that are customarily mounted on a particular system is kept in the `/etc/fstab` file.  
+The information contained in this file allows filesystems to be checked (with `fsck`) and mounted (with mount) automatically at boot time
+
+You detach filesy stems with the `umount` command. umount complains if you try to unmount a filesystem that is in use; the filesystem to be detached must not have open files or processes whose current directories are located there, and if the file-system contains executable programs, they cannot be running.
+
+Device files defined based on the controllers they are using.
+
+1. For [IDE controllers device](https://www.ibm.com/support/pages/ide-controllers-servers) file name is - `hda, hdb, hdc..`
+2. For SCSI and SATA controllers device file name is - `sda, sdb, sdc..`
+
+## The Organization of the File Tree
 
 - Những directories `*/bin` chứa binaries, bash scripts, executables.
 - Store your scripts in `/usr/local/bin`, unless you don't want other users to have access to them, in which case `$HOME/bin`.
@@ -38,11 +71,11 @@ PATH=${PATH}:$HOME/bin
 export PATH
 ```
 
-`/usr` Contains non-essential command-line binaries, libraries, header files, and other data. At least it is non-essential to the system. The dotfiles is actually essential to the users.
-
 Khi cắm USB external hard drive vào ubuntu thì nó sẽ ở `/media/anhao/<hard drive name>`
 
-## The /etc directory
+---
+
+The `/etc` directory for critical system, startup and configuration files
 
 Originally, there was `/bin` for programs (essentially, executable binaries), and very soon `/dev` for device files and `/lib` for extra executable code loaded by programs (libraries). `/usr` also came in very early, first for user data, then as an extra OS area with its own `bin` and `lib` and then `man` containing the manual in electronic form. The source code was also often provided somewhere under /usr.
 
@@ -50,61 +83,263 @@ And there were a few files in the operating system that didn't fit in any of the
 
 On modern unix systems, almost all system-wide configuration files are under /etc, but not all files in /etc are configuration files. `/etc` is for for critical system and configuration files.
 
+---
+
+`/sbin` and `/bin` for important utilities  
+
+- `/bin` Core operating system commands
+- `/sbin` Commands needed for minimal system operability
+
+`/boot`Kernel and files needed to load the kernel
+
+`/tmp` for temporary files
+
+`/dev` is usually a real directory that’s included in the root filesystem, but some or all of it may be overlaid with other filesystems if your system has virtualized its device support.
+
+Some systems keep shared library files and a few other odd things such as the C preprocessor in the `/lib` directory. Others have moved these items into /usr/lib, sometimes leaving /lib as a symbolic link
+
+`/lib` Libraries, shared libraries, and parts of the C compiler
+
+`/tmp` Temporary files that may disappear between reboots
+
+`/media` Mount points for filesystems on removable media
+
+`/mnt` Temporary mount points, mounts for removable media
+
+`/opt` Optional software packages (not consistently used)
+
+`/proc` Information about all running processes
+
 `/var` store system-specific data
 
-## Basic Commands
+`/usr` Contains non-essential command-line binaries, libraries, header files, and other data. At least it is non-essential to the system. The dotfiles is actually essential to the users.
 
-Tên file có space thì phải để trong double quote.
+The directories /usr and /var are also of great importance. `/usr` is where most standard programs are kept, along with various other booty such as on-line manuals and most libraries. It is not strictly necessary that /usr be a separate filesystem, but for convenience in administration it often is. Both /usr and /var must be available to enable the system to come up all the way to multiuser mode.
 
-`less "My excellent file.txt"`
+`/var` houses spool directories, log files, accounting information, and various other items that grow or change rapidly and that vary on each host. Since /var contains log files, which are apt to grow in times of trouble, it’s a good idea to put /var on its own filesystem if that is practical.
 
-- `cp` to copy files
-- `mv` to move & rename files
+Home directories of users are often kept on a separate filesystem (`/home`), usually one that’s mounted in the root directory.
 
-`rm` to remove files `rmdir` to remove empty directories. (Use **ls `-a`** to check whether a directory is empty or not). The rm command also has options for removing non-empty directories with all their subdirectories, read the Info pages for these rather dangerous options.\
-The interactive behavior of the rm, cp and mv commands can be activated using the -i option. In that case the system won't immediately act upon request. Instead it will ask for confirmation, so it takes an additional click on the Enter key to inflict the damage. Customize your shell environment to make this option the default.
+- `/usr/bin` Most commands and executable files
+- `/usr/include` Header files for compiling C programs
+- `/usr/lib` Libraries; also, support files for standard programs
+- `/usr/lib64` 64-bit libraries on 64-bit Linux distributions
+- `/usr/local` Software you write or install; mirrors structure of /usr
+- `/usr/sbin` Less essential commands for administration and repair
 
-`mv ../filename.txt .` move to current directory
+## File Types
 
-rename directory `mv Oldfolder Newfolder`
+Most filesystem implementations define seven types of files. Even when develop-ers add something new and wonderful to the file tree (such as the process infor-mation under /proc), it must still be made to look like one of these seven types.
 
-`mkdir dir1 dir2` create multiple directories in one go
+1. Regular files
+2. Directories
+3. Character device files
+4. Block device files
+5. Local domain sockets
+6. Named pipes (FIFOs) 
+7. Symbolic links
 
-`mkdir -p x/y/z` create nested directories in a single command. The `-p` switch create parents directories.
+You  c a n  d e t e r m i n e  t h e  t y p e  of  a n  e x i s t i n g  file with  `ls -ld`. The first character of the ls output encodes the type. For example, the following command demonstrates that `/usr/include` is a directory:
 
-cp 2 files into 1 directory: `cp <filename> <filename1> <foldername>/`
+```bash
+$ ls -ld /usr/include 
+drwxr-xr-x   27 root     root         4096  Jul 15 20:57  /usr/include
+```
 
-`cp -r /path/to/source/directory /path/to/destination/directory` cp directory. Lưu ý là `directory` chứ ko phải `directory/` (sẽ copy content). [Read more](https://www.freecodecamp.org/news/how-to-copy-a-directory-in-linux-with-the-cp-command/).
+ls uses the codes shown in Table below to represent the various types of files.
 
-`-R` recursive copy (copy all underlying files and subdirectories). The general syntax is `cp [-R] fromfile tofile`
+| File Type             | Symbol | Created by        | Removed by   |
+|-----------------------|--------|-------------------|--------------|
+| Regular file          | -      | editors, cp, etc. | rm           |
+| Directory             | d      | mkdir             | rmdir, rm -r |
+| Character device file | c      | mknod             | rm           |
+| Block device file     | b      | mknob             | rm           |
+| Local domain socket   | s      | socket(2)         | rm           |
+| Named pipe            | p      | mknod             | rm           |
+| Symbolic link         | l      | ln -s             | rm           |
 
-`df` (which stands for _disk full_ or _disk free_) show how much of your disk is still free; information about the partitions and their mount points\
-supports the `-h` or _human readable_ option which greatly improves readability
+When you use pattern matching (shell globbing), it’s a good idea to get in the habit of using the `-i` option to rm to make rm confirm the deletion of each file. This feature protects you against deleting any “good” files that your pattern inadvertently matches. For example, to delete a file named `foo<Control-D>bar`, you could use:
 
-How can you find out which partition a directory is on? Using the `df` command with a dot (.) as an option shows the partition the current directory belongs to, and informs about the amount of space used on this partition
+```bash
+$ ls 
+foo?bar foose kde-root
 
-The **df** command only displays information about active non-swap partitions. These can include partitions from other networked systems
+$ rm -i foo* 
+rm: remove 'foo\004bar'? y rm: remove 'foose'? n
+```
 
-since the search path contains only paths to directories containing executable programs, **which** doesn't work for ordinary files. The **which** command is useful when troubleshooting "Command not Found" problems.\
-Using the `which` command also checks to see if a command is an alias for another command `which -a ls`. If this does not work on your system, use the alias command: `alias ls`
+---
 
-## ls
+Regular files consist of a series of bytes; filesystems impose no structure on their contents. Text files, data files, executable programs, and shared libraries are all stored as regular files. Both sequential access and random access are allowed.
 
-A description of the full functionality and features of the **ls** command can be read with `info coreutils ls`
+---
 
-To find out more about the kind of data we are dealing with, we use the **file** command. See `info file` for a detailed description.
+A directory contains named references to other files. You can create directories with mkdir and delete them with rmdir if they are empty. You can delete non-empty directories with `rm -r`.
 
-In DOS, use `dir`
+A file’s name is stored within its parent directory, not with the file itself. In fact, more than one directory (or more than one entry in a single directory) can refer to a file at one time, and the references can have different names. Such an arrange-ment creates the illusion that a file exists in more than one place at the same time.
 
-`ls -l` meanings:
+These additional references (“links,” or **hard links** to distinguish them from symbolic links, discussed below) are synonymous with the original file; as far as the filesystem is concerned, all links to the file are equivalent. The filesystem maintains a count of the number of links that point to each file and does not release the file’s data blocks until its last link has been deleted. Hard links cannot cross filesystem boundaries.
 
-- `-` regular file
-- `d` directory
-- `l` link
-- `c` special file
-- `s` socket
-- `p` named pipe
-- `b` block device
+You  create h a rd  l i n k s  w it h  `ln` and remove them with `rm`. It’s easy to remember the syntax of ln if you keep in mind that it mirrors the syntax of `cp`. The command `cp oldfile newfile` creates a copy of `oldfile` called `newfile`, and `ln oldfile newfile` makes the name `newfile` an additional reference to `oldfile`. You can make hard links to directories as well as to flat files, but that’s less commonly done.
+
+You  c a n  u s e  ls -l to see how many links to a given file exist.
+
+Hard links are not a distinct type of file. Instead of defining a separate “thing” called a hard link, the filesystem simply allows more than one directory entry to point to the same file. In addition to the file’s contents, the underlying attributes of the file (such as ownerships and permissions) are also shared
+
+---
+
+Character and block device files
+
+Device files let programs communicate with the system’s hardware and peripher-als. The kernel includes (or loads) driver software for each of the system’s devices. This software takes care of the messy details of managing each device so that the kernel proper can remain relatively abstract and hardware independent
+
+Device drivers present a standard communication interface that looks like a regu-lar file. When the filesystem is given a request that refers to a character or block device file, it simply passes the request to the appropriate device driver. It’s impor-tant to distinguish device files from device drivers, however. The files are just ren-dezvous points that communicate with drivers. They are not drivers themselves.
+
+---
+
+Local domain sockets
+
+Sockets are connections between processes that allow processes to communicate hygienically. UNIX defines several kinds of sockets, most of which involve the use of a network. Local domain sockets are accessible only from the local host and are referred to through a filesystem object rather than a network port. They are some-times known as “UNIX domain sockets.”
+
+Although socket files are visible to other processes as directory entries, they can-not be read from or written to by processes not involved in the connection. Syslog and the X Window System are examples of standard facilities that use local do-main sockets.
+
+Local domain sockets are created with the `socket` system call and removed with the rm command or the `unlink` system call once they have no more users.
+
+---
+
+Named pipes
+
+Like local domain sockets, named pipes allow communication between two pro-cesses running on the same host. They’re also known as “FIFO files” (FIFO is short for the phrase “first in, first out”). You can create named pipes with mknod and remove them with rm.
+As with local domain sockets, real-world instances of named pipes are few and far between. They rarely require administrative intervention.5
+Named pipes and local domain sockets serve similar purposes, and the fact that both exist is essentially a historical artifact. Neither of them would exist if UNIX and Linux were designed today; network sockets would stand in for both.
+
+---
+
+symbolic links
+
+A symbolic or “soft” link points to a file by name. When the kernel comes upon a symbolic link in the course of looking up a pathname, it redirects its attention to the pathname stored as the contents of the link. The difference between hard links and symbolic links is that a hard link is a direct reference, whereas a symbolic link is a reference by name. Symbolic links are distinct from the files they point to. 
+
+You  c re at e  s y m b o l i c  l i n k s  w it h  `ln -s` and remove them with rm. Since symbolic links can contain arbitrary paths, they can refer to files on other filesystems or to nonexistent files. Multiple symbolic links can also form a loop
+
+A symbolic link can contain either an absolute or a relative path. For example,
+
+`$ sudo ln -s archived/secure /var/log/secure`
+
+links /var/log/secure to /var/log/archived/secure with a relative path. It creates the symbolic link /var/log/secure with a target of “archived/secure”,  as demonstrated by this output from ls:
+
+```bash
+$ ls -l /var/log/secure 
+lrwxrwxrwx 1 root root 18 2009-07-05 12:54 /var/log/secure -> archived/secure
+```
+
+The entire /var/log directory could then be moved elsewhere without causing the symbolic link to stop working (not that moving this directory is advisable).
+
+The file permissions that ls shows for a symbolic link, `lrwxrwxrwx`, are dummy values. Permission to create, remove, or follow the link is controlled by the containing directory, whereas read, write, and execute permission on the link target are granted by the target’s own permissions. Therefore, symbolic links do not need (and do not have) any permission information of their own.
+
+It is a common mistake to think that the first argument to `ln -s` is interpreted relative to your current working directory. However, it is not resolved as a filename by ln; it’s simply a literal string that becomes the target of the symbolic link.
+
+## Binary, Octal, Decimal, Hexadecimal number system
+
+Binary numbers only use the digits 0 and 1.
+
+Octal Number System has a base of eight and uses the numbers from 0 to 7.
+
+The sequence `1 2 4 10 20 40 100 200 400` corresponds to the powers of 2 in decimal (base-10).
+
+- `1` (octal) = 1 (decimal) = $2^0$
+- `2` (octal) = 2 (decimal) = $2^1$
+- `4` (octal) = 4 (decimal) = $2^2$
+- `10` (octal) = $1 \times 8^1 + 0 \times 8^0 = 8$ (decimal) = $2^3$
+- `20` (octal) = $2 \times 8^1 + 0 \times 8^0 = 16$ (decimal) = $2^4$
+- `40` (octal) = $4 \times 8^1 + 0 \times 8^0 = 32$ (decimal) = $2^5$
+- `100` (octal) = $1 \times 8^2 + 0 \times 8^1 + 0 \times 8^0 = 64$ (decimal) = $2^6$
+- `200` (octal) = $2 \times 8^2 + 0 \times 8^1 + 0 \times 8^0 = 128$ (decimal) = $2^7$
+- `400` (octal) = $4 \times 8^2 + 0 \times 8^1 + 0 \times 8^0 = 256$ (decimal) = $2^8$
+
+## File Attributes & File Modes
+
+Under the traditional UNIX and Linux filesystem model, every file has a set of **nine standard permission bits** that control who can read, write, and execute the contents of the file. Together with three other bits (Special Permission Bits, suid, sgui, sticky bit) that primarily affect the operation of executable programs, these bits constitute the file’s **mode**.
+
+The twelve mode bits are stored together with four bits of file-type information. The four file-type bits are set when the file is first created and cannot be changed, but the file’s owner and the superuser can modify the twelve mode bits with the `chmod` (change mode) command. Use `ls -l` (or ls -ld for a directory) to inspect the values of these bits.
+
+`ls -l` show file mode + file type
+
+---
+
+The permission bits
+
+**Nine permission bits** determine what operations may be performed on a file and by whom. Traditional UNIX does not allow permissions to be set per-user (al-though all systems now support access control lists of one sort or another). Instead, three sets of permissions define access for the owner of the file, the group owners of the file, and everyone else (in that order). Each set has three bits: a read bit, a write bit, and an execute bit.
+
+`r` là yes, cho phép read, `-` là no không cho phép => nên mới gọi là "bit"
+
+Each user fits into only one of the three permission sets. The permissions used are those that are most specific. For example, the owner of a file always has access determined by the owner permission bits and never the group permission bits.
+
+On a regular file, the read bit allows the file to be opened and read. The write bit allows the contents of the file to be modified or truncated; however, the ability to delete or rename (or delete and then recreate!) the file is controlled by the permis-sions on its parent directory because that is where the name-to-dataspace map-ping is actually stored.
+
+The execute bit allows the file to be executed. Two types of executable files exist: binaries, which the CPU runs directly, and scripts, which must be interpreted by a shell or some other program.
+
+For a directory, the execute bit (often called the “search” or “scan” bit in this con-text) allows the directory to be entered or passed through while a pathname is evaluated, but not to have its contents listed. The combination of read and execute bits allows the contents of the directory to be listed. The combination of write and execute bits allows files to be created, deleted, and renamed within the directory.
+
+A variety of extensions such as access control lists complicate or override the traditional nine-bit permission model. If you’re having trouble explaining the system’s observed behavior, check to see whether one of these factors might be interfering.
+
+Each permission (read, write, execute) is assigned a numeric value:
+
+- Read (r) = 4
+- Write (w) = 2
+- Execute (x) = 1.
+
+These values are summed for each user category to create a three-digit octal number.
+
+Example:
+
+- `rwx` (read, write, execute) = 4 + 2 + 1 = 7
+- `rw-` (read, write, no execute) = 4 + 2 + 0 = 6
+- `r-x` (read, no write, execute) = 4 + 0 + 1 = 5
+- `---` (no permissions) = 0 + 0 + 0 = 0
+- 
+Therefore, a common permission setting like rwxr-xr-x (owner has full permissions, group and others have read and execute) would be represented as 755 in octal notation.
+
+---
+
+The setuid and setgid bits
+
+The bits with octal values 4000 and 2000 are the setuid and setgid bits. When set on executable files, these bits allow programs to access files and processes that would otherwise be off-limits to the user that runs them.
+
+---
+
+the sticky bit
+
+The bit with octal value 1000 is called the sticky bit. It was of historical impor-tance as a modifier for executable files on early UNIX systems. However, that meaning of the sticky bit is now obsolete and modern systems silently ignore it.
+
+View permission of a specific file `ls -l /etc/shadow`.
+
+On a Linux system, every file is owned by a user and a group user. There is also a third category of users, those that are not the user owner and don't belong to the group owning the file (everyone else). For each category of users, read, write and execute permissions can be granted or denied.
+
+[Table 3-7. Access mode codes](https://tldp.org/LDP/intro-linux/html/sect_03_04.html#AEN3805)
+
+[Table 3-8. User group codes](https://tldp.org/LDP/intro-linux/html/sect_03_04.html#AEN3825)
+
+You should know what your user name is. If you don't, it can be displayed using the `id` command, which also displays the default group you belong to and eventually other groups of which you are a member. Your user name is also stored in the environment variable $USER, use `echo $USER`
+
+## `ls`: list and inspect files
+
+As a system administra-tor, you will be concerned mostly with the link count, owner, group, mode, size, last access time, last modification time, and type. You can inspect all of these with `ls -l` (or `ls -ld` for a directory; without the -d flag, ls lists the directory’s contents).
+
+`ls -l` show file mode + file type
+
+A description of the full functionality and features of the `ls` command can be read with `info coreutils ls`
+
+To find out more about the kind of data we are dealing with, we use the `file` command. See `info file` for a detailed description.
+
+In DOS (Windows), use `dir`
+
+- `ls -l` notations:
+  - `-` regular file
+  - `d` directory
+  - `l` link
+  - `c` special file
+  - `s` socket
+  - `p` named pipe
+  - `b` block device
 
 `ls -F`
 
@@ -121,146 +356,116 @@ Options
 
 `-a` show hidden dotfiles
 
-## find & locate
+An attribute change time is also maintained for each file. The conventional name for this time (the “ctime,” short for “change time”) leads some people to believe that it is the file’s creation time. Unfortunately, it is not; it just records the time that the attributes of the file (owner, mode, etc.) were last changed (as opposed to the time at which the file’s contents were modified).
 
-These are the real tools, used when searching other paths beside those listed in the search path (using `which`).
+Consider the following example:
 
-`find` sfind files and directory in a directory hierarchy. This command not only allows you to search file names, it can also accept file size, date of last change and other file properties as criteria for a search. The most common use is for finding file names: `find <path> -name <searchstring>`\
-This can be interpreted as "Look in all files and subdirectories contained in a given path, and print the names of the files containing the search string in their name" (not in their content).
+```bash
+$ ls -l /bin/gzip 
+-rwxr-xr-x 3 root root 62100 May 28 2010 /bin/gzip
+```
 
-- filter by file type, file name and a number of other options.
-- Another application of find is for searching files of a certain size
+The first field specifies the file’s type and mode. The first character is a dash, so the file is a regular file.
 
-One of the most useful features of `find` is its ability to execute arbitrary shell commands against each file that matches the search. For example:
+The next nine characters in this field are the three sets of permission bits. The order is owner-group-other, and the order of bits within each set is read-write-execute. Although these bits have only binary values, ls shows them symbolically with the letters r, w, and x for read, write, and execute. In this case, the owner has all permissions on the file and everyone else has read and execute permission.
 
-- count total number of lines in all files and sub-directories under the current directory.
-- run a string replacement using `sed` against all files under the current directory
-- find all file under `.` that have the `.jpg` extension and print out the width x height of each image.
+If the setuid bit had been set, the x representing the owner’s execute permission would have been replaced with an s, and if the setgid bit had been set, the x for the group would also have been replaced with an s. The last character of the permis-sions (execute permission for “other”) is shown as t if the sticky bit of the file is turned on. If either the setuid/setgid bit or the sticky bit is set but the correspond-ing execute bit is not, these bits appear as S or T.
 
- When using `which` to remove files, it is best to first test without the `-exec` option that the correct files are selected, after that the command can be rerun to delete the selected files.
+The next field in the listing is the file’s link count. In this case it is 3, indicating that /bin/gzip is just one of three names for this file (the others are /bin/gunzip and /bin/zcat). Each time a hard link is made to a file, the file’s link count is incre-mented by 1. Symbolic links do not affect the link count.
 
-After cloning a repository or un-zipping an archive. You'll wonder "How many files are here and where is everything?" => `find .`. Nếu nhiều quá thì `find . | less` and use `/` to search for something you might be interested in.
+All directories have at least two hard links: the link from the parent directory and the link from the special file “.” inside the directory itself. 
 
-**Examples:**
+The next two fields in the ls output are the owner and group owner of the file. In this example, the file’s owner is root, and the file also belongs to the group named root. The filesystem actually stores these as the user and group ID numbers rather than as names. If the text versions (names) can’t be determined, ls shows the fields as numbers. This might happen if the user or group that owns the file has been deleted from the /etc/passwd or /etc/group file. It could also indicate a problem with your NIS or LDAP database (if you use one)
 
-`find .` print all files and directories in and under the current directory.
+The next field is the size of the file in bytes. This file is 62,100 bytes long. Next comes the date of last modification: May 28, 2010. The last field in the listing is the name of the file, `/bin/gzip`.
 
-`find . -name *.py`\
-`find . -not -name *.py`
+---
 
-`find . -not -name '*.py' -delete` => delete all, keep only `.py`. Use single quote to pass wildcard pattern _unchange_ in this case.
+ls output is slightly different for a device file. For example:
 
-### locate
+```bash
+$ ls -l /dev/tty0 
+crw-rw---- 1 root root 4, 0 Jun 11 20:41 /dev/tty0
+```
 
-Later on (in 1999 according to the man pages, after 20 years of find), `locate` was developed. This program is easier to use, but more restricted than find, since its output is based on a file index database that is updated only once every day. On the other hand, a search in the locate database uses less resources than find and therefore shows the results nearly instantly. Most Linux distributions use `slocate` these days, security enhanced locate, the modern version of locate that prevents users from getting output they have no right to read.  On most systems, locate is a symbolic link to the slocate program
+Most fields are the same, but instead of a size in bytes, ls shows the major and minor device numbers. /dev/tty0 is the first virtual console on this (Red Hat) sys-tem and is controlled by device driver 4 (the terminal driver).
 
-## grep - search text in file
+One ls option that’s useful for scoping out hard links is -i, which makes ls show each file’s “inode number.” Without going into too much detail about filesystem implementations, we’ll just say that the inode number is an index into a table that enumerates all the files in the filesystem. Inodes are the “things” that are pointed to by directory entries; entries that are hard links to the same file have the same inode number. To figure out a complex web of links, you need both `ls -li` to show link counts and inode numbers and `find` to search for matches.
 
-Search for pieces of matching text in text files such as a csv file that store historical purchase information for products in a store giống dạng excel.
+Some other ls options that are important to know are `-a` to show all entries in a directory (even files whose names start with a dot), -t to sort files by modification time (or -tr to sort in reverse chronological order), -F to show the names of files in a way that distinguishes directories and executable files, -R to list recursively, and -h to show file sizes in human-readable form (e.g., 8K or 53M).
 
-`grep Sneaker sales.csv` Only show lines in file `sales.csv` that contain the string "Sneaker". Work with millions of lines of text.
+## `chmod`: Change Permissions
 
-`grep` can be used with _regular expression_. Ex: extract all the different model number from a csv of sale record.
+Only the owner of the file and the superuser can change its permissions.
 
-By default, grep will print the entire line of text where a match is found.\
-`-o` flag extract only the matched part of the text.
+There are two main ways of assigning permissions: Symbolic method and Numeric method.
 
-find and locate are often used in combination with grep to define some serious queries.
+The octal syntax is generally more convenient for administrators, but it can only be used to specify an absolute value for the permission bits. The mnemonic syntax can modify some bits while leaving others alone.
 
-**Other useful features:**\
+The first argument to chmod is a specification of the permissions to be assigned, and the second and subsequent arguments are names of files on which permis-sions should be changed. In the octal case, the first octal digit of the specification is for the owner, the second is for the group, and the third is for everyone else.
 
-- recursive searches `-R` that look through all files & sub-directory, showing files and line numbers.
-- disabling case-sensitivity of the matching.
-- inverting matching logic by showing only lines that don't match instead.
+Symbolic (mnemonic) method
 
-## Viewing file content
+- u,g,o,a (user, group, other, all)
+- +, -, = (add, remove, set exact)
+- r, w, x (read, write, execute)
 
-### cat
+The hard part about using the mnemonic syntax is remembering whether o stands for “owner” or “other”; “other” is correct. Just remember u and g by anal-ogy to UID and GID; only one possibility is left.
 
-`cat` is sort for "concatenate". It allows you to concatenate multiple files together and have the aggregate input piped into another command.
+Example:
 
-quicky add line number counts by using `-n` flag.
+- `chmod ug+rw test.txt` add the read and write permissions to a file named test.txt for user and group
 
-### "less is more"
+---
 
-[less](https://en.wikipedia.org/wiki/Less_(Unix)) is a terminal pager program used to view (but not change) the contents of a text file one screen at a time. It is similar to `more`, but has the extended capability of allowing both forward and backward navigation through the file.
+Octal syntax
 
-`less` is the GNU version of `more` and has extra features allowing highlighting of search strings, scrolling back etc.
+This is the best way to learn and practice permissions.
 
-Khi dùng `less cat more` để view file, `Shift G` move to end of the file. Also works in man pages, vim.
+For a directory (file thì tương tự):
 
-`q` to quit less
+- Start at 0
+- 4: read-`r` permission lets you view or read the directory.
+- 2: write-`w` permission means able to create file into that dir such as `touch`.
+- 1: execute-`x` means being able to `cd` into that directory.
 
-`spacebar` next page, `b` to go back one page
+Example:
 
-`h` open documentation of `less`
+- `-rw-r-x---` == (4+2)(4+1)(0)== `chmod 650 test.txt`
+- `chmod 711 myprog` gives all permissions to the owner and execute-only permission to everyone else.
 
-`/` to search
+#### Ownership Permissions
 
-less support vim key-bindings.
+In addition to modifying permissions on files, you can also modify the group and user ownership of the file as well.
 
-`^` means Ctrl
+set the owner of myfile to patty: `sudo chown patty myfile`
 
-`^F` `Ctrl F` Forward one window
+set the group of myfile to whales: `sudo chgrp whales myfile`
 
-### head & tail
-
-`head` selectively output only the first few lines of a file or stream. Ex: the first 10 lines.
-
-`-n` negative number thì count backward from the end of the file
-
-`head` can also print out the first few character instead of the first few lines.
-
-`tail` does the opposite of `head`. The tail command has a handy feature to continuously show the last n lines of a file that changes all the time. This `-f` option is often used by system administrators to check on log files.
-
-## Environment Variables & Viewing Machine specs
-
-`echo $0` to know which shell you are using
-
-On Linux
-
-On MacOS
-
-Use the `printenv` command to display a list of currently set environment variables. Trong này sẽ có `$PATH`, `$HOME` và nhiều cái khác.
-
-Hiển thị one environment variable: `echo $[variable name]`
-
-`$PATH` environment variable stores a list of directories with executable files, and thus saves the user a lot of typing and memorizing locations of commands.
-
-If you want to display the complete list of shell variables, use the `set` command. The output is very long.
-
-`$HOME`: /Users/anhao
-
-The value you assign to a **temporary** environment variable only lasts until you close the terminal session. This is useful for variables you need to use for one session only or to avoid typing the same value multiple times.
-
-Assign a temporary environment variable with the `export` command. The export command also allows you to add new values to existing environment variables with the `:$` syntax.
-
-**Permanent** environment variables are added to the `.bash_profile` file. Cũng dùng `export` command. Execute the new `.bash_profile` by either restarting the terminal window or using `source ~/.bash-profile`
-
-Use the`unset` command to remove an environment variable.
-
-The primary use of the `eval` command  is to interpret and execute dynamic or complex commands stored in strings or variables. This allows you to generate and run commands dynamically.
-
-References
-
-[how to add folder to PATH](https://phoenixnap.com/kb/linux-add-to-path) by PHOENIXNAP very informative
-
-## Mounting
-
-All partitions are attached to the system via a mount point. The mount point defines the place of a particular data set in the file system. Usually, all partitions are connected through the _root_ partition. On this partition, which is indicated with the slash `/`, directories are created. These empty directories will be the starting point of the partitions that are attached to them.
-
-During system startup, all the partitions are thus mounted, as described in the file `/etc/fstab`. Some partitions are not mounted by default, for instance if they are not constantly connected to the system, such like the storage used by your digital camera. If well configured, the device will be mounted as soon as the system notices that it is connected, or it can be user-mountable, i.e. you don't need to be system administrator to attach and detach the device to and from the system.
-
-Device files defined based on the controllers they are using.
-
-1. For [IDE controllers device](https://www.ibm.com/support/pages/ide-controllers-servers) file name is - `hda, hdb, hdc..`
-2. For SCSI and SATA controllers device file name is - `sda, sdb, sdc..`
+If you add a colon and groupname after the user you can set both the user and group at the same time: `sudo chown patty:whales myfile`
 
 **References:**
 
-[What is meant by mounting a device in Linux?](https://unix.stackexchange.com/questions/3192/what-is-meant-by-mounting-a-device-in-linux)
+[Changing Permissions Numerically](https://www.youtube.com/watch?v=0SGGCklKa1U&list=PLT98CRl2KxKHaKA9-4_I38sLzK134p4GJ&index=22)
 
-[mounting-a-device-role-of /dev /media-and /mnt-and-the-mount-command](https://unix.stackexchange.com/questions/13975/mounting-a-device-role-of-dev-media-and-mnt-and-the-mount-command)
+[redhat guide](https://www.redhat.com/sysadmin/suid-sgid-sticky-bit)
+
+[Table 3-9. (Numeric) File protection with chmod](https://tldp.org/LDP/intro-linux/html/sect_03_04.html#AEN3908)
+
+### Special permission
+
+Special permissions make up a fourth access level in addition to **user**, **group**, and **other**. Special permissions allow for additional privileges over the standard permission sets (as the name suggests). There is a special permission option for each access level.
+
+user + s (pecial)
+
+A file with **SUID** always executes as the user who owns the file, regardless of the user passing the command. If the file owner doesn't have execute permissions, then use an uppercase **S** here.
+
+group + s (pecial)
+
+Commonly noted as **SGID**, this special permission has a couple of functions:
+
+- If set on a file, it allows the file to be executed as the **group** that owns the file (similar to SUID)
+- If set on a directory, any files created in the directory will have their **group** ownership set to that of the directory owner
 
 ## Partitioning
 
@@ -318,80 +523,6 @@ The two link types behave similar, but are not the same, as illustrated in the s
 Removing the target file for a symbolic link makes the link useless. Nhìn figure above là hiểu liền.
 
 The command to make links is ln. In order to create symlinks, you need to use the -s option: `ln -s targetfile linkname`
-
-## Permissions
-
-View permission of a specific file `ls -l /etc/shadow`.
-
-On a Linux system, every file is owned by a user and a group user. There is also a third category of users, those that are not the user owner and don't belong to the group owning the file (everyone else). For each category of users, read, write and execute permissions can be granted or denied.
-
-[Table 3-7. Access mode codes](https://tldp.org/LDP/intro-linux/html/sect_03_04.html#AEN3805)
-
-[Table 3-8. User group codes](https://tldp.org/LDP/intro-linux/html/sect_03_04.html#AEN3825)
-
-You should know what your user name is. If you don't, it can be displayed using the `id` command, which also displays the default group you belong to and eventually other groups of which you are a member. Your user name is also stored in the environment variable $USER, use `echo $USER`
-
-#### chmod - Modifying permissions
-
-There are two main ways of assigning permissions: Symbolic method and Numeric method.
-
-Symbolic method
-
-- u,g,o,a (user, group, other, all)
-- +, -, = (add, remove, set exact)
-- r, w, x (read, write, execute)
-
-Example:
-
-`chmod ug+rw test.txt` add the read and write permissions to a file named test.txt for user and group
-
-Numeric method
-
-This is the best way to learn and practice permissions.
-
-For a directory (file thì tương tự):
-
-- Start at 0
-- 4: read-`r` permission lets you view or read the directory.
-- 2: write-`w` permission means able to create file into that dir such as `touch`.
-- 1: execute-`x` means being able to `cd` into that directory.
-
-Example:
-
-`-rw-r-x---` == (4+2)(4+1)(0)== `chmod 650 test.txt`
-
-#### Ownership Permissions
-
-In addition to modifying permissions on files, you can also modify the group and user ownership of the file as well.
-
-set the owner of myfile to patty: `sudo chown patty myfile`
-
-set the group of myfile to whales: `sudo chgrp whales myfile`
-
-If you add a colon and groupname after the user you can set both the user and group at the same time: `sudo chown patty:whales myfile`
-
-**References:**
-
-[Changing Permissions Numerically](https://www.youtube.com/watch?v=0SGGCklKa1U&list=PLT98CRl2KxKHaKA9-4_I38sLzK134p4GJ&index=22)
-
-[redhat guide](https://www.redhat.com/sysadmin/suid-sgid-sticky-bit)
-
-[Table 3-9. (Numeric) File protection with chmod](https://tldp.org/LDP/intro-linux/html/sect_03_04.html#AEN3908)
-
-### Special permission
-
-Special permissions make up a fourth access level in addition to **user**, **group**, and **other**. Special permissions allow for additional privileges over the standard permission sets (as the name suggests). There is a special permission option for each access level.
-
-user + s (pecial)
-
-A file with **SUID** always executes as the user who owns the file, regardless of the user passing the command. If the file owner doesn't have execute permissions, then use an uppercase **S** here.
-
-group + s (pecial)
-
-Commonly noted as **SGID**, this special permission has a couple of functions:
-
-- If set on a file, it allows the file to be executed as the **group** that owns the file (similar to SUID)
-- If set on a directory, any files created in the directory will have their **group** ownership set to that of the directory owner
 
 ## Access Control Lists (ACLs)
 

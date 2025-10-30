@@ -27,7 +27,7 @@ Kế hoạch training: <https://ever-rise.backlog.jp/alias/wiki/560214>
 
 ## Họp kỹ thuật tuần
 
-Họp kỹ thuật thứ 5 xen kẽ (2 tuần 1 lần)
+Họp kỹ thuật thứ 5 xen kẽ (2 tuần 1 lần) vào lúc 4h chiều.
 
 GCP (google cloud platform)
 

@@ -4,6 +4,12 @@ Let's learn Vim now!
 
 Reading the vim doc: [tới đây](https://github.com/iggredible/Learn-Vim/blob/master/ch03_searching_files.md#searching-in-files-with-grep) <- regex
 
+## Todo
+
+tìm operator to toggle comments (maybe plug-ins)
+
+auto-indent entire file
+
 ## Starting vim
 
 **References**: [intro.txt](https://neovim.io/doc/user/intro.html#intro)
@@ -33,19 +39,23 @@ Also being a terminal command, you can combine `vim` with many other terminal co
 
 To learn more about `vim` command in the terminal, check out `man vim`.
 
-## Key bindings, keymap (operator)
+## Operators
 
 Keymap in Vim do not require all the button to be pressed at once.
 
 Many command in vim have this "grammar": operator (d, y, c) + \[number] + motion. The order can change like `2dw` and `d2w` are the same. You should use `d2w` and `2w`.
 
-- Undo `u` | redo `Ctrl r` or `<C-r>` (undo the undos of `u`)\
+- Undo `u` | redo `Ctrl r` or `<C-r>` (undo the undos of `u`)
 - The capital `U` return the whole line to its original state. It undo all the changes on a line.
 
 - Copy whole line: `yy` or `Y` (including the linebreak character at the end of each line)
 - To yank everything from your current location to the end of the line: `y$`.
 
 `yiw` yank in a word, copy word if you're in the middle of it
+
+`y` yanks into register. Vim gọi là **yank & put** chứ không phải **copy & paste**.
+
+`yt,` yank until `,`; use the `t{char}` motion
 
 ### Change & Delete
 
@@ -57,10 +67,13 @@ Press `x` to delete the character under the (block) cursor in normal mode.
 
 `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
 
-- `de` - to the end of the current word, INCLUDING the last character. Cái này hơi weird, nên dùng `dw`.  
+- `de` - to the end of the current word, INCLUDING the last character. Cái này hơi weird, nên dùng `dw`.
 - `dd` deleta whole line
 - `d$` - to the end of the line, INCLUDING the last character & the cursor. `d0` delete to beginning of line.
 - `di"` to delete inside quote. If you are in the middle of a word: `diw` or delete-in-word.
+- `daw` delete a word => không còn thừa white space
+- `diw` delete in word => còn thừa white space
+- `dap` delete a paragraph; use the `ap` motion
 
 The change operator `c` requires a motion command immediately following it to specify what text to change. It deletes the text defined by the motion and then puts you into Insert mode.
 
@@ -87,16 +100,60 @@ To put back text that has just been deleted, type   p .  This puts the deleted t
 
 ### Indentation
 
+- `>` shift right
+- `<` shift left
 - `>>` shift current line to the right
-- `<<` shift current line to the left\
+- `<<` shift current line to the left
 - If you have selected the whole line in `visual mode`, you just press `>` once
 
-automatically indent: `==` can also be used on selection of code\
+automatically indent: `==` can also be used on selection of code
 Auto-indent the whole file: `gg=G`
 
 `>G` increases the indentation from the current line until the end of **the file**.
 
-## Vim motions
+- `=` operator auto indent
+- `V` select > `=`
+- `gg=G` auto-indent the entire file
+
+`!` operator Filter {motion} lines through an external program
+
+### Simple Arithmetic
+
+The `<C-a>` and `<C-x>` commands perform addition and subtraction on numbers. When run without a count they increment by one, but if we prefix a number, then we can add or subtract by any whole number.
+
+For example, if we posi-tioned our cursor on a 5 character, running `10<C-a>` would modify it to read 15.
+
+if the cursor is not already positioned on a number, then the `<C-a>` command will look ahead for a digit on the cur-rent line. If it finds one, it jumps straight to it.
+
+Vim interprets numerals with a leading zero to be in octal notation rather than in decimal. In the octal numeric system, 007 + 001 = 010, which looks like the decimal ten but is actually an octal eight.
+
+If you work with octal numbers frequently, Vim’s default behavior might suit you. If you don’t, you probably want to add the following line to your vimrc:
+
+`set nrformats=`
+
+This will cause Vim to treat all numerals as decimal, regardless of whether they are padded with zeros.
+
+By itself, `g` does nothing. It's a "prefix" that waits for a second key to execute a less common or "extended" command.
+
+### The `g` Prefix
+
+- `g~` toggle case
+- `g~iw` toggle case in word
+- `gu` Make text lowercase (e.g., guw = "go lowercase word").
+- `gU` Make text uppercase (e.g., gUw = "go uppercase word").
+- `gUaw` convert current word to uppercase
+
+---
+
+Other prefixes
+
+- `z` is the main prefix for all fold-related commands.
+
+### Miscellaneous
+
+`J` joins the current and next lines together
+
+## Vim Motions
 
 - Go to beginning of the line:
   - `0` Moves the cursor to the absolute start of the line (column 1).
@@ -115,7 +172,7 @@ If you want to go to the column `n` in the current line, you can use `n|`.
 
 - Jump of the end of the current word: `e` & `E`
 
-- Jump to the beginning of the previous word: `b` or `B` (works similar to `w` and `W`).
+- Jump to the beginning of the **previous word**: `b` or `B` (works similar to `w` and `W`).
 - Go to the end of the previous word `ge` or `gE`
 
 So what are the similarities and differences between a word and a WORD? Both word and WORD are separated by blank characters. A word is a sequence of characters containing only `a-zA-Z0-9_` (alphanumeric + `_`). A WORD is a sequence of all characters except white space (a white space means either space, tab, and EOL). To learn more, check out :h word and :h WORD and [this article](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md)
@@ -161,9 +218,9 @@ Scrolling
 - `zz` - center the line where the cursor is on (very useful!)
 - `ZZ` - save document and quit (be careful!)
 
-### Vim grammar
+### Vim's Grammar
 
-> Command Count Motion
+> Operator + Motion = Action
 
 - Motion is anything that moves the cursor
 - Command are: `y`, `d`, `c`, `v`
@@ -172,11 +229,13 @@ Vim key bindings can be combined with number keys
 
 - `5j`: go down 5 lines
 - `15l`: jump 15 characters to the right
-- `3u`: undo 3 times\
+- `3u`: undo 3 times
 
 Almost every key commands can be combine with numbers
 
 Vim grammar is subset of Vim's **composability feature**. Composability means having a set of general commands that can be combined (composed) to perform more complex commands. The true power of Vim's composability shines when it integrates with external programs. Vim has a filter operator (!) to use external programs. Learn more [here](https://github.com/iggredible/Learn-Vim/blob/master/ch04_vim_grammar.md#composability-and-grammar)
+
+Vim’s grammar has just one more rule: when an operator command is invoked in duplicate, it acts upon the current line. So `dd` deletes the current line, while `>>` indents it. The `gU`command is a special case. We can make it act upon the current line by running either `gUgU` or the shorthand `gUU`.
 
 ### Marking positions
 
@@ -210,6 +269,12 @@ To paste the text from register a ten times, do `10"ap`
 
 [DevOps Toolbox](https://www.youtube.com/watch?v=jSy8WjSyMAE)
 
+## The Expression Register `=`
+
+Most of Vim’s registers contain text either as a string of characters or as entire lines of text. The delete and yank commands allow us to set the contents of a register, while the put command allows us to get the contents of a register by inserting it into the document.
+
+The **expression register** is different. It can evaluate a piece of Vim script code and return the result. Here, we can use it like a calculator. Passing it a simple arithmetic expression, such as 1+1, gives a result of 2. We can use the return value from the expression register just as though it were a piece of text saved in a plain old register.
+
 ## The Dot Command
 
 > The dot command lets us repeat the last change.
@@ -222,11 +287,13 @@ A change could act at the level of individual characters, entire lines, or even 
 - repeat: `@x`
 - reverse: `u`
 
+Moving Around in Insert Mode Resets the Change: If we use the `<Up> , <Down> , <Left> , or <Right>` cursor keys while in Insert mode, a new undo chunk is created. It’s just as though we had switched back to Normal mode to move around with the `h, j, k, or l` commands, except that we don’t have to leave Insert mode. This also has implications on the operation of the dot command.
+
 ## Search in File & Substitution
 
 Search is a form of Command Line mode. Depending on how we entered Command Line mode, we can browse our Ex Command or search history with the `<Down>` and `<Up>` keys.
 
-- You can scan for next character with `f{char}` or `t{char}`.
+- You can scan for next character with `f{char}` or `t{char}` (both are considered motions).
 - `f` takes you to the first letter of the match and `t` takes you till (right before) the first letter of the match. So:
   - If you want to search for "h" and land on "h", use `fh`.
   - If you want to search for first "h" and land right before the match, use `th`.
@@ -295,6 +362,50 @@ NOTE:  You can also read the output of an external command.  For example, `:r !l
   * After the cursor (appending): `a` or `A` append to end of line (equal `$a`)
   * open a new line below the cursor: `o` | `O` (upper-case) open new line above (equal `ko`).
 
+### Insert Mode
+
+- `^h` delete back one character (equal backspace)
+- `^w` delete back one word
+- `^u` delete back to start of line
+
+These commands are not unique to Insert mode or even to Vim. We can also use them in Vim’s command line as well as in the bash shell.
+
+- `^[` switch back to Normal Mode (equal `<Esc>`)
+- `^o` switch to Insert Normal Mode
+
+Insert Normal Mode: when we’re in Insert mode and we want to run only one Normal command and then continue where we left off in Insert mode.
+
+When the current line is right at the top or bottom of the window, I sometimes want to scroll the screen to see a bit more context. The `zz`command redraws the screen with the current line in the middle of the window, which allows us to read half a screen above and below the line we’re working on. I’ll often trigger this from Insert Normal mode by tapping out `<C-o>zz`. That puts me straight back into Insert mode so that I can continue typing uninterrupted.
+
+From insert mode: `<C-r>{register}` paste text from `{register}`
+
+---
+
+The expression register is addressed by the `=` symbol. From Insert mode we can access it by typing `<C-r>=`. This opens a prompt at the bottom of the screen where we can type the expression that we want to evaluate. When done, we hit `<CR>`, and Vim inserts the result at our current position in the document
+
+!!! Cái này hiện chưa làm được
+
+---
+
+insert unusual characters as **digraphs** (pairs of characters that are easy to remember).
+
+From insert mode: `<C-k>{char1}{char2}`
+
+- `<C-k>` then `>>` will type »
+- `<C k>12` type ½
+- `14`, `34`
+- `:h digraphs-default`, `:h digraphs-table`
+
+---
+
+**Replace mode** is identical to Insert mode, except that it overwrites existing text in the document.
+
+Replace mode: To replace the character selected by the cursor: `r`. Type  `rx`  to replace the character at the cursor with the character "x". You can replace "x" for other character.
+
+Type a capical `R` will enters **Replace mode** until  `<ESC>`  is pressed. Replace mode is like Insert mode, but every typed character deletes an existing character.
+
+### Visual Mode
+
 **Visual mode** is used for selection for yank, deleting, change. . Press `v` to enter visual mode. Capital `Shift v` will enter visual line mode (select the current line).
 
 `viw` select current word. `viW` with a capital `W` select words with hyphen `-`
@@ -312,11 +423,17 @@ visual block mode: `Ctrl v` used to select column-wise
 
 `v  motion  :w FILENAME`  saves the Visually selected lines in file FILENAME (vimtutor Lesson 5.3: SELECTING TEXT TO WRITE)
 
-Replace mode: To replace the character selected by the cursor: `r`. Type  `rx`  to replace the character at the cursor with the character "x". You can replace "x" for other character.
-
-Type a capical `R` will enters **Replace mode** until  `<ESC>`  is pressed. Replace mode is like Insert mode, but every typed character deletes an existing character (vimtutor Lesson 6.3: ANOTHER WAY TO REPLACE).
-
 `s` delete the character under the cursor and enter insert mode.
+
+### Operator-Pending Mode
+
+We use it dozens of times daily, but it usually lasts for just a fraction of a second. For example, we invoke it when we run the command `dw`. It lasts during the brief interval between pressing `d` and `w`keys. Blink and you’ll miss it!
+
+Operator-Pending mode is a state that accepts only motion commands. It is activated when we invoke an operator command, and then nothing happens until we provide a motion, which completes the operation. While Operator-Pending mode is active, we can return to Normal mode in the usual manner by pressing escape, which aborts the operation.
+
+Many commands are invoked by two or more keystrokes (for examples, look up `:h g`,`:h z`, `:h ctrl-w`, or `:h [`), but in most cases, the first keystroke merely acts as a **prefix** for the second. These commands don’t initiate Operator-Pending mode. Instead, we can think of them as namespaces that expand the number of available command mappings. Only the operator commands initiate Operator-Pending mode.
+
+Why, you might be wondering, is an entire mode dedicated to those brief moments between invoking operator and motion commands, whereas the namespaced com-mands are merely an extension of Normal mode? Good question! Because we can create custom mappings that initiate or target Operator-Pending mode. In other words, it allows us to create custom operators and motions, which in turn allows us to expand Vim’s vocabulary
 
 ## Vim settings
 
