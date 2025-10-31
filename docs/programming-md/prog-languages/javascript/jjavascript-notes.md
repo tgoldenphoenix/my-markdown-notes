@@ -404,11 +404,216 @@ But there’s a syntax construct `try...catch` that allows us to “catch” err
 If an error occurs, then the `try` execution is stopped, and control flows to the beginning of `catch (err)`. The `err` variable (we can use any name for it) will contain an error object with details about what happened. We can just ignore this `err` object and just have a simple `console.log()` or we can use it to perform advance error handling techniques.  
 In this way, an error inside the `try {...}` block does not kill the script – we have a chance to handle it in catch.
 
-The `err` object has two important properties: `name` and `message`.
+For all built-in errors, the `err` object in `catch (err)` has these important properties:
+- `err.name`: 
+- `err.message`:
+- `err.stack`
+
+```javascript
+try {
+  lalala; // error, variable is not defined!
+} catch (err) {
+  alert(err.name); // ReferenceError
+  alert(err.message); // lalala is not defined
+  alert(err.stack); // ReferenceError: lalala is not defined at (...call stack)
+
+  // Can also show an error as a whole
+  // The error is converted to string as "name: message"
+  alert(err); // ReferenceError: lalala is not defined
+}
+```
 
 `try...catch` only works for runtime errors (also called **exceptions**) which is when the code can still complied and there is no syntax errors. Vì vậy 2 khái niệm exceptions và `try-catch` luôn đi đôi với nhau.
 
 `try...catch` works synchronously. If an exception happens in “scheduled” code, like in setTimeout, then try...catch won’t catch it. To catch an exception inside a scheduled function, try...catch must be inside that function.
+
+### Finally
+
+- If `finally {}` exists, it runs in all cases:
+  * after `try`, if there were no errors,
+  * after `catch`, if there were errors.
+
+Nếu `throw error;` sẽ terminate function, code phía sau `try-catch` không được execution (ngoại trừ code nằm trong `finally {}` block.)
+
+Nếu có `return;` trong `catch {}` thì code phía sau cũng sẽ không được execute (nhưng code trong `finally {}` vẫn chạy kể cả khi có `return;` trong `catch {}`)
+
+The `finally` clause works for any exit from `try...catch`. That includes an explicit `return`.
+
+In the example below, there’s a `return` in `try`. In this case, `finally` is executed just before the control returns to the outer code.
+
+```javascript
+function func() {
+  try {
+    return 1;
+  } catch (err) {
+    /\* ... \*/
+  } finally {
+    alert( 'finally' );
+  }
+}
+alert( func() ); // first works alert from finally, and then this one
+```
+
+---
+
+For instance, we want to measure the time that a Fibonacci numbers function `fib(n)` takes. Naturally, we can start measuring before it runs and finish afterwards. But what if there’s an error during the function call? In particular, the implementation of `fib(n)` in the code below returns an error for negative or non-integer numbers.
+
+The `finally` clause is a great place to finish the measurements no matter what.
+
+Here `finally` guarantees that the time will be measured correctly in both situations – in case of a successful execution of `fib` and in case of an error in it:
+
+```javascript
+let num = +prompt("Enter a positive integer number?", 35)
+let diff, result; // Variables are local inside `try...catch...finally`
+
+function fib(n) {
+  if (n < 0 || Math.trunc(n) != n) {
+    throw new Error("Must not be negative, and also an integer.");
+  }
+
+  return n <= 1 ? n : fib(n - 1) + fib(n - 2);
+}
+
+let start = Date.now();
+
+try {
+  result = fib(num);
+} catch (err) {
+  result = 0;
+} finally {
+  diff = Date.now() - start;
+}
+
+alert(result || "error occurred");
+alert( \`execution took ${diff}ms\` );
+```
+
+You can check by running the code with entering `35` into `prompt` – it executes normally, `finally` after `try`. And then enter `-1` – there will be an immediate error, and the execution will take `0ms`. Both measurements are done correctly.
+
+In other words, the function may finish with `return` or `throw`, that doesn’t matter. The `finally` clause executes in both cases.
+
+Variables are local inside `try...catch...finally`
+
+Please note that `result` and `diff` variables in the code above are declared before `try...catch`.  
+Otherwise, if we declared `let` in `try` block, it would only be visible inside of it.
+
+---
+
+The `try...finally` construct, without `catch` clause, is also useful. We apply it when we don’t want to handle errors here (let them fall through), but want to be sure that processes that we started are finalized.
+
+```javascript
+function func() {
+    // start doing something that needs completion (like measurements)
+    try {
+        // ...
+    } finally {
+        // complete that thing even if all dies
+    }
+}
+```
+
+In the code above, an error inside `try` always falls out, because there’s no `catch`. But `finally` works before the execution flow leaves the function.
+
+### Throwing Errors
+
+Nếu không có runtime error (exception) nhưng logic bị lỗi (to us programmer only, not to the code) we’ll use the `throw` operator.
+
+```javascript
+let json = '{ "age": 30 }'; // incomplete data
+
+try {
+  let user = JSON.parse(json); // <-- no errors
+
+  if (!user.name) {
+    throw new SyntaxError("Incomplete data: no name"); // (\*)
+  }
+  alert( user.name );
+} catch (err) {
+  alert( "JSON Error: " + err.message ); // JSON Error: Incomplete data: no name
+}
+
+```
+
+Technically, we can use anything as an error object. That may be even a primitive, like a number or a string, but it’s better to use objects, preferably with name and message properties (to stay somewhat compatible with built-in errors).
+
+JavaScript has many built-in constructors for standard errors: `Error`, `SyntaxError`, `ReferenceError`, `TypeError` and others. We can use them to create error objects as well. 
+
+```javascript
+let error = new Error(message);
+let error = new SyntaxError(message);
+let error = new ReferenceError(message);
+```
+
+For built-in errors (not for any objects, just for errors), the `name` property is exactly the name of the constructor. And `message` is taken from the argument.
+
+### Rethrowing
+
+By its nature, `catch` gets all errors from `try`. It gets an unexpected error, but still shows the same `"JSON Error"` message. That’s wrong and also makes the code more difficult to debug.
+
+The rule is simple: Catch should only process errors that it knows and “rethrow” all others.
+
+1. Catch gets all errors.
+2. In the `catch (err) {...}` block we analyze the error object `err`.
+3. If we don’t know how to handle it, we do `throw err`.
+
+```javascript
+try {
+  user = { /\*...\*/ };
+} catch (err) {
+  if (err instanceof ReferenceError) {
+    alert('ReferenceError'); // "ReferenceError" for accessing an undefined variable
+  }
+}
+
+```
+
+Here `readData` only knows how to handle `SyntaxError`, while the outer `try...catch` knows how to handle everything.
+
+```javascript
+function readData() {
+  let json = '{ "age": 30 }';
+
+  try {
+    // ...
+    blabla(); // error!
+  } catch (err) {
+    // ...
+    if (!(err instanceof SyntaxError)) {
+      throw err; // rethrow (don't know how to deal with it)
+    }
+  }
+}
+
+try {
+  readData();
+} catch (err) {
+  alert( "External catch got: " + err ); // caught it!
+}
+```
+
+We can also get the error class name from `err.name` property. All native errors have it. Another option is to read `err.constructor.name`.
+
+Trong `catch{}` block, if we don’t know how to handle the error, we do `throw err`. This re-thrown error will “falls out” of its `try...catch` and can be either caught by an outer `try...catch` construct (if it exists), or it kills the script.
+
+You can NOT ignore exceptions, you either handle them or they will eventually terminate the script.
+
+### Global catch
+
+Let’s imagine we’ve got a fatal error outside of `try...catch`, and the script died. Like a programming error or some other terrible thing.
+
+Is there a way to react on such occurrences? We may want to log the error, show something to the user (normally they don’t see error messages), etc.
+
+There is none in the specification, but environments usually provide it, because it’s really useful. For instance, Node.js has `process.on("uncaughtException")` for that. And in the browser we can assign a function to the special `window.onerror` property, that will run in case of an uncaught error.
+
+### Custom Errors
+
+We can create custom errors: `HttpError` for database operations, `DbError` for searching operations, `NotFoundError` and so on.
+
+Our errors should support basic error properties like `message`, `name` and, preferably, `stack`. But they also may have other properties of their own, e.g. `HttpError` objects may have a `statusCode` property with a value like `404` or `403` or `500`.
+
+JavaScript allows to use `throw` with any argument, so technically our custom error classes don’t need to inherit from `Error`. But if we inherit, then it becomes possible to use `obj instanceof Error` to identify error objects. So it’s better to inherit from it.  
+As the application grows, our own errors naturally form a hierarchy. For instance, `HttpTimeoutError` may inherit from `HttpError`, and so on.
+
 
 ### What if you don't catch it?
 
@@ -483,23 +688,6 @@ That’s why:
 
 - Node.js relies so much on async/await, .catch(), error middleware.
 - In production, people often use process managers (PM2, Docker restart policies) to auto-restart a crashed Node process.
-
-### Throwing our own error
-
-Nếu không có runtime error (exception) nhưng logic bị lỗi (to us programmer only, not to the code) we’ll use the `throw` operator.
-
-Technically, we can use anything as an error object. That may be even a primitive, like a number or a string, but it’s better to use objects, preferably with name and message properties (to stay somewhat compatible with built-in errors).
-
-JavaScript has many built-in constructors for standard errors: `Error`, `SyntaxError`, ReferenceError, TypeError and others. We can use them to create error objects as well.  
-For built-in errors (not for any objects, just for errors), the `name` property is exactly the name of the constructor. And `message` is taken from the argument.
-
-### Rethrowing technique
-
-The rule is simple: Catch should only process errors that it knows and “rethrow” all others.
-
-Trong `catch{}` block, if we don’t know how to handle the error, we do `throw err`. This re-thrown error will “falls out” of its `try...catch` and can be either caught by an outer `try...catch` construct (if it exists), or it kills the script.
-
-You can NOT ignore exceptions, you either handle them or they will eventually terminate the script.
 
 ## Callback, Promises and Async await
 
@@ -726,6 +914,8 @@ But wait — Java can be async too. Spring Boot also supports **reactive program
 - Node.js = single-threaded → needs async/await to avoid blocking.
 - Spring Boot = multi-threaded → can use blocking I/O without hurting performance (to some extent).
 - Async style exists in both, but Node.js makes it mandatory, while Spring Boot makes it optional.
+
+Java có 2 khái niệm: `CompletableFuture` & Virtual Threads
 
 ## Chrome Dev Tool
 

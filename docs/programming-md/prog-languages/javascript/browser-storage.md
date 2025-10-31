@@ -1,4 +1,4 @@
-# JavaScript Cookies vs Local Storage vs Session Storage
+# Cookies, Local Storage vs Session Storage
 
 ## Local Storage
 

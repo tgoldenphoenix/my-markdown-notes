@@ -117,6 +117,10 @@ Auto-indent the whole file: `gg=G`
 
 `!` operator Filter {motion} lines through an external program
 
+To make the `<`and `>`commands work properly, we should set the `shiftwidth` and ‘softtabstop’ settings to 4 and enable `expandtab`.
+
+`:set shiftwidth=4 softtabstop=4 expandtab`
+
 ### Simple Arithmetic
 
 The `<C-a>` and `<C-x>` commands perform addition and subtraction on numbers. When run without a count they increment by one, but if we prefix a number, then we can add or subtract by any whole number.
@@ -139,8 +143,8 @@ By itself, `g` does nothing. It's a "prefix" that waits for a second key to exec
 
 - `g~` toggle case
 - `g~iw` toggle case in word
-- `gu` Make text lowercase (e.g., guw = "go lowercase word").
-- `gU` Make text uppercase (e.g., gUw = "go uppercase word").
+- `gu{motion}` Make text lowercase (e.g., guw = "go lowercase word").
+- `gU{motion}` Make text uppercase (e.g., gUw = "go uppercase word").
 - `gUaw` convert current word to uppercase
 
 ---
@@ -166,9 +170,9 @@ If you want to go to the column `n` in the current line, you can use `n|`.
 ### Word Navigation
 
 - Go to the beginning of the next word: `w` or `W`:
-  - `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace.
-  - `W` defines a "WORD" is simply a sequence of any non-blank characters, separated only by whitespace (spaces, tabs, newlines).
-- Use `w` for smaller jumps between code elements/punctuation, and `W` for bigger jumps across code separated only by spaces.
+  - `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
+  - `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
+- Use `w` for smaller, more fine-grain jumps, and `W` for bigger jumps across code separated only by spaces.
 
 - Jump of the end of the current word: `e` & `E`
 
@@ -400,30 +404,57 @@ From insert mode: `<C-k>{char1}{char2}`
 
 **Replace mode** is identical to Insert mode, except that it overwrites existing text in the document.
 
-Replace mode: To replace the character selected by the cursor: `r`. Type  `rx`  to replace the character at the cursor with the character "x". You can replace "x" for other character.
+To replace the character under the cursor: `r`. For example: type  `rx`  to replace the character at the cursor with the character "x". You can replace "x" for other character.
 
-Type a capical `R` will enters **Replace mode** until  `<ESC>`  is pressed. Replace mode is like Insert mode, but every typed character deletes an existing character.
+A capical `R` will enters Replace mode until  `<ESC>`  is pressed. Replace mode is like Insert mode, but every typed character deletes an existing character.
 
 ### Visual Mode
 
 **Visual mode** is used for selection for yank, deleting, change. . Press `v` to enter visual mode. Capital `Shift v` will enter visual line mode (select the current line).
 
-`viw` select current word. `viW` with a capital `W` select words with hyphen `-`
-`vi(` will select everything inside parentheses `()` and enter visual mode. `va"`
+- `viw` select current word. `viW` with a capital `W` select words with hyphen `-`
+- `vi(` will select everything inside parentheses `()` and enter visual mode. `va"`
+- `vit` select in tag (html tag like `<a href="#">one</a>` will select `one`)
 
 - Delete selection: `d`.
-- Change selection: `c`, delete & enter insert mode.\
--Copy (yanking): `y`, including the cursor.
+- Change selection: `c`, delete & enter insert mode.
+- Copy (yanking): `y`, including the cursor.
 
-Paste after cursor block: `p` | `P` will paste before the cursor block.\
-Note that using `p` after `yy` or `dd` will paste the new line _below_ the current line and `P` will paste the new line above the current line.
-
-visual line mode: `Shift v`\
-visual block mode: `Ctrl v` used to select column-wise
+Paste after cursor block: `p`; `P` will paste before the cursor block.\
+Note that using `p` after `yy` or `dd` will paste the new line below the current line and `P` will paste the new line above the current line.
 
 `v  motion  :w FILENAME`  saves the Visually selected lines in file FILENAME (vimtutor Lesson 5.3: SELECTING TEXT TO WRITE)
 
 `s` delete the character under the cursor and enter insert mode.
+
+Each time we move our cursor in Visual mode, we change the bounds of the selection.
+
+- Visual Mode in Vim has three sub-modes:
+  * In **character-wise** Visual mode (`v`), we can select anything from a single character up to a range of characters within a line or spanning multiple lines. This is suitable for working at the level of individual words or phrases.
+  * If we want to operate on entire lines, we can use **line-wise** Visual mode (`V` uppercase) instead.
+  * Finally, **block-wise** Visual mode (`<C-v>`) allows us to work with columnar regions of the document.
+
+`gv` Reselect the last visual selection  
+The `gv`command is a useful little shortcut. It reselects the range of text that was last selected in Visual mode. No matter whether the previous selection was character-wise, line-wise, or block-wise, the `gv`command should do the right thing. The only case where it might get confused is if the last selection has since been deleted.
+
+We can switch between the different flavors of Visual mode in the same way that we enable them from Normal mode. If we’re in character-wise Visual mode, we can switch to the line-wise variant by pressing `V`, or to block-wise Visual mode with `<C-v>`.
+
+The range of a Visual mode selection is marked by **two ends**: one end is fixed and the other moves freely with our cursor. We can use the `o`key to toggle the free end.  
+This is really handy if halfway through defining a selection we realize that we started in the wrong place. Rather than leaving Visual mode and starting afresh, we can just hit `o`and redefine the bounds of the selection.
+
+---
+
+When we use the dot command to repeat a change made to a visual selection, it repeats the change on the **same range of text**.
+
+When we use the dot command to repeat a Visual mode command, it acts on the same amount of text as was marked by the most recent visual selection. This behavior tends to work in our favor when we make line-wise visual selections, but it can have surprising results with character-wise selections.
+
+select visual mode > `U` operator to transform into upper-case
+
+As a general rule, we should prefer operator commands (in normal mode) over their Visual mode equivalents when working through a repetitive set of changes.
+
+Visual mode is perfectly adequate for one-off changes. And even though Vim’s motions allow for surgical preci-sion, sometimes we need to modify a range of text whose structure is difficult to trace. In these cases, Visual mode is the right tool for the job.
+
+`Vr-` visual select entire current line, then change all character into "-"
 
 ### Operator-Pending Mode
 
