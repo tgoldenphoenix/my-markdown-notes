@@ -3,6 +3,7 @@
 Vim kick start: 23:13
 
 Try these plugins:
+
 - nvim-surround
 - powerline
 
@@ -25,6 +26,9 @@ Plugins are installed (by package manager such as Lazy.nvim and Packer) inside `
 [vim.o](https://neovim.io/doc/user/lua-guide.html#_vim.o): behaves like :set
 vim.go: behaves like :setglobal\
 
+- `vim` is for latex
+- `lvim` is lazy vim for markdown notes
+
 **Save session:**
 
 ## Runtimepath
@@ -36,6 +40,7 @@ The `after/` directory [here](https://neovim.discourse.group/t/neovim-after-fold
 ## Navigating project, File tree
 
 **TODO:**
+
 - telescope
 
 Telescope is a fuzzy finder, dùng chung với LSP. Mở file trực tiếp đòi hỏi phải nhớ project structure trong đầu (which is helpful) và nó là cách nhanh nhất để navigate files.
@@ -103,7 +108,7 @@ super TAB là khi phím `TAB` đảm nhiệm nhiều vai trò.
 
 Neovim có 3 types of tex file: plaintex, tex (for LaTeX), latex. [Read here](https://neovim.io/doc/user/filetype.html#ft-tex-plugin) for more info. Or [this reddit post](https://www.reddit.com/r/neovim/comments/14milq0/why_would_nvimafterftplugintexlua_work_for_latex/). Nên khi đặt tên file trong nvim/LuaSnip phải đặt tên theo quy tắc.
 
-**Visual Selection**
+Visual Selection
 
 Pressing `<Tab>` in visual mode will then store the visually-selected text in a LuaSnip variable called `LS_SELECT_RAW`, which we will reference later to retrieve the visual selection.
 
@@ -121,7 +126,7 @@ Lua regex patter official doc [here](https://www.lua.org/pil/20.2.html)
 
 After understanding a bit more about Lua, you can use `:help lua-guide` as a reference for how Neovim integrates Lua.\
 `:help lua-guide`\
-(or HTML version): https://neovim.io/doc/user/lua-guide.html
+(or HTML version): <https://neovim.io/doc/user/lua-guide.html>
 
 `nvim .` open the current pwd inside the default Netrw directory listing
 
@@ -162,18 +167,15 @@ Thường mình sẽ dùng `opts` để config vì nó được automatically pa
 
 ## LSP & Treesitter
 
-
-
 chafa /Users/anhao/Desktop/phuong.jpeg --format symbols --symbols vhalf --size 60x17 --stretch; sleep .1
-
 
 ## Nvim Key mapping
 
-`n`	Normal mode map. Defined using ':nmap' or ':nnoremap'.
-`i`	Insert mode map. Defined using ':imap' or ':inoremap'.
-`v`	Visual and select mode map. Defined using ':vmap' or ':vnoremap'.
-`x`	Visual mode map. Defined using ':xmap' or ':xnoremap'.
-`s`	Select mode map. Defined using ':smap' or ':snoremap'.
+`n` Normal mode map. Defined using ':nmap' or ':nnoremap'.
+`i` Insert mode map. Defined using ':imap' or ':inoremap'.
+`v` Visual and select mode map. Defined using ':vmap' or ':vnoremap'.
+`x` Visual mode map. Defined using ':xmap' or ':xnoremap'.
+`s` Select mode map. Defined using ':smap' or ':snoremap'.
 `c`  Command-line mode map. Defined using ':cmap' or ':cnoremap'.
 `o`  Operator-pending mode map. Defined using ':omap' or ':onoremap'.
 
@@ -230,4 +232,5 @@ Benjamin Brast-McKie [github repo](https://github.com/benbrastmckie/.config)
 
 [here](https://gist.github.com/dtr2300/2f867c2b6c051e946ef23f92bd9d1180) Overview of Nvim Events
 
-**Read later**: 
+**Read later**:
+

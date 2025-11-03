@@ -95,7 +95,7 @@ You can have either pasta or rice.
 
 ### conjunctive adverb (trạng từ liên kết)
 
-A **conjunctive adverb** is an adverb (e.g., alternatively, moreover) or adverb phrase (e.g., as a result, on the other hand) that connects the ideas in different **independent** clauses or sentences.
+A **conjunctive adverb** is an adverb (e.g., `alternatively, moreover`) or adverb phrase (e.g., as a result, on the other hand) that connects the ideas in different **independent** clauses or sentences.
 
 Unlike coordinating conjunctions (for, and, nor, but, or, yet, and so, known as the FANBOYS), conjunctive adverbs cannot grammatically link clauses. Instead, their main purpose is transitioning and describing the relationship between clauses; they are used more to facilitate communication than for grammar.
 

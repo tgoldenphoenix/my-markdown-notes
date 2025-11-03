@@ -94,6 +94,15 @@ Troubleshooting command `yabai -V` for `--verbose` and `skhd script` (must stop 
 
 `[yabai|skhd] --[start|stop|restart]-service`
 
+First start-up computer
+
+```bash
+yabai --stop-service
+yabai
+# enter password
+yabai --start-service
+```
+
 ### i3 WM & nitrogen
 
 The window key (or **super key**) is the modifier (mod key). Mình cũng có thẻ set Alt key as the mod key.
@@ -155,7 +164,7 @@ Hide the default MacOs menu bar
 
 `sketchybar --reload`
 
-**References**
+References
 
 [video](https://www.youtube.com/watch?v=8W06wMNZmo8&t=207s) by Josean Martinez
 
@@ -187,12 +196,12 @@ Hàng Shift, Caps lock và TAB thì giống nhau ở các loại layout bàn ph�
 
 You can remap escape to caps lock as well if you want to retain a caps lock button.
 
-**Mappings**
+Mappings
 
 - Tap Capslock -> Escape
 - Hold Capslock -> Ctrl (easier to use Ctrl)
 
-**Current problem**
+Current problem
 
 - Tìm giải pháp upgrade cái tiling window manager super key. Hiện tại xài Cmd/Alt là cũng closest to the spacebar cũng khá ngon rồi.
 - Tìm cách khôi phục chức năng toggle capslock đễ gõ Vietnamese có dấu mà không phải hold Capslock

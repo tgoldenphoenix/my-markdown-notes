@@ -8,15 +8,15 @@ Today’s Internet is a collection of private networks owned by Inter-net servic
 
 TCP/IP is a protocol “suite,” a set of network protocols designed to work smoothly together. It includes several components, each defined by a standards-track RFC or series of RFCs:
 
-- IP, the Internet Protocol, which routes data packets from one machine to 
+- IP, the Internet Protocol, which routes data packets from one machine to
 another (RFC791)
-- ICMP, the Internet Control Message Protocol, which provides several 
+- ICMP, the Internet Control Message Protocol, which provides several
 kinds of low-level support for IP, including error messages, routing assis-tance, and debugging help (RFC792)
-- ARP, the Address Resolution Protocol, which translates IP addresses to 
+- ARP, the Address Resolution Protocol, which translates IP addresses to
 hardware addresses (RFC826)2
-- UDP, the User Datagram Protocol, which provides unverified, one-way 
+- UDP, the User Datagram Protocol, which provides unverified, one-way
 data delivery (RFC768)
-- TCP, the Transmission Control Protocol, which implements reliable, full 
+- TCP, the Transmission Control Protocol, which implements reliable, full
 duplex, flow-controlled, error-corrected conversations (RFC793)
 
 These protocols are arranged in a hierarchy or “stack”, with the higher-level proto-cols making use of the protocols beneath them.
@@ -47,7 +47,7 @@ Deal with frame.
 
 The **data link** layer refers to the technologies used to connect two machines across a network where the physical layer already exists. It manages data frames, which are digital signals encapsulated into data packets. Flow control and error control of data are often key focuses of the data link layer.
 
-**Ethernet** is an example of a standard at this level. 
+**Ethernet** is an example of a standard at this level.
 
 ### 03: The Network Layer
 
@@ -94,3 +94,4 @@ hostnames (like `anhao.com`) are really just a convenient shorthand for IP addre
 ## Routing
 
 k
+
