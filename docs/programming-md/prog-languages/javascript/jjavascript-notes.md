@@ -614,7 +614,6 @@ Our errors should support basic error properties like `message`, `name` and, 
 JavaScript allows to use `throw` with any argument, so technically our custom error classes don’t need to inherit from `Error`. But if we inherit, then it becomes possible to use `obj instanceof Error` to identify error objects. So it’s better to inherit from it.  
 As the application grows, our own errors naturally form a hierarchy. For instance, `HttpTimeoutError` may inherit from `HttpError`, and so on.
 
-
 ### What if you don't catch it?
 
 If you have a runtime error do you best to resolve it, don't try to measure how bad it is or rely on current situation that maybe works now, but may not work tomorrow. A runtime error means there's a bug in the script. You need to fix it.
@@ -820,7 +819,7 @@ As a good practice, an **asynchronous action should always return a promise**. T
 - When a promise reject, code jump to `.catch()`
 - The code of a promise executor and promise handlers has an “invisible try..catch” around it. If an exception happens, it gets caught and treated as a rejection.
 
-### Async/await
+### Async Await
 
 The word `async` before a function means one simple thing: **an async function always returns a promise**. Other values are automatically wrapped in a **resolved** promise.
 

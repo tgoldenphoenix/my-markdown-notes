@@ -63,6 +63,8 @@ In most cases, when issuing a command or starting a program as a non-privileged 
   - `^c` End a running program and return the prompt.
   - `^z` Suspend a program
 
+Many of these key binds can also be used in vim insert mode, command-line mode.
+
 `cd` between two directories with long path names. Go back to the last directory that you were in `cd -`. To go back even further, use `pushd` and `popd`. `cd` in deeply nested file system.
 
 `/` to enter search mode. `n` to go jump to the next match (spam `n` as fast as you can). `Shift N` to jump back up.  

@@ -80,6 +80,10 @@ Other shell: zsh, Xonsh, fish
 
 As on the command line, you can break a single logical line onto multiple physical lines by escaping the newline with a backslash (`\`). You can also put more than one statement on a line by separating the statements with semicolons `;`.
 
+`git checkout main; git pull` => chạy 2 cái 1 dòng
+
+`git checkout main && git pull`
+
 To prepare the file for running, just turn on its execute bit:
 
 ```bash

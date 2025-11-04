@@ -381,7 +381,7 @@ Insert Normal Mode: when we’re in Insert mode and we want to run only one Norm
 
 When the current line is right at the top or bottom of the window, I sometimes want to scroll the screen to see a bit more context. The `zz`command redraws the screen with the current line in the middle of the window, which allows us to read half a screen above and below the line we’re working on. I’ll often trigger this from Insert Normal mode by tapping out `<C-o>zz`. That puts me straight back into Insert mode so that I can continue typing uninterrupted.
 
-From insert mode: `<C-r>{register}` paste text from `{register}`
+From insert mode: `<C-r>{register}` paste text from `{register}`. Can also be used in command-line mode.
 
 ---
 
@@ -455,6 +455,42 @@ As a general rule, we should prefer operator commands (in normal mode) over thei
 Visual mode is perfectly adequate for one-off changes. And even though Vim’s motions allow for surgical preci-sion, sometimes we need to modify a range of text whose structure is difficult to trace. In these cases, Visual mode is the right tool for the job.
 
 `Vr-` visual select entire current line, then change all character into "-"
+
+---
+
+The `I` and `A` commands placing the cursor at the start or end of the selection, respectively. So what about the `i` and `a`commands; what do they do in Visual mode?
+
+In Visual and Operator-Pending modes the `i` and `a` keys follow a different convention: they form the first half of a text object.
+
+### Command-Line Mode
+
+> In the beginning, there was ed. ed begat ex, and ex begat vi, and vi begat Vim.
+
+Command-Line mode prompts us to enter an Ex command, a search pattern, or an expression.
+
+`vi` traces its ancestry back to a line editor called ex, which is why we have **Ex commands**. For some line-oriented tasks, Ex commands are still the best tool for the job.
+
+When we press the `:` key, Vim switches into Command-Line mode. Command-Line mode is also enabled when we press `/` to bring up a search prompt or `<C-r>=` to access the expression register.
+
+- `:[range]delete [x]` Delete specified lines into register `[x]`
+- `:[range]yank [x]` Yank specified lines into register `[x]`
+- `:[line]put [x]` Put the text from register `[x]` after the specified line
+- `:[range]copy {address}` Copy the specified lines to below the line specified by `{address}`
+- `:[range]move {address}` Move the specified lines to below the line specified by `{address}`
+- `:[range]join` Join the specified lines
+- `:[range]normal {commands}`: Execute Normal mode `{commands}` on each specified line
+- `:[range]substitute/{pat-tern}/{string}/[flags]` Replace occurrences of {pattern} with {string} on each specified line
+- `:[range]global/{pattern}/[cmd]` Execute the Ex command `[cmd]` on all specified lines where the `{pattern}` matches
+
+ We can use Ex commands to read and write files (`:edit` and `:write`), to create tabs (`:tabnew`) or split windows (`:split`), or to interact with the argument list (:prev/:next) or the buffer list (:bprev/:bnext). In fact, Vim has an Ex command for just about everything
+
+The `:normal` command provides a convenient way to make the same change on a range of lines
+
+---
+
+Many Ex commands can be given a `[range]` of lines to act upon. We can specify the start and end of a range with either a line number, a mark, or a pattern.
+
+The `:print` command doesn’t perform any useful work, but it helps to illustrate which lines make up a range.
 
 ### Operator-Pending Mode
 
