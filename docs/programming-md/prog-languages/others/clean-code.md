@@ -25,3 +25,6 @@ Tên biến nên thể hiện ý nghĩa của giá trị mà nó chứa, không 
 const confirmCopyAction = confirm("Are you sure you want to copy this page?\n\nThis will create a new wiki page with the same content and attachments.\nYou will be redirected to the new page after the copy is complete.\n\n***NOTE***: If the original page has many large attachments, the copy process may take a few seconds. Please be patient.");
 ```
 
+- xử lý lỗi giống như đi uống bia:
+  * sau khi uống hết rồi mới dọn hoặc
+  * biết trước lỗi gì sẽ xảy ra và bắt luôn
