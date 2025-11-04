@@ -302,7 +302,7 @@ Search is a form of Command Line mode. Depending on how we entered Command Line 
   - If you want to search for "h" and land on "h", use `fh`.
   - If you want to search for first "h" and land right before the match, use `th`.
 
-- If you want to go to the **next occurrence** of the last `f` search, use `;`. 
+- If you want to go to the **next occurrence** of the last `f` search, use `;`.
 - To go to the **previous occurrence** of the last current line match, use `,`.
 - A good tip to go anywhere in a line is to look for least-common-letters like "j", "x", "z" near your target.
 
@@ -319,9 +319,9 @@ When the search reaches the end of the file it will continue at the start, unles
 In normal mode, move the cursor to any **word** (not character) > press `*` to search forwards for the next occurrence of that word, or press `#` to search backwards. Sau đó dùng `n` and `N`.
 
 - The `%` motion command jumps to the next matching bracket `(), [] or {}}`. You can jump from the open parentheses to the closing one and vice versa.
-  * If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
-  * If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
-  * It's useful for quickly navigating code blocks or checking if brackets are balanced.
+  - If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
+  - If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
+  - It's useful for quickly navigating code blocks or checking if brackets are balanced.
 
 ### The `:substitute` command
 
@@ -362,9 +362,9 @@ NOTE:  You can also read the output of an external command.  For example, `:r !l
 `:e ~/.vimrc` switch to editing a new file.
 
 - To enter insert mode:
-  * `i` before the focus block or `I` to insert to beginning of the line (equal `^i`)
-  * After the cursor (appending): `a` or `A` append to end of line (equal `$a`)
-  * open a new line below the cursor: `o` | `O` (upper-case) open new line above (equal `ko`).
+  - `i` before the focus block or `I` to insert to beginning of the line (equal `^i`)
+  - After the cursor (appending): `a` or `A` append to end of line (equal `$a`)
+  - open a new line below the cursor: `o` | `O` (upper-case) open new line above (equal `ko`).
 
 ### Insert Mode
 
@@ -430,9 +430,9 @@ Note that using `p` after `yy` or `dd` will paste the new line below the current
 Each time we move our cursor in Visual mode, we change the bounds of the selection.
 
 - Visual Mode in Vim has three sub-modes:
-  * In **character-wise** Visual mode (`v`), we can select anything from a single character up to a range of characters within a line or spanning multiple lines. This is suitable for working at the level of individual words or phrases.
-  * If we want to operate on entire lines, we can use **line-wise** Visual mode (`V` uppercase) instead.
-  * Finally, **block-wise** Visual mode (`<C-v>`) allows us to work with columnar regions of the document.
+  - In **character-wise** Visual mode (`v`), we can select anything from a single character up to a range of characters within a line or spanning multiple lines. This is suitable for working at the level of individual words or phrases.
+  - If we want to operate on entire lines, we can use **line-wise** Visual mode (`V` uppercase) instead.
+  - Finally, **block-wise** Visual mode (`<C-v>`) allows us to work with columnar regions of the document.
 
 `gv` Reselect the last visual selection  
 The `gv`command is a useful little shortcut. It reselects the range of text that was last selected in Visual mode. No matter whether the previous selection was character-wise, line-wise, or block-wise, the `gv`command should do the right thing. The only case where it might get confused is if the last selection has since been deleted.
@@ -482,15 +482,29 @@ When we press the `:` key, Vim switches into Command-Line mode. Command-Line mod
 - `:[range]substitute/{pat-tern}/{string}/[flags]` Replace occurrences of {pattern} with {string} on each specified line
 - `:[range]global/{pattern}/[cmd]` Execute the Ex command `[cmd]` on all specified lines where the `{pattern}` matches
 
- We can use Ex commands to read and write files (`:edit` and `:write`), to create tabs (`:tabnew`) or split windows (`:split`), or to interact with the argument list (:prev/:next) or the buffer list (:bprev/:bnext). In fact, Vim has an Ex command for just about everything
+We can use Ex commands to read and write files (`:edit` and `:write`), to create tabs (`:tabnew`) or split windows (`:split`), or to interact with the argument list (`:prev/:next`) or the buffer list (:bprev/:bnext). In fact, Vim has an Ex command for just about everything
 
 The `:normal` command provides a convenient way to make the same change on a range of lines
 
 ---
 
-Many Ex commands can be given a `[range]` of lines to act upon. We can specify the start and end of a range with either a line number, a mark, or a pattern.
+Many Ex commands can be given a `[range]` of lines to act upon. We can specify the start and end of a range with either a line number, a mark, or a pattern.  
+`:{start},{end}`: both the {start} and {end} are addresses. We can use line numbers, patter or a mark for addresses.
 
-The `:print` command doesn’t perform any useful work, but it helps to illustrate which lines make up a range.
+The `:print` or `:p` command doesn’t perform any useful work, but it helps to illustrate which lines make up a range.
+
+`:{line-number}` jump to `{line-number}`
+
+`:$` jump to end of file (giống `G`). In normal mode, `$` jumps to end of line.
+
+`:3d` jump to line 3 & delete it. Normal mode equivalent: `3G dd`.
+
+`:2,5p` prints each line from 2 to 5, inclusive. Note that after running this command, the cursor would be left positioned on line 5.
+
+The `.` symbol represent the current line.  
+`:.,$p` print from current line to end of file.
+
+The `%` symbol stands for all the lines in the current file.
 
 ### Operator-Pending Mode
 
@@ -594,4 +608,3 @@ The [Wiki article](https://en.wikipedia.org/wiki/Vim_(text_editor)) about Vim is
 [vimgolf](https://www.vimgolf.com/) challenges
 
 [vimbegood](https://github.com/ThePrimeagen/vim-be-good?tab=readme-ov-file) plugin by ThePrimegen
-

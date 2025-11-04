@@ -77,6 +77,10 @@ Tải `.tar.gz` về > extract ra > move to `/usr/local/` > add to PATH.
 
 There are 2 file extensions because the files are first rolled into a tar file, which combines multiple files and folders into one while keeping all the properties, but does not do any compression. Then the compression algorithm is ran on the combined file, resulting in a compressed archive. You can do this with other compressors as well, like bzip2 (.tar.bz2), xz (.tar.xz) and zstd (.tar.zst). GZip isn't the fastest or most efficient, but it's available everywhere, so it's the standard for compressing stuff on Linux.
 
+Move the directory to `/opt`
+
+Create symbolic link to `/usr/local/bin`: `sudo ln -s /opt/extracted-app-name/bin/program-executable /usr/local/bin/program-name`
+
 ### Binary ZIP archive
 
 A binary `.zip` archive is simply a compressed ZIP file that contains precompiled executable files (binaries) instead of source code.
