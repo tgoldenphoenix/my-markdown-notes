@@ -81,6 +81,8 @@ Move the directory to `/opt`
 
 Create symbolic link to `/usr/local/bin`: `sudo ln -s /opt/extracted-app-name/bin/program-executable /usr/local/bin/program-name`
 
+tạo symlink file binary nvim vào usr/bin: `ln -s /opt/nvim-linux-x86_64/bin/nvim /usr/bin/`. Không add thêm vào `$PATH` khiến nó dài ra.
+
 ### Binary ZIP archive
 
 A binary `.zip` archive is simply a compressed ZIP file that contains precompiled executable files (binaries) instead of source code.

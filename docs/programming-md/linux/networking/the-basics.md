@@ -55,6 +55,48 @@ The postal service, of course, provides more than one service to its custom-ers.
 - A web service (or API) is a system that machines (other programs) use to get data or perform an action.
 - A web service is often a part of an internet application.
 
+## Physical Media
+
+Examples of physical media include twisted-pair copper wire, coaxial cable, multimode fiber-optic cable, terrestrial radio spectrum, and satellite radio spectrum.
+
+Physical media fall into two categories: guided media and unguided media. With guided media, the waves are guided along a solid medium, such as a fiber-optic cable, a twisted-pair copper wire, or a coaxial cable. With unguided media, the waves propagate in the atmosphere and in outer space, such as in a wireless LAN or a digital satellite channel.
+
+---
+
+The least expensive and most commonly used guided transmission medium is twisted-pair copper wire.
+
+Twisted pair consists of two insulated copper wires, each about 1 mm thick, arranged in a regular spiral pattern. The wires are twisted together to reduce the electrical interference from similar pairs close by. Typically, a number of pairs are bundled together in a cable by wrapping the pairs in a protective shield.
+
+---
+
+Like twisted pair, coaxial cable consists of two copper conductors, but the two con-ductors are concentric rather than parallel. With this construction and special insula-tion and shielding, coaxial cable can achieve high data transmission rates.
+
+## Packet Switching
+
+In a network application, end systems exchange **messages** with each other.
+
+To send a message from a source end system to a destination end system, the source breaks long messages into smaller chunks of data known as **packets**. Between source and destination, each packet travels through communication links and packet switches (for which there are two predominant types, routers and link-layer switches).
+
+### Forwarding Tables and Routing Protocols
+
+In the Internet, every end system has an address called an IP address. When a source end system wants to send a packet to a destination end system, the source includes the destination’s IP address in the packet’s header. As with postal addresses, this address has a hierarchical structure. When a packet arrives at a router in the network, the router examines a portion of the packet’s destination address and forwards the packet to an adjacent router. More specifically, each router has a **forwarding table** that maps destination addresses (or portions of the destination addresses) to that router’s outbound links. When a packet arrives at a router, the router examines the address and searches its forwarding table, using this destination address, to find the appropriate outbound link. The router then directs the packet to this outbound link.
+
+The Internet has a number of special **routing protocols** that are used to auto-matically set the forwarding tables. A routing protocol may, for example, determine the shortest path from each router to each destination and use the shortest path results to configure the forwarding tables in the routers.
+
+## Circuit Switching
+
+There are two fundamental approaches to moving data through a network of links and switches: circuit switching and packet switching
+
+In **circuit-switched** networks, the resources needed along a path (buffers, link transmission rate) to provide for communication between the end systems are **reserved** for the duration of the communication session between the end systems.  
+In **packet-switched** networks, these resources are **not reserved**; a session’s messages use the resources on demand and, as a consequence, may have to wait (that is, queue) for access to a communication link.
+
+Traditional telephone networks are examples of circuit-switched networks. Consider what happens when one person wants to send information (voice or facsimile)  to another over a telephone network. Before the sender can send the information, the network must establish a connection between the sender and the receiver. This is a bona fide connection for which the switches on the path between the sender and receiver maintain connection state for that connection. In the jargon of telephony, this connection is called a **circuit**.
+
+The Internet is packet-switched. If one of the links is congested because other packets need to be transmitted over the link at the same time, then the packet will have to wait in a buffer at the sending side of the transmission link and suffer a delay.  
+The Internet makes its best effort to deliver packets in a timely manner, but it does not make any guarantees.
+
+Although packet switching and circuit switching are both prevalent in today’s telecommunication networks, the trend has certainly been in the direction of packet switching.
+
 ## ISP
 
 End systems access the Internet through **Internet Service Providers (ISPs)**.
@@ -64,6 +106,8 @@ Each ISP is in itself a network of packet switches and communication links.
 The Internet is all about connecting end systems to each other, so the ISPs that provide access to end systems must also be interconnected. These lower-tier ISPs are thus interconnected through national and international upper-tier ISPs and these upper-tier ISPs are connected  directly to each other.
 
 Each ISP network, whether upper-tier or lower-tier, is managed **independently**, runs the IP protocol (see below), and conforms to certain naming and address conventions.
+
+The bottom level is access ISP. End systems (PCs, smartphones, Web servers, mail servers, and so on) connect into the Internet via an access ISP. The access ISP can provide either wired or wireless connectivity, using an array of access technologies including DSL, cable, FTTH, Wi-Fi, and cellular.
 
 ## Communication Links
 

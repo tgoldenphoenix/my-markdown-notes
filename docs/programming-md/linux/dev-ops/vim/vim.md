@@ -199,8 +199,10 @@ Line Number Navigation
 
 - `gg`    Go to the first line of file
 - `G`     Go to the last line of file
-- `nG`    Go to line n. `:<line number>` do the same thing for example: `:1206`
+- `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
 - `n%`    Go to n% in file
+
+`<Ctrl-o>` to jump back-ward giống như khi đọc `:h`. Use `<Ctrl-]>` to jump to link.
 
 Type `CTRL-g` to show your location in the file and the file status.
 
@@ -349,6 +351,8 @@ Type   `:%s/old/new/gc`    to find every occurrence in the whole file, with a pr
 
 ## Different Modes in Vim
 
+### Normal Mode
+
 The default mode is **normal mode**. Pressing `Esc` to go back into normal mode.
 
 Type `:` to enter **command mode**. You can use TAB completion in command mode.
@@ -489,22 +493,114 @@ The `:normal` command provides a convenient way to make the same change on a ran
 ---
 
 Many Ex commands can be given a `[range]` of lines to act upon. We can specify the start and end of a range with either a line number, a mark, or a pattern.  
-`:{start},{end}`: both the {start} and {end} are addresses. We can use line numbers, patter or a mark for addresses.
+`:{start},{end}`: both the {start} and {end} are addresses. We can use line numbers, patter or a mark for addresses.  
+When we specify a `[range]`, it always represents a set of contiguous lines. It’s also possible to execute an Ex command on a set of noncontiguous lines using the :global command.
 
 The `:print` or `:p` command doesn’t perform any useful work, but it helps to illustrate which lines make up a range.
 
-`:{line-number}` jump to `{line-number}`
+- `:{line-number}` jump to `{line-number}`
+- `:1` first line of the file
+- `:$` jump to last line of the file (giống `G`). In normal mode, `$` jumps to end of line.
+- `0` Virtual line above first line of the file
+- `.` Line where the cursor is placed
+- `'m` Line containing mark m
+- `'<` Start of visual selection
+- `'>` End of visual selection
+- `%` The entire file, all the lines in the current file (shorthand for `:1,$`)
 
-`:$` jump to end of file (giống `G`). In normal mode, `$` jumps to end of line.
+Line 0 doesn’t really exist, but it can be useful as an address in certain con-texts. In particular, it can be used as the final argument in the `:copy {address}` and :move {address} commands when we want to copy or move a range of lines to the top of a file.
 
 `:3d` jump to line 3 & delete it. Normal mode equivalent: `3G dd`.
 
 `:2,5p` prints each line from 2 to 5, inclusive. Note that after running this command, the cursor would be left positioned on line 5.
 
-The `.` symbol represent the current line.  
 `:.,$p` print from current line to end of file.
 
-The `%` symbol stands for all the lines in the current file.
+The command `:%p` is equivalent to running `:1,$p`. Using this shorthand in combination with the `:substitute` command is very common:
+
+`:%s/Practical/Pragmatic/` => This command tells Vim to replace the first occurrence of “Practical” with “Pragmatic” on each line.
+
+You can select a range of lines using visual mode, then press `:` key, the command-line prompt will be prepopulated with the range `:'<,'>`. It looks cryptic, but you can think of it simply as a range standing for the visual selection. Then we can specify our Ex command, and it will execute on every selected line.
+
+---
+
+`:/<html>/,/<\/html>/p` => This looks quite complex, but it follows the usual form for a range: :{start},{end}. The {start} address in this case is the pattern `/<html>/`, while the `{end}` address is `/<\/html>/`. In other words, the range begins on the line containing an opening `<html>` tag and ends on the line containing the corresponding closing tag.
+
+Suppose that we wanted to run an Ex command on every line inside the <html></html> block but not on the lines that contain the `<html>` and </html> tags themselves. We could do so using an offset:
+
+`:/<html>/+1,/<\/html>/-1p`
+
+The general form for an offset goes like this: `:{address}+n`. If n is omitted, it defaults to 1. The {address} could be a line number, a mark, or a pattern.
+
+```bash
+:2
+:.,.+3p 
+```
+
+The `.` symbol stands for the current line, so `:.,.+3` is equivalent to :2,5 in this case
+
+---
+
+The `:copy` command (and its shorthand :t) lets us duplicate one or more lines from one part of the document to another, while the :move command lets us place them somewhere else in the document.
+
+The format of the copy command goes like this: `:[range]copy {address}`  
+We could shorten the :copy command to only two letters, as `:co`. Or we can be even more succinct by using the `:t` command, which is a synonym for :copy. As a mnemonic, you can think of it as copy TO.
+
+- `:6copy.` => “Make a copy of line 6 and put it below the current line.” The `[range]` was line 6. For our {address}, we used the `.` symbol, which stands for the current line.
+- `:t6` Copy the current line to just below line 6
+- `:t.`Duplicate the current line (similar to Normal mode `yyp`). `yyp` uses a register, whereas `:t.` doesn’t. I’ll sometimes use :t. to duplicate a line when I don’t want to overwrite the current value in the default register.
+- `:t$` Copy the current line to the end of the file
+- `:'<,'>t0` Copy the visually selected lines to the start of the file
+
+In this example `:6copy.`, we could have used a variant of yyp to duplicate the line we wanted, but it would require some extra moving around. We would have to jump to the line we wanted to copy (`6G`), yank it (`yy`), snap back to where we started (`<C-o>`), and use the put command (`p`) to duplicate the line. When duplicating a distant line, the `:t` command is usually more efficient.
+
+---
+
+The :move command looks similar to the :copy command: `:[range]move {address}`. We can shorten it to a single letter: `:m`.
+
+Dùng visual-line mode select range of lines, press `:'<,'>m$` to move to the end of file.
+
+Remember that the '<,'> range stands for the visual selection. We could easily make another visual selection and then repeat the :'<,'>m$ command to move the selected text to the end of the file. Repeating the last Ex command is as easy as pressing `@:`
+
+---
+
+If we want to run a Normal mode command on a series of consecutive lines, we can do so using the `:normal` command. When used in combination with the dot command or a macro, we can perform repetitive tasks with very little effort
+
+Use visual-line mode to select range of line > `:'<,'>normal .` => For each line in the visual selection, execute the Normal mode `.` command.
+
+`:%normal A;` append a `;` to the end of every line of the file (`%`).
+
+Before executing the specified Normal mode command on each line, Vim moves the cursor to the beginning of the line. So we don’t have to worry about where the cursor is positioned when we execute the command. This single command could be used to comment out an entire JavaScript file:
+
+`:%normal i//`
+
+While it’s possible to use :normal with any normal command, I find it most powerful when used in combination with one of Vim’s repeat commands: either :normal . for simple repeats or `:normal @q` for more complex tasks.
+
+---
+
+While the `.` command can be used to repeat our most recent Normal mode
+command, we have to use `@:` instead if we want to repeat the last Ex command. Knowing how to reverse the last command is always useful, so we’ll consider that, too, in our discussion.
+
+---
+
+Tab-Complete Your Ex Commands
+
+`:col<C-d>` => The `<C-d>` command asks Vim to reveal a list of possible completions.  
+If we hit the `<Tab>` key, the prompt will cycle through the suggestion. We can scroll backward through the suggestions by pressing `<S-Tab>`.
+
+Suppose we want to change the color scheme, but we can’t remember the name of the theme we want. We could use the `<C-d>` command to show all the options:
+
+`:colorscheme <C-d>`
+
+This time, <C-d> shows a list of suggestions based on the color schemes that are available. If we wanted to enable the solarized theme, we could just type the letters “so” and then hit the `Tab` key to complete our command.
+
+---
+
+Even in Command-Line mode, Vim always knows where the cursor is positioned and which split window is active. To save time, we can insert the current word (or WORD) from the active document onto our command prompt.
+
+At Vim’s command line, the `<C-r><C-w>` mapping copies the word under the cursor and inserts it at the command-line prompt. We can use this to save ourselves a bit of typing.
+
+While <C-r><C-w> gets the word under the cursor, we can instead use `<C-r><C-a>` if we want to get the WORD.
 
 ### Operator-Pending Mode
 
