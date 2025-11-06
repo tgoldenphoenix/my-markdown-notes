@@ -18,9 +18,9 @@ The **network core**: the mesh of packet switches and links that interconnects t
 ## The Network Edge
 
 - host = end systems. This term refers to many different things:
-  * desktop computers, Linux workstations, and so-called servers that store and transmit information such as Web pages and e-mail messages
-  * smartphones, tablets
-  * TVs, gaming consoles, thermostats, home security systems, home appliances, watches, eye glasses, cars, traffic control systems
+  - desktop computers, Linux workstations, and so-called servers that store and transmit information such as Web pages and e-mail messages
+  - smartphones, tablets
+  - TVs, gaming consoles, thermostats, home security systems, home appliances, watches, eye glasses, cars, traffic control systems
 
 End systems are also referred to as **hosts** because they host (that is, run) application programs such as a Web browser program, a Web server program, an e-mail.
 
@@ -51,7 +51,7 @@ The postal service, of course, provides more than one service to its custom-ers.
 
 **WebSocket** is a modern web technology built on top of that foundation.
 
-- An internet application (or "web app") is a complete program that humans use, typically in a web browser. 
+- An internet application (or "web app") is a complete program that humans use, typically in a web browser.
 - A web service (or API) is a system that machines (other programs) use to get data or perform an action.
 - A web service is often a part of an internet application.
 
@@ -133,9 +133,9 @@ A **packet switch** (Noun) takes a packet arriving on one of its incoming commun
 The sequence of communication links and packet switches traversed by a packet from the send-ing end system to the receiving end system is known as a **route** or **path** through the network.
 
 - (Link-layer) switch:
-  * layer 2 (Link)
-  * connects devices within a single local network (LAN)
-  * Using MAC address (Physical)
+  - layer 2 (Link)
+  - connects devices within a single local network (LAN)
+  - Using MAC address (Physical)
 - router: layer 3 (Network) connects different networks together. It uses IP Address (Logical)
 
 While link-layer switches do not recognize IP addresses, they are capable of recognizing layer 2 addresses, such as Ethernet addresses.
@@ -192,10 +192,10 @@ The packet of information at the application layer is called a **message**. Mnem
 This is the only layer that directly interacts with data from the user. Software applications like web browsers and email clients rely on the application layer to initiate communications. But it should be made clear that client software applications are not part of the application layer; rather the application layer is responsible for the protocols and data manipulation that the software relies on to present meaningful data to the user.
 
 - Application layer protocols include:
-  * HTTP: Web document request and transfer
-  * SMTP: which provides for the transfer of e-mail messages
-  * FTP: transfer of files between two end systems
-  * domain name system (DNS)
+  - HTTP: Web document request and transfer
+  - SMTP: which provides for the transfer of e-mail messages
+  - FTP: transfer of files between two end systems
+  - domain name system (DNS)
 
 ## 05-Session & 06-Presentation Layers
 
@@ -218,8 +218,8 @@ This layer transports application-layer messages above it between application en
 In this book, we’ll refer to a transport-layer packet as a **segment**. Menomonic: transport semen.
 
 - At this layer, commonly used protocols include:
-  * Transmission Control Protocol (TCP): connection-oriented, guaranteed delivery of application-layer message; also provide flow control (that is, sender/receiver speed matching)
-  * User Datagram Protocol (UDP): a lossy connectionless protocol, provides no reliability, no flow control, and no congestion control. 
+  - Transmission Control Protocol (TCP): connection-oriented, guaranteed delivery of application-layer message; also provide flow control (that is, sender/receiver speed matching)
+  - User Datagram Protocol (UDP): a lossy connectionless protocol, provides no reliability, no flow control, and no congestion control.
 
 TCP is commonly used where all data must be intact (e.g. file share), whereas UDP is used when retaining all packets is less critical (e.g. video streaming).
 
@@ -234,8 +234,8 @@ The Internet transport-layer protocol (TCP or UDP) in a source host passes a tra
 The **network layer** (IP layer) is concerned with concepts such as routing, forwarding, and addressing across a dispersed network or multiple connected networks of nodes or machines. The network layer may also manage flow control. Across the internet, the Internet Protocol v4 (IPv4) and [IPv6](https://aws.amazon.com/vpc/ipv6/) are used as the main network layer protocols.
 
 - This layer includes:
-  * IP Protocol defines the fields in the datagram as well as how the end systems and routers act on these fields.
-  * (many different) Routing protocols that determine the routes that datagrams take between sources and destina-tions.
+  - IP Protocol defines the fields in the datagram as well as how the end systems and routers act on these fields.
+  - (many different) Routing protocols that determine the routes that datagrams take between sources and destina-tions.
 
 The network layer is often a mixed implementation of hardware and software.
 
@@ -248,10 +248,10 @@ To move a packet from one node (host or router) to the next node in the route, t
 The **data link** layer refers to the technologies used to connect two machines across a network where the physical layer already exists. It manages data frames, which are digital signals encapsulated into data packets. Flow control and error control of data are often key focuses of the data link layer.
 
 - This layer includes:
-  * Ethernet
-  * WiFi
-  * the cable access network’s DOCSIS protocol
-  * PPP
+  - Ethernet
+  - WiFi
+  - the cable access network’s DOCSIS protocol
+  - PPP
 
 ## 01: Physical Layer
 
@@ -265,35 +265,35 @@ Because the physical layer and data link layers are responsible for handling com
 
 ## IPv4, IPv6 & MAC Address
 
-The version of TCP/IP that has been in widespread use for three decades is proto-col revision 4, aka IPv4. It uses four-byte IP addresses. A modernized version, IPv6, expands the IP address space to 16 bytes and incorporates several other les-sons learned from the use of IPv4.
+The version of TCP/IP that has been in widespread use for three decades is protocol revision 4, aka IPv4. It uses four-byte IP addresses. A modernized version, IPv6, expands the IP address space to 16 bytes and incorporates several other lessons learned from the use of IPv4.
 
 The development of IPv6 was to a large extent motivated by the concern that we are running out of 4-byte IPv4 address space.
 
-`xxx.xxx.xxx.xxx` is a common placeholder for an IPv4 address. It's a 32-bit numerical label used to identify a device on a network.
+**Dotted-Decimal notation** (`xxx.xxx.xxx.xxx`) is the format of an IPv4 address. It's a 32-bit numerical label used to identify a device on a network. The format `xxx.xxx.xxx.xxx` represents four separate numbers (called "octets") separated by dots. Each xxx is a number that can range from 0 to 255 (one byte 2^8).
 
-The format `xxx.xxx.xxx.xxx` represents four separate numbers (called "octets") separated by dots. Each xxx is a number that can range from 0 to 255 (one byte 2^8).
-
-One byte is equal to one octet, as an octet is defined as a unit of digital information consisting of exactly eight bits
+An address like `192.168.1.1` represent a 32-bit number (4 x 8 bits). Each of the four numbers is the decimal value of one octet (`0-255`).
 
 ---
 
-In networking, an **octet** is a unit of size means "a group of 8 bits"" (one byte)
+IPv6 addresses are much longer (128 bits, 16 x 8 bits), so using decimal would be impractical. Instead, we use hexadecimal, separated by colons.
 
-We use the word "octet" instead of "byte" because, historically, a "byte" could mean different sizes (like 6 or 7 bits) depending on the computer architecture. "Octet" is unambiguous.
-
-The most famous example is an IPv4 address. An address like 192.168.1.1 is a 32-bit number (4 x 4 bit), but we always read and write it as four octets separated by dots (`xxx.xxx.xxx.xxx` instead of `xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx.`).
-
-Each of the four numbers in an IP address (192, 168, 1, 1) is the decimal value of one 8-bit octet.
-
-The octal number system is **NOT** used for IP addresses. One octal digit can only represents exactly three binary digits.
+Có 8 groups separated by `:`, each group containing four hexadecimal digits. We have: `8 groups x (8 x 2) bits = 128 bits`.
 
 ### MAC Address
 
 MAC Address: Uses Hexadecimal (Base-16).
 
-A MAC address (e.g., `00:1A:2B:3C:4D:5E`) is a 48-bit number (6 bytes). We use hexadecimal (digits 0-9 and A-F) because it's a very compact and readable way to represent the underlying binary data.
+A MAC address (e.g., `00:1A:2B:3C:4D:5E`) is a 48-bit number (8 x 6 bytes). We use hexadecimal (digits 0-9 and A-F) because it's a very compact and readable way to represent the underlying binary data.
 
 ## Number Systems: Decimal, Binary, Octal, Hexadecimal
+
+In networking, an **octet** is a unit of size means "a group of 8 bits" (one byte). It is `0-255` in decimal & `00000000-11111111` in binary.
+
+We use the word "octet" instead of "byte" because, historically, a "byte" could mean different sizes (like 6 or 7 bits) depending on the computer architecture. "Octet" is unambiguous.
+
+The decimal range `0-255` represents all the possible values that can be stored in one 8-bit byte (256 different values).
+
+---
 
 Use this online [Base Converter](https://www.rapidtables.com/convert/number/base-converter.html)
 
@@ -322,17 +322,20 @@ Example: The number 37 means (3 × 8) + (7 × 1) = 31 in decimal.
 The most common place you'll see the octal system today is in Linux/macOS file permissions. When you use the `chmod` command, you're often using octal numbers:
 
 - `chmod 755`
-  * 7 (octal) = 111 (binary) = Read + Write + Execute
-  * 5 (octal) = 101 (binary) = Read + Execute
-  * 5 (octal) = 101 (binary) = Read + Execute
+  - 7 (octal) = 111 (binary) = Read + Write + Execute
+  - 5 (octal) = 101 (binary) = Read + Execute
+  - 5 (octal) = 101 (binary) = Read + Execute
+
+The octal number system is **NOT** used for IPv4 (it use decimal from `0-255` to represent 1 byte). One octal digit can only represents exactly three binary digits.
 
 ---
 
 Hexadecimal is base-16. Digits used: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A (10), B (11), C (12), D (13), E (14), F (15)`
 
-It's a very compact way to represent binary data. One "hex" digit represents exactly four binary digits (`F = 1111`, 15 = 8 + 4 + 2 + 1). It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and MAC addresses
+It's a very compact way to represent binary data. It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and MAC addresses
 
-2 hex digit represent 8 bits (1 byte, 1 octet): `FF = 11111111 = 255`
+- One "hex" digit represents exactly four binary digits (`F = 1111`, 15 = 8 + 4 + 2 + 1)
+- 2 hex digit represent 8 bits (1 byte, an octet): `FF = 11111111 = 255`
 
 Example: The number F3 means (15 × 16) + (3 × 1) = 243 in decimal
 
@@ -341,8 +344,8 @@ Example: The number F3 means (15 × 16) + (3 × 1) = 243 in decimal
 ## TCP/IP
 
 - TCP and IP are two separate protocols that operate on different layers of the OSI model:
-  * TCP (Transmission Control Protocol) belongs to Layer 4 (Transport Layer).
-  * IP (Internet Protocol) belongs to Layer 3 (Network Layer).
+  - TCP (Transmission Control Protocol) belongs to Layer 4 (Transport Layer).
+  - IP (Internet Protocol) belongs to Layer 3 (Network Layer).
 - They are almost always used together, so they are commonly grouped as the "TCP/IP suite."
 - IP handles the addressing and routing (like the post office), while TCP handles the reliable, in-order conversation (like a phone call).
 
@@ -380,3 +383,4 @@ Internet addressing (more commonly known as IP addressing) is used. IP addresses
 The mapping from IP addresses to hardware addresses is implemented at the link layer of the TCP/IP model.
 
 hostnames (like `anhao.com`) are really just a convenient shorthand for IP addresses, and as such, they refer to network interfaces rather than computers.
+
