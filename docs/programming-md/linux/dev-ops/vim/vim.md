@@ -602,6 +602,34 @@ At Vim’s command line, the `<C-r><C-w>` mapping copies the word under the curs
 
 While <C-r><C-w> gets the word under the cursor, we can instead use `<C-r><C-a>` if we want to get the WORD.
 
+---
+
+Press `:`, then press `<Up>` & `<Down>` (or, preferably, `<C-p>` & `<C-n>`) arrow key to cycle through command history.
+
+But there’s a disadvantage to the <C-p> and <C-n> commands: unlike <Up> and <Down> , they don’t filter the command history. We can get the best of both by creating the following custom mappings:
+
+```bash
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+```
+
+Now try typing `:help`, followed by the <Up> key. Again, this should scroll through previous Ex commands, but instead of showing everything, the list will be filtered to only include Ex commands that started with the word “help".
+
+Press `/` to search, press `<Up>` to cycle through search history.
+
+---
+
+The command-line window is like a regular Vim buffer, where each line con-tains an item from our history. This allows us to change histor-ical commands using the full modal editing power of Vim (normal & insert mode).
+
+Press `q:`to bring up the command-line window. Close it by running `:q` (just like any ordinary Vim window) or by pressing `<CR>`. When we press the `<CR>` key, the contents of the current line are executed as an Ex command.
+
+- `q/` Open the command-line window with history of searches
+- `q:` Open the command-line window with history of Ex commands
+- In Command-Line mode, we can use the `<C-f>` mapping to switch to the command-line window
+
+- merge two records from our history into one
+
+
 ### Operator-Pending Mode
 
 We use it dozens of times daily, but it usually lasts for just a fraction of a second. For example, we invoke it when we run the command `dw`. It lasts during the brief interval between pressing `d` and `w`keys. Blink and you’ll miss it!

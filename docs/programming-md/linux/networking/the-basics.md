@@ -173,6 +173,10 @@ Nó không thể tạo mạng, không thể cấp IP (DHCP), và không thể ch
 
 Nó giống như một ổ cắm điện: bạn cắm 1 phích vào, nó chia ra 5, 8 cổng y hệt nhau, chứ nó không quản lý dòng điện.
 
+## Delay
+
+To get a hands-on feel for end-to-end delay in a computer network, we can make use of the `Traceroute` program.
+
 ## Protocol Stack
 
 Mnemonic: Please Do Not Throw Sausage Pizza Away
@@ -259,11 +263,80 @@ Because the physical layer and data link layers are responsible for handling com
 
  For example, Ether-net has many physical-layer protocols: one for twisted-pair copper wire, another for coaxial cable, another for fiber, and so on. In each case, a bit is moved across the link in a different way.
 
-## IPv4 and IPv6
+## IPv4, IPv6 & MAC Address
 
 The version of TCP/IP that has been in widespread use for three decades is proto-col revision 4, aka IPv4. It uses four-byte IP addresses. A modernized version, IPv6, expands the IP address space to 16 bytes and incorporates several other les-sons learned from the use of IPv4.
 
 The development of IPv6 was to a large extent motivated by the concern that we are running out of 4-byte IPv4 address space.
+
+`xxx.xxx.xxx.xxx` is a common placeholder for an IPv4 address. It's a 32-bit numerical label used to identify a device on a network.
+
+The format `xxx.xxx.xxx.xxx` represents four separate numbers (called "octets") separated by dots. Each xxx is a number that can range from 0 to 255 (one byte 2^8).
+
+One byte is equal to one octet, as an octet is defined as a unit of digital information consisting of exactly eight bits
+
+---
+
+In networking, an **octet** is a unit of size means "a group of 8 bits"" (one byte)
+
+We use the word "octet" instead of "byte" because, historically, a "byte" could mean different sizes (like 6 or 7 bits) depending on the computer architecture. "Octet" is unambiguous.
+
+The most famous example is an IPv4 address. An address like 192.168.1.1 is a 32-bit number (4 x 4 bit), but we always read and write it as four octets separated by dots (`xxx.xxx.xxx.xxx` instead of `xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx.`).
+
+Each of the four numbers in an IP address (192, 168, 1, 1) is the decimal value of one 8-bit octet.
+
+The octal number system is **NOT** used for IP addresses. One octal digit can only represents exactly three binary digits.
+
+### MAC Address
+
+MAC Address: Uses Hexadecimal (Base-16).
+
+A MAC address (e.g., `00:1A:2B:3C:4D:5E`) is a 48-bit number (6 bytes). We use hexadecimal (digits 0-9 and A-F) because it's a very compact and readable way to represent the underlying binary data.
+
+## Number Systems: Decimal, Binary, Octal, Hexadecimal
+
+Use this online [Base Converter](https://www.rapidtables.com/convert/number/base-converter.html)
+
+Decimal is called "base-10" because it uses ten digits (0–9).
+
+Example: The number 253 means (2 × 100) + (5 × 10) + (3 × 1). Each position is a power of 10
+
+---
+
+Binary is "base-2" because it only uses two digits (0 and 1).
+
+Example: The number 1101 means (1 × 8) + (1 × 4) + (0 × 2) + (1 × 1) = 13 in decimal. Each position is a power of 2.
+
+`0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, ...`
+
+---
+
+Octal is base-8. Digits used: `0, 1, 2, 3, 4, 5, 6, 7`
+
+One octal digit represents exactly three binary digits (`7 = 111`, 7 = 4+2+1).
+
+Example: The number 37 means (3 × 8) + (7 × 1) = 31 in decimal.
+
+`0 1 2 3 4 5 6 7 10 11 12 13 14 15 16 17 20, ...`
+
+The most common place you'll see the octal system today is in Linux/macOS file permissions. When you use the `chmod` command, you're often using octal numbers:
+
+- `chmod 755`
+  * 7 (octal) = 111 (binary) = Read + Write + Execute
+  * 5 (octal) = 101 (binary) = Read + Execute
+  * 5 (octal) = 101 (binary) = Read + Execute
+
+---
+
+Hexadecimal is base-16. Digits used: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A (10), B (11), C (12), D (13), E (14), F (15)`
+
+It's a very compact way to represent binary data. One "hex" digit represents exactly four binary digits (`F = 1111`, 15 = 8 + 4 + 2 + 1). It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and MAC addresses
+
+2 hex digit represent 8 bits (1 byte, 1 octet): `FF = 11111111 = 255`
+
+Example: The number F3 means (15 × 16) + (3 × 1) = 243 in decimal
+
+`0 1 2 3 4 5 6 7 8 9 A B C D E F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C, ...`
 
 ## TCP/IP
 

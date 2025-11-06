@@ -25,6 +25,22 @@ viết code phải có tính module để có thể tái sử dụng
 
 Kế hoạch training: <https://ever-rise.backlog.jp/alias/wiki/560214>
 
+- sếp yêu cầu làm việc vận hành bằng ticket cho tốt hơn:
+  * không tạo ticket chỉ có tiêu đề không. Tiêu đề không phải là sửa cái gì mà ý nghĩa của việc đó là gì
+  * có bao nhiêu vấn đề cần giải quyết thì tạo ticket hết, còn việc có sửa có giải quyết hay không thì tính sao
+  * Mỗi ticket cần làm rõ Goal/ mục tiêu cần đạt được là gì
+
+- Mỗi ticket thì phải có ít nhất 3 điểm/ phần:
+  1. Vấn đề gặp phải là gì?
+  2. Tại sao lại làm lại chỉnh sửa như vậy
+  3. Hiệu quả của việc đó là gì?
+
+Ví dụ 1
+
+1. Vấn đề tên biến không đồng nhất, sẽ gây khó hiểu trong lúc đọc source
+2. Cần đồng nhất tên biến trong hệ thống 
+3. Hiệu quả : sẽ làm cho source trở nên dễ đọc dễ bảo trì hơn 
+
 ## Họp kỹ thuật tuần
 
 Họp kỹ thuật thứ 5 xen kẽ (2 tuần 1 lần) vào lúc 4h chiều.
