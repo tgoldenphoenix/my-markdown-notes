@@ -62,7 +62,14 @@ Refactor code (Mr Hào chuẩn bị phần này, xoáy vào những vấn đề 
 
 k
 
+## Nghỉ phép
+
+1 tháng 1 ngày phép có lương
+
 ## Read if have time
+
+- Numeral Systems in Programming: https://www.youtube.com/watch?v=e9MOCR8oX0A
+- Number system playlist: https://www.youtube.com/watch?v=VLflTjd3lWA\&list=PL0o\_zxa4K1BXCpQbUdf0htZE8SS0PYjy-
 
 - java 8:
   - Stream API
@@ -105,7 +112,7 @@ Thêm demo vào return a new promise  in `.then` vs return a normal value
 
 Cách resolve commit with local ide code editor not on web
 
-## task hiện tai
+## Task hiện tai
 
 xếp muốn dùng firstButton, không dùng editButton
 script.js trong readme sai chính tả
@@ -137,3 +144,12 @@ const userResponse = confirm("...");
 if (userResponse) {}
 ```
 
+- ``new RegExp(`^${RegExp.escape(wikiPageName)}$`)``: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/RegExp/test>
+- `.search(/[^\w\s']/g)`: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/String/search
+
+## Miscellaneous
+
+- https://slackmojis.com/
+- <https://ezgif.com/resize>
+
+[Sách networking resource](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#student,isbn=0136681557)

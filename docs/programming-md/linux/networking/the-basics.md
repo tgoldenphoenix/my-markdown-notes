@@ -177,6 +177,8 @@ Nó giống như một ổ cắm điện: bạn cắm 1 phích vào, nó chia ra
 
 To get a hands-on feel for end-to-end delay in a computer network, we can make use of the `Traceroute` program.
 
+Có một số GUI cho traceroute.
+
 ## Protocol Stack
 
 Mnemonic: Please Do Not Throw Sausage Pizza Away
@@ -184,6 +186,8 @@ Mnemonic: Please Do Not Throw Sausage Pizza Away
 The name of the primitive data unit depends on the layer of the protocol. At the link layer it is called a **frame**, at the IP layer a packet, and at the TCP layer a segment.
 
 The Internet protocol stack consists of five layers: the physical, link, network, transport, and application layer. Trong sách không đề cập tới: session, presentation layers.
+
+OSI model ở trên là gần user nhất (application layer 7), layers ở dưới là gần hardware nhất.
 
 ## 07: Application Layer
 
