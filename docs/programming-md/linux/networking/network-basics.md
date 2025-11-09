@@ -273,7 +273,7 @@ The version of TCP/IP that has been in widespread use for three decades is proto
 
 The development of IPv6 was to a large extent motivated by the concern that we are running out of 4-byte IPv4 address space.
 
-**Dotted-Decimal notation** (`xxx.xxx.xxx.xxx`) is the format of an IPv4 address. It's a 32-bit numerical label used to identify a device on a network. The format `xxx.xxx.xxx.xxx` represents four separate numbers (called "octets") separated by dots. Each xxx is a number that can range from 0 to 255 (one byte 2^8).
+**Dotted-Decimal notation** (`xxx.xxx.xxx.xxx`) is the format of an IPv4 address. It's a **32-bit** (4 x 8 bits) numerical label used to identify a device on a network. The format `xxx.xxx.xxx.xxx` represents four separate numbers (called "octets") separated by dots. Each xxx is a number that can range from 0 to 255 (one byte 2^8).
 
 An address like `192.168.1.1` represent a 32-bit number (4 x 8 bits). Each of the four numbers is the decimal value of one octet (`0-255`).
 

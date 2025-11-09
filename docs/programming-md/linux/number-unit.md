@@ -15,6 +15,10 @@ Decimal is called "base-10" because it uses ten digits (0–9).
 
 Example: The number 253 means (2 × 100) + (5 × 10) + (3 × 1). Each position is a power of 10
 
+- `1` means "on / yes / true"; a truthy value in programming languages
+- `0` means "off / no / false"
+- Linux exit code `0` is successful. Any non-zero exit code (from 1 to 255) signifies error => Hiểu `0` la2 "no error"
+
 ## Binary
 
 Binary is "base-2" because it only uses two digits (0 and 1).
@@ -32,6 +36,38 @@ Example: The number 1101 means (1 × 8) + (1 × 4) + (0 × 2) + (1 × 1) = 13 in
 - 2^6 = 64
 - 2^7 = 128
 - 2^8 = 256
+
+### Decimal => binary
+
+1. The subtraction method
+2. Successive division
+
+75 = 64 + 8 + 2 + 1 => `1001011`
+
+142 = 128 + 8 + 4 + 2 => `10001110`
+
+339 = 256 + 64 + 16 + 2 + 1 => `101010011`
+
+---
+
+- 75 / 2 = 37 R 1 <- Least Significant Bit
+- 37 / 2 = 18 R 1
+- 18 / 2 = 9 R 0
+- 9 / 2 = 4 R 1
+- 4 / 2 = 2 R 0
+- 2 / 2 = 1 R 0
+- 1 / 2 = 0 R 1 <- Most Significant Bit
+- => `75 = 1001011` (write it from bottom -> top)
+
+- 142/2 = 71 R 0
+- 71/2 = 35 R 1
+- 35/2 = 17 R1
+- 17/2 = 8 R1
+- 8/2 = 4
+- 4/2 = 2
+- 2/2 = 1
+- 1/2 = 0 R1
+- => `142 = 1001110`
 
 ## Octal
 
@@ -72,3 +108,7 @@ It's a very compact way to represent binary data. It's commonly used for colors 
 Example: The number F3 means (15 × 16) + (3 × 1) = 243 in decimal
 
 `0 1 2 3 4 5 6 7 8 9 A B C D E F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C, ...`
+
+### Decimal -> Hexadecimal
+
+k
