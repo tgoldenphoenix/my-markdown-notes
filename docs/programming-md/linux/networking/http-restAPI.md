@@ -149,10 +149,11 @@ const response = await fetch(`https://example.org/login?${params}`);
 
 Responses are grouped into five classes: informational responses, successful responses, redirects, client errors, and server errors.
 
-- 200: OK. The request has succeeded.
-- 301: Moved Permanently. This response code means that the URI of requested resource has been changed.
-- 404: Not Found. The server cannot find the requested resource.
+- `200 OK`: The request has succeeded.
+- `301 Moved Permanently`: Requested object has been permanently moved; the new URL is specified in `Location:` header of the response message. The client software will automatically retrieve the new URL.
 
+- `400 Bad Request`: This is a generic error code indicating that the request could not be understood by the server.
+- `404 Not Found`: The server cannot find the requested resource.
 - `401`: Unauthorized => The HTTP `401` Unauthorized status code is a bit ambiguous. Usually, it’s used to represent a **failed authentication** rather than an authorization. Develop-ers employ it in the design of the application for cases such as missing or incor-rect credentials. For a failed authorization, we’d probably use the 403 Forbidden status. Generally, an HTTP 403 means that the server identified the caller of the request, but they don’t have the needed privileges for the call that they are trying to make.
 
 ## Caching

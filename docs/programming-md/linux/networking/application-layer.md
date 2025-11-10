@@ -22,3 +22,22 @@ The Internet (and, more generally, TCP/ IP networks) makes two transport protoco
 
 connection-oriented service and a reliable data transfer service.
 
+### TSL - Transport Layer Security
+
+Neither TCP nor UDP provides any encryption - the data that the sending process passes into its socket is the same data that travels over the network to the destina-tion process.
+
+So, for example, if the sending process sends a password in cleartext (i.e., unencrypted) into its socket, the cleartext password will travel over all the links between sender and receiver, potentially getting sniffed and discovered at any of the intervening links.
+
+TCP can be easily enhanced at the application layer with TLS to provide security services.
+
+## UDP
+
+connectionless, unreliable data transfer service, no guarantee
+
+## HTTP
+
+HTTP uses TCP as its underlying transport protocol (rather than running on top of UDP).
+
+Default port number for HTTP is `80`
+
+The `HEAD` HTTP method is similar to the GET method. When a server receives a request with the HEAD method, it responds with an HTTP message but it leaves out the requested object. Application developers often use the HEAD method for debug-ging.
