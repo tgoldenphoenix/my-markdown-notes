@@ -153,8 +153,19 @@ Responses are grouped into five classes: informational responses, successful res
 - `301 Moved Permanently`: Requested object has been permanently moved; the new URL is specified in `Location:` header of the response message. The client software will automatically retrieve the new URL.
 
 - `400 Bad Request`: This is a generic error code indicating that the request could not be understood by the server.
-- `404 Not Found`: The server cannot find the requested resource.
+- `404 Not Found`: The requested document does not exist on this server.
 - `401`: Unauthorized => The HTTP `401` Unauthorized status code is a bit ambiguous. Usually, it’s used to represent a **failed authentication** rather than an authorization. Develop-ers employ it in the design of the application for cases such as missing or incor-rect credentials. For a failed authorization, we’d probably use the 403 Forbidden status. Generally, an HTTP 403 means that the server identified the caller of the request, but they don’t have the needed privileges for the call that they are trying to make.
+
+`505 HTTP Version Not Supported`: The requested HTTP protocol ver-sion is not supported by the server.
+
+API của nulbab's backlog trả về `response`, từ đó ta gọi `data = await response.json()`.
+
+- GET wiki page returns:
+  * 404 Not Found nếu id bị sai: `response.status = 404; response.ok = false`
+
+- GET wiki page list returns:
+  * array of objects
+  * empty array if not found: `response.status = 200; response.ok = true` mặc dù không tìm thấy gì. Nên nó sẽ không nhảy vào điều kiện `if` để `throw` error.
 
 ## Caching
 
@@ -209,6 +220,14 @@ Response.arrayBuffer()
   * Response.text()
 
 These are all asynchronous methods, returning a Promise which will be fulfilled with the body content.
+
+## User-Server Interaction: Cookies
+
+An HTTP server is stateless. However, it is often desirable for a Web site to identify users, either because the server wishes to restrict user access or because it wants to serve content as a function of the user identity. For these pur-poses, HTTP uses cookies. Cookies allow sites to keep track of users.
+
+## Web Caching
+
+A **Web cache**—also called a **proxy server**—is a network entity that satisfies HTTP requests on the behalf of an origin Web server.
 
 ## Blob
 

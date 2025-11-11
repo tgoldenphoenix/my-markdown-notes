@@ -277,6 +277,8 @@ The development of IPv6 was to a large extent motivated by the concern that we a
 
 An address like `192.168.1.1` represent a 32-bit number (4 x 8 bits). Each of the four numbers is the decimal value of one octet (`0-255`).
 
+An IP address is **hierarchical** because as we scan the address from left to right, we obtain more and more specific information about where the host is located in the Internet (that is, within which network, in the network of networks).
+
 ---
 
 IPv6 addresses are much longer (128 bits, 16 x 8 bits), so using decimal would be impractical. Instead, we use hexadecimal, separated by colons.

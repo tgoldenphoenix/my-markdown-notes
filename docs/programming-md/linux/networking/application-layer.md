@@ -41,3 +41,35 @@ HTTP uses TCP as its underlying transport protocol (rather than running on top o
 Default port number for HTTP is `80`
 
 The `HEAD` HTTP method is similar to the GET method. When a server receives a request with the HEAD method, it responds with an HTTP message but it leaves out the requested object. Application developers often use the HEAD method for debug-ging.
+
+## Electronic Mail
+
+Simple Mail Transfer Protocol (SMTP) uses TCP
+
+Gmail là một **email service provider**, nó sẽ có **Mail server** của riêng nó. Ngoài gmail ra còn có các ESP như: Microsoft Outlook, Yahoo mail, iCloud mail. Mỗi ESP sẽ có những mail server riêng của tụi nó.
+
+Mail server của ESP này có thể send mail tới mail server của ESP khác.
+
+Mình có thể tự build custom mail server nhưng sẽ có nhiều challenge.
+
+- `@gmail.com`
+- `@outlook.com`
+- `@yahoo.com`
+- `@icloud.com`
+- Ngoài ra còn có nhiều cách config tên khác nhau
+
+It is important to observe that SMTP does not normally use intermediate mail serv-ers for sending mail, even when the two mail servers are located at opposite ends of the world. If Alice’s server is in Hong Kong and Bob’s server is in St. Louis, the TCP connection is a direct connection between the Hong Kong and St. Louis servers.
+
+- Client SMTP sends mail
+- Server SMTP receive mail
+
+## DNS—The Internet’s Directory Service
+
+The DNS is (1) a **distributed database** implemented in a hierarchy of DNS servers, and (2) an **application-layer protocol** that allows hosts to query the distributed database.
+
+The DNS protocol runs over UDP and uses port 53.
+
+Like HTTP, FTP, and SMTP, the DNS protocol is an application-layer protocol since it relies on an underlying end-to-end transport protocol (UDP) to transfer DNS messages between communicating end systems.  
+However, the role of the DNS is quite different from Web, file transfer, and e-mail applications. Unlike these applications, the DNS is not an application with which a user directly interacts.
+
+DNS uses a large number of servers, organized in a hierarchical fashion and distributed around the world. No single DNS server has all of the mappings for all of the hosts in the Internet.
