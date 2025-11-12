@@ -123,11 +123,10 @@ The bottom level is access ISP. End systems (PCs, smartphones, Web servers, mail
 
 **Packets** (packages of information) là từ để chỉ chung datas đã được segmented (chia nhỏ ra) & send over the Internet through communication links & packet switches.
 
-A **packet switch** (Noun) takes a packet arriving on one of its incoming communication links and forwards that packet on one of its outgoing communication links.
-
+- A **packet switch** (Noun) takes a packet arriving on one of its incoming communication links and forwards that packet on one of its outgoing communication links.
 - Packet switches có 2 loại chính:
-  1. Link-layer Switches (bộ chia mạng): typically used in access networks
-  2. Routers (bộ định tuyến): typically used in the network core
+  1. Link-layer Switches (bộ chia mạng): typically used in access networks; link-layer (layer 2) devices.
+  2. Routers (bộ định tuyến): typically used in the network core; network-layer (layer 3) devices.
 - Both types of switches forward packets toward their ultimate destinations.
 
 The sequence of communication links and packet switches traversed by a packet from the send-ing end system to the receiving end system is known as a **route** or **path** through the network.

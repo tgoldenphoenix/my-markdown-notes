@@ -159,25 +159,51 @@ Other prefixes
 
 ## Vim Motions
 
+Unlike many text editors, Vim makes a distinction between **real lines** and **display lines**. When the `wrap` setting is enabled (and it’s on by default), each line of text that exceeds the width of the window will display as wrapped, ensuring that no text is truncated from view. As a result, a single line in the file may be represented by multiple lines on the display
+
+- `j` down one real line
+- `gj` down one display line
+- `k` & `gk` similar
+- `0` go to beginning of real line
+- `g0` go to beginning of display line
+  
 - Go to beginning of the line:
   - `0` Moves the cursor to the absolute start of the line (column 1).
   - `^` Moves the cursor to the first non-whitespace character on the line.
+  - `g^` To first nonblank character of display line
 - Go to end of the line: `$`
+- `g$` To end of display line
 - `g_` to go to the last non-blank character in the current line.
 
 If you want to go to the column `n` in the current line, you can use `n|`.
 
-### Word Navigation
+Note the pattern: `j, k, 0, and $` all interact with real lines, while prefixing any of these with `g` tells Vim to act on display lines instead.
 
-- Go to the beginning of the next word: `w` or `W`:
+ If you would prefer to have the `j` and `k` keys operate on display lines rather than on
+real lines, you can always remap them. Try putting these lines into your vimrc file
+
+```bash
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+```
+
+These mappings make `j` and `k`move down and up by display lines, while `gj`and `gk` would move down and up by real lines (the opposite of Vim’s default behavior). I wouldn’t recommend using these mappings if you have to work with Vim on many different machines. In that case, getting used to Vim’s default behavior would be better.
+
+### Word-Wise Navigation
+
+- Go to start of next word: `w` or `W`:
   - `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
   - `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
 - Use `w` for smaller, more fine-grain jumps, and `W` for bigger jumps across code separated only by spaces.
+- Backward to start of current / previous word: `b` or `B` (works similar to `w` and `W`).
 
-- Jump of the end of the current word: `e` & `E`
+- Forward to end of current / next word: `e` & `E`
+- Backward to end of previous word `ge` or `gE`
 
-- Jump to the beginning of the **previous word**: `b` or `B` (works similar to `w` and `W`).
-- Go to the end of the previous word `ge` or `gE`
+- `ea` Append at the end of the current word
+- `gea` append at the end of the previous word
 
 So what are the similarities and differences between a word and a WORD? Both word and WORD are separated by blank characters. A word is a sequence of characters containing only `a-zA-Z0-9_` (alphanumeric + `_`). A WORD is a sequence of all characters except white space (a white space means either space, tab, and EOL). To learn more, check out :h word and :h WORD and [this article](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md)
 
@@ -253,6 +279,14 @@ Mark important points in the file that you want to jump to without remembering t
 
 Learn about jump commands in Vim [here](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md#jump)
 
+### Text Objects
+
+Text objects allow us to interact with parentheses, quotes, XML tags, and other common patterns that appear in text.
+
+`vit`, `vat` => vim understand XML tag (or HTML tag) `<xml>tags</xml>`
+
+ the text objects prefixed with `i`select inside the delimiters, whereas those that are prefixed with `a` select everything including the delimiters. As a mnemonic, think of `i` as inside and `a` as around (or all).
+
 ## Registers & Macros
 
 `:h registers` not `:h register`
@@ -299,20 +333,30 @@ Moving Around in Insert Mode Resets the Change: If we use the `<Up> , <Down> , <
 
 Search is a form of Command Line mode. Depending on how we entered Command Line mode, we can browse our Ex Command or search history with the `<Down>` and `<Up>` keys.
 
-- You can scan for next character with `f{char}` or `t{char}` (both are considered motions).
-- `f` takes you to the first letter of the match and `t` takes you till (right before) the first letter of the match. So:
-  - If you want to search for "h" and land on "h", use `fh`.
-  - If you want to search for first "h" and land right before the match, use `th`.
+- You can scan for _character_ within the _current line_ with `f{char}` or `t{char}` (both are considered motions).
+- `f` position the cursor on top of the specified character whereas `t` takes you _till_ (right before) the first letter of the match. So:
+  * If you want to search for "h" and land on "h", use `fh`.
+  * If you want to search for first "h" and land right before the match, use `th`.
+- The search start with the cursor position and continuing to the end of the **current line**.
 
-- If you want to go to the **next occurrence** of the last `f` search, use `;`.
-- To go to the **previous occurrence** of the last current line match, use `,`.
-- A good tip to go anywhere in a line is to look for least-common-letters like "j", "x", "z" near your target.
+- If you want to go to the next occurrence of the last `f` search, use `;`.
+- To go to the previous occurrence of the last current line match, use `,`.
+- A good tip to go anywhere in a line is to look for least-common-letters like `j, x, z`, capital letters, punctuation near your target.
 
 - `F` and `T` are the backward counterparts of `f` and `t`.
 - To search backwards for "h", run `Fh`. To keep searching for "h" in the same direction, use `;`. Note that `;` after a `Fh` searches backward and `,` after `Fh` searches forward.
 
+`dt.` deletes all of the text until the end of the sentence, but not including the period symbol itself.
+
 - Scan document for next/previous match: `/pattern<CR>` or `?pattern<CR>`
 - Use `n` and `N` to repeat and reverse (jump to next and previous instance).
+
+- `; ,` khác `n N` ở chỗ
+  * `; ,` jump đến hết current line là stop.
+  * `n N` jump entire file & loop lại từ đầu nếu đã nhảy đến cuối file.
+
+- The search command `/{text}` can be used while in visual mode & operator-pending mode.
+- `d/ge<CR>` => The search command is an exclusive motion. That means that even though our cursor ends up on the “g” at the start of the word “gets,” that character is excluded from the delete operation
 
 Khi đọc `help` của vim: To go back to where you came from press  `CTRL-o`  (Keep Ctrl down while pressing the letter o).  Repeat to go back further.  `CTRL-I` goes forward. Cái này giống `n` và `N` ở trên.
 
@@ -629,6 +673,24 @@ Press `q:`to bring up the command-line window. Close it by running `:q` (just li
 
 - merge two records from our history into one
 
+---
+
+Run external shell commands in Vim.
+
+From Vim’s Command-Line mode, we can invoke external programs in the shell by prefixing them with a bang symbol (`!`).
+
+`:!ls` view the contents of the current directory
+
+`:ls` calls Vim’s built-in command, which shows the contents of the buffer list.
+
+On Vim’s command line, the `%` symbol is shorthand for the current file name. We can exploit this to run external commands that do something with the current file.
+
+The `:!{cmd}` syntax is great for firing one-off commands, but what if we want to run several commands in the shell? In that case, we can use Vim’s `:shell` command to start an interactive shell session. The `exit` command kills the shell and returns us to Vim.
+
+Pressing `Ctrl-z`suspends the process that’s running Vim and
+returns control to bash. The Vim process sits idle in the background, allowing us to interact with our bash session as normal.
+
+In bash, we can use the `fg` command to resume a suspended job, bringing it back into the foreground. That brings Vim back to life exactly as we left it. The `Ctrl-z` and `fg` commands are quicker and easier to use than Vim’s equivalent :shell and `exit` commands.
 
 ### Operator-Pending Mode
 
@@ -639,6 +701,12 @@ Operator-Pending mode is a state that accepts only motion commands. It is activa
 Many commands are invoked by two or more keystrokes (for examples, look up `:h g`,`:h z`, `:h ctrl-w`, or `:h [`), but in most cases, the first keystroke merely acts as a **prefix** for the second. These commands don’t initiate Operator-Pending mode. Instead, we can think of them as namespaces that expand the number of available command mappings. Only the operator commands initiate Operator-Pending mode.
 
 Why, you might be wondering, is an entire mode dedicated to those brief moments between invoking operator and motion commands, whereas the namespaced com-mands are merely an extension of Normal mode? Good question! Because we can create custom mappings that initiate or target Operator-Pending mode. In other words, it allows us to create custom operators and motions, which in turn allows us to expand Vim’s vocabulary
+
+## Files
+
+### Open Files and Save Them to Disk
+
+The `:edit` command allows us to open files from within Vim, either by specifying an absolute or a relative filepath.
 
 ## Vim settings
 
@@ -662,6 +730,8 @@ If you are trying to get Vim to auto wrap the contents of the current buffer at 
 Section 4 of [this article](https://vimandgit.com/posts/vim/beginners/neovim-and-vim-install-mac-linux-set-up-and-configure-vim.html) explain the `tabstop` and `expandtab` settings in combination
 
 Vim stores its settings in the `~/.vimrc` configuration file. Neovim stores its settings in the `~/.config/nvim/init.vim` configuration file. You can use your existing `.vimrc` settings with Neovim: Just add `source ~/.vimrc` to `~/.config/nvim/init.vim`. This tells Neovim to source your `~/.vimrc` on startup. There are a few Vim features that won't work in Neovim. These features were intentionally removed from Neovim and they are [listed here](https://neovim.io/doc/user/vim_diff.html "Vim features that are removed from Neovim").
+
+Vim assigns a function to almost every key on the keyboard. If we want to create our own custom mappings, which keys should we bind them to? Vim provides the `<Leader>` key as a namespace for our own user-defined commands.
 
 ## Line wrapping
 
