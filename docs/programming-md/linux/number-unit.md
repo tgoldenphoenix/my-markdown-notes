@@ -37,6 +37,12 @@ Example: The number 1101 means (1 × 8) + (1 × 4) + (0 × 2) + (1 × 1) = 13 in
 - 2^7 = 128
 - 2^8 = 256
 
+4 bits max `1111 = 15`, `2^4 = 16`
+
+1 byte max `1111 111 = 255`, `2^8 = 256`
+
+`1 0000 + 1111 = 1 1111` or `16 + 15 = 31`
+
 ### Decimal => binary
 
 1. The subtraction method

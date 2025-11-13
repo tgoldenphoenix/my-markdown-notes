@@ -116,7 +116,8 @@ The `http://` part of the URl is the protocol/scheme
 
 Nếu send passwords over a `http` protocol thì sẽ bị thấy.
 
-Domain name must be read from left <- right.
+- Domain name must be read from left <- right.
+- IP address should be read from left -> right (giống số decimal bình thường mình cũng đọc như vậy, hàng thousands -> hundreds -> tens).
 
 `example.com.` is a **domain name**. Parts of DNs are separated by a period `.`; The trailing `.` at the end is the **root** of the Internet's namespace.
 

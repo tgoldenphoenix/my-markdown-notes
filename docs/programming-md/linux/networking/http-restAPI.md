@@ -156,7 +156,7 @@ Responses are grouped into five classes: informational responses, successful res
 - `404 Not Found`: The requested document does not exist on this server.
 - `401`: Unauthorized => The HTTP `401` Unauthorized status code is a bit ambiguous. Usually, it’s used to represent a **failed authentication** rather than an authorization. Develop-ers employ it in the design of the application for cases such as missing or incor-rect credentials. For a failed authorization, we’d probably use the 403 Forbidden status. Generally, an HTTP 403 means that the server identified the caller of the request, but they don’t have the needed privileges for the call that they are trying to make.
 
-`505 HTTP Version Not Supported`: The requested HTTP protocol ver-sion is not supported by the server.
+`505 HTTP Version Not Supported`: The requested HTTP protocol version is not supported by the server.
 
 API của nulbab's backlog trả về `response`, từ đó ta gọi `data = await response.json()`.
 

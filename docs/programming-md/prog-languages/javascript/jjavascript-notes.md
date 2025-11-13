@@ -920,6 +920,28 @@ Java có 2 khái niệm: `CompletableFuture` & Virtual Threads
 
 hard reload `Ctrl F5`
 
+## `fetch` api
+
+A loop itself is incredibly fast (modern JavaScript engines can loop over 1,000 items in a fraction of a millisecond).
+
+The real performance bottleneck is the parsing. JSON Method: `Fetch` → `Get Raw Text` → Parse Text into 1,000+ Objects (Very Slow) → `Loop 1,000 times (Very Fast)` The `response.json()` part is the most expensive step by far. It has to validate the entire text and use a lot of memory to build 1,000+ individual objects.
+
+---
+
+```javascript
+const response = await fetch(apiUrl);
+
+// response.ok = false or true
+// response.status = 404 (giống postman)
+```
+
+Nếu `fetch()` return `response.ok = false` thì vẫn dùng `response.json()` để coi cái error message từ api trả về (giống như trong postman trả về).  
+`response.json()` nếu có lỗi sẻ trả về một `{error: object[] }`
+
+Cái status lỗi từ api trả về thì coi trong `response.status`
+
+Đôi khi api trả về empty array, status code OK, `response.ok = true` nhưng kết quả trả về là empty array. Phải check truong972 hợp này.
+
 ## FAQs & terms
 
 faq
