@@ -208,7 +208,7 @@ Current problem
 
 [sxhkd](https://github.com/baskerville/sxhkd): Simple X hotkey daemon. This is more for running commands. Kmonad is more for keyboard re-mapping.
 
-**Reference**
+Reference
 
 [wiki keyboard layout](https://en.wikipedia.org/wiki/Keyboard_layout)
 
@@ -250,7 +250,7 @@ By default, Zsh will try to find the user’s configuration files in the `$HOME`
 - `$XDG_CONFIG_HOME` = `$HOME/.config`
 - `$ZDOTDIR` = `\~/.config/zsh`
 
-**Zsh Config files**
+Zsh Config files
 
 `.zshenv` is _always_ sourced. It often contains exported variables that should be available to other programs. For example, `$PATH`, `$EDITOR`, and `$PAGER` are often set in `.zshenv`. Also, you can set `$ZDOTDIR` in `.zshenv` to specify an alternative location for the rest of your zsh configuration. The file `.zshenv` **needs to be in your home directory**. It’s where you’ll set `$ZDOTDIR`. Then, every file read after `.zshenv` can go into your `$ZDOTDIR` directory.
 
@@ -329,6 +329,23 @@ stow -R <packagename> # restows package
 ## Logi option+
 
 `sudo pkill -9 -f logiop` [sourse](https://www.reddit.com/r/logitech/comments/17oz6sy/comment/kwjpcy6/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+
+## Macos
+
+Previous input `Ctrl space`
+
+`Ctrl opt space` next source in Input menu
+
+Global key to change input source
+
+## Windows
+
+`window space`
+
+- In Japanese IME
+  - switch to english: `shift + caps`
+  - katakana `alt caps`
+  - Hiragana `Ctrl caps`
 
 ## Terms
 
