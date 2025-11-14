@@ -24,10 +24,17 @@ An address like `192.168.1.1` represent a 32-bit number (4 x 8 bits). Each of th
 
 An IP address is **hierarchical** because as we scan the address from left to right, we obtain more and more specific information about where the host is located in the Internet (that is, within which network, in the network of networks).
 
+Is there a global authority that has ultimate responsibility for managing the IP address space and allocating address blocks to ISPs and other organizations?  
+Indeed there is! IP addresses are managed under the authority of the **Internet Corporation for Assigned Names and Numbers** (ICANN).
+
 ---
 
 IPv6 addresses are much longer (128 bits, 16 x 8 bits), so using decimal would be impractical. Instead, we use hexadecimal, separated by colons.
 
 Có 8 groups separated by `:`, each group containing four hexadecimal digits. We have: `8 groups x (8 x 2) bits = 128 bits`.
+
+## Control Plane
+
+
 
 

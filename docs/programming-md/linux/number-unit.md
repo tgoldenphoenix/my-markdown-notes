@@ -108,7 +108,7 @@ Hexadecimal is base-16. Digits used: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A (10), B (1
 
 It's a very compact way to represent binary data. It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and MAC addresses
 
-- One "hex" digit represents exactly four binary digits (`F = 1111`, 15 = 8 + 4 + 2 + 1)
+- One "hex" digit represents exactly four binary digits (`F = 1111 = 15`, 15 = 8 + 4 + 2 + 1)
 - 2 hex digit represent 8 bits (1 byte, an octet): `FF = 11111111 = 255`
 
 Example: The number F3 means (15 × 16) + (3 × 1) = 243 in decimal

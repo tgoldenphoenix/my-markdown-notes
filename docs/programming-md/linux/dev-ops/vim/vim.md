@@ -26,8 +26,10 @@ You can also use `:sus`, `:suspend`, :`st`, or `:stop`, which all map to the sam
 To **quit** vim: `:q[uit]` or `:q!` to force quit & dismiss any changes.\
 Đang đọc `:h` mà muốn thoát luôn ra terminal không cần `:q` 2 lần thì dùng `:qa!`
 
-**Write** changes to file (save file): `:write` or `:w`. If it is a new file, you need to give it a name before you can save it: `:w file.txt`\
+**Write** changes to file (save file): `:write` or `:w`. If it is a new file, you need to give it a name before you can save it: `:w file.txt`  
 write & quit: `:wq`
+
+`:x` is also write & quit but it only writes (saves) the file if there have been changes. If there are no changes, it just quits without saving whereas `:wp`Always writes (saves) the file, even if no changes were made, and then quits.
 
 `:w {filename}` save the current Vim file as filename to disk (the current directory). (vimtutor lesson 5.2: MORE ON WRITING FILES)
 
@@ -65,6 +67,9 @@ Both `d` and `c` save deleted text into register.
 
 Press `x` to delete the character under the (block) cursor in normal mode.
 
+- `p` lowercase to put word after the cursor
+- `P` uppercase put word before the cursor
+
 `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
 
 - `de` - to the end of the current word, INCLUDING the last character. Cái này hơi weird, nên dùng `dw`.
@@ -96,7 +101,7 @@ Change the whole line: `cc`
 Delete the rest of the line from cursor block -> EOL: `D` (uppercase `d`) | `C` changes the rest of the line
 
 `dd` + `p`, will put the deleted line to the line below the cursored line not after the cursor.
-To put back text that has just been deleted, type   p .  This puts the deleted text AFTER the cursor (if a line was deleted it will go on the line below the cursor).
+To put back text that has just been deleted, type `p`.  This puts the deleted text AFTER the cursor (if a line was deleted it will go on the line below the cursor).
 
 ### Indentation
 
@@ -217,7 +222,7 @@ Let's talk about what a sentence is first. A sentence ends with either `. ! ?` f
 Match Navigation
 
 - Select the openning curly bracket `{`, press `%` to jump to its closing bracket.
-- `d%` delete till the closing bracket
+- `d%` delete to the closing bracket
 - `dt(` delete everthing up until the opening bracket
 - `yt{` copy everything up until the `{`
 
@@ -287,47 +292,64 @@ Text objects allow us to interact with parentheses, quotes, XML tags, and other 
 
  the text objects prefixed with `i`select inside the delimiters, whereas those that are prefixed with `a` select everything including the delimiters. As a mnemonic, think of `i` as inside and `a` as around (or all).
 
-## Registers & Macros
+- `iw` current word
+- `aw` current word plus one space
+- `iW` current WORD
+- `aW` current WORD plus one space
+- `is` current sentence
+- `as`current sentence + one space
+- `ip` current paragraph
+- `ap` current paragraph plus one blank line
 
-`:h registers` not `:h register`
+The `iw` text object interacts with everything from the first to the last character of the current word. The `aw`text object does the same, but it extends the range to include a whitespace character after or before the word, if one is present.
 
-`:register` or just `:reg` see list of registers in Vim
+- To delete a word, `diw` left us with two adjacent spaces => use `daw`
+- To change a word, use `ciw`
 
-`"<register #>p` paste selected register
-`"<register #>yy` yank the line into a selected register
+As a general rule, we could say that the `d{motion}` command tends to work well with `aw`, `as`, and `ap`, whereas the c{motion} command works better with `iw` and similar.
 
-`"+"` is a special register represent your computer's clipboard. You can `Cmd c` on a browser (copy into clipboard). Then in Vim insert mode type `"+p` to paste the clipboard into Vim file
+### Mark
 
-Let's say you `yy` a line, then `dd` another line. Now you want to paste the line you yanked. Instead of typing `p` (deleting also copy in Vim), you type `"0p`. The `"0"` register stores the last thing that you yank, not by deleting & copy
+Vim’s marks allow us to jump quickly to locations of interest within a document. We can set marks manually, but Vim also keeps track of certain points of interest for us automatically.
 
-`qa` to record a macro. `q` to stop recording
-`@a` to execute the marcro `"a"`
+The `m{a-zA-Z}` command marks the current cursor location with the designated letter. Lowercase marks are local to each individual buffer, whereas uppercase marks are globally accessible.
 
-To paste the text from register a ten times, do `10"ap`
+Vim does nothing to indicate that a mark has been set, but if you’ve done it right, then you should be able to jump directly to your mark with only two keystrokes from anywhere in the file.
 
-**References:**
+Vim provides two Normal mode commands for jumping to a mark. (Pay attention—they look similar!) `’{mark}` moves to the line where a mark was set, positioning the cursor on the first non-whitespace character. The [\`{mark}] command moves the cursor to the exact position where a mark was set, restoring the line and the column at once
 
-[DevOps Toolbox](https://www.youtube.com/watch?v=jSy8WjSyMAE)
+If you commit only one of these commands to memory, go with [\`{mark}]. Whether you care about restoring the exact position or just getting to the right line, this command will get you there. The only time you have to use the ’{mark} form is in the context of an Ex command.
 
-## The Expression Register `=`
+The `mm` and [\`m] commands make a handy pair. Respectively, they set the mark `m` and jump to it.
 
-Most of Vim’s registers contain text either as a string of characters or as entire lines of text. The delete and yank commands allow us to set the contents of a register, while the put command allows us to get the contents of a register by inserting it into the document.
+ The marks that Vim sets for us automatically can be really handy. 
 
-The **expression register** is different. It can evaluate a piece of Vim script code and return the result. Here, we can use it like a calculator. Passing it a simple arithmetic expression, such as 1+1, gives a result of 2. We can use the return value from the expression register just as though it were a piece of text saved in a plain old register.
+- [``] Position before the last jump within current file (giống `<C-o>`)
+- \`. Location of last change
+- \`^ Location of last insertion
+- \`[ Start of last change or yank
+- \`] End of last change or yank
+- \`< Start of last visual selection
+- \`> End of last visual selection
 
-## The Dot Command
+### Jump Between Matching Parentheses
 
-> The dot command lets us repeat the last change.
+Vim provides a motion that lets us move between opening and closing pairs of parentheses. By enabling the `matchit.vim` plugin, we can extend this behavior to work on pairs of XML tags as well as on keywords in some programming languages.
 
-A change could act at the level of individual characters, entire lines, or even the whole file.
+- The `%` motion command jumps between opening & closing parentheses `(), [] or {}}`. You can jump from the open parentheses to the closing one and vice versa.
+  - If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
+  - If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
+  - It's useful for quickly navigating code blocks or checking if brackets are balanced.
 
-`@:` can be used to repeat any Ex command
+When we use the `%` command, Vim automatically sets a mark for the location from which we jumped. We can snap back to it by pressing [``]
 
-- Execute a sequence of changes: `qx{changes}q`
-- repeat: `@x`
-- reverse: `u`
+---
 
-Moving Around in Insert Mode Resets the Change: If we use the `<Up> , <Down> , <Left> , or <Right>` cursor keys while in Insert mode, a new undo chunk is created. It’s just as though we had switched back to Normal mode to move around with the `h, j, k, or l` commands, except that we don’t have to leave Insert mode. This also has implications on the operation of the dot command.
+Plugin `Surround.vim`
+
+- `S"` Surround the selection with a pair of double quote marks. We could just as easily use `S)` or `S}` if we wanted to wrap the selection with opening and closing parentheses or braces. 
+
+We can also use `surround.vim` to change existing delimiters. For example, we could change `{London}` to `[London]` with the `cs}]` command, which can be read as “Change surrounding `{}` braces to `[]` brackets.” Or we could go the other way with the `cs]}` command.
 
 ## Search in File & Substitution
 
@@ -343,10 +365,11 @@ Search is a form of Command Line mode. Depending on how we entered Command Line 
 - To go to the previous occurrence of the last current line match, use `,`.
 - A good tip to go anywhere in a line is to look for least-common-letters like `j, x, z`, capital letters, punctuation near your target.
 
-- `F` and `T` are the backward counterparts of `f` and `t`.
+- Uppercase `F` and `T` are the backward counterparts of `f` and `t`.
 - To search backwards for "h", run `Fh`. To keep searching for "h" in the same direction, use `;`. Note that `;` after a `Fh` searches backward and `,` after `Fh` searches forward.
 
-`dt.` deletes all of the text until the end of the sentence, but not including the period symbol itself.
+- `dt.` deletes all of the text until the end of the sentence, but not including the period symbol itself.
+- `dt{` delete till `{`
 
 - Scan document for next/previous match: `/pattern<CR>` or `?pattern<CR>`
 - Use `n` and `N` to repeat and reverse (jump to next and previous instance).
@@ -363,11 +386,6 @@ Khi đọc `help` của vim: To go back to where you came from press  `CTRL-o`  
 When the search reaches the end of the file it will continue at the start, unless the `wrapscan` option has been reset.
 
 In normal mode, move the cursor to any **word** (not character) > press `*` to search forwards for the next occurrence of that word, or press `#` to search backwards. Sau đó dùng `n` and `N`.
-
-- The `%` motion command jumps to the next matching bracket `(), [] or {}}`. You can jump from the open parentheses to the closing one and vice versa.
-  - If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
-  - If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
-  - It's useful for quickly navigating code blocks or checking if brackets are balanced.
 
 ### The `:substitute` command
 
@@ -392,6 +410,124 @@ Type  `:s/thee/the/g`. Adding the  g  flag means to substitute globally in _the 
 To change every occurrence of a character string between two lines, type   `:#,#s/old/new/g` where #,# are the line numbers of the range of lines where the substitution is to be done.
 Type  `:%s/old/new/g`       to change every occurrence in the whole file.
 Type   `:%s/old/new/gc`    to find every occurrence in the whole file, with a prompt whether to substitute or not.
+
+## Registers & Macros
+
+Vim’s registers are simply containers that hold text. They can be used in the manner of a clipboard for cutting, copying, and pasting text, or they can be used to record a macro by saving a sequence of keystrokes.
+
+In Vim’s terminology, we don’t deal with a clipboard but instead with registers.
+
+`:h registers` not `:h register`
+
+`:register` or just `:reg` see list of registers in Vim
+
+`"<register #>p` paste selected register
+`"<register #>yy` yank the line into a selected register
+
+`"+"` is a special register represent your computer's clipboard. You can `Cmd c` on a browser (copy into clipboard). Then in Vim insert mode type `"+p` to paste the clipboard into Vim file
+
+Let's say you `yy` a line, then `dd` another line. Now you want to paste the line you yanked. Instead of typing `p` (deleting also copy in Vim), you type `"0p`. The `"0"` register stores the last thing that you yank, not by deleting & copy
+
+`qa` to record a macro. `q` to stop recording
+`@a` to execute the marcro `"a"`
+
+To paste the text from register a ten times, do `10"ap`
+
+### The unnamed register `""`
+
+If we don’t specify which register we want to interact with, then Vim will use the unnamed register, which is addressed by the `"` symbol (see :h quote_quote).  
+To address this register explicitly, we have to use two double quote marks: for example, `""p`, which is effectively equivalent to `p` by itself.
+
+`x` cuts the character under the cursor, placing a copy of it in the **unnamed register**. Then the `p` command pastes the contents of the unnamed register after the cursor position.  
+Taken together, the `xp` commands can be considered as “Transpose/swap the next two characters.”
+
+We can just as easily transpose the order of two lines of text. `dd` cuts the current line, placing it into the unnamed register. `p` pastes the contents of the unnamed register after the current line.  
+The `ddp` sequence could be considered to stand for “Transpose the order of this line and its successor.”
+
+`diw` cuts a word & copy it into unnamed register.
+
+### The Yank Register `"0`
+
+When we use the `y{motion}` command, the specified text is copied not only into the unnamed register but also into the yank register, which is addressed by the `0` symbol.
+
+As the name suggests, the yank register is set only when we use the `y{motion}` command. To put it another way: it’s not set by the `x`, `s`, `c{motion}`, and `d{motion}` commands.
+
+`"0P` paste from the yank register
+
+`:reg "0` inspect yank & unnamed register
+
+---
+
+The Named Registers (`"a-"z`)
+
+We can specify which register we want to use by prefixing the command with `"{register}`. If we don’t specify a register, then Vim will use the unnamed register.
+
+Vim has one named register for each letter of the alphabet (see `:h quote_alpha`)
+
+When we address a named register with a lowercase letter, it overwrites the specified register, whereas when we use an uppercase letter, it appends to the specified register.
+
+- `"ayiw`  yank the current word into register `a`
+- `"bdd` cut the current line into register b
+- `"ap`paste the word from register `a`
+- `"bp`paste the line from register `b`
+
+---
+
+The Black Hole Register `"_`
+
+You might be wondering what Vim’s equivalent is for really deleting text—that is, how can you remove text from the document and not copy it into any registers? Vim’s answer is a special register called the black hole, from which nothing returns. The **black hole register** is addressed by the `_` symbol (see `:h quote_`), so `"_d{motion}` performs a true deletion (instead of "cut").
+
+This can be useful if we want to delete text without overwriting the contents of the unnamed register.
+
+---
+
+The System Clipboard (`"+`) and Selection (`"*`) Registers
+
+All of the registers that we’ve discussed so far are internal to Vim. If we want to copy some text from inside of Vim and paste it into an external program (or vice versa), then we have to use one of the system clipboards.
+
+Vim’s plus register references the system clipboard and is addressed by the `+` symbol (see `:h quote+`)
+
+If we use the cut or copy command to capture text in an external application, then we can paste it inside Vim using `"+p` command (or `<C-r>+` from the Insert mode). Conversely, if we prefix Vim’s yank or delete commands with `"+`, the specified text will be captured in the system clipboard. That means we can easily paste it inside other applications
+
+In Windows and Mac OS X, there is no primary clipboard, so we can use the `"+` and `"*` registers interchangeably: they both represent the system clipboard.
+
+---
+
+The Expression Register `"=`
+
+Vim’s registers can be thought of simply as containers that hold a block of text. The expression register, referenced by the `=` symbol (`:h quote=`), is an exception. When we fetch the contents of the expression register, Vim drops into Command-Line mode, showing an `=` prompt. We can enter a Vim script expression and then press `<CR>` to execute it. If the expression returns a string (or a value that can be easily coerced into a string), then Vim uses it.
+
+---
+
+More Registers
+
+Vim provides a handful of registers whose values are set implicitly. These are known collectively as the read-only registers
+
+- `"%`Name of the current file
+- `"#` Name of the alternate file
+- `".` Last inserted text
+- `":` Last Ex command
+- `"/` Last search pattern
+
+---
+
+When we use the `p` command in Visual mode, Vim replaces the selection with the contents of the specified register (see `:h v_p`)
+
+We can get away with using the unnamed register for both the yank and put operations because there’s no delete step. Instead, we combine the delete and put operations into a single step that replaces the selection.
+
+## The Dot Command
+
+> The dot command lets us repeat the last change.
+
+A change could act at the level of individual characters, entire lines, or even the whole file.
+
+`@:` can be used to repeat any Ex command
+
+- Execute a sequence of changes: `qx{changes}q`
+- repeat: `@x`
+- reverse: `u`
+
+Moving Around in Insert Mode Resets the Change: If we use the `<Up> , <Down> , <Left> , or <Right>` cursor keys while in Insert mode, a new undo chunk is created. It’s just as though we had switched back to Normal mode to move around with the `h, j, k, or l` commands, except that we don’t have to leave Insert mode. This also has implications on the operation of the dot command.
 
 ## Different Modes in Vim
 

@@ -180,7 +180,10 @@ Có một số GUI cho traceroute.
 
 ## Protocol Stack
 
-Mnemonic: Please Do Not Throw Sausage Pizza Away
+Mnemonic: [Armadillos Take In New Ants](https://www.instructables.com/TCPIP-Layers-Mnemonic/)
+
+- There are 5 layer from Application layer (layer 5) => Physical Layer (layer 1).
+- The OSI model chia Application layer ra thêm Presentation & Session
 
 The name of the primitive data unit depends on the layer of the protocol. At the link layer it is called a **frame**, at the IP layer a packet, and at the TCP layer a segment.
 
@@ -188,7 +191,9 @@ The Internet protocol stack consists of five layers: the physical, link, network
 
 OSI model ở trên là gần user nhất (application layer 7), layers ở dưới là gần hardware nhất.
 
-## 07: Application Layer
+ There are three types of addresses: host names for the application layer, IP addresses for the network layer, and MAC addresses for the link layer.
+ 
+## 05: Application Layer
 
 The packet of information at the application layer is called a **message**. Mnemonic: HTTP messages.
 
@@ -200,7 +205,7 @@ This is the only layer that directly interacts with data from the user. Software
   - FTP: transfer of files between two end systems
   - domain name system (DNS)
 
-## 05-Session & 06-Presentation Layers
+## Session & Presentation Layers
 
 The session layer
 
@@ -265,12 +270,6 @@ Because the physical layer and data link layers are responsible for handling com
  The protocols in this layer are again link dependent and further depend on the actual transmission medium of the link (for example, twisted-pair copper wire, single-mode fiber optics).
 
  For example, Ether-net has many physical-layer protocols: one for twisted-pair copper wire, another for coaxial cable, another for fiber, and so on. In each case, a bit is moved across the link in a different way.
-
-## MAC Address
-
-MAC Address: Uses Hexadecimal (Base-16).
-
-A MAC address (e.g., `00:1A:2B:3C:4D:5E`) is a 48-bit number (8 x 6 bytes). We use hexadecimal (digits 0-9 and A-F) because it's a very compact and readable way to represent the underlying binary data.
 
 ## TCP/IP
 
