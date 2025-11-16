@@ -26,9 +26,9 @@ viết code phải có tính module để có thể tái sử dụng
 Kế hoạch training: <https://ever-rise.backlog.jp/alias/wiki/560214>
 
 - sếp yêu cầu làm việc vận hành bằng ticket cho tốt hơn:
-  * không tạo ticket chỉ có tiêu đề không. Tiêu đề không phải là sửa cái gì mà ý nghĩa của việc đó là gì
-  * có bao nhiêu vấn đề cần giải quyết thì tạo ticket hết, còn việc có sửa có giải quyết hay không thì tính sao
-  * Mỗi ticket cần làm rõ Goal/ mục tiêu cần đạt được là gì
+  - không tạo ticket chỉ có tiêu đề không. Tiêu đề không phải là sửa cái gì mà ý nghĩa của việc đó là gì
+  - có bao nhiêu vấn đề cần giải quyết thì tạo ticket hết, còn việc có sửa có giải quyết hay không thì tính sao
+  - Mỗi ticket cần làm rõ Goal/ mục tiêu cần đạt được là gì
 
 - Mỗi ticket thì phải có ít nhất 3 điểm/ phần:
   1. Vấn đề gặp phải là gì?
@@ -38,8 +38,10 @@ Kế hoạch training: <https://ever-rise.backlog.jp/alias/wiki/560214>
 Ví dụ 1
 
 1. Vấn đề tên biến không đồng nhất, sẽ gây khó hiểu trong lúc đọc source
-2. Cần đồng nhất tên biến trong hệ thống 
-3. Hiệu quả : sẽ làm cho source trở nên dễ đọc dễ bảo trì hơn 
+2. Cần đồng nhất tên biến trong hệ thống
+3. Hiệu quả : sẽ làm cho source trở nên dễ đọc dễ bảo trì hơn
+
+commit là phải có test và phải sài được. Không commit những thứ mà mình chưa dùng đến.
 
 ## Họp kỹ thuật tuần
 
@@ -62,14 +64,20 @@ Refactor code (Mr Hào chuẩn bị phần này, xoáy vào những vấn đề 
 
 k
 
-## Nghỉ phép
+## Nghỉ phép & Lương thưởng
 
 1 tháng 1 ngày phép có lương
 
+tiền lương: có tiền giữ xe 200
+
+đóng tiền quỹ 50 hàng tháng
+
 ## Read if have time
 
-- Numeral Systems in Programming: https://www.youtube.com/watch?v=e9MOCR8oX0A
-- Number system playlist: https://www.youtube.com/watch?v=VLflTjd3lWA\&list=PL0o\_zxa4K1BXCpQbUdf0htZE8SS0PYjy-
+Manim python library to draw
+
+- Numeral Systems in Programming: <https://www.youtube.com/watch?v=e9MOCR8oX0A>
+- Number system playlist: <https://www.youtube.com/watch?v=VLflTjd3lWA\&list=PL0o\_zxa4K1BXCpQbUdf0htZE8SS0PYjy->
 
 - java 8:
   - Stream API
@@ -145,11 +153,12 @@ if (userResponse) {}
 ```
 
 - ``new RegExp(`^${RegExp.escape(wikiPageName)}$`)``: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/RegExp/test>
-- `.search(/[^\w\s']/g)`: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/String/search
+- `.search(/[^\w\s']/g)`: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/String/search>
 
 ## Miscellaneous
 
-- https://slackmojis.com/
+- <https://slackmojis.com/>
 - <https://ezgif.com/resize>
 
 [Sách networking resource](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#student,isbn=0136681557)
+

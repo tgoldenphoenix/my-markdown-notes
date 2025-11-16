@@ -8,7 +8,7 @@ For the most part, the link layer is implemented on a chip called the **network 
 
 MAC Address: Uses Hexadecimal (Base-16).
 
-A MAC address (e.g., `00:1A:2B:3C:4D:5E`) is a 48-bit number (8 x 6 bytes). We use hexadecimal (digits 0-9 and A-F) because it's a very compact and readable way to represent the underlying binary data.
+A MAC address (e.g., `00:1A:2B:3C:4D:5E`) is a `48-bit = 8 bits x 6 groups`. Each group is two hex digit representing 8 bits. We use hexadecimal (digits 0-9 and A-F) because it's a very compact and readable way to represent the underlying binary values.
 
 MAC addresses are physical. IP addresses are logical.
 

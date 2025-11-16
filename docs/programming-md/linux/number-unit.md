@@ -5,7 +5,7 @@
 `(7)~8` (using subscript) means digit `7` in base 8 number NOT the number seven in decimal `(7)~10`.
 
 - Tương tự ta có:
-  * `(11)~2 = (3)~10`: `11` binary equals `3` in decimal
+  - `(11)~2 = (3)~10`: `11` binary equals `3` in decimal
 
 ## Decimal
 
@@ -19,6 +19,42 @@ Example: The number 253 means (2 × 100) + (5 × 10) + (3 × 1). Each position i
 - `0` means "off / no / false"
 - Linux exit code `0` is successful. Any non-zero exit code (from 1 to 255) signifies error => Hiểu `0` la2 "no error"
 
+### DEC -> BIN
+
+1. The subtraction method
+2. Successive division
+
+75 = 64 + 8 + 2 + 1 => `100 1011`
+
+142 = 128 + 8 + 4 + 2 => `1000 1110`
+
+339 = 256 + 64 + 16 + 2 + 1 => `1 0101 0011`
+
+---
+
+- 75 / 2 = 37 R 1 <- Least Significant Bit
+- 37 / 2 = 18 R 1
+- 18 / 2 = 9 R 0
+- 9 / 2 = 4 R 1
+- 4 / 2 = 2 R 0
+- 2 / 2 = 1 R 0
+- 1 / 2 = 0 R 1 <- Most Significant Bit
+- => `75 = 100 1011` (write it from bottom -> top)
+
+- 142/2 = 71 R 0
+- 71/2 = 35 R 1
+- 35/2 = 17 R1
+- 17/2 = 8 R1
+- 8/2 = 4
+- 4/2 = 2
+- 2/2 = 1
+- 1/2 = 0 R1
+- => `142 = 1001110`
+
+### DEC -> HEX
+
+k
+
 ## Binary
 
 Binary is "base-2" because it only uses two digits (0 and 1).
@@ -27,8 +63,8 @@ Example: The number 1101 means (1 × 8) + (1 × 4) + (0 × 2) + (1 × 1) = 13 in
 
 `0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, ...`
 
-- 2^0 = 1
-- 2^1 = 2
+- `2^0 = 1`.
+- `2^1 = 2`.
 - 2^2 = 4
 - 2^3 = 8
 - 2^4 = 16
@@ -43,56 +79,30 @@ Example: The number 1101 means (1 × 8) + (1 × 4) + (0 × 2) + (1 × 1) = 13 in
 
 `1 0000 + 1111 = 1 1111` or `16 + 15 = 31`
 
-### Decimal => binary
+### Add & Subtract Binaries
 
-1. The subtraction method
-2. Successive division
+k
 
-75 = 64 + 8 + 2 + 1 => `1001011`
+### BIN -> HEX
 
-142 = 128 + 8 + 4 + 2 => `10001110`
+- `1011 0111`
+  - The first thing is you separate the binary in group of four, here we have two groups of four.
+  - Convert to decimal: `1011 0111 = 11 & 7`
+  - `11 & 7 = 0xB7`
 
-339 = 256 + 64 + 16 + 2 + 1 => `101010011`
+### BIN -> DEC
 
----
-
-- 75 / 2 = 37 R 1 <- Least Significant Bit
-- 37 / 2 = 18 R 1
-- 18 / 2 = 9 R 0
-- 9 / 2 = 4 R 1
-- 4 / 2 = 2 R 0
-- 2 / 2 = 1 R 0
-- 1 / 2 = 0 R 1 <- Most Significant Bit
-- => `75 = 1001011` (write it from bottom -> top)
-
-- 142/2 = 71 R 0
-- 71/2 = 35 R 1
-- 35/2 = 17 R1
-- 17/2 = 8 R1
-- 8/2 = 4
-- 4/2 = 2
-- 2/2 = 1
-- 1/2 = 0 R1
-- => `142 = 1001110`
+k
 
 ## Octal
 
 Octal is base-8. Digits used: `0, 1, 2, 3, 4, 5, 6, 7`
 
-One octal digit represents exactly three binary digits (`7 = 111`, 7 = 4+2+1).
+One octal digit represents exactly three binary digits (`7 = 111`, 7 = 4+2+1). This is because `2^3 = 8`.
 
 Example: The number 37 means (3 × 8) + (7 × 1) = 31 in decimal.
 
 `0 1 2 3 4 5 6 7 10 11 12 13 14 15 16 17 20, ...`
-
-The most common place you'll see the octal system today is in Linux/macOS file permissions. When you use the `chmod` command, you're often using octal numbers:
-
-- `chmod 755`
-  - 7 (octal) = 111 (binary) = Read + Write + Execute
-  - 5 (octal) = 101 (binary) = Read + Execute
-  - 5 (octal) = 101 (binary) = Read + Execute
-
-The octal number system is **NOT** used for IPv4 (it use decimal from `0-255` to represent 1 byte). One octal digit can only represents exactly three binary digits.
 
 ### Octet
 
@@ -102,19 +112,116 @@ We use the word "octet" instead of "byte" because, historically, a "byte" could 
 
 The decimal range `0-255` represents all the possible values that can be stored in one 8-bit byte (256 different values).
 
+### OCT -> BIN
+
+- `056`
+  - Separate the 5 & 6
+  - `05 = 101`
+  - `06 = 110`
+  - `056 = 101 110`
+
+### Linux File Permissions
+
+The most common place you'll see the octal system today is in Linux/macOS file permissions. When you use the `chmod` command, you're often using octal numbers:
+
+Three bits represent three boolean flags: `read-write-execute`.
+
+Cách viết `rw-r--r--` thực chất là thể hiện 6 bits boolean flags chứ không phải 6 characters.
+
+- `chmod 755`
+  - `07 = 111` => Read + Write + Execute (`rwx`)
+  - `05 = 101` => Read + Execute (`r-x`)
+  - `05 = 101` => Read + Execute
+
+- `06 = 110` => read, write (`rw-`)
+- `04 = 100` => read (`r--`)
+
+The octal number system is **NOT** used for IPv4 (it use decimal from `0-255` to represent 1 byte). One octal digit can only represents exactly three binary digits.
+
 ## Hexadecimal
 
 Hexadecimal is base-16. Digits used: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A (10), B (11), C (12), D (13), E (14), F (15)`
 
-It's a very compact way to represent binary data. It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and MAC addresses
+- In `C` programming language (and Java, Python, C++):
+  - The prefix `0x` signify that the number is hexadecimal literal. Example: `0xFF = 255`.
+  - `0` is the prefix for Octal. Example: `077 = 63`.
 
-- One "hex" digit represents exactly four binary digits (`F = 1111 = 15`, 15 = 8 + 4 + 2 + 1)
+It's a very compact way to represent binary data. It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and **MAC addresses**.
+
+- One "hex" digit represents four binary digits because `2^4 = 16`. Example: `F = 1111 = 15`, 15 = 8 + 4 + 2 + 1)
 - 2 hex digit represent 8 bits (1 byte, an octet): `FF = 11111111 = 255`
 
 Example: The number F3 means (15 × 16) + (3 × 1) = 243 in decimal
 
 `0 1 2 3 4 5 6 7 8 9 A B C D E F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C, ...`
 
-### Decimal -> Hexadecimal
+- `16^2 = 256 = 2^8`
+- `16^3 = 4096`
+
+### HEX -> BIN
+
+Base 16 & 2 are related while base 10 is not. The relationship is: `16 = 2^4`.
+
+To convert `0x75` to decimal, just convert 7 to binary and 5 to binary and stick the results next to each other. This obviously doesn't work with converting to decimal, as 0x75 is 117, not 75. You have to do some multiplication by powers of 16 to get the correct decimal result.
+
+Why is the process of converting hex to decimal completely different than hex to binary? Why does the 1st digit in 0x75 literally mean 0111 (7) in binary, but it doesn't literally mean 7 in decimal?
+
+Base 16 is a power of 2, so you can group 4 bits to a hex, or vice versa. Base ten is not a power of two so conversion is not easy.
+
+For example, if you had base 27 and base 3, the conversion is also straightforward because 27 is a power of 3.
+
+This is exactly why Hexadecimal is a useful base in computer science.
+
+Binary (base 2) and Hexadecimal (base 16) are both even powers of 2: `2^1` and `2^4` respectively. Decimal (base 10) is not an even power of 2 (`2^3.32193`).
+
+---
+
+- `A9`
+  - `A = 10 = 8 + 2 = 1010`
+  - `9 = 8 + 1 = 1001`
+  - `A9 = 1010 1001 = 169`
+
+- `3B7`
+  - `3 = 0011`
+  - `B = 1011`
+  - `7 = 0111`
+  - `3B7 = 0011 1011 0111`
+
+### HEX -> DEC
+
+- `23E = 2 x 16^2 + 3x16 + 14x1 = 574`
+- `F7D = 15x16^2 + 7x16 + 13x1 = 3965`
+
+## Bitwise Operations
+
+These are logical operations performed on individual bits. The most important one in networking is bitwise `AND`.
+
+Bitwise operators work on the individual bits of numbers, while logical operators work on true/false (boolean) values.
+
+Logical operators are AND `&&`, OR `||`, and NOT `!`.
+
+- Bitwise operator:
+  - ``&`` AND
+  - `|` OR
+  - `~` NOT
+  - `^` XOR
+  - `<<` / `>>` Bitwise Shift
+
+One byte can store 8 boolean value.
+
+- The bitwise `AND`:
+  * If both bits are 1, the resulting bit is 1.
+  * If either bit is 0 (or both are 0), the resulting bit is 0.
+
+The Truth Table for `AND`
+
+| x | y | x & y |
+|---|---|-------|
+| 0 | 0 | 0     |
+| 0 | 1 | 0     |
+| 1 | 0 | 0     |
+| 1 | 1 | 1     |
+
+## Binary Arithmetic
 
 k

@@ -74,3 +74,7 @@ In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store pack
 
 `uv sync` create the `venv` using the `.lock` file.
 
+## The basics
+
+Run `python3` in the terminal to run python in the terminal. Use `<C-d>` or type `exit()` to leave the Python prompt and return to a terminal prompt.
+

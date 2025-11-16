@@ -1077,6 +1077,8 @@ Very often you will want to bring changes from `main` to my personal branch. Mer
 
 rebase can be used as a clean up tool (clean up commits)
 
+Sau khi rebase xong kể cả không có conflict vẫn phải check lại code.
+
 With the rebase command, you can take all the changes that were committed on one branch and re-apply them on a different branch.
 
 You would check out the `experiment` branch, and then rebase it onto the `master` by running:

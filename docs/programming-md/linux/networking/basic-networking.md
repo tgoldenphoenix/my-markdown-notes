@@ -192,7 +192,7 @@ The Internet protocol stack consists of five layers: the physical, link, network
 OSI model ở trên là gần user nhất (application layer 7), layers ở dưới là gần hardware nhất.
 
  There are three types of addresses: host names for the application layer, IP addresses for the network layer, and MAC addresses for the link layer.
- 
+
 ## 05: Application Layer
 
 The packet of information at the application layer is called a **message**. Mnemonic: HTTP messages.
@@ -313,4 +313,3 @@ Internet addressing (more commonly known as IP addressing) is used. IP addresses
 The mapping from IP addresses to hardware addresses is implemented at the link layer of the TCP/IP model.
 
 hostnames (like `anhao.com`) are really just a convenient shorthand for IP addresses, and as such, they refer to network interfaces rather than computers.
-

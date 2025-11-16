@@ -18,9 +18,9 @@ The version of TCP/IP that has been in widespread use for three decades is proto
 
 The development of IPv6 was to a large extent motivated by the concern that we are running out of 4-byte IPv4 address space.
 
-**Dotted-Decimal notation** (`xxx.xxx.xxx.xxx`) is the format of an IPv4 address. It's a **32-bit** (4 x 8 bits) numerical label used to identify a device on a network. The format `xxx.xxx.xxx.xxx` represents four separate numbers (called "octets") separated by dots. Each xxx is a number that can range from 0 to 255 (one byte 2^8).
+**Dotted-Decimal notation** (`xxx.xxx.xxx.xxx`). It's a `32-bit = 4 groups x 8 bits`. Each group is a decimal number that can range from `0-255` (corresponding to one byte, 8 bits, 2 hex digit).
 
-An address like `192.168.1.1` represent a 32-bit number (4 x 8 bits). Each of the four numbers is the decimal value of one octet (`0-255`).
+Example: `192.168.1.10`
 
 An IP address is **hierarchical** because as we scan the address from left to right, we obtain more and more specific information about where the host is located in the Internet (that is, within which network, in the network of networks).
 
@@ -29,12 +29,10 @@ Indeed there is! IP addresses are managed under the authority of the **Internet 
 
 ---
 
-IPv6 addresses are much longer (128 bits, 16 x 8 bits), so using decimal would be impractical. Instead, we use hexadecimal, separated by colons.
+`XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX`
 
-Có 8 groups separated by `:`, each group containing four hexadecimal digits. We have: `8 groups x (8 x 2) bits = 128 bits`.
+IPv6 addresses are much longer, `128 bits = 8 groups x 16 bits`. Each group of four hexadecimal digits (e.g., XXXX) represents 16 bits. Using decimal would be impractical. Instead, we use hexadecimal, separated by colons.
+
+Example: `2001:0db8:85a3:0000:0000:8a2e:0370:7334`
 
 ## Control Plane
-
-
-
-
