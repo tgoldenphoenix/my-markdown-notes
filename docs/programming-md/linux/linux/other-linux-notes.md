@@ -84,6 +84,27 @@ balenaEtcher: cài được trên Mac, flash iso cho linux
 
 rufus: flash iso cho window 11
 
+## Window Installation from USB
+
+download tạo ISO usb is free, activation key là phải mua. Nếu không có activation key thì nó sẽ có watermark & không thể access personalized customization trong phần settings.
+
+Lỗi USB không hiện full capacity
+
+- Right click window icon on screen -> Disk Management
+- open `Cmd` as admin
+- `diskpart` > `list` > `select disk 1` > `clean` > `create partition primary`
+- Sau đó vào file manager > right-click usb > format > make sure the capacity is right > click OK to format USB
+
+Cách này có thể dùng để reset usb for normal file storage on Windows.
+
+---
+
+Cách check version window sẽ được cài khi đã có sẵn một bootable USB của window
+
+vào `F:\sources\` (`F:\` là tên của bootable USB) > tìm file tên `install.swm` or `install.wim`
+
+open `Cmd` as admin > type `dism /Get-WimInfo /WimFile:F:\sources\install.wim`
+
 ## WSL
 
 tải nerd font về, extract ra > vào setting windows cài > vào terminal emulator > chọn font vừa cài

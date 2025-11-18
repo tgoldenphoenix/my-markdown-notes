@@ -67,8 +67,10 @@ Both `d` and `c` save deleted text into register.
 
 Press `x` to delete the character under the (block) cursor in normal mode.
 
-- `p` lowercase to put word after the cursor
-- `P` uppercase put word before the cursor
+- `p` lowercase to put word after the cursor (or below current line)
+- `P` uppercase put word before the cursor (or the live above)
+
+Vim also provides `gp` and `gP` commands. These also put the text before or after the current line, but they leave the cursor positioned at the end of the pasted text instead of at the beginning.
 
 `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
 
@@ -433,7 +435,9 @@ Let's say you `yy` a line, then `dd` another line. Now you want to paste the lin
 
 To paste the text from register a ten times, do `10"ap`
 
-### The unnamed register `""`
+---
+
+The unnamed register `""`
 
 If we don’t specify which register we want to interact with, then Vim will use the unnamed register, which is addressed by the `"` symbol (see :h quote_quote).  
 To address this register explicitly, we have to use two double quote marks: for example, `""p`, which is effectively equivalent to `p` by itself.
@@ -446,7 +450,9 @@ The `ddp` sequence could be considered to stand for “Transpose the order of th
 
 `diw` cuts a word & copy it into unnamed register.
 
-### The Yank Register `"0`
+---
+
+The Yank Register `"0`
 
 When we use the `y{motion}` command, the specified text is copied not only into the unnamed register but also into the yank register, which is addressed by the `0` symbol.
 
@@ -514,6 +520,22 @@ Vim provides a handful of registers whose values are set implicitly. These are k
 When we use the `p` command in Visual mode, Vim replaces the selection with the contents of the specified register (see `:h v_p`)
 
 We can get away with using the unnamed register for both the yank and put operations because there’s no delete step. Instead, we combine the delete and put operations into a single step that replaces the selection.
+
+---
+
+In insert mode, `<C-r>{register}` to paste text from register. Cái này giống `<C-v>` bình thường.
+
+`<C-r>"` insert the contents of the unnamed register
+
+## Macros
+
+We’ve already learned about the dot command, which is useful for repeating small changes. But when we want to repeat anything more substantial, we should reach for Vim’s macros.
+
+The `q` key functions both as the “record” button and the “stop” button. To begin recording our keystrokes, we type q{register}, giving the address of the register where we want to save the macro. We can tell that we’ve done it right if the word “recording” appears in the status line. Every command that we execute will be captured, right up until we press `q` again to stop recording
+
+We can inspect the contents of register a by typing the following: `:reg a`. The symbol `^[` is used to stand for the Escape key. Spacebar hiện là spacebar không có escape gì cả.
+
+The `@{register}` command executes the contents of the specified register (see `:h @`). We can also use `@@`, which repeats the macro that was invoked most recently.
 
 ## The Dot Command
 

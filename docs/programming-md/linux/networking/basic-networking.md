@@ -180,7 +180,9 @@ Có một số GUI cho traceroute.
 
 ## Protocol Stack
 
-Mnemonic: [Armadillos Take In New Ants](https://www.instructables.com/TCPIP-Layers-Mnemonic/)
+- Mnemonic: [Armadillos Take In New Ants](https://www.instructables.com/TCPIP-Layers-Mnemonic/)
+  * "In" = Internet layer (Network Layer)
+  * "New Ants" = Network Access (Data Link + Physical)
 
 - There are 5 layer from Application layer (layer 5) => Physical Layer (layer 1).
 - The OSI model chia Application layer ra thêm Presentation & Session
