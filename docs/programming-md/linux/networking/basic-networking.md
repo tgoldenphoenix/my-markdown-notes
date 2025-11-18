@@ -207,7 +207,7 @@ This is the only layer that directly interacts with data from the user. Software
   - FTP: transfer of files between two end systems
   - domain name system (DNS)
 
-## Session & Presentation Layers
+### Session & Presentation Layers
 
 The session layer
 

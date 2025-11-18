@@ -888,6 +888,24 @@ Created commit 2b3c1de: revert 45eaf98 and 540ecb7
 delete mode 100644 copy.txt
 ```
 
+---
+
+Mình không thể `revert` & `--amend` at the same time. Và không cần phải làm như vậy.
+
+Revert 2 cái commit, thêm thay đổi & tạo duy nhất một commit mới
+
+```bash
+# checkout a new branch from main
+# undo the changes introduced in these three commit
+$ git revert --no-commit D
+$ git revert --no-commit C
+$ git revert --no-commit B
+# add some changes
+$ git commit -m "the commit message for all of them"
+```
+
+Khi rever nên chọn commit hash là cái mà sẽ được merge into main, nếu chọn cái merge commit, do nó có 2 parents nên nó sẽ bắt mình thêm option nhứt đầu.
+
 ## Git branching
 
 A Git repository is a collection of **objects** and **references**:
@@ -1743,6 +1761,8 @@ A **tag** is like a branch[^1] that doesn’t change. Unlike branches, tags, aft
 `git tag -l "v1.8.5*"` If you’re interested only in looking at the 1.8.5 series. Must include `-l` or `--list`
 
 `git tag 1.0 RB_1.0` adds tag name `1.0` to branch `RB_1.0`. "RB" stands for "release branch".
+
+You can create either a lightweight tag or an annotated tag. Annotated tags are generally preferred for releases as they store more information like the tagger's name, email, date, and a message
 
 `git tag -a v1.4 -m "my version 1.4"` create an annotated tag
 `git tag -a v1.2 9fceb02` tag commits after you’ve moved past them. You specify the commit checksum (or part of it) at the end of the command
