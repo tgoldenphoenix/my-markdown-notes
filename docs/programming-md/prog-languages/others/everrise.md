@@ -74,7 +74,15 @@ tiền lương: có tiền giữ xe 200
 
 ## Read if have time
 
-Manim python library to draw
+meta program?
+
+`adrepo`
+
+<https://codeforces.com/>
+
+<https://cses.fi/>
+
+`Manim` python library to draw
 
 - Numeral Systems in Programming: <https://www.youtube.com/watch?v=e9MOCR8oX0A>
 - Number system playlist: <https://www.youtube.com/watch?v=VLflTjd3lWA\&list=PL0o\_zxa4K1BXCpQbUdf0htZE8SS0PYjy->
@@ -154,6 +162,15 @@ if (userResponse) {}
 
 - ``new RegExp(`^${RegExp.escape(wikiPageName)}$`)``: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/RegExp/test>
 - `.search(/[^\w\s']/g)`: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/String/search>
+
+* The page name has invalid characters (`\(backslash), ., .., ./, ../`).
+* `22/22/22/22/333` is valid
+* `.....` invalid
+* `/.` valid
+
+* tạo class cho cái màn hình
+* gộp 2 function copy wiki page & copy image vào button event listener luôn
+* thiết kế để người dùng ko cảm nhận được copy là có 2 bước (copy & upload ảnh) => chuyển qua dùng `local storage` thay vì `session storage`.
 
 ## Miscellaneous
 

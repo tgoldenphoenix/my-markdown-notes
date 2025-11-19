@@ -942,6 +942,37 @@ Cái status lỗi từ api trả về thì coi trong `response.status`
 
 Đôi khi api trả về empty array, status code OK, `response.ok = true` nhưng kết quả trả về là empty array. Phải check truong972 hợp này.
 
+---
+
+The `fetch` API does not automatically reject its promise for HTTP error status codes (like 404 Not Found, 500 Internal Server Error). Instead, it still resolves the promise, but the `response.ok` property will be `false`.
+
+The `catch` block in a `fetch` promise chain (or a `try...catch` with await) will only be triggered for network errors (e.g., no internet connection, DNS resolution failure) or if the promise itself is rejected due to a malformed URL.
+
+```javascript
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+
+    // Check if the response was successful (e.g., status code 200-299)
+    if (!response.ok) {
+      const errorData = await response.json(); // Attempt to parse error details
+      throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorData.message || 'Unknown error'}`);
+    }
+
+    const data = await response.json(); // Or .text() if expecting text
+    console.log("Data received:", data);
+    return data;
+  } catch (error) {
+    console.error("Fetch error:", error.message);
+    // Handle the error (e.g., display an error message to the user)
+    throw error; // Re-throw the error if you want it to propagate further
+  } finally {
+    // Optional: Code in the finally block will always execute, regardless of errors
+    console.log("Fetch operation completed.");
+  }
+}
+```
+
 ## FAQs & terms
 
 faq
