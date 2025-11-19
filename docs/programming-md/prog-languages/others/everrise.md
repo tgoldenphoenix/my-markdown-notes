@@ -128,6 +128,18 @@ Thêm demo vào return a new promise  in `.then` vs return a normal value
 
 Cách resolve commit with local ide code editor not on web
 
+## Japanese
+
+Vocab: <https://ever-rise.backlog.jp/alias/wiki/371772>
+
+SEO: <https://ever-rise.backlog.jp/alias/wiki/372411>
+
+<https://ever-rise.backlog.jp/alias/wiki/199077>
+
+## File excel của anh Việt
+
+Attendance - Equipment Management: <https://docs.google.com/spreadsheets/d/1yvuO-rSCk6Nkhr3GG8g3zJCsikVLkfhDJqV1yut34OI/edit?pli=1&gid=1753145395#gid=1753145395>
+
 ## Task hiện tai
 
 xếp muốn dùng firstButton, không dùng editButton
@@ -178,4 +190,6 @@ if (userResponse) {}
 - <https://ezgif.com/resize>
 
 [Sách networking resource](https://media.pearsoncmg.com/bc/abp/cs-resources/products/product.html#student,isbn=0136681557)
+
+dimension là một khái niệm trong quảng cáo, không phải khái niệm trong SQL
 

@@ -2,7 +2,7 @@
 
 ## Where land meets water
 
-[shore](https://www.oxfordlearnersdictionaries.com/definition/english/shore_1?q=shore): the land along the edge of the sea, the ocean or a lake\
+[shore](https://www.oxfordlearnersdictionaries.com/definition/english/shore_1?q=shore): the land along the edge of the sea, the ocean or a lake  
 [ashore](https://www.oxfordlearnersdictionaries.com/definition/english/ashore?q=ashore): lên bờ; towards, onto or on land, having come from an area of water such as the sea or a river  
 abroad, aboard
 
@@ -15,14 +15,16 @@ The Indonesian Archipelago, located in Asia and Oceania, is the _largest archipe
 
 A [peninsula](https://en.wikipedia.org/wiki/Peninsula) (bán đảo) is a landform that extends from a mainland and is surrounded by water on most sides.
 
-A [promontory](https://en.wikipedia.org/wiki/Promontory) (mũi đất) is a raised mass of land that projects into a lowland or a body of water (in which case it is a peninsula).\
+A [promontory](https://en.wikipedia.org/wiki/Promontory) (mũi đất) is a raised mass of land that projects into a lowland or a body of water (in which case it is a peninsula).  
 pomegranate
 
 In geography, a _cape_ (mũi đất) is a headland, peninsula or promontory extending into a body of water, usually a sea.\
-Ex: mũi hảo vọng\
+Ex: mũi hảo vọng  
 cape: áo choàng
 
 Bay
+
+**Scree** (đá vụn) is a collection of broken rock fragments at the base of a cliff or other steep rocky mass that has accumulated through periodic rockfall. Landforms associated with these materials are often called talus deposits.
 
 A [strait](https://en.wikipedia.org/wiki/Strait) (eo biển) is a water body connecting two seas or two water basins. While the landform generally constricts the flow, the surface water still flows, for the most part, at the same elevation on both sides and through the strait in both directions.
 
