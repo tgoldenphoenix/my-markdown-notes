@@ -2,15 +2,13 @@
 
 ## Basics & Terminologies
 
-`{}`, `+`, `*` and `?` are called **quantifiers**. `{}` is also called **quantity specifier.**
+- `{}`, `+`, `*` and `?` are called **quantifiers**.  
+- `{}` is also called **quantity specifier.**
+- flag = modifier
 
-[Escape character](#escaped-characters)
+A **metacharacter** in a regular expression is a character that has a special meaning to the regex engine, rather than representing its literal self. Example: `.`, `\d`, `\w`, etc
 
-[metacharacter](https://www.tutorialsteacher.com/regex/metacharacters): `.`, `\d`, `\w`, etc
-
-Regular expressions are neither procedural nor functional languages. Rather, they are a logic-based or declarative language, a class of languages that also includes Prolog and Makefiles. And BNFs. One might also call them rule-based languages. I prefer to call them declarative languages myself.”
-
-flag = modifier
+Regular expressions are neither procedural nor functional languages. Rather, they are a logic-based or declarative language, a class of languages that also includes Prolog and Makefiles. And BNFs. One might also call them rule-based languages. I prefer to call them declarative languages myself.
 
 **alphanumeric**: containing both letters and numbers
 
@@ -23,22 +21,36 @@ Regex patterns are used for four main tasks:
 
 Who does this work of finding, replacing, splitting? A **regex engine**. For instance, you can find regex engines in text editors such as Notepad++ and EditPad Pro. You also find regex engines ready to roar in most programming languages—such as C#, Python, Perl, PHP, Java, JavaScript and Ruby.
 
-[Camel case](https://en.wikipedia.org/wiki/Camel_case) (sometimes stylized autologically as camelCase or CamelCase, also known as camel caps or more formally as medial capitals) is the practice of writing phrases without spaces or punctuation and with capitalized words.  
-camelCase: first word lower, after that thì uppercase.
+- `camelCase` is the practice of writing phrases without spaces or punctuation and with capitalized words; first word lower, after that thì uppercase.
+- `snake_case`
+- `kebab-case`
+- `flatcase`
+- `PascalCase` is used for Class names
+- `SCREAMING_SNAKE_CASE` used for constants
 
-- using underscore: first_name_person
-- **PascalCase** is used for Class names
-- CONSTANT variable will be all uppercase
+Matching is **case-sensitive** by default.
 
-## The basics
+Many special constructs, such as `+` and `|`, affect the matching of the “thing” to their left or right. In general, a “thing” is a single character, a subpattern enclosed in parentheses, or a character class enclosed in square brackets.
 
-Matching is case sensitive by default.
+### Escaped characters
 
-Many special constructs, such as + and |, affect the matching of the “thing” to their left or right. In general, a “thing” is a single character, a subpattern enclosed in parentheses, or a character class enclosed in square brackets. 
+- forward-slash `/`
+- back-slash `\`
 
-## My regex patterns
+- To enclose the regex pattern, thuận theo chiều gió. Gió thổi left-> right thì `|` nghiên về bên phải thành `/` (forward-slash). Example: `/pattern/gm`
+- `/` is also used for finding in `less` & `vim`. Vì nó giống ở trên, thuận theo chiều gió.
 
-Validate email: ``
+- backslash `\` is used to escape characters in regex: `\.`
+- `\` is also used for latex commands (`\documentclass{article}`) & escape characters in latex `\&`.
+Backslash đi ngược chiều "gió thổi" nên dùng để "escape" characters.
+- XML closing tags dùng forwardslash `</h1>`
+
+There are special characters that we use when writing regex. `{ } [ ] / \ + \* . $^ | ?` Before we can select these characters themselves, we need to use an escape character `\` (a back slash). For example, to select the dot . and asterisk \* characters in the text, let's add an escape character \ before it.
+
+Examples:
+
+- `/\./g`: => matches a single “.” character, not the wildcard notation.
+- `\\` => dùng để escape a bach slash
 
 ## The dot `.` Any Character
 
@@ -52,30 +64,26 @@ Flags change the output of the expression. That's why flags are also called **mo
 
 You can match both cases using the `i` flag. An example of using this flag is `/ignorecase/i`. This expression can match the three strings: ignorecase, igNoreCase, and IgnoreCase.
 
-The **global flag** `//g` causes the expression to select all matches. If not specified it will only select the _first match_.
+The **global flag** `//g` causes the expression to select all matches. If not specified it will only select the _first match_ (return after first match).
 
-Regex by default will sees all text as one line. But we can use the multiline flag `//m` to handle each line separately. In this way, the expressions we write to identify patterns at the end of lines work separately for each line not just the last line.
+Regex by default will sees all text as one line. Kể cả enter newline cũng được coi là một character bình thường.
+But we can use the **multi-line flag** `//m` to handle each line separately. In this way, the expressions we write to identify patterns at the start/end of lines (`^` and `$`) work separately for each line.
 
 Many regex systems (including Perl’s) support an `x` option that ignores literal whitespace in the pattern and enables comments, allowing the pattern to be spaced out and split over multiple lines.
 
 ## Quantifiers: `+ * ?`
 
-### `+`
+These quantifiers can be used with any character or special metacharacters, for example `a+` (one or more a's), `[abc]+` (one or more of any a, b, or c character) and `.*` (zero or more of any character).
+
+### `+` One or More
 
 `+` allows **one** or more matches of the preceding element => Cộng **một**.
 
-Sometimes, you need to match a single character (or group of characters) that appears **ONE or more** times in a row. This means it occurs at least once, and may be repeated => use the `+` symbol (also known as the **Kleene plus**)
+Sometimes, you need to match a single character (or group of characters) that appears **ONE or more** times in a row. This means it occurs at least once, and may be repeated => use the `+` symbol.
 
 Remember, the character or pattern has to be present consecutively. That is, the character has to repeat one after the other.
 
-Example: `/a+/g` when applies to:
-
-- "abc" => "a"
-- "aabc" => "aa"
-- "abab" => "a", "a"
-- "bcd" => []
-
-### `*`
+### `*` Zero or More
 
 `*` allows zero, one, or many matches of the preceding element.
 
@@ -83,54 +91,49 @@ Distinguish:
 
 - Regex's wildcard is `.` which match any one character.
 - Globbing's wildcard is `*`which match any sequence of zero or more characters.
-- The regex version of the star `*` is a quantifier and it needs something to modify; otherwise, it won’t do what you expect. Use `.*` if any sequence of characters (including no characters at all) is an acceptable match.
-
-These quantifiers can be used with any character or special metacharacters, for example `a+` (one or more a's), `[abc]+` (one or more of any a, b, or c character) and `.*` (zero or more of any character).
+- In regex, the star `*` is a quantifier and it needs something to modify; otherwise, it won’t do what you expect. For example `.*`.
 
 Example:
 
 - `.*` => match an element of unlimited length.
 - `/.*buy.*/` => match & filter out all lines/phrases that contain "buy"
 
-### `?`
+### `?` Zero or One
 
-The `?` symbol có 2 chức năng: optional matching & lazy matching  
-`?` symbol is also used in [Lookaround](#lookaround-lookaround)
+- The `?` symbol có 2 chức năng: optional matching & lazy matching  
+- `?` symbol is also used in Lookaround.
 
 Optional symbol `?` allows zero **or one** match of the preceding element.
 
-To accommodate either a five-digit zip code or an extended zip+4: `^\d{5}(-\d{4})?$`  
-The parentheses group the dash and extra digits together so that they are consid-ered one optional unit. For example, the regex won’t match a five-digit zip code followed by a dash. If the dash is present, the four-digit extension must be present as well or there is no match.
-
-### Greediness, laziness & catastrophic backtracking
-
-Regular expressions match from left to right. Each component of the pattern matches the longest possible string before yielding to the next component, a char-acteristic known as **greediness**.
-
-Even though regex notation makes greedy operators the default, they 
-probably shouldn’t be. Use lazy operators.
-
-You can apply the regex `/t[a-z]*i/` to the string "titanic". This regex is basically a pattern that starts with t, ends with i, and has some letters in between. Regular expressions are **by default greedy**, so the match would return "titani". It finds the largest sub-string possible to fit the pattern.
-
-However, you can add a `?` after `*` or `+` symbol to change it to **lazy matching**. The string "titanic" matched against the adjusted regex of `/t[a-z]*?i/` returns "ti".
-
 Sometimes the patterns you want to search for may have parts of it that may or may not exist. However, it may be important to check for them nonetheless. You can specify the possible existence of an element with a question mark `?`. It checks for **zero or one** of the preceding element. You can think of this symbol as saying the previous element is optional.
 
-You  can  also  use  lazy  (as  opposed  to  greedy)  wild  card  operators : `*?` instead of `*`, and `+?` instead of `+`. These versions match as few characters of the input as they can. If that fails, they match more. In many situations, these operators are more efficient and closer to what you want than the greedy versions.
+To accommodate either a five-digit zip code or an extended zip+4: `^\d{5}(-\d{4})?$`  
+The parentheses group the dash and extra digits together so that they are considered one optional unit. For example, the regex won’t match a five-digit zip code followed by a dash. If the dash is present, the four-digit extension must be present as well or there is no match.
+
+## Greediness, laziness & catastrophic backtracking
+
+Regular expressions match from left to right. Each component of the pattern matches the longest possible string before yielding to the next component, a characteristic known as **greediness**.
+
+Even though regex notation makes greedy operators the default, they probably shouldn’t be. You should use lazy operators. These versions match as few characters of the input as they can. If that fails, they match more. In many situations, these operators are more efficient and closer to what you want than the greedy versions.
+
+You can apply the regex `/t[a-z]*i/` to the string "titanic". This regex is basically a pattern that starts with t, ends with i, and has some letters in between. Regular expressions are **by default greedy**, so the match would return "titani". It finds the largest sub-string possible to fit the pattern.\
+However, you can add a `?` after the `*` or `+` symbols to change them into **lazy matching**.\
+The string "titanic" matched against the adjusted regex of `/t[a-z]*?i/` returns "ti".
 
 ## Upper-Lower Number of matches `{}`
 
-Recall that you use `+` to look for one or more characters and the asterisk `*` to look for zero or more characters. These are convenient but sometimes you want to match _a certain range_ of patterns.  
+Recall that you use `+` to look for one or more characters and the asterisk `*` to look for zero or more characters. These are convenient but sometimes you want to match **a certain range** of patterns.  
 You can specify the lower and upper number of patterns with `{} `**quantity specifiers** (quantifier).
 
 - `{n}` Matches exactly n instances of the preceding element 
 - `{min,}` Matches at least min instances (note the comma)
 - `{min,max}` Matches any number of instances from min to max
 
-Match only the string "hah" with the letter "a" appearing **at least** 3 times: `/ha{3,}h/`.
+Example:
 
-Match only the letter `a` appearing **between** 3 and 5 times in the string "ah": `/a{3,5}h/`.
-
- Match the word "haaah" with the letter "a" repeat exactly 3 times (no more no less): `/ha{3}h/`.
+- Match only the string "hah" with the letter "a" appearing **at least** 3 times: `/ha{3,}h/`.
+- Match only the letter `a` appearing **between** 3 and 5 times in the string "ah": `/a{3,5}h/`.
+- Match the word "haaah" with the letter "a" repeat exactly 3 times (no more no less): `/ha{3}h/`.
 
 - This quantifier can be used with any character, or special metacharacters, for example:
   * `w{3}` (three w's)
@@ -141,34 +144,29 @@ Match only the letter `a` appearing **between** 3 and 5 times in the string "ah"
 
 If one of the characters in a word can be in a set of diffrent characters, we put then in **character set/class** notated with square brackets `[]`.
 
-Using the hyphen `-` to match a range of characters is not limited to letters. It also works to match a range of numbers. For example, `/[0-5]/` matches any number between 0 and 5, _including themself_.
+Using the hyphen `-` to match a range of characters is not limited to letters. It also works to match a range of numbers. For example, `/[0-5]/` matches any number between 0 and 5, **including themself**.
 
 So far, you have created a set of characters that you want to match, but you could also create a set of characters that you **do NOT** want to match. These types of character sets are called **negated character sets**. To create a negated character set, you place a caret character `^` after the opening bracket and before the characters you do not want to match `[^chars]`.
 
-`^` also means to Matches the beginning of a line.
+NOTE: The `^` symbol is also used to match the beginning of a line together with the `$`.
 
 - Special characters that need to be escaped inside character class:
-  - `[ and ]`: start & end of the character class
-  - `\`: for escaping `[\\]`
-  - `- and ^`: character range & class negation
+  - `[` and `]`: start & end of the character class.
+  - `\`: for escaping characters `[\\]`.
+  - `-` and `^`: character range & class negation
 
-For example, `/[^aeiou]/gi` matches all characters that are not a vowel. Note that characters like ., !, [, @, / and white space are matched - the negated vowel character set only excludes the vowel characters.
+Example:
 
-**Examples:**
-
-`[a-z]`, `[a-zA-Z]`, `[0-9]`, `[a-f]`, `/a-z0-9/ig`
-
-`/http[^s].*/` => match "http" not "https"
-
-`/b[aiu]g/` => match "bag", "big", "bug"
-
-`/[fc]at/g` => match "fat" and "cat"
-
-`/[Gg]r[ae]y/` => match 4 different spellings and capitalization of the word "gray/grey" at once.
+- `/[^aeiou]/gi` matches all characters that are not a vowel. Note that characters like ., !, [, @, / and white space are matched - the negated vowel character set only excludes the vowel characters.
+- `[a-z]`, `[a-zA-Z]`, `[0-9]`, `[a-f]`, `/a-z0-9/ig`
+- `/http[^s].*/` => match "http" not "https"
+- `/b[aiu]g/` => match "bag", "big", "bug"
+- `/[fc]at/g` => match "fat" and "cat"
+- `/[Gg]r[ae]y/` => match 4 different spellings and capitalization of the word "gray/grey" at once.
 
 ### Character Set `[]` Shorthands
 
-Using character sets [], you were able to search for all letters of the alphabet with `[a-z]`. This kind of character class is common enough that there is a shorthand for it, although it still includes a few characters to learn.
+Using character sets, you were able to search for all letters of the alphabet with `[a-z]`. This kind of character class is common enough that there is a shorthand for it, although it still includes a few characters to learn.
 
 Mấy cái này dùng syntax `\` giống escaped characters.
 
@@ -200,9 +198,9 @@ Search for non-whitespace using `\S`, equal to the character class `[^ \r\t\f\n\
 
 ---
 
-`\W` là "except word character"
-`\D` là "except digit"
-\S là "except white space"
+- `\W` là "except word character"
+- `\D` là "except digit"
+- `\S` là "except white space"
 
 You can specify the lower and upper number of patterns with quantity specifiers (quantifier). Quantity specifiers are used with curly brackets ({ and }). You put two numbers between the curly brackets - for the lower and upper number of patterns. Both {}, +, \*, ? đều thuộc category 'quantifiers'. For example, to match only the letter a appearing between 3 and 5 times in the string ah, your regex would be /a{3,5}h/.
 
@@ -218,28 +216,23 @@ Additionally, there is a special metacharacter \b which matches the boundary bet
 
 We can group an expression and use these groups to reference or enforce some rules. To group an expression, we enclose them in parentheses `()`.
 
-`(expr)`: Limits scope, groups elements, allows matches to be captured
+- `(expr)`: Limits scope, groups elements, allows matches to be captured
+- `(){}` capture groups with min-max
+- `([AEae]l[- ])?` two character sets inside capture group and an optional `?` quantifier
 
-`(){}` capture groups with min-max
+### Capture Groups with The Alternation Symbol `|`
 
-`([AEae]l[- ])?` two character sets inside capture group & optional `?` quantifier
+The pipe character `|` (also called the "Or" operator) allows to specify that an expression can be in different expressions. Thus, all possible statements are written separated by the pipe sign `|`. This differs from charset `[abc]`, charsets operate at the character level while (`|`) alternatives are at the expression level. 
 
-### CGs with Alternation Symbol `|`
-
-Pipe character `|` also called the "Or" operator.
-
-It allows to specify that an expression can be in different expressions. Thus, all possible statements are written separated by the pipe sign `|`. This differs from charset `[abc]`, charsets operate at the character level while (`|`) alternatives are at the expression level. For example, the following expression would select both "cat" and "rat": `/(c|r)at/g`.
-
+For example, the following expression would select both "cat" and "rat": `/(c|r)at/g`.\
 If you want to find either Penguin or Pumpkin in a string, you can use the following regex: `/P(engu|umpk)in/g`
 
-For the | character, however, thingness extends indefinitely to both left and right. If you want to limit the scope of the vertical bar, enclose the bar and both things in their own set of parentheses. For example,
+For the `|` character, however, thingness extends indefinitely to both left and right. If you want to limit the scope of the vertical bar, enclose the bar and both things in their own set of parentheses. For example,
 
-`I am the (walrus|egg man)\.`
+`I am the (walrus|egg man)\.` => matches either “I am the walrus.” or “I am the egg man.”. This example also dem-onstrates escaping of special characters (here, the dot).
 
-matches either “I am the walrus.” or “I am the egg man.”. This example also dem-onstrates escaping of special characters (here, the dot).
-
-### Reuse patterns using Capture Groups ()
-
+### Reuse patterns using Capture Groups
+anki
 When a match succeeds, every set of parentheses becomes a “capture group” that records the actual text that it matched.
 
 Since parentheses can nest, how do you know which match is which? Easy—the matches arrive in the same order as the opening parentheses. There are as many captures as there are opening parentheses, regardless of the role (or lack of role) that each parenthesized group played in the actual matching. When a parenthe-sized group is not used (e.g., `Mu(')?ammar` when matched against “Muammar”), its corresponding capture is empty.
@@ -324,28 +317,6 @@ For example, we want to select the price value in the text. Therefore, to select
 
 For example, we want to select numbers in the text other than the price value. Therefore, to select only numeric values that are not preceded by $, we need to write the negative lookbehind (?<!) before our expression. Add \$ after the ! inside the parenthesis.
 
-## Escaped characters
-
-**slash** or [forward slash](https://en.wikipedia.org/wiki/Slash_(punctuation)) `/`:
-
-- to enclose the regex pattern, thuận theo chiều gió. Gió thổi left-> right thì `|` nghiên về bên phải thành `/`. Example: `/pattern/gm`
-- `/` to find in `less`. Vì nó giống ở trên, thuận theo chiều gió.
-
-**backslash** `\` to escape characters. It is the mirror image of the common slash `/`. A "forward slash" `/` leans forward, while a "backslash" `\` leans backward.
-Backslash đi ngược chiều "gió thổi" nên dùng để "escape" characters
-
-Hình minh họa: `| //gm \.`
-
-There are special characters that we use when writing regex. { } [ ] / \ + \* . $^ | ? Before we can select these characters themselves, we need to use an escape character `\` (a back slash). For example, to select the dot . and asterisk \* characters in the text, let's add an escape character \ before it.
-
-**Ways to escape character in other contexts:**\
-[HTML character entity](https://www.w3schools.com/html/html_entities.asp)
-
-**Examples:**\
-`/\./g`: => matches a single “.” character not the wildcard notation.
-
-`\\` => dùng để escape a bach slash
-
 ## Match Beginning & Ending of a String
 
 In an earlier challenge, you used the caret character `^` inside a character set `[]` to create a [negated character set](#character-sets--ranges-and-negated-character-sets) in the form `[^thingsThatWillNotBeMatched]`. But **outside** of a character set, the caret is used to search for patterns at the **beginning of strings**.
@@ -367,6 +338,80 @@ If the multiline flag (m) is enabled, `$` will match the end of a line instead o
 `/^http[^s].*/` => match "<http://httpstatus.io/>"; "http" at the beginning
 
 In `^\d{5}$`, The `^` and $ match the beginning and end of the search text but do not actually correspond to characters in the text; they are **zero-width assertions.** These char-acters ensure that only texts consisting of exactly five digits match the regular expression—the regex will not match five digits within a larger string. The \d es-cape matches a digit, and the quantifier {5} says that there must be exactly five digit matches.
+
+## My regex patterns
+
+Validate email: ``
+
+## Linux Globbing
+
+`grep` uses regular expressions (regex).  
+The filename matching and expansion performed by the shell when it interprets command lines such as `wc -l *.pl` is not a form of regex matching. It’s a different system called **shell globbing,** and it uses a different and simpler syntax.
+
+Glob mean "global commands". [/etc/glob](https://en.wikipedia.org/wiki/Glob_(programming)) is a program in UNIX V6 that would expand wildcard patterns. Soon afterward, this became a shell built-in.
+
+Globbing is mainly used to match filenames or searching for content in a file. Globbing uses wildcard characters to create the pattern.
+
+Globbing is used in config files such as a `.gitignore` where you might see `.cache/*`, for example.
+
+Globbing is the expansion of simple pattern-matching characters such as * and ? to form filenames or lists of file-names)
+
+Globbing is an operation that is performed by the shell itself and it happens **independently** of the actual command we're running. The shell will **first** attemp to expand the wildcard pattern to match any files that are present before passing their expanded names to the program we want to run.  
+`man 7 glob` to read more.
+
+You should be aware that the value of the arguments that get passed to a given program will actually depend on the content of your file system. Your program may be passed a different number of arguments depending on how many files match the wildcard.
+
+We should note that while globbing might look similar to regular expressions, they’re fundamentally different. While the patterns seem similar, globbing doesn’t use regular expressions.
+
+- We use shell-style globbing characters for pattern matching:
+  * A star (`*`) matches zero or more characters.
+  * A question mark (`?`) matches any single character. You can use `?` for multiple times for matching multiple characters.
+  * A tilde or “twiddle” (`~`) means the home directory of the current user
+  * `~user` means the home directory of user.
+
+For example, we might refer to the startup script directories `/etc/rc0.d`, `/etc/rc1.d`, and so on with the shorthand pattern `/etc/rc*.d`.
+
+- `[]` range of characters. For example `[0-9]` or `[abc]`. Ranges can apply to letters as well as digits:
+- `[a-z]` = all lowercase characters of the alphabet
+- `[A-Z]` = all uppercase characters of the alphabet
+- `[a-zA-Z]` = all characters of the alphabet, irrespective of their case
+- `[j-p]` = lowercase characters j, k, l, m, n, o or p
+- `[a-z3-6]` = lowercase characters or the numbers 3, 4, 5 or 6
+
+`[]` is used to match the character from the range. Some of the mostly used range declarations are mentioned below.
+
+- All uppercase alphabets are defined by the range as, `[:upper:] or [A-Z]` .
+- All lowercase alphabets are defined by the range as, \[:lower:] or \[a-z].
+- All numeric digits are defined by the range as, \[:digit:] or \[0-9].
+- All uppercase and lower alphabets are defined by the range as, \[:alpha:] or \[a-zA-z].
+- All uppercase alphabets, lowercase alphabet and digits are defined by the range as, \[:alnum:] or \[a-zA-Z0-9]
+
+By default, **hidden files and folders** don’t show up in the output of ls. To apply globbing to our hidden files and folders, we have to explicitly add a leading `.` (dot).  
+`ls *` vs `ls .*`
+
+Examples:
+
+- `ls *.txt`
+- `ls test-?.txt` => list all text files named ‘test-‘ followed by a single digit
+- `ls ????.txt` => all text files with a name of exactly four characters
+- `ls *[0-9]*` => all files with a number in their name
+
+### Single vs. Double Quotes
+
+The shell treats strings enclosed in single and double quotes similarly, except that **double-quoted** strings are subject to globbing (the expansion of filename-match-ing metacharacters such as * and ?) and variable expansion.
+
+Back-ticks, are treated similarly to double quotes, but they have the additional effect of executing the contents of the string as a shell command and replacing the string with the command’s output.
+
+```bash
+$ echo "There are `wc -l /etc/passwd` lines in the passwd file." 
+There are 28 lines in the passwd file.
+```
+
+Single and double quotes are often used in Linux bash commands or scripts, especially when dealing with filenames. Although both quote types prevent globbing and word splitting, it is important to pay attention to the quotes you use. The differences between the quote types make them noninterchangeable in some cases.
+
+`'!$"*<>` is typically the order of precedence for those symbols.
+
+Đôi khi phải dùng single quote to pass unchanged wildcard pattern to programs. Prevent the shell to expand them before passign to programs.
 
 ## References
 

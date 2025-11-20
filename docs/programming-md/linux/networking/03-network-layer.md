@@ -67,3 +67,37 @@ k
 ATM (Asynchronous Transfer Mode) và IP (Internet Protocol) là hai công nghệ mạng được phát triển với hai triết lý hoàn toàn khác nhau. Chúng từng là đối thủ cạnh tranh để trở thành nền tảng cho mạng viễn thông toàn cầu.
 
 Câu trả lời ngắn gọn: IP đã chiến thắng. Internet hiện đại, Wi-Fi, và mạng văn phòng (Ethernet) của bạn đều chạy trên nền tảng IP.
+
+## Routing Algorithms
+
+Dijkstra's Algorithm là thuộc phạm vi toán học, field discrete math, graph theory.
+
+Routing algorithm sử dụng algorithms trong math add on top mấy khái niệm không có trong toán (router, node trong toán, link cost, etc). Ví dụ Dijkstra’s least-cost path algorithm là một mathematical algorithm không liên quan gì tới router networking. Nhưng nó được dùng làm nền tảng cho Link-State routing algorithm.
+
+Routing Algorithms with global state information are often referred to as **link-state (LS) algorithms**. The LS algorithm trình bày trong sách này là the **Dijkstra’s algorithm** trong toán học. A closely related algorithm is **Prim’s algorithm**.
+
+The decentralized routing algorithm we’ll study is called a **distance-vector (DV) algorithm**.
+
+Link-state
+
+## Intra-AS Routing in the Internet: OSPF
+
+Routers are organized into **Autonomous System** (AS). An autonomous system is identified by its globally unique **autonomous system number** (ASN).
+
+**Intra-AS routing** (also called Interior Gateway Routing) refers to the routing of data packets inside a single Autonomous System (AS).
+
+**Open Shortest Path First** (OSPF) routing and its closely related cousin, IS-IS, are widely used for intra-AS routing in the Internet.
+
+## Routing Among the ISPs: BGP
+
+We just learned that OSPF is an example of an intra-AS routing protocol. When routing a packet between a source and destination within the same AS, the route the packet follows is entirely determined by the intra-AS routing protocol. However, to route a packet across multiple ASs, say from a smartphone in Timbuktu to a server in a datacenter in Silicon Valley, we need an **inter-autonomous system routing protocol**. Since an inter-AS routing protocol involves coordination among multiple ASs, communicating ASs must run the same inter-AS routing protocol. In fact, in the Internet, all ASs run the same inter-AS routing protocol, called the **Border Gateway Protocol**, more commonly known as **BGP**.
+
+BGP is arguably the most important of all the Internet protocols (the only other contender would be the **IP protocol**), as it is the protocol that glues the thousands of ISPs in the Internet together. As we will soon see, BGP is a decentralized and asynchronous protocol in the vein of distance-vector routing.
+
+For destinations that are within the same AS, the entries in the router’s forwarding table are determined by the AS’s intra-AS routing protocol. But what about destinations that are outside of the AS? This is precisely where BGP comes to the rescue.
+
+CIDR stands for **Classless Inter-Domain Routing**. A CIDR address looks like a standard IP address followed by a slash and a number: `192.168.1.0/24`.
+
+In BGP, packets are not routed to a specific destination address, but instead to CIDRized prefixes, with each prefix representing a subnet or a collection of subnets.
+
+For each AS, each router is either a gateway router or an internal router. A **gateway router** is a router on the edge of an AS that directly connects to one or more routers in other ASs. An internal router connects only to hosts and routers within its own AS.

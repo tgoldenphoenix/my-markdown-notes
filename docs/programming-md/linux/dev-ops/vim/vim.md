@@ -1,7 +1,5 @@
 # My definitive Vim notes
 
-Let's learn Vim now!
-
 Reading the vim doc: [tới đây](https://github.com/iggredible/Learn-Vim/blob/master/ch03_searching_files.md#searching-in-files-with-grep) <- regex
 
 ## Todo
@@ -10,32 +8,26 @@ tìm operator to toggle comments (maybe plug-ins)
 
 auto-indent entire file
 
-## Starting vim
-
-**References**: [intro.txt](https://neovim.io/doc/user/intro.html#intro)
+## Starting `vim` & Basic Commands
 
 `vim --version` tells you the current Vim version and all available features marked with either `+` or `-`.
 
-Open a file in vim: `vim filename.c` nếu file chưa tồn tại thì vim sẽ create a new file. Neovim command là `nvim`. You can also [open multiple files at once](https://github.com/iggredible/Learn-Vim/blob/master/ch01_starting_vim.md#opening-a-file)
+Open a file in vim: `vim filename.c` nếu file chưa tồn tại thì vim sẽ create a new file. Neovim command là `nvim`. You can also open multiple files at once.
 
-Type `ctrl + z` to send vim to the _background_ and bring the terminal to the front. I like to think comic book sleeping, “Zzz," to remember the command. Once you’re ready to get back to work, type `fg` (foreground) in the terminal to bring up vim.\
-You can also use `:sus`, `:suspend`, :`st`, or `:stop`, which all map to the same command.
+Type `ctrl + z` to send vim to the _background_ and bring the terminal to the front. I like to think comic book sleeping, “Zzz," to remember the command. Once you’re ready to get back to work, type `fg` (foreground) in the terminal to bring up vim.  
+You can also use `:sus`, `:suspend`, `:st`, or `:stop`, which all map to the same command.
 
-**Source a file** in vim (for example `.vimrc`): `:w` then `:source %`
+**Source a file** in vim (for example `.vimrc`) => `:w` > `:source %`.  
+`%` expands to the full path and filename of the current file.
 
-To **quit** vim: `:q[uit]` or `:q!` to force quit & dismiss any changes.\
+To quit vim: `:q[uit]` or `:q!` to force quit & dismiss any changes.  
 Đang đọc `:h` mà muốn thoát luôn ra terminal không cần `:q` 2 lần thì dùng `:qa!`
 
-**Write** changes to file (save file): `:write` or `:w`. If it is a new file, you need to give it a name before you can save it: `:w file.txt`  
-write & quit: `:wq`
+Write changes to file (save file): `:write` or `:w`. If it is a new file, you need to give it a name before you can save it: `:w file.txt`  
+`:w {filename}` save the current Vim file as filename to disk.
 
+write & quit: `:wq`  
 `:x` is also write & quit but it only writes (saves) the file if there have been changes. If there are no changes, it just quits without saving whereas `:wp`Always writes (saves) the file, even if no changes were made, and then quits.
-
-`:w {filename}` save the current Vim file as filename to disk (the current directory). (vimtutor lesson 5.2: MORE ON WRITING FILES)
-
-If you want to open the file `hello.txt` and immediately execute a command, you can pass to the `vim` command the `+{cmd}` option. [read more](https://github.com/iggredible/Learn-Vim/blob/master/ch01_starting_vim.md#arguments)
-
-You can launch Vim on split horizontal and vertical windows with the `-o` and `-O` options, respectively. [read more](https://github.com/iggredible/Learn-Vim/blob/master/ch01_starting_vim.md#opening-multiple-windows)
 
 Also being a terminal command, you can combine `vim` with many other terminal commands. For example, you can redirect the output of the `ls` command to be edited in Vim with `ls -l | vim -`.
 
@@ -45,35 +37,38 @@ To learn more about `vim` command in the terminal, check out `man vim`.
 
 Keymap in Vim do not require all the button to be pressed at once.
 
-Many command in vim have this "grammar": operator (d, y, c) + \[number] + motion. The order can change like `2dw` and `d2w` are the same. You should use `d2w` and `2w`.
+Many command in vim have this "grammar": 
 
-- Undo `u` | redo `Ctrl r` or `<C-r>` (undo the undos of `u`)
+> operator (d, y, c) + \[number] + motion.
+
+The order can change. Both `2dw` and `d2w` achived the same result in slightly different steps.
+
+- Undo `u`
+- Undo the undos of `u` => `<C-r>`
 - The capital `U` return the whole line to its original state. It undo all the changes on a line.
 
-- Copy whole line: `yy` or `Y` (including the linebreak character at the end of each line)
-- To yank everything from your current location to the end of the line: `y$`.
+### Yank, Put, Change & Delete
 
-`yiw` yank in a word, copy word if you're in the middle of it
+- `y` yanks into register. Vim gọi là **yank & put** chứ không phải **copy & paste**.
+- Cần phân biệt các khái niệm delete vs change;  in vs around.
 
-`y` yanks into register. Vim gọi là **yank & put** chứ không phải **copy & paste**.
+- Copy whole line: `yy` (including the linebreak character at the end of each line)
+- To yank everything from your current location to the end of the line: `y$` or `Y` uppercase.
+- `yiw` yank in a word
+- `yt,` yank until `,`; uses the `t{char}` motion.
 
-`yt,` yank until `,`; use the `t{char}` motion
+- Lowercase `p` put word after the cursor (or below current line)
+- Uppercase `P` put word before the cursor (or the live above)
+- Vim also provides `gp` and `gP` commands. These also put the text before or after the current line, but they leave the cursor positioned at the end of the pasted text instead of at the beginning.
 
-### Change & Delete
+---
 
-**Note**: Cần phân biệt các khái niệm delete vs change;  in vs around.
-
-Both `d` and `c` save deleted text into register.
+Both delete `d` and change `c` save deleted text into register.
 
 Press `x` to delete the character under the (block) cursor in normal mode.
 
-- `p` lowercase to put word after the cursor (or below current line)
-- `P` uppercase put word before the cursor (or the live above)
-
-Vim also provides `gp` and `gP` commands. These also put the text before or after the current line, but they leave the cursor positioned at the end of the pasted text instead of at the beginning.
-
 `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
-
+anki
 - `de` - to the end of the current word, INCLUDING the last character. Cái này hơi weird, nên dùng `dw`.
 - `dd` deleta whole line
 - `d$` - to the end of the line, INCLUDING the last character & the cursor. `d0` delete to beginning of line.
@@ -148,11 +143,16 @@ By itself, `g` does nothing. It's a "prefix" that waits for a second key to exec
 
 ### The `g` Prefix
 
-- `g~` toggle case
-- `g~iw` toggle case in word
+- `~` in normal mode toggles the case of the character currently under the cursor & moves the cursor one step to the right.
+- `~` in visual mode toggles the case of the selected area.
+- `g~` toggle case case over a specific distance (motion) without selecting it first.
+  * `g~iw` toggle case in word
+  * `g~$` toggle case to end of line
 - `gu{motion}` Make text lowercase (e.g., guw = "go lowercase word").
 - `gU{motion}` Make text uppercase (e.g., gUw = "go uppercase word").
 - `gUaw` convert current word to uppercase
+
+`vU` uppercases the letter under the cursor.
 
 ---
 
@@ -413,7 +413,9 @@ To change every occurrence of a character string between two lines, type   `:#,#
 Type  `:%s/old/new/g`       to change every occurrence in the whole file.
 Type   `:%s/old/new/gc`    to find every occurrence in the whole file, with a prompt whether to substitute or not.
 
-## Registers & Macros
+## Regex Patterns
+
+## Registers
 
 Vim’s registers are simply containers that hold text. They can be used in the manner of a clipboard for cutting, copying, and pasting text, or they can be used to record a macro by saving a sequence of keystrokes.
 
@@ -536,6 +538,90 @@ The `q` key functions both as the “record” button and the “stop” button.
 We can inspect the contents of register a by typing the following: `:reg a`. The symbol `^[` is used to stand for the Escape key. Spacebar hiện là spacebar không có escape gì cả.
 
 The `@{register}` command executes the contents of the specified register (see `:h @`). We can also use `@@`, which repeats the macro that was invoked most recently.
+
+---
+
+If a motion fails while a macro is executing, then Vim aborts the rest of the macro. Consider this a feature, not a bug. We can use motions as a simple test of whether or not the macro should be executed in the current context.
+
+Suppose that the macro was stored in the a register. Rather than executing `@a` ten times, we could prefix it with a count: `10@a`. The beauty of this technique is that we can be unscrupulous about how many times we execute this macro. Don’t care for counting? It doesn’t matter! We could execute `100@a` or even 1000@a, and it would produce the same result. Bởi vì motion fail thì macro bị aborted.
+
+---
+
+The Dot Formula can be an efficient editing strategy for a small number of repeats, but it can’t be executed with a count. Overcome this limitation by recording a cheap one-off macro and playing it back with a count
+
+`qq;.q` record the marcro `;.` into the `q` register. Now we can execute the macro with a count: `11@q`. This executes `;.` eleven times.
+
+The `;` command repeats the `f+` search. When our cursor is positioned after the last `+` character on the line, the `;` motion fails and the macro aborts.
+
+In our case, we want to execute the macro ten times. But if we were to play it back eleven times, the final execution would abort. In other words, we can complete the task so long as we invoke the macro with a count of ten or more.  
+Who wants to sit there and count the exact number of times that a macro should be executed? Not me. I’d rather provide a count that I reckon to be high enough to get the job done. I often use 22, because I’m lazy and it’s easy to type. On my keyboard, the @ and 2 characters are entered with the same button
+
+---
+
+We can make light work out of repeating the same set of changes on a range of lines by recording a macro and then playing it back on each line. There are two ways to do this: executing the macro in series or in parallel.
+
+record your macro on one line > visual select other lines > `:'<,'>normal @a`  
+The `:normal @a` command tells Vim to execute the macro once for each line in the selection. This execute the macro on each line parallel independent from the others; If an iteration fails, it does so in isolation. Whereas `22@a` executes them in series; If one iteration fail, the rest fail.
+
+Execute in series, if the motion fail on one line, the remaining macros to be executed is aborted.
+
+---
+
+Sometimes we miss a vital step when we record a macro. There’s no need to re-record the whole thing from scratch. Instead, we can append extra commands onto the end of an existing macro.
+
+Use `:reg a` to inspect the contents of register `a`.
+
+If we type `qa`, then Vim will record our keystrokes, saving them into register `a` by overwriting the existing contents of that register. If we type `qA`, then Vim will record our keystrokes, appending them to the existing contents of register a.
+
+This little trick saves us from having to re-record the entire macro from scratch. But we can use it only to tack commands on at the end of a macro. If we wanted to add something at the beginning or somewhere in the middle of a macro, this technique would be of no use to us. In Tip 71, on page 176, we’ll learn about a more powerful method for amending a macro after it has been recorded.
+
+---
+
+Being able to insert a value that changes for each execution of a macro can be useful. In this tip, we’ll learn a technique for incrementing a number as we record a macro so that we can insert the numbers 1 to 5 on consecutive lines.
+
+For this solution, we’ll use the expression register with a touch of Vim script.
+
+The :echo command is fine for revealing the value that is assigned to a variable, but ideally we want to insert that value into the document. We can do that using the expression register. In Tip 16, on page 31, we saw that the expression register can be used to do simple sums and to insert the result into the document. We can insert the value stored in variable i just by running `<C-r>=i<CR>` in Insert mode.
+
+```
+:let i=1
+qa
+I<C-r>=i<CR>)<spacebar>
+<Esc>
+:let i += 1
+q
+```
+
+Before we begin recording the macro, we set the variable i to 1. Inside the macro, we use the expression register to insert the value stored in i. Then, before we finish recording the macro, we increment the value stored in the variable, which should now contain the value 2.
+
+We can still visual select > `:'<,'>normal @a` to execute the macro parallel, the numbers still increase by one for each line normally.
+
+---
+
+In Tip 68, on page 168, we saw that adding commands at the end of a macro is straightforward. But what if we want to remove the last command? Or change something at the beginning of the macro? In this tip, we’ll learn how to edit the content of a macro just as if it were plain text.
+
+When you run `:reg a` to inspect a macro:
+
+- the `^[` symbol represents the Escape key. No matter whether you press `<Esc>` or `<C-[>`.
+- the `<80>kb` symbol represents the backspace key.
+
+- `:put a`paste the contents of register `a` into a new line (paste the macro out to the document file)
+- Now we can edit the macro as plain text.
+- Yank the Macro from the Document Back into a Registe:
+  * `"add` (or `:d a`)
+  * `"ay$` > `dd`: yank every character on that line except for the carriage return
+
+The `dd` command performs a line-wise deletion. The register contains a trailing `^J` character:
+
+```
+➾ :reg a
+❮ 0f.r)wvUj^J`
+```
+
+Having followed these steps, register a now contains a new and improved macro. We can use it on the example text that we met at the start of this tip.
+
+```
+Why didn’t we just use the `"ap` command? In this context, the `p` command would paste the contents of the a register after the cursor position on the current line. The :put command, on the other hand, always pastes below the current line, whether the specified register contains a line-wise or a character-wise set of text
 
 ## The Dot Command
 
