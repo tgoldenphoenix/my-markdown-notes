@@ -6,7 +6,7 @@
 - `{}` is also called **quantity specifier.**
 - flag = modifier
 
-A **metacharacter** in a regular expression is a character that has a special meaning to the regex engine, rather than representing its literal self. Example: `.`, `\d`, `\w`, etc
+A **metacharacter** in a regular expression is a character that has a special meaning to the regex engine, rather than representing its literal self. In regex, there are 12 special characters. Example: `.`, `\d`, `\w`, etc
 
 Regular expressions are neither procedural nor functional languages. Rather, they are a logic-based or declarative language, a class of languages that also includes Prolog and Makefiles. And BNFs. One might also call them rule-based languages. I prefer to call them declarative languages myself.
 
@@ -32,7 +32,7 @@ Matching is **case-sensitive** by default.
 
 Many special constructs, such as `+` and `|`, affect the matching of the “thing” to their left or right. In general, a “thing” is a single character, a subpattern enclosed in parentheses, or a character class enclosed in square brackets.
 
-### Escaped characters
+## Escaped characters
 
 - forward-slash `/`
 - back-slash `\`
@@ -40,7 +40,7 @@ Many special constructs, such as `+` and `|`, affect the matching of the “thin
 - To enclose the regex pattern, thuận theo chiều gió. Gió thổi left-> right thì `|` nghiên về bên phải thành `/` (forward-slash). Example: `/pattern/gm`
 - `/` is also used for finding in `less` & `vim`. Vì nó giống ở trên, thuận theo chiều gió.
 
-- backslash `\` is used to escape characters in regex: `\.`
+- backslash `\` is used to **escape** characters in regex: `\.`
 - `\` is also used for latex commands (`\documentclass{article}`) & escape characters in latex `\&`.
 Backslash đi ngược chiều "gió thổi" nên dùng để "escape" characters.
 - XML closing tags dùng forwardslash `</h1>`
@@ -52,17 +52,31 @@ Examples:
 - `/\./g`: => matches a single “.” character, not the wildcard notation.
 - `\\` => dùng để escape a bach slash
 
+___
+
+In your source code, you have to keep in mind which characters get special treatment inside strings by your programming language. That is because those characters are processed by the compiler, before the regex library sees the string. So the regex `1\+1=2` must be written as `"1\\+1=2"` in C++ code. The C++ compiler turns the escaped backslash in the source code into a single backslash in the string that is passed on to the regex library. To match `c:\temp`, you need to use the regex `c:\\temp`. As a string in C++ source code, this regex becomes `"c:\\\\temp"`. Four backslashes to match a single one indeed.
+
+## Non-Printable Characters
+
+- `\t` match a tab character (ASCII 0x09)
+- `\r` for carriage return (0x0D)
+- `\n` for line feed (0x0A)
+
+Remember that Windows text files use `\r\n` to terminate lines, while UNIX text files use `\n`. Some flavors use \R to match a single line break and treat \r\n as an indivisible pair.
+
 ## The dot `.` Any Character
 
-The **wildcard character** `.` will match one single character of any kind, including special characters and white space characters (except line breaks). The wildcard is also called dot and period. For example, if you wanted to match ==hug, huh, hut, and hum==, you can use the regex `/hu./` to match all four words.
+The **wildcard character** `.` will match one single character of any kind, including special characters and white space characters (except only line breaks). The wildcard is also called dot and period. For example, if you wanted to match ==hug, huh, hut, and hum==, you can use the regex `/hu./` to match all four words.
 
 The escaped character `\.` matches a single literal dot character.
+
+Use the dot **sparingly**. Often, a character class or negated character class is faster and more precise.
 
 ## Flags
 
 Flags change the output of the expression. That's why flags are also called **modifiers**. Flags determine whether the typed expression treats text as separate lines, is case sensitivity, or finds all matches.
 
-You can match both cases using the `i` flag. An example of using this flag is `/ignorecase/i`. This expression can match the three strings: ignorecase, igNoreCase, and IgnoreCase.
+regex engines are case sensitive by default. But you can tell it to match both cases using the `i` flag. An example of using this flag is `/ignorecase/i`. This expression can match the three strings: ignorecase, igNoreCase, and IgnoreCase.
 
 The **global flag** `//g` causes the expression to select all matches. If not specified it will only select the _first match_ (return after first match).
 
@@ -140,11 +154,14 @@ Example:
   * `[wxy]{5}` (five characters, each of which can be a w, x, or y)
   * `.{2,6}` (between two and six of any character)
 
-## Character Classes/Sets `[]`, Ranges & Negated Character Sets
+## Character Classes/Sets `[]`
 
-If one of the characters in a word can be in a set of diffrent characters, we put then in **character set/class** notated with square brackets `[]`.
+A character class/set `[]` matches only one out of several characters. A character class matches only a single character.
 
 Using the hyphen `-` to match a range of characters is not limited to letters. It also works to match a range of numbers. For example, `/[0-5]/` matches any number between 0 and 5, **including themself**.
+
+- `[0-9a-fA-F]` matches a single hexadecimal digit, case insensitively.
+- You can combine ranges and single characters. `[0-9a-fxA-FX]` matches a hexadecimal digit or the letter X.
 
 So far, you have created a set of characters that you want to match, but you could also create a set of characters that you **do NOT** want to match. These types of character sets are called **negated character sets**. To create a negated character set, you place a caret character `^` after the opening bracket and before the characters you do not want to match `[^chars]`.
 
@@ -164,7 +181,7 @@ Example:
 - `/[fc]at/g` => match "fat" and "cat"
 - `/[Gg]r[ae]y/` => match 4 different spellings and capitalization of the word "gray/grey" at once.
 
-### Character Set `[]` Shorthands
+### Shorthand Character Sets
 
 Using character sets, you were able to search for all letters of the alphabet with `[a-z]`. This kind of character class is common enough that there is a shorthand for it, although it still includes a few characters to learn.
 
@@ -186,13 +203,19 @@ The shortcut to look for digit characters is `\d`, with a lowercase d. This is e
 
 The shortcut to look for non-digit characters is `\D`. This is equal to the character class `[^0-9]`, which looks for a single character that is not a number between zero and nine.
 
+Consider whether `[0-9]` or `\d` is more appropriate for your regex as the latter may include digits in many different writing systems.
+
 ---
 
 **Match white spaces**
 
-The most common forms of whitespace you will use with regular expressions are the **space** `␣`, the **tab** `\t`, the **new line** `\n` and the carriage return `\r` (useful in Windows environments), and these special characters match each of their respective whitespaces.
+`\s` matches both horizontal whitespace (spaces and tabs) and vertical whitespace (line breaks). You can think of it as similar to the character class `[\r\t\f\n\v]` (that is, a space, a form feed, a tab, a newline, or a return).
 
-You can search for whitespace characters using `\s`, which is a lowercase s. This pattern not only matches whitespaces characters, but also carriage return (enter key), tab, form feed, and new line characters or line breaks. You can think of it as similar to the character class `[\r\t\f\n\v]` (that is, a space, a form feed, a tab, a newline, or a return).
+Many regex flavors support `\h` to match only horizontal whitespace and `\v` to match only vertical whitespace.
+
+The most common forms of whitespace you will use with regular expressions are the space `␣`, the tab `\t`, the new line `\n` and the carriage return `\r` (useful in Windows environments), and these special characters match each of their respective whitespaces.
+
+You can search for whitespace characters using `\s`, which is a lowercase s. This pattern not only matches whitespaces characters, but also carriage return (enter key), tab, form feed, and new line characters or line breaks. 
 
 Search for non-whitespace using `\S`, equal to the character class `[^ \r\t\f\n\v]`.
 
@@ -220,20 +243,12 @@ We can group an expression and use these groups to reference or enforce some rul
 - `(){}` capture groups with min-max
 - `([AEae]l[- ])?` two character sets inside capture group and an optional `?` quantifier
 
-### Capture Groups with The Alternation Symbol `|`
-
-The pipe character `|` (also called the "Or" operator) allows to specify that an expression can be in different expressions. Thus, all possible statements are written separated by the pipe sign `|`. This differs from charset `[abc]`, charsets operate at the character level while (`|`) alternatives are at the expression level. 
-
-For example, the following expression would select both "cat" and "rat": `/(c|r)at/g`.\
-If you want to find either Penguin or Pumpkin in a string, you can use the following regex: `/P(engu|umpk)in/g`
-
-For the `|` character, however, thingness extends indefinitely to both left and right. If you want to limit the scope of the vertical bar, enclose the bar and both things in their own set of parentheses. For example,
-
-`I am the (walrus|egg man)\.` => matches either “I am the walrus.” or “I am the egg man.”. This example also dem-onstrates escaping of special characters (here, the dot).
-
 ### Reuse patterns using Capture Groups
-anki
+
 When a match succeeds, every set of parentheses becomes a “capture group” that records the actual text that it matched.
+
+Group number one is the first `()` in the pattern.  
+Group zero always contains the entire regex match.
 
 Since parentheses can nest, how do you know which match is which? Easy—the matches arrive in the same order as the opening parentheses. There are as many captures as there are opening parentheses, regardless of the role (or lack of role) that each parenthesized group played in the actual matching. When a parenthe-sized group is not used (e.g., `Mu(')?ammar` when matched against “Muammar”), its corresponding capture is empty.
 
@@ -250,13 +265,11 @@ The substring matched by the group is saved to a temporary "variable", which can
 
 All the quantifiers including the star `*`, `+`, repetition {m,n} and the question mark ? can all be used within the capture group patterns. This is the only way to apply quantifiers on sequences of characters instead of the individual characters themselves.
 
-The example below matches a word that occurs thrice separated by spaces:
-
 **Non-capturing group (?: )**
 
-You can group an expression and ensure that it is not captured by references. For example, below are two groups. However, the first group reference we denote with \1 actually indicates the second group, as the first is a non-capturing group.
+Use the special syntax `Set(?:Value)?` to group tokens without creating a capturing group. This is more efficient if you don’t plan to use the group’s contents. Do not confuse the question mark in the non-capturing group syntax with the quantifier.
 
-`/(?:ha)-ha,(haa)-\1/g`
+In the pattern `/(?:ha)-ha,(haa)-\1/g`, there are two groups. However, the first group reference we denote with `\1` actually indicates the second group, as the first is a non-capturing group.
 
 **Nested groups**
 
@@ -272,17 +285,44 @@ You can search and replace text in a string using .replace() on a string. The in
 
 You can also access capture groups in the replacement string with dollar signs ($).
 
-## Lookaround {lookaround}
+### Backreferences
+
+Within the regular expression, you can use the backreference `\1` to match the same text that was matched by the capturing group. `([abc])=\1` matches `a=a`, `b=b`, and `c=c`. It does not match anything else. If your regex has multiple capturing groups, they are numbered counting their opening parentheses from left to right.
+
+---
+
+**Named Groups and Backreferences**
+
+If your regex has many groups, keeping track of their numbers can get cumbersome. Make your regexes easier to read by naming your groups. `(?<mygroup>[abc])=\k<mygroup>` is identical to `([abc])=\1`, except that you can refer to the group by its name. If this doesn’t work then try the Python-style syntax `(?P<mygroup>[abc])=(?P=mygroup)`. Though the Python-style named backreference uses parentheses as part of its syntax, it is not a group.
+
+## Alternation `|`
+
+The pipe character `|` (also called the "Or" operator) allows to specify that an expression can be in different expressions. Thus, all possible statements are written separated by the pipe sign `|`. This differs from charset `[abc]`, charsets operate at the character level while (`|`) alternatives are at the expression level. 
+
+For example, the following expression would select both "cat" and "rat": `/(c|r)at/g`.\
+If you want to find either Penguin or Pumpkin in a string, you can use the following regex: `/P(engu|umpk)in/g`
+
+For the `|` character, however, thingness extends indefinitely to both left and right. If you want to limit the scope of the vertical bar, enclose the bar and both things in their own set of parentheses. For example,
+
+`I am the (walrus|egg man)\.` => matches either “I am the walrus.” or “I am the egg man.”. This example also dem-onstrates escaping of special characters (here, the dot).
+
+## Lookaround
+
+Lookaround is a special kind of group. The tokens inside the group are matched normally, but then the regex engine makes the group give up its match and keeps only the result. Lookaround matches a position, just like anchors. It does not expand the regex match.
 
 If we want the phrase we're writing to come before or after another phrase, we need to "lookaround". There are four types of lookaround.
 
 Phần lookaround không được select. Nó chỉ dùng như điều kiện.
 
-**Positive & Negative Lookahead: (?=) (?!)**
+---
+
+**Positive & Negative Lookahead: `(?=)` and `(?!)`**
 
 Placed after the pattern that you want to match.
 
 `/\d+(?=PM)/g` => match digit that have "PM" after them like "3PM"
+
+`q(?=u)` matches the q in question, but not in Iraq or iraqi. This is positive lookahead. The u is not part of the overall regex match. The lookahead matches at each position in the string before a u.
 
 **Positive & Negative Lookbehind: (?<=) (?<!)**
 
@@ -317,11 +357,15 @@ For example, we want to select the price value in the text. Therefore, to select
 
 For example, we want to select numbers in the text other than the price value. Therefore, to select only numeric values that are not preceded by $, we need to write the negative lookbehind (?<!) before our expression. Add \$ after the ! inside the parenthesis.
 
-## Match Beginning & Ending of a String
+## Anchors
 
-In an earlier challenge, you used the caret character `^` inside a character set `[]` to create a [negated character set](#character-sets--ranges-and-negated-character-sets) in the form `[^thingsThatWillNotBeMatched]`. But **outside** of a character set, the caret is used to search for patterns at the **beginning of strings**.
+Anchors do not match any characters. They match a position.
 
-If the multiline flag (`m`) is enabled, `^` will match the beginning of lines instead of the whole string. Dùng khi có 1 big string là 1 paragraph contains multiple lines. Nếu không có (m) flag thì "^" chỉ match the beginning of the first line.
+In an earlier challenge, you used the caret character `^` inside a character set `[]` to create a negated character set in the form `[^thingsThatWillNotBeMatched]`. But **outside** of a character set, the caret is used to search for patterns at the **beginning of strings**.
+
+Most regex engines have a “multi-line” mode `m` that makes `^` match after any line break, and `$` before any line break. Then `^bob$` matches `bob` if it appears on a line of its own.
+
+If the multiline flag (`m`) is enabled, `^` will match the beginning of each line instead of the whole string. Dùng khi có 1 big string là 1 paragraph contains multiple lines. Nếu không có (m) flag thì `^` chỉ match the beginning of the first line.
 
 ---
 
@@ -338,6 +382,10 @@ If the multiline flag (m) is enabled, `$` will match the end of a line instead o
 `/^http[^s].*/` => match "<http://httpstatus.io/>"; "http" at the beginning
 
 In `^\d{5}$`, The `^` and $ match the beginning and end of the search text but do not actually correspond to characters in the text; they are **zero-width assertions.** These char-acters ensure that only texts consisting of exactly five digits match the regular expression—the regex will not match five digits within a larger string. The \d es-cape matches a digit, and the quantifier {5} says that there must be exactly five digit matches.
+
+---
+
+The anchor `\b` matches at a word boundary. A word boundary is a position between a character that can be matched by \w and a character that cannot be matched by \w. \b also matches at the start and/or end of the string if the first and/or last characters in the string are word characters. \B matches at every position where \b cannot match.
 
 ## My regex patterns
 

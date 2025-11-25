@@ -172,6 +172,12 @@ Nó không thể tạo mạng, không thể cấp IP (DHCP), và không thể ch
 
 Nó giống như một ổ cắm điện: bạn cắm 1 phích vào, nó chia ra 5, 8 cổng y hệt nhau, chứ nó không quản lý dòng điện.
 
+---
+
+The modem's core function is **Translation (Modulate/Demodulate)**. It translates the signal from the ISP's external medium (like analog radio frequency over coaxial cable, or light over fiber) into the common digital language used in your home (Ethernet).
+
+A modem does not perform network-layer routing. Modem serve at layer 1 & 2 of the stack.
+
 ## Delay
 
 To get a hands-on feel for end-to-end delay in a computer network, we can make use of the `Traceroute` program.
