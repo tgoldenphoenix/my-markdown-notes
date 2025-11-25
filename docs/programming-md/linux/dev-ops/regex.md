@@ -32,6 +32,8 @@ Matching is **case-sensitive** by default.
 
 Many special constructs, such as `+` and `|`, affect the matching of the “thing” to their left or right. In general, a “thing” is a single character, a subpattern enclosed in parentheses, or a character class enclosed in square brackets.
 
+A regex engine always returns the leftmost match, even if a “better” match could be found later.
+
 ## Escaped characters
 
 - forward-slash `/`
@@ -63,6 +65,10 @@ In your source code, you have to keep in mind which characters get special treat
 - `\n` for line feed (0x0A)
 
 Remember that Windows text files use `\r\n` to terminate lines, while UNIX text files use `\n`. Some flavors use \R to match a single line break and treat \r\n as an indivisible pair.
+
+`\v` matches any vertical whitespace character. That includes the vertical tab, form feed, and all line break characters.
+
+
 
 ## The dot `.` Any Character
 
