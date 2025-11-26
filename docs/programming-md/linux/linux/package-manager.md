@@ -2,11 +2,18 @@
 
 apt & Homebrew
 
+If `XDG_CONFIG_HOME` is not set, the default is `~`
+
 ## Ubuntu `apt`
 
 Trước khi tải package nào mới về thì phải update -> upgrage.
 
-`sudo apt update` : update repository indexes (packet indexes). **Always** run this command before running `apt upgrade`
+`sudo apt update` : update repository indexes (packet indexes). **Always** run this command before running `apt upgrade`.
+
+- `update` downloads the map (updates the local package lists).
+- `upgrade` installs the software (applies the actual updates)
+
+The `update` command connect to the URI of the **official repository** at `https://archive.ubuntu.com/ubuntu/` and downloads the latest package index lists (the "catalogues") to find out what new versions of software are available.
 
 `sudo apt upgrade`: upgrade already installed packages to the latest version. Will not remove any packages or install any new packages.\
 `sudo apt dist-upgrade` same as `upgrade` but will remove and install if it is required. You should run this after running `upgrade`
@@ -156,6 +163,10 @@ The command `brew update` is for updating Homebrew itself, as well as the Homebr
 The command `brew autoremove` will remove all unused dependencies remaining in the environment. If you've removed packages, it is likely that abandoned dependencies were left on disk if you didn't run `brew autoremove` immediately.
 
 Homebrew maintains a cache of downloaded packages so repeated installation goes faster. The command `brew cleanup` will remove outdated download files from the cache, as well as old versions of installed packages. By default, `brew cleanup` only removes files more than 120 days old. Force a more recent cleanup with `--prune=all`.
+
+## Repository
+
+k
 
 ## Uninstall
 

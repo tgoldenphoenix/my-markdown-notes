@@ -106,9 +106,10 @@ Terminologies
 
 Bằng thông không giới hạn (KGH)
 
-### Structure of URL
+## Structure of URL
 
-URL: Uniform Resource Locator
+- URI (Uniform Resource Identifier): The broad term. It's a string that identifies a resource.
+- URL (Uniform Resource Locator): The specific term. It's a URI that specifies the resource's location and tells you how to get to it.
 
 The `http://` part of the URl is the protocol/scheme
 
@@ -140,6 +141,14 @@ In `anhao.com/public/home-page` thì `/public` là **page path** or directory, `
 In `example.com/?type=public&post=new-blog-post`, the stuff appearing after the `?` symbol is called a **query string**.
 
 Do not click links you are suspicious (email, social media, text mobile)
+
+### URL Encoding
+
+- In **URL encoding**:
+  * A forward slash `/` => `%2F`
+  * Colon `:` => `%3A`
+
+Example: `http://localhost:9000/callback` => `http%3A%2F%2Flocalhost%3A9000%2Fcallback`
 
 ### Manage domains
 

@@ -8,6 +8,15 @@ npm is a tool that manages packages written in Nodejs JavaScript.
 
 The V8 engine is written in C++, it compile Javascript code into machine code.
 
+## Basics
+
+- variable with single underscore (`_private`) is to define private variable.
+- Double underscore (__) is not of any convention in node.js. There were only two variables (called global objects) with double underscores in node.js.
+  - `__dirname` : used when to get the name of the directory that the currently executing script resides in.
+  * `__filename`: used to get the filename of the code being executed.
+
+Có một cái library `Underscore.js` có syntax double underscore `__`. Nó được dùng trước khi ES6+. Hiện giờ trong older code bases có thể gặp nó. Sau này thì có `Lodash` với syntax only one underscore `_`.
+
 ## Asynchronous Programming
 
 Node.js uses an event-driven, non-blocking model that allows it to handle many operations concurrently without waiting for previous tasks to complete. This is particularly useful when building **I/O-intensive applications**, such as web servers, where operations like reading files, accessing databases, or making HTTP requests can be done in parallel.

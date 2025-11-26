@@ -12,9 +12,6 @@ The **authorization server (AS)** is trusted by the protected resource to issue 
 
 OAuth isn’t an authentication protocol, even though it can be used to build one.
 
-- A **Grant Type (or Authorization Grant or Flow)** defines the specific method or workflow a client application uses to obtain an Access Token from an authorization server. If successful it ultimately results in the client getting a token.
-  * `Authorization code` là một trong những authorization grant type. The entire OAuth process is the authorization grant: the client sending the user to the authorization endpoint, then receiving the code, then finally trading the code for the token. 
-
 **Refresh token** is used to get new access tokens without asking for authorization again.
 
 - Các loại token trong OAuth
@@ -32,6 +29,39 @@ OAuth isn’t an authentication protocol, even though it can be used to build on
 
 An OAuth client is a piece of software that attempts to access the protected resource on behalf of the resource owner, and it uses OAuth to obtain that access.
 
+- The Authorization Server have two enpoints;
+  * `authorizationEndpoint`
+  * `tokenEndpoint`
+
+## The OAuth Client
+
+### Grant Types
+
+- A **Grant Type (or Authorization Grant or Flow)** defines the specific method or workflow a client application uses to obtain an Access Token from an authorization server. If successful it ultimately results in the client getting a token.
+  * `Authorization Code Grant Type` là một trong những authorization grant type. The entire OAuth process is the authorization grant: the client sending the user to the authorization endpoint, then receiving the code, then finally trading the code for the token.
+  * Other OAuth grant types: implicit grant type or client credentials grant type
+
+The **authorization code grant type** fully separates all of the different OAuth parties and is consequently the **most foundational** and complex of the core grant types that we’ll cover in this book. All of the other OAuth grant types are optimizations of this one, suited for specific use cases and environments.
+
+- The Authorization Client can send the resource owner (which in our case is the end user at the client) over to the authorization server’s authorization endpoint.
+- The server then sends an authorization code back to the client through its `redirect_uri`.
+- The client finally sends the code that it received to the authorization server’s token endpoint to receive an OAuth access token, which it needs to parse and store.
+
+### Use the token with a protected resource
+
+- The client make a call to the protected resource and include the access token (bearer token) in one of the three valid locations.
+  1. Send it in the `Authorization: {Bearer}` HTTP header. This is the method recommended by the specification wherever possible.
+  2. As a form-encoded request body parameter
+  3. As a URL-encoded query parameter
+
+The Authorization header is recommended whenever possible because of limitations in the other two forms. When using the query parameter, the value of the access token can possibly inadvertently leak into server-side logs, because it’s part of the URL request. Using the form-encoded parameter limits the input type of the pro-tected resource to using form-encoded parameters and the POST method. If the API is already set up to do that, this can be fine as it doesn’t experience the same security limitations that the query parameter does. 
+
+The Authorization header provides the maximum flexibility and security of all three methods, but it has the downside of being more difficult for some clients to use. A robust client or server library will provide all three methods where appropriate, and in fact our demonstration protected resource will accept an access token in any of the three locations.
+
+### Refresh the access token
+
+k
+
 ## Interactions between OAuth’s actors and components: back channel, front channel, and endpoints
 
 OAuth is an HTTP-based protocol, but unlike most HTTP-based protocols, OAuth communication doesn’t always happen through a simple HTTP request and response.
@@ -39,3 +69,15 @@ OAuth is an HTTP-based protocol, but unlike most HTTP-based protocols, OAuth com
 Many parts of the OAuth process use a normal HTTP request and response format to communicate to each other. Since these requests generally occur outside the purview of the resource owner and user agent, they are collectively referred to as **back-channel communication**.
 
 The `client_id` needs to be unique for each client at a given authorization server, and is there-fore almost always assigned by the authorization server to the client.
+
+## The code framework
+
+- The OAuth Client application (client.js) runs on `http://localhost:9000/`
+- The OAuth Authorization Server application (`authorizationServer.js`) runs on 
+`http://localhost:9001/`
+- The OAuth Protected Resource Application (`protectedResource.js`) runs on 
+`http://localhost:9002/`
+
+## Spring Security
+
+Spring Security is used to handle authentication and authorization.

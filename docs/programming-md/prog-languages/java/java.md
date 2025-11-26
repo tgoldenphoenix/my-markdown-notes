@@ -693,7 +693,8 @@ Có 2 loại Errors:
 2. **run time**: run project mới có lỗi, vẫn compile (biên dịch) được
 
 In java's ngăn xếp gọi hàm (StackTrace) những lời gọi hàm mới nhất nằm ở trên, cũ nhất nằm bên dưới. Khi debug thì từ dòng ở cuối mò từng dòng lên trên. Mình cần tìm cái lời gọi hàm mới nhất (gần nhất latest).  
-Phải dùng dòng `e.printStackTrace();` thì chương trình mới in ngăn xếp ra cho mình.
+Phải dùng dòng `e.printStackTrace();` thì chương trình mới in ngăn xếp ra cho mình.  
+Thật ra đôi khi work from top-> bottom of the stack trace cũng sẽ tìm ra lỗi cần fix.
 
 Because of **exception hierarchy**, nếu muốn catch tất cả exception thì dùng `Exception e` vì đây là parent class của tất cả exception classes.
 Every exception in Java is child of `java.lang.Exception` class.

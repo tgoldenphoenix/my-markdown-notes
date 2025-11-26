@@ -50,6 +50,13 @@ IPv6 addresses are much longer, `128 bits = 8 groups x 16 bits`. Each group of f
 
 Example: `2001:0db8:85a3:0000:0000:8a2e:0370:7334`
 
+## The `127.0.0.0/8` Network
+
+The entire IP range from `127.0.0.1` up to 127.255.255.254 is reserved for loopback testing and is known as the loopback network (127.0.0.0/8). All traffic sent to this range stays on your local machine and never leaves your network interface card.
+
+When you use `localhost`, it auto resolve to both the IPv4 address (127.0.0.1) and the IPv6 address (`::1`). This ensures your application works regardless of whether the system prefers IPv4 or IPv6.  
+It actually requires a DNS lookup (usually configured in the system's hosts file `/etc/hosts`).
+
 ## Subnet
 
 A subnet (or IP network or simply a network).
