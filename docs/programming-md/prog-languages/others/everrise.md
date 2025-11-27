@@ -21,6 +21,8 @@ Mỗi 1 task & pull request chỉ chỉnh sửa code trong phạm vi task đó; 
 
 viết code phải có tính module để có thể tái sử dụng
 
+đặt tên task là cái mục đích goal của task, còn cái action thì để trong phần description.
+
 Đọc mail remail cuối ngày: <https://groups.google.com/> (phải được add vào đã).
 
 Kế hoạch training: <https://ever-rise.backlog.jp/alias/wiki/560214>
@@ -74,6 +76,10 @@ tiền lương: có tiền giữ xe 200
 
 ## Read if have time
 
+ALB, load balancer
+
+**test rail** manage test cases
+
 meta program?
 
 `adrepo`
@@ -122,6 +128,8 @@ bài học rút ra là sử dụng .equal, không dùng `==` để so sánh
 
 `gitk` command show graph
 
+postman vs swagger
+
 git fech origin main chỉ fetch duy nhất main thôi
 
 Thêm demo vào return a new promise  in `.then` vs return a normal value
@@ -139,6 +147,18 @@ SEO: <https://ever-rise.backlog.jp/alias/wiki/372411>
 ## File excel của anh Việt
 
 Attendance - Equipment Management: <https://docs.google.com/spreadsheets/d/1yvuO-rSCk6Nkhr3GG8g3zJCsikVLkfhDJqV1yut34OI/edit?pli=1&gid=1753145395#gid=1753145395>
+
+## Xin nghỉ
+
+Trưa nay em có cuộc họp từ 12h-14h nên em xin phép dời thời gian nghỉ trưa sang 30 phút sau khi họp (14h-14h30) 🙇‍♀️
+
+Ngày mai em nghỉ phép để đi làm giấy tờ
+
+em xin nghỉ phép sáng T3 25/11 để đưa cha đi khám bệnh ạ.
+
+tuần tới em xin phép nghỉ t3 t4 - 25,26/11 ạ. Em có việc về nhà ạ.
+
+Em xin phép đổi ngày nghỉ từ 1 ngày thành nghỉ 0.5 ngày (buổi chiều) ạ.v🙇
 
 ## Task hiện tai
 

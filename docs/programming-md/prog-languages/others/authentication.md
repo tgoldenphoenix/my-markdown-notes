@@ -43,7 +43,7 @@ Remember, **JWT is not encrypted** by any means. Rather, it is encoded in Base64
 
 JWT and Auth0 are both related to authentication and authorization, but they serve different purposes.
 
-- JWT (JSON Web Token) is a standard for securely transmitting information between parties as a JSON object. It's a _technology_ used for representing claims to be transferred.
+- JWT (JSON Web Token) is a standard for securely transmitting information between parties as a JSON object. It's a **technology** used for representing claims to be transferred.
 - Auth0 is an authentication and authorization **platform** that provides a service for managing user identities and access to applications and APIs. Essentially, Auth0 uses JWTs as part of its authentication process
 - **OAuth 2.0** is a standardized authorization protocol, Auth0 is a company that sells an identity management platform with authentication and authorization services that implements the OAuth2 protocol (among others).
 

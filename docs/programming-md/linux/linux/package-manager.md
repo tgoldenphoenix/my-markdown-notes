@@ -61,13 +61,13 @@ tarBall
 - So `.tar.gz` ≈ a compressed archive similar to a .zip file on Windows.
 - Require `tar` & `gzip`.
 
-You can extract it using: `tar -xvzf filename.tar.gz`
+You can extract it using: `mkdir - /target/dir && tar -xvzf filename.tar.gz -C /target/dir`
 
 - The meaning of -xvzf is
   * `-x --extract` = extract files from an archive
   * `-v, --verbose` = verbosely list files processed
   * `-z, --gzip` = gzipped files eg. for tar.gz packages
-  * -f, --file ARCHIVE = use archive file or device ARCHIVE
+  * `-f`, --file ARCHIVE = use archive file or device ARCHIVE
 
 The `tar` command comes pre-install on Linux.
 
@@ -168,6 +168,34 @@ Homebrew maintains a cache of downloaded packages so repeated installation goes 
 
 k
 
+## Computer Processor Architectures
+
+- Theo công thức chung`{software-name}_{version}_{Operating System}_{CPU architecture}.tar.gz`
+  * `lazygit_0.56.0_darwin_arm64.tar.gz`
+  * `lazygit_0.56.0_darwin_x86_64.tar.gz`
+  * `lazygit_0.56.0_linux_32-bit.tar.gz`
+
+Darwin is the open-source core operating system that underlies Apple's operating systems, including macOS, iOS, iPadOS, watchOS, and tvOS.
+
+___
+
+CPU Processor architectures
+
+- `ARMv6` is a legacy, 32-bit architecture used in older, low-power embedded systems.
+- `ARM64` and `AArch64` are the same thing. AArch64 is the official name for the 64-bit ARM architecture, but some people prefer to call it "ARM64" as a continuation of 32-bit ARM.) 
+
+`x86-64` (also known as x64, x86_64, AMD64, and Intel 64) is a 64-bit extension of the x86 instruction set. 
+
+## Windows
+
+A .`zip` file is just a container of files, while an `.msi` file contains a database of instructions used by the Windows operating system to perform a complex installation process.
+
+- `zip` is Cross-Platform (Windows, Mac, Linux, Web).
+- `msi` is Windows-specific (Relies on Windows Installer service).
+
+- `nvim-win64.zip` (or nvim-win-arm64.zip for ARM)
+- `nvim-win64.msi` (or nvim-win-arm64.msi for ARM)
+
 ## Uninstall
 
 Here are the steps to uninstall a package with Homebrew on a Mac.
@@ -178,6 +206,10 @@ Here are the steps to uninstall a package with Homebrew on a Mac.
 `brew autoremove` to remove unused dependencies
 
 `brew cleanup` Remove stale lock files and outdated downloads for all formulae and casks, and remove old versions of installed formulae. If arguments are specified, only do this for the given formulae and casks. Removes all downloads more than 120 days old.
+
+## Other notes
+
+`chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage`
 
 ## References
 

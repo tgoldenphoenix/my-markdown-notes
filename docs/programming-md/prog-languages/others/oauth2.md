@@ -47,12 +47,14 @@ The **authorization code grant type** fully separates all of the different OAuth
 - The server then sends an authorization code back to the client through its `redirect_uri`.
 - The client finally sends the code that it received to the authorization server’s token endpoint to receive an OAuth access token, which it needs to parse and store.
 
-### Use the token with a protected resource
+### Use the token with a Protected Resource
 
 - The client make a call to the protected resource and include the access token (bearer token) in one of the three valid locations.
   1. Send it in the `Authorization: {Bearer}` HTTP header. This is the method recommended by the specification wherever possible.
-  2. As a form-encoded request body parameter
-  3. As a URL-encoded query parameter
+  2. As a form-encoded request POST body. This method isn’t recommended by the OAuth specification because it artificially limits the input of the API to a form-encoded set of values.
+  3. As a URL-encoded query parameter. This method is recommended by OAuth only as a last resort when the other two methods aren’t appli-cable. 
+
+Tương ứng thì Protected Resource có 3 cách khác nhau để parse token gởi lên từ phía OAuth client.
 
 The Authorization header is recommended whenever possible because of limitations in the other two forms. When using the query parameter, the value of the access token can possibly inadvertently leak into server-side logs, because it’s part of the URL request. Using the form-encoded parameter limits the input type of the pro-tected resource to using form-encoded parameters and the POST method. If the API is already set up to do that, this can be fine as it doesn’t experience the same security limitations that the query parameter does. 
 
@@ -60,7 +62,33 @@ The Authorization header provides the maximum flexibility and security of all th
 
 ### Refresh the access token
 
-k
+How does an OAuth client know whether its access token is any good? The only real way to be sure is to use it and see what happens. If the token is expected to expire, the authorization server can give a hint as to the expected expiration by using the optional expires_in field of the token response. This is a value in seconds from the time of token issuance that the token is expected to no longer work. A well-behaved client will pay attention to this value and throw out any tokens that are past the expiration time.
+
+However, knowledge of the expiration alone isn’t sufficient for a client to know the status of the token. In many OAuth implementations, the resource owner can revoke the token before its expiration time. A well-designed OAuth client must always expect that its access token could suddenly stop working at any time, and be able to react accordingly.
+
+- Khi client gởi request tới `authorization_server` để xin token thì client phải kèm `grant_type` vào body:
+  * `grant_type=authorization_code`: Used in the Authorization Code Flow (the standard web app flow). This tells the server to look for the mandatory `code` parameter and the `client_secret`.
+  * `grant_type=refresh_token`: Used to renew an expired Access Token. This tells the server to look for the `refresh_token` parameter. 
+
+As you can see, refreshing an access token is a special case of an authorization grant, and we use the value refresh_token for our `grant_type` parameter. We also include our refresh token as one of the parameters.
+
+Khi refresh token thì auth_server sẽ trả về new access token và một cái refresh token (có thể mới hoặc giống y chang cái cũ). If that happens, the client needs to throw away the old refresh token that it’s been saving and immediately start using the new one. 
+
+## The OAuth Protected Resource
+
+You built your web-based API, now you want to protect it using OAuth. This is the way.
+
+Although the protected resource and authorization server are conceptually separate components in the OAuth structure, many OAuth implementations co-locate the resource server with the authorization server.
+
+The OAuth Bearer token specification tells us that when the token is passed as an HTTP Authorization header, the value of the header consists of the keyword Bearer, followed by a single space, and followed by the token value itself. Furthermore, the OAuth specification tells us that the Bearer keyword is not case sensitive. Additionally, the HTTP specification tells us that the Authorization header keyword is itself not case sensitive. This means that all of the following headers are equivalent:
+
+```
+Authorization: Bearer 987tghjkiu6trfghjuytrghj
+Authorization: bearer 987tghjkiu6trfghjuytrghj
+authorization: BEARER 987tghjkiu6trfghjuytrghj
+```
+
+The token value itself is case sensitive.
 
 ## Interactions between OAuth’s actors and components: back channel, front channel, and endpoints
 
@@ -78,6 +106,15 @@ The `client_id` needs to be unique for each client at a given authorization serv
 - The OAuth Protected Resource Application (`protectedResource.js`) runs on 
 `http://localhost:9002/`
 
-## Spring Security
+## Spring Security, JWT
 
 Spring Security is used to handle authentication and authorization.
+
+The tokens themselves can contain information that the protected resource can parse and understand directly. One such structure is a JSON Web Token, or JWT, which carries a set of claims in a cryptographically protected JSON object. We’ll cover both of these techniques in chapter 11.
+
+## Notes
+
+`GET` request không được phép có phần body. Backlog nó nói Authorization Request của nó là `GET`, **form parameters** mà nó muốn là url param, không phải url-encode trong phần body nha.
+
+- `application/x-www-form-urlencoded` is simple text sent inside the body and is not attached to the url
+- `multipart/form-data` is required for file uploads.

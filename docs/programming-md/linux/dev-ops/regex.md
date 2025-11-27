@@ -164,29 +164,54 @@ Example:
 
 A character class/set `[]` matches only one out of several characters. A character class matches only a single character.
 
-Using the hyphen `-` to match a range of characters is not limited to letters. It also works to match a range of numbers. For example, `/[0-5]/` matches any number between 0 and 5, **including themself**.
+Using the hyphen `-` to match a range of characters is not limited to letters. It also works to match a range of numbers. For example, `/[0-5]/` matches any number between 0 and 5, **including themself**.  
+A literal `\-` ở trong character set thì phải escape, ở ngoài thì không cần
 
 - `[0-9a-fA-F]` matches a single hexadecimal digit, case insensitively.
 - You can combine ranges and single characters. `[0-9a-fxA-FX]` matches a hexadecimal digit or the letter X.
+- `[0-9a-fxA-FX]` matches a hexadecimal digit or the letter X. Again, the order of the characters and the ranges does not matter.
+- `[a-z]`, `[a-zA-Z]`, `[0-9]`, `[a-f]`, `/a-z0-9/ig`
 
-So far, you have created a set of characters that you want to match, but you could also create a set of characters that you **do NOT** want to match. These types of character sets are called **negated character sets**. To create a negated character set, you place a caret character `^` after the opening bracket and before the characters you do not want to match `[^chars]`.
+___
+
+A **Negated Character Set** matches any character that is not in the character class.
+
+To create a negated character set, you place a caret character `^` after the opening bracket and before the characters you do not want to match `[^chars]`.
+
+It is important to remember that a negated character class still must match a character. `q[^u]` does not mean: “a q not followed by a u”. It means: “a q followed by a character that is not a u”. It does not match the q in the string `Iraq`. It does match the q and the space after the q in Iraq is a country. Indeed: the space becomes part of the overall match, because it is the “character that is not a u” that is matched by the negated character class in the above regexp. If you want the regex to match the q, and only the q, in both strings, you need to use negative lookahead: `q(?!u)`. But we will get to that later.
 
 NOTE: The `^` symbol is also used to match the beginning of a line together with the `$`.
 
 - Special characters that need to be escaped inside character class:
-  - `[` and `]`: start & end of the character class.
-  - `\`: for escaping characters `[\\]`.
-  - `-` and `^`: character range & class negation
+  * `[` and `]`: start & end of the character class.
+  * `\`: for escaping characters `[\\]`. Example: `[\\x]` matches a backslash or an x.
+  * `-` and `^`: character range & class negation
+- The usual metacharacters are normal characters inside a character class, and do not need to be escaped by a backslash. To search for a star or plus, use `[+*]`. Your regex will work fine if you escape the regular metacharacters inside a character class, but doing so significantly reduces readability.
+
+- The closing bracket ], the caret ^ and the hyphen - can be included by escaping them with a backslash, or by placing them in a position where they do not take on their special meaning.
+- To include an unescaped caret as a literal, place it anywhere except right after the opening bracket. `[x^]` matches an x or a caret. 
 
 Example:
 
 - `/[^aeiou]/gi` matches all characters that are not a vowel. Note that characters like ., !, [, @, / and white space are matched - the negated vowel character set only excludes the vowel characters.
-- `[a-z]`, `[a-zA-Z]`, `[0-9]`, `[a-f]`, `/a-z0-9/ig`
 - `/http[^s].*/` => match "http" not "https"
 - `/b[aiu]g/` => match "bag", "big", "bug"
 - `/[fc]at/g` => match "fat" and "cat"
 - `/[Gg]r[ae]y/` => match 4 different spellings and capitalization of the word "gray/grey" at once.
+- `[^0-9\r\n]` matches any character that is not a digit, carriage return, or line feed.
 
+___
+
+Repeating Character Classes
+
+If you repeat a character class by using the `?`, `*` or `+` operators then you’re repeating the entire character class. You’re not repeating just the character that it matched. The regex `[0-9]+` can match 837 as well as 222.
+
+If you want to repeat the matched character, rather than the class, then you need to use backreferences. `([0-9])\1+` matches `222` but not `837`. When applied to the string 833337, it matches 3333 in the middle of this string. If you do not want that then you need to use word boundaries or lookaround.
+
+___
+
+The regex `gr(a|e)y` uses alternation instead of a character class.
+ 
 ### Shorthand Character Sets
 
 Using character sets, you were able to search for all letters of the alphabet with `[a-z]`. This kind of character class is common enough that there is a shorthand for it, although it still includes a few characters to learn.
