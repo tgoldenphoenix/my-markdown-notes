@@ -20,11 +20,11 @@ The **Routing algorithms** determine the contents of the routers’ **forwarding
 
 ## IP Datagram Format
 
-Note that an IP datagram has a total of 20 bytes of header (assuming no options). If the datagram carries a TCP segment, then each datagram carries a total of 40 bytes of header (20 bytes of IP header plus 20 bytes of TCP header) along with the application-layer message.
+Note that an **IP datagram** has a total of 20 bytes of header (assuming no options). If the datagram carries a TCP segment, then each datagram carries a total of 40 bytes of header (20 bytes of IP header plus 20 bytes of TCP header) along with the application-layer message.
 
 ## The Internet Protocol (IP): IPv4, Addressing, IPv6, and More
 
-- Domain name must be read from left <- right.
+- Domain name must be read from right -> left.
 - IP address should be read from left -> right (giống số decimal bình thường mình cũng đọc như vậy, hàng thousands -> hundreds -> tens).
 
 The version of TCP/IP that has been in widespread use for three decades is protocol revision 4, aka IPv4. It uses four-byte IP addresses. A modernized version, IPv6, expands the IP address space to 16 bytes and incorporates several other lessons learned from the use of IPv4.
@@ -113,6 +113,25 @@ A subnet (or IP network or simply a network).
 To determine the subnets, detach each interface from its host or router, creating islands of isolated networks, with interfaces terminating the end points of the isolated networks. Each of these isolated networks is called a subnet
 
 In `223.1.1.0/24`, the `/24` is the subnet mask. It indicates that the leftmost 24 bits of the 32-bit quantity define the subnet address.
+
+The `10.0.0.x` is a `/24` network contains 256 ip addresses from `.0` to `.255`
+
+- Một `10.0.0/24` network can be divided into two equal `/25` networks.
+  - `.0` tới `.127`
+  - `.127 -> .255`
+
+Classless Inter-Domain Routing (CIDR) notation show the size of a subnet.
+
+Convert between CIDR notation and Subnet Mask
+
+- `10.1.1.55/28 = 255.255.255.240`
+
+- Network ID: First IP address in each Sub-network
+- Broadcast IP: Last IP address in each sub-network
+- Có chức năng đặc biệt, không được assign cho user trong IP block.
+
+- First host IP: IP address immediately after the network ID
+- Last host IP: IP address immediately before the broadcast IP
 
 ## Control Plane
 

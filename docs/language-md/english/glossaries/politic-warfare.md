@@ -261,6 +261,10 @@ Aerial warfare: chiến tranh trên không
 
 A [scimitar](https://en.wikipedia.org/wiki/Scimitar) is a single-edged sword with a convex curved blade associated with Middle Eastern, South Asian, or North African cultures.
 
+unmanned aerial vehicle (UAV, Phương tiện bay không người lái) or drone
+
+The **M142 High Mobility Artillery Rocket System (HIMARS, Hệ thống Pháo phản lực Cơ động cao M142)** is a light multiple rocket launcher developed in the late 1990s for the United States Army and mounted on a standard U.S. Army Family of Medium Tactical Vehicles (FMTV) M1140 truck frame.
+
 ## Flag, Coat of Arm design
 
 A [saltire](https://en.wikipedia.org/wiki/Saltire), also called Saint Andrew's Cross or the crux decussata,[1] is a heraldic symbol in the form of a diagonal cross. The word comes from the Middle French sautoir, Medieval Latin saltatoria ("stirrup").

@@ -29,7 +29,7 @@ A process (as part of a network application) can have one or more sockets, doors
 
 Because at any given time there can be more than one socket in the receiving host, each socket has a unique identifier. The format of the identifier depends on whether the socket is a UDP or a TCP socket, as we’ll discuss shortly.
 
-Although we have introduced mul-tiplexing and demultiplexing in the context of the Internet transport protocols, it’s important to realize that they are concerns whenever a single protocol at one layer (at the transport layer or elsewhere) is used by multiple protocols at the next higher layer. 
+Although we have introduced mul-tiplexing and demultiplexing in the context of the Internet transport protocols, it’s important to realize that they are concerns whenever a single protocol at one layer (at the transport layer or elsewhere) is used by multiple protocols at the next higher layer.
 
 The unique identifier for sockets are the **port number**. Each socket in the host could be assigned a port number, and when a segment arrives at the host, the transport layer examines the destination port number in the segment and directs the segment to the corresponding socket. The segment’s data then passes through the socket into the attached process. As we’ll see, this is basically how UDP does it. However, we’ll also see that multiplexing/ demultiplexing in TCP is yet more subtle.
 
@@ -48,3 +48,4 @@ DNS is an example of an application-layer protocol that typically uses UDP.
 Some applications are better suited for UDP than TCP.
 
  The TCP segment has 20 bytes of header over-head in every segment, whereas UDP has only 8 bytes of overhead.
+

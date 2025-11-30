@@ -11,6 +11,8 @@ A Python interpreter is a program that reads and executes Python code. It acts a
 - Python is included by default on almost every Linux and MacOS system, but you might want to use a different version than the default.
 - Python isn’t usually included by default on WindowsPython isn’t usually included by default on Windows
 
+`IPython` (Interactive Python) is an enhanced interactive shell built on top of the standard Python interpreter.
+
 ### python vs python3 command line utilities
 
 Tại sao lại có 2 commands: `python --version`, `python3 --version`
@@ -19,9 +21,9 @@ Tại sao lại có 2 commands: `python --version`, `python3 --version`
 - The `python3` command specifically referred to the Python 3.x interpreter. This distinction was crucial when both Python 2 and Python 3 were commonly installed on a system, especially on Linux distributions where system utilities might rely on Python 2.
 
 - In modern environments:
-  * Python 2 has reached its end-of-life, and Python 3 is the current and actively developed version.
-  * On many newer systems and installations, the `python` command is often aliased or symlinked to python3, meaning both commands will invoke the Python 3 interpreter.
-  * However, this is not universally true, and it's still possible to encounter systems where python might still point to an older Python 2 installation.
+  - Python 2 has reached its end-of-life, and Python 3 is the current and actively developed version.
+  - On many newer systems and installations, the `python` command is often aliased or symlinked to python3, meaning both commands will invoke the Python 3 interpreter.
+  - However, this is not universally true, and it's still possible to encounter systems where python might still point to an older Python 2 installation.
 
 ## Virtual environment
 
@@ -78,3 +80,31 @@ In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store pack
 
 Run `python3` in the terminal to run python in the terminal. Use `<C-d>` or type `exit()` to leave the Python prompt and return to a terminal prompt.
 
+## Python Command-Line Programs
+
+This chapter focus on command-line programs written in python. Command-line techniques are very useful when you need to process large numbers of files.
+
+`python script.py`
+
+All of the arguments on the command line are in a list that can be accessed via `sys.argv`. Note that to access this list, you first need to import the sys module.
+
+`python script2.py arg1 arg2 3`
+
+---
+
+Executing code only as main script
+
+```python
+if __name__ == '__main__':
+    main()
+else:
+    # module-specific initialization code if any
+```
+
+If a file with this structure is called as a script, the variable `__name__` is set to `__main__`, which means that the controlling function, main, will be called. If the script has been imported into a module by some other script, its name will be its filename, and the code won’t be executed. On the other hand, if we include the totally optional and less often used else block, that will only be executed if the file has been imported as a module.
+
+This technique prevent code from being executed when a file is imported as a module.
+
+---
+
+k
