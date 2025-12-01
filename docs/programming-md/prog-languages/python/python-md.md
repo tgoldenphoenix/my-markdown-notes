@@ -25,11 +25,11 @@ Tại sao lại có 2 commands: `python --version`, `python3 --version`
   - On many newer systems and installations, the `python` command is often aliased or symlinked to python3, meaning both commands will invoke the Python 3 interpreter.
   - However, this is not universally true, and it's still possible to encounter systems where python might still point to an older Python 2 installation.
 
-## Virtual environment
+## Virtual Environment
 
 A best practice among Python developers is to use a project-specific virtual environment.
 
-## `uv` commands
+## `uv` Commands
 
 `pip` install packages
 
@@ -76,9 +76,46 @@ In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store pack
 
 `uv sync` create the `venv` using the `.lock` file.
 
-## The basics
+## The Basics
 
 Run `python3` in the terminal to run python in the terminal. Use `<C-d>` or type `exit()` to leave the Python prompt and return to a terminal prompt.
+
+Use `"""` or three backticks to create multi-line comments in Python.
+
+## Built-in Data Type
+
+There are 4 built-in data types in Python used to store collections of data: Tuple, Dictionary, List, Set
+
+**Dictionaries** are used to store data values in `key:value` pairs. A dictionary is a collection which is ordered*, changeable and do not allow duplicates.
+
+- Dictionaries are changeable, meaning that we can change, add or remove items after the dictionary has been created.
+- As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
+- Duplicate keys will overwrite existing values
+
+Written with curly brackets
+
+---
+
+Tuple
+
+- used to store multiple items in a single variable.
+- ordered (Tuple items are indexed) and unchangeable
+- allow duplicate values
+- Written with square brackets `()`
+
+cannot change, add or remove items after the tuple has been created.
+
+Trong Python, có một syntax gọi là **Tuple Unpacking** gần giống như object destructuring trong javascript.
+
+---
+
+List
+
+Lists can be changed after they are created, while tuples cannot.
+
+Written with square brackets `[]`
+
+List is slower than tuple, consumes more memory (due to overhead for change management).
 
 ## Python Command-Line Programs
 
@@ -107,4 +144,20 @@ This technique prevent code from being executed when a file is imported as a mod
 
 ---
 
+- The single leading underscore (`_`) before a name in Python is a naming convention that signifies to other developers that the name is intended for internal use.
+- `__init__` Denotes special built-in methods recognized by the language (e.g., constructor, iterator).
+- A single underscore (`_`) is used as a variable name when you need to unpack a value but intend to ignore or throw away that value.
+
+Trong nodeJs cũng có kiểu naming convention tương tự.
+
+## Modules
+
 k
+
+## OOP in Python
+
+Python supports multiple inheritance, and Java does not.
+
+## File and Directory Access
+
+The `Path` class inherits from `PurePath`. `PurePath` defines all the methods which don't directly interact with the file system, e.g. splitting a path into stem and extension etc. The `Path` class defines additional methods like `cwd()` (getting the current working directory) which actually interact with the file system.

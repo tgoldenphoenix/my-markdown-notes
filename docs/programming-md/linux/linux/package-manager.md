@@ -1,6 +1,4 @@
-# Package management
-
-apt & Homebrew
+# Package Management
 
 If `XDG_CONFIG_HOME` is not set, the default is `~`
 
@@ -210,6 +208,8 @@ Here are the steps to uninstall a package with Homebrew on a Mac.
 ## Other notes
 
 `chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage`
+
+Đầu tiên phải thêm quyền bằng `chmod`, sau đó thì move vào `PATH`. Có 2 bước đó.
 
 ## References
 
