@@ -33,4 +33,4 @@ All Unicode regex engines discussed in this tutorial treat any single Unicode co
 
 The Unicode code point U+0300 (grave accent) is a **combining mark**. Any code point that is not a combining mark can be followed by any number of combining marks. This sequence, like U+0061 U+0300 above, is displayed as a single grapheme on the screen.
 
-Unfortunately, à can also be encoded with the single Unicode code point U+00E0 (a with grave accent). The reason for this duality is that many historical character sets encode “a with grave accent” as a single character. 
+Unfortunately, à can also be encoded with the single Unicode code point U+00E0 (a with grave accent). The reason for this duality is that many historical character sets encode “a with grave accent” as a single character.

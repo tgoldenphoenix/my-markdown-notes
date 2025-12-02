@@ -1,4 +1,4 @@
-# AWS Notes
+# AWS Basics Notes
 
 ## Basic Terminologies
 
@@ -71,7 +71,7 @@ As you’ve learned, AWS is a platform of services. Common problems such as load
 
 Because AWS is **API driven**, you can automate everything: write code to create networks, start virtual machine clusters, or deploy a relational database. Automation increases reliability and improves efficiency.
 
-## Billing Cost
+## Billing Cost & Estimation
 
 A bill from AWS is similar to an electric bill. Services are billed based on use. You pay for the time a virtual machine was running, the used storage from the object store, or the number of running load balancers. Services are invoiced on a monthly basis.
 
@@ -92,7 +92,14 @@ If you exceed the limits of the Free Tier, you start paying for the resources yo
   * Based on traffic—Traffic is measured in gigabytes or in number of requests, for example.
   * Based on storage usage—Usage can be measured by capacity (e.g., 50 GB volume no matter how much you use) or real usage (such as 2.3 GB used).
 
-## Alternatives
+Keep in mind that this is only an estimate. You’re billed based on actual use at the end of the month. Everything is on demand and usually billed by seconds or gigabyte of usage. The following factors might influence how much you actually use this infrastructure:
+
+- Traffic processed by the load balancer—Expect costs to go down in December and in the summer when people are on vacation and not looking at your blog.
+- Storage needed for the database—If your company increases the amount of content in your blog, the database will grow, so the cost of storage will increase.
+- Storage needed on the NFS—User uploads, plug-ins, and themes increase the amount of storage needed on the NFS, which will also increase the cost.
+- Number of virtual machines needed—Virtual machines are billed by seconds of usage. If two virtual machines aren’t enough to handle all the traffic during the day, you may need a third machine. In that case, you’ll consume more seconds of virtual machines.
+
+## Alternatives to AWS
 
 Microsoft Azure and Google Cloud Platform (GCP).
 
@@ -120,39 +127,35 @@ Users send HTTP requests to a virtual machine. This virtual machine is running a
   * `S3`—Object store
   * `Glacier`—Archiving data
   * `EBS`—Block storage for virtual machines
-  * EFS—Network filesystem
-  * RDS—SQL databases
-  * DynamoDB—NoSQL database
-  * ElastiCache—In-memory key-value store
-  * VPC—Virtual network
-  * ELB—Load balancers
-  * Simple Queue Service—Distributed queues
-  * CodeDeploy—Automating code deployments
-  * CloudWatch—Monitoring and logging
-  * CloudFormation—Automating your infrastructure
-  * IAM—Restricting access to your cloud resources
+  * `EFS`—Network filesystem
+  * `RDS`—SQL databases
+  * `DynamoDB`—NoSQL database
+  * `ElastiCache`—In-memory key-value store
+  * `VPC`—Virtual network
+  * `ELB`—Load balancers
+  * `Simple Queue Service`—Distributed queues
+  * `CodeDeploy`—Automating code deployments
+  * `CloudWatch`—Monitoring and logging
+  * `CloudFormation`—Automating your infrastructure
+  * `IAM`—Restricting access to your cloud resources
 
 ### Elastic Load Balancing (ELB)
 
 The load balancer distributes traffic to a bunch of virtual machines. Requests are routed to virtual machines as long as their health check succeeds. You’ll use the Application Load Balancer (ALB), which operates on layer 7 (HTTP and HTTPS).
 
-### Elastic Compute Cloud (`EC2`)
-
-This is IaaS (Infrastructure as a Service).
-
-The EC2 service provides **virtual machines**. You’ll use a Linux machine with a distribution called Amazon Linux to install Apache, PHP, and WordPress. You aren’t limited to Amazon Linux; you could also choose Ubuntu, Debian, Red Hat, or Windows.
-
-Virtual machines can fail, so you need at least two of them. The load balancer will distribute the traffic between them. In case a virtual machine fails, the load balancer will stop sending traffic to the failed VM, and the remaining VM will need to handle all requests until the failed VM is replaced.
-
-### Relational Database Service (RDS)
+### Relational Database Service (`RDS`)
 
 Provided a managed SQL database.
 
 WordPress relies on the popular MySQL database. AWS provides MySQL with its RDS. You choose the database size (storage, CPU, RAM), and RDS takes over operating tasks like creating backups and installing patches and updates. RDS can also provide a highly available MySQL database using replication.
 
-### Elastic File System (EFS)
+### Elastic File System (`EFS`)
 
 WordPress itself consists of PHP and other application files. User uploads—for example, images added to an article—are stored as files as well. By using a network filesystem, your virtual machines can access these files. EFS provides a scalable, highly available, and durable network filesystem using the NFSv4.1 protocol.
+
+The Elastic File System (EFS) is used to store files and access them from multiple virtual machines. EFS is a storage service accessible through the **NFS protocol**. To keep things simple, all files that belong to WordPress, including PHP, HTML, CSS, and PNG files, are stored on EFS so they can be accessed from all virtual machines.
+
+To mount the Elastic File System from a virtual machine, mount targets are needed. You should use two mount targets for fault tolerance. The network filesystem is accessible using a DNS name for the virtual machines.
 
 ### Security Groups
 
@@ -165,6 +168,28 @@ Control incoming and outgoing traffic to your virtual machine, your database, or
 ### CloudFormation
 
 Automate the setup process.
+
+You can control every single service on AWS by sending requests to a REST API. Based on this, a variety of solutions can help you automate your overall infrastructure. Infrastructure automation is a big advantage of the cloud compared to hosting on-premises. This part will guide you into infrastructure orchestration and the automated deployment of applications.
+
+### Lambda
+
+AWS Lambda is a new way of computing: with functions. It is used to automate operational tasks.
+
+Lambda (Function as a Service) gives you maximum convenience. You upload a function, and AWS handles everything else. Your code runs only when triggered by an event (like an API request or a file upload to S3). It is best for short, event-driven tasks, microservices, and cost optimization.
+
+Both AWS Lambda and EC2 provide compute power (run code)
+
+- EC2 (Elastic Compute Cloud):
+  * Server-Based (IaaS or Infrastructure as a Service). Renting a virtual machine.
+  * Pay per Hour/Second the server is running (even when idle).
+  * Your Responsibility. You must patch, update, and manage the OS.
+  * You have Full control over the operating system.
+
+- AWS Lambda
+  * Serverless (FaaS or Function as a Service). Renting a function execution.
+  * Pay per Execution (down to the millisecond).
+  * AWS Responsibility. AWS manages the OS, patching, scaling, and infrastructure.
+  * No OS access; you only upload your code.
 
 ## Interacting with AWS
 
@@ -194,6 +219,12 @@ Consider using blueprints if you have to control many or complex environments. B
 
 Automating your infrastructure is also possible by writing your own source code with the help of the CLI or the SDKs. Doing so, however, requires you to resolve dependencies, to make sure you are able to update different versions of your infrastructure, and to handle errors yourself. As you will see in chapter 4, using a blueprint and an Infrastructure-as-Code tool solves these challenges for you.
 
+## Networking on AWS
+
+Creating virtual networks allows you to build closed and secure network environments on AWS and to connect these networks with your home or corporate network.
+
+Learn how to secure your system with a virtual private network and firewalls.
+ 
 ## AWS Account
 
 You can attach multiple users to an account if multiple people need access to it; by default, your account will have one **root user**.
@@ -214,3 +245,15 @@ The **AWS account name** has to be globally unique among all AWS customers.
 ## WordPress on AWS
 
 WordPress is written in PHP and uses a MySQL database to store data. Besides that, data like user uploads is stored on disk. Apache is used as the web server to serve the pages. With this information in mind, it’s time to map your requirements to AWS services.
+
+Common web applications use a database to store and query data. That is true for WordPress as well. The content management system (CMS) stores blog posts, comments, and more within a MySQL database.
+
+WordPress also stores data outside the database on disk. For example, if an author uploads an image for their blog post, the file is stored on disk. The same is true when you are installing plug-ins and themes as an administrator.
+
+## Deleting Infrastructure
+
+Your evaluation has confirmed that you can migrate the infrastructure needed for the company’s blog to AWS from a technical standpoint. You have estimated that a load balancer, virtual machines, and a MySQL database, as well as a NFS capable of serving 1,000 people visiting the blog per day, will cost you around $75 per month on AWS. That is all you need to come to a decision.
+
+Because the infrastructure does not contain any important data and you have finished your evaluation, you can delete all the resources and stop paying for them.
+
+CloudFormation is an efficient way to manage your infrastructure. Just as the infrastructure’s creation was automated, its deletion is also. You can create and delete infrastructure on demand whenever you like. You pay for infrastructure only when you create and run it.

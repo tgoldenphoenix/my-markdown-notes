@@ -49,3 +49,18 @@ Some applications are better suited for UDP than TCP.
 
  The TCP segment has 20 bytes of header over-head in every segment, whereas UDP has only 8 bytes of overhead.
 
+## TCP
+
+connection-oriented service and a reliable data transfer service.
+
+### TSL - Transport Layer Security
+
+Neither TCP nor UDP provides any encryption - the data that the sending process passes into its socket is the same data that travels over the network to the destina-tion process.
+
+So, for example, if the sending process sends a password in cleartext (i.e., unencrypted) into its socket, the cleartext password will travel over all the links between sender and receiver, potentially getting sniffed and discovered at any of the intervening links.
+
+TCP can be easily enhanced at the application layer with TLS to provide security services.
+
+## UDP
+
+connectionless, unreliable data transfer service, no guarantee

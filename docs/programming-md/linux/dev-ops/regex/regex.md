@@ -58,6 +58,35 @@ ___
 
 In your source code, you have to keep in mind which characters get special treatment inside strings by your programming language. That is because those characters are processed by the compiler, before the regex library sees the string. So the regex `1\+1=2` must be written as `"1\\+1=2"` in C++ code. The C++ compiler turns the escaped backslash in the source code into a single backslash in the string that is passed on to the regex library. To match `c:\temp`, you need to use the regex `c:\\temp`. As a string in C++ source code, this regex becomes `"c:\\\\temp"`. Four backslashes to match a single one indeed.
 
+## Unicode
+
+### Unicode Categories
+
+The Unicode standard recommends that regular expression engines support the `\p{Property_Set=Property_Value}` syntax to match any character that has the specified value for the specified property. For example, `\p{Numeric_Value=1}+` should match all of `1¹١۱१১৴੧૧୧௧౧೧൧๑໑༡₁⅟Ⅰⅰ①⑴⒈❶➀➊〡㊀１`. 
+
+The syntax `\p{Property}` should be used to match any character that has the specified binary property. `\p{Hex_Digit}+` should match `0123456789ABCDEFabcdef０１２３４５６７８９ＡＢＣＤＥＦａｂｃｄｅｆ`.  
+Unicode suggests this shorter notation as an alternative for categories and scripts. So you could use `\p{Nd}` instead of `\p{gc=Nd}` and `\p{Common}` instead of `\p{Script=Common}`.
+
+Different regex flavors can support different Unicode properties. Every flavor that supports Unicode properties supports `\p{N}` and `\p{Nd}` to match all characters in a specific Unicode category, specifying just the one-letter or two-letter abbreviation for the category. Far fewer flavors support the more explicit syntax `\p{gc=Nd}`.
+
+Many flavors also support Unicode scripts specifying just the name of the script. `\p{Cyrillic}` matches all characters in the Cyrillic script. Most, but not all, of those also support `\p{Script=Cyrillic}`.
+
+Some flavors support Unicode blocks by specifying the name of the block with the prefix `In`. `\p{InCyrillic}` is equivalent to `[\u{0400}-\u{04FF}]`, matching this entire block. Again, most, but not all, of those flavors also support `\p{Block=Cyrillic}`. The prefix is needed to differentiate between the Unicode script of the same name.
+
+All flavors that support some Unicode properties also support the syntax with a capital `P` to negate the property, as recommended by Unicode. `\P{Nd}` matches any code point that is not in the `Decimal_Digit` category. That includes unassigned code points. Perl, Ruby, PCRE, PCRE2, and flavors based on the latter two such as PHP, Delphi, and R, support an alternative syntax using a caret for negation. `\p{^Nd}` is another way of writing `\P{Nd}` in those flavors. Be careful not to negate the property twice. `\P{^Nd}` with double negation is the same as `\p{Nd}` without any negation.
+
+---
+
+Each Unicode character belongs to a certain category. Unicode categories, or “general categories” as they’re called by the Unicode standard, are the most fundamental Unicode property. Every regex flavor that supports Unicode properties at all supports Unicode categories. That includes .NET, Java, ICU, JavaScript with /u, Ruby, JGsoft, Perl, PCRE, PCRE2.
+
+All these flavors support the `\p{Property}` syntax with the property being a single letter or two letter representing the category. You can match a single character belonging to the “letter” category with `\p{L}`. You can match a single character not belonging to that category with `\P{L}`. `\p{Ll}` matches a lowercase letter while `\P{Ll}` matches any character that is not a lowercase letter.
+
+Again, “character” really means “Unicode code point”. `\p{L}` matches a single code point in the category “letter”. If your input string is à encoded as `U+0061 U+0300` then it matches a without the accent. If the input is à encoded as U+00E0 then it matches à with the accent. The reason is that both the code points U+0061 (a) and U+00E0 (à) are in the category “letter”, while U+0300 is in the category “mark”.
+
+ICU, Perl, Ruby, JavaScript, and the JGsoft applications allow you to spell out the full category names, such as \p{Letter} or `\p{Lowercase_Letter}`.
+
+PCRE and .NET are case sensitive for the category letters. `\p{Zs}` will match any kind of space character, while \p{zs} will throw an error. It’s best to stick with the capitalization required by the case sensitive flavors. It is how the category letters are defined in Unicode. It will make your regular expressions work with all Unicode regex engines.
+
 ## Non-Printable Characters
 
 - `\t` match a tab character (ASCII 0x09)
@@ -67,8 +96,6 @@ In your source code, you have to keep in mind which characters get special treat
 Remember that Windows text files use `\r\n` to terminate lines, while UNIX text files use `\n`. Some flavors use \R to match a single line break and treat \r\n as an indivisible pair.
 
 `\v` matches any vertical whitespace character. That includes the vertical tab, form feed, and all line break characters.
-
-
 
 ## The dot `.` Any Character
 
@@ -265,6 +292,10 @@ Sometimes you only want a specific number of matches. To specify a certain numb
 **Other**
 
 Additionally, there is a special metacharacter \b which matches the boundary between a word and a non-word character. It's most useful in capturing entire words (for example by using the pattern \w+\b).
+
+### Character Class Subtraction
+
+The character class `[a-z-[aeiuo]]` matches a single letter that is not a vowel. In other words: it matches a single consonant. Without character class subtraction or intersection, the only way to do this is to list all consonants: `[b-df-hj-np-tv-z]`.
 
 ## Capture Groups `()`
 
