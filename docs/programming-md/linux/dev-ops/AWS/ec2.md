@@ -80,7 +80,12 @@ An IAM role grants processes running on the virtual machine access to other AWS 
   2. Stop a running virtual machine. A stopped virtual machine doesn’t incur charges, except for attached resources like network-attached storage. A stopped virtual machine can be started again but likely on a different host. If you’re using network-attached storage, your data persists.
   3. Reboot: Turn off, then on again. You won’t lose any persistent data when rebooting a virtual machine because it stays on the same host.
   4. Terminate: delete the VM. You can’t start a virtual machine that you’ve terminated. The virtual machine is deleted, usually together with its dependencies, like network-attached storage and public and private IP addresses. A terminated virtual machine doesn’t incur charges.
- 
+
+## Allocating a public IP address
+
+The public IPv4 address assigned to your EC2 instance is subject to change. For example, when you stop and start your instance, AWS assigns a new public IPv4 address. Therefore, you will learn how to attach a fixed public IP address to the virtual machine in the following section.
+
+AWS offers a service called `Elastic IPs` for allocating fixed public IP addresses.
 
 ## Load Balancer
 

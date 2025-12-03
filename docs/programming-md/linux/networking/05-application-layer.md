@@ -90,6 +90,10 @@ Each ISP—such as a residential ISP or an institutional ISP—has a local DNS s
 
 A host’s local DNS server is typically “close to” the host. For an institutional ISP, the local DNS server may be on the same LAN as the host; for a residential ISP, it is typically separated from the host by no more than a few rout-ers. When a host makes a DNS query, the query is sent to the local DNS server, which acts a proxy,  forwarding the query into the DNS server hierarchy.
 
+### DNS Caching
+
+k
+
 ### Web hosting & Domain Hosting
 
 Nếu là simple static front-end projects with HTML CSS javascript and do not require a server to run thì không cần dùng server như Apache. Just use static host like: Netlify, vercel, github pages
@@ -166,7 +170,53 @@ Do not click links you are suspicious (email, social media, text mobile)
 
 ### Host Aliasing
 
-A host with a complicated hostname can have one or more  alias names. For example, a hostname such as `relay1.west-coast.enterprise.com` could have, say, two aliases such as `enterprise.com` and `www.enterprise.com`. In this case, the hostname relay1 .west-coast.enterprise.com is said to be a **canonical hostname**. **Alias hostnames**, when present, are typically more mnemonic than canonical host-names. DNS can be invoked by an application to obtain the canonical hostname for a supplied alias hostname as well as the IP address of the host.
+A host with a complicated hostname can have one or more alias names. For example, a hostname such as `relay1.west-coast.enterprise.com` could have, say, two aliases such as `enterprise.com` and `www.enterprise.com`. In this case, the hostname `relay1.west-coast.enterprise.com` is said to be a **canonical hostname**.
+
+**Alias hostnames**, when present, are typically more mnemonic (ngắn và dễ nhớ hơn) than canonical host-names. DNS can be invoked by an application to obtain the canonical hostname for a supplied alias hostname as well as the IP address of the host.
+
+### DNS Caching
+
+If a hostname/IP address pair is cached in a DNS server memory and another query arrives to the DNS server for the same hostname, the DNS server can provide the desired IP address, even if it is not authoritative for the hostname. It does not have to query any other DNS servers.
+
+Because hosts and mappings between hostnames and IP addresses are by no means permanent, DNS servers discard cached information after a period of time (often set to two days).
+
+A local DNS server can also cache the IP addresses of TLD servers, thereby allowing the local DNS server to bypass the root DNS servers in a query chain. In fact, because of caching, root servers are bypassed for all but a very small fraction of DNS queries.
+
+### DNS Records and Messages
+
+DNS servers store **resource records (RRs).** Each DNS reply message carries one or more resource records.
+
+A resource record is a four-tuple that contains the following fields: `(Name, Value, Type, TTL)`.
+
+`TTL` is the time to live of the resource record; it determines when a resource should be removed from a cache.
+
+- The meaning of Name and Value depend on Type:
+  * If `Type=A`, then `Name` is a hostname and `Value` is the IP address for the hostname. Thus, a Type A record provides the standard hostname-to-IP address map-ping. As an example, `(relay1.bar.foo.com, 145.37.93.126, A)` is a Type A record.
+  * If `Type=NS`, then `Name` is a domain (such as `foo.com`) and `Value` is the hostname of an authoritative DNS server that knows how to obtain the IP addresses for hosts in the domain. This record is used to route DNS queries further along in the query chain. As an example, `(foo.com, dns.foo.com, NS)` is a Type NS record. The "NS" stands for "name server".
+  * If `Type=CNAME`, then Value is a canonical hostname for the alias hostname Name. This record can provide querying hosts the canonical name for a host-name. As an example, `(foo.com, relay1.bar.foo.com, CNAME)` is a CNAME record.
+  * If `Type=MX`, then Value is the canonical name of a mail server that has an alias hostname Name. As an example, (foo.com, mail.bar.foo.com, MX) is an MX record. MX records allow the hostnames of mail servers to have simple aliases. Note that by using the MX record, a company can have the same aliased name for its mail server and for one of its other servers (such as its Web server). To obtain the canonical name for the mail server, a DNS client would query for an MX record; to obtain the canonical name for the other server, the DNS client would query for the CNAME record.
+
+If a DNS server is authoritative for a particular hostname, then the DNS server will contain a Type A record for the hostname. (Even if the DNS server is not authoritative, it may contain a Type A record in its cache.)
+
+If a server is not authoritative for a hostname, then the server will contain a Type NS record for the domain that includes the hostname; it will also contain a Type A record that provides the IP address of the DNS server in the Value field of the NS record.
+
+### Inserting Records into the DNS Database
+
+First you want to register the domain name networkutopia.com at a registrar. A **registrar** is a commercial entity that verifies the uniqueness of the domain name, enters the domain name into the DNS database (as discussed below), and collects a small fee from you for its services. 
+
+When you register the domain name networkutopia.com with some reg-istrar, you also need to provide the registrar with the names and IP addresses of your primary and secondary authoritative DNS servers.
+
+Suppose the names and IP addresses are `dns1.networkutopia.com`, `dns2.networkutopia.com`, `212.2.212.1`, and `212.212.212.2`. For each of these two authoritative DNS servers, the registrar would then make sure that a `Type NS` and a `Type A` record are entered into the TLD com servers. Specifically, for the primary authoritative server for networkutopia.com, the registrar would insert the following two resource records into the DNS system:
+
+1. `(networkutopia.com, dns1.networkutopia.com, NS)`
+2. `(dns1.networkutopia.com, 212.212.212.1, A)`
+
+You’ll also have to make sure that the Type A resource record for your Web server `www.networkutopia.com` and the Type MX resource record for your mail server `mail.networkutopia.com` are entered into your authoritative DNS servers.
+
+Once all of these steps are completed, people will be able to visit your Web site and send e-mail to the employees at your company.
+
+Suppose Alice in Australia wants to view the Web page `www.networkutopia.com`. As discussed earlier, her host will first send a DNS query to her local DNS server. The local DNS server will then contact a TLD com server. (The local DNS server will also have to contact a root DNS server if the address of a TLD com server is not cached.) This TLD server contains the Type NS and Type A resource records listed above, because the registrar had these resource records inserted into all of the TLD com servers.  
+The TLD com server sends a reply to Alice’s local DNS server, with the reply containing the two resource records. The local DNS server then sends a DNS query to `212.212.212.1`, asking for the Type A record corresponding to `www.networkutopia.com`. This record provides the IP address of the desired Web server, say, 212.212.71.4, which the local DNS server passes back to Alice’s host. Alice’s browser can now initiate a TCP connec-tion to the host 212.212.71.4 and send an HTTP request over the connection
 
 ### Email Address
 

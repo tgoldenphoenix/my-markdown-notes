@@ -165,12 +165,6 @@ firewall rules = security groups
 
 Control incoming and outgoing traffic to your virtual machine, your database, or your load balancer with a firewall. For example, use a security group allowing incoming HTTP traffic from the internet to port 80 of the load balancer. Or restrict network access to your database on port 3306 to the virtual machines running your web servers.
 
-### CloudFormation
-
-Automate the setup process.
-
-You can control every single service on AWS by sending requests to a REST API. Based on this, a variety of solutions can help you automate your overall infrastructure. Infrastructure automation is a big advantage of the cloud compared to hosting on-premises. This part will guide you into infrastructure orchestration and the automated deployment of applications.
-
 ### Lambda
 
 AWS Lambda is a new way of computing: with functions. It is used to automate operational tasks.
