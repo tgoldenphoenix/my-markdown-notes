@@ -247,17 +247,13 @@ Mấy cái này dùng syntax `\` giống escaped characters.
 
 ---
 
-**\w and \W (alphanumeric & underscore)**
-
-The first shorthand is `\w`. This shortcut is equal to `[A-Za-z0-9\_]`. Match alphanumeric & underscore.
+The first shorthand is `\w` (alphanumeric & underscore). This shortcut is equal to `[A-Za-z0-9\_]`. Match alphanumeric & underscore (có cả digit `[0-9]` luôn).
 
 The opposite of the \w is `\W`. Note, the opposite pattern uses a capital letter. This shortcut is the same as `[^A-Za-z0-9\_]`. Including: `[empty space].:!?`
 
 ---
 
-**\d - Any digit**
-
-The shortcut to look for digit characters is `\d`, with a lowercase d. This is equal to the character class `[0-9]`, which looks for a single character of any number between zero and nine.
+The shortcut to look for digit characters is `\d` (any digit), with a lowercase d. This is equal to the character class `[0-9]`, which looks for a single character of any number between zero and nine.
 
 The shortcut to look for non-digit characters is `\D`. This is equal to the character class `[^0-9]`, which looks for a single character that is not a number between zero and nine.
 
@@ -265,11 +261,15 @@ Consider whether `[0-9]` or `\d` is more appropriate for your regex as the latte
 
 ---
 
-**Match white spaces**
+`\s` (white space) matches both horizontal whitespace (spaces and tabs) and vertical whitespace (line breaks).  it includes `[ \t\r\n\f]`. That is: \s matches a space, a tab, a carriage return, a line feed, or a form feed. Most flavors also include the vertical tab
 
-`\s` matches both horizontal whitespace (spaces and tabs) and vertical whitespace (line breaks). You can think of it as similar to the character class `[\r\t\f\n\v]` (that is, a space, a form feed, a tab, a newline, or a return).
+`[\da-fA-F]` matches a hexadecimal digit, and is equivalent to `[0-9a-fA-F]` if your flavor only matches ASCII characters with `\d`.
 
-Many regex flavors support `\h` to match only horizontal whitespace and `\v` to match only vertical whitespace.
+Many regex flavors support `\h` to match only horizontal whitespace, which includes the tab and all characters in the “space separator” Unicode category. It is the same as `[\t\p{Zs}]`.
+
+and `\v` to match only vertical whitespace, which includes all characters treated as line breaks in the Unicode standard. It is the same as `[\n\cK\f\r\x85\x{2028}\x{2029}]`.
+
+If your flavor supports \h and \v then you should definitely use them instead of \s whenever you want to match only one type of whitespace. Using \h instead of \s to match spaces and tabs makes sure your regex match doesn’t accidentally spill into the next line.
 
 The most common forms of whitespace you will use with regular expressions are the space `␣`, the tab `\t`, the new line `\n` and the carriage return `\r` (useful in Windows environments), and these special characters match each of their respective whitespaces.
 
@@ -296,6 +296,10 @@ Additionally, there is a special metacharacter \b which matches the boundary bet
 ### Character Class Subtraction
 
 The character class `[a-z-[aeiuo]]` matches a single letter that is not a vowel. In other words: it matches a single consonant. Without character class subtraction or intersection, the only way to do this is to list all consonants: `[b-df-hj-np-tv-z]`.
+
+### Character Class Intersection
+
+Character class intersection is supported by Java, ICU, JGsoft V2, and by Ruby 1.9 and later. It makes it easy to match any single character that must be present in two sets of characters. The syntax for this is `[class&&[intersect]]`. You can use the full character class syntax within the intersected character class.
 
 ## Capture Groups `()`
 
@@ -376,6 +380,9 @@ If we want the phrase we're writing to come before or after another phrase, we n
 
 Phần lookaround không được select. Nó chỉ dùng như điều kiện.
 
+- lookahead = further to the right of the string.
+- lookbehind = look further to the left side of the string
+
 ---
 
 **Positive & Negative Lookahead: `(?=)` and `(?!)`**
@@ -449,10 +456,6 @@ In `^\d{5}$`, The `^` and $ match the beginning and end of the search text but d
 
 The anchor `\b` matches at a word boundary. A word boundary is a position between a character that can be matched by \w and a character that cannot be matched by \w. \b also matches at the start and/or end of the string if the first and/or last characters in the string are word characters. \B matches at every position where \b cannot match.
 
-## My regex patterns
-
-Validate email: ``
-
 ## Linux Globbing
 
 `grep` uses regular expressions (regex).  
@@ -505,6 +508,20 @@ Examples:
 - `ls test-?.txt` => list all text files named ‘test-‘ followed by a single digit
 - `ls ????.txt` => all text files with a name of exactly four characters
 - `ls *[0-9]*` => all files with a number in their name
+
+move all the contents of the current directory to some other location:
+
+`$ mv * /some/other/directory/`
+
+To move only files with names partially matching a particular sequence, try this:
+
+`$ mv file* /some/other/directory/`
+
+This command moves all files whose names begin with the letters file, but leaves everything else untouched. If you had files named file1, file2...file15 and wanted to move only those between file1 and file9, you’d use the question mark (`?`) instead of the asterisk: 
+
+`$ mv file? /some/other/directory/`
+
+The question mark applies an operation to only those files whose names contain the letters file and one other character. It would leave file10 through file15 in the current directory.
 
 ### Single vs. Double Quotes
 

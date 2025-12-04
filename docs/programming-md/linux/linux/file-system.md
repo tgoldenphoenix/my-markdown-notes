@@ -23,6 +23,8 @@ While it is reasonably safe to suppose that everything you encounter on a Linux 
 
 Depending on which type of Linux environment you are running, you may run into several different file systems. Some of them are **ext2, ext3, and ext4**. **XFS, JFS**, and a few others are also used. `ext3` is a journaling extension to the ext2 file system on Linux. ext4 is the successor to ext3. Journaling is a method of recording data that results in massively reduced time spent recovering a file system after a crash. XFS is very fast and also uses B-Trees for its file indexing.
 
+These days, the most commonly used Linux file system is ext4. But Linux can also work with storage drives that were formatted using file systems from other platforms like FAT32 and NTFS. 
+
 In the shell and in scripts, spaceful filenames can be quoted to keep their pieces together. For example, the command:
 
 `$ less "My excellent file.txt"`
@@ -46,18 +48,46 @@ In most situations, filesystems are attached to the tree with the `mount` comman
 
 `$ sudo mount /dev/sda4 /users`
 
-installs the filesystem stored on the disk partition represented by /dev/sda4 under the path /users. You could then use ls /users to see that filesystem’s contents.
+installs the filesystem stored on the disk partition represented by `/dev/sda4` under the path /users. You could then use ls /users to see that filesystem’s contents.
 
 A list of the filesystems that are customarily mounted on a particular system is kept in the `/etc/fstab` file.  
 The information contained in this file allows filesystems to be checked (with `fsck`) and mounted (with mount) automatically at boot time
 
 You detach filesy stems with the `umount` command. umount complains if you try to unmount a filesystem that is in use; the filesystem to be detached must not have open files or processes whose current directories are located there, and if the file-system contains executable programs, they cannot be running.
 
-Device files defined based on the controllers they are using.
+Device files defined based on the controllers they are using:
 
 1. For [IDE controllers device](https://www.ibm.com/support/pages/ide-controllers-servers) file name is - `hda, hdb, hdc..`
 2. For SCSI and SATA controllers device file name is - `sda, sdb, sdc..`
 
+If the first storage device on a system is called /dev/sda, then, as you might guess, the second one would be called /dev/sdb and the third, /dev/sdc. 
+
+Originally, `sda` probably stood for SCSI Device A, but I find that thinking of it as Storage Device A makes it more meaningful. You might also run into device designations like /dev/hda (hard drive), /dev/sr0 (DVD drive), `/dev/cdrom` (that’s right, a CD-ROM drive), or even /dev/fd0 (floppy drive). 
+
+---
+
+Don’t happen to know your drive designation? No problem. Knowing that Linux organizes attached storage as block devices, you can move to the /sys/block/ directory and list its contents. Among the contents will be a directory called sda/. (Remember that sda stands for Storage Drive A.) That’s the first drive used by your system on boot:
+
+```
+$ cd /sys/block
+$ ls
+loop0  loop1  loop2 sda  sr0
+```
+
+A loop device is a pseudo device that allows a file to be used as though it’s an actual physical device.
+
+Change to the sda/ directory and run ls. Among its contents, you’ll probably see files with names like sda1, sda2, and sda5. Each of these represents one of the partitions created by Linux to better organize the data on your drive: 
+
+```
+$ cd sda
+$ ls
+alignment_offset  discard_alignment  holders    range      sda3       trace
+bdi               events             inflight   removable  size       uevent
+capability        events_async       integrity  ro         slaves
+dev               events_poll_msecs  power      sda1       stat
+device            ext_range          queue      sda2       subsystem
+```
+ 
 ## The Organization of the File Tree
 
 - Những directories `*/bin` chứa binaries, bash scripts, executables.
@@ -75,7 +105,7 @@ Khi cắm USB external hard drive vào ubuntu thì nó sẽ ở `/media/anhao/<h
 
 ---
 
-The `/etc` directory for critical system, startup and configuration files
+The `/etc` directory for critical system, startup and **configuration files** that define the way individual programs and services function.
 
 Originally, there was `/bin` for programs (essentially, executable binaries), and very soon `/dev` for device files and `/lib` for extra executable code loaded by programs (libraries). `/usr` also came in very early, first for user data, then as an extra OS area with its own `bin` and `lib` and then `man` containing the manual in electronic form. The source code was also often provided somewhere under /usr.
 
@@ -87,8 +117,8 @@ On modern unix systems, almost all system-wide configuration files are under /et
 
 `/sbin` and `/bin` for important utilities  
 
-- `/bin` Core operating system commands
-- `/sbin` Commands needed for minimal system operability
+- `/bin` Core operating system commands; user binary files
+- `/sbin` Commands needed for minimal system operability; system binary files
 
 `/boot`Kernel and files needed to load the kernel
 
@@ -96,7 +126,7 @@ On modern unix systems, almost all system-wide configuration files are under /et
 
 `/dev` is usually a real directory that’s included in the root filesystem, but some or all of it may be overlaid with other filesystems if your system has virtualized its device support.
 
-Some systems keep shared library files and a few other odd things such as the C preprocessor in the `/lib` directory. Others have moved these items into /usr/lib, sometimes leaving /lib as a symbolic link
+Some systems keep **shared library files** and a few other odd things such as the C preprocessor in the `/lib` directory. Others have moved these items into `/usr/lib`, sometimes leaving `/lib` as a symbolic link
 
 `/lib` Libraries, shared libraries, and parts of the C compiler
 
@@ -110,9 +140,9 @@ Some systems keep shared library files and a few other odd things such as the C 
 
 `/proc` Information about all running processes
 
-`/var` store system-specific data
+`/var` store system-specific data, frequently changing content (such as log files)
 
-`/usr` Contains non-essential command-line binaries, libraries, header files, and other data. At least it is non-essential to the system. The dotfiles is actually essential to the users.
+`/usr` Contains non-essential command-line binaries, libraries, header files, **third-party binaries** and other data. At least it is non-essential to the system. The dotfiles is actually essential to the users.
 
 The directories /usr and /var are also of great importance. `/usr` is where most standard programs are kept, along with various other booty such as on-line manuals and most libraries. It is not strictly necessary that /usr be a separate filesystem, but for convenience in administration it often is. Both /usr and /var must be available to enable the system to come up all the way to multiuser mode.
 
@@ -320,11 +350,29 @@ On a Linux system, every file is owned by a user and a group user. There is also
 
 You should know what your user name is. If you don't, it can be displayed using the `id` command, which also displays the default group you belong to and eventually other groups of which you are a member. Your user name is also stored in the environment variable $USER, use `echo $USER`
 
-## `ls`: list and inspect files
+## `ls`: List and Inspect files
 
-As a system administra-tor, you will be concerned mostly with the link count, owner, group, mode, size, last access time, last modification time, and type. You can inspect all of these with `ls -l` (or `ls -ld` for a directory; without the -d flag, ls lists the directory’s contents).
+As a system administra-tor, you will be concerned mostly with the link count, owner, group, mode, size, last access time, last modification time, and type. You can inspect all of these with `ls -l` (or `ls -ld` for a directory; without the `-d` flag, ls lists the directory’s contents).
 
-`ls -l` show file mode + file type
+`ls -l` (l stands for "long") show file permissions, owner, group, file size, and time stamp.
+
+The `h` argument when added to ls -l displays file sizes in a human-readable format—kilobytes, megabytes, and gigabytes, rather than bytes, which tend to involve a great many hard-to-count digits.  
+`ls -l -h` == `ls -lh` == `ls -hl`  
+`-h` == `--human-readable`
+
+```
+$ ls -lh /var/log
+total 18M
+-rw-r--r-- 1 root   root    0 May  3 06:25 alternatives.log
+drwxr-xr-x 2 root   root 4.0K May  3 06:25 apt
+[...]
+```
+
+Cái dòng đầu tiên `total 18M` là "the total disk space (in MB) consumed by files in this directory". Nếu không có `-h` thì total đơn vị là byte. Nó không phải là "number of files in this directory".
+
+---
+
+`ls -R` displays subdirectories and the files and subdirectories they contain, no matter how many nested layers of directories.
 
 A description of the full functionality and features of the `ls` command can be read with `info coreutils ls`
 
@@ -349,10 +397,6 @@ In DOS (Windows), use `dir`
 - `@` for symbolic links
 
 As a user, you only need to deal directly with plain files, executable files, directories and links. The special file types are there for making your system do what you demand from it and are dealt with by system administrators and programmers.
-
-Options
-
-`ls -l -h` == `ls -lh` == `ls -hl`
 
 `-a` show hidden dotfiles
 
@@ -393,6 +437,29 @@ Most fields are the same, but instead of a size in bytes, ls shows the major and
 One ls option that’s useful for scoping out hard links is -i, which makes ls show each file’s “inode number.” Without going into too much detail about filesystem implementations, we’ll just say that the inode number is an index into a table that enumerates all the files in the filesystem. Inodes are the “things” that are pointed to by directory entries; entries that are hard links to the same file have the same inode number. To figure out a complex web of links, you need both `ls -li` to show link counts and inode numbers and `find` to search for matches.
 
 Some other ls options that are important to know are `-a` to show all entries in a directory (even files whose names start with a dot), -t to sort files by modification time (or -tr to sort in reverse chronological order), -F to show the names of files in a way that distinguishes directories and executable files, -R to list recursively, and -h to show file sizes in human-readable form (e.g., 8K or 53M).
+
+## stat
+
+Every object within a Linux file system is represented by a unique collection of metadata called an inode. I suppose you could say that the file system index discussed earlier is built from the metadata associated with all the many inodes on a drive.
+
+To display inode information of a file, use `stat`:
+
+```
+$ stat myfile
+  File: 'myfile'
+  Size: 0             Blocks: 0          IO Block: 4096   regular empty file
+Device: 802h/2050d    Inode: 55185258    Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/  ubuntu)
+                           Gid: ( 1000/  ubuntu)
+Access: 2017-06-09 13:21:00.191819194 +0000
+Modify: 2017-06-09 13:21:00.191819194 +0000
+Change: 2017-06-09 13:21:00.191819194 +0000
+ Birth: -
+```
+
+It’s important to be aware that when you move, copy, or delete a file or directory, all you’re really doing is editing its inode attributes, not its inode ID.
+ 
+An inode, by the way, is an object used by UNIX systems to identify the disk location and attributes of files within a file system. Usually there’ll be exactly one inode for each file or directory. 
 
 ## `chmod`: Change Permissions
 
@@ -528,13 +595,17 @@ The command to make links is ln. In order to create symlinks, you need to use th
 
 j
 
+## Pseudo file systems 
+
+A normal file is a collection of data that can be reliably accessed over and over again, even after a system reboot. By contrast, the contents of a Linux pseudo (or virtual) file, like those that might exist in the `/sys/` and `/proc/` directories, don’t really exist in the normal sense. A pseudo file’s contents are dynamically generated by the OS itself to represent specific values. 
+
 ## Configuration files
 
 most configuration files are stored in the `/etc` directory.
 
 [Table 3-3. Most common configuration files](https://tldp.org/LDP/intro-linux/html/sect_03_02.html#AEN2485)
 
-## The most common devices
+## The Most common devices
 
 Devices, generally every peripheral attachment of a PC that is not the CPU itself, is presented to the system as an entry in the `/dev` directory.
 

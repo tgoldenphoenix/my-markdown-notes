@@ -8,9 +8,17 @@ You can think of an option as a way of executing the command. The argument is wh
 `.` and `..` acts as hard links.
 `./a.out` => run files
 
-`echo tran kim phuong`, `whoami`, `touch <file name>`
+`echo tran kim phuong`
+
+`whoami`
+
+`touch <file name>`
+
+“Touching” an existing file with touch updates its time stamp without making any changes. This can be useful if, for some reason, you want to change how various commands like ls list or display a file. (It can also be helpful if you’d like your boss to think that you’ve been hard at work on a data file that, in fact, you haven’t opened for weeks.) 
 
 `date`, `cal` calender
+
+`gedit` is an UI text editor on linux
 
 `pwd` display present working directory
 
@@ -32,8 +40,6 @@ To write comments in the shell, use the `#` symbol
 
 `pushd`: `cd` and then push the new directory to the top of the directory stack (on the leftmost of `dirs` or the top-most of `dirs -p`)
 
-Neofetch
-
 The `cron` command-line utility is a job scheduler on Unix-like operating systems. Users who set up and maintain software environments use cron to schedule jobs (commands or shell scripts), also known as cron jobs, to run periodically at fixed times, dates, or intervals. It typically automates system maintenance or administration—though its general-purpose nature makes it useful for things like downloading files from the Internet and downloading email at regular intervals.
 
 `passwd` change the password for the current user
@@ -45,6 +51,8 @@ The `cron` command-line utility is a job scheduler on Unix-like operating system
 In most cases, when issuing a command or starting a program as a non-privileged user, the system will warn you or prompt you for the root password when root access is required. Once you're done, _leave_ the application or session that gives you root privileges _immediately_.
 
 `Alt` == meta key
+
+`Ctrl Alt t` open the terminal
 
 ## Moving in the Terminal prompt
 
@@ -83,9 +91,11 @@ Shift+PageUp and `Shift+PageDown` Browse terminal buffer (to see text that has "
 Quickly read files and raw data using `less`.  
 Also by piping the output of commands into `less`, you can read through it and then discard the output all without needing to create temporary files.
 
-**References:**
-
 `man readline` default shortcuts in the terminal
+
+---
+
+It’s true that the familiar Ctrl-c (copy) and Ctrl-v (paste) key combinations won’t work for a Bash shell session, but Shift-Ctrl-c and Shift-Ctrl-v will. You can also cut and paste by right-clicking your mouse and selecting the appropriate operation from the menu.
 
 ## Ctrl-d vs exit command
 
@@ -101,6 +111,8 @@ How about `Ctrl c` and `Ctrl z`?
 - Anything followed by an ellipsis (`…`) can be repeated.
 - Curly braces (`{` and `}`) mean that you should select one of the items 
 separated by vertical bars (`|`).
+
+Use `/` to search in man pages giống trong vim.
 
 For example, the specification:  
 `bork [ -x ] { on | off } filename …`  
@@ -121,7 +133,7 @@ Most GNU commands support the `-h` or `--help` options which gives a short expla
 
 man -> type a few characters -> `TAB`
 
-**TRFM** => Read the friendly manual!
+`TRFM` => Read the friendly manual!
 
 An **ellipsis** `...`  consists of three evenly spaced periods. In the context of Linux man pages, it means the argument is repeatable.
 
@@ -147,9 +159,11 @@ The exact structure of the sections isn’t important for most topics because ma
 
 There might be multiple pages for the same keyword in different sections. For example, running the command `man chown` by default will open section 1 `CHOWN(1)`. You can explicitly look into section 2 using `man 2 chown`.
 
-**Layout:**
+**Layout of a man page:**
 
-- SYNOPSIS: In the case of a command, a formal description of how to run it and what command line options it takes. For program functions, a list of the parameters the function takes and which header file contains its declaration
+- `SYNOPSIS`: syntax overview
+  * In the case of a command, a formal description of how to run it and what command line options it takes.
+  * For program functions, a list of the parameters the function takes and which header file contains its declaration
 - DESCRIPTION: A textual description of the functioning of the command or function. For programs, this section often includes explanations of available command line options.
 - EXAMPLES: Some examples of common usage.
 - SEE ALSO: A list of related commands or functions.
@@ -182,38 +196,67 @@ References:
 
 [Mastering Linux Man Pages - A Definitive Guide](https://www.youtube.com/watch?v=RzAkjX_9B7E) by Linux Training Academy
 
+### info
+
+The man system is great if you happen to know the name of the command or program you’re after. But suppose the command name is the bit that you’re missing. Type `info` command.
+
 ## Basic Commands
 
 Tên file có space thì phải để trong double quote.
 
 `less "My excellent file.txt"`
 
+- `rm` to remove files
+- `rmdir` to remove empty directories. It can only remove empty directories. 
+
+`rm -r directory-name` remove directory
+
+(Use `ls -a` to check whether a directory is empty or not). The rm command also has options for removing non-empty directories with all their subdirectories, read the Info pages for these rather dangerous options.\
+The interactive behavior of the rm, cp and mv commands can be activated using the -i option. In that case the system won't immediately act upon request. Instead it will ask for confirmation, so it takes an additional click on the Enter key to inflict the damage. Customize your shell environment to make this option the default.
+
+`rm file1` delete file1 from the directory
+
+`rm file*` deletes all files in the current directory whose names begin with the letters file.
+
+`rm -r *` wipe out the current directory
+
+---
+
 - `cp` to copy files
 - `mv` to move & rename files
 
-`rm` to remove files `rmdir` to remove empty directories. (Use **ls `-a`** to check whether a directory is empty or not). The rm command also has options for removing non-empty directories with all their subdirectories, read the Info pages for these rather dangerous options.\
-The interactive behavior of the rm, cp and mv commands can be activated using the -i option. In that case the system won't immediately act upon request. Instead it will ask for confirmation, so it takes an additional click on the Enter key to inflict the damage. Customize your shell environment to make this option the default.
+cp 2 files into 1 directory: `cp <filename> <filename1> <foldername>/`
 
-`mv ../filename.txt .` move to current directory
+`cp -r /path/to/source/directory /path/to/destination/directory` cp directory. Lưu ý là `directory` chứ ko phải `directory/` (sẽ copy content).
+
+`-R` recursive copy (copy all underlying files and subdirectories). The general syntax is `cp [-R] fromfile tofile`
+
+`$ cp file1 newdir` => creates a copy of file1 within the directory newdir.
+
+By the way, the `cp` command knows what to do with this command line because it’s smart enough to recognize newdir as a directory rather than a file. If there were no directory called newdir in the current location, cp would instead make a new copy of file1 named newdir. If you’re anything like me, at some point you’re probably going to accidentally misspell a command and end up with an odd new file rather than the directory you were after. In any case, check everything to confirm it all works out the way it was supposed to.
+
+`mv ../filename.txt .` move a file to current directory
 
 rename directory `mv Oldfolder Newfolder`
+
+`$ mv file2 newdir` moves `file2` to `newdir` directory
+
+You can copy, move, or delete directories using the same commands as for files, adding the -r flag where necessary. Remember that you might be moving more than just the directory you see: any existing layers of unseen nested levels will also be dragged along for the ride. 
+
+---
 
 `mkdir dir1 dir2` create multiple directories in one go
 
 `mkdir -p x/y/z` create nested directories in a single command. The `-p` switch create parents directories.
 
-cp 2 files into 1 directory: `cp <filename> <filename1> <foldername>/`
-
-`cp -r /path/to/source/directory /path/to/destination/directory` cp directory. Lưu ý là `directory` chứ ko phải `directory/` (sẽ copy content). [Read more](https://www.freecodecamp.org/news/how-to-copy-a-directory-in-linux-with-the-cp-command/).
-
-`-R` recursive copy (copy all underlying files and subdirectories). The general syntax is `cp [-R] fromfile tofile`
+---
 
 `df` (which stands for _disk full_ or _disk free_) show how much of your disk is still free; information about the partitions and their mount points\
 supports the `-h` or _human readable_ option which greatly improves readability
 
 How can you find out which partition a directory is on? Using the `df` command with a dot (.) as an option shows the partition the current directory belongs to, and informs about the amount of space used on this partition
 
-The **df** command only displays information about active non-swap partitions. These can include partitions from other networked systems
+The `df` command only displays information about active non-swap partitions. These can include partitions from other networked systems
 
 since the search path contains only paths to directories containing executable programs, **which** doesn't work for ordinary files. The **which** command is useful when troubleshooting "Command not Found" problems.\
 Using the `which` command also checks to see if a command is an alias for another command `which -a ls`. If this does not work on your system, use the alias command: `alias ls`
@@ -256,6 +299,12 @@ Later on (in 1999 according to the man pages, after 20 years of find), `locate` 
 `alias` list all alias in your terminal
 
 `unalias <alias>` remove an alias
+
+## sudo
+
+By default, the user created during the initial Linux installation will have sudo powers.
+
+When illustrating command-line examples throughout this book, I use a command prompt of $ for commands that don’t require administrator privileges and, instead of `$ sudo`, I use `#` for those commands that do. Thus a sudo command will look like this: `# nano /etc/group`
 
 ## fzf
 
@@ -336,13 +385,21 @@ find / -name core | tee /dev/tty | wc -l
 
 prints both the pathnames of files named core and a count of the number of core files that were found.
 
-## head & tail, less & more
+## cat
+
+`cat` (concatenate) print a file to the screen where it can be read, but not edited. This works pretty well for shorter documents.
+
+If the file you want to read contains more lines than will display in a single screen, you don't use `cat`.
+
+## head - tail, less - more
 
 > read the beginning or end of a file
 
-These commands display ten lines by default.
+These commands display **ten lines** by default.
 
-For interactive use, head is more or less obsoleted by the `less` command, which paginates files for display. But head still finds plenty of use within scripts.
+For interactive use, `head` is more or less obsoleted by the `less` command, which paginates files for display. But `head` still finds plenty of use within scripts.
+
+In practice, you should only use `less`. Don't use `more` & `head`.
 
 Instead of exiting immediately after printing the requested number of lines, `tail -f` waits for new lines to be added to the end of the file and prints them as they appear— great for monitoring log files.  
 Type `<Control-C>` to stop monitoring.
@@ -518,7 +575,7 @@ On MacOS, use the Activity Monitor app
 
 [Linux ate my ram](https://www.linuxatemyram.com) for further learning
 
-## Managing systemd Units
+## Managing `systemd` Units
 
 `systemclt status <unit name>` show status of a unit
 
@@ -551,6 +608,38 @@ In computing, [tar](https://en.wikipedia.org/wiki/Tar_(computing)) is a computer
 On MacOS, curl comes pre-installed.
 
 You can use curl with a REST-api.
+
+## Read system logs
+
+On nearly all modern Linux distributions, you can access all system logs through journalctl: 
+
+`# journalctl`
+
+As you’ll quickly see, running journalctl without any arguments will drown you in a torrent of data. You’ll need to find some way to filter for the information you’re after. Allow me to introduce you to grep:
+
+`# journalctl | grep filename.php`
+
+You can use grep in sequence to narrow your results further:
+
+`# journalctl | grep filename.php | grep error`
+
+In case you’d prefer to see only those lines that don’t contain the word error, you’d add -v (for inverted results): 
+
+`# journalctl | grep filename.php | grep -v error`
+
+## ACL
+
+ACL (Access Control List) is used in both Linux and networking because it is a universal computer security concept—the method used to implement granular authorization.
+
+The reason the name is the same is that the goal is identical: to have a list of rules that the system checks in order to decide whether to allow or deny access to a resource.
+
+- Linux (Filesystem) ACL
+  * Resource: A specific file or folder.
+  * Purpose: Granular Permissions (Who can touch this file?).
+
+- Networking (Firewall/Router) ACL
+  * Resource: A network interface or an entire subnet.
+  * Purpose: Traffic Filtering (What data is allowed on this wire?).
 
 ## Terminologies
 

@@ -1,4 +1,4 @@
-# Other linux notes
+# Other Linux Notes
 
 ## History
 
@@ -16,8 +16,19 @@ Linux is an implementation of UNIX.
 
 ## Why use Linux?
 
-**Linux is portable to any hardware platform:**
-A vendor who wants to sell a new type of computer and who doesn't know what kind of OS his new machine will run (say the CPU in your car or washing machine), can take a Linux kernel and make it work on his hardware, because documentation related to this activity is freely available.
+Linux is portable to any hardware platform: A vendor who wants to sell a new type of computer and who doesn't know what kind of OS his new machine will run (say the CPU in your car or washing machine), can take a Linux kernel and make it work on his hardware, because documentation related to this activity is freely available.
+
+you can load a Linux live boot image on a USB stick, boot a PC whose own hard disk has been corrupted, and then troubleshoot and fix the problem.
+
+because Linux is a true multiuser OS, whole teams can concurrently log in to work locally or remotely, confident in the privacy and stability of the system.
+
+## Which distro to use?
+
+Mint, Elementary OS
+
+All-purpose (except lightweight): Ubuntu
+
+Lightweight (old hardware; diagnostics): Puppy Linux
 
 ## Symbolic links & hard links
 

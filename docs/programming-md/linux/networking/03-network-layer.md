@@ -1,26 +1,33 @@
 # 03-Network Layer
 
-## The Basics
+## The Basics & Terminologies
 
-- Transport layer is process-to-process communication
-- Network layer is host-to-host communication
+- Transport layer is responsible for **process-to-process communication**.
+- Network layer is responsible for **host-to-host communication**.
 
-Unlike the transport and application layers, there is a piece of the network layer in each and every host and router in the network. Because of this, network-layer protocols are among the most challenging (and therefore among the most interesting!) in the protocol stack
+Unlike the transport and application layers, there is a piece of the network layer in each and every host and router in the network. Because of this, network-layer protocols are among the most challenging (and therefore among the most interesting!) in the protocol stack.
 
-A network-layer packet is called a **datagram**. Đừng nhầm với UDP (User Datagram Protocol) là layer 4 transport layer
+A network-layer packet is called a **datagram**. Đừng nhầm với UDP (User Datagram Protocol) là một layer 4 (transport layer) protocol.
 
 - Chia Network Layer ra:
   * data plane role of each router
   * (network) Control plane role
 
-- **Forwarding**: refers to the router-local action of transferring a packet from an input link interface to the appropriate output link interface. Forwarding is typically implemented in hardware. It is the **data-plane** functionality of the network layer.
-- **Routing**: refers to the network-wide process that determines the end-to-end paths that packets take from source to destination. Routing is often implemented in software. It is a **control-plane** functionality of the network layer.
+- **Forwarding**: refers to the router-local action of transferring a packet from an input link interface to the appropriate output link interface.
+  * Forwarding is typically implemented in hardware. It is the **data-plane** functionality of the network layer.
+- **Routing**: refers to the network-wide process that determines the end-to-end paths that packets take from source to destination.
+  * Routing is often implemented in software.
+  * It is a **control-plane** functionality of the network layer.
 
 The **Routing algorithms** determine the contents of the routers’ **forwarding tables**.
 
 ## IP Datagram Format
 
 Note that an **IP datagram** has a total of 20 bytes of header (assuming no options). If the datagram carries a TCP segment, then each datagram carries a total of 40 bytes of header (20 bytes of IP header plus 20 bytes of TCP header) along with the application-layer message.
+
+## What’s Inside a Router?
+
+k
 
 ## The Internet Protocol (IP): IPv4, Addressing, IPv6, and More
 
@@ -60,9 +67,26 @@ It uses a **NAT translation table** at the NAT router, and to include port numbe
 
 NAT router use **abitrarily-assigned** port numbers to map to multiple host inside its network.
 
-### RFC 1918 & The `10.0.0.0/8` Block
+### IPv6 and NAT
+
+Yes, understanding NAT (Network Address Translation) is critically important to learn IPv6, even though IPv6 was designed specifically to eliminate the need for NAT.
+
+You need to understand the problem that NAT solved for IPv4 in order to appreciate the solution that IPv6 offers.
+
+NAT was created as a workaround for the global shortage of IPv4 addresses.
+
+- IPv4 Problem: Only 4.3 billion addresses. NAT lets a hundred devices share one public address (like one phone number for a whole apartment building).
+- IPv6 Solution: IPv6 has a nearly infinite number of addresses. Because every single device (your phone, your laptop, your smart fridge) can have its own unique, public IP address, the complexity and overhead of NAT are removed entirely.
+
+## Special IP addresses
+
+There is a comprehensive list of special and reserved IPv4 addresses defined by standards organizations like IANA and various RFCs. These addresses are not used for public internet routing but are reserved for specific local, diagnostic, or administrative purposes.
+
+### Private and Internal Use: RFC 1918
 
 **RFC 1918** is the foundational document that defines the specific blocks of private IP addresses reserved for use in internal networks (Local Area Networks or LANs).
+
+These addresses are non-routable on the public internet and are used exclusively within local, private networks (LANs) behind a NAT device (router)
 
 This document was published in 1996 to address the growing exhaustion of the 4.3 billion available IPv4 public addresses.
 
@@ -76,6 +100,24 @@ RFC 1918 defines three blocks of addresses, corresponding to the original Class 
 
 ---
 
+- Class A 
+  * CIDR notation: `10.0.0.0/8`
+  * Subnet mask: `255.0.0.0`
+  * Total Host IPs: 16.7 Million
+  * Primary Purpose: Large corporate networks, Cloud VPCs.
+- Class B
+  * CIDR notation: `172.16.0.0/12`
+  * Subnet mask: `255.240.0.0`
+  * Total Host IPs: 1.04 Million
+  * Primary Purpose: Medium-sized organizations.
+- Class C 
+  * CIDR notation: `192.168.0.0/16`
+  * Subnet mask: `255.255.0.0`
+  * Total Host IPs: 65,536
+  * Primary Purpose: Home and small office networks.
+
+---
+
 The address space `10.0.0.0/8` is the largest of the three portions of the IP address space that is reserved in [RFC 1918] for a private network or a realm with private addresses, such as the home network.  
 A realm with private addresses refers to a network whose addresses only have meaning to devices within that network.
 
@@ -84,27 +126,41 @@ The 10.0.0.0/8 range is meant to be used exclusively within Local Area Networks 
 - Example: A large corporation might assign all of its U.S. offices a 10.x.x.x address block.
 - Cloud Computing: Cloud platforms (like AWS and GCP) heavily use the 10.x.x.x range when customers create VPCs (Virtual Private Clouds).
 
-IP addresses starting with 10. are blocked by routers on the public internet.
+IP addresses starting with `10.` are blocked by routers on the public internet.
 
-If your private IP address is 10.1.2.3, a router on the internet will not forward a packet destined for that address. This provides a basic layer of security because it means devices on the public internet cannot directly initiate contact with a device in your private network unless you specifically allow it via a router or firewall (NAT).
+If your private IP address is `10.1.2.3`, a router on the internet will not forward a packet destined for that address. This provides a basic layer of security because it means devices on the public internet cannot directly initiate contact with a device in your private network unless you specifically allow it via a router or firewall (NAT).
 
-### IPv6 and NAT
+### Diagnostics and Loopback
 
-Yes, understanding NAT (Network Address Translation) is critically important to learn IPv6, even though IPv6 was designed specifically to eliminate the need for NAT.
+**The Loopback Network** `127.0.0.0/8` is reserved for internal self-testing. Any data sent to this range immediately loops back to the local device. 127.0.0.1 is the most common address.
 
-You need to understand the problem that NAT solved for IPv4 in order to appreciate the solution that IPv6 offers.
-
-NAT was created as a workaround for the global shortage of IPv4 addresses.
-
-- IPv4 Problem: Only 4.3 billion addresses. NAT lets a hundred devices share one public address (like one phone number for a whole apartment building).
-- IPv6 Solution: IPv6 has a nearly infinite number of addresses. Because every single device (your phone, your laptop, your smart fridge) can have its own unique, public IP address, the complexity and overhead of NAT are removed entirely.
-
-## The `127.0.0.0/8` Network
-
-The entire IP range from `127.0.0.1` up to 127.255.255.254 is reserved for loopback testing and is known as the loopback network (127.0.0.0/8). All traffic sent to this range stays on your local machine and never leaves your network interface card.
+The entire IP range from `127.0.0.1` up to `127.255.255.254` is reserved for loopback testing and is known as the loopback network (127.0.0.0/8). All traffic sent to this range stays on your local machine and never leaves your network interface card.
 
 When you use `localhost`, it auto resolve to both the IPv4 address (127.0.0.1) and the IPv6 address (`::1`). This ensures your application works regardless of whether the system prefers IPv4 or IPv6.  
 It actually requires a DNS lookup (usually configured in the system's hosts file `/etc/hosts`).
+
+---
+
+**The Current Network** `0.0.0.0/8` is ssed by devices to refer to their own network or to signal "any network" (e.g., 0.0.0.0 as the source address).
+
+### Broadcast and Unspecified
+
+**The Limited Broadcast** `255.255.255.255` is used to send a packet to every device on the local network (LAN segment), regardless of its specific network address.
+
+---
+
+**The Default Route** `0.0.0.0/0` is the "catch-all" route in a routing table. If a router doesn't know where to send a packet, it sends it to the destination specified by this address (the default gateway).
+
+It represents the largest, most general network possible: **all IPv4 addresses** (the entire 32-bit address space).
+
+The primary function of the default route is to act as the last-resort instruction for a router.
+
+1. Specific Routes: A router’s first job is always to check for the most specific (longest) match in its routing table. For example, a route to 192.168.1.0/24 is more specific than the default route.
+2. The Default Route: If the router receives a packet destined for an IP address that is not listed in any specific route (like a server on the public internet), it uses the 0.0.0.0/0 entry.
+
+This ensures that the router never drops a packet just because it doesn't know the exact path. It sends the unknown packet to the device listed as the next hop for the default route (usually the ISP's router), trusting that the next device knows how to handle it.
+
+Routers always prefer the route with the longest (most specific) prefix. Since 0.0.0.0/0 is the shortest, it is only considered if no other route matches the destination IP.
 
 ## Subnet
 
@@ -133,13 +189,9 @@ Convert between CIDR notation and Subnet Mask
 - First host IP: IP address immediately after the network ID
 - Last host IP: IP address immediately before the broadcast IP
 
-## Control Plane
-
-k
-
 ## ATM vs IP
 
-ATM (Asynchronous Transfer Mode) và IP (Internet Protocol) là hai công nghệ mạng được phát triển với hai triết lý hoàn toàn khác nhau. Chúng từng là đối thủ cạnh tranh để trở thành nền tảng cho mạng viễn thông toàn cầu.
+`ATM (Asynchronous Transfer Mode)` và IP (Internet Protocol) là hai công nghệ mạng được phát triển với hai triết lý hoàn toàn khác nhau. Chúng từng là đối thủ cạnh tranh để trở thành nền tảng cho mạng viễn thông toàn cầu.
 
 Câu trả lời ngắn gọn: IP đã chiến thắng. Internet hiện đại, Wi-Fi, và mạng văn phòng (Ethernet) của bạn đều chạy trên nền tảng IP.
 
@@ -156,6 +208,8 @@ The decentralized routing algorithm we’ll study is called a **distance-vector 
 Link-state
 
 ## Intra-AS Routing in the Internet: OSPF
+
+OSPF is a routing protocol that operates within a single ISP’s network. 
 
 Routers are organized into **Autonomous System** (AS). An autonomous system is identified by its globally unique **autonomous system number** (ASN).
 
