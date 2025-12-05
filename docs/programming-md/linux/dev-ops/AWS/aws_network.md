@@ -12,21 +12,39 @@ NACLs stands for Network Access Control Lists.
 
 In AWS (and similar cloud platforms), a NACL is an optional layer of security that acts as a stateless firewall for controlling traffic entering and leaving one or more subnets.
 
-## AWS Identity and Access Management (IAM)
+## Networking on AWS
+
+Creating virtual networks allows you to build closed and secure network environments on AWS and to connect these networks with your home or corporate network.
+
+Learn how to secure your system with a virtual private network and firewalls.
+
+## Security Groups
+
+Control incoming and outgoing traffic to your virtual machine, your database, or your load balancer with a **firewall**. 
+For example, use a security group allowing incoming HTTP traffic from the internet to `port 80` of the load balancer. Or restrict network access to your database on port 3306 to the virtual machines running your web servers.
+
+- It is a virtual firewall for your resources.
+- firewall rules = security groups
+
+## AWS Identity and Access Management (`IAM`)
 
 The **Identity and Access Management (IAM) service** provides authentication and authorization for the AWS API.
 
 When you send a request to the AWS API, IAM verifies your identity and checks whether you are allowed to perform the action. IAM controls who (authentication) can do what (authorization) in your AWS account. For example, is the user allowed to launch a new virtual machine? The various components of IAM follow:
 
 - An `IAM user` is used to authenticate people or workloads running outside of AWS.
-- An IAM group is a collection of IAM users with the same permissions.
+- An `IAM group` is a collection of IAM users with the same permissions.
 - An `IAM role` is used to authenticate **AWS resources**, for example, an EC2 instance.
 - An `IAM identity policy` is used to define the permissions for a user, group, or role.
 
-- Roles authenticate AWS entities such as EC2 instances. 
-- IAM users authenticate the people who manage AWS resources, for example, system administrators, DevOps engineers, or software developers.
+- **Roles** authenticate AWS entities such as EC2 instances.
+- **IAM users** authenticate the people who manage AWS resources, for example, system administrators, DevOps engineers, or software developers.
 
-By default, users and roles can’t do anything. You have to create an identity policy stating what actions they’re allowed to perform. IAM users and IAM roles use **identity policies** for authorization.
+By default, users and roles **can’t do anything**. You have to create an identity policy stating what actions they’re allowed to perform. IAM users and IAM roles use **identity policies** for authorization.
+
+AMI (Amazon Machine Image). Khác với IAM.
+
+An IAM role grants processes running on the EC2 virtual machine access to other AWS services. This is needed because you will use AWS services called Systems Manager and EC2 Instance Connect to establish an SSH connection with your virtual machine later.
 
 ### Defining permissions with an IAM identity policy
 

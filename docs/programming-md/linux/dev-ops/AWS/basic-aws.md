@@ -51,6 +51,8 @@ In this setup, only one server actively handles client traffic, while the other 
 
 The **Classic Load Balancer (CLB)** is the older, legacy load balancer from AWS, and the Application Load Balancer (ALB) is the modern, more intelligent replacement designed for contemporary web and microservice architectures.
 
+AMI (Amazon Machine Image). Khác với IAM.
+
 ## What can you do with AWS?
 
 The web shop consists of dynamic content (such as products and their prices) and static content (such as the company logo). Splitting these up would reduce the load on the web servers and improve performance by delivering the **static content** over a **content delivery network (CDN)**.
@@ -121,18 +123,18 @@ Other services, like the NoSQL database service, offer their features through an
 Users send HTTP requests to a virtual machine. This virtual machine is running a web server along with a custom PHP web application. The web application needs to talk to AWS services to answer HTTP requests from users. For example, the application might need to query data from a NoSQL database, store static files, and send email. Communication between the web application and AWS services is handled by the API
 
 - The following services are covered in detail in our book:
-  * `EC2`—Virtual machines
+  * `EC2` (Elastic Compute Cloud) — Virtual machines
   * `ECS` and `Fargate`—Running and managing containers
   * `Lambda`—Executing functions
   * `S3`—Object store
   * `Glacier`—Archiving data
   * `EBS`—Block storage for virtual machines
-  * `EFS`—Network filesystem
-  * `RDS`—SQL databases
+  * `EFS` (Elastic File System) —Network filesystem
+  * `RDS` (Relational Database Service) —SQL databases
   * `DynamoDB`—NoSQL database
   * `ElastiCache`—In-memory key-value store
   * `VPC`—Virtual network
-  * `ELB`—Load balancers
+  * `ELB` (Elastic Load Balancing) —Load balancers
   * `Simple Queue Service`—Distributed queues
   * `CodeDeploy`—Automating code deployments
   * `CloudWatch`—Monitoring and logging
@@ -156,34 +158,6 @@ WordPress itself consists of PHP and other application files. User uploads—for
 The Elastic File System (EFS) is used to store files and access them from multiple virtual machines. EFS is a storage service accessible through the **NFS protocol**. To keep things simple, all files that belong to WordPress, including PHP, HTML, CSS, and PNG files, are stored on EFS so they can be accessed from all virtual machines.
 
 To mount the Elastic File System from a virtual machine, mount targets are needed. You should use two mount targets for fault tolerance. The network filesystem is accessible using a DNS name for the virtual machines.
-
-### Security Groups
-
-It is a virtual firewall for your resources.
-
-firewall rules = security groups
-
-Control incoming and outgoing traffic to your virtual machine, your database, or your load balancer with a firewall. For example, use a security group allowing incoming HTTP traffic from the internet to port 80 of the load balancer. Or restrict network access to your database on port 3306 to the virtual machines running your web servers.
-
-### Lambda
-
-AWS Lambda is a new way of computing: with functions. It is used to automate operational tasks.
-
-Lambda (Function as a Service) gives you maximum convenience. You upload a function, and AWS handles everything else. Your code runs only when triggered by an event (like an API request or a file upload to S3). It is best for short, event-driven tasks, microservices, and cost optimization.
-
-Both AWS Lambda and EC2 provide compute power (run code)
-
-- EC2 (Elastic Compute Cloud):
-  * Server-Based (IaaS or Infrastructure as a Service). Renting a virtual machine.
-  * Pay per Hour/Second the server is running (even when idle).
-  * Your Responsibility. You must patch, update, and manage the OS.
-  * You have Full control over the operating system.
-
-- AWS Lambda
-  * Serverless (FaaS or Function as a Service). Renting a function execution.
-  * Pay per Execution (down to the millisecond).
-  * AWS Responsibility. AWS manages the OS, patching, scaling, and infrastructure.
-  * No OS access; you only upload your code.
 
 ## Interacting with AWS
 
@@ -212,12 +186,6 @@ A **blueprint** is a description of your system containing all resources and the
 Consider using blueprints if you have to control many or complex environments. Blueprints will help you to automate the configuration of your infrastructure in the cloud. You can use them to set up a network and launch virtual machines, for example.
 
 Automating your infrastructure is also possible by writing your own source code with the help of the CLI or the SDKs. Doing so, however, requires you to resolve dependencies, to make sure you are able to update different versions of your infrastructure, and to handle errors yourself. As you will see in chapter 4, using a blueprint and an Infrastructure-as-Code tool solves these challenges for you.
-
-## Networking on AWS
-
-Creating virtual networks allows you to build closed and secure network environments on AWS and to connect these networks with your home or corporate network.
-
-Learn how to secure your system with a virtual private network and firewalls.
  
 ## AWS Account
 

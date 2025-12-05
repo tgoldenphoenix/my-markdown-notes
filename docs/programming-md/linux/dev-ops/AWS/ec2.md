@@ -18,7 +18,7 @@ EC2 instance = a virtual machine
 
 **HVM (Hardware Virtual Machine)** is the virtualization type. HVM is the modern, high-performance method for running EC2 instances.
 
-The AMI (Amazon Machine Image) is the basis for your virtual machine starts. AMIs are offered by AWS, third-party providers, and by the community. AWS offers the Amazon Linux AMI, which is based on Red Hat Enterprise Linux and optimized for use with EC2. You’ll also find popular Linux distributions and AMIs with Microsoft Windows Server as well as more AMIs with preinstalled third-party software in the AWS Marketplace.
+The **AMI (Amazon Machine Image)** is the basis for your virtual machine starts. AMIs are offered by AWS, third-party providers, and by the community. AWS offers the Amazon Linux AMI, which is based on Red Hat Enterprise Linux and optimized for use with EC2. You’ll also find popular Linux distributions and AMIs with Microsoft Windows Server as well as more AMIs with preinstalled third-party software in the AWS Marketplace.
 
 A **virtual appliance** is an image of a virtual machine containing an OS and preconfigured software. Virtual appliances are used when the hypervisor starts a new VM. Because a virtual appliance contains a fixed state, every time you start a VM based on a virtual appliance, you’ll get exactly the same result.  
 You can reproduce virtual appliances as often as needed, so you can use them to eliminate the cost of installing and configuring complex stacks of software. Virtual appliances are used by virtualization tools from VMware, Microsoft, and Oracle, and for Infrastructure as a Service (IaaS) offerings in the cloud.
@@ -61,6 +61,7 @@ AWS offers machines based on custom-built ARM processors called Graviton as well
 
 ## Connecting to VMs
 
+As an administrator of a Linux machine, you used a username and password or username and a public/private key pair to authenticate yourself in the past.  
 By default, AWS uses a username and a key pair for authentication into an EC2 instance. We try to avoid this approach, because it works only for a single user, and it is not possible to change the key pair externally after launching an EC2 instance.
 
 You will learn about a new approach to connect to EC2 instances that does not require inbound SSH connectivity.
@@ -68,10 +69,7 @@ You will learn about a new approach to connect to EC2 instances that does not re
 - You will learn how to connect to an EC2 instance by using the **AWS Systems Manager Session Manager**. The advantages of this approach follow:
   * You do not need to configure key pairs upfront but use temporary key pairs instead.
   * You don’t need to allow inbound SSH or RDP connectivity, which limits the attack surface.
-
-## IAM Role
-
-An IAM role grants processes running on the virtual machine access to other AWS services. This is needed because you will use AWS services called Systems Manager and EC2 Instance Connect to establish an SSH connection with your virtual machine later.
+  * Open a terminal to your instance directly on the browser.
 
 ## Shutting down a virtual machine
 

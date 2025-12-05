@@ -12,6 +12,71 @@ Broadly speaking, there are currently two approaches to virtualization:
 - VirtualBox (a type 2 hypervisor)
 - LXC (a container manager).
 
+## Download ISO & Verify Checksum
+
+Large files can sometimes become corrupted during the download process. If even a single byte within your .ISO has been changed, there’s a chance the installation won’t work. Because you don’t want to invest time and energy only to discover that there was a problem with the download, it’s always a good idea to immediately calculate the checksum (or hash) for the .ISO you’ve downloaded to confirm that everything is as it was. To do that, you’ll need to get the appropriate SHA or MD5 checksum, which is a long string looking something like this: 
+
+`4375b73e3a1aa305a36320ffd7484682922262b3`
+
+You should compare the appropriate string from that page with the results of a command run from the same directory as your downloaded .ISO, which might look like this: 
+
+```
+❯ sha256sum -b linuxmint-22.2-xfce-64bit.iso
+dea13e523dca28e3aa48d90167a6368c63e1b3251492115417fdbf648551558f *linuxmint-22.2-xfce-64bit.iso
+```
+
+If they match, you’re in business. If they don’t (and you’ve double-checked to make sure you’re looking at the right version), then you might have to download the .ISO a second time. 
+
+Download both `sha256sum.txt` and `sha256sum.txt.gpg`.  
+Do not copy their content, use “right-click->Save Link As…” to download the files themselves and do not modify them in any way.
+
+---
+
+To verify the authenticity of `sha256sum.txt`, check the signature of `sha256sum.txt.gpg` by following the steps below.
+
+Import the Linux Mint signing key:
+
+```
+❯ gpg --keyserver hkp://keys.openpgp.org:80 --recv-key 27DEB15644C6B3CF3BD7D291300F846BA25BAE09
+gpg: directory '/home/anhao/.gnupg' created
+gpg: keybox '/home/anhao/.gnupg/pubring.kbx' created
+gpg: /home/anhao/.gnupg/trustdb.gpg: trustdb created
+gpg: key 300F846BA25BAE09: public key "Linux Mint ISO Signing Key <root@linuxmint.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+```
+
+Check that the key was properly imported:
+
+```
+❯ gpg --list-key --with-fingerprint A25BAE09
+pub   rsa4096 2016-06-07 [SC]
+      27DE B156 44C6 B3CF 3BD7  D291 300F 846B A25B AE09
+uid           [ unknown] Linux Mint ISO Signing Key <root@linuxmint.com>
+```
+
+Verify the authenticity of sha256sum.txt:
+
+```
+❯ gpg --verify sha256sum.txt.gpg sha256sum.txt
+gpg: Signature made Tue Sep  2 09:40:21 2025 UTC
+gpg:                using RSA key 27DEB15644C6B3CF3BD7D291300F846BA25BAE09
+gpg: Good signature from "Linux Mint ISO Signing Key <root@linuxmint.com>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 27DE B156 44C6 B3CF 3BD7  D291 300F 846B A25B AE09
+```
+
+You need to download both file (using "save link as").
+
+A file with the extension .txt.gpg is a plain text file (.txt) that has been encrypted using GPG (GNU Privacy Guard), a popular cryptographic software tool.
+
+It is a file in a secure, unreadable format that requires a decryption key or passphrase to be opened and viewed.
+
 ## Working with VirtualBox
 
 There’s a lot you can do with Oracle’s open source VirtualBox. You can install it on any OS (including Windows) running on any desktop or laptop computer, or use it to host VM instances of almost any major OS. 
+
+## VirtualBox Guest Additions
+
+k

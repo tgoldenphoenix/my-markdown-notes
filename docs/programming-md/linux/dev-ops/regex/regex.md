@@ -2,6 +2,8 @@
 
 ## Basics & Terminologies
 
+**Literals** là khi `a` match `a`; `<` match `<` gọi là literals.
+
 - `{}`, `+`, `*` and `?` are called **quantifiers**.  
 - `{}` is also called **quantity specifier.**
 - flag = modifier
@@ -101,9 +103,35 @@ Remember that Windows text files use `\r\n` to terminate lines, while UNIX text 
 
 The **wildcard character** `.` will match one single character of any kind, including special characters and white space characters (except only line breaks). The wildcard is also called dot and period. For example, if you wanted to match ==hug, huh, hut, and hum==, you can use the regex `/hu./` to match all four words.
 
+The dot matches a single character, without caring what that character is. The only exception are line break characters. In all regex flavors discussed in this tutorial, the dot does **NOT** match line breaks by default
+
+This exception exists mostly because of historic reasons. The first tools that used regular expressions were line-based. They would read a file line by line, and apply the regular expression separately to each line. The effect is that with these tools, the string could never contain line breaks, so the dot could never match them.  
+Modern tools and languages can apply regular expressions to very large strings or even entire files. Except for VBScript, all regex flavors discussed here have an option to make the dot match all characters, including line breaks. Older implementations of JavaScript don’t have the option either. It was formally added in the ECMAScript 2018 specification.
+
+In JavaScript (for compatibility with older browsers) and VBScript you can use a character class such as `[\s\S]` to match any character. This character matches a character that is either a whitespace character (including line break characters), or a character that is not a whitespace character. Since all characters are either whitespace or non-whitespace, this character class matches any character. Do not use alternation like (\s|\S) which is slow. And certainly don’t use (.|\s) which can lead to catastrophic backtracking as spaces and tabs can be matched by both . and \s.
+
 The escaped character `\.` matches a single literal dot character.
 
+---
+
 Use the dot **sparingly**. Often, a character class or negated character class is faster and more precise.
+
+The dot is a very powerful regex metacharacter. It allows you to be lazy. Put in a dot, and everything matches just fine when you test the regex on valid data. The problem is that the regex also matches in cases where it should not match. If you are new to regular expressions, some of these cases may not be so obvious at first.
+
+Let’s illustrate this with a simple example. Say we want to match a date in mm/dd/yy format, but we want to leave the user the choice of date separators. The quick solution is \d\d.\d\d.\d\d. Seems fine at first. It matches a date like 02/12/03 just fine. Trouble is: 02512703 is also considered a valid date by this regular expression. In this match, the first dot matched 5, and the second matched 7. Obviously not what we intended.  
+`\d\d[- /.]\d\d[- /.]\d\d` is a better solution. This regex allows a dash, space, dot and forward slash as date separators. Remember that the dot is not a metacharacter inside a character class, so we do not need to escape it with a backslash.
+
+This regex is still far from perfect. It matches 99/99/99 as a valid date. `[01]\d[- /.][0-3]\d[- /.]\d\d` is a step ahead, though it still matches 19/39/99. How perfect you want your regex to be depends on what you want to do with it. If you are validating user input, it has to be perfect. If you are parsing data files from a known source that generates its files in the same way every time, our last attempt is probably more than sufficient to parse the data without errors. You can find a better regex to match dates in the example section.
+
+---
+
+A negated character class is often more appropriate than the dot. The tutorial section that explains the repeat operators star and plus covers this in more detail. But the warning is important enough to mention it here as well. Again let’s illustrate with an example.
+
+Suppose you want to match a double-quoted string. Sounds easy. We can have any number of any character between the double quotes, so ".*" seems to do the trick just fine. The dot matches any character, and the star allows the dot to be repeated any number of times, including zero. If you test this regex on `Put a "string" between double quotes`, it matches "string" just fine. Now go ahead and test it on `Houston, we have a problem with "string one" and "string two". Please respond.`
+
+Ouch. The regex matches "string one" and "string two". Definitely not what we intended. The reason for this is that the star is greedy.
+
+In the date-matching example, we improved our regex by replacing the dot with a character class. Here, we do the same with a negated character class. Our original definition of a double-quoted string was faulty. We do not want any number of any character between the quotes. We want any number of characters that are not double quotes or newlines between the quotes. So the proper regex is `"[^"\r\n]*"`. If your flavor supports the shorthand `\v` to match any line break character, then `"[^"\v]*"` is an even better solution.
 
 ## Flags
 
@@ -118,21 +146,19 @@ But we can use the **multi-line flag** `//m` to handle each line separately. In 
 
 Many regex systems (including Perl’s) support an `x` option that ignores literal whitespace in the pattern and enables comments, allowing the pattern to be spaced out and split over multiple lines.
 
-## Quantifiers: `+ * ?`
+## Repetition with `*` & `+`
 
-These quantifiers can be used with any character or special metacharacters, for example `a+` (one or more a's), `[abc]+` (one or more of any a, b, or c character) and `.*` (zero or more of any character).
+The **repetition quantifiers** or operators (`* + ?`) can be used with any character or special metacharacters, for example `a+` (one or more a's), `[abc]+` (one or more of any a, b, or c character) and `.*` (zero or more of any character).
 
-### `+` One or More
-
-`+` allows **one** or more matches of the preceding element => Cộng **một**.
+`+` allows **onece** or more matches of the preceding element => Cộng **một**.
 
 Sometimes, you need to match a single character (or group of characters) that appears **ONE or more** times in a row. This means it occurs at least once, and may be repeated => use the `+` symbol.
 
 Remember, the character or pattern has to be present consecutively. That is, the character has to repeat one after the other.
 
-### `*` Zero or More
+---
 
-`*` allows zero, one, or many matches of the preceding element.
+`*` allows zero, one, or many matches of the preceding element (zero or more).
 
 Distinguish: 
 
@@ -145,29 +171,9 @@ Example:
 - `.*` => match an element of unlimited length.
 - `/.*buy.*/` => match & filter out all lines/phrases that contain "buy"
 
-### `?` Zero or One
+The asterisk or star tells the engine to attempt to match the preceding token zero or more times. The plus tells the engine to attempt to match the preceding token once or more. `<[A-Za-z][A-Za-z0-9]*>` matches an HTML tag without any attributes. The angle brackets are literals. The first character class matches a letter. The second character class matches a letter or digit. The star repeats the second character class. Because we used the star, it’s OK if the second character class matches nothing. So our regex will match a tag like `<B>`. When matching `<HTML>`, the first character class will match H. The star will cause the second character class to be repeated three times, matching T, M and L with each step.
 
-- The `?` symbol có 2 chức năng: optional matching & lazy matching  
-- `?` symbol is also used in Lookaround.
-
-Optional symbol `?` allows zero **or one** match of the preceding element.
-
-Sometimes the patterns you want to search for may have parts of it that may or may not exist. However, it may be important to check for them nonetheless. You can specify the possible existence of an element with a question mark `?`. It checks for **zero or one** of the preceding element. You can think of this symbol as saying the previous element is optional.
-
-To accommodate either a five-digit zip code or an extended zip+4: `^\d{5}(-\d{4})?$`  
-The parentheses group the dash and extra digits together so that they are considered one optional unit. For example, the regex won’t match a five-digit zip code followed by a dash. If the dash is present, the four-digit extension must be present as well or there is no match.
-
-## Greediness, laziness & catastrophic backtracking
-
-Regular expressions match from left to right. Each component of the pattern matches the longest possible string before yielding to the next component, a characteristic known as **greediness**.
-
-Even though regex notation makes greedy operators the default, they probably shouldn’t be. You should use lazy operators. These versions match as few characters of the input as they can. If that fails, they match more. In many situations, these operators are more efficient and closer to what you want than the greedy versions.
-
-You can apply the regex `/t[a-z]*i/` to the string "titanic". This regex is basically a pattern that starts with t, ends with i, and has some letters in between. Regular expressions are **by default greedy**, so the match would return "titani". It finds the largest sub-string possible to fit the pattern.\
-However, you can add a `?` after the `*` or `+` symbols to change them into **lazy matching**.\
-The string "titanic" matched against the adjusted regex of `/t[a-z]*?i/` returns "ti".
-
-## Upper-Lower Number of matches `{}`
+### Limiting Repetition `{}`
 
 Recall that you use `+` to look for one or more characters and the asterisk `*` to look for zero or more characters. These are convenient but sometimes you want to match **a certain range** of patterns.  
 You can specify the lower and upper number of patterns with `{} `**quantity specifiers** (quantifier).
@@ -186,6 +192,40 @@ Example:
   * `w{3}` (three w's)
   * `[wxy]{5}` (five characters, each of which can be a w, x, or y)
   * `.{2,6}` (between two and six of any character)
+
+You could use `\b[1-9][0-9]{3}\b` to match a number between 1000 and 9999. `\b[1-9][0-9]{2,4}\b` matches a number between 100 and 99999. Notice the use of the word boundaries.
+
+## Optional Items `?`
+
+- The `?` symbol có 2 chức năng: optional matching & lazy matching  
+- `?` symbol is also used in Lookaround.
+
+Optional symbol `?` allows zero **or once** match of the preceding element.
+
+You can make several tokens optional by grouping them together using parentheses, and placing the question mark after the closing parenthesis. E.g.: `Nov(ember)?` matches `Nov` and `November`.
+
+You can write a regular expression that matches many alternatives by including more than one question mark. `Feb(ruary)? 23(rd)?` matches `February 23rd`, `February 23`, `Feb 23rd` and `Feb 23`.
+
+Sometimes the patterns you want to search for may have parts of it that may or may not exist. However, it may be important to check for them nonetheless. You can specify the possible existence of an element with a question mark `?`. It checks for **zero or one** of the preceding element. You can think of this symbol as saying the previous element is optional.
+
+To accommodate either a five-digit zip code or an extended zip+4: `^\d{5}(-\d{4})?$`  
+The parentheses group the dash and extra digits together so that they are considered one optional unit. For example, the regex won’t match a five-digit zip code followed by a dash. If the dash is present, the four-digit extension must be present as well or there is no match.
+
+---
+
+The question mark is the first metacharacter introduced by this tutorial that is greedy. The question mark gives the regex engine two choices: try to match the part the question mark applies to, or do not try to match it. The engine always tries to match that part. Only if this causes the entire regular expression to fail, will the engine try ignoring the part the question mark applies to.
+
+The effect is that if you apply the regex `Feb 23(rd)?` to the string `Today is Feb 23rd, 2003` then the match is always `Feb 23rd` and not `Feb 23`. You can make the question mark lazy (i.e. turn off the greediness) by putting a second question mark after the first.
+
+## Greediness, laziness & catastrophic backtracking
+
+Regular expressions match from left to right. Each component of the pattern matches the longest possible string before yielding to the next component, a characteristic known as **greediness**.
+
+Even though regex notation makes greedy operators the default, they probably shouldn’t be. You should use lazy operators. These versions match as few characters of the input as they can. If that fails, they match more. In many situations, these operators are more efficient and closer to what you want than the greedy versions.
+
+You can apply the regex `/t[a-z]*i/` to the string "titanic". This regex is basically a pattern that starts with t, ends with i, and has some letters in between. Regular expressions are **by default greedy**, so the match would return "titani". It finds the largest sub-string possible to fit the pattern.\
+However, you can add a `?` after the `*` or `+` symbols to change them into **lazy matching**.\
+The string "titanic" matched against the adjusted regex of `/t[a-z]*?i/` returns "ti".
 
 ## Character Classes/Sets `[]`
 
@@ -289,10 +329,6 @@ Sometimes you only want to specify the lower number of patterns with no upper l
 
 Sometimes you only want a specific number of matches. To specify a certain number of patterns, just have that one number between the curly brackets. For example, to match only the word hah with the letter a 3 times, your regex would be /ha{3}h/.
 
-**Other**
-
-Additionally, there is a special metacharacter \b which matches the boundary between a word and a non-word character. It's most useful in capturing entire words (for example by using the pattern \w+\b).
-
 ### Character Class Subtraction
 
 The character class `[a-z-[aeiuo]]` matches a single letter that is not a vowel. In other words: it matches a single consonant. Without character class subtraction or intersection, the only way to do this is to list all consonants: `[b-df-hj-np-tv-z]`.
@@ -351,7 +387,7 @@ You can search and replace text in a string using .replace() on a string. The in
 
 You can also access capture groups in the replacement string with dollar signs ($).
 
-### Backreferences
+## Backreferences
 
 Within the regular expression, you can use the backreference `\1` to match the same text that was matched by the capturing group. `([abc])=\1` matches `a=a`, `b=b`, and `c=c`. It does not match anything else. If your regex has multiple capturing groups, they are numbered counting their opening parentheses from left to right.
 
@@ -368,9 +404,16 @@ The pipe character `|` (also called the "Or" operator) allows to specify that an
 For example, the following expression would select both "cat" and "rat": `/(c|r)at/g`.\
 If you want to find either Penguin or Pumpkin in a string, you can use the following regex: `/P(engu|umpk)in/g`
 
-For the `|` character, however, thingness extends indefinitely to both left and right. If you want to limit the scope of the vertical bar, enclose the bar and both things in their own set of parentheses. For example,
+For the `|` character, however, thingness extends indefinitely to both left and right. If you want to limit the scope of the vertical bar, enclose the bar and both things in their own set of parentheses. For example:
 
 `I am the (walrus|egg man)\.` => matches either “I am the walrus.” or “I am the egg man.”. This example also dem-onstrates escaping of special characters (here, the dot).
+
+If you want to search for the literal text `cat` or `dog`, separate both options with a vertical bar or pipe symbol: `cat|dog`. If you want more options, simply expand the list: `cat|dog|mouse|fish`.
+
+---
+
+I already explained that the regex engine is eager. It stops searching as soon as it finds a valid match. The consequence is that in certain situations, the order of the alternatives matters. Suppose you want to use a regex to match a list of function names in a programming language: Get, GetValue, Set or SetValue.  
+The best option is probably to express the fact that we only want to match complete words. We do not want to match `Set` or `SetValue` if the string is `SetValueFunction`. So the solution is `\b(Get|GetValue|Set|SetValue)\b` or `\b(Get(Value)?|Set(Value)?)\b`. Since all options have the same end, we can optimize this further to `\b(Get|Set)(Value)?\b`.
 
 ## Lookaround
 
@@ -432,7 +475,12 @@ Anchors do not match any characters. They match a position.
 
 In an earlier challenge, you used the caret character `^` inside a character set `[]` to create a negated character set in the form `[^thingsThatWillNotBeMatched]`. But **outside** of a character set, the caret is used to search for patterns at the **beginning of strings**.
 
-Most regex engines have a “multi-line” mode `m` that makes `^` match after any line break, and `$` before any line break. Then `^bob$` matches `bob` if it appears on a line of its own.
+- Most regex engines have a “multi-line” mode `m` that makes:
+  * `^` match after any line break, and
+  * `$` before any line break (Trong `vim`, the motion `$` also jump to the end of current line).
+- Then `^bob$` matches `bob` if it appears on a line of its own.
+
+
 
 If the multiline flag (`m`) is enabled, `^` will match the beginning of each line instead of the whole string. Dùng khi có 1 big string là 1 paragraph contains multiple lines. Nếu không có (m) flag thì `^` chỉ match the beginning of the first line.
 
@@ -455,6 +503,32 @@ In `^\d{5}$`, The `^` and $ match the beginning and end of the search text but d
 ---
 
 The anchor `\b` matches at a word boundary. A word boundary is a position between a character that can be matched by \w and a character that cannot be matched by \w. \b also matches at the start and/or end of the string if the first and/or last characters in the string are word characters. \B matches at every position where \b cannot match.
+
+If you have a string consisting of multiple lines, like first line\nsecond line (where \n indicates a line break), it is often desirable to work with lines, rather than the entire string.
+
+### Word Boundaries
+
+Additionally, there is a special metacharacter `\b` which matches the boundary between a word and a non-word character. It's most useful in capturing entire words (for example by using the pattern `\w+\b`).
+
+The metacharacter `\b` is an anchor like the caret `^` and the dollar sign `$` . It matches at a position that is called a **word boundary**. This match is **zero-length**.
+
+- There are three different positions that qualify as word boundaries:
+  1. Before the first character in the string, if the first character is a word character.
+  2. After the last character in the string, if the last character is a word character.
+  3. Between two characters in the string, where one is a word character and the other is not a word character.
+
+Simply put: `\b` allows you to perform a “whole words only” search using a regular expression in the form of `\bword\b`. A **word character** is a character that can be used to form words. All characters that are not “word characters” are “non-word characters”.  
+`\bword\b` match `word` but not `words` or "aword"
+
+In most flavors, characters that are matched by the short-hand character class \w are the characters that are treated as word characters by word boundaries.
+
+Since digits are considered to be word characters, `\b4\b` can be used to match a `4` that is not part of a larger number. This regex does not match `44 sheets of a4`. So saying “\b matches before and after an alphanumeric sequence” is more exact than saying “before and after a word”.
+
+The underscore is also treated as a word character. So `\b` can only match at the start and the end of the strings `one_word` and `_underscore_`. So a regex engine’s idea of a word is actually closer to the concept of an identifier in programming languages.
+
+The hyphen and the apostrophe  (`'`) are not treated as word characters. So `\b` can match before and after the apostrophe and the hyphen in `John's mother-in-law`. The regex `\b\w+\b` thus finds 5 words in this string: `John`, `s`, `mother`, `in`, and `law`.
+
+`\B` is the negated version of `\b`. `\B` matches at every position where `\b` does not. Effectively, `\B` matches at any position between two word characters as well as at any position between two non-word characters.
 
 ## Linux Globbing
 
@@ -539,6 +613,10 @@ Single and double quotes are often used in Linux bash commands or scripts, espec
 `'!$"*<>` is typically the order of precedence for those symbols.
 
 Đôi khi phải dùng single quote to pass unchanged wildcard pattern to programs. Prevent the shell to expand them before passign to programs.
+
+## How a Regex Engine Works Internally
+
+f
 
 ## References
 

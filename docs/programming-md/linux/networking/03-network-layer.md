@@ -100,17 +100,17 @@ RFC 1918 defines three blocks of addresses, corresponding to the original Class 
 
 ---
 
-- Class A 
+- **Class A:**
   * CIDR notation: `10.0.0.0/8`
   * Subnet mask: `255.0.0.0`
   * Total Host IPs: 16.7 Million
   * Primary Purpose: Large corporate networks, Cloud VPCs.
-- Class B
+- **Class B:**
   * CIDR notation: `172.16.0.0/12`
   * Subnet mask: `255.240.0.0`
   * Total Host IPs: 1.04 Million
   * Primary Purpose: Medium-sized organizations.
-- Class C 
+- **Class C :**
   * CIDR notation: `192.168.0.0/16`
   * Subnet mask: `255.255.0.0`
   * Total Host IPs: 65,536

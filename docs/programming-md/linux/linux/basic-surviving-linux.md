@@ -601,13 +601,20 @@ On MacOS, use the Activity Monitor app
 
 In computing, [tar](https://en.wikipedia.org/wiki/Tar_(computing)) is a computer software utility for collecting many files into one archive file, often referred to as a tarball, for distribution or backup purposes. The name is derived from "tape archive", as it was originally developed to write data to sequential I/O devices with no file system of their own, such as devices that use magnetic tape.
 
-### curl
+## curl
 
 `curl` stands for "client url"
 
 On MacOS, curl comes pre-installed.
 
 You can use curl with a REST-api.
+
+## wget
+
+- `wget` is optimized for simple, robust file downloading (especially recursive and background downloads).
+- `curl` is optimized for data transfer and protocol flexibility, making it the primary tool for API interaction and scripting.
+
+`wget` saves output to a file by default, while `curl` Prints to standard output (stdout) by default.
 
 ## Read system logs
 

@@ -347,6 +347,12 @@ Global key to change input source
   - katakana `alt caps`
   - Hiragana `Ctrl caps`
 
+`uv` python install to `C:\Users\anhao\.local\bin`
+
+add vào PATH trên window cho python.
+
+On powershell, run `python.exe --version`
+
 ## Terms
 
 [X.Org Server](https://en.wikipedia.org/wiki/X.Org_Server) is the free and open-source implementation of the X Window System (X11) display server stewarded by the X.Org Foundation.

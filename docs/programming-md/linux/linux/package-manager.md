@@ -4,7 +4,9 @@ If `XDG_CONFIG_HOME` is not set, the default is `~`
 
 ## Ubuntu `apt`
 
-Trước khi tải package nào mới về thì phải update -> upgrage.
+update -> upgrage
+
+Trước khi tải package nào mới về thì chỉ cần update không cần upgrage.
 
 `sudo apt update` : update repository indexes (packet indexes). **Always** run this command before running `apt upgrade`.
 
@@ -37,7 +39,7 @@ Find CPU architecture: `uname -m`. Máy dell là x86_64. Máy mac là `arm64`
 
 apt: Advanced Package Tool
 
-`apt` is newer, `apt-get` is older.
+`apt` is newer, `apt-get` is older, legacy. You should use `apt`.
 
 `apt search <command-name>`
 
@@ -48,6 +50,49 @@ apt: Advanced Package Tool
 `apt list --installed | grep <package_name>`  search for a specific package
 
 `apt list --manual-installed`
+
+APT systems let you directly search for available packages using apt search. This example searches for packages that might help you monitor your system health and then uses apt show to display full package information:
+
+```
+$ apt search sensors
+$ apt show lm-sensors
+```
+
+## Add a new repo & install package with `dnf`
+
+When need to add the virtualbox repository to Yum.
+
+In the Red Hat/Fedora/CentOS ecosystem:
+
+- `rmp`, giống `dpkg`, handles installing/verifying individual `.rpm` files (giống `.deb` files).
+- `yum`Fetches packages from repositories; resolves dependencies. Handle Dependency Management (slow).
+- `dnf` modern version of `yum`, faster
+
+From the previous chapter, you’ll remember that third-party software configuration files are often kept within the /etc/ directory hierarchy, and, in that respect, yum/DNF is no different. Repository information is kept in /etc/yum.repos.d/, so you should change to that directory. From there, you’ll use the wget program (usually installed by default) to download the .repo file. Here’s how to do all that:
+
+```
+$ cd /etc/yum.repos.d/
+# wget http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+[sudo] password for anhao:
+--2025-12-04 10:00:16--  http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+Resolving download.virtualbox.org (download.virtualbox.org)... 23.53.212.118
+Connecting to download.virtualbox.org (download.virtualbox.org)|23.53.212.118|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 246 [text/plain]
+Saving to: ‘virtualbox.repo’
+
+virtualbox.repo                   100%[===========================================================>]     246  --.-KB/s    in 0s
+
+2025-12-04 10:00:16 (9.44 MB/s) - ‘virtualbox.repo’ saved [246/246]
+```
+
+Having the `.repo` file in the right directory won’t do much until you tell RPM what’s changed. You do that by running update. The update command also checks the local repository index against its online counterparts to see whether there’s anything new you’ll want to know about. No matter what manager you’re using, it’s always a good idea to update the repo information before installing new software:
+
+```
+# dnf update
+
+# dnf install VirtualBox-5.1
+```
 
 ## Install manually from binary archive
 
@@ -125,6 +170,23 @@ Finished. Restart your shell or reload config file.
 Use uninstall script to remove fzf.
 ```
 
+## Working with the Debian package manager
+
+Download `.deb` or `.rpm` file on the website.
+
+Once you download the file, you can install it from the command line using dpkg. Use the -i flag (for install). You’ll need to make sure that you’re running the dpkg command from the directory where the skypeforlinux-64 file is located. This example assumes that you saved the package to the Downloads directory in your user account:
+
+```
+$ cd /home/<username>/Downloads
+# dpkg -i skypeforlinux-64.deb
+```
+
+The dpkg command should take care of dependencies for you. But if it doesn’t, its output will usually give you enough information to know what’s going on.
+
+`dpkg` (Debian Package) is the core package handler; `apt` (Advanced Package Tool) is the smart tool you use every day that relies on dpkg to do the actual work.
+
+`dpgk` is used to install `.deb` files.
+
 ## Homebrew notes
 
 On Apple silicon, Homebrew installs files into the `/opt/homebrew/` folder, which is not part of the default shell `$PATH`. You'll need to configure your shell environment so Homebrew packages are found and take priority over pre-installed tools.
@@ -183,6 +245,18 @@ CPU Processor architectures
 - `ARM64` and `AArch64` are the same thing. AArch64 is the official name for the 64-bit ARM architecture, but some people prefer to call it "ARM64" as a continuation of 32-bit ARM.) 
 
 `x86-64` (also known as x64, x86_64, AMD64, and Intel 64) is a 64-bit extension of the x86 instruction set. 
+
+---
+
+The term x86 refers to the entire family of processor architectures developed by Intel (and later AMD). The terms 32-bit and 64-bit refer to the width of the registers and memory addresses within that architecture.
+
+Linux, like other x86-based operating systems, comes in both 64-bit and 32-bit versions. The vast majority of computers manufactured and sold over the past decade use the faster 64-bit architecture. Because there’s still older or development-oriented hardware out there, you’ll sometimes need to run 32-bit, and you’ll want the software you install to work with it.
+
+You can check for yourself by running `arch` from the command line. Unless you know you’re running on older hardware (something Linux does particularly well, by the way), you’re safe assuming that you’re a 64-bit kind of person.
+
+The arch command in Linux is a simple utility used to display the architecture of the machine's processor (the CPU).
+
+It is functionally equivalent to running the command `uname -m`.
 
 ## Windows
 
