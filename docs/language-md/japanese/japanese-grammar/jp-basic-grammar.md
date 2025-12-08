@@ -200,3 +200,6 @@ A suffix is a group of letters added to the end of a word to modify it, change i
 ### な ( = na) or なあ ( = naa)
 
 ## Adverbs and Sentence-ending particles
+
+k
+

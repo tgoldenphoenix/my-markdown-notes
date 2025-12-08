@@ -23,7 +23,7 @@ While it is reasonably safe to suppose that everything you encounter on a Linux 
 
 Depending on which type of Linux environment you are running, you may run into several different file systems. Some of them are **ext2, ext3, and ext4**. **XFS, JFS**, and a few others are also used. `ext3` is a journaling extension to the ext2 file system on Linux. ext4 is the successor to ext3. Journaling is a method of recording data that results in massively reduced time spent recovering a file system after a crash. XFS is very fast and also uses B-Trees for its file indexing.
 
-These days, the most commonly used Linux file system is ext4. But Linux can also work with storage drives that were formatted using file systems from other platforms like FAT32 and NTFS. 
+These days, the most commonly used Linux file system is ext4. But Linux can also work with storage drives that were formatted using file systems from other platforms like FAT32 and NTFS.
 
 In the shell and in scripts, spaceful filenames can be quoted to keep their pieces together. For example, the command:
 
@@ -60,9 +60,9 @@ Device files defined based on the controllers they are using:
 1. For [IDE controllers device](https://www.ibm.com/support/pages/ide-controllers-servers) file name is - `hda, hdb, hdc..`
 2. For SCSI and SATA controllers device file name is - `sda, sdb, sdc..`
 
-If the first storage device on a system is called /dev/sda, then, as you might guess, the second one would be called /dev/sdb and the third, /dev/sdc. 
+If the first storage device on a system is called /dev/sda, then, as you might guess, the second one would be called /dev/sdb and the third, /dev/sdc.
 
-Originally, `sda` probably stood for SCSI Device A, but I find that thinking of it as Storage Device A makes it more meaningful. You might also run into device designations like /dev/hda (hard drive), /dev/sr0 (DVD drive), `/dev/cdrom` (that’s right, a CD-ROM drive), or even /dev/fd0 (floppy drive). 
+Originally, `sda` probably stood for SCSI Device A, but I find that thinking of it as Storage Device A makes it more meaningful. You might also run into device designations like /dev/hda (hard drive), /dev/sr0 (DVD drive), `/dev/cdrom` (that’s right, a CD-ROM drive), or even /dev/fd0 (floppy drive).
 
 ---
 
@@ -76,7 +76,7 @@ loop0  loop1  loop2 sda  sr0
 
 A loop device is a pseudo device that allows a file to be used as though it’s an actual physical device.
 
-Change to the sda/ directory and run ls. Among its contents, you’ll probably see files with names like sda1, sda2, and sda5. Each of these represents one of the partitions created by Linux to better organize the data on your drive: 
+Change to the sda/ directory and run ls. Among its contents, you’ll probably see files with names like sda1, sda2, and sda5. Each of these represents one of the partitions created by Linux to better organize the data on your drive:
 
 ```
 $ cd sda
@@ -87,7 +87,7 @@ capability        events_async       integrity  ro         slaves
 dev               events_poll_msecs  power      sda1       stat
 device            ext_range          queue      sda2       subsystem
 ```
- 
+
 ## The Organization of the File Tree
 
 - Những directories `*/bin` chứa binaries, bash scripts, executables.
@@ -166,7 +166,7 @@ Most filesystem implementations define seven types of files. Even when develop-e
 3. Character device files
 4. Block device files
 5. Local domain sockets
-6. Named pipes (FIFOs) 
+6. Named pipes (FIFOs)
 7. Symbolic links
 
 You  c a n  d e t e r m i n e  t h e  t y p e  of  a n  e x i s t i n g  file with  `ls -ld`. The first character of the ls output encodes the type. For example, the following command demonstrates that `/usr/include` is a directory:
@@ -246,7 +246,7 @@ Named pipes and local domain sockets serve similar purposes, and the fact that b
 
 symbolic links
 
-A symbolic or “soft” link points to a file by name. When the kernel comes upon a symbolic link in the course of looking up a pathname, it redirects its attention to the pathname stored as the contents of the link. The difference between hard links and symbolic links is that a hard link is a direct reference, whereas a symbolic link is a reference by name. Symbolic links are distinct from the files they point to. 
+A symbolic or “soft” link points to a file by name. When the kernel comes upon a symbolic link in the course of looking up a pathname, it redirects its attention to the pathname stored as the contents of the link. The difference between hard links and symbolic links is that a hard link is a direct reference, whereas a symbolic link is a reference by name. Symbolic links are distinct from the files they point to.
 
 You  c re at e  s y m b o l i c  l i n k s  w it h  `ln -s` and remove them with rm. Since symbolic links can contain arbitrary paths, they can refer to files on other filesystems or to nonexistent files. Multiple symbolic links can also form a loop
 
@@ -325,7 +325,8 @@ Example:
 - `rw-` (read, write, no execute) = 4 + 2 + 0 = 6
 - `r-x` (read, no write, execute) = 4 + 0 + 1 = 5
 - `---` (no permissions) = 0 + 0 + 0 = 0
-- 
+-
+
 Therefore, a common permission setting like rwxr-xr-x (owner has full permissions, group and others have read and execute) would be represented as 755 in octal notation.
 
 ---
@@ -417,7 +418,7 @@ If the setuid bit had been set, the x representing the owner’s execute permiss
 
 The next field in the listing is the file’s link count. In this case it is 3, indicating that /bin/gzip is just one of three names for this file (the others are /bin/gunzip and /bin/zcat). Each time a hard link is made to a file, the file’s link count is incre-mented by 1. Symbolic links do not affect the link count.
 
-All directories have at least two hard links: the link from the parent directory and the link from the special file “.” inside the directory itself. 
+All directories have at least two hard links: the link from the parent directory and the link from the special file “.” inside the directory itself.
 
 The next two fields in the ls output are the owner and group owner of the file. In this example, the file’s owner is root, and the file also belongs to the group named root. The filesystem actually stores these as the user and group ID numbers rather than as names. If the text versions (names) can’t be determined, ls shows the fields as numbers. This might happen if the user or group that owns the file has been deleted from the /etc/passwd or /etc/group file. It could also indicate a problem with your NIS or LDAP database (if you use one)
 
@@ -458,8 +459,8 @@ Change: 2017-06-09 13:21:00.191819194 +0000
 ```
 
 It’s important to be aware that when you move, copy, or delete a file or directory, all you’re really doing is editing its inode attributes, not its inode ID.
- 
-An inode, by the way, is an object used by UNIX systems to identify the disk location and attributes of files within a file system. Usually there’ll be exactly one inode for each file or directory. 
+
+An inode, by the way, is an object used by UNIX systems to identify the disk location and attributes of files within a file system. Usually there’ll be exactly one inode for each file or directory.
 
 ## `chmod`: Change Permissions
 
@@ -595,9 +596,9 @@ The command to make links is ln. In order to create symlinks, you need to use th
 
 j
 
-## Pseudo file systems 
+## Pseudo file systems
 
-A normal file is a collection of data that can be reliably accessed over and over again, even after a system reboot. By contrast, the contents of a Linux pseudo (or virtual) file, like those that might exist in the `/sys/` and `/proc/` directories, don’t really exist in the normal sense. A pseudo file’s contents are dynamically generated by the OS itself to represent specific values. 
+A normal file is a collection of data that can be reliably accessed over and over again, even after a system reboot. By contrast, the contents of a Linux pseudo (or virtual) file, like those that might exist in the `/sys/` and `/proc/` directories, don’t really exist in the normal sense. A pseudo file’s contents are dynamically generated by the OS itself to represent specific values.
 
 ## Configuration files
 
@@ -607,11 +608,11 @@ most configuration files are stored in the `/etc` directory.
 
 ## Archive
 
-An archive is a single file containing a collection of objects: files, directories, or a combination of both. Bundling objects within a single file (as illustrated in figure 4.1) sometimes makes it easier to move, share, or store multiple objects that might otherwise be unwieldy and disorganized. 
+An archive is a single file containing a collection of objects: files, directories, or a combination of both. Bundling objects within a single file (as illustrated in figure 4.1) sometimes makes it easier to move, share, or store multiple objects that might otherwise be unwieldy and disorganized.
 
 You might need to create copies of directories and their contents so you can easily share or back them up. For that, `tar` is probably going to be your champion of choice. If, however, you need an exact copy of a partition or even an entire hard disk, then you’ll want to know about `dd`. And if you’re looking for an ongoing solution for regular system backups, then try `rsync`.
 
-Don’t confuse archiving with compression. **Compression** is a software tool that applies a clever algorithm to a file or archive to reduce the amount of disk space []()[]()it takes. Of course, when they’re compressed, files are unreadable, which is why the algorithm can also be applied in reverse to decompress them.
+Don’t confuse archiving with compression. **Compression** is a software tool that applies a clever algorithm to a file or archive to reduce the amount of disk space it takes. Of course, when they’re compressed, files are unreadable, which is why the algorithm can also be applied in reverse to decompress them.
 
 As you’ll see soon, applying compression to a tar archive is simple and doing so is a particularly good idea if you’re planning to transfer large archives over a network. Compression can reduce transmission times significantly.
 

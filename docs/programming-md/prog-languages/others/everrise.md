@@ -76,7 +76,9 @@ tiền lương: có tiền giữ xe 200
 
 ## Read if have time
 
-ALB, load balancer
+<https://opensource.com/users/seth>
+
+<https://grahamhelton.com/>
 
 **test rail** manage test cases
 
