@@ -1,4 +1,4 @@
-# Booting & Other Processes
+# Booting
 
 Next to files, processes are the most important things on a UNIX/Linux system.
 

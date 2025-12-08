@@ -605,6 +605,18 @@ most configuration files are stored in the `/etc` directory.
 
 [Table 3-3. Most common configuration files](https://tldp.org/LDP/intro-linux/html/sect_03_02.html#AEN2485)
 
+## Archive
+
+An archive is a single file containing a collection of objects: files, directories, or a combination of both. Bundling objects within a single file (as illustrated in figure 4.1) sometimes makes it easier to move, share, or store multiple objects that might otherwise be unwieldy and disorganized. 
+
+You might need to create copies of directories and their contents so you can easily share or back them up. For that, `tar` is probably going to be your champion of choice. If, however, you need an exact copy of a partition or even an entire hard disk, then you’ll want to know about `dd`. And if you’re looking for an ongoing solution for regular system backups, then try `rsync`.
+
+Don’t confuse archiving with compression. **Compression** is a software tool that applies a clever algorithm to a file or archive to reduce the amount of disk space []()[]()it takes. Of course, when they’re compressed, files are unreadable, which is why the algorithm can also be applied in reverse to decompress them.
+
+As you’ll see soon, applying compression to a tar archive is simple and doing so is a particularly good idea if you’re planning to transfer large archives over a network. Compression can reduce transmission times significantly.
+
+---
+
 ## The Most common devices
 
 Devices, generally every peripheral attachment of a PC that is not the CPU itself, is presented to the system as an entry in the `/dev` directory.

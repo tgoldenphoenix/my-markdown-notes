@@ -201,6 +201,14 @@ The client computer then sends the appropriate response back to the server, whic
 
 This process is performed automatically after you configure your keys.
 
+---
+
+SSH public and private keys are used primarily for authentication and establishing the secure connection, but they are **not** directly used to encrypt the bulk of the data transmitted.
+
+The actual data (the bulk transfer of text, files, and commands) is encrypted using a **symmetric cipher**, not the public/private key pair.
+
+SSH Public and Private Keys are still called **encryption keys**, but they are used for **asymmetric encryption** (one key encrypts, the other decrypts) and their primary function in an SSH session is for authentication and key exchange, not for encrypting the bulk of the transmitted data.
+
 ### Generating a new key pair
 
 SSH keys should be generated on the computer you wish to log in **from** (the client). This is usually your local machine. The key consists of two components: a private key, which you never share with anyone or anything, and a public one, which you copy onto any remote machine you want to have passwordless access to.
@@ -274,6 +282,54 @@ First, though, I’ll introduce you to a cool shortcut: to run a single command,
 ubuntu@base:~$ ssh ubuntu@10.0.3.142 mkdir -p .ssh
 ubuntu@10.0.3.142's password:
 ```
+
+This single, multi-line command will use cat to read all the text in the `id_rsa.pub` file and store it in memory. It will then pipe that text via an SSH logon on the remote host computer. Finally, it reads the text once again, this time on the host computer, and appends it to a file called authorized_keys. If the file doesn’t yet exist, `>>` (the append tool) creates it. If a file with that name already exists, the text will be added to any content in the file. 
+
+```
+ubuntu@base:~$ cat .ssh/id_rsa.pub \
+ | ssh ubuntu@10.0.3.142 \
+"cat >> .ssh/authorized_keys"
+ubuntu@10.0.3.142's password:
+```
+
+### Working with multiple encryption keys 
+
+To tell OpenSSH which key you’re after, you add the -i flag, followed by the full name and location of the private key file: 
+
+`ssh -i .ssh/mykey.pem ubuntu@10.0.3.142`
+
+Notice the `.pem` file extension in that example? That means the key is saved with a format that’s commonly used to access all kinds of VMs, including Amazon EC2 instances.
+
+## Safely copying files with SCP 
+
+Add an "s" for "secure" before `cp`.
+
+Assuming that you knew there was already a .ssh/ directory on the remote host you worked with earlier, here’s how you could have transferred the public key (`id_rsa.pub`) to the remote host, renaming it `authorized_keys`:
+
+```
+ubuntu@base:~$ scp .ssh/id_rsa.pub \
+  ubuntu@10.0.3.142:/home/ubuntu/.ssh/authorized_keys
+```
+
+If there already was an `authorized_keys` file in that directory, this operation would overwrite it, destroying any existing contents. And, you can only copy or save files if the user accounts you’re using have appropriate permissions. Therefore, don’t try saving a file to, say, the /etc/ directory on a remote machine if your user doesn’t have root privileges. Before you ask, logging in to an SSH session as the root user is generally a big security no-no. 
+
+You can, by the way, copy remote files to your local machine. This example copies a file from an AWS EC2 instance (represented by a fictitious IP address) to the specified local directory  relative to the current work directory: 
+
+```
+$ scp -i mykey.pem mylogin@54.7.61.201:/home/mylogin/backup-file.tar.gz \
+  ./backups/january/
+
+```
+
+I should mention that there’s a third (and official) way to safely copy your key over to a remote host—the purpose-built program called ssh-copy-id: 
+
+`$ ssh-copy-id -i .ssh/id_rsa.pub ubuntu@10.0.3.142` Automatically copies the public key to the appropriate location on the remote host.
+
+## Using remote graphic programs over SSH connections 
+
+The nice thing about SSH sessions is that, unburdened by layers of GUI stuff, they’re fast and efficient. But that can be a problem if the program you need to run on the remote host is of the graphic persuasion. 
+
+Suppose you’re trying to support a user in a remote location who’s reporting trouble with a piece of desktop software like LibreOffice. If you feel that being able to launch and run the program could help diagnose and solve the problem, then it can be done using a graphic session (with the Linux X window manager) over SSH. 
 
 ## Configuring SSH
 

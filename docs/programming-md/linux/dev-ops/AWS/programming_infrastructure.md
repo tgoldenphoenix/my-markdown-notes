@@ -55,8 +55,112 @@ Infrastructure as Code. Automate the setup process.
 
 You can control every single service on AWS by sending requests to a REST API. Based on this, a variety of solutions can help you automate your overall infrastructure. Infrastructure automation is a big advantage of the cloud compared to hosting on-premises. This part will guide you into infrastructure orchestration and the automated deployment of applications.
 
-A template is a description of your infrastructure, written in JSON or YAML, that can be interpreted by CloudFormation. The idea of describing something rather than listing the necessary actions is called a declarative approach. Declarative means you tell CloudFormation how your infrastructure should look. You aren’t telling CloudFormation what actions are needed to create that infrastructure, and you don’t specify the sequence in which the actions need to be executed.
+A template is a description of your infrastructure, written in JSON or YAML, that can be interpreted by CloudFormation. The idea of describing something rather than listing the necessary actions is called a **declarative approach**.  
+Declarative means you tell CloudFormation how your infrastructure should look. You aren’t telling CloudFormation what actions are needed to create that infrastructure, and you don’t specify the sequence in which the actions need to be executed.
+
+Don’t mix up the terms Infrastructure as Code and `Infrastructure as a Service` (IaaS)! IaaS means renting virtual machines, storage, and network with a pay-per-use pricing model.
+
+The AWS CloudFormation `yaml` file is turned into AWS API calls.
+
+- Benefits of using CloudFormation:
+  * It **handles dependencies**. Ever tried to register a web server with a load balancer that wasn’t yet available? When you first start trying to automate infrastructure creation, you’ll miss a lot of dependencies. Trust us: never try to set up complex infrastructure using scripts. You’ll end up in dependency hell! You should use a declarative approach like CloudFormation.
+  * It’s **reproducible**. Is your test environment an exact copy of your production environment? Using CloudFormation, you can create two identical infrastructures. It is also possible to apply changes to both the test and production environment.
+  * It’s **updatable**. CloudFormation supports updates to your infrastructure. It will figure out the parts of the template that have changed and apply those changes as smoothly as possible to your infrastructure.
+
+- Parameters—Parameters are used to customize a template with values, for example, domain name, customer ID, and database password.
+- A resource is the smallest block you can describe. Example: a network topology, a load balancer, a DNS entry, virtual machines, database, CND, an Elastic IP address, etc
+- Outputs—An output is comparable to a parameter, but the other way around. An output returns details about a resource created by the template, for example, the public name of an EC2 instance.
+
+---
+
+A parameter has at least a `name` and a `type`. We encourage you to add a `description` as well, as shown in the next listing.
+
+```yaml
+Parameters:
+  Demo: # You can choose the name of the parameter.
+    Type: Number # This parameter represents a number.
+    Description: 'This parameter is for demonstration'
+```
+
+In addition to using the `Type` and `Description` properties, you can enhance a parameter with some properties (key: value pair in yaml).
+
+A parameter section of a CloudFormation template could look like this:
+
+```yaml
+Parameters:
+   KeyName:
+     Description: 'Key Pair name'
+     Type: 'AWS::EC2::KeyPair::KeyName'
+   NumberOfVirtualMachines:
+     Description: 'How many virtual machine do you like?'
+     Type: Number
+     Default: 1
+     MinValue: 1
+     MaxValue: 5 # Prevents massive costs with an upper bound
+   WordPressVersion:
+     Description: 'Which version of WordPress do you want?'
+     Type: String
+     AllowedValues: ['4.1.1', '4.0.1']
+```
+
+---
+
+A resource has at least a name, a type, and some properties, as shown in the next listing.
+
+```yaml
+Resources:
+  VM: # Name or logical ID of the resource that you can choose
+    Type: 'AWS::EC2::Instance' # The resource of type AWS::EC2::Instances defines a virtual machine.
+    Properties:
+      # [...]
+```
+
+When defining resources, you need to know about the type and that type’s `properties`. In this book, you’ll get to know a lot of resource types and their respective properties. An example of a single EC2 instance appears in the following code snippet.
+
+```yaml
+Resources:
+  VM:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: 'ami-6057e21a'
+      InstanceType: 't2.micro'
+      SecurityGroupIds:
+      - 'sg-123456'
+      SubnetId: 'subnet-123456'
+```
+
+---
+
+A CloudFormation template’s output includes at least a name (like parameters and resources) and a value, but we encourage you to add a description as well, as illustrated in the next listing. You can use outputs to pass data from within your template to the outside.
+
+```yaml
+Outputs:
+  NameOfOutput: # Name of the output that you can choose
+    Value: '1'
+    Description: 'This output is always 1'
+```
+
+If you see `!Ref NameOfSomething`, think of it as a placeholder for what is referenced by the name. A `!GetAtt 'NameOfSomething.AttributeOfSomething'`, shown in the next code, is similar to a ref but you select a specific attribute of the referenced resource.
+
+```yaml
+Outputs:
+  ID:
+    Value: !Ref Server # References the EC2 instance
+    Description: 'ID of the EC2 instance'
+  PublicName:
+    Value: !GetAtt 'Server.PublicDnsName' # Gets the attribute PublicDnsName of the EC2 instance
+    Description: 'Public name of the EC2 instance'
+```
+
+---
+
+**Terraform** and AWS CloudFormation are both leading tools for Infrastructure as Code (IaC), allowing you to define cloud resources using code. The choice between them largely depends on whether your organization is strictly committed to AWS or requires a multi-cloud strategy.
+
+- Terraform also supports AWS, Azure, GCP, VMware, etc
+- CloudFormation is native only to AWS
 
 ## Temporary notes
 
 created IMA user: `mycli`
+
+A **bucket** is used to store static assets (images, CSS files, ...).

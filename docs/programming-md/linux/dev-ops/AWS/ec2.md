@@ -101,3 +101,20 @@ The load balancer performs health checks to ensure requests are routed only to h
 - `GB` (gigabyte) is a metric unit equals 10^9 bytes (Calculated based on decimal).
 
 subnet = VPC
+
+- The difference between EC2 and ECS is the level of abstraction and control you have over your compute resources.
+  * EC2 (Elastic Compute Cloud) provides Infrastructure as a Service (IaaS). It gives you a raw virtual machine (VM) that you manage completely.
+  * ECS (Elastic Container Service) is a Container Orchestration Service. It manages, runs, and scales your Docker containers automatically, abstracting the VM layer away from you.
+- ECS often runs on top of EC2, acting as a management layer for containerized applications.
+
+---
+
+The choice between Amazon ECS (Elastic Container Service) and Kubernetes (often used via Amazon EKS—Elastic Kubernetes Service) is the primary decision point for container orchestration on AWS.  
+Both are powerful tools for deploying, managing, and scaling Docker containers, but they differ fundamentally in vendor lock-in, complexity, and integration.
+
+- ECS:
+  * is AWS-Native Proprietary Service
+  * Vendor Lock-in, Only runs on AWS.
+- Kubernetes:
+  * is Open Source; the De-facto Industry Standard
+  * Same config runs on AWS, Azure, GCP, or on-premises.

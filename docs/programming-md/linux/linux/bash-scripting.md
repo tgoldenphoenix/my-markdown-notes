@@ -78,12 +78,6 @@ Other shell: zsh, Xonsh, fish
 `exec bash` to switch shell. This won't affect new terminal windows or anything, but it's convenient.  
 `echo $0` to know which shell you are using.
 
-- As on the command line, you can break a single logical line onto multiple physical lines by escaping the newline with a backslash (`\`). Trong `LaTeX` thì `\` là syntax của commands.
-- You can also put more than one statement on a line by separating the statements with semicolons `;`.
-
-- `git checkout main; git pull` => chạy 2 cái 1 dòng
-- `git checkout main && git pull` => Execute the next command ONLY if the previous command was completely successful (exited with a zero status code).
-
 To prepare the file for running, just turn on its execute bit:
 
 ```bash
@@ -122,6 +116,31 @@ Quy trình viết bash scripts:
 
 bash’s built-in command `fc` is a lot like `<Control-P>`, but instead of returning the last command to the command line, it transfers the com-mand to your editor of choice.
 
+## Command Separators
+ 
+You can also put more than one statement on a line by separating the statements with semicolons `;` (command separator, Sequential List).  
+The return status (exit code) of the command preceding the semicolon is **ignored**, and the next command always runs.
+
+- `git checkout main; git pull` => chạy 2 cái 1 dòng
+- `git checkout main && git pull` => Execute the next command ONLY if the previous command was completely successful (exited with a zero status code).
+
+`ls -l ; pwd ; date`
+
+```
+❯ cd /nonexistent_dir ; echo "I still run"
+zoxide: no match found
+I still run
+```
+
+---
+
+`&&` Executes the next command ONLY if the previous command succeeded (exit code 0).
+
+---
+
+- As on the command line, you can break a single logical line onto multiple physical lines by escaping the newline with a backslash (`\`). Make sure there are no characters (including a space) after the backslash. That’s guaranteed to cause you grief.
+  * Trong `LaTeX` thì `\` là syntax của commands.
+ 
 ## `xargs`
 
 `xargs` reads items from standard input (usually separated by spaces or newlines) and builds and executes command lines using those items as arguments.
@@ -327,6 +346,24 @@ done
 ```
 
 Any whitespace-separated list of things, including the contents of a vari-able, works as a target of `for…in`. 
+
+Câu lệnh này nếu không có `;` thì không được.
+
+```bash
+for i in {1..10}; do sleep 1; done
+```
+
+Nếu không dùng `;` thì phải enter xuống dòng.
+
+```bash
+❯ for fruit in apple banana cherry
+∙ do
+∙     echo "I love to eat the $fruit."
+∙ done
+I love to eat the apple.
+I love to eat the banana.
+I love to eat the cherry.
+```
 
 Có `while` loop
 
