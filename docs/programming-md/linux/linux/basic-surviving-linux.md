@@ -609,6 +609,14 @@ On MacOS, curl comes pre-installed.
 
 You can use curl with a REST-api.
 
+```
+$ curl "https:/ /awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+$ unzip awscliv2.zip
+$ sudo ./aws/install
+```
+
+The `-o` (output flag) instructs `curl` to save the fetched data (instead of printing it to the terminal).
+
 ## wget
 
 - `wget` is optimized for simple, robust file downloading (especially recursive and background downloads).

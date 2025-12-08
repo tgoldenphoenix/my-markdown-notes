@@ -99,3 +99,5 @@ The load balancer performs health checks to ensure requests are routed only to h
 
 - `GiB` (Gibibyte) is a binary unit equals 2^30 bytes (It is based on binary). Example memory 1 GiB
 - `GB` (gigabyte) is a metric unit equals 10^9 bytes (Calculated based on decimal).
+
+subnet = VPC

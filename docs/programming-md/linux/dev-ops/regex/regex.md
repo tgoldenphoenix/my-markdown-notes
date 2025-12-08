@@ -195,6 +195,20 @@ Example:
 
 You could use `\b[1-9][0-9]{3}\b` to match a number between 1000 and 9999. `\b[1-9][0-9]{2,4}\b` matches a number between 100 and 99999. Notice the use of the word boundaries.
 
+### Greediness, laziness & catastrophic backtracking
+
+Regular expressions match from left to right. Each component of the pattern matches the longest possible string before yielding to the next component, a characteristic known as **greediness**.
+
+Even though regex notation makes greedy operators the default, they probably shouldn’t be. You should use lazy operators. These versions match as few characters of the input as they can. If that fails, they match more. In many situations, these operators are more efficient and closer to what you want than the greedy versions.
+
+You can apply the regex `/t[a-z]*i/` to the string "titanic". This regex is basically a pattern that starts with t, ends with i, and has some letters in between. Regular expressions are **by default greedy**, so the match would return "titani". It finds the largest sub-string possible to fit the pattern.\
+However, you can add a `?` after the `*` or `+` symbols to change them into **lazy matching**.\
+The string "titanic" matched against the adjusted regex of `/t[a-z]*?i/` returns "ti".
+
+Most people new to regular expressions will attempt to use `<.+>`. They will be surprised when they test it on a string like `This is a <EM>first</EM> test`. You might expect the regex to match `<EM>` and when continuing after that match, `</EM>`.
+
+But it does not. The regex will match `<EM>first</EM>`. Obviously not what we wanted. The reason is that the plus is _greedy_. That is, the plus causes the regex engine to repeat the preceding token as often as possible. Only if that causes the entire regex to fail, will the regex engine _backtrack_. That is, it will go back to the plus, make it give up the last iteration, and proceed with the remainder of the regex
+
 ## Optional Items `?`
 
 - The `?` symbol có 2 chức năng: optional matching & lazy matching  
@@ -216,16 +230,6 @@ The parentheses group the dash and extra digits together so that they are consid
 The question mark is the first metacharacter introduced by this tutorial that is greedy. The question mark gives the regex engine two choices: try to match the part the question mark applies to, or do not try to match it. The engine always tries to match that part. Only if this causes the entire regular expression to fail, will the engine try ignoring the part the question mark applies to.
 
 The effect is that if you apply the regex `Feb 23(rd)?` to the string `Today is Feb 23rd, 2003` then the match is always `Feb 23rd` and not `Feb 23`. You can make the question mark lazy (i.e. turn off the greediness) by putting a second question mark after the first.
-
-## Greediness, laziness & catastrophic backtracking
-
-Regular expressions match from left to right. Each component of the pattern matches the longest possible string before yielding to the next component, a characteristic known as **greediness**.
-
-Even though regex notation makes greedy operators the default, they probably shouldn’t be. You should use lazy operators. These versions match as few characters of the input as they can. If that fails, they match more. In many situations, these operators are more efficient and closer to what you want than the greedy versions.
-
-You can apply the regex `/t[a-z]*i/` to the string "titanic". This regex is basically a pattern that starts with t, ends with i, and has some letters in between. Regular expressions are **by default greedy**, so the match would return "titani". It finds the largest sub-string possible to fit the pattern.\
-However, you can add a `?` after the `*` or `+` symbols to change them into **lazy matching**.\
-The string "titanic" matched against the adjusted regex of `/t[a-z]*?i/` returns "ti".
 
 ## Character Classes/Sets `[]`
 
@@ -529,6 +533,10 @@ The underscore is also treated as a word character. So `\b` can only match at th
 The hyphen and the apostrophe  (`'`) are not treated as word characters. So `\b` can match before and after the apostrophe and the hyphen in `John's mother-in-law`. The regex `\b\w+\b` thus finds 5 words in this string: `John`, `s`, `mother`, `in`, and `law`.
 
 `\B` is the negated version of `\b`. `\B` matches at every position where `\b` does not. Effectively, `\B` matches at any position between two word characters as well as at any position between two non-word characters.
+
+---
+
+The section [Looking Inside The Regex Engine](https://www.regular-expressions.info/wordboundaries.html) for word boundary is helpful to read!
 
 ## Linux Globbing
 

@@ -6,6 +6,20 @@ Muốn connect SSH thì firewall phải allow SSH traffic.
   * SSH Client (Local Machine): Initiates the connection (e.g., you type `ssh user@remote-ip`).
   * SSH Server (Remote Host): Listens passively on a specific port, waiting to accept the incoming connection.
 
+## The importance of encryption
+
+In the beginning, there was `Telnet` for login connections over a network at any rate. The Telnet protocol was fast and reliable and, in an innocent world made up of smaller and simpler networks, perfectly serviceable. Back then, the fact that Telnet sessions sent their data packets without encryption wasn’t a big deal.
+
+ If you’re using Telnet to transmit private data that includes passwords and personal information in plain text over insecure networks, then you should assume it’s no longer private. In fact, anyone on the network using freely available packet-sniffing software like Wireshark can easily read everything you send and receive.
+
+ To protect the privacy of data even if it falls into the wrong hands, security software can use what’s known as an **encryption key**, which is a small file containing a random sequence of characters.  
+ The key can be applied as part of an encryption algorithm to convert plain-text, readable data into what amounts to total gibberish. At least that’s how it would appear before the key is applied through a reverse application of the same algorithm. Using the key on the encrypted version of the file converts the gibberish back to its original form.  
+ As long as you and your trusted friends are the only people in possession of the key, no one else should be able to make any sense of the data, even if it’s intercepted.
+
+ A private/public key pair to encrypt and decrypt the contents of a plain-text message.
+
+ When you log in to a remote server, you’re doing nothing more than causing data packets containing session information to be sent back and forth between two computers. The trick of secure communications is to quickly encrypt each of those packages before it’s transmitted, and then, just as quickly, decrypt them at the other end. The SSH network protocol does this so quickly and so invisibly, in fact, that someone already used to connecting through Telnet sessions won’t see any difference.
+ 
 ## What is SSH
 
 The SSH (Secure Shell) is a protocol originally developed by Tatu Ylonen in 1995 in response to a hacking incident in the Finnish university network.
@@ -50,6 +64,38 @@ On nearly all Linux environments, the `sshd` server should start automatically.
 
 On Ubuntu, you can start the ssh server by typing: `sudo systemctl start ssh` or `$ sudo systemctl enable --now sshd`
 
+## OpenSSH
+
+When you log in to a remote computer, your local PC is acting as a client of the remote server, so you’d use the openssh-client package. The operating system (OS) on the remote server you’re logging in to, however, is acting as a host for the shell session, so it must be running the openssh-server package. 
+
+You can run `dpkg -s openssh-client` or `dpkg -s openssh-server` to confirm that you’ve got the right package on your machine. Because they’re built to host remote shell sessions, Linux containers will always have the full suite installed by default.
+
+Use `systemctl status` to find out whether SSH is running on your machine.
+
+```
+$ systemctl status ssh
+? ssh.service - OpenBSD Secure Shell server
+   Loaded: loaded (/lib/systemd/system/ssh.service;
+       enabled; vendor preset: enabled)
+   Active: active (running) since Mon 2017-05-15 12:37:18
+       UTC; 4h 47min ago
+ Main PID: 280 (sshd)
+    Tasks: 8
+   Memory: 10.1M
+      CPU: 1.322s
+   CGroup: /system.slice/ssh.service
+            280 /usr/sbin/sshd -D
+            894 sshd: ubuntu [priv]
+            903 sshd: ubuntu@pts/4
+            904 -bash
+           1612 bash
+           1628 sudo systemctl status ssh
+           1629 systemctl status ssh
+[...]
+```
+
+You can force a process (like SSH) to automatically load on system startup using `systemctl enable ssh`, or to not load on startup with `systemctl disable ssh`.
+
 ## SSH File Transfer Protocol (SFTP)
 
 SFTP (SSH File Transfer Protocol) is a secure file transfer protocol. It runs over the SSH protocol. It supports the full security and authentication functionality of SSH.
@@ -74,11 +120,9 @@ The `ssh` command built into macOS/Linux is is part of the OpenSSH project.
 
 A client application translates the user's commands into the format required by the SSH Protocol and sends them across the network.
 
-## SSH into Remote Server
+## SSH into Remote Server Using Password
 
 Dùng Window Git bash cũng có thể `ssh` được.
-
-### Using Password
 
 Now that you've installed and enabled SSH on the remote computer, you can try logging in with a password as a test. To access the remote computer, you must have a user account and a password.
 
@@ -118,7 +162,7 @@ sethkenlon
 
 The test login works, so now you're ready to activate passwordless login (using keys).
 
-### Using Keys
+## Using SSH Keys
 
 `ssh remote_host`  
 The `remote_host` is the IP address or domain name that you are trying to connect to. This command assumes that your username on the remote system is the same as your username on your local system.
@@ -142,6 +186,11 @@ Functionally SSH keys resemble passwords.
   * The private key is located on the client’s machine and is secured and kept secret.
   * The public key can be given to anyone or placed on any server you wish to access.
 
+You create a special key pair and then copy the public half of the pair to the remote host, which is the computer where you eventually want to log in.
+
+Ideally, you should create what is called a **passphrase** and use it to authenticate yourself locally before using your key pair. Especially if you share your computer with others. If you do opt to add a passphrase, you’ll be prompted to enter it each time you use the key  
+A passphrase, like a password, is a secret text string that you’ve chosen. But a passphrase will often also include spaces and consist of a sequence of real words. A password like `3Kjsi&*cn@PO` is pretty good, but a passphrase like `fully tired cares mound` might be even better because of its length and the fact that it’s relatively easy to remember. 
+
 - **Authorized keys** are public keys that grant access. They are analogous to locks that the corresponding private key can open.
 - **Identity keys** are private keys that an SSH client uses to authenticate itself when logging into an SSH server. They are analogous to physical keys that can open one or more locks.
 
@@ -152,15 +201,15 @@ The client computer then sends the appropriate response back to the server, whic
 
 This process is performed automatically after you configure your keys.
 
----
+### Generating a new key pair
 
-SSH keys should be generated on the computer you wish to log in **from**. This is usually your local machine. The key consists of two components: a private key, which you never share with anyone or anything, and a public one, which you copy onto any remote machine you want to have passwordless access to.
+SSH keys should be generated on the computer you wish to log in **from** (the client). This is usually your local machine. The key consists of two components: a private key, which you never share with anyone or anything, and a public one, which you copy onto any remote machine you want to have passwordless access to.
 
 Some people create one SSH key and use it for everything from remote logins to GitLab authentication. However, I use different keys for different groups of tasks. For instance, I use one key at home to authenticate to local machines, a different key to authenticate to web servers I maintain, a separate one for Git hosts, another for Git repositories I host, and so on. In this example, I'll create a unique key to use on computers within my local area network.
 
 `ssh-keygen -t rsa`
 
-Your keys will be created at `~/.ssh/id_rsa.pub` and `~/.ssh/id_rsa`.
+Your keys will be created at `~/.ssh/id_rsa.pub` and `~/.ssh/id_rsa`. `id_rsa` is the default name.
 
 `cd ~/.ssh`
 
@@ -186,6 +235,8 @@ This will start an SSH session. After you enter your password, it will copy your
 `$ ssh-keygen -t ed25519 -f ~/.ssh/lan`
 
 The `-t` option stands for type and ensures that the encryption used for the key is higher than the default. The `-f` option stands for file and sets the key's file name and location. You'll be prompted to create a password for your SSH key. You should create a password for the key. This means you'll have to enter a password when using the key, but that password remains **local** and isn't transmitted across the network. After running this command, you're left with an SSH private key called `lan` and an SSH public key called `lan.pub`.
+
+### Copying the public key over a network 
 
 To get the public key over to your remote machine, use the `ssh-copy-id`. For this to work, you must verify that you have SSH access to the remote machine. If you can't log into the remote host with a password, you can't set up passwordless login either:
 
@@ -213,7 +264,20 @@ OK
 $
 ```
 
+Once created, you can move the public key to the file `.ssh/authorized_keys` on the host computer. That way the OpenSSH software running on the host will be able to verify the authenticity of a cryptographic message created by the private key on the client. Once the message is verified, the SSH session will be allowed to begin. 
+
+The first thing you’ll need to do is figure out which user account on the host you’ll be logging in to. In my case, it’ll be the account called `ubuntu`. The key needs to be copied to a directory called `.ssh/`, which is beneath `/home/ubuntu/`. In case it’s not there already, you should create it now using `mkdir`. 
+
+First, though, I’ll introduce you to a cool shortcut: to run a single command, you don’t need to actually open a full SSH session on a remote host. Instead, you can append your command to the regular ssh syntax like this:
+
+```
+ubuntu@base:~$ ssh ubuntu@10.0.3.142 mkdir -p .ssh
+ubuntu@10.0.3.142's password:
+```
+
 ## Configuring SSH
+
+The configuration file whose settings control how remote clients will be able to log in to your machine is `/etc/ssh/sshd_config`. The /etc/ssh/ssh_config file, on the other hand, controls the way users on this machine will log in to remote hosts as a client.
 
 When you change the configuration of SSH, you are changing the settings of the sshd server.
 
@@ -246,6 +310,14 @@ Host dev-server
 Then connect using: `ssh dev-server`
 
 This is useful if you manage multiple SSH keys and nonstandard ports.
+
+## Signature algorithms
+
+The **RSA (Rivest-Shamir-Adleman) cryptosystem** is a family of public-key cryptosystems, one of the oldest widely used for secure data transmission.
+
+OpenSSH also supports the `ECDSA` and `ED25519` signature algorithms. You’ll find some rather obscure technical differences between the default RSA and both ECDSA and ED25519, which have the advantage of being based on elliptic curves. But all are considered reasonably secure. One thing to keep in mind with ECDSA and ED25519 is that they might not yet be fully supported with some older implementations. 
+
+You should no longer assume that `DSA` is supported by all implementations of OpenSSH. Due to suspicions surrounding its origins, DSA is widely avoided in any case.
 
 ## Terminologies
 

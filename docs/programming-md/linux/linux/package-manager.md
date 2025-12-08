@@ -62,11 +62,10 @@ $ apt show lm-sensors
 
 When need to add the virtualbox repository to Yum.
 
-In the Red Hat/Fedora/CentOS ecosystem:
-
-- `rmp`, giống `dpkg`, handles installing/verifying individual `.rpm` files (giống `.deb` files).
-- `yum`Fetches packages from repositories; resolves dependencies. Handle Dependency Management (slow).
-- `dnf` modern version of `yum`, faster
+- In the Red Hat/Fedora/CentOS ecosystem:
+  * `rmp`, giống `dpkg`, handles installing/verifying individual `.rpm` files (giống `.deb` files).
+  * `yum`Fetches packages from repositories; resolves dependencies. Handle Dependency Management (slow).
+  * `dnf` modern version of `yum`, faster
 
 From the previous chapter, you’ll remember that third-party software configuration files are often kept within the /etc/ directory hierarchy, and, in that respect, yum/DNF is no different. Repository information is kept in /etc/yum.repos.d/, so you should change to that directory. From there, you’ll use the wget program (usually installed by default) to download the .repo file. Here’s how to do all that:
 
@@ -170,22 +169,41 @@ Finished. Restart your shell or reload config file.
 Use uninstall script to remove fzf.
 ```
 
-## Working with the Debian package manager
+## Working with `dpkg`
 
 Download `.deb` or `.rpm` file on the website.
 
-Once you download the file, you can install it from the command line using dpkg. Use the -i flag (for install). You’ll need to make sure that you’re running the dpkg command from the directory where the skypeforlinux-64 file is located. This example assumes that you saved the package to the Downloads directory in your user account:
+Once you download the file, you can install it from the command line using `dpkg` command. Use the -i flag (for install). You’ll need to make sure that you’re running the dpkg command from the directory where the skypeforlinux-64 file is located. This example assumes that you saved the package to the Downloads directory in your user account:
 
 ```
 $ cd /home/<username>/Downloads
 # dpkg -i skypeforlinux-64.deb
 ```
 
-The dpkg command should take care of dependencies for you. But if it doesn’t, its output will usually give you enough information to know what’s going on.
+The `dpkg` command should take care of dependencies for you. But if it doesn’t, its output will usually give you enough information to know what’s going on.
 
 `dpkg` (Debian Package) is the core package handler; `apt` (Advanced Package Tool) is the smart tool you use every day that relies on dpkg to do the actual work.
 
 `dpgk` is used to install `.deb` files.
+
+Running `dpkg` with the `-s` flag and the name of a package returns the current installed and update status. If the package is already installed (as is true for this `gedit` example), the output will look something like this:
+
+```
+$ dpkg -s gedit
+Package: gedit
+Status: install ok installed
+Priority: optional
+Section: gnome
+Installed-Size: 1732
+Maintainer: Ubuntu Desktop Team <ubuntu-desktop@
+  lists.ubuntu.com>
+Architecture: amd64
+Version: 3.18.3-0ubuntu4
+Replaces: gedit-common (<< 3.18.1-1ubuntu1)
+Depends: python3:any (>= 3.3.2-2~), libatk1.0-0
+    (>= 1.12.4)
+[...]
+```
 
 ## Homebrew notes
 
@@ -199,7 +217,7 @@ Show help `man brew`
 To see all the packages in your local environment: `brew list`. It will show dependencies as well as packages you've installed.
 You can also see a diagram of packages and dependencies `brew deps --tree --installed`
 
-## View & install packges
+## View Installed Packges
 
 The `brew tap` command adds more repositories to the list of formulae that Homebrew tracks, updates, and installs from. By default, `tap` assumes that the repositories come from GitHub, but the command isn’t limited to any one location.
 
@@ -211,6 +229,8 @@ Homebrew has its own terminology, referring to installed CLI packages as "kegs" 
 
 After installing a package, use `brew list <package>` to verify that it has been installed. You'll see all the installed files.
 You can also see a list of dependencies for the package, if there are any: `brew deps <package>`
+
+---
 
 `apt list --manual-installed=true`
 
@@ -248,9 +268,9 @@ CPU Processor architectures
 
 ---
 
-The term x86 refers to the entire family of processor architectures developed by Intel (and later AMD). The terms 32-bit and 64-bit refer to the width of the registers and memory addresses within that architecture.
+The term `x86` refers to the entire family of processor architectures developed by Intel (and later AMD). The terms `32-bit` and `64-bit` refer to the width of the registers and memory addresses within that architecture.
 
-Linux, like other x86-based operating systems, comes in both 64-bit and 32-bit versions. The vast majority of computers manufactured and sold over the past decade use the faster 64-bit architecture. Because there’s still older or development-oriented hardware out there, you’ll sometimes need to run 32-bit, and you’ll want the software you install to work with it.
+Linux, like other `x86-based` operating systems, comes in both 64-bit and 32-bit versions. The vast majority of computers manufactured and sold over the past decade use the faster 64-bit architecture. Because there’s still older or development-oriented hardware out there, you’ll sometimes need to run 32-bit, and you’ll want the software you install to work with it.
 
 You can check for yourself by running `arch` from the command line. Unless you know you’re running on older hardware (something Linux does particularly well, by the way), you’re safe assuming that you’re a 64-bit kind of person.
 
@@ -279,11 +299,16 @@ Here are the steps to uninstall a package with Homebrew on a Mac.
 
 `brew cleanup` Remove stale lock files and outdated downloads for all formulae and casks, and remove old versions of installed formulae. If arguments are specified, only do this for the given formulae and casks. Removes all downloads more than 120 days old.
 
-## Other notes
+## Give permission
 
 `chmod u+x nvim-linux-arm64.appimage && ./nvim-linux-arm64.appimage`
 
 Đầu tiên phải thêm quyền bằng `chmod`, sau đó thì move vào `PATH`. Có 2 bước đó.
+
+```
+chmod +x virtualmachine.sh
+./virtualmachine.sh
+```
 
 ## References
 

@@ -1,4 +1,4 @@
-# Bash Scripting (Bash, zsh, fish)
+# Bash Scripting
 
 Bash, zsh
 
@@ -59,7 +59,7 @@ By default, zcompdump files are typically found in your home directory (e.g., `~
 
 Name images file.
 
-## The basics
+## The Basics
 
 `bash` is great for simple scripts that automate things you’d otherwise be typing on the command line. But once a bash script gets above a hundred lines or you need features that bash doesn’t have, it’s time to move on to Perl or Python.
 
@@ -78,11 +78,11 @@ Other shell: zsh, Xonsh, fish
 `exec bash` to switch shell. This won't affect new terminal windows or anything, but it's convenient.  
 `echo $0` to know which shell you are using.
 
-As on the command line, you can break a single logical line onto multiple physical lines by escaping the newline with a backslash (`\`). You can also put more than one statement on a line by separating the statements with semicolons `;`.
+- As on the command line, you can break a single logical line onto multiple physical lines by escaping the newline with a backslash (`\`). Trong `LaTeX` thì `\` là syntax của commands.
+- You can also put more than one statement on a line by separating the statements with semicolons `;`.
 
-`git checkout main; git pull` => chạy 2 cái 1 dòng
-
-`git checkout main && git pull`
+- `git checkout main; git pull` => chạy 2 cái 1 dòng
+- `git checkout main && git pull` => Execute the next command ONLY if the previous command was completely successful (exited with a zero status code).
 
 To prepare the file for running, just turn on its execute bit:
 
@@ -122,7 +122,7 @@ Quy trình viết bash scripts:
 
 bash’s built-in command `fc` is a lot like `<Control-P>`, but instead of returning the last command to the command line, it transfers the com-mand to your editor of choice.
 
-## xargs
+## `xargs`
 
 `xargs` reads items from standard input (usually separated by spaces or newlines) and builds and executes command lines using those items as arguments.
 

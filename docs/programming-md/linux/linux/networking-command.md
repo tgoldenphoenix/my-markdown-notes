@@ -47,5 +47,52 @@ The `su` (short for substitute or switch user) utility allows you to run comma
 
 `sudo visudo` dedicated command to edit the `/etc/sudoers` file
 
-## Remote Management with OpenSSH
+## Get IP Address
 
+`ip addr` is the modern standard for Linux, while `ipconfig` is the long-standing standard for Windows.
+
+```
+$ ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue
+    state UNKNOWN group default qlen 1
+    link/loopback 00:00:00:00:00 brd 00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+8: eth0@if9: <BROADCAST,MULTICAST,UP,LOWER_UP>
+         mtu 1500
+    qdisc noqueue state UP group default qlen 1000
+    link/ether 00:16:3e:ab:11:a5 brd
+         ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.144/24 brd 10.0.3.255 scope
+         global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::216:3eff:feab:11a5/64 scope link
+       valid_lft forever preferred_lft forever
+```
+
+---
+
+use `ping` to test whether your two computers can see and speak to each other.
+
+```
+$ ping 10.0.3.144
+PING 10.0.3.144 (10.0.3.144) 56(84) bytes of data.
+64 bytes from 10.0.3.144: icmp_seq=1
+     ttl=64 time=0.063 ms
+64 bytes from 10.0.3.144: icmp_seq=2 ttl=64 time=0.068 ms
+64 bytes from 10.0.3.144: icmp_seq=3 ttl=64 time=0.072 ms
+64 bytes from 10.0.3.144: icmp_seq=4
+     ttl=64 time=0.070 ms
+```
+
+And failure will look like the following. To illustrate, I pinged an unused IP address:
+
+```
+$ ping 10.0.3.145
+PING 10.0.3.145 (10.0.3.145) 56(84) bytes of data.
+From 10.0.3.1 icmp_seq=1
+   Destination Host Unreachable
+From 10.0.3.1 icmp_seq=1 Destination Host Unreachable
+```

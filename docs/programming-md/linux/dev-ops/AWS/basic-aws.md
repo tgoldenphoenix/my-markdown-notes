@@ -53,6 +53,9 @@ The **Classic Load Balancer (CLB)** is the older, legacy load balancer from AWS,
 
 AMI (Amazon Machine Image). Khác với IAM.
 
+- AWS Management Console: the web-based, graphical user interface (GUI) that serves as the central point for managing and accessing all services and resources within your Amazon Web Services (AWS) account.
+- AWS Systems Manager Session Manager: the web-based console used to connect to your EC2 instance
+
 ## What can you do with AWS?
 
 The web shop consists of dynamic content (such as products and their prices) and static content (such as the company logo). Splitting these up would reduce the load on the web servers and improve performance by delivering the **static content** over a **content delivery network (CDN)**.

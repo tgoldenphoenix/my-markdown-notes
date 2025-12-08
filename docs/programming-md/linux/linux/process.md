@@ -60,6 +60,10 @@ such as division by zero.
 condition such as the death of a child process or the availability of data 
 on an I/O channel.
 
+## `systemctl`
+
+`systemctl` is the primary command-line tool for managing the `systemd` system and service manager in modern Linux, used to control system services (start, stop, restart, enable, disable), check their status, manage system targets, and monitor overall system state, replacing older init systems like SysV. It offers comprehensive control over daemons and system behavior, making it essential for Linux administration
+
 ## `kill`: Send Signals
 
 As its name implies, the `kill` command is most often used to terminate a process. kill can send any signal, but by default it sends a `TERM`. kill can be used by nor-mal users on their own processes or by root on any process. The syntax is:
