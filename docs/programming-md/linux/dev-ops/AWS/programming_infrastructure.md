@@ -1,4 +1,4 @@
-# Programming your infrastructure: The command line, SDKs, and CloudFormation
+# Programming your Infrastructure: The command line, SDKs, and CloudFormation
 
 - AWS provides an application programming interface (API) that we can use to control every part of AWS with HTTPS requests. By everything, we really mean everything.
 - However, calling the HTTP API directly is a low level task and requires a lot of repetitive work, like authentication, data (de)serialization, and so on. That’s why AWS offers tools on top of the HTTP API that are easier to use. Those tools follow:
@@ -68,12 +68,12 @@ The AWS CloudFormation `yaml` file is turned into AWS API calls.
   * It’s **updatable**. CloudFormation supports updates to your infrastructure. It will figure out the parts of the template that have changed and apply those changes as smoothly as possible to your infrastructure.
 
 - `Parameters`—Parameters are used to customize a template with values, for example, domain name, customer ID, and database password.
-- A `resource` is the smallest block you can describe. Example: a network topology, a load balancer, a DNS entry, virtual machines, database, CND, an Elastic IP address, security group, etc
-- Outputs—An output is comparable to a parameter, but the other way around. An output returns details about a resource created by the template, for example, the public name of an EC2 instance.
+- A `resource` is the smallest block you can describe. Example: a network topology, a load balancer, a DNS entry, virtual machines, database, CND, an Elastic IP address, security group, IAM role, etc
+- `Outputs`—An output is comparable to a parameter, but the other way around. An output returns details about a resource created by the template, for example, the public name of an EC2 instance.
 
 If you create an infrastructure from a template, CloudFormation calls it a **stack**. You can think of template versus stack much like class versus object. The template exists only once, whereas many stacks can be created from the same template. 
 
----
+### Parameter
 
 A parameter has at least a `name` and a `type`. We encourage you to add a `description` as well, as shown in the next listing.
 
@@ -105,7 +105,7 @@ Parameters:
      AllowedValues: ['4.1.1', '4.0.1']
 ```
 
----
+### Resource
 
 A resource has at least a name, a type, and some properties, as shown in the next listing.
 
@@ -131,7 +131,7 @@ Resources:
       SubnetId: 'subnet-123456'
 ```
 
----
+### Output
 
 A CloudFormation template’s output includes at least a name (like parameters and resources) and a value, but we encourage you to add a description as well, as illustrated in the next listing. You can use outputs to pass data from within your template to the outside.
 
@@ -166,6 +166,8 @@ If you don’t want to write plain JSON or YAML to create templates for your inf
 ## Temporary notes
 
 created IMA user: `mycli`
+
+create another IMA user: `myuser`
 
 create a stack from cloudformation template named `myvm`
 

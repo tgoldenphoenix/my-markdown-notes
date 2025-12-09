@@ -1,5 +1,10 @@
 # Regular Expressions
 
+TODO
+
+- đọc lại again [anchor](https://www.regular-expressions.info/anchors.html)
+- đang đọc tới [repetition](https://www.regular-expressions.info/repeat.html)
+
 ## Basics & Terminologies
 
 **Literals** là khi `a` match `a`; `<` match `<` gọi là literals.

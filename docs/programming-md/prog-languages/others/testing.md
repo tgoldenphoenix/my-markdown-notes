@@ -24,13 +24,13 @@ Automation testing là phương pháp kiểm thử tự động. Người tester
 
 ## Test case design
 
-- **Black-box Testing (kiểm thử hộp đen)**: Focuses on functionality without knowing the internal code. Có 5 kỹ thuật sau đây:
+- `Black-box Testing (kiểm thử hộp đen)`: Focuses on functionality without knowing the internal code. Có 5 kỹ thuật sau đây:
   1. **Equivalence Partitioning (phân vùng tương đương)**: Divides input data into valid and invalid partitions.
   2. **Boundary Value Analysis (phân tích giá trị biên)**: Tests edge values of input fields.
   3. **Decision Table (Bảng quyết định)**: Maps input combinations to expected outcomes.
   4. **State Transition (chuyển đổi trạng thái)**: Evaluates behavior based on state changes.
   5. Error Guessing (đoán lỗi)
-- **2. White-box Testing**: Focuses on internal logic and code structure. Techniques include:
+- `White-box Testing`: Focuses on internal logic and code structure. Techniques include:
   - **Statement Coverage (bao phủ câu lệnh, C0)**: Ensures all code statements are executed.
   - **Branch Coverage (bao phủ nhánh, C1)**: Tests decision points (if-else conditions).
   - Path Coverage (bao phủ đường dẫn): Verifies all possible paths through the code.
@@ -54,3 +54,10 @@ Agile/scrum chỉ dùng user story.
 
 ## Unit testing
 
+You should use a separate testing database for your tests. Do not pollute your production database with testing data.  
+Tests will add and manipulate all kinds of data, which can lead to data being lost or to the database being in an inconsistent state.  
+Using a separate database also makes it easier to determine a bug’s root cause. Because you are fully in control of the test database’s state, customers’ actions won’t interfere with your tests’ results.
+
+Automated tests also don’t eliminate the need for manual testing. Verifying your work as end users would do and investing time into **exploratory testing** are still indispensable. Because this book is targeted at software developers instead of QA analysts, in the context of this chapter, I’ll refer to the unnecessary manual testing process often done during development just as manual testing. 
+
+## The testing pyramid

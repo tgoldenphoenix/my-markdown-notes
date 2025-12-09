@@ -1,5 +1,7 @@
 # Basic Linux Surviving
 
+## Basic Commands
+
 Phân biệt command option (preceded with `-` or `--`) vs command argument. The argument(s) to a command are specifications for the object(s) on which you want the command to take effect. An example is `ls /etc`, where the directory `/etc` is the argument to the **ls** command.  
 You can think of an option as a way of executing the command. The argument is what you execute it on.
 
@@ -13,6 +15,8 @@ You can think of an option as a way of executing the command. The argument is wh
 `whoami`
 
 `touch <file name>`
+
+`touch file{1..10}` Creates 10 files named file1 to file10
 
 “Touching” an existing file with touch updates its time stamp without making any changes. This can be useful if, for some reason, you want to change how various commands like ls list or display a file. (It can also be helpful if you’d like your boss to think that you’ve been hard at work on a data file that, in fact, you haven’t opened for weeks.) 
 
@@ -270,39 +274,6 @@ foo?bar foose kde-root
 $ rm -i foo* 
 rm: remove 'foo\004bar'? y rm: remove 'foose'? n
 ```
-
-## find & locate
-
-These are the real tools, used when searching other paths beside those listed in the search path (using `which`).
-
-`find` sfind files and directory in a directory hierarchy. This command not only allows you to search file names, it can also accept file size, date of last change and other file properties as criteria for a search. The most common use is for finding file names: `find <path> -name <searchstring>`\
-This can be interpreted as "Look in all files and subdirectories contained in a given path, and print the names of the files containing the search string in their name" (not in their content).
-
-- filter by file type, file name and a number of other options.
-- Another application of find is for searching files of a certain size
-
-One of the most useful features of `find` is its ability to execute arbitrary shell commands against each file that matches the search. For example:
-
-- count total number of lines in all files and sub-directories under the current directory.
-- run a string replacement using `sed` against all files under the current directory
-- find all file under `.` that have the `.jpg` extension and print out the width x height of each image.
-
- When using `which` to remove files, it is best to first test without the `-exec` option that the correct files are selected, after that the command can be rerun to delete the selected files.
-
-After cloning a repository or un-zipping an archive. You'll wonder "How many files are here and where is everything?" => `find .`. Nếu nhiều quá thì `find . | less` and use `/` to search for something you might be interested in.
-
-**Examples:**
-
-`find .` print all files and directories in and under the current directory.
-
-`find . -name *.py`\
-`find . -not -name *.py`
-
-`find . -not -name '*.py' -delete` => delete all, keep only `.py`. Use single quote to pass wildcard pattern _unchange_ in this case.
-
-### locate
-
-Later on (in 1999 according to the man pages, after 20 years of find), `locate` was developed. This program is easier to use, but more restricted than find, since its output is based on a file index database that is updated only once every day. On the other hand, a search in the locate database uses less resources than find and therefore shows the results nearly instantly. Most Linux distributions use `slocate` these days, security enhanced locate, the modern version of locate that prevents users from getting output they have no right to read.  On most systems, locate is a symbolic link to the slocate program
 
 ## Alias
 

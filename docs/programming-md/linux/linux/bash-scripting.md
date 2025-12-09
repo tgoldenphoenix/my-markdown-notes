@@ -333,6 +333,14 @@ The table below shows the bash comparison operators for numbers and strings. bas
 
 Ngoài `elif` thì `bash` còn có `case` giống như switch-case.
 
+---
+
+Changes the directory to /var/backups/. If no such directory exists, it exits the script and issues an exit status code of 0, which signifies the command was successful: 
+
+`cd /var/backups || exit 0` 
+
+The `||` sequence (sometimes known as a double pipe) can be read as though it’s the word _or_. So this line means: either change directory to /var/backups/ or exit the script. If everything goes according to plan, subsequent script operations will take place in the /var/backups/ directory.
+
 ### Loops
 
 Có `for...in` loop.

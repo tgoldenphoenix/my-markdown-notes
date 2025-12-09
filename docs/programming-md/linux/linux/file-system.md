@@ -419,7 +419,7 @@ The next field in the listing is the file’s **link count**. In this case it is
 
 All directories have at least two hard links: the link from the parent directory and the link from the special file “.” inside the directory itself.
 
-The next two fields in the ls output are the owner and group owner of the file. In this example, the file’s owner is root, and the file also belongs to the group named root. The filesystem actually stores these as the user and group ID numbers rather than as names. If the text versions (names) can’t be determined, ls shows the fields as numbers. This might happen if the user or group that owns the file has been deleted from the /etc/passwd or /etc/group file. It could also indicate a problem with your NIS or LDAP database (if you use one)
+The next two fields in the `ls` output are the owner and group owner of the file. In this example, the file’s owner is root, and the file also belongs to the group named root. The filesystem actually stores these as the user and group ID numbers rather than as names. If the text versions (names) can’t be determined, ls shows the fields as numbers. This might happen if the user or group that owns the file has been deleted from the `/etc/passwd` or `/etc/group` file. It could also indicate a problem with your NIS or LDAP database (if you use one)
 
 The next field is the size of the file in bytes. This file is 62,100 bytes long. Next comes the date of last modification: May 28, 2010. The last field in the listing is the name of the file, `/bin/gzip`.
 
@@ -504,6 +504,10 @@ set the group of myfile to whales: `sudo chgrp whales myfile`
 If you add a colon and groupname after the user you can set both the user and group at the same time: `sudo chown patty:whales myfile`
 
 If you use `sudo` to create or copy a file, the owner of the new file will be `sudo` (or `root`), not you.
+
+---
+
+When you extract a `.tar` archive, all the files inside will be owned by you!
 
 ## `stat`
 
@@ -639,7 +643,8 @@ most configuration files are stored in the `/etc` directory.
 
 An archive is a single file containing a collection of objects: files, directories, or a combination of both. Bundling objects within a single file (as illustrated in figure 4.1) sometimes makes it easier to move, share, or store multiple objects that might otherwise be unwieldy and disorganized.
 
-You might need to create copies of directories and their contents so you can easily share or back them up. For that, `tar` is probably going to be your champion of choice. If, however, you need an exact copy of a partition or even an entire hard disk, then you’ll want to know about `dd`. And if you’re looking for an ongoing solution for regular system backups, then try `rsync`.
+You might need to create copies of directories and their contents so you can easily share or back them up. For that, `tar` is probably going to be your champion of choice.  
+If, however, you need an exact copy of a partition or even an entire hard disk, then you’ll want to know about `dd`. And if you’re looking for an ongoing solution for regular system backups, then try `rsync`.
 
 Don’t confuse archiving with compression. **Compression** is a software tool that applies a clever algorithm to a file or archive to reduce the amount of disk space it takes. Of course, when they’re compressed, files are unreadable, which is why the algorithm can also be applied in reverse to decompress them.
 
@@ -658,7 +663,11 @@ As you’ll see soon, applying compression to a tar archive is simple and doing 
 
 Want to knock off all three steps in one go? Use `tar`.
 
-This example copies all the files and directories within and below the current work directory and builds an archive file that I’ve cleverly named `archivename.tar`. Here I use three arguments after the `tar` command: the `c` tells tar to create a new archive, `v` sets the screen output to verbose so I’ll get updates, and `f` points to the filename I’d like the archive to get:
+This example copies all the files and directories within and below the current work directory and builds an archive file that I’ve cleverly named `archivename.tar`. Here I use three arguments after the `tar` command:
+
+- the `c` tells tar to create a new archive (compress)
+- `v` sets the screen output to verbose so I’ll get updates
+- and `f` points to the filename I’d like the archive to get
 
 ```bash
 $ tar cvf archivename.tar *
@@ -670,6 +679,14 @@ file3
 The `tar` command will never move or delete any of the original directories and files you feed it; it only makes archived copies. You should also note that using a dot (.) instead of an asterisk (*) in the previous command will include even hidden files (whose filenames begin with a dot) in the archive.
 
 The `.tar` filename extension isn’t necessary, but it’s always a good idea to clearly communicate the purpose of a file in as many ways as possible.
+
+---
+
+To extract the archive, run the tar command against the name of the archive, but this time with the argument x (for extract) rather than `c`:
+
+`$ tar xvf stuff.tar`
+
+**WARNING**: Extracting an archive overwrites any files with the same names in the current directory without warning. Here, that’s fine, but that won’t normally be the case.
 
 ---
 
@@ -743,11 +760,84 @@ And, because we’re talking about find, I should also tell you about a similar 
 
 If you run locate head-to-head against find, locate will almost always return results far faster. What’s the secret? locate isn’t actually searching the file system itself, but simply running your search string against entries in a preexisting index. The catch is that if the index is allowed to fall out of date, the searches become less and less accurate. Normally the index is updated every time the system boots, but you can also manually do the job by running `updatedb`: `sudo updatedb`.
 
+## `find` & locate
+
+These are the real tools, used when searching other paths beside those listed in the search path (using `which`).
+
+`find` sfind files and directory in a directory hierarchy. This command not only allows you to search file names, it can also accept file size, date of last change and other file properties as criteria for a search. The most common use is for finding file names: `find <path> -name <searchstring>`\
+This can be interpreted as "Look in all files and subdirectories contained in a given path, and print the names of the files containing the search string in their name" (not in their content).
+
+- filter by file type, file name and a number of other options.
+- Another application of find is for searching files of a certain size
+
+One of the most useful features of `find` is its ability to execute arbitrary shell commands against each file that matches the search. For example:
+
+- count total number of lines in all files and sub-directories under the current directory.
+- run a string replacement using `sed` against all files under the current directory
+- find all file under `.` that have the `.jpg` extension and print out the width x height of each image.
+
+ When using `which` to remove files, it is best to first test without the `-exec` option that the correct files are selected, after that the command can be rerun to delete the selected files.
+
+After cloning a repository or un-zipping an archive. You'll wonder "How many files are here and where is everything?" => `find .`. Nếu nhiều quá thì `find . | less` and use `/` to search for something you might be interested in.
+
+**Examples:**
+
+`find .` print all files and directories in and under the current directory.
+
+- `find . -name *.py`
+- `find . -not -name *.py`
+
+`find . -not -name '*.py' -delete` => delete all, keep only `.py`. Use single quote to pass wildcard pattern _unchange_ in this case.
+
+---
+
+`locate`
+
+Later on (in 1999 according to the man pages, after 20 years of `find`), `locate` was developed. This program is easier to use, but more restricted than find, since its output is based on a file index database that is updated only once every day. On the other hand, a search in the locate database uses less resources than find and therefore shows the results nearly instantly. Most Linux distributions use `slocate` these days, security enhanced locate, the modern version of locate that prevents users from getting output they have no right to read.  On most systems, locate is a symbolic link to the slocate program
+
+## Archiving partitions with `dd`
+
+There’s all kinds of stuff you can do with `dd` if you research hard enough, but where it shines is in the ways it lets you play with partitions. Earlier, you used `tar` to replicate entire file systems by copying the files from one computer and then pasted them as is on top of a fresh Linux install of another computer. But because those file system archives weren’t complete images, they required a running host OS to serve as a base.
+
+Using `dd`, on the other hand, can make perfect byte-for-byte images of, well, just about anything digital. But before you start flinging partitions from one end of the earth to the other, I should mention that there’s some truth to that old UNIX admin joke: _dd_ stands for _Disk Destroyer_. If you type even one wrong character in a `dd` command, you can instantly and permanently wipe out an entire drive worth of valuable data. And yes, spelling counts.
+
+As always with `dd`, pause and think very carefully before pressing that Enter key!
+
+---
+
+Now that you’ve been suitably warned, we’ll start with something straightforward. Suppose you want to create an exact image of an entire disk of data that’s been designated as /dev/sda. You’ve plugged in an empty drive (ideally having the same capacity as your `/dev/sdb` system). The syntax is simple: `if=` defines the source drive, and `of=` defines the file or location where you want your data saved: 
+
+`sudo dd if=/dev/sda of=/dev/sdb`
+
+---
+
+This command will spend some time writing millions and millions of zeros over every nook and cranny of the /dev/sda1 partition:
+
+`sudo dd if=/dev/zero of=/dev/sda1`
+
+But it gets better. Using the /dev/urandom file as your source, you can write over a disk with random characters:
+
+`sudo dd if=/dev/urandom of=/dev/sda1`
+
+## Synchronizing archives with `rsync`
+
+One thing you already know about proper backups is that, to be effective, they absolutely have to happen regularly. One problem with that is that daily transfers of huge archives can place a lot of strain on your network resources. Wouldn’t it be nice if you only had to transfer the small handful of files that had been created or updated since the last time, rather than the whole file system? Done. Say hello to `rsync`.
+
 ## The Most common devices
 
 Devices, generally every peripheral attachment of a PC that is not the CPU itself, is presented to the system as an entry in the `/dev` directory.
 
 [Table 3-4. Common devices](https://tldp.org/LDP/intro-linux/html/sect_03_02.html#AEN2726)
+
+## `/etc`
+
+if you were to look at the contents of /etc/passwd, you’d see a single line for every account that exists.
+
+`syslog` is a system user.
+
+Once upon a time, an encrypted version of each user’s password would also have been included here. For practical reasons, because the passwd file must remain readable by anyone on the system, it was felt that including even encrypted passwords was unwise. Those passwords were moved to /etc/shadow. Using `sudo` permissions, you should take a look at that file with its encrypted passwords on your own system. Here’s how:
+
+`sudo cat /etc/shadow`
 
 ## Window Subsystem for Linux
 
