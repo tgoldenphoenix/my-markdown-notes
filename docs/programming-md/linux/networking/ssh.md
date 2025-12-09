@@ -1,4 +1,4 @@
-# SSH Notes
+# SSH
 
 Muốn connect SSH thì firewall phải allow SSH traffic.
 
@@ -300,7 +300,7 @@ To tell OpenSSH which key you’re after, you add the -i flag, followed by the f
 
 Notice the `.pem` file extension in that example? That means the key is saved with a format that’s commonly used to access all kinds of VMs, including Amazon EC2 instances.
 
-## Safely copying files with SCP 
+## Safely copying files with `scp` 
 
 Add an "s" for "secure" before `cp`.
 
@@ -309,6 +309,7 @@ Assuming that you knew there was already a .ssh/ directory on the remote host yo
 ```
 ubuntu@base:~$ scp .ssh/id_rsa.pub \
   ubuntu@10.0.3.142:/home/ubuntu/.ssh/authorized_keys
+# Overwrites the current contents of the remote authorized\_keys file
 ```
 
 If there already was an `authorized_keys` file in that directory, this operation would overwrite it, destroying any existing contents. And, you can only copy or save files if the user accounts you’re using have appropriate permissions. Therefore, don’t try saving a file to, say, the /etc/ directory on a remote machine if your user doesn’t have root privileges. Before you ask, logging in to an SSH session as the root user is generally a big security no-no. 

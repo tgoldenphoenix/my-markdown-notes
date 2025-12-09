@@ -1,22 +1,17 @@
 # AWS Networking & Security
 
-Securing your system: IAM, security groups, and VPC
+Securing your system: IAM, security groups (filrewalls), and VPC (private network).
 
-The TLS (Transport Layer Security) protocol is the industry standard for securing communication over computer networks, most notably the internet.
-
-It is the updated, more secure version of the older SSL (Secure Sockets Layer) protocol, and when you see "HTTPS" in your web browser, you are using TLS.
-
-TLS operates logically between the Application Layer (Layer 7) and the Transport Layer (Layer 4) of the OSI model.
-
-NACLs stands for Network Access Control Lists.
+`NACLs` stands for Network Access Control Lists.
 
 In AWS (and similar cloud platforms), a NACL is an optional layer of security that acts as a stateless firewall for controlling traffic entering and leaving one or more subnets.
 
-## Networking on AWS
-
 Creating virtual networks allows you to build closed and secure network environments on AWS and to connect these networks with your home or corporate network.
 
-Learn how to secure your system with a virtual private network and firewalls.
+- What are your responsibilities?
+  * Configuring access management that restricts access to AWS resources like S3 and EC2 to a minimum, using AWS IAM
+  * Configuring a firewall for your virtual network that controls incoming and outgoing traffic with security groups and NACLs
+  * 
 
 ## Security Groups
 
@@ -30,15 +25,20 @@ For example, use a security group allowing incoming HTTP traffic from the intern
 
 The **Identity and Access Management (IAM) service** provides authentication and authorization for the AWS API.
 
-When you send a request to the AWS API, IAM verifies your identity and checks whether you are allowed to perform the action. IAM controls who (authentication) can do what (authorization) in your AWS account. For example, is the user allowed to launch a new virtual machine? The various components of IAM follow:
+When you send a request to the AWS API, IAM verifies your identity and checks whether you are allowed to perform the action. IAM controls who (authentication) can do what (authorization) in your AWS account. For example, is the user allowed to launch a new virtual machine?
 
-- An `IAM user` is used to authenticate people or workloads running outside of AWS.
-- An `IAM group` is a collection of IAM users with the same permissions.
-- An `IAM role` is used to authenticate **AWS resources**, for example, an EC2 instance.
-- An `IAM identity policy` is used to define the permissions for a user, group, or role.
+- The various components of IAM follow:
+  * An `IAM user` is used to authenticate people or workloads running outside of AWS (cái này giống cái root account).
+  * An `IAM group` is a collection of IAM users with the same permissions.
+  * An `IAM role` is used to authenticate **AWS resources**, for example, an EC2 instance.
+  * An `IAM identity policy` is used to **define** the permissions for a user, group, or role.
 
-- **Roles** authenticate AWS entities such as EC2 instances.
+- **IAM Roles** authenticate AWS entities such as EC2 instances. Roles are attached to entities (EC2 instance, ECS container, Lambda function).
 - **IAM users** authenticate the people who manage AWS resources, for example, system administrators, DevOps engineers, or software developers.
+
+- IAM user & AWS account root user similarity:
+  * Both have a password (needed to log in to the AWS Management Console)
+  * Both Can have access keys (needed to send requests to the AWS API (e.g., for CLI or SDK)
 
 By default, users and roles **can’t do anything**. You have to create an identity policy stating what actions they’re allowed to perform. IAM users and IAM roles use **identity policies** for authorization.
 
@@ -60,9 +60,11 @@ If a policy contains the property `Principal`, it is a resource policy. The Prin
 
 ---
 
-`Deny` overrides `Allow`. When you deny an action, you can’t allow that action with another statement.
+If you have multiple statements that apply to the same action, `Deny` overrides `Allow`. When you deny an action, you can’t allow that action with another statement.
 
 Resources in AWS have an **Amazon Resource Name (ARN)**. Example of resource: an EC2 instance is a resource.
+
+The ARN of an EC2 instance: `arn:aws:ec2:us-east-1:878533158213:instance/i-3dd4f812`
 
 The following two types of identity policies exist:
 
@@ -97,7 +99,7 @@ By default, no role is attached to an EC2 instance, and, therefore, the EC2 inst
 
 You want traffic to enter or leave your EC2 instance only if it has to do so. With a firewall, you control ingoing (also called **inbound or ingress**) and outgoing (also called **outbound or egress**) traffic. 
 
-If you run a web server, the only ports you need to open to the outside world are ports 80 for HTTP traffic and 443 for HTTPS traffic. All other ports should be closed down. You should only open ports that must be accessible, just as you grant only the permissions you need with IAM
+If you run a web server, the only ports you need to open to the outside world are ports `80` for HTTP traffic and `443` for HTTPS traffic. All other ports should be closed down. You should only open ports that must be accessible, just as you grant only the permissions you need with IAM
 
 Before network traffic enters or leaves your EC2 instance, it goes through a firewall provided by AWS. The firewalls inspects the network traffic and uses rules to decide whether the traffic is allowed or denied.
 
@@ -105,7 +107,14 @@ AWS is responsible for the firewall, but you’re responsible for the rules. By 
 
 A security group contains a rule allowing all outbound traffic by default. If your use case requires a high level of network security, you should remove the rule and add your own rules to control outgoing traffic.
 
-### Controlling traffic to virtual machines with security groups
+- IAM Resource (User, Role, Policy):
+  * Identity and Access Management (Authentication & Authorization).
+  * Controls access to AWS services and actions (e.g., launching an EC2 instance, reading an S3 bucket).
+- Security Group (SG):
+  * Network Traffic Filtering (Firewall).
+  * Controls network packets entering or leaving a resource (e.g., EC2, RDS).
+
+### Controlling traffic to virtual machines with `security groups`
 
 A **security group** acts as a firewall for virtual machines and other services. You will associate a security group with AWS resources, such as EC2 instances, to control traffic. It’s common for EC2 instances to have more than one security group associated with them and for the same security group to be associated with multiple EC2 instances.
 
@@ -116,7 +125,9 @@ By default, inbound traffic is denied and outbound traffic is allowed.
 
 ## Creating a private network in the cloud: Amazon Virtual Private Cloud (VPC)
 
-When you create a VPC, you get your own private network on AWS. Private means you can use the address ranges 10.0.0.0/8, 172.16.0.0/12, or 192.168.0.0/16 to design a network that isn’t necessarily connected to the public internet. You can create subnets, route tables, network access control lists (NACLs), and gateways to the internet or a VPN endpoint.
+Control network traffic by defining subnets and routing tables. Doing so allows you to specify private networks that are not reachable from the outside.
+
+When you create a VPC, you get your own private network on AWS. Private means you can use the address ranges `10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16` to design a network that isn’t necessarily connected to the public internet. You can create subnets, route tables, network access control lists (NACLs), and gateways to the internet or a VPN endpoint.
 
 Amazon Virtual Private Cloud supports IPv6 as well. You can create IPv4 only, IPv6 only, or IPv4 and IPv6 VPCs. To reduce complexity, we are sticking to IPv4 in this chapter.
 
@@ -134,3 +145,11 @@ The term Gateway (or Default Gateway) refers to the device that acts as the fron
 ## Terminologies
 
 multifactor authentication (MFA)
+
+The `TLS (Transport Layer Security)` protocol is the industry standard for securing communication over computer networks, most notably the internet.  
+It is the updated, more secure version of the older `SSL (Secure Sockets Layer)` protocol, and when you see `HTTPS` in your web browser, you are using TLS.  
+TLS operates logically between the Application Layer (Layer 7) and the Transport Layer (Layer 4) of the OSI model.
+
+---
+
+k

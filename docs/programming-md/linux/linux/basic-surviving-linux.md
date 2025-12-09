@@ -206,22 +206,6 @@ Tên file có space thì phải để trong double quote.
 
 `less "My excellent file.txt"`
 
-- `rm` to remove files
-- `rmdir` to remove empty directories. It can only remove empty directories. 
-
-`rm -r directory-name` remove directory
-
-(Use `ls -a` to check whether a directory is empty or not). The rm command also has options for removing non-empty directories with all their subdirectories, read the Info pages for these rather dangerous options.\
-The interactive behavior of the rm, cp and mv commands can be activated using the -i option. In that case the system won't immediately act upon request. Instead it will ask for confirmation, so it takes an additional click on the Enter key to inflict the damage. Customize your shell environment to make this option the default.
-
-`rm file1` delete file1 from the directory
-
-`rm file*` deletes all files in the current directory whose names begin with the letters file.
-
-`rm -r *` wipe out the current directory
-
----
-
 - `cp` to copy files
 - `mv` to move & rename files
 
@@ -260,6 +244,32 @@ The `df` command only displays information about active non-swap partitions. The
 
 since the search path contains only paths to directories containing executable programs, **which** doesn't work for ordinary files. The **which** command is useful when troubleshooting "Command not Found" problems.\
 Using the `which` command also checks to see if a command is an alias for another command `which -a ls`. If this does not work on your system, use the alias command: `alias ls`
+
+## Removing Files & Directories
+
+- `rm` to remove files
+- `rmdir` to remove empty directories. It can only remove empty directories. 
+
+`rm -r directory-name` remove directory
+
+(Use `ls -a` to check whether a directory is empty or not). The rm command also has options for removing non-empty directories with all their subdirectories, read the Info pages for these rather dangerous options.\
+The interactive behavior of the rm, cp and mv commands can be activated using the -i option. In that case the system won't immediately act upon request. Instead it will ask for confirmation, so it takes an additional click on the Enter key to inflict the damage. Customize your shell environment to make this option the default.
+
+`rm file1` delete file1 from the directory
+
+`rm file*` deletes all files in the current directory whose names begin with the letters file.
+
+`rm -r *` wipe out the current directory
+
+When you use pattern matching (shell globbing), it’s a good idea to get in the habit of using the `-i` option to `rm` to make `rm` confirm the deletion of each file. This feature protects you against deleting any “good” files that your pattern inadvertently matches. For example, to delete a file named `foo<Control-D>bar`, you could use:
+
+```bash
+$ ls 
+foo?bar foose kde-root
+
+$ rm -i foo* 
+rm: remove 'foo\004bar'? y rm: remove 'foose'? n
+```
 
 ## find & locate
 

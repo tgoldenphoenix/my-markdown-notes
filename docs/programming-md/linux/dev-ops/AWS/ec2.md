@@ -118,3 +118,5 @@ Both are powerful tools for deploying, managing, and scaling Docker containers, 
 - Kubernetes:
   * is Open Source; the De-facto Industry Standard
   * Same config runs on AWS, Azure, GCP, or on-premises.
+
+The **AWS Systems Manager (SSM)** is a collection of tools and capabilities that provide a unified operational hub for securely viewing, managing, and automating routine operational tasks across your AWS resources and on-premises infrastructure.

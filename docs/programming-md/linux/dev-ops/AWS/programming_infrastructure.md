@@ -67,9 +67,11 @@ The AWS CloudFormation `yaml` file is turned into AWS API calls.
   * It’s **reproducible**. Is your test environment an exact copy of your production environment? Using CloudFormation, you can create two identical infrastructures. It is also possible to apply changes to both the test and production environment.
   * It’s **updatable**. CloudFormation supports updates to your infrastructure. It will figure out the parts of the template that have changed and apply those changes as smoothly as possible to your infrastructure.
 
-- Parameters—Parameters are used to customize a template with values, for example, domain name, customer ID, and database password.
-- A resource is the smallest block you can describe. Example: a network topology, a load balancer, a DNS entry, virtual machines, database, CND, an Elastic IP address, etc
+- `Parameters`—Parameters are used to customize a template with values, for example, domain name, customer ID, and database password.
+- A `resource` is the smallest block you can describe. Example: a network topology, a load balancer, a DNS entry, virtual machines, database, CND, an Elastic IP address, security group, etc
 - Outputs—An output is comparable to a parameter, but the other way around. An output returns details about a resource created by the template, for example, the public name of an EC2 instance.
+
+If you create an infrastructure from a template, CloudFormation calls it a **stack**. You can think of template versus stack much like class versus object. The template exists only once, whereas many stacks can be created from the same template. 
 
 ---
 
@@ -152,7 +154,9 @@ Outputs:
     Description: 'Public name of the EC2 instance'
 ```
 
----
+### Alternatives to CloudFormation
+
+If you don’t want to write plain JSON or YAML to create templates for your infrastructure, a few alternatives to CloudFormation exist.
 
 **Terraform** and AWS CloudFormation are both leading tools for Infrastructure as Code (IaC), allowing you to define cloud resources using code. The choice between them largely depends on whether your organization is strictly committed to AWS or requires a multi-cloud strategy.
 
@@ -162,5 +166,7 @@ Outputs:
 ## Temporary notes
 
 created IMA user: `mycli`
+
+create a stack from cloudformation template named `myvm`
 
 A **bucket** is used to store static assets (images, CSS files, ...).

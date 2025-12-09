@@ -159,7 +159,7 @@ Home directories of users are often kept on a separate filesystem (`/home`), usu
 
 ## File Types
 
-Most filesystem implementations define seven types of files. Even when develop-ers add something new and wonderful to the file tree (such as the process infor-mation under /proc), it must still be made to look like one of these seven types.
+Most filesystem implementations define seven types of files. Even when developers add something new and wonderful to the file tree (such as the process infor-mation under /proc), it must still be made to look like one of these seven types.
 
 1. Regular files
 2. Directories
@@ -169,14 +169,14 @@ Most filesystem implementations define seven types of files. Even when develop-e
 6. Named pipes (FIFOs)
 7. Symbolic links
 
-You  c a n  d e t e r m i n e  t h e  t y p e  of  a n  e x i s t i n g  file with  `ls -ld`. The first character of the ls output encodes the type. For example, the following command demonstrates that `/usr/include` is a directory:
+You can determine the type of an existing file with `ls -ld`. The first character of `ls` output show the type. For example, the following command demonstrates that `/usr/include` is a directory:
 
 ```bash
 $ ls -ld /usr/include 
 drwxr-xr-x   27 root     root         4096  Jul 15 20:57  /usr/include
 ```
 
-ls uses the codes shown in Table below to represent the various types of files.
+`ls` uses the codes shown in Table below to represent the various types of files.
 
 | File Type             | Symbol | Created by        | Removed by   |
 |-----------------------|--------|-------------------|--------------|
@@ -188,23 +188,13 @@ ls uses the codes shown in Table below to represent the various types of files.
 | Named pipe            | p      | mknod             | rm           |
 | Symbolic link         | l      | ln -s             | rm           |
 
-When you use pattern matching (shell globbing), it’s a good idea to get in the habit of using the `-i` option to rm to make rm confirm the deletion of each file. This feature protects you against deleting any “good” files that your pattern inadvertently matches. For example, to delete a file named `foo<Control-D>bar`, you could use:
-
-```bash
-$ ls 
-foo?bar foose kde-root
-
-$ rm -i foo* 
-rm: remove 'foo\004bar'? y rm: remove 'foose'? n
-```
-
 ---
 
 Regular files consist of a series of bytes; filesystems impose no structure on their contents. Text files, data files, executable programs, and shared libraries are all stored as regular files. Both sequential access and random access are allowed.
 
 ---
 
-A directory contains named references to other files. You can create directories with mkdir and delete them with rmdir if they are empty. You can delete non-empty directories with `rm -r`.
+A `directory` contains named references to other files. You can create directories with mkdir and delete them with rmdir if they are empty. You can delete non-empty directories with `rm -r`.
 
 A file’s name is stored within its parent directory, not with the file itself. In fact, more than one directory (or more than one entry in a single directory) can refer to a file at one time, and the references can have different names. Such an arrange-ment creates the illusion that a file exists in more than one place at the same time.
 
@@ -267,29 +257,11 @@ The file permissions that ls shows for a symbolic link, `lrwxrwxrwx`, are dummy 
 
 It is a common mistake to think that the first argument to `ln -s` is interpreted relative to your current working directory. However, it is not resolved as a filename by ln; it’s simply a literal string that becomes the target of the symbolic link.
 
-## Binary, Octal, Decimal, Hexadecimal number system
+## File Modes (Permissions)
 
-Binary numbers only use the digits 0 and 1.
+Under the traditional UNIX and Linux filesystem model, every file has a set of **nine standard permission bits** that control who can read, write, and execute the contents of the file. Together with **three other bits** (Special Permission Bits, `suid`, `sgui`, `sticky bit`) that primarily affect the operation of executable programs, these bits constitute the **file’s mode**.
 
-Octal Number System has a base of eight and uses the numbers from 0 to 7.
-
-The sequence `1 2 4 10 20 40 100 200 400` corresponds to the powers of 2 in decimal (base-10).
-
-- `1` (octal) = 1 (decimal) = $2^0$
-- `2` (octal) = 2 (decimal) = $2^1$
-- `4` (octal) = 4 (decimal) = $2^2$
-- `10` (octal) = $1 \times 8^1 + 0 \times 8^0 = 8$ (decimal) = $2^3$
-- `20` (octal) = $2 \times 8^1 + 0 \times 8^0 = 16$ (decimal) = $2^4$
-- `40` (octal) = $4 \times 8^1 + 0 \times 8^0 = 32$ (decimal) = $2^5$
-- `100` (octal) = $1 \times 8^2 + 0 \times 8^1 + 0 \times 8^0 = 64$ (decimal) = $2^6$
-- `200` (octal) = $2 \times 8^2 + 0 \times 8^1 + 0 \times 8^0 = 128$ (decimal) = $2^7$
-- `400` (octal) = $4 \times 8^2 + 0 \times 8^1 + 0 \times 8^0 = 256$ (decimal) = $2^8$
-
-## File Attributes & File Modes
-
-Under the traditional UNIX and Linux filesystem model, every file has a set of **nine standard permission bits** that control who can read, write, and execute the contents of the file. Together with three other bits (Special Permission Bits, suid, sgui, sticky bit) that primarily affect the operation of executable programs, these bits constitute the file’s **mode**.
-
-The twelve mode bits are stored together with four bits of file-type information. The four file-type bits are set when the file is first created and cannot be changed, but the file’s owner and the superuser can modify the twelve mode bits with the `chmod` (change mode) command. Use `ls -l` (or ls -ld for a directory) to inspect the values of these bits.
+The **twelve mode bits** are stored together with **four bits of file-type information**. The four file-type bits are set when the file is first created and cannot be changed, but the file’s owner and the superuser can modify the twelve mode bits with the `chmod` (change mode) command. Use `ls -l` (or `ls -ld` for a directory) to inspect the values of these bits.
 
 `ls -l` show file mode + file type
 
@@ -307,7 +279,7 @@ On a regular file, the read bit allows the file to be opened and read. The write
 
 The execute bit allows the file to be executed. Two types of executable files exist: binaries, which the CPU runs directly, and scripts, which must be interpreted by a shell or some other program.
 
-For a directory, the execute bit (often called the “search” or “scan” bit in this con-text) allows the directory to be entered or passed through while a pathname is evaluated, but not to have its contents listed. The combination of read and execute bits allows the contents of the directory to be listed. The combination of write and execute bits allows files to be created, deleted, and renamed within the directory.
+For a directory, the execute bit (often called the “search” or “scan” bit in this context) allows the directory to be entered or passed through while a pathname is evaluated, but not to have its contents listed. The combination of read and execute bits allows the contents of the directory to be listed. The combination of write and execute bits allows files to be created, deleted, and renamed within the directory.
 
 A variety of extensions such as access control lists complicate or override the traditional nine-bit permission model. If you’re having trouble explaining the system’s observed behavior, check to see whether one of these factors might be interfering.
 
@@ -351,17 +323,42 @@ On a Linux system, every file is owned by a user and a group user. There is also
 
 You should know what your user name is. If you don't, it can be displayed using the `id` command, which also displays the default group you belong to and eventually other groups of which you are a member. Your user name is also stored in the environment variable $USER, use `echo $USER`
 
+---
+
+What’s a group?
+
+You can think of a group much the same way you might think of a regular user account: the things that both can and cannot do or access are defined by file permissions. The difference is that no one can log in to a Linux system as a group. Then why create groups, and what purpose do they serve? Here’s the scoop.
+
+Groups are a powerful and super-efficient way to organize resources. Here’s a simple example. Consider a company with a few dozen employees who need some kind of server access, but not necessarily to the same resources. You can create a couple of groups called dev and IT, for example. When users are initially given their accounts, all the developers would be added to the dev group, and all the sysadmins would be added to IT group. Now, let’s say that a system configuration file comes into use: rather than tediously adding file permissions for each of the 10 or 15 admins or so, you can give only the IT group access. All the IT group members will automatically be added, and all the developers will remain excluded. 
+
+Every system user along with many applications will automatically be given their own groups. That explains why files you create will normally be owned by `yourname` and be part of the `yourname` group.
+
+### Special permission
+
+Special permissions make up a fourth access level in addition to **user**, **group**, and **other**. Special permissions allow for additional privileges over the standard permission sets (as the name suggests). There is a special permission option for each access level.
+
+user + s (pecial)
+
+A file with **SUID** always executes as the user who owns the file, regardless of the user passing the command. If the file owner doesn't have execute permissions, then use an uppercase **S** here.
+
+group + s (pecial)
+
+Commonly noted as **SGID**, this special permission has a couple of functions:
+
+- If set on a file, it allows the file to be executed as the **group** that owns the file (similar to SUID)
+- If set on a directory, any files created in the directory will have their **group** ownership set to that of the directory owner
+
 ## `ls`: List and Inspect files
 
 As a system administra-tor, you will be concerned mostly with the link count, owner, group, mode, size, last access time, last modification time, and type. You can inspect all of these with `ls -l` (or `ls -ld` for a directory; without the `-d` flag, ls lists the directory’s contents).
 
 `ls -l` (l stands for "long") show file permissions, owner, group, file size, and time stamp.
 
-The `h` argument when added to ls -l displays file sizes in a human-readable format—kilobytes, megabytes, and gigabytes, rather than bytes, which tend to involve a great many hard-to-count digits.  
-`ls -l -h` == `ls -lh` == `ls -hl`  
-`-h` == `--human-readable`
+- The `h` argument when added to ls -l displays file sizes in a human-readable format—kilobytes, megabytes, and gigabytes, rather than bytes, which tend to involve a great many hard-to-count digits.  
+- `ls -l -h` == `ls -lh` == `ls -hl`
+- `-h` == `--human-readable`
 
-```
+```bash
 $ ls -lh /var/log
 total 18M
 -rw-r--r-- 1 root   root    0 May  3 06:25 alternatives.log
@@ -370,6 +367,8 @@ drwxr-xr-x 2 root   root 4.0K May  3 06:25 apt
 ```
 
 Cái dòng đầu tiên `total 18M` là "the total disk space (in MB) consumed by files in this directory". Nếu không có `-h` thì total đơn vị là byte. Nó không phải là "number of files in this directory".
+
+The first `root` is owner name. The second `root` is group name.
 
 ---
 
@@ -416,7 +415,7 @@ The next nine characters in this field are the three sets of permission bits. Th
 
 If the setuid bit had been set, the x representing the owner’s execute permission would have been replaced with an s, and if the setgid bit had been set, the x for the group would also have been replaced with an s. The last character of the permis-sions (execute permission for “other”) is shown as t if the sticky bit of the file is turned on. If either the setuid/setgid bit or the sticky bit is set but the correspond-ing execute bit is not, these bits appear as S or T.
 
-The next field in the listing is the file’s link count. In this case it is 3, indicating that /bin/gzip is just one of three names for this file (the others are /bin/gunzip and /bin/zcat). Each time a hard link is made to a file, the file’s link count is incre-mented by 1. Symbolic links do not affect the link count.
+The next field in the listing is the file’s **link count**. In this case it is 3, indicating that /bin/gzip is just one of three names for this file (the others are /bin/gunzip and /bin/zcat). Each time a hard link is made to a file, the file’s link count is incre-mented by 1. Symbolic links do not affect the link count.
 
 All directories have at least two hard links: the link from the parent directory and the link from the special file “.” inside the directory itself.
 
@@ -439,9 +438,76 @@ One ls option that’s useful for scoping out hard links is -i, which makes ls s
 
 Some other ls options that are important to know are `-a` to show all entries in a directory (even files whose names start with a dot), -t to sort files by modification time (or -tr to sort in reverse chronological order), -F to show the names of files in a way that distinguishes directories and executable files, -R to list recursively, and -h to show file sizes in human-readable form (e.g., 8K or 53M).
 
-## stat
+## `chmod`: Change Mode
 
-Every object within a Linux file system is represented by a unique collection of metadata called an inode. I suppose you could say that the file system index discussed earlier is built from the metadata associated with all the many inodes on a drive.
+Only the owner of the file and the `superuser` can change its permissions.
+
+- There are two main ways of assigning permissions:
+  * Symbolic method (mask, mnemonic)
+  * Numeric method (octal)
+
+The octal syntax is generally more convenient for administrators, but it can only be used to specify an absolute value for the permission bits. The mnemonic syntax can modify some bits while leaving others alone.
+
+The first argument to `chmod` is a specification of the permissions to be assigned, and the second and subsequent arguments are names of files on which permissions should be changed.  
+In the octal case, the first octal digit of the specification is for the owner, the second is for the group, and the third is for everyone else.
+
+---
+
+- TheSymbolic (mnemonic) method:
+  * `u g o a` (user, group, other, all)
+  * `+ - =` (add, remove, set exact)
+  * `r w x` (read, write, execute)
+
+The hard part about using the mnemonic syntax is remembering whether o stands for “owner” or “other”; “other” is correct. Just remember u and g by anal-ogy to UID and GID; only one possibility is left.
+
+Example:
+
+- `chmod ug+rw test.txt` add the read and write permissions to a file named `test.txt` for user and group
+
+This example removes the ability of others (o) to read the file and adds write permissions for the group (g). 
+
+```bash
+sudo chmod o-r /bin/zcat
+sudo chmod g+w /bin/zcat
+```
+
+---
+
+The numeric (octal) syntax
+
+This is the best way to learn and practice permissions.
+
+Each possible combination of permissions can be represented by a number between 0 and 7 (octal digit).
+
+For a directory (file thì tương tự):
+
+- Start at 0
+- `4` = read `r` permission; lets you view or read the directory. Because $2^2=4$.
+- `2` = write `w` permission; means able to create file into that dir such as `touch`. Because $2^1=2$
+- `1` = execute-`x` means being able to `cd` into that directory.
+
+A user with all three permissions is described by the number 7 ($4+2+1=7$). Read and write permissions, but not execute, is `6`; read and execute but not write is 5, and no permissions at all is `0`. 
+
+Example:
+
+- `-rw-r-x---` == $(4+2)(4+1)(0)$ == `chmod 650 test.txt`
+- `chmod 711 myprog` == `rwx--x--x` gives all permissions to the owner and execute-only permission to everyone else.
+
+## Change File Ownership
+
+In addition to modifying permissions on files, you can also modify the group and user ownership of the file as well.
+
+set the owner of myfile to patty: `sudo chown patty myfile`
+
+set the group of myfile to whales: `sudo chgrp whales myfile`
+
+If you add a colon and groupname after the user you can set both the user and group at the same time: `sudo chown patty:whales myfile`
+
+If you use `sudo` to create or copy a file, the owner of the new file will be `sudo` (or `root`), not you.
+
+## `stat`
+
+Every object within a Linux file system is represented by a unique collection of metadata called an `inode`. I suppose you could say that the file system index discussed earlier is built from the metadata associated with all the many inodes on a drive.
 
 To display inode information of a file, use `stat`:
 
@@ -462,118 +528,81 @@ It’s important to be aware that when you move, copy, or delete a file or direc
 
 An inode, by the way, is an object used by UNIX systems to identify the disk location and attributes of files within a file system. Usually there’ll be exactly one inode for each file or directory.
 
-## `chmod`: Change Permissions
-
-Only the owner of the file and the superuser can change its permissions.
-
-There are two main ways of assigning permissions: Symbolic method and Numeric method.
-
-The octal syntax is generally more convenient for administrators, but it can only be used to specify an absolute value for the permission bits. The mnemonic syntax can modify some bits while leaving others alone.
-
-The first argument to chmod is a specification of the permissions to be assigned, and the second and subsequent arguments are names of files on which permis-sions should be changed. In the octal case, the first octal digit of the specification is for the owner, the second is for the group, and the third is for everyone else.
-
-Symbolic (mnemonic) method
-
-- u,g,o,a (user, group, other, all)
-- +, -, = (add, remove, set exact)
-- r, w, x (read, write, execute)
-
-The hard part about using the mnemonic syntax is remembering whether o stands for “owner” or “other”; “other” is correct. Just remember u and g by anal-ogy to UID and GID; only one possibility is left.
-
-Example:
-
-- `chmod ug+rw test.txt` add the read and write permissions to a file named test.txt for user and group
-
----
-
-Octal syntax
-
-This is the best way to learn and practice permissions.
-
-For a directory (file thì tương tự):
-
-- Start at 0
-- 4: read-`r` permission lets you view or read the directory.
-- 2: write-`w` permission means able to create file into that dir such as `touch`.
-- 1: execute-`x` means being able to `cd` into that directory.
-
-Example:
-
-- `-rw-r-x---` == (4+2)(4+1)(0)== `chmod 650 test.txt`
-- `chmod 711 myprog` gives all permissions to the owner and execute-only permission to everyone else.
-
-#### Ownership Permissions
-
-In addition to modifying permissions on files, you can also modify the group and user ownership of the file as well.
-
-set the owner of myfile to patty: `sudo chown patty myfile`
-
-set the group of myfile to whales: `sudo chgrp whales myfile`
-
-If you add a colon and groupname after the user you can set both the user and group at the same time: `sudo chown patty:whales myfile`
-
-**References:**
-
-[Changing Permissions Numerically](https://www.youtube.com/watch?v=0SGGCklKa1U&list=PLT98CRl2KxKHaKA9-4_I38sLzK134p4GJ&index=22)
-
-[redhat guide](https://www.redhat.com/sysadmin/suid-sgid-sticky-bit)
-
-[Table 3-9. (Numeric) File protection with chmod](https://tldp.org/LDP/intro-linux/html/sect_03_04.html#AEN3908)
-
-### Special permission
-
-Special permissions make up a fourth access level in addition to **user**, **group**, and **other**. Special permissions allow for additional privileges over the standard permission sets (as the name suggests). There is a special permission option for each access level.
-
-user + s (pecial)
-
-A file with **SUID** always executes as the user who owns the file, regardless of the user passing the command. If the file owner doesn't have execute permissions, then use an uppercase **S** here.
-
-group + s (pecial)
-
-Commonly noted as **SGID**, this special permission has a couple of functions:
-
-- If set on a file, it allows the file to be executed as the **group** that owns the file (similar to SUID)
-- If set on a directory, any files created in the directory will have their **group** ownership set to that of the directory owner
-
 ## Partitioning
 
 Linux uses more than one partition on the same disk, even when using the standard installation procedure.
 
-One of the goals of having different partitions is to achieve higher data security in case of disaster. By dividing the hard disk in partitions, data can be grouped and separated. When an accident occurs, only the data in the partition that got the hit will be damaged, while the data on the other partitions will most likely survive. This principle dates from the days when Linux didn't have **journaled file systems** and power failures might have lead to disaster. This is currently the most important reason for partitioning.\
- A simple example: a user creates a script, a program or a web application that starts filling up the disk. If the disk contains only one big partition, the entire system will stop functioning if the disk is full. If the user stores the data on a separate partition, then only that (data) partition will be affected, while the system partitions and possible other data partitions keep functioning.
+One of the goals of having different partitions is to achieve higher data security in case of disaster.
 
-There are two kinds of major partitions on a Linux system:
+By dividing the hard disk in partitions, data can be grouped and separated. When an accident occurs, only the data in the partition that got the hit will be damaged, while the data on the other partitions will most likely survive. This principle dates from the days when Linux didn't have **journaled file systems** and power failures might have lead to disaster. This is currently the most important reason for partitioning.  
+A simple example: a user creates a script, a program or a web application that starts filling up the disk. If the disk contains only one big partition, the entire system will stop functioning if the disk is full. If the user stores the data on a separate partition, then only that (data) partition will be affected, while the system partitions and possible other data partitions keep functioning.
 
-- data partition: normal Linux system data, including the root partition containing all the data to start up and run the system; and
-- swap partition: expansion of the computer's physical memory, extra memory on hard disk.
+- There are two kinds of major partitions on a Linux system:
+  * `data partition`: normal Linux system data, including the root partition containing all the data to start up and run the system; and
+  * `swap partition`: expansion of the computer's physical memory, extra memory on hard disk.
 
-  Most systems contain a root partition, one or more data partitions and one or more swap partitions. Systems in mixed environments may contain partitions for other system data, such as a partition with a FAT or VFAT file system for MS Windows data.
+Most systems contain a `root partition`, one or more data partitions and one or more swap partitions. Systems in mixed environments may contain partitions for other system data, such as a partition with a `FAT` or `VFAT` file system for MS Windows data.
 
-The standard root partition (indicated with a single forward slash, /) is about 100-500 MB, and contains the system configuration files, most basic commands and server programs, system libraries, some temporary space and the home directory of the administrative user. A standard installation requires about 250 MB for the root partition.
+The standard **root partition** (indicated with a single forward slash, `/`) is about 100-500 MB, and contains the system configuration files, most basic commands and server programs, system libraries, some temporary space and the home directory of the administrative user. A standard installation requires about 250 MB for the root partition.
 
-Swap space (indicated with _swap_) is only accessible for the system itself, and is hidden from view during normal operation. Swap is the system that ensures, like on normal UNIX systems, that you can keep on working, whatever happens. On Linux, you will virtually never see irritating messages like _Out of memory, please close some applications first and try again_, because of this extra memory. The swap or virtual memory procedure has long been adopted by operating systems outside the UNIX world by now.
+Swap space (indicated with `swap`) is only accessible for the system itself, and is hidden from view during normal operation. Swap is the system that ensures, like on normal UNIX systems, that you can keep on working, whatever happens. On Linux, you will virtually never see irritating messages like `Out of memory, please close some applications first and try again`, because of this extra memory. The swap or virtual memory procedure has long been adopted by operating systems outside the UNIX world by now.
 
-Linux generally counts on having twice the amount of physical memory in the form of swap space on the hard disk. When installing a system, you have to know how you are going to do this. An example on a system with 512 MB of RAM:
+Linux generally counts on having twice the amount of physical memory in the form of swap space on the hard disk. When installing a system, you have to know how you are going to do this. An example on a system with `512 MB` of RAM:
 
 1. 1st possibility: one swap partition of 1 GB
 2. 2nd possibility: two swap partitions of 512 MB
 3. 3rd possibility: with two hard disks: 1 partition of 512 MB on each disk.
 
-The kernel is on a separate partition as well in many distributions, because it is the most important file of your system. If this is the case, you will find that you also have a `/boot` partition, holding your kernel(s) and accompanying data files.
+The kernel is on a separate partition in many distributions, because it is the most important file of your system. If this is the case, you will find that you also have a `/boot` partition, holding your kernel(s) and accompanying data files.  
+You’ll sometimes see the `/boot/` directory given its own partition (the **kernel partition**). I personally think this is a **bad idea**, and I’ve got scars to prove it. The problem is that new kernel images are written to /boot/ and, as your system is upgraded to new Linux kernel releases, the disk space required to store all those images increases. If, as is a standard practice, you assign only 500 MB to the boot partition, you’ll have six months or so before it fills up—at which point updates will fail. You may be unable to fully boot into Linux before manually removing some of the older files and then updating the GRUB menu. If that doesn’t sound like a lot of fun, then keep your /boot/ directory in the largest partition.
 
 The rest of the hard disk(s) is generally divided in data partitions, although it may be that all of the non-system critical data resides on one partition, for example when you perform a standard workstation installation. When non-critical data is separated on different partitions, it usually happens following a set pattern:
 
-- a partition for user programs (_/usr_)
-- a partition containing the users' personal data (_/home_)
+- a partition for user programs (`/usr`)
+- a partition containing the users' personal data (`/home`)
 - a partition to store temporary data like print- and mail-queues (_/var_)
-- a partition for third party and extra software (_/opt_)
+- a partition for third party and extra software (`/opt`)
 
-Everything is put together on one large partition, swap space twice the amount of RAM is added and your **generic workstation** is complete, providing the largest amount of disk space possible for personal use, but with the disadvantage of possible data integrity loss during problem situations.\
+Everything is put together on one large partition, swap space twice the amount of RAM is added and your **generic workstation** is complete, providing the largest amount of disk space possible for personal use, but with the disadvantage of possible data integrity loss during problem situations.  
 On a server, system data tends to be separate from user data. Programs that offer services are kept in a different place than the data handled by this service.
 
-### fdisk
+- In `sda1`, `sda2`, `sdb`:
+  * `sd` = storage device
+  * `a b c`: Device Identifier
+  * `1 2 3`: Partition Number
+- `/dev/sda`: Represents the first storage device detected by the operating system. Nó sẽ có `sda1` & `sda2`.
+- `/dev/sdb`: Represents the second storage device detected.
+
+The `/dev/` directory must be virtual because its contents are not persistent and do not represent data stored on a disk. Instead, the files are dynamic interfaces to the kernel's device drivers.
+
+---
+
+the `/boot/efi` directory almost always has its own separate partition, known as the `EFI System Partition (ESP)`.  
+The reason the ESP must be separate from your main Linux root partition (/) or even your kernel partition (/boot) is that the UEFI firmware needs to access and execute files on this partition directly, before the main operating system kernel is loaded.
+
+### `fdisk`
 
 Most Linux systems use `fdisk` at installation time to set the partition type. The standard Linux partitions have number 82 for swap and 83 for data, which can be journaled (ext3) or normal (ext2, on older systems). The **fdisk** utility has built-in help, should you forget these values.
+
+---
+
+`df` displays each partition that’s currently mounted on a Linux system, along with its disk usage and location on the file system. Adding the `-h` flag converts partition sizes to human readable formats like GB or MB, rather than bytes
+
+```bash
+$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2       910G  178G  686G  21% /
+none            492K     0  492K   0% /dev
+tmpfs           3.6G     0  3.6G   0% /dev/shm
+tmpfs           3.6G  8.4M  3.6G   1% /run
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs           3.6G     0  3.6G   0% /sys/fs/cgroup
+```
+
+- real file system: Data is written to and read from physical sectors on the storage media.
+- Pseudo file system: file systems whose files aren’t actually saved to disk but live in volatile memory and disappear when the machine shuts down
+
+It’s pretty simple to tell which partitions are used for pseudo files: if the file designation is `tmpfs` and the number of bytes reported in the Used column is 0, then the odds are you’re looking at a temporary rather than a normal file system.
 
 ## Linking files
 
@@ -617,6 +646,102 @@ Don’t confuse archiving with compression. **Compression** is a software tool t
 As you’ll see soon, applying compression to a tar archive is simple and doing so is a particularly good idea if you’re planning to transfer large archives over a network. Compression can reduce transmission times significantly.
 
 ---
+
+`.iso` files were images of complete operating systems, specially organized to make it easy to copy the included files to a target computer.
+
+## Archiving files and file systems using `tar`
+
+- To successfully create your archive, there are three things that will have to happen:
+  * Find and identify the files you want to include.
+  * Identify the location on a storage drive that you want your archive to use.
+  * Add your files to an archive, and save it to its storage location.
+
+Want to knock off all three steps in one go? Use `tar`.
+
+This example copies all the files and directories within and below the current work directory and builds an archive file that I’ve cleverly named `archivename.tar`. Here I use three arguments after the `tar` command: the `c` tells tar to create a new archive, `v` sets the screen output to verbose so I’ll get updates, and `f` points to the filename I’d like the archive to get:
+
+```bash
+$ tar cvf archivename.tar *
+file1 # The verbose argument (v) lists the names of all the files added to the archive.
+file2
+file3
+```
+
+The `tar` command will never move or delete any of the original directories and files you feed it; it only makes archived copies. You should also note that using a dot (.) instead of an asterisk (*) in the previous command will include even hidden files (whose filenames begin with a dot) in the archive.
+
+The `.tar` filename extension isn’t necessary, but it’s always a good idea to clearly communicate the purpose of a file in as many ways as possible.
+
+---
+
+You won’t always want to include all the files within a directory tree in your archive. Suppose you’ve produced some videos, but the originals are currently kept in directories along with all kinds of graphic, audio, and text files (containing your notes). The only files you need to back up are the final video clips using the .mp4 filename extension. Here’s how to do that: 
+
+`$ tar cvf archivename.tar *.mp4`
+
+That’s excellent. But those video files are enormous. Wouldn’t it be nice to make that archive a bit smaller using compression? Say no more! Just run the previous command with the `z` (zip) argument. That will tell the `gzip` program to compress the archive. If you want to follow convention, you can also add a `.gz` extension in addition to the `.tar` that’s already there. Remember: clarity. Here’s how that would play out: 
+
+`$ tar czvf archivename.tar.gz *.mp4`
+
+You may notice that the `.tar.gz` file isn’t all that much smaller than the .tar file, perhaps 10% or so. What’s with that? Well, the `.mp4` file format is itself compressed, so there’s a lot less room for gzip to do its stuff. 
+
+---
+
+As tar is fully aware of its Linux environment, you can use it to select files and directories that live outside your current working directory. This example adds all the .mp4 files in the `/home/myuser/Videos/` directory: 
+
+`$ tar czvf archivename.tar.gz /home/myuser/Videos/*.mp4`
+
+---
+
+Because archive files can get big, it might sometimes make sense to break them down into multiple smaller files, transfer them to their new home, and then re-create the original file at the other end. The split tool is made for this purpose.
+
+In this example, `-b` tells Linux to split the `archivename.tar.gz` file into 1 GB-sized parts; archivename is any name you’d like to give the file. The operation then names each of the parts—`archivename.tar.gz.partaa`, `archivename.tar.gz.partab`, `archivename .tar.gz.partac`, and so on: 
+
+`$ split -b 1G archivename.tar.gz "archivename.tar.gz.part"`
+
+On the other side, you re-create the archive by reading each of the parts in sequence (`cat archivename.tar.gz.part*`), then redirect the output to a new file called `archivename.tar.gz`: 
+
+`$ cat archivename.tar.gz.part* > archivename.tar.gz`
+
+### Streaming file system archives
+
+```bash
+# tar czvf - --one-file-system / /usr /var \
+  --exclude=/home/andy/ | ssh username@10.0.3.141 \
+  "cat > /home/username/workstation-backup-Apr-10.tar.gz"
+```
+
+```bash
+$ tar czvf - importantstuff/ | ssh username@10.0.3.141 \
+  "cat > /home/username/myfiles.tar.gz"
+```
+
+Let me explain that example. Rather than entering the archive name right after the command arguments (the way you’ve done until now), I used a dash (`czvf -`). The dash **outputs data to standard output**. It lets you push the archive filename details back to the end of the command and tells tar to expect the source content for the archive instead. I then piped (|) the unnamed, compressed archive to an ssh login on a remote server where I was asked for my password. The command enclosed in quotation marks then executed cat against the archive data stream, which wrote the stream contents to a file called `myfiles.tar.gz` in my home directory on the remote host. 
+
+One advantage of generating archives this way is that you avoid the overhead of a middle step. There’s no need to even temporarily save a copy of the archive on the local machine. Imagine backing up an installation that fills 110 GB of its 128 GB of available space. Where would the archive go?
+
+### Aggregating files with `find`
+
+The `find` command searches through a file system looking for objects that match rules you provide. The search outputs the names and locations of the files it discovers to what’s called standard output (`stdout`), which normally prints to the screen. But that output can just as easily be redirected to another command like tar, which would then copy those files to an archive. 
+
+Here’s the story. Your server is hosting a website that provides lots of .mp4 video files. The files are spread across many directories within the `/var/www/html/` tree, so identifying them individually would be a pain. Here’s a single command that will search the /var/www/html/ hierarchy for files with names that include the file extension .mp4. When a file is found, `tar` will be executed with the argument `-r` to append (as opposed to overwrite) the video file to a file called videos.tar:
+
+```bash
+sudo find /var/www/html/ -iname <1> "*.mp4" -exec tar \
+ -rvf videos.tar {} \;
+```
+
+The `-iname` flag returns both upper- and lowercase results; -name, on the other hand, searches for case-sensitive matches.
+
+The `{}` characters tell the find command to apply the tar command to each file it finds.
+
+In this case, it’s a good idea to run find as sudo. Because you’re looking for files in system directories, it’s possible that some of them have restrictive permissions that could prevent find from reading and, thus, reporting them. 
+
+---
+
+And, because we’re talking about find, I should also tell you about a similar tool called `locate` that will often be your first choice when you’re in a big hurry. By default, locate searches the entire system for files matching the string that you specify. In this case, locate will look for files whose names end with the string video.mp4 (even if they have any kind of prefix): 
+
+`$ locate *video.mp4`
+
+If you run locate head-to-head against find, locate will almost always return results far faster. What’s the secret? locate isn’t actually searching the file system itself, but simply running your search string against entries in a preexisting index. The catch is that if the index is allowed to fall out of date, the searches become less and less accurate. Normally the index is updated every time the system boots, but you can also manually do the job by running `updatedb`: `sudo updatedb`.
 
 ## The Most common devices
 

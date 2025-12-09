@@ -225,3 +225,21 @@ The Truth Table for `AND`
 ## Binary Arithmetic
 
 k
+
+## Binary, Octal, Decimal, Hexadecimal number system
+
+Binary numbers only use the digits 0 and 1.
+
+Octal Number System has a base of eight and uses the numbers from 0 to 7.
+
+The sequence `1 2 4 10 20 40 100 200 400` corresponds to the powers of 2 in decimal (base-10).
+
+- `1` (octal) = 1 (decimal) = $2^0$
+- `2` (octal) = 2 (decimal) = $2^1$
+- `4` (octal) = 4 (decimal) = $2^2$
+- `10` (octal) = $1 \times 8^1 + 0 \times 8^0 = 8$ (decimal) = $2^3$
+- `20` (octal) = $2 \times 8^1 + 0 \times 8^0 = 16$ (decimal) = $2^4$
+- `40` (octal) = $4 \times 8^1 + 0 \times 8^0 = 32$ (decimal) = $2^5$
+- `100` (octal) = $1 \times 8^2 + 0 \times 8^1 + 0 \times 8^0 = 64$ (decimal) = $2^6$
+- `200` (octal) = $2 \times 8^2 + 0 \times 8^1 + 0 \times 8^0 = 128$ (decimal) = $2^7$
+- `400` (octal) = $4 \times 8^2 + 0 \times 8^1 + 0 \times 8^0 = 256$ (decimal) = $2^8$
