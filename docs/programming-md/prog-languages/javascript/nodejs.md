@@ -1,4 +1,4 @@
-# Nodejs notes
+# Nodejs Notes
 
 ## Overview
 
@@ -125,6 +125,30 @@ Function Execution Context (FEC):
 - Each FEC has its own scope, containing variables and functions defined within that particular function.
 - When a function completes its execution, its FEC is typically removed from the call stack.
 
+## VS Code debugging
+
+There are a few ways you can debug your Node.js programs in VS Code:
+
+- Use auto attach to debug processes you run in VS Code's **integrated terminal**.
+- Use the JavaScript debug terminal, similar to using the integrated terminal.
+- Use a launch config to start your program, or attach to a process launched outside of VS Code.
+
+---
+
+If the Auto Attach feature is enabled, the Node debugger automatically attaches to certain Node.js processes that have been launched from VS Code's Integrated Terminal.
+
+---
+
+In a similar way to auto attach, the JavaScript Debug Terminal will automatically debug any Node.js process you run in it. You can create a Debug Terminal by running the Debug: Create JavaScript Debug Terminal command from the Command Palette (kbs(workbench.action.showCommands)), or by selecting the Create JavaScript Debug Terminal from the terminal switcher dropdown.
+
+`npm test --watch`
+
+---
+
+Launch configs are the traditional way to set up debugging in VS Code, and provide you the most configuration options for running complex applications.
+
+Debugging configurations are stored in a `launch.json` file located in your workspace's `.vscode` folder.
+
 ## FAQs
 
 CommonJS vs ESM
@@ -137,7 +161,7 @@ Show version `node -v`
 
 Distinguish `npm init` vs `npm install`
 
-## install node  on window
+## Installing node on window
 
 cài [nvm for window](https://github.com/coreybutler/nvm-windows?tab=readme-ov-file#usage)
 

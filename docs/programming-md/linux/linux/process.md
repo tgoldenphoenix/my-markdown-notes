@@ -4,11 +4,69 @@ A **process** is the abstraction used by UNIX and Linux to represent a running p
 
 System and user processes all follow the same rules, so you can use a single set of tools to control them both.
 
+Next to files, processes are the most important things on a UNIX/Linux system.
+
+Not every command starts a single process. Some commands initiate a series of processes, such as `mozilla`; others, like `ls`, are executed as a single command.
+
 ## Terminologies
 
 A **core dump** (or more formally, a memory dump) in Linux is a file containing a snapshot of the memory (RAM) used by a process at the moment it crashed. It also includes other information like the processor register values and process status.
 
 Software, as I’m sure you already know, is programming code containing instructions to control computer hardware on behalf of human users. A **process** is an instance of a running software program. An **operating system** is a tool for organizing and managing those instances/processes to effectively use a computer’s hardware resources. 
+
+## Kernel Space vs. User Space
+
+- `Kernel Space`: This is where the core operating system (the Linux kernel) runs. Processes in kernel space have privileged access to hardware and manage system resources. They are part of the OS itself.
+- `User Space`: This is where regular applications and system services run. Processes in user space have restricted access and must ask the kernel (via `system calls`) to perform privileged operations or interact with hardware.
+
+`init` is always `PID 1`
+
+While the kernel _starts_ the `init` process as the very last step of its boot sequence, `init` itself is actually a program (`/sbin/init` or `/lib/systemd/systemd`) that executes in user space.  
+`init` (or its modern equivalent `systemd`) is actually considered a `user process` in Linux because it runs in **user space**, not kernel space.  
+Therefore, like any other user process, `init` interacts with the kernel using `system calls` to perform its tasks (e.g., mounting filesystems, starting other services/processes using `fork()` and `exec()`).
+
+The kernel schedules `init` just like any other process (though it often has high priority).
+
+## Process types
+
+**Interactive processes**
+
+`Interactive processes` are initialized and controlled through a terminal session. In other words, there has to be someone connected to the system to start these processes; they are not started automatically as part of the system functions.
+
+The shell offers a feature called **job control** which allows easy handling of multiple processes. This mechanism switches processes between the foreground and the background. Using this system, programs can also be started in the background immediately.
+
+### Automatic processes
+
+`Automatic or batch processes` are not connected to a terminal. Rather, these are tasks that can be queued into a spooler area, where they wait to be executed on a FIFO (first-in, first-out) basis.
+
+### daemons (server processes)
+
+`Daemons` are server processes that run continuously. Most of the time, they are initialized at system startup and then wait in the background until their service is required. A typical example is the networking daemon, `xinetd`, which is started in almost every boot procedure. After the system is booted, the network daemon just sits and waits until a client program, such as an `FTP` client, needs to connect.
+
+## Process Attributes
+
+A process has a series of characteristics, which can be viewed with the `ps` command.
+
+Note that **ps** only gives a momentary state of the active processes, it is a one-time recording. The `top` program displays a more precise view by updating the results given by **ps** (with a bunch of options) once every five seconds, generating a new list of the processes causing the heaviest load periodically, meanwhile integrating more information about the swap space in use and the state of the CPU, from the `proc` file system
+
+The first line of `top` contains the same information displayed by the `uptime` command
+
+## Commands
+
+`[COMMAND] &` Run this command in the background (release the terminal). In order to free the issuing terminal after entering the command, a trailing ampersand is added.
+
+`jobs` Show commands running in the background.
+
+`Ctrl Z` Suspend (stop, but not quit) a process running in the foreground (suspend).\
+`Ctrl C` Interrupt (terminate and quit) a process running in the foreground.
+
+`bg` Reactivate a suspended program in the background.
+
+`fg` Puts the job back in the foreground. Every process running in the background gets a number assigned to it. By using the `%` expression a job can be referred to using its number, for instance `fg %2`.
+
+`ps` which processes are active and what numbers these processes have
+
+`kill` get rid of processes. Foreground processes can often be killed by typing `Control-C`
 
 ## Component of a Process
 

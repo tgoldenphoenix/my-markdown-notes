@@ -7,6 +7,12 @@ You can think of an option as a way of executing the command. The argument is wh
 
 `which -a ls` show that the `ls` command is in the `/bin` directory (show full path)
 
+`whereis aws`
+
+- `which`:
+  * f
+- `whereis`
+
 `.` and `..` acts as hard links.
 `./a.out` => run files
 

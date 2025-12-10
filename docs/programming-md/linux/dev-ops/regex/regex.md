@@ -1,4 +1,4 @@
-# Regular Expressions
+# Regular Expressions Notes
 
 TODO
 
@@ -480,22 +480,20 @@ For example, we want to select numbers in the text other than the price value. T
 
 ## Anchors
 
-Anchors do not match any characters. They match a position.
+Anchors do not match any characters. They match a position before, after, or between characters. They can be used to “anchor” the regex match at a certain position.
 
 In an earlier challenge, you used the caret character `^` inside a character set `[]` to create a negated character set in the form `[^thingsThatWillNotBeMatched]`. But **outside** of a character set, the caret is used to search for patterns at the **beginning of strings**.
 
-- Most regex engines have a “multi-line” mode `m` that makes:
-  * `^` match after any line break, and
-  * `$` before any line break (Trong `vim`, the motion `$` also jump to the end of current line).
-- Then `^bob$` matches `bob` if it appears on a line of its own.
-
-
+- The caret `^` matches the position before the first character in the string. Applying `^a` to `abc` matches a. ^b does not match abc at all, because the b cannot be matched right after the start of the string, matched by ^
+- `$` matches right after the last character in the string. c$ matches c in abc, while a$ does not match at all. (Trong `vim`, the motion `$` also jump to the end of current line).
 
 If the multiline flag (`m`) is enabled, `^` will match the beginning of each line instead of the whole string. Dùng khi có 1 big string là 1 paragraph contains multiple lines. Nếu không có (m) flag thì `^` chỉ match the beginning of the first line.
 
+A regex that consists solely of an anchor can only find zero-length matches. 
+
 ---
 
-You can search the end of strings using the dollar sign character `$` at the end of the regex.
+If you have a string consisting of multiple lines, like `first line\nsecond line` (where \n indicates a line break), it is often desirable to work with lines, rather than the entire string. Therefore, most regex engines discussed in this tutorial have the option (`m` flag) to expand the meaning of both anchors. `^` can then match at the start of the string (before the `f` in the above string), as well as after each line break (between `\n` and `s`). Likewise, `$` still matches at the end of the string (after the last `e`), and also before every line break (between `e` and `\n`).
 
 If the multiline flag (m) is enabled, `$` will match the end of a line instead of the whole string.
 
@@ -511,9 +509,11 @@ In `^\d{5}$`, The `^` and $ match the beginning and end of the search text but d
 
 ---
 
-The anchor `\b` matches at a word boundary. A word boundary is a position between a character that can be matched by \w and a character that cannot be matched by \w. \b also matches at the start and/or end of the string if the first and/or last characters in the string are word characters. \B matches at every position where \b cannot match.
+Permanent Start of String and End of String Anchors
 
-If you have a string consisting of multiple lines, like first line\nsecond line (where \n indicates a line break), it is often desirable to work with lines, rather than the entire string.
+`\A` only ever matches at the start of the string. Likewise, \Z only ever matches at the end of the string. These two tokens never match at line breaks. This is true in all regex flavors discussed in this tutorial, even when you turn on “multiline mode”. 
+
+JavaScript, `std::regex`, POSIX, and XPath do not support \A and \Z. You’re stuck with using the caret and dollar for this purpose.
 
 ### Word Boundaries
 
@@ -539,93 +539,11 @@ The hyphen and the apostrophe  (`'`) are not treated as word characters. So `\b`
 
 `\B` is the negated version of `\b`. `\B` matches at every position where `\b` does not. Effectively, `\B` matches at any position between two word characters as well as at any position between two non-word characters.
 
+The anchor `\b` matches at a word boundary. A word boundary is a position between a character that can be matched by \w and a character that cannot be matched by \w. \b also matches at the start and/or end of the string if the first and/or last characters in the string are word characters. \B matches at every position where \b cannot match.
+
 ---
 
 The section [Looking Inside The Regex Engine](https://www.regular-expressions.info/wordboundaries.html) for word boundary is helpful to read!
-
-## Linux Globbing
-
-`grep` uses regular expressions (regex).  
-The filename matching and expansion performed by the shell when it interprets command lines such as `wc -l *.pl` is not a form of regex matching. It’s a different system called **shell globbing,** and it uses a different and simpler syntax.
-
-Glob mean "global commands". [/etc/glob](https://en.wikipedia.org/wiki/Glob_(programming)) is a program in UNIX V6 that would expand wildcard patterns. Soon afterward, this became a shell built-in.
-
-Globbing is mainly used to match filenames or searching for content in a file. Globbing uses wildcard characters to create the pattern.
-
-Globbing is used in config files such as a `.gitignore` where you might see `.cache/*`, for example.
-
-Globbing is the expansion of simple pattern-matching characters such as * and ? to form filenames or lists of file-names)
-
-Globbing is an operation that is performed by the shell itself and it happens **independently** of the actual command we're running. The shell will **first** attemp to expand the wildcard pattern to match any files that are present before passing their expanded names to the program we want to run.  
-`man 7 glob` to read more.
-
-You should be aware that the value of the arguments that get passed to a given program will actually depend on the content of your file system. Your program may be passed a different number of arguments depending on how many files match the wildcard.
-
-We should note that while globbing might look similar to regular expressions, they’re fundamentally different. While the patterns seem similar, globbing doesn’t use regular expressions.
-
-- We use shell-style globbing characters for pattern matching:
-  * A star (`*`) matches zero or more characters.
-  * A question mark (`?`) matches any single character. You can use `?` for multiple times for matching multiple characters.
-  * A tilde or “twiddle” (`~`) means the home directory of the current user
-  * `~user` means the home directory of user.
-
-For example, we might refer to the startup script directories `/etc/rc0.d`, `/etc/rc1.d`, and so on with the shorthand pattern `/etc/rc*.d`.
-
-- `[]` range of characters. For example `[0-9]` or `[abc]`. Ranges can apply to letters as well as digits:
-- `[a-z]` = all lowercase characters of the alphabet
-- `[A-Z]` = all uppercase characters of the alphabet
-- `[a-zA-Z]` = all characters of the alphabet, irrespective of their case
-- `[j-p]` = lowercase characters j, k, l, m, n, o or p
-- `[a-z3-6]` = lowercase characters or the numbers 3, 4, 5 or 6
-
-`[]` is used to match the character from the range. Some of the mostly used range declarations are mentioned below.
-
-- All uppercase alphabets are defined by the range as, `[:upper:] or [A-Z]` .
-- All lowercase alphabets are defined by the range as, \[:lower:] or \[a-z].
-- All numeric digits are defined by the range as, \[:digit:] or \[0-9].
-- All uppercase and lower alphabets are defined by the range as, \[:alpha:] or \[a-zA-z].
-- All uppercase alphabets, lowercase alphabet and digits are defined by the range as, \[:alnum:] or \[a-zA-Z0-9]
-
-By default, **hidden files and folders** don’t show up in the output of ls. To apply globbing to our hidden files and folders, we have to explicitly add a leading `.` (dot).  
-`ls *` vs `ls .*`
-
-Examples:
-
-- `ls *.txt`
-- `ls test-?.txt` => list all text files named ‘test-‘ followed by a single digit
-- `ls ????.txt` => all text files with a name of exactly four characters
-- `ls *[0-9]*` => all files with a number in their name
-
-move all the contents of the current directory to some other location:
-
-`$ mv * /some/other/directory/`
-
-To move only files with names partially matching a particular sequence, try this:
-
-`$ mv file* /some/other/directory/`
-
-This command moves all files whose names begin with the letters file, but leaves everything else untouched. If you had files named file1, file2...file15 and wanted to move only those between file1 and file9, you’d use the question mark (`?`) instead of the asterisk: 
-
-`$ mv file? /some/other/directory/`
-
-The question mark applies an operation to only those files whose names contain the letters file and one other character. It would leave file10 through file15 in the current directory.
-
-### Single vs. Double Quotes
-
-The shell treats strings enclosed in single and double quotes similarly, except that **double-quoted** strings are subject to globbing (the expansion of filename-match-ing metacharacters such as * and ?) and variable expansion.
-
-Back-ticks, are treated similarly to double quotes, but they have the additional effect of executing the contents of the string as a shell command and replacing the string with the command’s output.
-
-```bash
-$ echo "There are `wc -l /etc/passwd` lines in the passwd file." 
-There are 28 lines in the passwd file.
-```
-
-Single and double quotes are often used in Linux bash commands or scripts, especially when dealing with filenames. Although both quote types prevent globbing and word splitting, it is important to pay attention to the quotes you use. The differences between the quote types make them noninterchangeable in some cases.
-
-`'!$"*<>` is typically the order of precedence for those symbols.
-
-Đôi khi phải dùng single quote to pass unchanged wildcard pattern to programs. Prevent the shell to expand them before passign to programs.
 
 ## How a Regex Engine Works Internally
 

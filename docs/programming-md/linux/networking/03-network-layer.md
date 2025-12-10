@@ -153,14 +153,21 @@ It actually requires a DNS lookup (usually configured in the system's hosts file
 
 It represents the largest, most general network possible: **all IPv4 addresses** (the entire 32-bit address space).
 
-The primary function of the default route is to act as the last-resort instruction for a router.
-
-1. Specific Routes: A router’s first job is always to check for the most specific (longest) match in its routing table. For example, a route to 192.168.1.0/24 is more specific than the default route.
-2. The Default Route: If the router receives a packet destined for an IP address that is not listed in any specific route (like a server on the public internet), it uses the 0.0.0.0/0 entry.
+- The primary function of the default route is to act as the last-resort instruction for a router.
+  1. Specific Routes: A router’s first job is always to check for the most specific (longest) match in its routing table. For example, a route to `192.168.1.0/24` is more specific than the default route.
+  2. The Default Route: If the router receives a packet destined for an IP address that is not listed in any specific route (like a server on the public internet), it uses the `0.0.0.0/0` entry.
 
 This ensures that the router never drops a packet just because it doesn't know the exact path. It sends the unknown packet to the device listed as the next hop for the default route (usually the ISP's router), trusting that the next device knows how to handle it.
 
 Routers always prefer the route with the longest (most specific) prefix. Since 0.0.0.0/0 is the shortest, it is only considered if no other route matches the destination IP.
+
+---
+
+In AWS's security group, a `CidrIp: '0.0.0.0/0` inside an ingress rule allows traffic from any source IP address.
+
+In this scenario, the cidrIp define the source network. In the routing table, however, it defines the destination network if the router doesn't know any better.
+
+`0.0.0.0/0` is the range from `0.0.0.0 -> 255.255.255.255` (a range that contains every possible IP address.)
 
 ## Subnet
 

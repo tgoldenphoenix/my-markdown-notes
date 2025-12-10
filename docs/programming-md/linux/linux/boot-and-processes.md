@@ -1,78 +1,35 @@
 # Booting
 
-Next to files, processes are the most important things on a UNIX/Linux system.
+## Terminologies
 
-Not every command starts a single process. Some commands initiate a series of processes, such as **mozilla**; others, like **ls**, are executed as a single command.
+- `HDD`: hard disk drive, have a spinning disk
+- `SSD`: solid state drive, no moving part essentially
 
-## Kernel Space vs. User Space
+`GRUB` is the `GNU GRand Unified Bootloader` and is an attempt to get rid of the many different bootloaders we know today.
 
-- Kernel Space: This is where the core operating system (the Linux kernel) runs. Processes in kernel space have privileged access to hardware and manage system resources. They are part of the OS itself.
-- User Space: This is where regular applications and system services run. Processes in user space have restricted access and must ask the kernel (via system calls) to perform privileged operations or interact with hardware.
+A `bootloader` is the code an OS uses to bring itself to life when it’s powered on.
 
-`init` (or its modern equivalent like `systemd`) is considered a **user process** in Linux because it runs in **user space**, not kernel space.
+[LILO](https://en.wikipedia.org/wiki/LILO_(bootloader)) (Linux Loader) is a bootloader for Linux and was the default boot loader for most Linux distributions. Unlike `loadlin`, it allowed booting Linux without having DOS on the computer. As of 2009, most distributions have switched to GRUB as the default boot loader. Further development of LILO was discontinued in December 2015 along with a request by Joachim Wiedorn for potential developers.
 
-`init` is always `PID 1`
+electromechanical teleprinters/teletypewriters (TeleTYpewriter, **TTY**)
 
-While the kernel _starts_ the `init` process as the very last step of its boot sequence, `init` itself is a program (`/sbin/init` or `/lib/systemd/systemd`) that executes in user space.
+[getty](https://en.wikipedia.org/wiki/Getty_(software)), short for "get tty", is a Unix program running on a host computer that manages physical or virtual terminals (TTYs). When it detects a connection, it prompts for a username and runs the 'login' program to authenticate the user.
 
-Like any other user process, `init` interacts with the kernel using **system calls** to perform its tasks (e.g., mounting filesystems, starting other services/processes using `fork()` and `exec()`).
-
-The kernel schedules `init` just like any other process (though it often has high priority).
-
-## Process types
-
-### Interactive processes
-
-Interactive processes are initialized and controlled through a terminal session. In other words, there has to be someone connected to the system to start these processes; they are not started automatically as part of the system functions.
-
-The shell offers a feature called _job control_ which allows easy handling of multiple processes. This mechanism switches processes between the foreground and the background. Using this system, programs can also be started in the background immediately.
-
-### Automatic processes
-
-Automatic or batch processes are not connected to a terminal. Rather, these are tasks that can be queued into a spooler area, where they wait to be executed on a FIFO (first-in, first-out) basis.
-
-### daemons (server processes)
-
-Daemons are server processes that run continuously. Most of the time, they are initialized at system startup and then wait in the background until their service is required. A typical example is the networking daemon, _xinetd_, which is started in almost every boot procedure. After the system is booted, the network daemon just sits and waits until a client program, such as an FTP client, needs to connect.
-
-## Process attributes
-
-A process has a series of characteristics, which can be viewed with the `ps` command.
-
-Note that **ps** only gives a momentary state of the active processes, it is a one-time recording. The `top` program displays a more precise view by updating the results given by **ps** (with a bunch of options) once every five seconds, generating a new list of the processes causing the heaviest load periodically, meanwhile integrating more information about the swap space in use and the state of the CPU, from the `proc` file system
-
-The first line of **top** contains the same information displayed by the `uptime` command
-
-## Life and death of a process
-
-k
-
-## Commands
-
-`[COMMAND] &` Run this command in the background (release the terminal). In order to free the issuing terminal after entering the command, a trailing ampersand is added.
-
-`jobs` Show commands running in the background.
-
-`Ctrl Z` Suspend (stop, but not quit) a process running in the foreground (suspend).\
-`Ctrl C` Interrupt (terminate and quit) a process running in the foreground.
-
-`bg` Reactivate a suspended program in the background.
-
-`fg` Puts the job back in the foreground. Every process running in the background gets a number assigned to it. By using the `%` expression a job can be referred to using its number, for instance `fg %2`.
-
-`ps` which processes are active and what numbers these processes have
-
-`kill` get rid of processes. Foreground processes can often be killed by typing `Control-C`
+`BIOS` (Basic Input/Output System)
 
 ## Linux Boot Process & Installation
 
-4 steps: system startup (hardware initialization), bootloader stage, kernel stage, and init process.
+- The Linux boot sequence:
+  1. System power up
+  2. BIOS or UEFI identifies hardware environment
+  3. Mounts `MBR` master boot record partition
+  4. GRUB display menu and executes an image kernel
+  5. Kernel mounts root partition
+  6. Hand-off to `init` or `systemd` (process id 1).
 
-1. A firmware/program like BIOS (Basic Input/Output System) or UEFI, **initial boot code** load the **bootloader** (secondary boot program) into RAM.
-2. After being loaded into RAM, bootloader (also called first-stage bootloader or primary bootloader) will execute to load the second-stage bootloader (also called secondary bootloader).
-3. The second-stage bootloader will load the **kernel** image into memory, decompress and initialize it then pass control to this kernel image. Second-stage bootloader also performs several operation on the system such as system hardware check, mounting the root device, loading the necessary kernel modules, etc. Finally, the very first user-space process (**init** process) starts, and other high-level system initializations are performed (which involve with startup scripts).
+When a computer powers up, firmware instructions embedded in the basic system hardware identify the network, storage, and memory resources that are available. This was done through the BIOS system on older computers and, more recently, using UEFI.
 
-`init` is always process number 1
+Once the system finds a hard-drive partition containing a Master Boot Record (MBR), it loads the contents into active memory. On Linux systems, the MBR partition contains a number of files that, when run, present one or more loadable kernel image boot configurations. You can choose to load any of those configurations from the GRUB bootloader menu.
 
 ### System startup
 
@@ -98,6 +55,87 @@ UEFI includes a boot manager, which is more sophisticated than the boot loaders 
 UEFI introduced Secure Boot, a security feature that verifies the digital signatures of boot loaders and operating system kernels during the boot process. This helps prevent the loading of unauthorized or malicious code during boot time.
 
 BIOS uses the Master Boot Record (MBR) method, while UEFI uses the GUID Partition Table (GPT) method.
+
+## Download ISO & Verify Checksum
+
+Large files can sometimes become corrupted during the download process. If even a single byte within your .ISO has been changed, there’s a chance the installation won’t work. 
+Because you don’t want to invest time and energy only to discover that there was a problem with the download, it’s always a good idea to immediately calculate the checksum (or hash) for the .ISO you’ve downloaded to confirm that everything is as it was. To do that, you’ll need to get the appropriate SHA or MD5 checksum, which is a long string looking something like this: 
+
+`4375b73e3a1aa305a36320ffd7484682922262b3`
+
+You should compare the appropriate string from that page with the results of a command run from the same directory as your downloaded .ISO, which might look like this: 
+
+```
+❯ sha256sum -b linuxmint-22.2-xfce-64bit.iso
+dea13e523dca28e3aa48d90167a6368c63e1b3251492115417fdbf648551558f *linuxmint-22.2-xfce-64bit.iso
+```
+
+If they match, you’re in business. If they don’t (and you’ve double-checked to make sure you’re looking at the right version), then you might have to download the .ISO a second time. 
+
+Download both `sha256sum.txt` and `sha256sum.txt.gpg`.  
+Do not copy their content, use “right-click->Save Link As…” to download the files themselves and do not modify them in any way.
+
+The -b (binary mode) option forces the command to read the input file(s) in binary mode (as opposed to text mode). It is technically redundant on most modern Unix-like systems for the `sha256sum` utility, because they typically operate on input files in binary mode by default.
+
+---
+
+To verify the authenticity of `sha256sum.txt`, check the signature of `sha256sum.txt.gpg` by following the steps below.
+
+Import the Linux Mint signing key:
+
+```
+❯ gpg --keyserver hkp://keys.openpgp.org:80 --recv-key 27DEB15644C6B3CF3BD7D291300F846BA25BAE09
+gpg: directory '/home/anhao/.gnupg' created
+gpg: keybox '/home/anhao/.gnupg/pubring.kbx' created
+gpg: /home/anhao/.gnupg/trustdb.gpg: trustdb created
+gpg: key 300F846BA25BAE09: public key "Linux Mint ISO Signing Key <root@linuxmint.com>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+```
+
+Check that the key was properly imported:
+
+```
+❯ gpg --list-key --with-fingerprint A25BAE09
+pub   rsa4096 2016-06-07 [SC]
+      27DE B156 44C6 B3CF 3BD7  D291 300F 846B A25B AE09
+uid           [ unknown] Linux Mint ISO Signing Key <root@linuxmint.com>
+```
+
+Verify the authenticity of sha256sum.txt:
+
+```
+❯ gpg --verify sha256sum.txt.gpg sha256sum.txt
+gpg: Signature made Tue Sep  2 09:40:21 2025 UTC
+gpg:                using RSA key 27DEB15644C6B3CF3BD7D291300F846BA25BAE09
+gpg: Good signature from "Linux Mint ISO Signing Key <root@linuxmint.com>" [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 27DE B156 44C6 B3CF 3BD7  D291 300F 846B A25B AE09
+```
+
+You need to download both file (using "save link as").
+
+A file with the extension .txt.gpg is a plain text file (.txt) that has been encrypted using GPG (GNU Privacy Guard), a popular cryptographic software tool.
+
+It is a file in a secure, unreadable format that requires a decryption key or passphrase to be opened and viewed.
+
+### live-boot drive
+
+Those .ISO OS images you employed for your VirtualBox VMs back in chapter 2 can also be written to a CD or USB drive and used to boot a live session of the OS. Such live-boot devices let you load fully functioning Linux sessions without having to install anything to a hard drive. Many people use such drives to confirm that a particular Linux distribution will run happily on their hardware before trying to install it. Others will run live sessions as a secure way to maintain their privacy while engaged in sensitive activities like online banking. 
+
+It turns out that those live boot drives are also a fantastic tool for system rescue and recovery.
+
+---
+
+If you want a CD or DVD-based live bootable, `dd` running on any Linux host is up to the job. But if the image will be written to a USB drive and if you happen to be working on an Ubuntu host, you’ll first need to modify the image by adding an MBR to the .ISO archive so that BIOS and UEFI firmware will know what to do with it. 
+
+1. Lên Internet > download `.iso` image
+2. Confirm `sha` hash is correct
+3. Add MBR to ISO image (all distro)
+4. write image to USB drive using `dd`
+
+
 
 ## Bootloader stage
 
@@ -148,20 +186,6 @@ Use the `who` to check what your current run level is
 ## Shutdown
 
 UNIX was not made to be shut down, but if you really must, use the **shutdown** command. After completing the shutdown procedure, the `-h` option will halt the system, while `-r` will reboot it.
-
-## Terminologies
-
-HDD: hard disk drive, have a spinning disk
-
-SSD: solid state drive, no moving part essentially
-
-Grub is the GRand Unified Boot loader and is an attempt to get rid of the many different boot-loaders we know today.
-
-[LILO](https://en.wikipedia.org/wiki/LILO_(bootloader)) (Linux Loader) is a bootloader for Linux and was the default boot loader for most Linux distributions. Unlike loadlin, it allowed booting Linux without having DOS on the computer.[3] As of 2009, most distributions have switched to GRUB as the default boot loader.[4] Further development of LILO was discontinued in December 2015 along with a request by Joachim Wiedorn for potential developers.
-
-electromechanical teleprinters/teletypewriters (TeleTYpewriter, **TTY**)
-
-[getty](https://en.wikipedia.org/wiki/Getty_(software)), short for "get tty", is a Unix program running on a host computer that manages physical or virtual terminals (TTYs). When it detects a connection, it prompts for a username and runs the 'login' program to authenticate the user.
 
 ## Windows & Linux: Dual Drive Dual Boot
 

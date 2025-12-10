@@ -129,6 +129,9 @@ By default, inbound traffic is denied and outbound traffic is allowed.
 
 Control network traffic by defining subnets and routing tables. Doing so allows you to specify private networks that are not reachable from the outside.
 
+- `VPC` is about isolating your cloud infrastructure within a public cloud provider (like AWS).
+- VPN is about securing and extending a private network over a public network (like the internet)
+
 When you create a VPC, you get your own private network on AWS. Private means you can use the address ranges `10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16` to design a network that isn’t necessarily connected to the public internet. You can create subnets, route tables, network access control lists (NACLs), and gateways to the internet or a VPN endpoint.
 
 Amazon Virtual Private Cloud supports IPv6 as well. You can create IPv4 only, IPv6 only, or IPv4 and IPv6 VPCs. To reduce complexity, we are sticking to IPv4 in this chapter.
@@ -139,6 +142,16 @@ Subnets allow you to separate concerns. We recommend to create at least the foll
 - Private subnets—For all resources that should not be reachable from the internet, such as an application server or a database system
 
 What’s the difference between a public and private subnet? A public subnet has a route to the internet; a private subnet doesn’t.
+
+Every subnet within your VPC must be explicitly or implicitly associated with one Route Table (`AWS::EC2::RouteTable`).
+
+Inside a `AWS::EC2::Route`, a `DestinationCidrBlock: 0.0.0.0/0` means Routes everything (0.0.0.0/0) to the IGW.
+
+---
+
+There’s an important difference between security groups and NACLs (Network Access Control Group): security groups are stateful, but NACLs aren’t. If you allow an inbound port on a security group, the corresponding response to requests on that port are allowed as well. A security group rule will work as you expect it to. If you open inbound port 80 on a security group, you can connect via HTTP.
+
+That’s not true for NACLs. If you open inbound port 80 on an NACL for your subnet, you still may not be able to connect via HTTP. In addition, you need to allow outbound ephemeral ports, because the web server accepts connections on port 80 but uses an ephemeral port for communication with the client. Ephemeral ports are selected from the range starting at 1024 and ending at 65535. If you want to make an HTTP connection from within your subnet, you have to open outbound port 80 and inbound ephemeral ports as well.
 
 ### Default Gateway vs VPN Gateway
 

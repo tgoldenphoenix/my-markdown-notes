@@ -8,7 +8,7 @@ update -> upgrage
 
 Trước khi tải package nào mới về thì chỉ cần update không cần upgrage.
 
-`sudo apt update` : update repository indexes (packet indexes). **Always** run this command before running `apt upgrade`.
+`sudo apt update` : update repository indexes (packet indexes), ensuring that APT is aware of all the most recent packages and versions available. **Always** run this command before running `apt upgrade -y` will download and install any relevant upgrades. `-y` will automatically answer Yes when asked to confirm the operation. 
 
 - `update` downloads the map (updates the local package lists).
 - `upgrade` installs the software (applies the actual updates)

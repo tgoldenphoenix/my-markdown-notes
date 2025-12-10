@@ -1,4 +1,4 @@
-# Vanilla Javascript notes
+# Vanilla Javascript Notes
 
 ## Basics
 
@@ -33,7 +33,7 @@ In Java:
 - `null` is a special literal value that represents the absence of a reference to an object.
 - `null` is not an object or a type itself, but it can be assigned to reference variables of any type.
 
-## undefined in javascript and java
+## `undefined` in javascript and Java
 
 Local Variables (Variables within a method, constructor, or block):
 Local variables are declared inside a method, constructor, or a block of code.
@@ -81,36 +81,48 @@ The scope is global when a var variable is declared outside a function.
 
 Using the spread operator to overwrite an object property [here](https://dev.to/dailydevtips1/javascript-overwrite-property-in-an-object-3g32)
 
-### ES6 Module and the CommonJS specification
+## Modules
 
 Javascript was created in 1995. NodeJS was created in 2009.
 
 There was no built-in module system in the early days of JavaScript. Codes were written in a global scope, rendering functions and variables accessible globally, resulting in naming conflicts and complex codebases. The lack of encapsulation and modularity made it difficult for developers to reuse code across multiple projects.  
 The evolution of JavaScript modules has resulted in a more organized and maintainable approach to writing code, allowing for the effective encapsulation and management of code dependencies.
 
-Node.js uses the **CommonJS** module system (CJS) to structure code into reusable components. By default, Node.js treats JavaScript code as CommonJS modules.
+`AMD` stands for **Asynchronous Module Definition**. AMD is made for frontend (when it was proposed) (while CJS backend). It is asynchronous loading which improved page load time and responsiveness.
 
-- CJS is synchronous and good for back end. But CJS will not work in the browser. It will have to be transpiled and bundled. CSJ ra đời trước khi ES6 tồn tại nên một số old nodejs codebase still use CSJ.
-- Syntax of CSJ: `require('express')`, `module.exports`
-- Node.js comes with a set of built-in modules, and additional third-party modules can be installed via npm (Node’s package manager).
-- CSJ is synchronous loading because you can be sure that the file will be there on the server
-- `module` là 1 global variale; `module.exports` is an object.
-- The `require()` function import a module (another nodejs file)
-- When you import a module using require(), you invoke it. (exporting wrapped in a function)
+### ECMAScript modules
 
-AMD stands for **Asynchronous Module Definition**. AMD is made for frontend (when it was proposed) (while CJS backend). It is asynchronous loading which improved page load time and responsiveness.
+Từ ES6 có `ES6 Module` (ECMAScript modules). Dùng `import`, `export` keywords.
 
-Từ ES6 có ES6 Module (ECMAScript modules). Dùng `import`, `export` keywords.
-
-There are 02 ways to enable ES modules in a Node.js:
-
-1. changing the file extensions from `.js` to .mjs.
-2. Add a `type: module` field inside `package.json`. With that inclusion, Node.js treats all files inside that package as ES modules, and you won’t have to change the file to a .mjs extension.
+- There are 02 ways to enable ES modules in a Node.js:
+  1. Changing the file extensions from `.js` to `.mjs` (`.cjs` là commonJs).
+  2. Add a `type: module` field inside `package.json`. With that inclusion, Node.js treats all files inside that package as ES modules, and you won’t have to change the file to a `.mjs` extension. Bình thường thì `type: "commonjs"`.
 
 Every module can have two different types of export, **named export and default export**. You can have multiple named exports per module but **only one** default export. Hoặc không có export default only named export.
 
 When importing non-defaults, you must specify the exact same name (optionally renaming it with `as`), but the default export can be imported with any name.  
 If you want to import non-default value, you must use destructuring syntax `{...}`. Import default value do not use curly braces.
+
+### CommonJS modules
+
+Node.js uses the `CommonJS` module system (`CJS`) to structure code into reusable components. By default, Node.js treats JavaScript code as CommonJS modules.
+
+- `CJS` is synchronous and good for back end. But CJS will not work in the browser. It will have to be transpiled and bundled. CSJ ra đời trước khi ES6 tồn tại nên một số old nodejs codebase still use CSJ.
+- `CSJ` is synchronous loading because you can be sure that the file will be there on the server.
+
+- When you import a module using `require()`, you invoke it. (exporting wrapped in a function)
+
+Node.js comes with a set of built-in modules, and additional third-party modules can be installed via `npm` (Node’s package manager).
+
+- The syntax of CSJ: `require('express')`, `module.exports`
+  * `module` là 1 global variale; `module.exports` is an object.
+  * The `require()` function import a module (another nodejs file)
+
+```javascript
+const Square = require('./square.js');
+
+module.exports = class Square {}
+```
 
 ## Variables & Scoping
 

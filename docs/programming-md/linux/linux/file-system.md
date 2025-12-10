@@ -42,9 +42,9 @@ preserves `My excellent file.txt` as a single argument to less. You can also esc
 ## Mounting
 
 - File tree: the overall layout
-- filesystem: the chunks attached to the tree
+- Filesystems: the chunks attached to the tree
 
-In most situations, filesystems are attached to the tree with the `mount` command. mount maps a directory within the existing file tree, called the **mount point**, to the root of the newly attached filesystem.
+In most situations, filesystems are attached to the tree with the `mount` command. `mount` maps a directory within the existing file tree, called the **mount point**, to the root of the newly attached filesystem.
 
 `$ sudo mount /dev/sda4 /users`
 
@@ -53,9 +53,10 @@ installs the filesystem stored on the disk partition represented by `/dev/sda4` 
 A list of the filesystems that are customarily mounted on a particular system is kept in the `/etc/fstab` file.  
 The information contained in this file allows filesystems to be checked (with `fsck`) and mounted (with mount) automatically at boot time
 
-You detach filesy stems with the `umount` command. umount complains if you try to unmount a filesystem that is in use; the filesystem to be detached must not have open files or processes whose current directories are located there, and if the file-system contains executable programs, they cannot be running.
+You detach filesy stems with the `umount` command.  
+`umount` complains if you try to unmount a filesystem that is in use; the filesystem to be detached must not have open files or processes whose current directories are located there, and if the file-system contains executable programs, they cannot be running.
 
-Device files defined based on the controllers they are using:
+Device files are defined based on the controllers they are using:
 
 1. For [IDE controllers device](https://www.ibm.com/support/pages/ide-controllers-servers) file name is - `hda, hdb, hdc..`
 2. For SCSI and SATA controllers device file name is - `sda, sdb, sdc..`
@@ -156,6 +157,22 @@ Home directories of users are often kept on a separate filesystem (`/home`), usu
 - `/usr/lib64` 64-bit libraries on 64-bit Linux distributions
 - `/usr/local` Software you write or install; mirrors structure of /usr
 - `/usr/sbin` Less essential commands for administration and repair
+
+### `/etc`
+
+most configuration files are stored in the `/etc` directory.
+
+[Table 3-3. Most common configuration files](https://tldp.org/LDP/intro-linux/html/sect_03_02.html#AEN2485)
+
+if you were to look at the contents of `/etc/passwd`, you’d see a single line for every account that exists.
+
+`syslog` is a system user.
+
+Once upon a time, an encrypted version of each user’s password would also have been included here. For practical reasons, because the passwd file must remain readable by anyone on the system, it was felt that including even encrypted passwords was unwise. Those passwords were moved to `/etc/shadow`. Using `sudo` permissions, you should take a look at that file with its encrypted passwords on your own system. Here’s how:
+
+`sudo cat /etc/shadow`
+
+Scripts saved to the `/cron.daily/` directory will be executed each day.
 
 ## File Types
 
@@ -588,9 +605,9 @@ The reason the ESP must be separate from your main Linux root partition (/) or e
 
 Most Linux systems use `fdisk` at installation time to set the partition type. The standard Linux partitions have number 82 for swap and 83 for data, which can be journaled (ext3) or normal (ext2, on older systems). The **fdisk** utility has built-in help, should you forget these values.
 
----
+## `df`
 
-`df` displays each partition that’s currently mounted on a Linux system, along with its disk usage and location on the file system. Adding the `-h` flag converts partition sizes to human readable formats like GB or MB, rather than bytes
+`df` displays each partition (file systems) that’s currently mounted on a Linux system, along with its disk usage and location on the file system. Adding the `-h` flag converts partition sizes to human readable formats like GB or MB, rather than bytes
 
 ```bash
 $ df -h
@@ -607,6 +624,10 @@ tmpfs           3.6G     0  3.6G   0% /sys/fs/cgroup
 - Pseudo file system: file systems whose files aren’t actually saved to disk but live in volatile memory and disappear when the machine shuts down
 
 It’s pretty simple to tell which partitions are used for pseudo files: if the file designation is `tmpfs` and the number of bytes reported in the Used column is 0, then the odds are you’re looking at a temporary rather than a normal file system.
+
+---
+
+There is a command called `lsblk` which stands for list block devices (an optical drive like a CD or DVD).
 
 ## Linking files
 
@@ -632,12 +653,6 @@ j
 ## Pseudo file systems
 
 A normal file is a collection of data that can be reliably accessed over and over again, even after a system reboot. By contrast, the contents of a Linux pseudo (or virtual) file, like those that might exist in the `/sys/` and `/proc/` directories, don’t really exist in the normal sense. A pseudo file’s contents are dynamically generated by the OS itself to represent specific values.
-
-## Configuration files
-
-most configuration files are stored in the `/etc` directory.
-
-[Table 3-3. Most common configuration files](https://tldp.org/LDP/intro-linux/html/sect_03_02.html#AEN2485)
 
 ## Archive
 
@@ -795,7 +810,9 @@ After cloning a repository or un-zipping an archive. You'll wonder "How many fil
 
 Later on (in 1999 according to the man pages, after 20 years of `find`), `locate` was developed. This program is easier to use, but more restricted than find, since its output is based on a file index database that is updated only once every day. On the other hand, a search in the locate database uses less resources than find and therefore shows the results nearly instantly. Most Linux distributions use `slocate` these days, security enhanced locate, the modern version of locate that prevents users from getting output they have no right to read.  On most systems, locate is a symbolic link to the slocate program
 
-## Archiving partitions with `dd`
+## `dd`
+
+Archiving partitions with `dd`
 
 There’s all kinds of stuff you can do with `dd` if you research hard enough, but where it shines is in the ways it lets you play with partitions. Earlier, you used `tar` to replicate entire file systems by copying the files from one computer and then pasted them as is on top of a fresh Linux install of another computer. But because those file system archives weren’t complete images, they required a running host OS to serve as a base.
 
@@ -819,6 +836,10 @@ But it gets better. Using the /dev/urandom file as your source, you can write ov
 
 `sudo dd if=/dev/urandom of=/dev/sda1`
 
+–-
+
+`dd` can also be used to write linux `ISO` image to USB drive.
+
 ## Synchronizing archives with `rsync`
 
 One thing you already know about proper backups is that, to be effective, they absolutely have to happen regularly. One problem with that is that daily transfers of huge archives can place a lot of strain on your network resources. Wouldn’t it be nice if you only had to transfer the small handful of files that had been created or updated since the last time, rather than the whole file system? Done. Say hello to `rsync`.
@@ -828,16 +849,6 @@ One thing you already know about proper backups is that, to be effective, they a
 Devices, generally every peripheral attachment of a PC that is not the CPU itself, is presented to the system as an entry in the `/dev` directory.
 
 [Table 3-4. Common devices](https://tldp.org/LDP/intro-linux/html/sect_03_02.html#AEN2726)
-
-## `/etc`
-
-if you were to look at the contents of /etc/passwd, you’d see a single line for every account that exists.
-
-`syslog` is a system user.
-
-Once upon a time, an encrypted version of each user’s password would also have been included here. For practical reasons, because the passwd file must remain readable by anyone on the system, it was felt that including even encrypted passwords was unwise. Those passwords were moved to /etc/shadow. Using `sudo` permissions, you should take a look at that file with its encrypted passwords on your own system. Here’s how:
-
-`sudo cat /etc/shadow`
 
 ## Window Subsystem for Linux
 

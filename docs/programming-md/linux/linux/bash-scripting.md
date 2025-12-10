@@ -84,11 +84,13 @@ To prepare the file for running, just turn on its execute bit:
 $ chmod +x helloworld 
 $ ./helloworld3 
 Hello, world!
+
+chmod +x upgrade.sh
 ```
 
-If your shell understands the command helloworld without the `./` prefix, that means the current direc-tory (.) is in your search path.
+If your shell understands the command `helloworld` without the `./` prefix, that means the current directory (`.`) is in your search path.
 
-You  can  also  invoke  the  shell  as  an  interpreter  directly :
+You can also invoke the shell as an interpreter directly :
 
 ```bash
 $ bash helloworld 
@@ -105,16 +107,111 @@ If you wish, you can give your bash scripts a `.sh` suffix to remind you what th
 
 Save your scripts inside `~/bin` or `/usr/local/bin` & make the files executable.
 
-Quy trình viết bash scripts:
-
-- Develop the script (or script component) as a pipeline, one step at a time, entirely on the command line. Không viết bash script trong text editor giống như viết code python.
-- Send output to standard output and check to be sure it looks right (using `echo`).
-- At each step, use the shell’s command history to recall pipelines and the shell’s editing features to tweak them.
-- Until the output looks right, you haven’t actually done anything, so there’s nothing to undo if the command is incorrect.
-- Once the output is correct, execute the actual commands and verify that they worked as you intended.
-- Use `fc` to capture your work, then clean it up and save it.
+- Quy trình viết bash scripts:
+  * Develop the script (or script component) as a pipeline, one step at a time, entirely on the command line. Không viết bash script trong text editor giống như viết code python.
+  * Send output to standard output and check to be sure it looks right (using `echo`).
+  * At each step, use the shell’s command history to recall pipelines and the shell’s editing features to tweak them.
+  * Until the output looks right, you haven’t actually done anything, so there’s nothing to undo if the command is incorrect.
+  * Once the output is correct, execute the actual commands and verify that they worked as you intended.
+  * Use `fc` to capture your work, then clean it up and save it.
 
 bash’s built-in command `fc` is a lot like `<Control-P>`, but instead of returning the last command to the command line, it transfers the com-mand to your editor of choice.
+
+## Linux Globbing
+
+`grep` uses regular expressions (regex).  
+The filename matching and expansion performed by the shell when it interprets command lines such as `wc -l *.pl` is not a form of regex matching. It’s a different system called **shell globbing,** and it uses a different and simpler syntax.
+
+Glob mean "global commands". [/etc/glob](https://en.wikipedia.org/wiki/Glob_(programming)) is a program in UNIX V6 that would expand wildcard patterns. Soon afterward, this became a shell built-in.
+
+Globbing is mainly used to match filenames or searching for content in a file. Globbing uses wildcard characters to create the pattern.
+
+Globbing is used in config files such as a `.gitignore` where you might see `.cache/*`, for example.
+
+Globbing is the expansion of simple pattern-matching characters such as * and ? to form filenames or lists of file-names)
+
+Globbing is an operation that is performed by the shell itself and it happens **independently** of the actual command we're running. The shell will **first** attemp to expand the wildcard pattern to match any files that are present before passing their expanded names to the program we want to run.  
+`man 7 glob` to read more.
+
+You should be aware that the value of the arguments that get passed to a given program will actually depend on the content of your file system. Your program may be passed a different number of arguments depending on how many files match the wildcard.
+
+We should note that while globbing might look similar to regular expressions, they’re fundamentally different. While the patterns seem similar, globbing doesn’t use regular expressions.
+
+- We use shell-style globbing characters for pattern matching:
+  * A star (`*`) matches zero or more characters.
+  * A question mark (`?`) matches any single character. You can use `?` for multiple times for matching multiple characters.
+  * A tilde or “twiddle” (`~`) means the home directory of the current user
+  * `~user` means the home directory of user.
+
+For example, we might refer to the startup script directories `/etc/rc0.d`, `/etc/rc1.d`, and so on with the shorthand pattern `/etc/rc*.d`.
+
+- `[]` range of characters. For example `[0-9]` or `[abc]`. Ranges can apply to letters as well as digits:
+- `[a-z]` = all lowercase characters of the alphabet
+- `[A-Z]` = all uppercase characters of the alphabet
+- `[a-zA-Z]` = all characters of the alphabet, irrespective of their case
+- `[j-p]` = lowercase characters j, k, l, m, n, o or p
+- `[a-z3-6]` = lowercase characters or the numbers 3, 4, 5 or 6
+
+`[]` is used to match the character from the range. Some of the mostly used range declarations are mentioned below.
+
+- All uppercase alphabets are defined by the range as, `[:upper:] or [A-Z]` .
+- All lowercase alphabets are defined by the range as, \[:lower:] or \[a-z].
+- All numeric digits are defined by the range as, \[:digit:] or \[0-9].
+- All uppercase and lower alphabets are defined by the range as, \[:alpha:] or \[a-zA-z].
+- All uppercase alphabets, lowercase alphabet and digits are defined by the range as, \[:alnum:] or \[a-zA-Z0-9]
+
+By default, **hidden files and folders** don’t show up in the output of ls. To apply globbing to our hidden files and folders, we have to explicitly add a leading `.` (dot).  
+`ls *` vs `ls .*`
+
+Examples:
+
+- `ls *.txt`
+- `ls test-?.txt` => list all text files named ‘test-‘ followed by a single digit
+- `ls ????.txt` => all text files with a name of exactly four characters
+- `ls *[0-9]*` => all files with a number in their name
+
+move all the contents of the current directory to some other location:
+
+`$ mv * /some/other/directory/`
+
+To move only files with names partially matching a particular sequence, try this:
+
+`$ mv file* /some/other/directory/`
+
+This command moves all files whose names begin with the letters file, but leaves everything else untouched. If you had files named file1, file2...file15 and wanted to move only those between file1 and file9, you’d use the question mark (`?`) instead of the asterisk: 
+
+`$ mv file? /some/other/directory/`
+
+The question mark applies an operation to only those files whose names contain the letters file and one other character. It would leave file10 through file15 in the current directory.
+
+---
+
+Single vs. Double Quotes
+
+- Single quotes provide the strongest form of quoting (also called literal quoting). They prevent the shell from performing any interpretation or expansion of the characters contained within them.
+- Double quotes generally preserve the literal value of characters, but they allow for variable expansion, globbing (the expansion of filename-matching metacharacters such as `*` and ?), command substitution, and certain escape sequences.
+
+**Back-ticks**, are treated similarly to double quotes, but they have the additional effect of executing the contents of the string as a shell command and replacing the string with the command’s output.
+
+```bash
+$ echo "There are `wc -l /etc/passwd` lines in the passwd file." 
+There are 28 lines in the passwd file.
+```
+
+`'!$"*<>` is typically the order of precedence for those symbols.
+
+Đôi khi phải dùng single quote to pass unchanged wildcard pattern to programs. Prevent the shell to expand them before passign to programs.
+
+```bash
+$ cat big name
+cat: big: No such file or directory
+cat: name: No such file or directory
+
+$ cat 'big name'
+Hello world
+```
+
+Use double quote `""` to prevent Bash from splitting the variable's value into multiple words if it already contains spaces.
 
 ## Command Separators
  
@@ -283,7 +380,7 @@ Bash evaluate expression command `expr`
 
 `*` in bash is a wildcard, not multiplication operator. So you have to type `expr 100 \* 4`
 
-## Control Flow
+## Flow Control
 
 When writing scripts, you don't want the script to ask you for confirmations. So you want to use options that eliminate any prompts that you can.
 
@@ -335,13 +432,17 @@ Ngoài `elif` thì `bash` còn có `case` giống như switch-case.
 
 ---
 
-Changes the directory to /var/backups/. If no such directory exists, it exits the script and issues an exit status code of 0, which signifies the command was successful: 
+Changes the directory to `/var/backups/`. If no such directory exists, it exits the script and issues an exit status code of 0, which signifies the command was successful: 
 
 `cd /var/backups || exit 0` 
 
 The `||` sequence (sometimes known as a double pipe) can be read as though it’s the word _or_. So this line means: either change directory to /var/backups/ or exit the script. If everything goes according to plan, subsequent script operations will take place in the /var/backups/ directory.
 
-### Loops
+–-
+
+`[[ ... ]]` is the preferred, modern, and safer way to perform conditional tests in Bash (compared to the older single brackets `[ ... ]`).
+
+## Loops
 
 Có `for...in` loop.
 
@@ -374,6 +475,20 @@ I love to eat the cherry.
 ```
 
 Có `while` loop
+
+## Scheduling regular backups with `cron`
+
+k
+
+### Scheduling irregular backups with anacron
+
+Those cron-based tools all work well for computers (like production servers) that are likely to be left running all the time. But what about executing important jobs on, say, your laptop, which is often turned off? It’s all very nice telling cron (or cron.daily and so forth) to back up your files at 5:21 on a Monday morning, but how likely is it that you’ll remember to get up to boot your laptop in time? Exactly—not likely at all. It’s time to talk about anacron. 
+
+The one cron file we haven’t yet discussed is `/etc/anacrontab`, which is where you schedule operations to run at a set time after each system boot.
+
+### Scheduling regular backups with systemd timers 
+
+systemd timers come with some significant advantages, including deeper integration with other system services (including logs) and the ability to execute commands based on changes to system state (for instance, someone connecting a USB device), rather than just set times. 
 
 ## The Shebang
 
