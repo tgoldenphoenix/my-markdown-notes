@@ -26,7 +26,20 @@ You can think of an option as a way of executing the command. The argument is wh
 
 “Touching” an existing file with touch updates its time stamp without making any changes. This can be useful if, for some reason, you want to change how various commands like ls list or display a file. (It can also be helpful if you’d like your boss to think that you’ve been hard at work on a data file that, in fact, you haven’t opened for weeks.) 
 
-`date`, `cal` calender
+```bash
+$ date
+Thu Jun 29 08:14:53 EDT 2019
+```
+
+`cal` calender
+
+```bash
+$ hostname
+mydesktop
+```
+
+- Command option: `-h`, `-c`, `--help`
+- Command arguments: input for the command, không có hyphen (`-`).
 
 `gedit` is an UI text editor on linux
 

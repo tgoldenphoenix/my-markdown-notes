@@ -18,6 +18,33 @@ To switch from one shell to another, just enter the name of the new shell in the
 
 If you don't know which shell you are using, either check the line for your account in `/etc/passwd` or type the command `echo $SHELL`
 
+In the shell prompt `jake@pine $`, `jake` is user name, `pine` is the computer name.
+
+---
+
+There are several ways to get to a shell interface in Linux. Three of the most common are the shell prompt, Terminal window, and virtual console.
+
+If your Linux system has no graphical user interface (or one that isn’t working at the moment), you will most likely see a `shell prompt` after you log in.
+
+With the desktop GUI running, you can open a `Terminal emulator` program (sometimes referred to as a Terminal window) to start a shell.
+
+Most Linux systems that include a desktop interface start multiple virtual consoles running on the computer. Virtual consoles are a way to have multiple shell sessions open at once in addition to the graphical interface you are using.
+
+You can switch between virtual consoles by holding the Ctrl and Alt keys and pressing a function key between F1 and F6. The GUI is typically located on one of the first two virtual consoles, and the other six virtual con-soles are typically text-based virtual consoles.
+
+---
+
+To find out what is your default login shell, enter the following commands:
+
+```bash
+$ whoami
+chris   pts/0        2019-10-21 22:45 (:0.0)
+$ grep chris /etc/passwd
+chris:x:13597:13597:Chris Negus:/home/chris:/bin/bash
+```
+
+To try a different shell, simply type the name of that shell (examples include `ksh`, `tcsh`, csh, sh, dash, and others, assuming that they are installed). You can try a few commands in that shell and type `exit` when you are finished to return to the bash shell.
+
 ## zsh - The Z shell
 
 `~/.config/zsh/`. Cái `~/.zshrc` bị override.

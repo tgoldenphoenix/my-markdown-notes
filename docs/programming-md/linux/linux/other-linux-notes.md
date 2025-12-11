@@ -46,9 +46,9 @@ The kernel is also the defining piece of the OS: if two OS’s have the same ker
 
 A process (sometimes called a task) is an instance of a running program.
 
-## windowing system
+## Windowing System
 
-In computing, a [windowing system](https://en.wikipedia.org/wiki/Windowing_system) (or window system) is a software suite that manages separately different parts of display screens.[1] It is a type of graphical user interface (GUI) which implements the WIMP (windows, icons, menus, pointer) paradigm for a user interface.
+In computing, a [windowing system](https://en.wikipedia.org/wiki/Windowing_system) (or window system) is a software suite that manages separately different parts of display screens. It is a type of graphical user interface (GUI) which implements the WIMP (windows, icons, menus, pointer) paradigm for a user interface.
 
 The [X Window System](https://en.wikipedia.org/wiki/X_Window_System) (X11, or simply X; stylized 𝕏) is a windowing system for bitmap displays, common on Unix-like operating systems.
 

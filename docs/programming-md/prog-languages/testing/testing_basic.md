@@ -1,4 +1,4 @@
-# Testing & Diagraming notes
+# Software Testing & Diagraming Notes
 
 ## Terminologies
 

@@ -1,4 +1,11 @@
-# Maven notes
+# Maven Notes
+
+## Installation
+
+You need a Java Development Kit (JDK) installed. Either set the `JAVA_HOME` environment variable to the path of your JDK installation or have the `java` executable on your `PATH`.
+
+- `nvm`: node version manager
+- `mvn`: maven
 
 ## POM
 

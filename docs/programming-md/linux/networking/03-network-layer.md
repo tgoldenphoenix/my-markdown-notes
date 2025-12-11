@@ -167,7 +167,7 @@ In AWS's security group, a `CidrIp: '0.0.0.0/0` inside an ingress rule allows tr
 
 In this scenario, the cidrIp define the source network. In the routing table, however, it defines the destination network if the router doesn't know any better.
 
-`0.0.0.0/0` is the range from `0.0.0.0 -> 255.255.255.255` (a range that contains every possible IP address.)
+`0.0.0.0/0` is the range from `0.0.0.0 -> 255.255.255.255` (a range that contains every possible IP address.) Trong AWS, nếu gặp `0.0.0.0/0` thì là all (inbound & outbound).
 
 ## Subnet
 

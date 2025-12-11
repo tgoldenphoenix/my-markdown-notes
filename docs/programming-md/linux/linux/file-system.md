@@ -367,11 +367,24 @@ Commonly noted as **SGID**, this special permission has a couple of functions:
 
 ## `ls`: List and Inspect files
 
-As a system administra-tor, you will be concerned mostly with the link count, owner, group, mode, size, last access time, last modification time, and type. You can inspect all of these with `ls -l` (or `ls -ld` for a directory; without the `-d` flag, ls lists the directory’s contents).
+The following two uses of options for the ls command are the same:
 
-`ls -l` (l stands for "long") show file permissions, owner, group, file size, and time stamp.
+```bash
+$ ls -l -a -t
+$ ls -lat
+```
 
-- The `h` argument when added to ls -l displays file sizes in a human-readable format—kilobytes, megabytes, and gigabytes, rather than bytes, which tend to involve a great many hard-to-count digits.  
+- `-a` show hidden dot files
+- `-t` list by time
+
+If you use the command `ls --help` but with single hyphen (`ls -help`), the letters `h, e, l`, and `p` would be interpreted as separate options.
+
+---
+
+- `ls -l` (l stands for "long").
+- `ls -ld` list information of the current directory `.`. Without the `-d` flag, `ls` lists the directory’s contents
+
+- The `-h` option when added to `ls -l` displays file sizes in a human-readable format—kilobytes, megabytes, and gigabytes, rather than bytes, which tend to involve a great many hard-to-count digits.  
 - `ls -l -h` == `ls -lh` == `ls -hl`
 - `-h` == `--human-readable`
 
@@ -395,7 +408,7 @@ A description of the full functionality and features of the `ls` command can be 
 
 To find out more about the kind of data we are dealing with, we use the `file` command. See `info file` for a detailed description.
 
-In DOS (Windows), use `dir`
+In DOS (Windows), use `dir` thay cho `ls`.
 
 - `ls -l` notations:
   - `-` regular file

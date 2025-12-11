@@ -20,11 +20,21 @@ The Internet (and, more generally, TCP/ IP networks) makes two transport protoco
 
 ## HTTP
 
-HTTP uses TCP as its underlying transport protocol (rather than running on top of UDP).
+HTTP uses `TCP` as its underlying transport protocol (rather than running on top of UDP).
 
 Default port number for HTTP is `80`
 
 The `HEAD` HTTP method is similar to the GET method. When a server receives a request with the HEAD method, it responds with an HTTP message but it leaves out the requested object. Application developers often use the HEAD method for debug-ging.
+
+- The server (the web host) must always listen on a fixed, well-known port so the client knows exactly where to send the initial request.
+  * HTTP: Port 80
+  * HTTPS: Port 443
+
+When your web browser initiates a request to the server, the operating system (OS) on your computer needs a source port to complete the connection (the "return address").  
+The OS automatically selects an unused port number from a specific, high-numbered range. This is the `ephemeral port`.  
+Ephemeral ports are selected from the range starting at 1024 and ending at 65535.
+
+Example Connection: Your computer establishes a connection from `YourIP:54321` (ephemeral port) to `ServerIP:443` (well-known port).
 
 ## Electronic Mail
 

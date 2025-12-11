@@ -1,4 +1,4 @@
-# Java notes
+# Java Notes
 
 ## Basics & Terminologies
 

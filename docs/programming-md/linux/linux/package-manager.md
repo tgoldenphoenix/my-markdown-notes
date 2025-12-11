@@ -205,6 +205,12 @@ Depends: python3:any (>= 3.3.2-2~), libatk1.0-0
 [...]
 ```
 
+## Fedora
+
+Fedora is the upstream, community-driven project that acts as the testing ground for Red Hat Enterprise Linux (RHEL).
+
+`rpm` (Red Hat Package Manager)
+
 ## Homebrew notes
 
 On Apple silicon, Homebrew installs files into the `/opt/homebrew/` folder, which is not part of the default shell `$PATH`. You'll need to configure your shell environment so Homebrew packages are found and take priority over pre-installed tools.

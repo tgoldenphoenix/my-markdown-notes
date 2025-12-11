@@ -114,7 +114,9 @@ A security group contains a rule **allowing all outbound traffic** by default. I
 
 ### Controlling traffic to virtual machines with `security groups`
 
-A **security group** acts as a firewall for virtual machines and other services.
+A **security group** acts as a firewall for virtual machines and other services (RDS databases, or Lambda ENIs).
+
+VPCs does not have a security group.
 
 You will associate a security group with AWS resources, such as EC2 instances, to control traffic. It’s common for EC2 instances to have more than one security group associated with them and for the same security group to be associated with multiple EC2 instances.
 
@@ -134,6 +136,10 @@ Control network traffic by defining subnets and routing tables. Doing so allows 
 
 When you create a VPC, you get your own private network on AWS. Private means you can use the address ranges `10.0.0.0/8`, `172.16.0.0/12`, or `192.168.0.0/16` to design a network that isn’t necessarily connected to the public internet. You can create subnets, route tables, network access control lists (NACLs), and gateways to the internet or a VPN endpoint.
 
+Route tables & NACL are attached to subnets inside VPC.
+
+We recommend you start with using security groups to control traffic. If you want to add an extra layer of security, you should use NACLs on top. But doing so is optional, in our opinion.
+
 Amazon Virtual Private Cloud supports IPv6 as well. You can create IPv4 only, IPv6 only, or IPv4 and IPv6 VPCs. To reduce complexity, we are sticking to IPv4 in this chapter.
 
 Subnets allow you to separate concerns. We recommend to create at least the following two types of subnets:
@@ -149,13 +155,17 @@ Inside a `AWS::EC2::Route`, a `DestinationCidrBlock: 0.0.0.0/0` means Routes eve
 
 ---
 
-There’s an important difference between security groups and NACLs (Network Access Control Group): security groups are stateful, but NACLs aren’t. If you allow an inbound port on a security group, the corresponding response to requests on that port are allowed as well. A security group rule will work as you expect it to. If you open inbound port 80 on a security group, you can connect via HTTP.
+There’s an important difference between **security groups and NACLs** (Network Access Control Group): security groups are stateful, but NACLs aren’t. If you allow an inbound port on a security group, the corresponding response to requests on that port are allowed as well. A security group rule will work as you expect it to. If you open inbound port 80 on a security group, you can connect via HTTP.
 
 That’s not true for NACLs. If you open inbound port 80 on an NACL for your subnet, you still may not be able to connect via HTTP. In addition, you need to allow outbound ephemeral ports, because the web server accepts connections on port 80 but uses an ephemeral port for communication with the client. Ephemeral ports are selected from the range starting at 1024 and ending at 65535. If you want to make an HTTP connection from within your subnet, you have to open outbound port 80 and inbound ephemeral ports as well.
+
+Another difference between security group rules and NACL rules is that you have to define the priority for NACL rules. A **smaller rule number** indicates a **higher priority**. Rules are evaluated starting with the lowest-numbered rule. When evaluating an NACL, the first rule that matches a package is applied; all other rules are skipped.
 
 ### Default Gateway vs VPN Gateway
 
 The term Gateway (or Default Gateway) refers to the device that acts as the front door for all traffic leaving a local network (LAN) and heading to a foreign network (like the public internet).
+
+Một VPC có một internet gateway, một private subnet có một NAT gateway.
 
 ## Terminologies
 
