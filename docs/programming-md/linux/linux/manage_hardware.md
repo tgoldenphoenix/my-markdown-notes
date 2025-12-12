@@ -1,4 +1,4 @@
-# Manage Hardware Linux Machine
+# Hardware Management
 
 ```
 $ cat /proc/cpuinfo

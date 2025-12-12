@@ -1,45 +1,55 @@
 # Basic Linux Surviving
 
+## Command Syntax
+
+- Command option: `-h`, `-c`, `--help`
+- Command arguments: input for the command, không có hyphen (`-`). Example: file names, directory, username, device, or other item
+
+Sometimes, an argument is associated with an option. In that case, the argument must immediately follow the option. With single-letter options, the argument typically follows after a space. For full-word options, the argument often follows an equal sign (=). Here are some examples:
+
+```bash
+$ ls --hide=Desktop
+Documents  Music     Public    Videos
+Downloads  Pictures  Templates
+```
+
+The `--hide` option tells the ls command not to display the file or directory named Desktop when listing the contents of the directory.
+
+Here’s an example of a single-letter option that is followed by an argument:
+
+`$ tar -cvf backup.tar /home/chris`
+
+In the tar example just shown, the options say to create (`c`) a file (`f`) named `backup.tar` that includes all of the contents of the `/home/chris` directory and its subdirectories and show verbose (`v`) messages as the backup is created. Because `backup.tar` is an argument to the `f` option, `backup.tar` must immediately follow the option.
+
 ## Basic Commands
 
-Phân biệt command option (preceded with `-` or `--`) vs command argument. The argument(s) to a command are specifications for the object(s) on which you want the command to take effect. An example is `ls /etc`, where the directory `/etc` is the argument to the **ls** command.  
-You can think of an option as a way of executing the command. The argument is what you execute it on.
-
-`which -a ls` show that the `ls` command is in the `/bin` directory (show full path)
-
-`whereis aws`
-
-- `which`:
-  * f
-- `whereis`
-
-`.` and `..` acts as hard links.
 `./a.out` => run files
 
 `echo tran kim phuong`
 
 `whoami`
 
-`touch <file name>`
-
-`touch file{1..10}` Creates 10 files named file1 to file10
-
-“Touching” an existing file with touch updates its time stamp without making any changes. This can be useful if, for some reason, you want to change how various commands like ls list or display a file. (It can also be helpful if you’d like your boss to think that you’ve been hard at work on a data file that, in fact, you haven’t opened for weeks.) 
+---
 
 ```bash
 $ date
 Thu Jun 29 08:14:53 EDT 2019
+
+$ date +'%d/%m/%y'
+04/03/20
+
+$ date +'%A, %B %d, %Y'
+Wednesday, March 04, 2020
 ```
 
 `cal` calender
+
+---
 
 ```bash
 $ hostname
 mydesktop
 ```
-
-- Command option: `-h`, `-c`, `--help`
-- Command arguments: input for the command, không có hyphen (`-`).
 
 `gedit` is an UI text editor on linux
 
@@ -47,19 +57,13 @@ mydesktop
 
 `clear` (alias `c`)
 
-`ls` stands for list storage
-
-`ls -l` (recommended) `ll` is an alias of it (not an actual linux command). Hình như `la` cũng vậy. Nhưng mình không biết setting nằm ở file nào.
-
-`which <command>` locate the executable file associated with the given command.
-
-`diff` compare the contents of two files and display the differences between them
+`diff` compare the contents of two files and display the differences between them.
 
 On Ubunto, `Ctrl Alt f1` till `f6` to enter [virtual terminal](https://en.wikipedia.org/wiki/Virtual_console). To come back to the graphical session, press `Ctrl Alt f7`
 
-`tty` print the file name of the terminal connected to standard input
+`tty` print the file name of the terminal connected to standard input.
 
-To write comments in the shell, use the `#` symbol
+To write comments in the shell, use the `#` symbol. The `#` can also be used to signify running a command as `root`. 
 
 `pushd`: `cd` and then push the new directory to the top of the directory stack (on the leftmost of `dirs` or the top-most of `dirs -p`)
 
@@ -75,24 +79,86 @@ In most cases, when issuing a command or starting a program as a non-privileged 
 
 `Alt` == meta key
 
-`Ctrl Alt t` open the terminal
+---
 
-## Moving in the Terminal prompt
+The `uname` command (short for "Unix Name") is a standard utility in Unix-like operating systems (Linux, macOS, BSD, etc.) used to display fundamental information about the machine's operating system, kernel, and hardware architecture.
 
-- Emac mode shell key bindings
-  - `^b` & `^f` move backward/forward one char
-  - `Alt b/f` move backward/forward one word
-  - `^a` & `^e` go to start/end of prompt
-  - `^p` & `^n` steps backward/forward through commands in `history`.
-  - `^r` searches incrementally through your history to find old commands.
-  - `^k` delete from cursor to end of line
-  - `^h` delete the previous character (equal to backspace)
-  - `^w` delete the previous word
-  - `^u` delete the whole line
-  - `^l` == `clear`
-  - `^d`, `exit` or `logout` Log out of the current shell session
-  - `^c` End a running program and return the prompt.
-  - `^z` Suspend a program
+```bash
+$ uname -a
+Linux mydesktop 5.3.7-301.fc31.x86_64 #1 SMP Mon Oct 21 19:18:58 UTC      2019 x86_64 x86_64 x86_64 GNU/Linux
+```
+
+---
+
+When you log in to a Linux system, Linux views you as having a particular identity, which includes your username, group name, user ID, and group ID. Linux also keeps track of your login session: It knows when you logged in, how long you have been idle, and where you logged in from.
+
+To find out information about your identity, use the id command as follows:
+
+```bash
+$ id
+uid=1000(chris) gid=1000(chris) groups=1005(sales), 7(lp)
+```
+
+In this example, the username is chris, which is represented by the numeric user ID (uid) 1000. The primary group for chris also is called chris, which has a group ID (gid) of 1000. It is normal for Fedora and Red Hat Enterprise Linux users to have the same primary group name as their username. The user chris also belongs to other groups called sales (gid 1005) and lp (gid 7).
+
+You can see information about your current login session by using the `who` command. In the following example, the `-u` option says to add information about idle time and the process ID and `-H` asks that a header be printed:
+
+```bash
+$ who -uH
+NAME      LINE    TIME             IDLE     PID   COMMENT
+chris     tty1    Jan 13 20:57     .        2019
+```
+
+The output from this who command shows that the user chris is logged in on tty1 (which is the first virtual console on the monitor connected to the computer) and his login session began at 20:57 on January 13. The IDLE time shows how long the shell has been open without any command being typed (the dot indicates that it is currently active).  PID shows the process ID of the user’s login shell. COMMENT would show the name of the remote computer from which the user had logged in, if that user had logged in from another computer on the network, or the name of the local X display if that user were using a Terminal window (such as :0.0).
+
+---
+
+Ctrl-d vs exit command
+
+`Ctrl+D` Sends the End-of-File (EOF) character or signal. When a shell (like Bash) receives an EOF signal on an empty command line, it interprets it as a signal to terminate the current session.
+
+`exit` is an explicit shell command that tells the shell to terminate immediately.
+
+How about `Ctrl c` and `Ctrl z`?
+
+---
+
+`df` (which stands for _disk full_ or _disk free_) show how much of your disk is still free; information about the partitions and their mount points\
+supports the `-h` or _human readable_ option which greatly improves readability
+
+How can you find out which partition a directory is on? Using the `df` command with a dot (.) as an option shows the partition the current directory belongs to, and informs about the amount of space used on this partition
+
+The `df` command only displays information about active non-swap partitions. These can include partitions from other networked systems
+
+since the search path contains only paths to directories containing executable programs, **which** doesn't work for ordinary files. The **which** command is useful when troubleshooting "Command not Found" problems.\
+Using the `which` command also checks to see if a command is an alias for another command `which -a ls`. If this does not work on your system, use the alias command: `alias ls`
+
+## Moving in the Terminal Prompt
+
+Emac mode shell key bindings:
+
+- `^b` & `^f` move backward/forward one char
+- `Alt b/f` move backward/forward one word
+- `^a` & `^e` go to start/end of prompt
+- `^p` & `^n` steps backward/forward through commands in `history`.
+- `^r` searches incrementally through your history to find old commands.
+- `^k` delete from cursor to end of line
+- `^h` delete the previous character (equal to backspace)
+- `^w` delete the previous word; `alt d` Cut the word following the cursor (delete next word).
+- `^u` delete the whole line
+- `^l` == `clear`; clear screen
+- `^d`, `exit` or `logout` Log out of the current shell session
+- `^c` End a running program and return the prompt.
+- `^z` Suspend a program
+
+- `^d` delete current character (conflict)
+- `^t` transpose character: Switch positions of current and previous characters
+- `Alt t` transpose word: Switch positions of current and previous words
+- `alt u` Change the current word to uppercase.
+- `alt l` Change the current word to lowercase.
+- Alt+C Capitalize word Change the current word to an initial capital.
+
+- conflict mapping: `^a, ^f`
 
 Many of these key binds can also be used in vim insert mode, command-line mode.
 
@@ -120,15 +186,7 @@ Also by piping the output of commands into `less`, you can read through it and t
 
 It’s true that the familiar Ctrl-c (copy) and Ctrl-v (paste) key combinations won’t work for a Bash shell session, but Shift-Ctrl-c and Shift-Ctrl-v will. You can also cut and paste by right-clicking your mouse and selecting the appropriate operation from the menu.
 
-## Ctrl-d vs exit command
-
-`Ctrl+D` Sends the End-of-File (EOF) character or signal. When a shell (like Bash) receives an EOF signal on an empty command line, it interprets it as a signal to terminate the current session.
-
-`exit` is an explicit shell command that tells the shell to terminate immediately.
-
-How about `Ctrl c` and `Ctrl z`?
-
-## man pages and get help
+## `man` pages and Getting helps
 
 - Anything between square brackets (`[` and `]`) is optional.
 - Anything followed by an ellipsis (`…`) can be repeated.
@@ -193,7 +251,9 @@ There might be multiple pages for the same keyword in different sections. For ex
 
 Other sections may be present, but these are not well standardized across man pages. Common examples include: OPTIONS, EXIT STATUS, RETURN VALUE, ENVIRONMENT, BUGS, FILES, AUTHOR, REPORTING BUGS, HISTORY and COPYRIGHT.
 
-### Read man panges
+---
+
+How to read man panges?
 
 `man <title>` formats a specific manual page and sends it to your terminal through `more`, `less`, or whatever program is specified in your `PAGER` environment vari-able. title is usually a command, device, filename, or name of a library routine. The sections of the manual are searched in roughly numeric order, although sec-tions that describe commands (sections 1, 8, and 6) are usually searched first.
 
@@ -219,446 +279,32 @@ References:
 
 [Mastering Linux Man Pages - A Definitive Guide](https://www.youtube.com/watch?v=RzAkjX_9B7E) by Linux Training Academy
 
-### info
+---
+
+The `info` command
 
 The man system is great if you happen to know the name of the command or program you’re after. But suppose the command name is the bit that you’re missing. Type `info` command.
 
-## Basic Commands
+## Command History
 
-Tên file có space thì phải để trong double quote.
+`history`
 
-`less "My excellent file.txt"`
+`!n` Run command number. Replace the n with the number of the command line and 
+that line is run.
 
-- `cp` to copy files
-- `mv` to move & rename files
+`!!` Run previous command.
 
-cp 2 files into 1 directory: `cp <filename> <filename1> <foldername>/`
-
-`cp -r /path/to/source/directory /path/to/destination/directory` cp directory. Lưu ý là `directory` chứ ko phải `directory/` (sẽ copy content).
-
-`-R` recursive copy (copy all underlying files and subdirectories). The general syntax is `cp [-R] fromfile tofile`
-
-`$ cp file1 newdir` => creates a copy of file1 within the directory newdir.
-
-By the way, the `cp` command knows what to do with this command line because it’s smart enough to recognize newdir as a directory rather than a file. If there were no directory called newdir in the current location, cp would instead make a new copy of file1 named newdir. If you’re anything like me, at some point you’re probably going to accidentally misspell a command and end up with an odd new file rather than the directory you were after. In any case, check everything to confirm it all works out the way it was supposed to.
-
-`mv ../filename.txt .` move a file to current directory
-
-rename directory `mv Oldfolder Newfolder`
-
-`$ mv file2 newdir` moves `file2` to `newdir` directory
-
-You can copy, move, or delete directories using the same commands as for files, adding the -r flag where necessary. Remember that you might be moving more than just the directory you see: any existing layers of unseen nested levels will also be dragged along for the ride. 
-
----
-
-`mkdir dir1 dir2` create multiple directories in one go
-
-`mkdir -p x/y/z` create nested directories in a single command. The `-p` switch create parents directories.
-
----
-
-`df` (which stands for _disk full_ or _disk free_) show how much of your disk is still free; information about the partitions and their mount points\
-supports the `-h` or _human readable_ option which greatly improves readability
-
-How can you find out which partition a directory is on? Using the `df` command with a dot (.) as an option shows the partition the current directory belongs to, and informs about the amount of space used on this partition
-
-The `df` command only displays information about active non-swap partitions. These can include partitions from other networked systems
-
-since the search path contains only paths to directories containing executable programs, **which** doesn't work for ordinary files. The **which** command is useful when troubleshooting "Command not Found" problems.\
-Using the `which` command also checks to see if a command is an alias for another command `which -a ls`. If this does not work on your system, use the alias command: `alias ls`
-
-## Removing Files & Directories
-
-- `rm` to remove files
-- `rmdir` to remove empty directories. It can only remove empty directories. 
-
-`rm -r directory-name` remove directory
-
-(Use `ls -a` to check whether a directory is empty or not). The rm command also has options for removing non-empty directories with all their subdirectories, read the Info pages for these rather dangerous options.\
-The interactive behavior of the rm, cp and mv commands can be activated using the -i option. In that case the system won't immediately act upon request. Instead it will ask for confirmation, so it takes an additional click on the Enter key to inflict the damage. Customize your shell environment to make this option the default.
-
-`rm file1` delete file1 from the directory
-
-`rm file*` deletes all files in the current directory whose names begin with the letters file.
-
-`rm -r *` wipe out the current directory
-
-When you use pattern matching (shell globbing), it’s a good idea to get in the habit of using the `-i` option to `rm` to make `rm` confirm the deletion of each file. This feature protects you against deleting any “good” files that your pattern inadvertently matches. For example, to delete a file named `foo<Control-D>bar`, you could use:
+`!?string—?` Run command containing string. This runs the most recent command that contains a particular string of characters. For example, you can run the date command again by just searching for part of that command line as follows:
 
 ```bash
-$ ls 
-foo?bar foose kde-root
-
-$ rm -i foo* 
-rm: remove 'foo\004bar'? y rm: remove 'foose'? n
+$ !?dat?
+         date
+         Fri Jun 29 16:04:18 EDT 2019
 ```
-
-## Alias
-
-`alias` list all alias in your terminal
-
-`unalias <alias>` remove an alias
-
-## sudo
-
-By default, the user created during the initial Linux installation will have sudo powers.
-
-When illustrating command-line examples throughout this book, I use a command prompt of $ for commands that don’t require administrator privileges and, instead of `$ sudo`, I use `#` for those commands that do. Thus a sudo command will look like this: `# nano /etc/group`
-
-## fzf
-
-fzf
-
-## cut
-
-> separate lines into fields
-
-## sed - search & replace
-
-search & replace operation on text files or streams.
-
-Replace all instances of "cat" with "dog".
-
-csv data that contains numbers that are erroneously padded with double quote. In order to correctly process this data, you need to get rid of the double quotes. This can be accomplished with the following `sed` command:  `cat data.csv | sed 's/"//g'`.
-
-The true power of `sed` comes from the fact that it enables you to perform (really) complex changes that can be described by regular expressions. Ex: swap text.
-
-**Back references** allow you to match a variable part of text and then move it around or changes it later depending on how you want to re-write it.
-
-## awk
-
-awk giống `sed` can be used to perform text replacements. But `sed` is easier for regex-based replacements. Whereas `awk` can perform arbitrary computations that `sed` can't.
-
-AWK is a _domain-specific language_ designed for text processing and typically used as a data extraction and reporting tool. Like sed and grep, it is a filter, and it is a standard feature of most Unix-like operating systems.
-
-extract the first column.
-
-## sort
-
-> sort lines
-
-`sort`'s output can be piped directly into a number of other useful commands.
-
-- Options:
-  - `-t`: Set field separator (the default is whitespace)
-  - `-k` Specify the columns that form the sort key
-  - `-n` do numerical sort. By default, `sort` uses lexicographical sort (dictionary sort)
-  - `-r` sort in the reverse order
-  - `-R` sort the list Randomly. You'll get a different order in each time.
-  - `-u` Output unique records only
-
-Both commands below use the `-t:` and `-k3,3` options to sort the /etc/group file by its third colon-separated field, the group ID. The first sorts numerically and the second alphabetically.
-
-```bash
-$ sort -t: -k3,3 -n /etc/group1
-root:x:0:
-bin:x:1:daemon
-daemon:x:2:
-…
-$ sort -t: -k3,3 /etc/group 
-root:x:0:
-bin:x:1:daemon
-users:x:100:
-…
-```
-
-sort accepts the key specification `-k3` (rather than `-k3,3`), but it probably doesn’t do what you expect. Without the terminating field number, the sort key continues to the end of the line.
-
-### tsort
-
-`tsort` stands for [topological sort](https://en.wikipedia.org/wiki/Topological_sorting).
-
-## tee
-
-> copy input to two places
-
-split off a stream so that its output can be simultaneously sent to a file and stdout. Named after the T-splitter in plumping.
-
-Debug why a complicated shell pipe ins't working. Dùng để tạo `.log` files for debugging shell pipes.
-
-The device `/dev/tty` is a synonym for the current terminal. For example,
-
-```bash
-find / -name core | tee /dev/tty | wc -l
-```
-
-prints both the pathnames of files named core and a count of the number of core files that were found.
-
-## cat
-
-`cat` (concatenate) print a file to the screen where it can be read, but not edited. This works pretty well for shorter documents.
-
-If the file you want to read contains more lines than will display in a single screen, you don't use `cat`.
-
-## head - tail, less - more
-
-> read the beginning or end of a file
-
-These commands display **ten lines** by default.
-
-For interactive use, `head` is more or less obsoleted by the `less` command, which paginates files for display. But `head` still finds plenty of use within scripts.
-
-In practice, you should only use `less`. Don't use `more` & `head`.
-
-Instead of exiting immediately after printing the requested number of lines, `tail -f` waits for new lines to be added to the end of the file and prints them as they appear— great for monitoring log files.  
-Type `<Control-C>` to stop monitoring.
-
-## grep
-
-> search text in files
-
-`grep` searches its input text and prints the lines that match a given pattern. Its name is based on the **g**/regular-expression/**p** command from the old **ed** editor that came with the earliest versions of UNIX (and still does).
-
-- Options:
-  * `-c` to print a count of matching lines
-  * `-i` to ignore case when matching
-  * `-v` to print nonmatching (rather than matching) lines
-  * `-l` (lowercase L) makes grep print only the names of matching files rather than printing each line that matches.
-
-```bash
-$ sudo grep -l mdadm /var/log/* 
-/var/log/auth.log 
-/var/log/syslog.0
-```
-
-Above command shows that log entries from mdadm have appeared in two different log files.
-
-Search for pieces of matching text in text files such as a csv file that store historical purchase information for products in a store giống dạng excel.
-
-`grep Sneaker sales.csv` Only show lines in file `sales.csv` that contain the string "Sneaker". Work with millions of lines of text.
-
-`grep` can be used with _regular expression_. Ex: extract all the different model number from a csv of sale record.
-
-By default, grep will print the entire line of text where a match is found.\
-`-o` flag extract only the matched part of the text.
-
-find and locate are often used in combination with grep to define some serious queries.
-
-**Other useful features:**\
-
-- recursive searches `-R` that look through all files & sub-directory, showing files and line numbers.
-- disabling case-sensitivity of the matching.
-- inverting matching logic by showing only lines that don't match instead.
-
-## Viewing file content
-
-### cat
-
-`cat` is sort for "concatenate". It allows you to concatenate multiple files together and have the aggregate input piped into another command.
-
-quicky add line number counts by using `-n` flag.
-
-### "less is more"
-
-[less](https://en.wikipedia.org/wiki/Less_(Unix)) is a terminal pager program used to view (but not change) the contents of a text file one screen at a time. It is similar to `more`, but has the extended capability of allowing both forward and backward navigation through the file.
-
-`less` is the GNU version of `more` and has extra features allowing highlighting of search strings, scrolling back etc.
-
-Khi dùng `less cat more` để view file, `Shift G` move to end of the file. Also works in man pages, vim.
-
-`q` to quit less
-
-`spacebar` next page, `b` to go back one page
-
-`h` open documentation of `less`
-
-`/` to search
-
-less support vim key-bindings.
-
-`^` means Ctrl
-
-`^F` `Ctrl F` Forward one window
-
-### head & tail
-
-`head` selectively output only the first few lines of a file or stream. Ex: the first 10 lines.
-
-`-n` negative number thì count backward from the end of the file
-
-`head` can also print out the first few character instead of the first few lines.
-
-`tail` does the opposite of `head`. The tail command has a handy feature to continuously show the last n lines of a file that changes all the time. This `-f` option is often used by system administrators to check on log files.
-
-## Environment Variables & Viewing Machine specs
-
-`echo $0` to know which shell you are using
-
-On Linux
-
-On MacOS
-
-Use the `printenv` command to display a list of currently set environment variables. Trong này sẽ có `$PATH`, `$HOME` và nhiều cái khác.
-
-Hiển thị one environment variable: `echo $[variable name]`
-
-`$PATH` environment variable stores a list of directories with executable files, and thus saves the user a lot of typing and memorizing locations of commands.
-
-If you want to display the complete list of shell variables, use the `set` command. The output is very long.
-
-`$HOME`: /Users/anhao
-
-The value you assign to a **temporary** environment variable only lasts until you close the terminal session. This is useful for variables you need to use for one session only or to avoid typing the same value multiple times.
-
-Assign a temporary environment variable with the `export` command. The export command also allows you to add new values to existing environment variables with the `:$` syntax.
-
-**Permanent** environment variables are added to the `.bash_profile` file. Cũng dùng `export` command. Execute the new `.bash_profile` by either restarting the terminal window or using `source ~/.bash-profile`
-
-Use the`unset` command to remove an environment variable.
-
-The primary use of the `eval` command  is to interpret and execute dynamic or complex commands stored in strings or variables. This allows you to generate and run commands dynamically.
-
-References
-
-[how to add folder to PATH](https://phoenixnap.com/kb/linux-add-to-path) by PHOENIXNAP very informative
-
-## comm
-
-compare the contents of two sorted files.
-
-Determine which lines are common to both files or determine which lines are missing from either file. More formally, `comm` allows you to compute the [union](https://en.wikipedia.org/wiki/Union_(set_theory)) (hội), [intersection](https://en.wikipedia.org/wiki/Intersection_(set_theory)) (giao) and [relative complement](https://en.wikipedia.org/wiki/Complement_(set_theory)) of the lines found in two files.
-
-Btw, you should learn [set theory](https://en.wikipedia.org/wiki/Set_theory) (lý thuyết tập hợp).
-
-## uniq
-
-> print unique lines
-
-Just like `comm`, this command also requires that its input be sorted first (usually by being run through `sort`).
-
-- `uniq` is similar in spirit to `sort -u`, but it has some useful options that sort does not emulate:
-  - `-c` to count the number of instances of each line
-  - `-d` to show only dupli-cated lines
-  - `-u` to show only nonduplicated lines
-
-For example, the command below shows that 20 users have `/bin/bash` as their login shell and that 12 have /bin/false. (The latter are either pseudo-users or users whose accounts have been disabled.)
-
-```bash
-$ cut -d: -f7 /etc/passwd | sort | uniq -c
-   20 /bin/bash
-   12 /bin/false
-```
-
-## wc (word cound)
-
-> count lines, words, and characters
-
-Run without options, it displays all three counts:
-
-```bash
-$ wc /etc/passwd
- 32  77 2003 /etc/passwd
-```
-
-Count the number of byte present too.
-
-In the context of scripting, it is more common to supply a `-l, -w, or -c` option to make wc’s output consist of a single number.
-
-## tr
-
-perform simple character replacements in text or binary data. Useful in cleaning up the results of other commands.
-
-Remove unwanted carriage returns from a file that was created on Windows.
-
-## Checking Resource usage - htop
-
-`free` Display amount of free and used memory (RAM) in the system. `free -m` Display the amount of memory in mebibytes.
-On MacOS, use the Activity Monitor app
-
-`df -h` (disk free) report file system disk space usage. The `-h` means "human readable" which display the values in Gigabytes
-`df -i` list inode information instead of block usage. The file system have a limited number of files that it can store.
-
-`htop` allows the user to interactively monitor the system’s vital resources or server’s processes in real time. Trên MacOS thì dùng [Activity Monitor](https://support.apple.com/en-vn/guide/activity-monitor/welcome/mac)
-
-`uptime` Tell how long the system has been running, load average
-
-[Linux ate my ram](https://www.linuxatemyram.com) for further learning
-
-## Managing `systemd` Units
-
-`systemclt status <unit name>` show status of a unit
-
-`sudo systemclt {disable|enable} <unit name>` disable/enable unit
-
-`sudo systemclt {stop|start} <unit name>` stop/start unit
-
-`sudo systemclt restart <unit name>` restart the unit (when changing configuration for example)
-
-## Viewing logs
-
-`dmesg` display all messages from the kernel ring buffer.
-
-`tail -f /var/log/syslog` The `-f, --follow` output appended data as the file grows (helpful)
-
-`journalctl` print log entries from the systemd journal
-`journalctl -u <unit name>` print the log of a specific systemd unit
-`journalctl -fu <unit name>` follow log
-
-## Archive & Transfering data
-
-### tar
-
-In computing, [tar](https://en.wikipedia.org/wiki/Tar_(computing)) is a computer software utility for collecting many files into one archive file, often referred to as a tarball, for distribution or backup purposes. The name is derived from "tape archive", as it was originally developed to write data to sequential I/O devices with no file system of their own, such as devices that use magnetic tape.
-
-## curl
-
-`curl` stands for "client url"
-
-On MacOS, curl comes pre-installed.
-
-You can use curl with a REST-api.
-
-```
-$ curl "https:/ /awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-$ unzip awscliv2.zip
-$ sudo ./aws/install
-```
-
-The `-o` (output flag) instructs `curl` to save the fetched data (instead of printing it to the terminal).
-
-## wget
-
-- `wget` is optimized for simple, robust file downloading (especially recursive and background downloads).
-- `curl` is optimized for data transfer and protocol flexibility, making it the primary tool for API interaction and scripting.
-
-`wget` saves output to a file by default, while `curl` Prints to standard output (stdout) by default.
-
-## Read system logs
-
-On nearly all modern Linux distributions, you can access all system logs through journalctl: 
-
-`# journalctl`
-
-As you’ll quickly see, running journalctl without any arguments will drown you in a torrent of data. You’ll need to find some way to filter for the information you’re after. Allow me to introduce you to grep:
-
-`# journalctl | grep filename.php`
-
-You can use grep in sequence to narrow your results further:
-
-`# journalctl | grep filename.php | grep error`
-
-In case you’d prefer to see only those lines that don’t contain the word error, you’d add -v (for inverted results): 
-
-`# journalctl | grep filename.php | grep -v error`
-
-## ACL
-
-ACL (Access Control List) is used in both Linux and networking because it is a universal computer security concept—the method used to implement granular authorization.
-
-The reason the name is the same is that the goal is identical: to have a list of rules that the system checks in order to decide whether to allow or deny access to a resource.
-
-- Linux (Filesystem) ACL
-  * Resource: A specific file or folder.
-  * Purpose: Granular Permissions (Who can touch this file?).
-
-- Networking (Firewall/Router) ACL
-  * Resource: A network interface or an entire subnet.
-  * Purpose: Traffic Filtering (What data is allowed on this wire?).
 
 ## Terminologies
 
-An **interactive shell** in Linux is a command-line interface where you type commands and get responses back directly. It's the primary way many users interact with the operating system.
+An `interactive shell` in Linux is a command-line interface where you type commands and get responses back directly. It's the primary way many users interact with the operating system.
 
 ## FAQs
 

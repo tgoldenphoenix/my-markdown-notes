@@ -1,19 +1,23 @@
 # Docker, Kubernetes & AWS notes
 
-## Container vs Virtual Machines
+## Terminologies
+
+Container vs Virtual Machines
 
 - Virtual Machines (VMs):
   - Hardware virtualization
-  - **Hypervisor** is a software, firmware, or hardware that creates and manages virtual machines by pooling and allocating resources from a single physical machine to multiple guest operating systems. CPU, RAM, storage, network, cards
+  - `Hypervisor` is a software, firmware, or hardware that creates and manages virtual machines by pooling and allocating resources from a single physical machine to multiple guest operating systems. CPU, RAM, storage, network, cards
 - Container (docker):
   - Operating-System-level virtualization
   - Process isolation
+
+image = container package
 
 ## Docker
 
 `docker ps -a`
 
-Docker is a software platform that simplifies the process of building, deploying, and running applications by using containerization. It packages an application and all its dependencies (libraries, system tools, code, and runtime) into a standardized unit called a container.
+`Docker` is a software **platform** that simplifies the process of building, deploying, and running applications by using containerization. It packages an application and all its dependencies (libraries, system tools, code, and runtime) into a standardized unit called a container.
 
 Build app vào docker, run locally, sau đó deploy lên aws.
 
@@ -34,9 +38,36 @@ Compare Docker (a container) vs Virtual Machines [here](https://www.freecodecamp
 **Docker Volumes** ensure that data remains intact even when containers are stopped, removed, or replaced.  
 You can map a file in your machine with as the volume of a container.
 
-## Docker commands
+---
 
-`docker --version`
+There used to be two options for migrating an app to the cloud: infrastructure as a service (IaaS) and platform as a service (PaaS).
+
+- IaaS provides the foundational building blocks of cloud infrastructure. It is the closest model to having an on-premises data center, but over the internet.
+- PaaS provides a complete, ready-to-use environment for developing, running, and managing applications. The provider handles everything required to run the code, allowing developers to focus purely on the application logic.
+  * Example: AWS Elastic Beanstalk, Azure App Service, Google App Engine, Heroku, AWS RDS (Managed Database).
+
+In the IaaS model, every component runs in its own VM for isolation. VMs are likely to be underutilized and expensive to run (billed monthly).
+
+Docker offers a third option. You migrate each part of your application to a container, and then you can run the whole application in containers using Azure Kubernetes Service (AKS), using Amazon’s Elastic Container Service (Amazon ECS), or on your own container platform in the datacenter.
+
+The application components all run in containers. They are isolated like VMs but lightweight.
+
+You do not need Kubernetes for only one container, and using it would be severe overkill.  
+Kubernetes (or any cluster orchestrator) is designed for solving the complex problems that arise when you have many containers, many servers, and high demand. For a single container, the complexity of setting up and maintaining a Kubernetes cluster far outweighs any benefit.
+
+It does take some investment to migrate to containers: you’ll need to build your existing installation steps into scripts called Dockerfiles and build your deployment documents into descriptive application manifests using the Docker Compose or Kubernetes format. But you don’t need to change code, and the end result runs in the same way using the same technology stack on every environment, from your laptop to the cloud.
+
+## Container
+
+Container share host OS. Virtual machine virtual OS.
+
+Containers are built for a particular platform. A container that packages a Linux app for an Arm processor won’t run on Windows, and a container for a Windows app on an Intel processor won’t run on Linux. In a production environment, you’ll need Windows servers to run your Windows apps in containers and Linux servers to run Linux containers. 
+
+## Docker Commands
+
+`docker --version` or `docker version`
+
+`docker compose version`
 
 `docker init`
 
@@ -45,14 +76,40 @@ You can map a file in your machine with as the volume of a container.
 
 `docker stop` Stop one or more running containers
 
+Docker doesn’t automatically clean up containers or application packages for you. When you quit Docker Desktop (or stop the Docker service), all your containers stop and they don’t use any CPU or memory, but if you want to, you can clean up at the end of every chapter by running this command:
+
+`docker container rm -f $(docker container ls -aq)`
+
+`-a` (all) delete all container
+
+If you want to reclaim disk space after following the exercises, you can run this command:
+
+`docker image rm -f $(docker image ls -f reference='diamol/**' -q)`
+
 `docker rm` Remove one or more containers
 
 - `docker image` manage images
   * `docker image ls` List images
 
+`docker container top` lists the processes running in the container. You’ll need to use your own container ID (I’m using a4 as a short form of the ID a41ad305d64d):
+
+```bash
+> docker container top a4
+UID     PID    STIME    TIME    CMD
+root    670    15:48    0:00    /bin/sh
+```
+
+## Docker Compose
+
+Docker Compose is a tool for defining and running multi-container applications on a single host machine.
+
+Kubernetes is an open-source platform designed to automate the deployment, scaling, and management of containerized applications across a cluster of machines.
+
+Docker can run multiple containers and join them in a virtual network so you can run a complex distributed application on your laptop. However, Docker doesn’t connect multiple physical machines together, so you can’t spread containers across servers to get more scale or high availability. For that, you need a platform that manages containers for you—Kubernetes and cloud services. 
+
 ## Kubernetes
 
-Kubernetes (or K8s) is a **container orchestration tool**. It keep your docker containers up. If the containers become unhealthy, k8s can take them out behind the barn and shoot them, then spin up another container(s) automatically.
+`Kubernetes (or K8s)` is a **container orchestration tool**. It keep your docker containers up. If the containers become unhealthy, k8s can take them out behind the barn and shoot them, then spin up another container(s) automatically.
 
 A **pod** typically includes several containers, which together form a functional unit.
 

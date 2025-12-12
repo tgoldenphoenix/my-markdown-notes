@@ -214,6 +214,14 @@ Most people new to regular expressions will attempt to use `<.+>`. They will be
 
 But it does not. The regex will match `<EM>first</EM>`. Obviously not what we wanted. The reason is that the plus is _greedy_. That is, the plus causes the regex engine to repeat the preceding token as often as possible. Only if that causes the entire regex to fail, will the regex engine _backtrack_. That is, it will go back to the plus, make it give up the last iteration, and proceed with the remainder of the regex
 
+Like the plus, the star and the repetition using curly braces are greedy.
+
+---
+
+The quick fix to this problem is to make the plus lazy instead of greedy. Lazy quantifiers are sometimes also called “ungreedy” or “reluctant”. You can do that by putting a question mark after the plus in the regex. You can do the same with the star, the curly braces and the question mark itself. So our example becomes `<.+?>`. 
+
+In this case, there is a better option than making the plus lazy. We can use a greedy plus and a negated character class: `<[^>]+>`. The reason why this is better is because of the backtracking. When using the lazy plus, the engine has to backtrack for each character in the HTML tag that it is trying to match. When using the negated character class, no backtracking occurs at all when the string contains valid HTML code. Backtracking slows down the regex engine.
+
 ## Optional Items `?`
 
 - The `?` symbol có 2 chức năng: optional matching & lazy matching  
@@ -347,6 +355,8 @@ The character class `[a-z-[aeiuo]]` matches a single letter that is not a vowel.
 Character class intersection is supported by Java, ICU, JGsoft V2, and by Ruby 1.9 and later. It makes it easy to match any single character that must be present in two sets of characters. The syntax for this is `[class&&[intersect]]`. You can use the full character class syntax within the intersected character class.
 
 ## Capture Groups `()`
+
+Use Parentheses for Grouping and Capturing.
 
 We can group an expression and use these groups to reference or enforce some rules. To group an expression, we enclose them in parentheses `()`.
 

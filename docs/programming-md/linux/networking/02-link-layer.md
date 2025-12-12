@@ -41,3 +41,10 @@ A MAC address (e.g., `00:1A:2B:3C:4D:5E`) is a `48-bit = 8 bits x 6 groups`. Eac
 MAC addresses are physical. IP addresses are logical.
 
 An adapter’s MAC address has a flat structure (as opposed to a hierarchical structure) and doesn’t change no matter where the adapter goes.
+
+## Terminologies
+
+- `wifi en0`: the network interface name
+  * `en` means it uses **Ethernet framing**. Wi-Fi (802.11) traffic is typically encapsulated within an Ethernet frame format for higher-level network protocols (like TCP/IP).
+ 
+The Network Interface Card (NIC), also known as a Network Adapter, Network Card, or Network Interface Controller, is the physical hardware component that connects a computer or other device to a computer network.

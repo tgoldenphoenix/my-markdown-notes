@@ -1,5 +1,7 @@
 # The File Systems
 
+## Basics
+
 > On a UNIX system, everything is a file; if something is not a file, it is a process.
 
 On a standard Linux system you will find the layout generally follows the scheme presented below.
@@ -30,6 +32,130 @@ In the shell and in scripts, spaceful filenames can be quoted to keep their piec
 `$ less "My excellent file.txt"`
 
 preserves `My excellent file.txt` as a single argument to less. You can also escape individual spaces with a backslash.
+
+`.` and `..` acts as hard links.
+
+## Working with Files & Directories
+
+- `rm` to remove files
+- `rmdir` to remove empty directories. It can only remove empty directories. 
+
+`rm -r directory-name` remove directory
+
+(Use `ls -a` to check whether a directory is empty or not). The rm command also has options for removing non-empty directories with all their subdirectories, read the Info pages for these rather dangerous options.\
+The interactive behavior of the rm, cp and mv commands can be activated using the -i option. In that case the system won't immediately act upon request. Instead it will ask for confirmation, so it takes an additional click on the Enter key to inflict the damage. Customize your shell environment to make this option the default.
+
+`rm file1` delete file1 from the directory
+
+`rm file*` deletes all files in the current directory whose names begin with the letters file.
+
+`rm -r *` wipe out the current directory
+
+When you use pattern matching (shell globbing), it’s a good idea to get in the habit of using the `-i` option to `rm` to make `rm` confirm the deletion of each file. This feature protects you against deleting any “good” files that your pattern inadvertently matches. For example, to delete a file named `foo<Control-D>bar`, you could use:
+
+```bash
+$ ls 
+foo?bar foose kde-root
+
+$ rm -i foo* 
+rm: remove 'foo\004bar'? y rm: remove 'foose'? n
+```
+
+`touch <file name>`
+
+`touch file{1..10}` Creates 10 files named file1 to file10
+
+“Touching” an existing file with touch updates its time stamp without making any changes. This can be useful if, for some reason, you want to change how various commands like ls list or display a file. (It can also be helpful if you’d like your boss to think that you’ve been hard at work on a data file that, in fact, you haven’t opened for weeks.)
+
+Tên file có space thì phải để trong double quote.
+
+`less "My excellent file.txt"`
+
+- `cp` to copy files
+- `mv` to move & rename files
+
+cp 2 files into 1 directory: `cp <filename> <filename1> <foldername>/`
+
+`cp -r /path/to/source/directory /path/to/destination/directory` cp directory. Lưu ý là `directory` chứ ko phải `directory/` (sẽ copy content).
+
+`-R` recursive copy (copy all underlying files and subdirectories). The general syntax is `cp [-R] fromfile tofile`
+
+`$ cp file1 newdir` => creates a copy of file1 within the directory newdir.
+
+By the way, the `cp` command knows what to do with this command line because it’s smart enough to recognize newdir as a directory rather than a file. If there were no directory called newdir in the current location, cp would instead make a new copy of file1 named newdir. If you’re anything like me, at some point you’re probably going to accidentally misspell a command and end up with an odd new file rather than the directory you were after. In any case, check everything to confirm it all works out the way it was supposed to.
+
+`mv ../filename.txt .` move a file to current directory
+
+rename directory `mv Oldfolder Newfolder`
+
+`$ mv file2 newdir` moves `file2` to `newdir` directory
+
+You can copy, move, or delete directories using the same commands as for files, adding the -r flag where necessary. Remember that you might be moving more than just the directory you see: any existing layers of unseen nested levels will also be dragged along for the ride. 
+
+---
+
+`mkdir dir1 dir2` create multiple directories in one go
+
+`mkdir -p x/y/z` create nested directories in a single command. The `-p` switch create parents directories.
+
+## Viewing File Content: `cat`, `less`, `head` & `tail`
+
+`cat` is sort for "concatenate". It allows you to concatenate multiple files together and have the aggregate input piped into another command.
+
+quicky add line number counts by using `-n` flag.
+
+`cat` (concatenate) print a file to the screen where it can be read, but not edited. This works pretty well for shorter documents.
+
+If the file you want to read contains more lines than will display in a single screen, you don't use `cat`.
+
+---
+
+> less is more
+
+[less](https://en.wikipedia.org/wiki/Less_(Unix)) is a terminal pager program used to view (but not change) the contents of a text file one screen at a time. It is similar to `more`, but has the extended capability of allowing both forward and backward navigation through the file.
+
+`less` is the GNU version of `more` and has extra features allowing highlighting of search strings, scrolling back etc.
+
+Khi dùng `less cat more` để view file, `Shift G` move to end of the file. Also works in man pages, vim.
+
+`q` to quit less
+
+`spacebar` next page, `b` to go back one page
+
+`h` open documentation of `less`
+
+`/` to search
+
+less support vim key-bindings.
+
+`^` means Ctrl
+
+`^F` `Ctrl F` Forward one window
+
+---
+
+head & tail
+
+`head` selectively output only the first few lines of a file or stream. Ex: the first 10 lines.
+
+`-n` negative number thì count backward from the end of the file
+
+`head` can also print out the first few character instead of the first few lines.
+
+`tail` does the opposite of `head`. The tail command has a handy feature to continuously show the last n lines of a file that changes all the time. This `-f` option is often used by system administrators to check on log files.
+
+---
+
+> read the beginning or end of a file
+
+These commands display **ten lines** by default.
+
+For interactive use, `head` is more or less obsoleted by the `less` command, which paginates files for display. But `head` still finds plenty of use within scripts.
+
+In practice, you should only use `less`. Don't use `more` & `head`.
+
+Instead of exiting immediately after printing the requested number of lines, `tail -f` waits for new lines to be added to the end of the file and prints them as they appear— great for monitoring log files.  
+Type `<Control-C>` to stop monitoring.
 
 ## Terminologies
 
@@ -116,7 +242,7 @@ On modern unix systems, almost all system-wide configuration files are under /et
 
 ---
 
-`/sbin` and `/bin` for important utilities  
+`/sbin` and `/bin` for important utilities, administrative commands
 
 - `/bin` Core operating system commands; user binary files
 - `/sbin` Commands needed for minimal system operability; system binary files
@@ -366,6 +492,10 @@ Commonly noted as **SGID**, this special permission has a couple of functions:
 - If set on a directory, any files created in the directory will have their **group** ownership set to that of the directory owner
 
 ## `ls`: List and Inspect files
+
+`ls` stands for list storage
+
+`ls -l` có thể chỉnh alias thành `ll` (not an actual linux command). Hình như `la` cũng vậy. Nhưng mình không biết setting nằm ở file nào.
 
 The following two uses of options for the ls command are the same:
 
@@ -684,6 +814,9 @@ As you’ll see soon, applying compression to a tar archive is simple and doing 
 
 ## Archiving files and file systems using `tar`
 
+In computing, `tar` is a computer software utility for collecting many files into one archive file, often referred to as a **tarball**, for distribution or backup purposes.  
+The name is derived from **tape archive**, as it was originally developed to write data to sequential I/O devices with no file system of their own, such as devices that use **magnetic tape**.
+
 - To successfully create your archive, there are three things that will have to happen:
   * Find and identify the files you want to include.
   * Identify the location on a storage drive that you want your archive to use.
@@ -788,11 +921,11 @@ And, because we’re talking about find, I should also tell you about a similar 
 
 If you run locate head-to-head against find, locate will almost always return results far faster. What’s the secret? locate isn’t actually searching the file system itself, but simply running your search string against entries in a preexisting index. The catch is that if the index is allowed to fall out of date, the searches become less and less accurate. Normally the index is updated every time the system boots, but you can also manually do the job by running `updatedb`: `sudo updatedb`.
 
-## `find` & locate
+## `find`, `locate`, `which`
 
 These are the real tools, used when searching other paths beside those listed in the search path (using `which`).
 
-`find` sfind files and directory in a directory hierarchy. This command not only allows you to search file names, it can also accept file size, date of last change and other file properties as criteria for a search. The most common use is for finding file names: `find <path> -name <searchstring>`\
+`find` find files and directory in a directory hierarchy. This command not only allows you to search file names, it can also accept file size, date of last change and other file properties as criteria for a search. The most common use is for finding file names: `find <path> -name <searchstring>`\
 This can be interpreted as "Look in all files and subdirectories contained in a given path, and print the names of the files containing the search string in their name" (not in their content).
 
 - filter by file type, file name and a number of other options.
@@ -822,6 +955,60 @@ After cloning a repository or un-zipping an archive. You'll wonder "How many fil
 `locate`
 
 Later on (in 1999 according to the man pages, after 20 years of `find`), `locate` was developed. This program is easier to use, but more restricted than find, since its output is based on a file index database that is updated only once every day. On the other hand, a search in the locate database uses less resources than find and therefore shows the results nearly instantly. Most Linux distributions use `slocate` these days, security enhanced locate, the modern version of locate that prevents users from getting output they have no right to read.  On most systems, locate is a symbolic link to the slocate program
+
+---
+
+- If you want to add your own commands or shell scripts, place them in the bin directory in your home directory (such as /home/chris/bin for the user named chris).
+- To make commands available to all users, add them to `/usr/local/bin`.
+
+Unlike some other operating systems, Linux does not, by default, check the current directory for an executable **before** searching the path. It immediately begins searching the path, and executables in the current directory are run only if they are in the PATH variable or you give their absolute (such as /home/chris/scriptx.sh) or relative (for example,  ./script x.sh) location.
+
+The path directory order is important. Directories are checked from left to right. So, in this example, if there is a command called foo located in both the /usr/bin and /bin direc-tories, the one in /usr/bin is executed. To have the other foo command run, you either type the full path to the command or change your PATH variable.
+
+`which <command>` locate the executable file associated with the given command.
+
+`type` giống `which`
+
+```bash
+$ type bash
+bash is /bin/bash
+
+❯ type which
+which is a shell builtin
+
+❯ type case
+case is a reserved word
+```
+
+---
+
+If a command is not in your PATH variable, you can use the `locate` command to try to 
+find it. Using locate, you can search any part of the system that is accessible to you. (Some files are only accessible to the root user.) For example, if you wanted to find the loca-tion of the chage command, you could enter the following:
+
+```bash
+$ locate chage
+/usr/bin/chage
+/usr/sbin/lchage
+/usr/share/man/fr/man1/chage.1.gz
+/usr/share/man/it/man1/chage.1.gz
+/usr/share/man/ja/man1/chage.1.gz
+/usr/share/man/man1/chage.1.gz
+/usr/share/man/man1/lchage.1.gz
+/usr/share/man/pl/man1/chage.1.gz
+/usr/share/man/ru/man1/chage.1.gz
+/usr/share/man/sv/man1/chage.1.gz
+/usr/share/man/tr/man1/chage.1.gz
+```
+
+Notice that locate not only found the chage command, it also found the lchage command and a variety of man pages associated with chage for different languages. The locate command looks all over your filesystem, not just in directories that contain com-mands. (If locate does not find files recently added to your system, run `updatedb` as root to update the locate database.)
+
+`which -a ls` show that the `ls` command is in the `/bin` directory (show full path)
+
+`whereis aws`
+
+- `which`:
+  * f
+- `whereis`
 
 ## `dd`
 

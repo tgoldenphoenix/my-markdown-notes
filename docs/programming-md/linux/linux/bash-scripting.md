@@ -88,6 +88,8 @@ Name images file.
 
 ## The Basics
 
+`Ctrl Alt t` open the terminal
+
 `bash` is great for simple scripts that automate things you’d otherwise be typing on the command line. But once a bash script gets above a hundred lines or you need features that bash doesn’t have, it’s time to move on to Perl or Python.
 
 `echo $SHELL` to see which shell you are using
@@ -258,13 +260,42 @@ I still run
 
 ---
 
-`&&` Executes the next command ONLY if the previous command succeeded (exit code 0).
+- `&&` Executes the next command ONLY if the previous command succeeded (exit code 0).
+- `||` là gì?
 
 ---
 
 - As on the command line, you can break a single logical line onto multiple physical lines by escaping the newline with a backslash (`\`). Make sure there are no characters (including a space) after the backslash. That’s guaranteed to cause you grief.
   * Trong `LaTeX` thì `\` là syntax của commands.
- 
+
+## Shell Expansion
+
+Command Substitution
+
+With command substitution, you can have the output of a command interpreted by the 
+shell instead of by the command itself. In this way, you can have the standard output of a command become an argument for another command. The two forms of command substitution are `$(command)` and `command` (backticks, not single quotes).
+
+`$ vi $(find /home | grep xyzzy)`
+
+---
+
+Expanding arithmetic expressions
+
+Sometimes, you want to pass arithmetic results to a command. There are two forms that 
+you can use to expand an arithmetic expression and pass it to the shell: `$[expression]` 
+or `$(expression)`. The following is an example:
+
+```bash
+$ echo "I am $[2020 - 1957] years old."
+I am 63 years old.
+```
+
+## Background Commands
+
+Some commands can take a while to complete. Sometimes, you may not want to tie up your shell waiting for a command to finish. In those cases, you can have the commands run in the background by using the ampersand (`&`).
+
+Don’t close the shell until the process is completed or that kills the process.
+
 ## `xargs`
 
 `xargs` reads items from standard input (usually separated by spaces or newlines) and builds and executes command lines using those items as arguments.
@@ -321,7 +352,7 @@ in your `~/.bash_profile`to make sure ssh is always run with the option `-p 7988
 
 Like many shells, bash has an `alias` mechanism that can reproduce this limited example even more concisely, but functions are more general and more powerful. Forget aliases and use functions.
 
-## Output Redirection, streams & pipes
+## Output Redirection, Streams & Pipes
 
 - Every process has at least three standard communication channels (streams) available to it:
   - `0: STDIN` (said standard input or standard in)
@@ -351,6 +382,22 @@ cp --preserve --recursive /etc/* /spare/backup \
 ```
 
 For the converse effect—multiple commands combined onto one line—you can use a semicolon (`;`) as a statement separator.
+
+## `tee`
+
+> copy input to two places
+
+split off a stream so that its output can be simultaneously sent to a file and stdout. Named after the T-splitter in plumping.
+
+Debug why a complicated shell pipe ins't working. Dùng để tạo `.log` files for debugging shell pipes.
+
+The device `/dev/tty` is a synonym for the current terminal. For example,
+
+```bash
+find / -name core | tee /dev/tty | wc -l
+```
+
+prints both the pathnames of files named core and a count of the number of core files that were found.
 
 ## Variables
 
@@ -393,6 +440,12 @@ There are 28 lines in the passwd file.
 ### Variable Scope
 
 Variables are global within a script, but functions can create their own lo cal vari-ables with a `local` declaration.
+
+## Alias
+
+`alias` list all alias in your terminal
+
+`unalias <alias>` remove an alias
 
 ## Bash Command history
 
@@ -524,6 +577,38 @@ Use `#!/usr/bin/bash` on Linux, use `#!/bin/bash` on MacOS. Use `which bash` to 
 `printenv` and `env` là 1 command giống nhau. Thường dùng để: (1) print all shell environment variables and (2) in the shebang line.
 
 [The Difference Between #!/usr/bin/bash and #!/usr/bin/env bash](https://www.baeldung.com/linux/bash-shebang-lines)
+
+## Environment Variables & Viewing Machine specs
+
+`echo $0` to know which shell you are using
+
+On Linux
+
+On MacOS
+
+Use the `printenv` command to display a list of currently set environment variables. Trong này sẽ có `$PATH`, `$HOME` và nhiều cái khác.
+
+Hiển thị one environment variable: `echo $[variable name]`
+
+`$PATH` environment variable stores a list of directories with executable files, and thus saves the user a lot of typing and memorizing locations of commands.
+
+If you want to display the complete list of shell variables, use the `set` command. The output is very long.
+
+`$HOME`: /Users/anhao
+
+The value you assign to a **temporary** environment variable only lasts until you close the terminal session. This is useful for variables you need to use for one session only or to avoid typing the same value multiple times.
+
+Assign a temporary environment variable with the `export` command. The export command also allows you to add new values to existing environment variables with the `:$` syntax.
+
+**Permanent** environment variables are added to the `.bash_profile` file. Cũng dùng `export` command. Execute the new `.bash_profile` by either restarting the terminal window or using `source ~/.bash-profile`
+
+Use the`unset` command to remove an environment variable.
+
+The primary use of the `eval` command  is to interpret and execute dynamic or complex commands stored in strings or variables. This allows you to generate and run commands dynamically.
+
+References
+
+[how to add folder to PATH](https://phoenixnap.com/kb/linux-add-to-path) by PHOENIXNAP very informative
 
 ## Terminology
 
