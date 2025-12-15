@@ -1,18 +1,26 @@
-# Docker, Kubernetes & AWS notes
+# Docker, Kubernetes notes
 
 ## Terminologies
 
 Container vs Virtual Machines
 
 - Virtual Machines (VMs):
-  - Hardware virtualization
-  - `Hypervisor` is a software, firmware, or hardware that creates and manages virtual machines by pooling and allocating resources from a single physical machine to multiple guest operating systems. CPU, RAM, storage, network, cards
+  * Hardware virtualization
+  * `Hypervisor` is a software, firmware, or hardware that creates and manages virtual machines by pooling and allocating resources from a single physical machine to multiple guest operating systems. CPU, RAM, storage, network, cards
 - Container (docker):
   - Operating-System-level virtualization
   - Process isolation
 
 image = container package
 
+Docker and Kubernetes provides **horizontal scaling**.
+
+- Vertical scaling involves increasing the resources of a single server instance.
+  * Adding more power to one machine.
+- Horizontal scaling involves distributing the workload across multiple, often identical, lower-powered servers or instances.
+  * Adding more machines to the cluster.
+- AWS EC2 (Elastic Compute Cloud) fully offers both kinds of scaling: vertical scaling (scaling up) and horizontal scaling (scaling out).
+ 
 ## Docker
 
 `docker ps -a`
@@ -63,6 +71,39 @@ Container share host OS. Virtual machine virtual OS.
 
 Containers are built for a particular platform. A container that packages a Linux app for an Arm processor won’t run on Windows, and a container for a Windows app on an Intel processor won’t run on Linux. In a production environment, you’ll need Windows servers to run your Windows apps in containers and Linux servers to run Linux containers. 
 
+## Run Container from Image
+
+k
+
+## Build Source Code into Image
+
+The main goal is to build, package & run an app from source code with only Docker installed; no need to install `node 24.12.0 LTX`, `mvn`, `npm`, `jdk21`, nothing; only need to install Docker (and source code).
+
+- Java applications are compiled, so the source code gets copied into the build stage, which generates a JAR file. The JAR file is the compiled app, and it gets copied into the final application image, but the source code is not. It’s the same with .NET, where the compiled artifacts are Dynamic Link Libraries (DLLs).  
+- Node.js is different—it uses JavaScript, which is an **interpreted language**, so there’s no compilation step. Dockerized Node.js apps need the Node.js runtime and the source code in the application image.
+- With a web application written in Go. Go is a modern, cross-platform language that compiles to **native binaries**. That means you can compile your apps to run on any platform (Windows, Linux, Intel, or Arm), and the compiled output is the complete application. You don’t need a separate runtime installed, like you do with Java, .NET, Node.js, or Python, and that makes for extremely small Docker images.
+
+- `docker image build -t image-name .`
+  * the `-t` (tag) option is for naming the resulting image
+  * `.` is the **building context**; here it is specified as the current directory
+
+## multi-stage `Dockerfiles`
+
+Each stage in a multi-stage build has its own cache.
+
+### `dockerfile` commands & syntax
+
+The `COPY` command has two forms:
+
+Standard Form: `COPY <source> <destination>`
+
+- The source path is relative to the build context (the directory you are in when you run `docker build .`).
+- The destination path is an absolute path inside the container image.
+
+Multi-stage Form (for copying from another build stage): `COPY --from=<name_of_stage> <source_path> <destination_path>`
+
+copy files from a previous build stage (like a "builder" stage that contained the compiler and source code) into the final, clean stage.
+
 ## Docker Commands
 
 `docker --version` or `docker version`
@@ -101,7 +142,7 @@ root    670    15:48    0:00    /bin/sh
 
 ## Docker Compose
 
-Docker Compose is a tool for defining and running multi-container applications on a single host machine.
+`Docker Compose` is a tool for defining and running multi-container applications on a **single host machine**.
 
 Kubernetes is an open-source platform designed to automate the deployment, scaling, and management of containerized applications across a cluster of machines.
 

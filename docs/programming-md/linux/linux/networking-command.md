@@ -1,58 +1,13 @@
-# Networking & System Administration commands
+# Networking Administration
 
-## The OSI Model
-
-All the different types of communication protocols are classified in 7 layers, which are known as the Open Systems Interconnection Reference Model, the OSI Model for short. For easy understanding, this model is reduced to a 4-layer protocol description, as described in the table below
-
-## Managing users
-
-The `cat /etc/passwd` file stores all the users information including system users. The actual passwords are stored in `sudo cat etc/shadow`
-`cat etc/group` list of groups
-
-`groups [USERNAME]` print groups in which user belong to
-
-`sudo adduser USERNAME` add new user
-
-`su - USERNAME` switch to another user (require password). `su -`switch to the `root` user (require password). Type `logout|exit` or `Ctrl d` to log out. You only use this method if the `sudo` package is not installed on your machine.
-
-`sudo su - [USERNAME]` switch to another user (without password). `sudo su -` switch to root user
-
-`passwd` change current user's password
-`sudo passwd USERNAME` change user password as root
-
-`sudo userdel -r USERNAME` remove user. The `-r` option also remove this user's home directory.
-
-`sudo groupadd GROUPNAME` create new group
-
-`sudo usermod -aG GROUPNAME USERNAME` add user to group. You have to log-out and log-in for it to take effect
-
-`sudo gpasswd -d USERNAME GROUPNAME` remove user from group
-
-`sudo groupdel GROUPNAME` remove group
-
-## The sudo command
-
-[su command in linux](https://linuxize.com/post/su-command-in-linux/)
-
-The `su` (short for substitute or switch user) utility allows you to run commands with another user’s privileges, by default the root user. `sudo` should be read as "su do", that is, "switch user and do this command"
-
-`which sudo` check if the sudo package is installed
-
-`cat /etc/sudoers` member of sudo group can execute any command
-`usermod -aG [wheel|sudo] USERNAME` add user to sudo group. After adding user to group, you log in again for it to take effect
-
-`sudo -l` list the privileges for the invoking user
-
-`!!` repeat the last command you ran. For example: `sudo !!`
-
-`sudo visudo` dedicated command to edit the `/etc/sudoers` file
-
-## Get IP Address
+## Show Network Interfaces information
 
 `ip addr` is the modern standard for Linux, while `ipconfig` is the long-standing standard for Windows.
 
+To see information about each network interface on your local Linux system
+
 ```
-$ ip addr
+$ ip addr show
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue
     state UNKNOWN group default qlen 1
     link/loopback 00:00:00:00:00 brd 00:00:00:00:00
@@ -72,7 +27,14 @@ $ ip addr
        valid_lft forever preferred_lft forever
 ```
 
----
+- `enp4s0`:
+  * `en`: ethernet; `wl` for wireless LAN
+  * `p4`: PCI Bus 4; Indicates the interface is connected to the PCI bus number 4.
+  * `s0`: Slot 0; Indicates the interface is in the first (slot 0) position within that PCI device.
+
+Older versions of Linux are used to assign more generic network interface names, such as `eth0` and `wlan0`. Now interfaces are named by their locations on the computer’s bus. For example, the first port on the network card seated in the third PCI bus for a Fedora system is named p3p1. The first embedded Ethernet port would be em1.
+
+## `ping`
 
 use `ping` to test whether your two computers can see and speak to each other.
 
@@ -96,3 +58,6 @@ From 10.0.3.1 icmp_seq=1
    Destination Host Unreachable
 From 10.0.3.1 icmp_seq=1 Destination Host Unreachable
 ```
+
+## Checking routing Information
+

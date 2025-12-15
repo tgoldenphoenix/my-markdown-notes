@@ -62,6 +62,49 @@ By default, the user created during the initial Linux installation will have sud
 
 When illustrating command-line examples throughout this book, I use a command prompt of $ for commands that don’t require administrator privileges and, instead of `$ sudo`, I use `#` for those commands that do. Thus a sudo command will look like this: `# nano /etc/group`
 
+## Managing users
+
+The `cat /etc/passwd` file stores all the users information including system users. The actual passwords are stored in `sudo cat etc/shadow`
+`cat etc/group` list of groups
+
+`groups [USERNAME]` print groups in which user belong to
+
+`sudo adduser USERNAME` add new user
+
+`su - USERNAME` switch to another user (require password). `su -`switch to the `root` user (require password). Type `logout|exit` or `Ctrl d` to log out. You only use this method if the `sudo` package is not installed on your machine.
+
+`sudo su - [USERNAME]` switch to another user (without password). `sudo su -` switch to root user
+
+`passwd` change current user's password
+`sudo passwd USERNAME` change user password as root
+
+`sudo userdel -r USERNAME` remove user. The `-r` option also remove this user's home directory.
+
+`sudo groupadd GROUPNAME` create new group
+
+`sudo usermod -aG GROUPNAME USERNAME` add user to group. You have to log-out and log-in for it to take effect
+
+`sudo gpasswd -d USERNAME GROUPNAME` remove user from group
+
+`sudo groupdel GROUPNAME` remove group
+
+## The sudo command
+
+[su command in linux](https://linuxize.com/post/su-command-in-linux/)
+
+The `su` (short for substitute or switch user) utility allows you to run commands with another user’s privileges, by default the root user. `sudo` should be read as "su do", that is, "switch user and do this command"
+
+`which sudo` check if the sudo package is installed
+
+`cat /etc/sudoers` member of sudo group can execute any command
+`usermod -aG [wheel|sudo] USERNAME` add user to sudo group. After adding user to group, you log in again for it to take effect
+
+`sudo -l` list the privileges for the invoking user
+
+`!!` repeat the last command you ran. For example: `sudo !!`
+
+`sudo visudo` dedicated command to edit the `/etc/sudoers` file
+
 ## User Management
 
 Usernames aren't really identifications for users. The system uses a user ID (`UID`) to identify a user.

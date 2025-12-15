@@ -2,15 +2,19 @@
 
 JUnit is a framework that enables and supports automated testing in Java.
 
-## JUnit test framework
+## Terminologies
 
-Unit cần test trong Java là 1 class or 1 method inside class
+A life cycle method is a method that is annotated with `@BeforeAll, @AfterAll, @BeforeEach`, or `@AfterEach`. 
+
+## JUnit Basics
+
+Unit cần test trong Java là 1 class or 1 method inside class.
 
 Move cursor inside the class, hit `Cmd S t` to create unit test
 
-**JUnit** is a **testing framework** that provides the foundation for writing and running unit tests. It offers annotations (like @Test, @BeforeEach, @AfterEach) to define test methods and their setup/teardown, and assertion methods (like assertEquals, assertTrue) to verify expected outcomes. JUnit focuses on structuring your tests and validating the behavior of your code.
+`JUnit` is a **testing framework** that provides the foundation for writing and running unit tests. It offers annotations (like `@Test, @BeforeEach, @AfterEach`) to define test methods and their setup/teardown, and assertion methods (like assertEquals, assertTrue) to verify expected outcomes. JUnit focuses on structuring your tests and validating the behavior of your code.
 
-JUnit 5 runs test cases using assertions, annotations, and test runners. It focuses mainly on methods and classes.
+`JUnit 5` runs test cases using assertions, annotations, and test runners. It focuses mainly on methods and classes.
 
 Mockito provides methods to create mock objects, configure their behavior (what they return), and verify certain interactions that took place (if the method was called, how many times, with what type of parameter, etc.).
 
@@ -19,7 +23,7 @@ Test functions always return `void`.
 - BDD: Behaviour-driven development
 - AAA: Arrange Act Assert
 
-Instead of a Runner, JUnit 5 is built on the **JUnit Platform**, which uses **Test Engines** to discover and execute tests.
+Instead of a Runner, JUnit 5 is built on the `JUnit Platform`, which uses **Test Engines** to discover and execute tests.
 
 **Jupiter & Vintage** là 2 cái test engine.
 
@@ -28,6 +32,30 @@ JUnit 5 (JUnit Jupiter) does **not** use the concept of a "Runner" class like JU
 `@Test`: Indicates that a method is a test case.
 
 The JUnit class `Parameterized` is one of JUnit’s many test runners. A test runner allows you to tell JUnit how a test should be run.
+
+JUnit creates a new instance of the test class before invoking each `@Test` method. You cannot reuse instance variable values across test methods.
+
+## JUnit Architecture
+
+JUnit 5 was designed to work with old JUnit 4 code in existing legacy projects through JUnit Vintage.
+
+JUnit 4, released in 2006, has a simple, monolithic architecture. All of its functionality is concentrated inside a single jar file. If a programmer wants to use JUnit 4 in a project, all they need to do is add that jar file on the classpath.
+
+---
+
+A JUnit 4 `runner` is a class that extends the JUnit 4 abstract Runner class. A JUnit 4 runner is responsible for running JUnit tests.
+
+`Extensions` are the JUnit 5 equivalent of JUnit 4 runners.
+
+---
+
+A JUnit 4 rule is a component that intercepts test method calls; it allows you to do something before a test method is run and something else after a test method has run. Rules are specific to JUnit 4.
+
+By using runners and rules, you can extend the monolithic architecture of JUnit 4. You may still encounter a lot of JUnit 4 code that uses runners and rules; plus, migrating to the equivalent JUnit 5 mechanisms (extensions) is not straightforward. So you may keep runners and rules in your code for a while, even if you move your work to JUnit 5.
+
+---
+
+JUnit 5 breaks the single JUnit 4 jar file into several smaller files.
 
 ## Parameterized Tests
 
@@ -69,12 +97,6 @@ You call `verify()` **after** you call `.embarkOnQuest()`
 ## Temporary directory/file
 
 k
-
-## Unit test
-
-A **unit test** examines the behavior of a distinct unit of work. Within a Java application, the “distinct unit of work” is often (but not always) a single method. By contrast, integration tests and acceptance tests examine how various components interact. A unit of work is a task that isn’t directly dependent on the completion of any other task.
-
-Here’s a generic description of a typical unit test from our perspective: “Confirm that the method accepts the expected range of input and that the method returns the expected value for each input.”
 
 ## Class, Suite & Runner
 

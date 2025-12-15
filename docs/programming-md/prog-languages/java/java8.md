@@ -3,17 +3,19 @@
 ## Java version & History
 
 - Companies and tutorials often stick to Long-Term Support (LTS) versions, because they’re supported for many years.
-  - Java 8 → LTS
-  - Java 11 → LTS
-  - Java 17 → LTS
+  * Java 8 → LTS
+  * Java 11 → LTS
+  * Java 17 → LTS
 - Non-LTS versions (9, 10, 12, 13, 14, 15, 16) only had 6 months of support, so many skipped them.
 
 - Java 8 (or Java SE 8, codenamed "Oak") was officially released by Oracle on March 18, 2014.
-  - stream API
-  - Lambda expression & functional interfaces: provide support for functional programming paradigms
-  - method references (the double colon operator (`::`))
-  - Optional class: A new class for handling null values safely, reducing NullPointerException errors and improving code robustness
-  - static and default methods in interfaces
+  * stream API
+  * Lambda expression & functional interfaces: provide support for functional programming paradigms
+  * method references (the double colon operator (`::`))
+  * Optional class: A new class for handling null values safely, reducing NullPointerException errors and improving code robustness
+  * static and default methods in interfaces
+
+Java 8 was released in March 2014, Java 9 in September 2017, Java 10 in March 2018, and Java 11 planned for September 2018.
 
 ### Lambda expressions & functional interfaces
 

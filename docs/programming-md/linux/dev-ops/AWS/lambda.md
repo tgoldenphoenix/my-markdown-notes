@@ -25,10 +25,9 @@ Both AWS Lambda and EC2 provide compute power (run code)
 The term **serverless** refers to any service that you do not need to managing the server yourself & only focus on the coding of the software (like the operating system). It does not refer to the absence of physical servers (because everything runs on servers).  
 Serverless services are billed per request and by resource consumption
 
-The term serverless is best understood as a spectrum of abstraction:
-
-- Least Serverless (Most Management): EC2 Instances
-- Mid-Serverless: Containers on AWS Fargate (You manage the application layer, not the server layer).
-- Most Serverless (Zero Management): AWS Lambda, Google Cloud Run (serverless container), AWS App Runner, cloud function (FaaS).
+- The term serverless is best understood as a spectrum of abstraction:
+  * Least Serverless (Most Management): EC2 Instances
+  * Mid-Serverless: Containers on AWS Fargate (You manage the application layer, not the server layer).
+  * Most Serverless (Zero Management): AWS Lambda, Google Cloud Run (serverless container), AWS App Runner, cloud function (FaaS).
 
 AWS is not the only provider offering a serverless platform. Google (Cloud Functions) and Microsoft (Azure Functions) are other competitors in this area

@@ -356,6 +356,10 @@ Character class intersection is supported by Java, ICU, JGsoft V2, and by Ruby 1
 
 ## Capture Groups `()`
 
+By placing part of a regular expression inside round brackets or parentheses, you can group that part of the regular expression together. This allows you to apply a quantifier to the entire group or to restrict alternation to part of the regex.
+
+Only parentheses can be used for grouping. Square brackets define a character class. Curly braces are used by a quantifier with specific limits.
+
 Use Parentheses for Grouping and Capturing.
 
 We can group an expression and use these groups to reference or enforce some rules. To group an expression, we enclose them in parentheses `()`.
@@ -386,11 +390,19 @@ The substring matched by the group is saved to a temporary "variable", which can
 
 All the quantifiers including the star `*`, `+`, repetition {m,n} and the question mark ? can all be used within the capture group patterns. This is the only way to apply quantifiers on sequences of characters instead of the individual characters themselves.
 
+---
+
 **Non-capturing group (?: )**
 
-Use the special syntax `Set(?:Value)?` to group tokens without creating a capturing group. This is more efficient if you don’t plan to use the group’s contents. Do not confuse the question mark in the non-capturing group syntax with the quantifier.
+Use the special syntax `(?:Value)` to group tokens without creating a capturing group. This is more efficient if you don’t plan to use the group’s contents. 
+
+In `Set(?:Value)?`, do not confuse the question mark in the non-capturing group syntax with the quantifier.  
+The question mark and the colon after the opening parenthesis (`(?:`) are the syntax that creates a non-capturing group.  
+The question mark after the opening parenthesis is unrelated to the question mark at the end of the regex. The final question mark is the quantifier that makes the previous token optional. This quantifier cannot appear after an opening parenthesis, because there is nothing to be made optional at the start of a group. Therefore, there is no ambiguity between the question mark as an operator to make a token optional and the question mark as part of the syntax for non-capturing groups, even though this may be confusing at first. There are other kinds of groups that use the (? syntax in combination with other characters than the colon that are explained later in this tutorial.
 
 In the pattern `/(?:ha)-ha,(haa)-\1/g`, there are two groups. However, the first group reference we denote with `\1` actually indicates the second group, as the first is a non-capturing group.
+
+`color=(?:red|green|blue)` is another regex with a non-capturing group. This regex has no quantifiers. The group is needed to keep the three alternatives together.
 
 **Nested groups**
 
@@ -409,6 +421,8 @@ You can also access capture groups in the replacement string with dollar signs (
 ## Backreferences
 
 Within the regular expression, you can use the backreference `\1` to match the same text that was matched by the capturing group. `([abc])=\1` matches `a=a`, `b=b`, and `c=c`. It does not match anything else. If your regex has multiple capturing groups, they are numbered counting their opening parentheses from left to right.
+
+The first parenthesis starts backreference number one, the second number two, etc.
 
 ---
 

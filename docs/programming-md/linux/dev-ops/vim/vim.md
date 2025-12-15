@@ -1,4 +1,4 @@
-# My definitive Vim notes
+# Vim Notes
 
 Reading the vim doc: [tới đây](https://github.com/iggredible/Learn-Vim/blob/master/ch03_searching_files.md#searching-in-files-with-grep) <- regex
 

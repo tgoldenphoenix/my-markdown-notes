@@ -52,12 +52,17 @@ Agile/scrum chỉ dùng user story.
 - `A = B` dùng Rectangle
 - Không bắt buộc dùng hình nào cả.
 
-## Unit testing
+## Unit Test
 
 You should use a separate testing database for your tests. Do not pollute your production database with testing data.  
 Tests will add and manipulate all kinds of data, which can lead to data being lost or to the database being in an inconsistent state.  
 Using a separate database also makes it easier to determine a bug’s root cause. Because you are fully in control of the test database’s state, customers’ actions won’t interfere with your tests’ results.
 
 Automated tests also don’t eliminate the need for manual testing. Verifying your work as end users would do and investing time into **exploratory testing** are still indispensable. Because this book is targeted at software developers instead of QA analysts, in the context of this chapter, I’ll refer to the unnecessary manual testing process often done during development just as manual testing. 
+
+A **unit test** examines the behavior of a distinct unit of work. Within a Java application, the “distinct unit of work” is often (but not always) a single method. A unit of work is a task that isn’t directly dependent on the completion of any other task.  
+In contrast, `integration tests` and `acceptance tests` examine how various components interact. 
+
+Here’s a generic description of a typical unit test from our perspective: “Confirm that the method accepts the expected range of input and that the method returns the expected value for each input.”
 
 ## The testing pyramid
