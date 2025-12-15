@@ -16,3 +16,21 @@ An [axiom](https://en.wikipedia.org/wiki/Axiom), postulate, or assumption (tiên
 
 In mathematics and formal logic, a [theorem](https://en.wikipedia.org/wiki/Theorem) (định lý) is a statement that has been proven, or can be proven. The _proof_ of a theorem is a logical argument that uses the inference rules of a deductive system to establish that the theorem is a logical consequence of the axioms and previously proved theorems.
 
+## Arithmetic
+
+Cách chia lấy qua phần thập phân. Ví dụ $1/2=0.5$; $3/4=0.75$.
+
+[convert fraction to decimal](https://www.youtube.com/watch?v=do_IbHId2Os)
+
+---
+
+Dividing decimal by decimal. Ví dụ $5.76 / 0.3 = 19.2$
+
+## Mnemonic
+
+$12x12=144$
+
+`1111 1111 = 255`
+
+$2^8=128$
+
