@@ -57,6 +57,13 @@ By using runners and rules, you can extend the monolithic architecture of JUnit 
 
 JUnit 5 breaks the single JUnit 4 jar file into several smaller files.
 
+- The JUnit 5 architecture contains three modules (figure 3.7):
+  * JUnit Platform serves as a foundation for launching testing frameworks on the Java virtual machine (JVM). It also provides an API to launch tests from the console, IDEs, and build tools.
+  * `JUnit Jupiter` combines the new programming and extension model for writing tests and extensions in JUnit 5. The name comes from the fifth planet of our solar system, which is also the largest.
+  * `JUnit Vintage` is a test engine for running JUnit 3- and JUnit 4-based tests on the platform, ensuring backward compatibility.
+
+`JUnit Jupiter` provides the test engine.
+
 ## Parameterized Tests
 
 **Parameterized Tests**: run a test many times with different sets of parameters.
@@ -93,6 +100,13 @@ public class BraveKnightTest {
 `verify(mockQuest, times(1)).embark();` verifies that the method embark() was called exactly once on the mock object `mockQuest`.
 
 You call `verify()` **after** you call `.embarkOnQuest()`
+
+## Stub
+
+There are two strategies for providing fake objects: stubbing and using mock objects.
+
+- When you write `stubs`, you provide a predetermined behavior right from the beginning. The stubbed code is written outside the test, and it will always have a fixed behavior, no matter how many times or where you use the stub; its methods will usually return hardcoded values. The pattern of testing with a stub this: initialize stub > execute test > verify assertions.
+- A mock object does not have a predetermined behavior. When running a test, you are setting the expectations on the mock before effectively using it. You can run different tests, and you can reinitialize a mock and set different expectations on it. The pattern of testing with a mock object this: initialize mock > set expectations > execute test > verify assertions. 
 
 ## Temporary directory/file
 

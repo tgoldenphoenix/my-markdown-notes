@@ -20,7 +20,9 @@ The text names that correspond to UIDs and GIDs are defined only for the conveni
 
 ## The `root` account
 
-The defining characteristic of the root account is its UID of `0`.
+`root:password` (the user name is `root`)
+
+The defining characteristic of the root account is its user id `UID` is `0`. The `root` group id is also `0`.
 
 - Examples of restricted operations are:
   * Changing the root directory of a process with `chroot`
@@ -32,9 +34,13 @@ The defining characteristic of the root account is its UID of `0`.
   * Opening privileged network ports (those numbered below `1,024`)
   * Shutting down the system
 
+The home directory of `root` is `/root`.
+
 ## `su` substitute user identity
 
-If invoked without arguments, `su` prompts for the root password and then starts up a **root shell**. Root privileges remain in effect until you terminate the shell by typing `<Control-D>` or the `exit` command.
+If invoked without arguments, `su` prompts for the root password and then starts up a `root shell`. Root privileges remain in effect until you terminate the shell by typing `<Control-D>` or the `exit` command.
+
+If you become the root user by just typing `su`, rather than `su -`, you don’t change directories or the environment of the current login session. Dẫn đến có thể không chạy được một số commands.
 
 `su` doesn’t record the commands executed as root, but it does create a log entry that states **who** became root and when.
 
@@ -43,24 +49,40 @@ If invoked without arguments, `su` prompts for the root password and then starts
 The `su` command can also substitute **identities other than root**. Sometimes, the only way to reproduce or debug a user’s problem is to `su` to their account so that you reproduce the environment in which the problem occurs.
 
 If you know someone’s password, you can access that person’s account directly by executing `su - username`.  
-As with an su to root, you will be prompted for the password for username. The `-` (dash) option makes su spawn the shell in login mode. The exact implications of login mode vary by shell, but it normally changes the number or identity of the startup files that the shell reads. For example, bash reads ~/.bash_profile in login mode and ~/.bashrc in nonlogin mode. When di-agnosing other users’ problems, it helps to reproduce their login environments as closely as possible.
+As with a `su` to `root`, you will be prompted for the password for username. The `-` (dash) option makes `su` create a full login environment for that user.
+
+`su - kimphuong`
+
+As `root` user, however, after you type the `su` command to become another user, you don’t need a pass-word to continue. If you type that command as a regular user, you must type the new 
+user’s password.
 
 ## `sudo`: limited `su`
 
-`sudo` is a program (superuser do).
+`sudo` is a program (superuser do). With `sudo`, a regular user is given root privileges, but only when that user runs the sudo command to run another command. After running that one command with sudo, the user is immediately returned to a shell and acts as the regular user again
+
+Dùng `sudo` không cần phải biết root password. Chỉ cần biết password của bản thân mình.
 
 `sudo` takes as its argument a command line to be executed as root (or as another restricted user). 
 
-`sudo` consults the file `/etc/sudoers`, which lists the people who are authorized to use sudo and the commands they are allowed to run on each host.  
+`sudo` consults the file `/etc/sudoers`, which lists the people who are authorized to use `sudo` and the commands they are allowed to run on each host.  
 If the proposed command is permitted, sudo prompts for the **user’s own password** and executes the command.
 
-`sudo` keeps a log of the command lines that were executed, the hosts on which they were run, the people who requested them, the directory from which they were run, and the times at which they were invoked.
-
-You can edit the `sudoer` file with the `visudo` command.
+`sudo` keeps a log of the command lines that were executed, the hosts on which they were run, the people who requested them, the directory from which they were run, and the times at which they were invoked.  
+Using `su`, all you know is that someone with the root password logged in.
 
 By default, the user created during the initial Linux installation will have sudo powers.
 
 When illustrating command-line examples throughout this book, I use a command prompt of $ for commands that don’t require administrator privileges and, instead of `$ sudo`, I use `#` for those commands that do. Thus a sudo command will look like this: `# nano /etc/group`
+
+---
+
+You can edit the `sudoer` file with the `visudo` command.
+
+As the root user, edit the /etc/sudoers file by running the visudo command:
+
+`# /usr/sbin/visudo`
+
+By default, the file opens in `vi`. The reason for using visudo is that the command locks the /etc/sudoers file and does some basic sanity checking of the file to ensure that it has been edited correctly.
 
 ## Managing users
 
@@ -125,6 +147,14 @@ You can use the `adduser` or the `useradd` command. The adduser command contains
 To remove a user, you can use the `userdel` command.
 
 Change the password of yourself or another user (if you are root): `$ passwd bob`
+
+## `usermod`
+
+Modify existing user account details, such as username, password, home directory location, default shell, and more.
+
+The `-c` option to add a piece of information about a user to the `/etc/passwd` file.
+
+`sudo usermod -c "This is Mike from Everrise" mike`
 
 ## ACL
 

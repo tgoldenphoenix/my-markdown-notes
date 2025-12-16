@@ -602,18 +602,17 @@ A single interface reference variable can refer to objects of various classes th
 
 ## Operator
 
-There are 3 types of operators:
-
-1. Unary: Only one operand is needed.
-2. Binary: Two operands are needed.
-3. Ternary:
+- There are 3 types of operators:
+  1. Unary: Only one operand is needed.
+  2. Binary: Two operands are needed.
+  3. Ternary:
 
 ## Flow control & Loops
 
 At times, you need to bail out of — or terminate — a loop before the conditional expression evaluates to false:
 
 - The `break;` statement takes you to the next executable statement outside of the loop in which it's located.
-- You can also skip a single iteration of a loop but continue executing the loop. For that purpose, you need the `continue` statement
+- You can also skip a single iteration of a loop but continue executing the loop. For that purpose, you need the `continue` statement.
 
 `for(dataType variable : array) {}` là **for-each loop** (or enhanced loop) in Java. They are mostly used to iterate through an array or collection of variables.
 
@@ -797,15 +796,20 @@ So in Spring Boot:
 
  [This video](https://www.youtube.com/watch?v=K1iu1kXkVoA) by John explain generic good!
 
-Generic means **generic classes**. Using Generics, it is possible to create classes that work with different data types (generic classes). An entity such as class, interface, or method that operates on a parameterized type is a **generic entity**.  
-Generic còn gọi là parameterized types.  
-Khi pass vô generics phải là reference type or wrapper classes like `Interger` không được pass primitive type (`int`).
+Generic means `generic classes`. Using Generics, it is possible to create classes that work with different data types (generic classes). An entity such as class, interface, or method that operates on a parameterized type is a **generic entity**.  
+Generic còn gọi là `parameterized types`.  
+
+A type variable can be any non-primitive type you specify: any class type, any interface type, any array type, or even another type variable. Khi pass vô generics phải là reference type or wrapper classes like `Interger` không được pass primitive type (`int`).
 
 `<T>` shorts for `<Type>`
 
 Generic thường gặp trong `ArrayList<>`
 
-Generic sẽ khiến code **type-safe** (giống như null-safe). Mình biết chắc là trong ArrayList chỉ có một loại duy nhất, không có những thứ khác có thể potentially cause error or exceptions. [This video](https://www.youtube.com/watch?v=K1iu1kXkVoA) explain it at around 8:50
+ A generic class is defined with the following format:
+
+`class name<T1, T2, ..., Tn> { /* ... */ }`
+
+Generic sẽ khiến code **type-safe** (giống như null-safe). Mình biết chắc là trong ArrayList chỉ có một loại duy nhất, không có những thứ khác có thể potentially cause error or exceptions.
 
 You can narrow down the `<T>` that user can pass into your generics by using `<T extends ClassName>`. This is known as **bounded generic**.
 NOTE: Nếu implement interface vẫn dùng `extends` chứ không dùng `implements` nha.

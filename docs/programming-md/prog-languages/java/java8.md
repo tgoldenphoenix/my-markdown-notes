@@ -178,3 +178,10 @@ The method reference Person::compareByAge is semantically the same as the lambda
 
 There are four kinds of method references:
 
+## Lambdas: anonymous functions
+
+You could define a method `add1` inside a class `MyMathsUtils` and then write `MyMaths-Utils::add1!` Yes, you could, but the new lambda syntax is more concise for cases where you don’t have a convenient method and class available.
+
+## Working with Files
+
+k

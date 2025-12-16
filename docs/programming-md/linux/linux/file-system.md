@@ -1,5 +1,13 @@
 # The File Systems
 
+## Terminologies
+
+- File tree: the overall layout
+- filesystem: the chunks attached to the tree
+
+- `/`: the root directory/filesystem
+- `/root`: the home directory of the root user
+
 ## Basics
 
 > On a UNIX system, everything is a file; if something is not a file, it is a process.
@@ -157,14 +165,6 @@ In practice, you should only use `less`. Don't use `more` & `head`.
 Instead of exiting immediately after printing the requested number of lines, `tail -f` waits for new lines to be added to the end of the file and prints them as they appear— great for monitoring log files.  
 Type `<Control-C>` to stop monitoring.
 
-## Terminologies
-
-- File tree: the overall layout
-- filesystem: the chunks attached to the tree
-
-- `/`: the root directory/filesystem
-- `/root`: the home directory of the root user
-
 ## Mounting
 
 - File tree: the overall layout
@@ -269,13 +269,15 @@ Some systems keep **shared library files** and a few other odd things such as th
 
 `/var` store system-specific data, frequently changing content (such as log files)
 
-`/usr` Contains non-essential command-line binaries, libraries, header files, **third-party binaries** and other data. At least it is non-essential to the system. The dotfiles is actually essential to the users.
-
-The directories /usr and /var are also of great importance. `/usr` is where most standard programs are kept, along with various other booty such as on-line manuals and most libraries. It is not strictly necessary that /usr be a separate filesystem, but for convenience in administration it often is. Both /usr and /var must be available to enable the system to come up all the way to multiuser mode.
-
 `/var` houses spool directories, log files, accounting information, and various other items that grow or change rapidly and that vary on each host. Since /var contains log files, which are apt to grow in times of trouble, it’s a good idea to put /var on its own filesystem if that is practical.
 
 Home directories of users are often kept on a separate filesystem (`/home`), usually one that’s mounted in the root directory.
+
+### `/usr`
+
+`/usr` Contains non-essential command-line binaries, libraries, header files, **third-party binaries** and other data. At least it is non-essential to the system. The dotfiles is actually essential to the users.
+
+The directories `/usr` and `/var` are also of great importance. `/usr` is where most standard programs are kept, along with various other booty such as on-line manuals and most libraries. It is not strictly necessary that /usr be a separate filesystem, but for convenience in administration it often is. Both /usr and /var must be available to enable the system to come up all the way to multiuser mode.
 
 - `/usr/bin` Most commands and executable files
 - `/usr/include` Header files for compiling C programs

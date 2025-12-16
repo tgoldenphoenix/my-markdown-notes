@@ -130,7 +130,8 @@ Hello, world!
 
 The first command runs `helloworld` in a new instance of `bash`, and the second makes your existing login shell read and execute the contents of the file. The latter option is useful when the script sets up environment variables or makes other customizations that apply only to the current shell. It’s commonly used in script-ing to incorporate the contents of a configuration file written as a series of bash variable assignments.
 
-The “dot” command is a synonym for `source`, e.g., `. helloworld`.
+The `.` command is a synonym for `source`, e.g., `. helloworld`, `. /etc/os-release`.  
+Đừng nhầm với `./shell-script.sh`.
 
 If you wish, you can give your bash scripts a `.sh` suffix to remind you what they are, but you’ll then have to type out the `.sh` when you run the command, since UNIX doesn’t treat extensions specially.
 

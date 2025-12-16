@@ -15,11 +15,13 @@ Count the number of byte present too.
 
 In the context of scripting, it is more common to supply a `-l, -w, or -c` option to make wc’s output consist of a single number.
 
-## `tr`
+## `tr` (translate)
 
 perform simple character replacements in text or binary data. Useful in cleaning up the results of other commands.
 
 Remove unwanted carriage returns from a file that was created on Windows.
+
+`tr "[A-Z]"  "[a-z]"` => convert all uppercase letters in an input stream to their lowercase equivalents.
 
 ## comm
 
@@ -101,7 +103,7 @@ The true power of `sed` comes from the fact that it enables you to perform (real
 
 **Back references** allow you to match a variable part of text and then move it around or changes it later depending on how you want to re-write it.
 
-## awk
+## `awk`
 
 awk giống `sed` can be used to perform text replacements. But `sed` is easier for regex-based replacements. Whereas `awk` can perform arbitrary computations that `sed` can't.
 
@@ -109,21 +111,42 @@ AWK is a _domain-specific language_ designed for text processing and typically u
 
 extract the first column.
 
-## sort
+## `sort`
 
 > sort lines
 
 `sort`'s output can be piped directly into a number of other useful commands.
 
-- Options:
-  - `-t`: Set field separator (the default is whitespace)
-  - `-k` Specify the columns that form the sort key
-  - `-n` do numerical sort. By default, `sort` uses lexicographical sort (dictionary sort)
-  - `-r` sort in the reverse order
-  - `-R` sort the list Randomly. You'll get a different order in each time.
-  - `-u` Output unique records only
+`sort [OPTION]... [FILE]...`
 
-Both commands below use the `-t:` and `-k3,3` options to sort the /etc/group file by its third colon-separated field, the group ID. The first sorts numerically and the second alphabetically.
+- Options:
+  * `-t`: Set field separator (columns by default are separated by the whitespace character)
+  * `-k`: specify the columns that form the sort key. Column index start at one.
+  * `-n`: do numerical sort. By default, `sort` uses lexicographical sort (dictionary sort)
+  * `-r`: sort in the **reverse order**.
+  * `-R`: sort the list **Randomly**. You'll get a different order in each time.
+  * `-u`: output unique records only; eliminate duplicate lines chỉ giữ lại 1 dòng
+
+- In `alphabetical sorting` (default), the command checks the first letter of each line and moves the lines upward or downward to arrange each line in alphabetical order.
+  * Note: Lines starting with a lowercase letter appear before lines beginning with an uppercase letter.
+- In `numerical sorting`, the command checks numbers on each line and arranges the lines in ascending order (default).
+
+```bash
+$ sort test.txt
+$ sort -r test.txt
+
+$ sort -n numeric.txt
+$ sort -nr numeric.txt
+
+$ sort -k 2 file2.txt # sort column 2nd
+```
+
+There is a very small difference in sort and `grep` command.  
+The sort command arranges data alphabetically or numerically in ascending or descending order. The grep command displays or hides only the required information you want.
+
+---
+
+Both commands below use the `-t:` and `-k3,3` options to sort the `/etc/group` file by its third colon-separated field, the group ID. The first sorts numerically and the second alphabetically.
 
 ```bash
 $ sort -t: -k3,3 -n /etc/group1
@@ -138,7 +161,7 @@ users:x:100:
 …
 ```
 
-sort accepts the key specification `-k3` (rather than `-k3,3`), but it probably doesn’t do what you expect. Without the terminating field number, the sort key continues to the end of the line.
+`sort` accepts the key specification `-k3` (rather than `-k3,3`), but it probably doesn’t do what you expect. Without the terminating field number, the sort key continues to the end of the line.
 
 ### tsort
 
