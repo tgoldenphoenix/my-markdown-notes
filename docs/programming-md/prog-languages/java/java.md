@@ -2,9 +2,9 @@
 
 ## Basics & Terminologies
 
-Structurally, the Java language starts with **packages**. A package is the Java language's namespace mechanism (1 folder). Within packages are classes (such as the file `main.java`), and within classes are methods, variables, constants, and more. Cấu trúc lớn hơn packages là [module](https://developer.ibm.com/tutorials/java-modularity-2/?cm_mmc=OSocial_Blog-_-Developer_IBM+Developer-_-WW_WW-_-ibmdev-OInfluencer-YouTube-KA-Java-Modularity&cm_mmca1=000037FD&cm_mmca2=10010797).
+Structurally, the Java language starts with `packages`. A package is the Java language's namespace mechanism (1 folder). Within packages are classes (such as the file `main.java`), and within classes are methods, variables, constants, and more. Cấu trúc lớn hơn packages là `module`.
 
-Java has a **garbage collector** and it doesn't require you to write any memory-handling code. This is known as **implicit memory management**.
+Java has a `garbage collector` and it doesn't require you to write any memory-handling code. This is known as **implicit memory management**.
 
 When you download a JDK, you get — in addition to the compiler and other tools — a complete class library of prebuilt utilities that help you accomplish most common application-development tasks. Go to the Java API doc to learn more.  
 The JDK comes packed full of useful classes like `java.lang.String`, and those in the `java.lang` package do not need to be imported (a shorthand courtesy of the Java compiler).
@@ -568,17 +568,6 @@ When you define a new interface, you are defining a new reference data type (gi�
 
 If you define a reference variable whose type is an interface, any object you assign to it must be an instance of a class that implements the interface.  
 Reference variable can only point to object not interface.
-
-### static and default methods in interfaces
-
-- Like regular interface methods, **default methods** are implicitly `public`; there’s no need to specify the public modifier.
-- Unlike regular interface methods, we declare them with the `default` keyword at the beginning of the method signature, and they provide an implementation. Class implements the interface không cần phải implement default methods.
-- Mục đích của default method là để cho phép add more method to interface mà không phải viết thêm code trong các class that had already implemented that interface. It allowes interfaces to evolve without breaking existing implementations, improving the flexibility of the language
-
-When a class implements several interfaces that define the same default methods thì: (1) class đó phải khai báo cụ thể muốn dùng default method của interface nào hoặc (2) class đó phải tự provide implementation của riêng nó cho default method (giống abstract method).
-
-- **Static method** trong interface giống static method trong class: dùng `static` keyword, interface phải provide implementation không được hứa, static method belong to the interface.
-- The same can pretty much be done with abstract classes. The main difference is that abstract classes can have constructors, state, and behavior.
 
 ## The four main principles of OOP
 

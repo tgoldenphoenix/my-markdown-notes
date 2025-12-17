@@ -242,12 +242,11 @@ On modern unix systems, almost all system-wide configuration files are under /et
 
 ---
 
-`/sbin` and `/bin` for important utilities, administrative commands
+- `/sbin` and `/bin` for important utilities, administrative commands
+  * `/bin`: Core operating system commands; user binary files
+  * `/sbin`: Commands needed for minimal system operability; system binary files
 
-- `/bin` Core operating system commands; user binary files
-- `/sbin` Commands needed for minimal system operability; system binary files
-
-`/boot`Kernel and files needed to load the kernel
+`/boot` Kernel and files needed to load the kernel.
 
 `/tmp` for temporary files
 
@@ -284,11 +283,11 @@ The directories `/usr` and `/var` are also of great importance. `/usr` is where 
 - `/usr/lib` Libraries; also, support files for standard programs
 - `/usr/lib64` 64-bit libraries on 64-bit Linux distributions
 - `/usr/local` Software you write or install; mirrors structure of /usr
-- `/usr/sbin` Less essential commands for administration and repair
+- `/usr/sbin` Less essential commands for administration and repair. `/sbin` có thể symbolic link to `/usr/sbin`.
 
 ### `/etc`
 
-most configuration files are stored in the `/etc` directory.
+Most system-wide configuration files are stored in the `/etc` directory. Personal config files specific to user thì store trong home directory của user (the dotfiles inside `/home/anhao`).
 
 [Table 3-3. Most common configuration files](https://tldp.org/LDP/intro-linux/html/sect_03_02.html#AEN2485)
 
@@ -300,8 +299,30 @@ Once upon a time, an encrypted version of each user’s password would also have
 
 `sudo cat /etc/shadow`
 
-Scripts saved to the `/cron.daily/` directory will be executed each day.
+---
 
+`/etc/cron*`: Directories in this set contain files that define how the crond utility runs applications on a daily (`cron.daily`), hourly (`cron.hourly`), monthly (cron. monthly), or weekly (cron.weekly) schedule.
+
+Scripts saved to the `/etc/cron.daily/` directory will be executed each day.
+
+---
+
+`/etc/default`: Contains files that set default values for various utilities. For example, the file for the useradd command defines the default group number, home direc-tory, password expiration date, shell, and skeleton directory (/etc/skel) used when creating a new user account.
+
+`/etc/httpd`: Contains a variety of files used to configure the behavior of your Apache web server (specifically, the httpd daemon process). (On Ubuntu and other Linux systems, /etc/apache or `/etc/apache2` is used instead.
+
+`/etc/skel`: Any files contained in this directory are automatically copied to a user’s home directory when that user is added to the system. By default, most of these files are dot (.) files, such as .kde (a directory for setting KDE desktop defaults) and .bashrc (for setting default values used with the bash shell).
+
+`/etc/systemd`: Contains files associated with the systemd facility, for managing the boot process and system services. In particular, when you run systemctl com-mands to enable and disable services, files that make that happen are stored in sub-directories of the `/etc/systemd` system directory.
+
+- The following are some interesting configuration files in `/etc`:
+  * `bashrc`: Sets system-wide defaults for bash shell users. (This may be called `bash.bashrc` on some Linux distributions.)
+  * `crontab`: Sets times for running automated tasks and variables associated with the cron facility (such as the SHELL and PATH associated with cron).
+  * `fstab`: Identifies the devices for common storage media (hard disk, DVD, CD-ROM, and so on) and locations where they are mounted in the Linux system. This is used by the mount command to choose which filesystems to mount when the system first boots.
+  * `mtab`: Contains a list of filesystems that are currently mounted.
+  * `group`: Identifies group names and group IDs (GIDs) that are defined on the system.
+  * `gshadow`: Contains shadow passwords for groups.
+ 
 ## File Types
 
 Most filesystem implementations define seven types of files. Even when developers add something new and wonderful to the file tree (such as the process infor-mation under /proc), it must still be made to look like one of these seven types.

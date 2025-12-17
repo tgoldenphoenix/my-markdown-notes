@@ -166,28 +166,32 @@ Other prefixes
 
 ## Vim Motions
 
+### Line-Wise motions
+
 Unlike many text editors, Vim makes a distinction between **real lines** and **display lines**. When the `wrap` setting is enabled (and it’s on by default), each line of text that exceeds the width of the window will display as wrapped, ensuring that no text is truncated from view. As a result, a single line in the file may be represented by multiple lines on the display
 
 - `j` down one real line
 - `gj` down one display line
-- `k` & `gk` similar
+- `k` & `gk` are similar
 - `0` go to beginning of real line
 - `g0` go to beginning of display line
   
 - Go to beginning of the line:
-  - `0` Moves the cursor to the absolute start of the line (column 1).
-  - `^` Moves the cursor to the first non-whitespace character on the line.
-  - `g^` To first nonblank character of display line
+  * `0` Moves the cursor to the absolute start of the line (column 1).
+  * `^` Moves the cursor to the first non-whitespace character on the line.
+  * `g^` To first nonblank character of display line
 - Go to end of the line: `$`
 - `g$` To end of display line
 - `g_` to go to the last non-blank character in the current line.
+
+`y^` yank to the start of the line.
 
 If you want to go to the column `n` in the current line, you can use `n|`.
 
 Note the pattern: `j, k, 0, and $` all interact with real lines, while prefixing any of these with `g` tells Vim to act on display lines instead.
 
- If you would prefer to have the `j` and `k` keys operate on display lines rather than on
-real lines, you can always remap them. Try putting these lines into your vimrc file
+If you would prefer to have the `j` and `k` keys operate on display lines rather than on
+real lines, you can always remap them. Try putting these lines into your `vimrc` file
 
 ```bash
 nnoremap k gk
@@ -201,8 +205,8 @@ These mappings make `j` and `k`move down and up by display lines, while `gj`and 
 ### Word-Wise Navigation
 
 - Go to start of next word: `w` or `W`:
-  - `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
-  - `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
+  * `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
+  * `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
 - Use `w` for smaller, more fine-grain jumps, and `W` for bigger jumps across code separated only by spaces.
 - Backward to start of current / previous word: `b` or `B` (works similar to `w` and `W`).
 
@@ -310,40 +314,49 @@ The `iw` text object interacts with everything from the first to the last charac
 
 As a general rule, we could say that the `d{motion}` command tends to work well with `aw`, `as`, and `ap`, whereas the c{motion} command works better with `iw` and similar.
 
-### Mark
+### Marks
 
-Vim’s marks allow us to jump quickly to locations of interest within a document. We can set marks manually, but Vim also keeps track of certain points of interest for us automatically.
+Vim’s `marks` allow us to jump quickly to locations of interest within a document. We can set marks manually, but Vim also keeps track of certain points of interest for us automatically.
 
-The `m{a-zA-Z}` command marks the current cursor location with the designated letter. Lowercase marks are local to each individual buffer, whereas uppercase marks are globally accessible.
+In Vim, marks and registers are two entirely separate storage systems that serve different purposes.  
+While they both use a single character (like a or B) as a label, they do not share the same memory space or data.
+
+The `m{a-zA-Z}` command marks the current cursor location with the designated letter.  
+Lowercase marks are local to each individual buffer, whereas uppercase marks are **globally** accessible.
 
 Vim does nothing to indicate that a mark has been set, but if you’ve done it right, then you should be able to jump directly to your mark with only two keystrokes from anywhere in the file.
 
-Vim provides two Normal mode commands for jumping to a mark. (Pay attention—they look similar!) `’{mark}` moves to the line where a mark was set, positioning the cursor on the first non-whitespace character. The [\`{mark}] command moves the cursor to the exact position where a mark was set, restoring the line and the column at once
+---
 
-If you commit only one of these commands to memory, go with [\`{mark}]. Whether you care about restoring the exact position or just getting to the right line, this command will get you there. The only time you have to use the ’{mark} form is in the context of an Ex command.
+- Vim provides two Normal mode commands for **jumping to a mark**. (Pay attention—they look similar!):
+  * `’{mark}` (using a single quote) moves to the line where a mark was set, positioning the cursor on the first non-whitespace character.
+  * The \`{mark} (using backtick) command moves the cursor to the exact position where a mark was set, restoring the line and the column at once.
+- If you commit only one of these commands to memory, go with [\`{mark}]. Whether you care about restoring the exact position or just getting to the right line, this command will get you there. The only time you have to use the `’{mark}` form is in the context of an Ex command.
 
 The `mm` and [\`m] commands make a handy pair. Respectively, they set the mark `m` and jump to it.
 
- The marks that Vim sets for us automatically can be really handy. 
+---
 
-- [``] Position before the last jump within current file (giống `<C-o>`)
-- \`. Location of last change
-- \`^ Location of last insertion
-- \`[ Start of last change or yank
-- \`] End of last change or yank
-- \`< Start of last visual selection
-- \`> End of last visual selection
+- The marks that Vim sets for us automatically can be really handy:
+  * [``] Position before the last jump within current file (giống `<C-o>`)
+  * \`. Location of last change
+  * \`^ Location of last insertion
+  * \`[ Start of last change or yank
+  * \`] End of last change or yank
+  * \`< Start of last visual selection
+  * \`> End of last visual selection
 
 ### Jump Between Matching Parentheses
 
-Vim provides a motion that lets us move between opening and closing pairs of parentheses. By enabling the `matchit.vim` plugin, we can extend this behavior to work on pairs of XML tags as well as on keywords in some programming languages.
+Vim provides a motion that lets us move between opening and closing pairs of parentheses.  
+By enabling the `matchit.vim` plugin, we can extend this behavior to work on pairs of XML tags as well as on keywords in some programming languages.
 
 - The `%` motion command jumps between opening & closing parentheses `(), [] or {}}`. You can jump from the open parentheses to the closing one and vice versa.
-  - If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
-  - If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
-  - It's useful for quickly navigating code blocks or checking if brackets are balanced.
+  * If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
+  * If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
+  * It's useful for quickly navigating code blocks or checking if brackets are balanced.
 
-When we use the `%` command, Vim automatically sets a mark for the location from which we jumped. We can snap back to it by pressing [``]
+When we use the `%` command, Vim automatically sets a mark for the location from which we jumped. We can snap back to it by pressing [``] (press the backtick two times).
 
 ---
 

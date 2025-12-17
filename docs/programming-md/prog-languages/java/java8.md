@@ -1,4 +1,4 @@
-# Java 8
+# Modern Java & Java 8
 
 ## Java version & History
 
@@ -29,16 +29,34 @@ Lambda don't need access modifier, no return type, no method name
 When we are using a method reference – the target reference is placed before the delimiter :: and the name of the method is provided after it.  
 `Computer::getAge;` => a method reference to the method getAge defined in the `Computer` class
 
-## stream API
+## Functional Programming in Java
 
-**Stream operations** are divided into intermediate operations (return Stream<T>) and terminal operations (return a result of definite type). Intermediate operations allow chaining.  
+Two core ideas from functional programming that are now part of Java: using methods and lambdas as first-class values, and the idea that calls to functions or methods can be efficiently and safely executed in parallel in the absence of mutable shared state. Both of these ideas are exploited by the new Streams API we described earlier.
+
+## `Optional<T>`
+
+Java 8 introduced the `Optional<T>` class that, if used consistently, can help you avoid null-pointer exceptions. It’s a container object that may or may not contain a value. `Optional<T>` includes methods to explicitly deal with the case where a value is absent, and as a result you can avoid null-pointer exceptions. It uses the type system to allow you to indicate when a variable is anticipated to potentially have a missing value.
+
+## The Streams API
+
+**Stream operations** are divided into intermediate operations (return `Stream<T>`) and terminal operations (return a result of definite type). Intermediate operations allow chaining.  
 Operations on streams don’t change the source.
+
+The Streams API provides a different way to process data in comparison to the Collections API.  
+Using a collection, you’re managing the iteration process yourself. You need to iterate through the elements one by one using a for-each loop processing them in turn. We call this way of iterating over data **external iteration**.  
+In contrast, using the Streams API, you don’t need to think in terms of loops. The data processing happens internally inside the library. We call this idea internal iteration.
+
+Collections is mostly about storing and accessing data, whereas Streams is mostly about describing computations on data.
+
+Although it may seem odd at first, often the fastest way to filter a collection (for example, to use filterApples in the previous section on a list) is to convert it to a stream, process it in parallel, and then convert it back to a list.
+
+---
 
 ```java
 long count = list.stream().distinct().count();
 ```
 
-So, the `distinct()` method represents an intermediate operation, which creates a new stream of unique elements of the previous stream. And the count() method is a terminal operation, which returns stream’s size.
+So, the `distinct()` method represents an intermediate operation, which creates a new stream of unique elements of the previous stream. And the `count()` method is a `terminal operation`, which returns stream’s size.
 
 Stream API helps to substitute for, for-each, and while loops. It allows concentrating on operation’s logic, but not on the iteration over the sequence of elements.
 
@@ -177,6 +195,29 @@ Arrays.sort(rosterAsArray, Person::compareByAge);
 The method reference Person::compareByAge is semantically the same as the lambda expression (a, b) -> Person.compareByAge(a, b)
 
 There are four kinds of method references:
+
+## Default methods and Java modules
+
+Prior to Java 8 you can update an interface only if you update all the classes that implement it—a logistical nightmare! This issue is resolved in Java 8 by default methods. Java 8 added default methods to support **evolvable interfaces**.
+
+- Like regular interface methods, `default methods` are implicitly `public`; there’s no need to specify the public modifier.
+- Unlike regular interface methods, we declare them with the `default` keyword at the beginning of the method signature, and they **provide an implementation**. Classes that implement the interface không cần phải implement default methods nữa.
+- Mục đích của default method là để cho phép add more method to interface mà không phải viết thêm code trong các class that had already implemented that interface. It allowes interfaces to evolve without breaking existing implementations, improving the flexibility of the language
+
+- When a class implements several interfaces that define the same default methods thì: 
+  * (1) class đó phải khai báo cụ thể muốn dùng default method của interface nào hoặc
+  * (2) class đó phải tự provide implementation của riêng nó cho default method (giống abstract method).
+
+---
+
+modules containing collections of packages
+
+---
+
+static methods in Interfaces
+
+- **Static method** trong interface giống static method trong class: dùng `static` keyword, interface phải provide implementation không được hứa, static method belong to the interface.
+- The same can pretty much be done with abstract classes. The main difference is that abstract classes can have constructors, state, and behavior.
 
 ## Lambdas: anonymous functions
 

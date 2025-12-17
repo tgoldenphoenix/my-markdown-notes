@@ -392,7 +392,7 @@ All the quantifiers including the star `*`, `+`, repetition {m,n} and the questi
 
 ---
 
-**Non-capturing group (?: )**
+**Non-capturing group `(?:)`**
 
 Use the special syntax `(?:Value)` to group tokens without creating a capturing group. This is more efficient if you don’t plan to use the group’s contents. 
 
@@ -513,7 +513,7 @@ In an earlier challenge, you used the caret character `^` inside a character set
 
 If the multiline flag (`m`) is enabled, `^` will match the beginning of each line instead of the whole string. Dùng khi có 1 big string là 1 paragraph contains multiple lines. Nếu không có (m) flag thì `^` chỉ match the beginning of the first line.
 
-A regex that consists solely of an anchor can only find zero-length matches. 
+A regex that consists solely of an anchor can only find **zero-length matches**.
 
 ---
 
@@ -542,6 +542,8 @@ JavaScript, `std::regex`, POSIX, and XPath do not support \A and \Z. You’re st
 ### Word Boundaries
 
 Additionally, there is a special metacharacter `\b` which matches the boundary between a word and a non-word character. It's most useful in capturing entire words (for example by using the pattern `\w+\b`).
+
+`\s` khác `\b` ở chỗ là `\b` match position while `\s` match the actual character.
 
 The metacharacter `\b` is an anchor like the caret `^` and the dollar sign `$` . It matches at a position that is called a **word boundary**. This match is **zero-length**.
 
@@ -572,6 +574,57 @@ The section [Looking Inside The Regex Engine](https://www.regular-expressions.in
 ## How a Regex Engine Works Internally
 
 f
+
+## Free-Spacing & Comments
+
+Many application have an option that may be labeled “free-spacing” or “ignore whitespace” or “comments” that makes the regular expression engine ignore unescaped spaces and line breaks and that makes the # character start a comment that runs until the end of the line. This allows you to use whitespace to format your regular expression in a way that makes it easier for humans to read and thus makes it easier to maintain.
+
+In free-spacing mode, whitespace between regular expression tokens is ignored. Whitespace includes spaces, tabs, and line breaks. Note that only whitespace between tokens is ignored.  
+`a b c` is the same as `abc` in free-spacing mode.  
+But `\ d` and `\d` are not the same. The former matches  d, while the latter matches a digit.  
+`\d` is a single regex token composed of a backslash and a “d”. Breaking up the token with a space gives you an escaped space (which matches a space), and a literal “d”.
+
+Flavors differ in how they handle groups that are opened with multiple characters.  
+`(?:group)` is always the same as `(?: gro up )` in free-spacing mode. But you should not put spaces in the middle of the `(?:` that opens the group.
+
+---
+
+Free-Spacing in Character Classes
+
+A character class is generally treated as a single token.  
+`[abc]` is not the same as `[ a b c ]`. The former matches one of three letters, while the latter matches those three letters or a space.
+
+In other words: free-spacing mode has no effect inside character classes. Spaces and line breaks inside character classes will be included in the character class. This means that in free-spacing mode, you can use `\ ` or `[ ]` to match a single space. Use whichever you find more readable. The hexadecimal escape `\x20` also works, of course.
+
+---
+
+Comments in Free-Spacing Mode
+
+Another feature of free-spacing mode is that the `#` character starts a comment. The comment runs until the end of the line. Everything from the `#` until the next line feed character is ignored.
+
+Putting it all together, the regex to match a valid date can be clarified by writing it across multiple lines:
+
+```
+# Match a 20th or 21st century date in yyyy-mm-dd format
+((?:19|20)\d\d)            # year (group 1)
+[- /.]                     # separator
+(0[1-9]|1[012])            # month (group 2)
+[- /.]                     # separator
+(0[1-9]|[12][0-9]|3[01])   # day (group 3)
+```
+
+---
+
+Comments Without Free-Spacing
+
+Many flavors also allow you to add comments to your regex without using free-spacing mode. The syntax is `(?#comment)` where “comment” can be whatever you want, as long as it does not contain a closing parenthesis. The regex engine ignores everything after the `(?#` until the first closing parenthesis. A line break does not end such a comment.
+
+```
+an(?#this is a comment
+I can even add a line break)hao
+```
+
+The pattern above match `anhao`, the comment inside `(?#)` is ignored.
 
 ## References
 

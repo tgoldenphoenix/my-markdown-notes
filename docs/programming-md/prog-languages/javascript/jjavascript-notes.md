@@ -225,7 +225,7 @@ This Template literal is actually an ES6 feature, imagine before ES6 :v
 
 `String.split()` trả về 1 array, input một **separator** (`\`)
 
-## Flow control
+## Flow Control
 
 In the normal for loop, we must use `let`: `for (let i = 0; i < count; i++) {}`  
 But in `for...of`, we can use `const` because the variable only exists for a single iteration, not during the entire loop.
@@ -248,6 +248,10 @@ for (const property in object) {
 **for loops** are best used when you know the number of iterations ahead of time, whereas a **while loop** is best used when you don't know the number of iterations in advance
 
 In JavaScript, a **callback** is a function that is passed as an argument to another function, with the intention that it will be executed later, typically after the completion of an asynchronous operation or a specific event.
+
+---
+
+`forEach()` loop: `array.forEach(function(currentValue, index, arr), thisValue)`
 
 ## Array
 
