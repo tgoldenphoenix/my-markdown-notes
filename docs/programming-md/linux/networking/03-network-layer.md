@@ -10,14 +10,14 @@ Unlike the transport and application layers, there is a piece of the network lay
 A network-layer packet is called a **datagram**. Đừng nhầm với UDP (User Datagram Protocol) là một layer 4 (transport layer) protocol.
 
 - Chia Network Layer ra:
-  * data plane role of each router
-  * (network) Control plane role
+  - data plane role of each router
+  - (network) Control plane role
 
 - **Forwarding**: refers to the router-local action of transferring a packet from an input link interface to the appropriate output link interface.
-  * Forwarding is typically implemented in hardware. It is the **data-plane** functionality of the network layer.
+  - Forwarding is typically implemented in hardware. It is the **data-plane** functionality of the network layer.
 - **Routing**: refers to the network-wide process that determines the end-to-end paths that packets take from source to destination.
-  * Routing is often implemented in software.
-  * It is a **control-plane** functionality of the network layer.
+  - Routing is often implemented in software.
+  - It is a **control-plane** functionality of the network layer.
 
 The **Routing algorithms** determine the contents of the routers’ **forwarding tables**.
 
@@ -101,20 +101,20 @@ RFC 1918 defines three blocks of addresses, corresponding to the original Class 
 ---
 
 - **Class A:**
-  * CIDR notation: `10.0.0.0/8`
-  * Subnet mask: `255.0.0.0`
-  * Total Host IPs: 16.7 Million
-  * Primary Purpose: Large corporate networks, Cloud VPCs.
+  - CIDR notation: `10.0.0.0/8`
+  - Subnet mask: `255.0.0.0`
+  - Total Host IPs: 16.7 Million
+  - Primary Purpose: Large corporate networks, Cloud VPCs.
 - **Class B:**
-  * CIDR notation: `172.16.0.0/12`
-  * Subnet mask: `255.240.0.0`
-  * Total Host IPs: 1.04 Million
-  * Primary Purpose: Medium-sized organizations.
+  - CIDR notation: `172.16.0.0/12`
+  - Subnet mask: `255.240.0.0`
+  - Total Host IPs: 1.04 Million
+  - Primary Purpose: Medium-sized organizations.
 - **Class C :**
-  * CIDR notation: `192.168.0.0/16`
-  * Subnet mask: `255.255.0.0`
-  * Total Host IPs: 65,536
-  * Primary Purpose: Home and small office networks.
+  - CIDR notation: `192.168.0.0/16`
+  - Subnet mask: `255.255.0.0`
+  - Total Host IPs: 65,536
+  - Primary Purpose: Home and small office networks.
 
 ---
 
@@ -216,7 +216,7 @@ Link-state
 
 ## Intra-AS Routing in the Internet: OSPF
 
-OSPF is a routing protocol that operates within a single ISP’s network. 
+OSPF is a routing protocol that operates within a single ISP’s network.
 
 Routers are organized into **Autonomous System** (AS). An autonomous system is identified by its globally unique **autonomous system number** (ASN).
 
