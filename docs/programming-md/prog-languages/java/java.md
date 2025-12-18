@@ -185,7 +185,7 @@ The `java.lang.IndexOutOfBoundsException` is a runtime exception in Java that in
 `if ("Hello".equals(a)){}` nếu cần so sánh string phải làm như vầy để không có lỗi NullPointerException. Viết `a.equals("Hello")` là không đúng.  
 `.equal()` nếu dùng so sánh string thì nó chỉ so sánh giá trị (content). Nếu dùng `==` check string thì nó so sánh tham chiếu.
 
-## String, StringBuilder, StringBuffer
+## String, StringBuilder & `StringBuffer`
 
 Trong java, string không phải primitive. Nó là object được tạo từ class `String`.
 
@@ -247,10 +247,13 @@ System.out.println(a == b);
 // You should only use .equal() to compare string
 ```
 
-## Collections Framework, arrays
+## Arrays & The Collections Framework
 
-The **Java Collections Framework** provides a set of **interfaces** (like `List`, `Set`, and `Map`) and a set of classes (ArrayList, HashSet, HashMap, etc.) that implement those interfaces.  
+The **Java Collections Framework** provides a set of **interfaces** (like `List`, `Set`, and `Map`) and a set of classes (`ArrayList`, `HashSet`, `HashMap`, etc.) that implement those interfaces.  
 All of these are part of the java.util package.
+
+- `List` - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own. 
+- `ArrayList` - a concrete class that implements the `List` interface.
 
 - Interfaces:
   - `List`: Ordered collection that allows duplicates
@@ -260,8 +263,9 @@ All of these are part of the java.util package.
 
 Collection là một loại đối tượng có thể chứa các địa chỉ trỏ đến các đối tượng khác. Collection không chứa the objects themselves. Mỗi phần tử trong collection là một address, not object.
 
-Array trong Java là fixed size & chỉ chứa duy nhất one data type.  
-Array is **NOT** collection, nó chỉ là một kiểu dữ liệu tham chiếu trong Java (giống `String`). Array không phải primitive. Arrays are stored inside heap memory.
+- Array trong Java là fixed size & chỉ chứa duy nhất one data type.
+- Array is **NOT** collection, nó chỉ là một kiểu dữ liệu tham chiếu trong Java (giống `String`).
+- Array không phải primitive. Arrays are stored inside heap memory.
 
 ```java
 // declaration of array. reference variable is getting defined in the stack memory
@@ -270,21 +274,24 @@ int[] arr;
 arr = new int[5];
 ```
 
-In java, `ArrayList<>` có cấu trúc giống Array (mảng) nhưng số phần tử là dynamic (grow & shrink). Array thông thường phải khai báo max index (fixed size).  
-Mảng thì dùng sytax `[]` để access item. Còn `ArrayList` làm cái gì cũng thông qua hàm hết như `.add(), .get(), .set()`, không làm trực tiếp như mảng.
+---
+
+- In java, `ArrayList<>` có cấu trúc giống Array (mảng) nhưng số phần tử là dynamic (grow & shrink). Array thông thường phải khai báo max index (fixed size).
+- Mảng thì dùng sytax `[]` để access item. Còn `ArrayList` làm cái gì cũng thông qua hàm hết như `.add(), .get(), .set()`, không làm trực tiếp như mảng.
 
 - The `ArrayList` itself holds an array of references (or pointers) to the objects it contains. This array of references is stored in a single, contiguous block of memory. This contiguity is what allows for efficient random access by index.
-- `LinkedList<>` không có contiguous block.
+- In comparision to `LinkedList<>` không có contiguous block.
 
-`Map` (ánh xạ) là một loại collection dạng key-value  
-Ánh xạ ví dụ `y = 2x`, với mỗi x chỉ cho ra một giá trị y.
+---
 
-A HashMap can store duplicate values, but it cannot store duplicate keys.
+- `Map` (ánh xạ) là một loại collection dạng key-value  
+- Ánh xạ ví dụ `y = 2x`, với mỗi x chỉ cho ra một giá trị y.
+
+A `HashMap` can store duplicate values, but it cannot store duplicate keys.
+
+---
 
 `Set` không chứa duplicate values.
-
-List - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own.  
-ArrayList - a concrete class that implements the List interface.
 
 Declare `int[5]` array mà không gián value thì defult là `[0,0,0,0,0]`  
 Declare `String[5]` array thì default là `[null, null, null, null, null]`
@@ -499,6 +506,8 @@ If you define a reference variable (biến tham chiếu) whose type is an interf
 
 A class can `implements` more than one interface. But one class (including abstract classes) can only inherit `extend` from one super-class.  
 
+---
+
 In Java, an interface can extend **one or more** other interfaces. This mechanism is known as **interface inheritance** (khác với class inheritance).
 
 - The child interface inherits all the abstract methods, default methods, static methods, and constant fields from its parent interfaces.
@@ -569,6 +578,10 @@ When you define a new interface, you are defining a new reference data type (gi�
 If you define a reference variable whose type is an interface, any object you assign to it must be an instance of a class that implements the interface.  
 Reference variable can only point to object not interface.
 
+---
+
+
+
 ## The four main principles of OOP
 
 The core principle is abstraction. Without it, the others couldn't exist.
@@ -603,7 +616,9 @@ At times, you need to bail out of — or terminate — a loop before the conditi
 - The `break;` statement takes you to the next executable statement outside of the loop in which it's located.
 - You can also skip a single iteration of a loop but continue executing the loop. For that purpose, you need the `continue` statement.
 
-`for(dataType variable : array) {}` là **for-each loop** (or enhanced loop) in Java. They are mostly used to iterate through an array or collection of variables.
+`for(dataType variable : array) {}` là `for-each loop` (or enhanced loop) in Java. They are mostly used to iterate through an array or collection of variables.
+
+`for(Apple apple: inventory) {}`
 
 Trong `switch` statement nếu `case` không có `break;` thì nó chạy luôn case bên dưới.
 
@@ -825,6 +840,15 @@ Interfaces do not have arguments. The `Predicate<T>` means "this is a generic In
 You should use enum types any time you need to represent a fixed set of constants. That includes natural enum types such as the planets in our solar system and data sets where you know all possible values at compile time—for example, the choices on a menu, command line flags, and so on.
 
 The constructor for an enum type must be package-private or private access. It automatically creates the constants that are defined at the beginning of the enum body. You cannot invoke an enum constructor yourself.
+
+```java
+public enum Day {
+    SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
+    THURSDAY, FRIDAY, SATURDAY 
+}
+```
+
+Enum có thể được truyền vào class constructor dưới dạng parameter.
 
 ## Annonation (@)
 

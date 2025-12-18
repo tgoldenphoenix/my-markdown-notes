@@ -50,11 +50,13 @@ $ cut -d: -f7 /etc/passwd | sort | uniq -c
    12 /bin/false
 ```
 
-## grep
+## `grep`
 
 > search text in files
 
 `grep` searches its input text and prints the lines that match a given pattern. Its name is based on the **g**/regular-expression/**p** command from the old **ed** editor that came with the earliest versions of UNIX (and still does).
+
+`grep [OPTION]... PATTERNS [FILE]...`
 
 - Options:
   * `-c` to print a count of matching lines
@@ -74,7 +76,7 @@ Search for pieces of matching text in text files such as a csv file that store h
 
 `grep Sneaker sales.csv` Only show lines in file `sales.csv` that contain the string "Sneaker". Work with millions of lines of text.
 
-`grep` can be used with _regular expression_. Ex: extract all the different model number from a csv of sale record.
+`grep` can be used with **regular expression**. Ex: extract all the different model number from a csv of sale record.
 
 By default, grep will print the entire line of text where a match is found.\
 `-o` flag extract only the matched part of the text.
@@ -86,6 +88,10 @@ find and locate are often used in combination with grep to define some serious q
 - recursive searches `-R` that look through all files & sub-directory, showing files and line numbers.
 - disabling case-sensitivity of the matching.
 - inverting matching logic by showing only lines that don't match instead.
+
+Search for multiple terms at once by appending the `-E` option to grep and providing the search terms encased in quotations, separated by pipe delimiters.
+
+`sudo dmesg | grep -E "memory|tty"`
 
 ## cut
 

@@ -224,6 +224,7 @@ Let's talk about what a sentence is first. A sentence ends with either `. ! ?` f
 
 - `{` Jump to the previous paragraph
 - `}` Jump to the next paragraph
+- `%` jump between matching parentheses
 
 Match Navigation
 
@@ -370,8 +371,8 @@ We can also use `surround.vim` to change existing delimiters. For example, we co
 
 Search is a form of Command Line mode. Depending on how we entered Command Line mode, we can browse our Ex Command or search history with the `<Down>` and `<Up>` keys.
 
-- You can scan for _character_ within the _current line_ with `f{char}` or `t{char}` (both are considered motions).
-- `f` position the cursor on top of the specified character whereas `t` takes you _till_ (right before) the first letter of the match. So:
+- You can scan for **character** within the **current line** with `f{char}` or `t{char}` (both are considered motions).
+- `f` position the cursor on top of the specified character whereas `t` takes you **till** (right before) the first letter of the match. So:
   * If you want to search for "h" and land on "h", use `fh`.
   * If you want to search for first "h" and land right before the match, use `th`.
 - The search start with the cursor position and continuing to the end of the **current line**.
@@ -389,8 +390,8 @@ Search is a form of Command Line mode. Depending on how we entered Command Line 
 - Scan document for next/previous match: `/pattern<CR>` or `?pattern<CR>`
 - Use `n` and `N` to repeat and reverse (jump to next and previous instance).
 
-- `; ,` khác `n N` ở chỗ
-  * `; ,` jump đến hết current line là stop.
+- `;` & `,` khác `n` & `N` ở chỗ:
+  * `; ,` jump đến hết **current line** là stop.
   * `n N` jump entire file & loop lại từ đầu nếu đã nhảy đến cuối file.
 
 - The search command `/{text}` can be used while in visual mode & operator-pending mode.
@@ -425,8 +426,6 @@ Type  `:s/thee/the/g`. Adding the  g  flag means to substitute globally in _the 
 To change every occurrence of a character string between two lines, type   `:#,#s/old/new/g` where #,# are the line numbers of the range of lines where the substitution is to be done.
 Type  `:%s/old/new/g`       to change every occurrence in the whole file.
 Type   `:%s/old/new/gc`    to find every occurrence in the whole file, with a prompt whether to substitute or not.
-
-## Regex Patterns
 
 ## Registers
 
@@ -546,17 +545,23 @@ In insert mode, `<C-r>{register}` to paste text from register. Cái này giống
 
 We’ve already learned about the dot command, which is useful for repeating small changes. But when we want to repeat anything more substantial, we should reach for Vim’s macros.
 
-The `q` key functions both as the “record” button and the “stop” button. To begin recording our keystrokes, we type q{register}, giving the address of the register where we want to save the macro. We can tell that we’ve done it right if the word “recording” appears in the status line. Every command that we execute will be captured, right up until we press `q` again to stop recording
+The `q` key functions both as the “record” button and the “stop” button. To begin recording our keystrokes, we type `q{register}`, giving the address of the register where we want to save the macro.  
+We can tell that we’ve done it right if the word “recording” appears in the status line.  
+Every command that we execute will be captured, right up until we press `q` again to stop recording.
 
-We can inspect the contents of register a by typing the following: `:reg a`. The symbol `^[` is used to stand for the Escape key. Spacebar hiện là spacebar không có escape gì cả.
+We can inspect the contents of register a by typing the following: `:reg a`. When reading in this format, the symbol `^[` is used to stand for the Escape key. Còn Spacebar thì sẽ hiện là spacebar không có escape gì cả.
+
+---
 
 The `@{register}` command executes the contents of the specified register (see `:h @`). We can also use `@@`, which repeats the macro that was invoked most recently.
 
 ---
 
-If a motion fails while a macro is executing, then Vim aborts the rest of the macro. Consider this a feature, not a bug. We can use motions as a simple test of whether or not the macro should be executed in the current context.
+If a motion fails while a macro is executing, then Vim aborts the rest of the macro. Consider this a feature, not a bug.  
+We can use motions as a simple test of whether or not the macro should be executed in the current context.
 
-Suppose that the macro was stored in the a register. Rather than executing `@a` ten times, we could prefix it with a count: `10@a`. The beauty of this technique is that we can be unscrupulous about how many times we execute this macro. Don’t care for counting? It doesn’t matter! We could execute `100@a` or even 1000@a, and it would produce the same result. Bởi vì motion fail thì macro bị aborted.
+Suppose that the macro was stored in the a register. Rather than executing `@a` ten times, we could prefix it with a count: `10@a`.  
+The beauty of this technique is that we can be unscrupulous about how many times we execute this macro. Don’t care for counting? It doesn’t matter! We could execute `100@a` or even `1000@a`, and it would produce the same result. Bởi vì khi một motion fail thì entire macro bị aborted.
 
 ---
 
@@ -567,7 +572,7 @@ The Dot Formula can be an efficient editing strategy for a small number of repea
 The `;` command repeats the `f+` search. When our cursor is positioned after the last `+` character on the line, the `;` motion fails and the macro aborts.
 
 In our case, we want to execute the macro ten times. But if we were to play it back eleven times, the final execution would abort. In other words, we can complete the task so long as we invoke the macro with a count of ten or more.  
-Who wants to sit there and count the exact number of times that a macro should be executed? Not me. I’d rather provide a count that I reckon to be high enough to get the job done. I often use 22, because I’m lazy and it’s easy to type. On my keyboard, the @ and 2 characters are entered with the same button
+Who wants to sit there and count the exact number of times that a macro should be executed? Not me. I’d rather provide a count that I reckon to be high enough to get the job done. I often use 22, because I’m lazy and it’s easy to type. On my keyboard, the `@` and `2` characters are entered with the same button
 
 ---
 
@@ -594,7 +599,7 @@ Being able to insert a value that changes for each execution of a macro can be u
 
 For this solution, we’ll use the expression register with a touch of Vim script.
 
-The :echo command is fine for revealing the value that is assigned to a variable, but ideally we want to insert that value into the document. We can do that using the expression register. In Tip 16, on page 31, we saw that the expression register can be used to do simple sums and to insert the result into the document. We can insert the value stored in variable i just by running `<C-r>=i<CR>` in Insert mode.
+The `:echo` command is fine for revealing the value that is assigned to a variable, but ideally we want to insert that value into the document. We can do that using the expression register. In Tip 16, on page 31, we saw that the expression register can be used to do simple sums and to insert the result into the document. We can insert the value stored in variable i just by running `<C-r>=i<CR>` in Insert mode.
 
 ```
 :let i=1
@@ -611,7 +616,7 @@ We can still visual select > `:'<,'>normal @a` to execute the macro parallel, th
 
 ---
 
-In Tip 68, on page 168, we saw that adding commands at the end of a macro is straightforward. But what if we want to remove the last command? Or change something at the beginning of the macro? In this tip, we’ll learn how to edit the content of a macro just as if it were plain text.
+In Tip 68, on page 168, we saw that adding commands at the end of a macro is straightforward. But what if we want to remove the last command? Or change something at the beginning of the macro? In this tip, we’ll learn how to **edit the content of a macro just as if it were plain text**.
 
 When you run `:reg a` to inspect a macro:
 
@@ -633,7 +638,6 @@ The `dd` command performs a line-wise deletion. The register contains a trailing
 
 Having followed these steps, register a now contains a new and improved macro. We can use it on the example text that we met at the start of this tip.
 
-```
 Why didn’t we just use the `"ap` command? In this context, the `p` command would paste the contents of the a register after the cursor position on the current line. The :put command, on the other hand, always pastes below the current line, whether the specified register contains a line-wise or a character-wise set of text
 
 ## The Dot Command
@@ -961,7 +965,7 @@ Why, you might be wondering, is an entire mode dedicated to those brief moments 
 
 ## Files
 
-### Open Files and Save Them to Disk
+Open Files and Save Them to Disk
 
 The `:edit` command allows us to open files from within Vim, either by specifying an absolute or a relative filepath.
 
@@ -994,7 +998,7 @@ Vim assigns a function to almost every key on the keyboard. If we want to create
 
 A **hard wrap** inserts actual line breaks in the text at wrap points, with soft wrapping the actual text is still on the same line but looks like it's divided into several lines.
 
-## The help commands
+## The `:help` commands
 
 Type `K` on any word to find its documentation. Instead of typing `:h <keyword>`
 
@@ -1041,12 +1045,6 @@ Read `:h notation` and `:h key-notation`
 
 The E tags in vim help [read here](https://vi.stackexchange.com/questions/31114/what-are-the-e-tags-in-vim-help)
 [difference between marks and tags in Vim?](https://vi.stackexchange.com/questions/16870/difference-between-marks-and-tags)
-
-## Terminology
-
-[What is Ex command in Vim](https://www.cduan.com/technical/vi/vi-2.shtml). Ex command có dạng `:command` bắt đầu bằng ":". Ex command == command-line commands
-
-What is **text objects** in vim??
 
 ## References
 

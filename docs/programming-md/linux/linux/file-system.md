@@ -132,7 +132,7 @@ Khi dùng `less cat more` để view file, `Shift G` move to end of the file. Al
 
 `h` open documentation of `less`
 
-`/` to search
+`/` to search inside `less`
 
 less support vim key-bindings.
 
@@ -150,7 +150,11 @@ head & tail
 
 `head` can also print out the first few character instead of the first few lines.
 
-`tail` does the opposite of `head`. The tail command has a handy feature to continuously show the last n lines of a file that changes all the time. This `-f` option is often used by system administrators to check on log files.
+`tail` does the opposite of `head`. 
+
+The tail command has a handy feature to continuously show the last n lines of a file that changes all the time. This `-f` option is often used by system administrators to check on log files.
+
+After your system is running, many kernel messages are sent to the `/var/log/messages` file. So, for example, if you want to see what happens when you plug in a USB drive, you can type `tail -f /var/log/messages` and watch as devices and mount points are created.
 
 ---
 

@@ -3,7 +3,7 @@
 ## Command Syntax
 
 - Command option: `-h`, `-c`, `--help`
-- Command arguments: input for the command, không có hyphen (`-`). Example: file names, directory, username, device, or other item
+- Command arguments: input for the command, không có hyphen (`-`). Example: file names, directory, username, device, or other item.
 
 Sometimes, an argument is associated with an option. In that case, the argument must immediately follow the option. With single-letter options, the argument typically follows after a space. For full-word options, the argument often follows an equal sign (=). Here are some examples:
 
@@ -188,27 +188,22 @@ It’s true that the familiar Ctrl-c (copy) and Ctrl-v (paste) key combinations 
 
 ## `man` pages and Getting helps
 
+`man COMMAND` view man page. Example: `man grep`
+
 - Anything between square brackets (`[` and `]`) is optional.
 - Anything followed by an ellipsis (`…`) can be repeated.
 - Curly braces (`{` and `}`) mean that you should select one of the items 
 separated by vertical bars (`|`).
 
-Use `/` to search in man pages giống trong vim.
+Use `/` to search in man pages giống trong vim (`man` use `less` as its pager program.)
 
-For example, the specification:  
-`bork [ -x ] { on | off } filename …`  
-would match any of the following commands:
+- For example, the specification: `bork [ -x ] { on | off } filename …`would match any of the following commands:
+  * `bork on /etc/passwd`
+  * `bork -x off /etc/passwd /etc/smartd.conf`
+  * `bork off /usr/lib/tmac`
 
-`bork on /etc/passwd`
-`bork -x off /etc/passwd /etc/smartd.conf`
-`bork off /usr/lib/tmac`
-
-`man COMMAND` view man page
-
-shell-builtins do not have man pages. Phải search trong `man bash` such as `help`, `type`  
-Thường không có man page thì thường là bash built-in và phải dùng `help [COMMAND]`
-
-Most GNU commands support the `-h` or `--help` options which gives a short explanation about how to use the command and a list of available options. Try: `ls -h`, `vim --help`
+- `bash` shell-builtins do not have man pages và phải dùng `help [COMMAND]`
+- Most GNU commands support the `-h` or `--help` options which gives a short explanation about how to use the command and a list of available options. Try: `ls -h`, `vim --help`
 
 `type [COMMAND]` tell you if a command is built-in or not
 
@@ -271,8 +266,6 @@ GNU project invented info pages. Có support hyperlink through the documentation
 
 `yelp` command [here](https://www.commandlinux.com/man-page/man1/yelp.1.html)
 
-`info COMMAND` read Info pages on command. Info không dùng `less`, nó dùng Stand-alone GNU Info reader.
-
 The [ArchWiki](https://wiki.archlinux.org/title/Main_page) page
 
 References:
@@ -284,6 +277,8 @@ References:
 The `info` command
 
 The man system is great if you happen to know the name of the command or program you’re after. But suppose the command name is the bit that you’re missing. Type `info` command.
+
+`info COMMAND` read Info pages on command. `info` không dùng `less`, nó dùng Stand-alone GNU Info reader.
 
 ## Command History
 

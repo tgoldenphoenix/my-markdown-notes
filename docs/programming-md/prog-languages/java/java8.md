@@ -17,14 +17,9 @@
 
 Java 8 was released in March 2014, Java 9 in September 2017, Java 10 in March 2018, and Java 11 planned for September 2018.
 
-### Lambda expressions & functional interfaces
+## method References
 
-Lambda in Java can only be used with a **Funtional Interface** which is an interface with only ONE abstract method. Lambda is a shortcut to define an implementation of a FI.
-FIs can contains other types of method (static method, default method).
-
-Lambda don't need access modifier, no return type, no method name
-
-### method references (the double colon operator (`::`))
+Method Reference: The double colon operator (`::`))
 
 When we are using a method reference – the target reference is placed before the delimiter :: and the name of the method is provided after it.  
 `Computer::getAge;` => a method reference to the method getAge defined in the `Computer` class
@@ -196,7 +191,7 @@ The method reference Person::compareByAge is semantically the same as the lambda
 
 There are four kinds of method references:
 
-## Default methods and Java modules
+## Default Methods and Java modules
 
 Prior to Java 8 you can update an interface only if you update all the classes that implement it—a logistical nightmare! This issue is resolved in Java 8 by default methods. Java 8 added default methods to support **evolvable interfaces**.
 
@@ -219,10 +214,66 @@ static methods in Interfaces
 - **Static method** trong interface giống static method trong class: dùng `static` keyword, interface phải provide implementation không được hứa, static method belong to the interface.
 - The same can pretty much be done with abstract classes. The main difference is that abstract classes can have constructors, state, and behavior.
 
-## Lambdas: anonymous functions
+## Lambdas Expressions
+
+- Java có: `lambdas` and `Anonymous Classes`.
+- Javascript có khái niệm `anonymous function`
+- While JavaScript is a "functions-first" language where a function can exist on its own, Java is strictly object-oriented. This means a Java "anonymous function" must always be tied to a Functional Interface (an interface with exactly one method).
+
+Lambdas technically don’t let you do anything that you couldn’t do prior to Java 8. But you no longer have to write clumsy code using anonymous classes to benefit from behavior parameterization! Lambda expressions will encourage you to adopt the style of behavior parameterization
 
 You could define a method `add1` inside a class `MyMathsUtils` and then write `MyMaths-Utils::add1!` Yes, you could, but the new lambda syntax is more concise for cases where you don’t have a convenient method and class available.
 
-## Working with Files
+Từ interface `ApplePredicate` có thể có two classes implement: `AppleGreenColorPredicate` & `AppleHeavyWeightPredicate`.
+
+- Mức độ verbose từ cao xuống thấp:
+  * Classes
+  * Anonymous class
+  * lambdas
+
+---
+
+You can use a lambda expression in the context of a functional interface. In the code shown here, you can pass a lambda as second argument to the method filter because it expects an object of type Predicate<T>, which is a functional interface. 
+
+```java
+List<Apple> greenApples =
+        filter(inventory, (Apple a) -> GREEN.equals(a.getColor()));
+```
+
+- A `Funtional Interface` is an interface that specifies exactly one abstract method. And Lambda is a shortcut to define an implementation of a FI.
+- FIs can contains other types of method (static method, default method).
+
+Lambda don't need access modifier, no return type, no method name
+
+- Functional Interfaces in the Java API:
+  * `java.util.Comparator`
+  * `java.lang.Runnable`
+  * `java.util.concurrent.Callable`
+  * `Predicate`: A `predicate` in Java is a function that returns a `boolean` value. Ví dụ method truyền `ApplePredicate` vào `filterApple()` as a filtering criteria.
+
+## Thread
+
+Java `threads` allow a block of code to be executed concurrently with the rest of the program.
+
+The Runnable interface represents a block of code to be executed; note that the code returns void (no result).
+
+```java
+// java.lang.Runnable
+public interface Runnable {
+    void run();
+}
+
+Thread t = new Thread(new Runnable() {
+    public void run() {
+        System.out.println("Hello world");
+    }
+});
+```
+
+### `Callable` interface
+
+
+
+## Working with Files in Java
 
 k

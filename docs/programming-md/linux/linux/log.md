@@ -2,11 +2,11 @@
 
 Read system logs
 
-On nearly all modern Linux distributions, you can access all system logs through journalctl: 
+On nearly all modern Linux distributions, you can access all **system logs** through journalctl: 
 
 `# journalctl`
 
-As you’ll quickly see, running journalctl without any arguments will drown you in a torrent of data. You’ll need to find some way to filter for the information you’re after. Allow me to introduce you to grep:
+As you’ll quickly see, running `journalctl` without any arguments will drown you in a torrent of data. You’ll need to find some way to filter for the information you’re after. Allow me to introduce you to grep:
 
 `# journalctl | grep filename.php`
 

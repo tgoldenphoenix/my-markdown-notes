@@ -4,52 +4,35 @@ If `XDG_CONFIG_HOME` is not set, the default is `~`
 
 ## Ubuntu `apt`
 
-update -> upgrage
+- `apt`: Advanced Package Tool
+- `apt` is newer, `apt-get` is older, legacy. You should use `apt`.
 
-Trước khi tải package nào mới về thì chỉ cần update không cần upgrage.
+`apt upgrade -y` will download and install any relevant upgrades. `-y` will automatically answer Yes when asked to confirm the operation. 
 
-`sudo apt update` : update repository indexes (packet indexes), ensuring that APT is aware of all the most recent packages and versions available. **Always** run this command before running `apt upgrade -y` will download and install any relevant upgrades. `-y` will automatically answer Yes when asked to confirm the operation. 
-
-- `update` downloads the map (updates the local package lists).
-- `upgrade` installs the software (applies the actual updates)
+- Chạy `update` trước `upgrage`.
+- `sudo apt update` update repository indexes (packet indexes), ensuring that APT is aware of all the most recent packages and versions available.
+- `sudo apt upgrade` installs the software (applies the actual updates)
 
 The `update` command connect to the URI of the **official repository** at `https://archive.ubuntu.com/ubuntu/` and downloads the latest package index lists (the "catalogues") to find out what new versions of software are available.
 
-`sudo apt upgrade`: upgrade already installed packages to the latest version. Will not remove any packages or install any new packages.\
-`sudo apt dist-upgrade` same as `upgrade` but will remove and install if it is required. You should run this after running `upgrade`
+`sudo apt upgrade`: upgrade already installed packages to the latest version. Will not remove any packages or install any new packages.
 
 `sudo reboot` reboot the system (some updates will recommend you to reboot)
 
-`apt search <package name>` search for a particular package by name or description. Searching does not write any changes to the system, so we don't need to use `sudo`.
-
 `sudo apt install <package name>` install package
 
-`sudo apt remove <package name>` remove package
-`sudo apt autoremove` remove dependency packages that are no longer required
+- `sudo apt remove <package name>` remove package
+- `sudo apt autoremove` remove dependency packages that are no longer required
 
-`apt get` is a derivative command inside `apt`
-
-[Package Management on Fedora and CentOS (dnf and yum)](https://www.youtube.com/watch?v=-mvcOpMBlfs&list=PLT98CRl2KxKHaKA9-4_I38sLzK134p4GJ&index=21)
-
-Find CPU architecture: `uname -m`. Máy dell là x86_64. Máy mac là `arm64`
+Find CPU architecture: `uname -m` or `lscpu`. Máy dell là x86_64. Máy mac là `arm64`
 
 [check ubuntu version](https://askubuntu.com/questions/686239/how-do-i-check-the-version-of-ubuntu-i-am-running), code name.
 
 [stack exchange](https://unix.stackexchange.com/questions/590027/what-does-the-error-line-prefix-w-mean-like-from-apt-get-or-other-similar) meaning of error line prefixes: E, W, N
 
-apt: Advanced Package Tool
+---
 
-`apt` is newer, `apt-get` is older, legacy. You should use `apt`.
-
-`apt search <command-name>`
-
-`apt list --installed` show một đống
-
-`apt list --installed | less` more manageable output
-
-`apt list --installed | grep <package_name>`  search for a specific package
-
-`apt list --manual-installed`
+`apt search <package name>` search for a particular package by name or description. Searching does not write any changes to the system, so we don't need to use `sudo`.
 
 APT systems let you directly search for available packages using apt search. This example searches for packages that might help you monitor your system health and then uses apt show to display full package information:
 
@@ -95,8 +78,6 @@ Having the `.repo` file in the right directory won’t do much until you tell RP
 
 ## Install manually from binary archive
 
-tarBall
-
 - `.tar.gz`
   * .tar = tape archive, a single bundle of files (like .zip).
   * `.gz` = `gzip` compression, to make it smaller.
@@ -105,18 +86,19 @@ tarBall
 
 You can extract it using: `mkdir - /target/dir && tar -xvzf filename.tar.gz -C /target/dir`
 
-- The meaning of -xvzf is
+- The meaning of `-xvzf` are:
   * `-x --extract` = extract files from an archive
   * `-v, --verbose` = verbosely list files processed
-  * `-z, --gzip` = gzipped files eg. for tar.gz packages
-  * `-f`, --file ARCHIVE = use archive file or device ARCHIVE
+  * `-z, --gzip` for gzipped files eg. `tar.gz` (for `.tar.xz` use `-J` (uppercase) instead.)
+  * `-f` (`--file`) the next argument is the name of the archive
+  * The `-C` (change directory) flag tells tar to "jump" to a different folder before starting the extraction.
 
 The `tar` command comes pre-install on Linux.
 
-- There are two kinds of .tar.gz archives you might see:
-  * Source `.tar.gz` Contains source code; you must compile it yourself (using `make`, `cmake`, `gcc`, etc.)
-  * **Binary** `.tar.gz` Contains already compiled executable files — ready to run directly on your system
-- So a **binary tar.gz** saves you the build step — it’s prebuilt for your architecture (e.g., x86_64 Linux).
+- There are two kinds of `.tar.gz` archives you might see:
+  * `Source` `.tar.gz` Contains source code; you must compile it yourself (using `make`, `cmake`, `gcc`, etc.)
+  * `Binary .tar.gz` Contains already compiled executable files — ready to run directly on your system
+- So a `binary tar.gz` saves you the build step — it’s prebuilt for your architecture (e.g., x86_64 Linux).
 
 Tải `.tar.gz` về > extract ra > move to `/usr/local/` > add to PATH.
 
@@ -140,9 +122,9 @@ A binary `.zip` archive is simply a compressed ZIP file that contains precompile
 
 `unzip file.zip`
 
-The `unzip` command is pre-install on Mac.
+The `unzip` command is pre-install on Mac & linux.
 
-### curl
+### `curl`
 
 The `--remote-name` or `-O` option will download & save the file using the name provided in the URL.
 
@@ -173,7 +155,7 @@ Use uninstall script to remove fzf.
 
 Download `.deb` or `.rpm` file on the website.
 
-Once you download the file, you can install it from the command line using `dpkg` command. Use the -i flag (for install). You’ll need to make sure that you’re running the dpkg command from the directory where the skypeforlinux-64 file is located. This example assumes that you saved the package to the Downloads directory in your user account:
+Once you download the file, you can install it from the command line using `dpkg` command. Use the `-i` flag (for install). You’ll need to make sure that you’re running the dpkg command from the directory where the `skypeforlinux-64` file is located. This example assumes that you saved the package to the Downloads directory in your user account:
 
 ```
 $ cd /home/<username>/Downloads
@@ -205,13 +187,17 @@ Depends: python3:any (>= 3.3.2-2~), libatk1.0-0
 [...]
 ```
 
+## Ubuntu snap
+
+In Ubuntu, `Snap` is a modern, universal package management system developed by Canonical (the company behind Ubuntu). It is designed to make software installation easier, more secure, and more consistent across different versions of Linux.
+
 ## Fedora
 
 Fedora is the upstream, community-driven project that acts as the testing ground for Red Hat Enterprise Linux (RHEL).
 
 `rpm` (Red Hat Package Manager)
 
-## Homebrew notes
+## Homebrew Notes
 
 On Apple silicon, Homebrew installs files into the `/opt/homebrew/` folder, which is not part of the default shell `$PATH`. You'll need to configure your shell environment so Homebrew packages are found and take priority over pre-installed tools.
 
@@ -238,7 +224,17 @@ You can also see a list of dependencies for the package, if there are any: `brew
 
 ---
 
+Ubuntu
+
 `apt list --manual-installed=true`
+
+`apt list --installed` show một đống
+
+`apt list --installed | less` more manageable output
+
+`apt list --installed | grep <package_name>`  search for a specific package
+
+`apt list --manual-installed`
 
 ## Update
 
@@ -270,11 +266,13 @@ CPU Processor architectures
 - `ARMv6` is a legacy, 32-bit architecture used in older, low-power embedded systems.
 - `ARM64` and `AArch64` are the same thing. AArch64 is the official name for the 64-bit ARM architecture, but some people prefer to call it "ARM64" as a continuation of 32-bit ARM.) 
 
-`x86-64` (also known as x64, x86_64, AMD64, and Intel 64) is a 64-bit extension of the x86 instruction set. 
+`x86-64` (also known as `x64`, `x86_64`, `AMD64`, and Intel 64) is a 64-bit extension of the x86 instruction set. 
 
 ---
 
 The term `x86` refers to the entire family of processor architectures developed by Intel (and later AMD). The terms `32-bit` and `64-bit` refer to the width of the registers and memory addresses within that architecture.
+
+Today, when you see `x86`, it almost always refers to the 32-bit version of this architecture.
 
 Linux, like other `x86-based` operating systems, comes in both 64-bit and 32-bit versions. The vast majority of computers manufactured and sold over the past decade use the faster 64-bit architecture. Because there’s still older or development-oriented hardware out there, you’ll sometimes need to run 32-bit, and you’ll want the software you install to work with it.
 
@@ -284,7 +282,7 @@ The arch command in Linux is a simple utility used to display the architecture o
 
 It is functionally equivalent to running the command `uname -m`.
 
-## Windows
+## On Windows
 
 A .`zip` file is just a container of files, while an `.msi` file contains a database of instructions used by the Windows operating system to perform a complex installation process.
 
@@ -298,10 +296,10 @@ A .`zip` file is just a container of files, while an `.msi` file contains a data
 
 Here are the steps to uninstall a package with Homebrew on a Mac.
 
-`brew list <package>` to see an installed package
-`brew uninstall <package>` to remove a package
-`brew list <package>` to verify removal
-`brew autoremove` to remove unused dependencies
+- `brew list <package>` to see an installed package
+- `brew uninstall <package>` to remove a package
+- `brew list <package>` to verify removal
+- `brew autoremove` to remove unused dependencies
 
 `brew cleanup` Remove stale lock files and outdated downloads for all formulae and casks, and remove old versions of installed formulae. If arguments are specified, only do this for the given formulae and casks. Removes all downloads more than 120 days old.
 

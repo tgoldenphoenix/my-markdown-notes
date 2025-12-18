@@ -448,10 +448,10 @@ Variables are global within a script, but functions can create their own lo cal 
 
 `unalias <alias>` remove an alias
 
-## Bash Command history
+## Bash Command `history`
 
 `history` print bash history  
-`!594` execute command /#594 in history
+`!594` execute command [#594] in history
 
 Start your command with an empty space character and it will not be recorded into `history` (depend on Bash version)
 
