@@ -443,6 +443,8 @@ For the `|` character, however, thingness extends indefinitely to both left and 
 
 If you want to search for the literal text `cat` or `dog`, separate both options with a vertical bar or pipe symbol: `cat|dog`. If you want more options, simply expand the list: `cat|dog|mouse|fish`.
 
+Parentheses are the only way to stop the vertical bar from splitting up the entire regular expression into two options.
+
 ---
 
 I already explained that the regex engine is eager. It stops searching as soon as it finds a valid match. The consequence is that in certain situations, the order of the alternatives matters. Suppose you want to use a regex to match a list of function names in a programming language: Get, GetValue, Set or SetValue.  

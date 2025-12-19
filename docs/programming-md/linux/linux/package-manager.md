@@ -48,7 +48,8 @@ When need to add the virtualbox repository to Yum.
 - In the Red Hat/Fedora/CentOS ecosystem:
   * `rmp`, giống `dpkg`, handles installing/verifying individual `.rpm` files (giống `.deb` files).
   * `yum`Fetches packages from repositories; resolves dependencies. Handle Dependency Management (slow).
-  * `dnf` modern version of `yum`, faster
+  * `dnf` is the modern version of `yum`, faster
+  * The rpm command was the first tool to manage RPMs. Later, yum was added to enhance the RPM facility, and now dnf is poised to eventually replace yum.
 
 From the previous chapter, you’ll remember that third-party software configuration files are often kept within the /etc/ directory hierarchy, and, in that respect, yum/DNF is no different. Repository information is kept in /etc/yum.repos.d/, so you should change to that directory. From there, you’ll use the wget program (usually installed by default) to download the .repo file. Here’s how to do all that:
 

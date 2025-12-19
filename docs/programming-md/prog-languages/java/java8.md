@@ -68,20 +68,69 @@ roster
 
 The operations filter, map, and forEach are aggregate operations. Aggregate operations process elements from a stream, not directly from a collection (which is the reason why the first method invoked in this example is stream). A stream is a sequence of elements. Unlike a collection, it is not a data structure that stores elements. Instead, a stream carries values from a source, such as collection, through a pipeline. A pipeline is a sequence of stream operations, which in this example is filter- map-forEach. In addition, aggregate operations typically accept lambda expressions as parameters, enabling you to customize how they behave.
 
-## Funtional Interfaces & Lambda Expressions
+## Lambdas Expressions
 
-A lambda is an anonymous function that we can handle as a first-class language citizen. For instance, we can pass it to or return it from a method.
+- Java có: `lambdas` and `Anonymous Classes`.
+- Javascript có khái niệm `anonymous function`
+- While JavaScript is a "functions-first" language where a function can exist on its own, Java is strictly object-oriented. This means a Java "anonymous function" must always be tied to a Functional Interface (an interface with exactly one method).
 
-Before Java 8, we would usually create a class for every case where we needed to encapsulate a single piece of functionality. This implied a lot of unnecessary boilerplate code to define something that served as a primitive function representation.
+Lambdas technically don’t let you do anything that you couldn’t do prior to Java 8. But you no longer have to write clumsy code using anonymous classes to benefit from behavior parameterization! Lambda expressions will encourage you to adopt the style of behavior parameterization
 
-A **functional interface** is an interface that contains exactly one abstract method. This single abstract method makes the interface suitable for use with lambda expressions and method references. Functional interfaces can have multiple default or static methods, but only one abstract method.
+You could define a method `add1` inside a class `MyMathsUtils` and then write `MyMaths-Utils::add1!` Yes, you could, but the new lambda syntax is more concise for cases where you don’t have a convenient method and class available.
+
+Từ interface `ApplePredicate` có thể có two classes implement: `AppleGreenColorPredicate` & `AppleHeavyWeightPredicate`.
+
+- Mức độ verbose từ cao xuống thấp:
+  * Classes
+  * Anonymous class
+  * lambdas
+
+---
+
+You can use a lambda expression in the context of a functional interface. In the code shown here, you can pass a lambda as second argument to the method filter because it expects an object of type Predicate<T>, which is a functional interface. 
+
+```java
+List<Apple> greenApples =
+        filter(inventory, (Apple a) -> GREEN.equals(a.getColor()));
+```
+
+- A `Funtional Interface` is an interface that specifies exactly one abstract method. And Lambda is a shortcut to define an implementation of a FI.
+- FIs can contains other types of method (static method, default method).
+
+ Lambda expressions let you provide the implementation of the abstract method of a functional interface directly inline and treat the whole expression as an instance of a functional interface (more technically speaking, an instance of a concrete implementation of the functional interface). You can achieve the same thing with an anonymous inner class, although it’s clumsier: you provide an implementation and instantiate it directly inline.
+
+The following code is valid because `Runnable` is a functional interface defining only one abstract method, `run`:
+
+```java
+// uses a lambda
+Runnable r1 = () -> System.out.println("Hello World 1");
+// uses an anonymous class
+Runnable r2 = new Runnable() {
+    public void run() {
+        System.out.println("Hello World 2");
+    }
+};
+public static void process(Runnable r) {
+    r.run();
+}
+process(r1);
+process(r2);
+process(() -> System.out.println("Hello World 3"));
+```
+
+Lambda don't need access modifier, no return type, no method name
+
+### Functional Interface
+
+- Functional Interfaces in the Java API:
+  * `java.util.Comparator`
+  * `java.lang.Runnable`
+  * `java.util.concurrent.Callable`
+  * `Predicate`: A `predicate` in Java is a function that returns a `boolean` value. Ví dụ method truyền `ApplePredicate` vào `filterApple()` as a filtering criteria.
+
+The signature of the abstract method of a functional interface is called a `function descriptor`.
 
 Java 8 introduced several **pre-defined standard functional interfaces** in the `java.util.function` package to support lambda expressions and method references.
-
-Lambda expressions are used to provide implementations for the abstract method inside functional interfaces.
-
-Lambda expressions enable you to treat functionality as method argument, or code as data.  
-Lambda expressions let you express instances of single-method classes more compactly.
 
 Because a functional interface contains only one abstract method, you can omit the name of that method when you implement it. To do this, instead of using an anonymous class expression, you use a lambda expression
 
@@ -175,7 +224,7 @@ roster
     .forEach(email -> System.out.println(email));
 ```
 
-### method reference
+### Method Reference
 
 You use lambda expressions to create anonymous methods. Sometimes, however, a lambda expression does nothing but call an existing method. In those cases, it's often clearer to refer to the existing method by name. Method references enable you to do this; they are compact, easy-to-read lambda expressions for methods that already have a name.
 
@@ -214,43 +263,6 @@ static methods in Interfaces
 - **Static method** trong interface giống static method trong class: dùng `static` keyword, interface phải provide implementation không được hứa, static method belong to the interface.
 - The same can pretty much be done with abstract classes. The main difference is that abstract classes can have constructors, state, and behavior.
 
-## Lambdas Expressions
-
-- Java có: `lambdas` and `Anonymous Classes`.
-- Javascript có khái niệm `anonymous function`
-- While JavaScript is a "functions-first" language where a function can exist on its own, Java is strictly object-oriented. This means a Java "anonymous function" must always be tied to a Functional Interface (an interface with exactly one method).
-
-Lambdas technically don’t let you do anything that you couldn’t do prior to Java 8. But you no longer have to write clumsy code using anonymous classes to benefit from behavior parameterization! Lambda expressions will encourage you to adopt the style of behavior parameterization
-
-You could define a method `add1` inside a class `MyMathsUtils` and then write `MyMaths-Utils::add1!` Yes, you could, but the new lambda syntax is more concise for cases where you don’t have a convenient method and class available.
-
-Từ interface `ApplePredicate` có thể có two classes implement: `AppleGreenColorPredicate` & `AppleHeavyWeightPredicate`.
-
-- Mức độ verbose từ cao xuống thấp:
-  * Classes
-  * Anonymous class
-  * lambdas
-
----
-
-You can use a lambda expression in the context of a functional interface. In the code shown here, you can pass a lambda as second argument to the method filter because it expects an object of type Predicate<T>, which is a functional interface. 
-
-```java
-List<Apple> greenApples =
-        filter(inventory, (Apple a) -> GREEN.equals(a.getColor()));
-```
-
-- A `Funtional Interface` is an interface that specifies exactly one abstract method. And Lambda is a shortcut to define an implementation of a FI.
-- FIs can contains other types of method (static method, default method).
-
-Lambda don't need access modifier, no return type, no method name
-
-- Functional Interfaces in the Java API:
-  * `java.util.Comparator`
-  * `java.lang.Runnable`
-  * `java.util.concurrent.Callable`
-  * `Predicate`: A `predicate` in Java is a function that returns a `boolean` value. Ví dụ method truyền `ApplePredicate` vào `filterApple()` as a filtering criteria.
-
 ## Thread
 
 Java `threads` allow a block of code to be executed concurrently with the rest of the program.
@@ -271,9 +283,5 @@ Thread t = new Thread(new Runnable() {
 ```
 
 ### `Callable` interface
-
-
-
-## Working with Files in Java
 
 k

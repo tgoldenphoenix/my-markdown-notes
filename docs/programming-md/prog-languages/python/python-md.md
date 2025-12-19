@@ -1,4 +1,4 @@
-# Python notes
+# Python Notes
 
 ## Installation
 
@@ -76,13 +76,21 @@ In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store pack
 
 `uv sync` create the `venv` using the `.lock` file.
 
-## The Basics
+## Python Basics
 
 Run `python3` in the terminal to run python in the terminal. Use `<C-d>` or type `exit()` to leave the Python prompt and return to a terminal prompt.
 
 Use `"""` or three backticks to create multi-line comments in Python.
 
-## Built-in Data Type
+The `"""` is also used to create multi-line string literals.
+
+## Built-in Data Types
+
+### Numeric Types
+
+There are three distinct numeric types: integers, floating-point numbers, and complex numbers (`int`, `float`, `complex`).
+
+### Collections
 
 There are 4 built-in data types in Python used to store collections of data: Tuple, Dictionary, List, Set
 
@@ -151,6 +159,83 @@ This technique prevent code from being executed when a file is imported as a mod
 Trong nodeJs cũng có kiểu naming convention tương tự.
 
 ## Modules
+
+k
+
+## Processing & Formatting Strings
+
+ Python use f-string: `f"string {variable}"`
+
+f-string supports `list`, `tuple`
+
+Curly braces are the characters for string interpolation in f-strings. Therefore, to escape curly braces inside f-string, you use an extra curly brace: `{{` means `{`, and `}}` means `}`.
+
+### Format Specifier
+
+f-strings allow us to set a `format specifier` (beginning with a colon) to apply additional formatting configurations to the expression in the curly braces.  
+As an optional component, the format specifier defines how the interpolated string of the expression should be formatted. 
+
+---
+
+**Text alignment** in f-strings involves three characters: `<`, `>`, and `^`, which align the text left, right, and center, respectively.
+
+To specify text alignment as the format specifier, we use the syntax `f”{expr:x<n}”`, in which `expr` means the interpolated expression, `x` means the padding character (when omitted, it defaults to spaces) for alignment, `<` means left alignment, and `n` is an integer that the string expands in width.
+
+### Convert strings to retrieve the represented data
+
+Python không cho phép compare string vs number. Input từ user là string không phải number. Phải cast về number trước khi xử lý tiếp tục.
+
+Strings that represent floats won’t pass the isnumeric check.
+
+`assert "3.5".isnumeric() == False`
+
+Strings that represent negative integers won’t pass the `isnumeric` check.
+
+---
+
+You can also cast string into `list`, `tuple` & `dict` using the built-in `eval` function, which takes a string as though you typed it in the console and returns the evaluated result.
+
+### Join and split strings
+
+When you have multiple string literals, you can join them if they’re separated by whitespaces, such as spaces, tabs, and newline characters.
+
+```python
+style_settings = "font-size=large, " "font=Arial, " "color=black, " 
+ "align=center"
+
+print(style_settings)
+# output: font-size=large, font=Arial, color=black, align=center
+```
+
+---
+
+python `list` do not have the `join` method. The `join` method is inside `string`
+
+```python
+style_settings = ["font-size=large", "font=Arial", "color=black",  
+ "align=center"]
+merged_style = ", ".join(style_settings)
+
+print(merged_style)
+# output: font-size=large, font=Arial, color=black, align=center
+```
+
+---
+
+```python
+str.split(separator, maxsplit)
+str.rsplit(separator, maxsplit)
+```
+
+- `.split()`: Starts scanning the string from the left (start) and moves right.
+- `.rsplit()`: Starts scanning the string from the right (end) and moves left.
+- If you don't provide a `maxsplit` argument, both methods behave **exactly the same**.
+
+### Regex in Python
+
+k
+
+## Exception Handle
 
 k
 

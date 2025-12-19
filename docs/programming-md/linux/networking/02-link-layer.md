@@ -1,6 +1,6 @@
 # 02-The Link Layer
 
-The packet of the link layer (the link-layer unit of data exchanged between sending and receiving adapters) is called **frame**.
+The packet of the link layer (the link-layer unit of data exchanged between sending and receiving adapters) is called `frame`.
 
 For the most part, the link layer is implemented on a chip called the **network adapter**, also sometimes known as a **network interface controller (NIC)**. The network adapter implements many link layer services including framing, link access, error detection, and so on. Thus, much of a link-layer controller’s functional-ity is implemented in hardware.
 

@@ -233,12 +233,11 @@ Match Navigation
 - `dt(` delete everthing up until the opening bracket
 - `yt{` copy everything up until the `{`
 
-Line Number Navigation
-
-- `gg`    Go to the first line of file
-- `G`     Go to the last line of file
-- `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
-- `n%`    Go to n% in file
+- Line Number Navigation
+  * `gg`    Go to the first line of file
+  * `G`     Go to the last line of file
+  * `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
+  * `n%`    Go to n% in file
 
 `<Ctrl-o>` to jump back-ward giống như khi đọc `:h`. Use `<Ctrl-]>` to jump to link.
 
@@ -437,15 +436,17 @@ In Vim’s terminology, we don’t deal with a clipboard but instead with regist
 
 `:register` or just `:reg` see list of registers in Vim
 
+- `:reg a` to inspect content of register `a`
+  * type c: Characterwise
+  * type l: linewise; Pastes on a new line above or below the cursor.
+  * type b: blockwise
+
 `"<register #>p` paste selected register
 `"<register #>yy` yank the line into a selected register
 
 `"+"` is a special register represent your computer's clipboard. You can `Cmd c` on a browser (copy into clipboard). Then in Vim insert mode type `"+p` to paste the clipboard into Vim file
 
 Let's say you `yy` a line, then `dd` another line. Now you want to paste the line you yanked. Instead of typing `p` (deleting also copy in Vim), you type `"0p`. The `"0"` register stores the last thing that you yank, not by deleting & copy
-
-`qa` to record a macro. `q` to stop recording
-`@a` to execute the marcro `"a"`
 
 To paste the text from register a ten times, do `10"ap`
 
@@ -551,11 +552,16 @@ Every command that we execute will be captured, right up until we press `q` agai
 
 We can inspect the contents of register a by typing the following: `:reg a`. When reading in this format, the symbol `^[` is used to stand for the Escape key. Còn Spacebar thì sẽ hiện là spacebar không có escape gì cả.
 
+`qa` to record a macro. `q` to stop recording
+`@a` to execute the marcro `"a"`
+
 ---
 
 The `@{register}` command executes the contents of the specified register (see `:h @`). We can also use `@@`, which repeats the macro that was invoked most recently.
 
 ---
+
+Vim’s motions can fail. For example, if our cursor is positioned on the first line of a file, the `k` command does nothing. The same goes for `j` when our cursor is on the last line of a file. By default, Vim beeps at us when a motion fails.
 
 If a motion fails while a macro is executing, then Vim aborts the rest of the macro. Consider this a feature, not a bug.  
 We can use motions as a simple test of whether or not the macro should be executed in the current context.

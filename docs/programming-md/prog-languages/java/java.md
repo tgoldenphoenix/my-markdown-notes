@@ -670,18 +670,18 @@ Types of Constructors in Java:
 
 The compiler automatically provides a no-argument, **default constructor** for any class without constructors. This default constructor will call the no-argument constructor of the superclass. In this situation, the compiler will complain if the superclass does not have a no-argument constructor so you must verify that it does. If your class has no explicit superclass, then it has an implicit superclass of `Object`, which does have a no-argument constructor.
 
-## Exception and Error Handling
+## Exception & Error Handling
 
 Exception khác với Errors:
 
-- **Error**: nếu ct gặp lỗi thì dừng ct luôn; severe problems often related to the Java Virtual Machine (JVM) or system resources, that a reasonable application should not attempt to catch or recover from.
-  - Typically, errors indicate issues beyond the program's control and necessitate changes to the system environment or application architecture rather than in-code handling.
-  - Example: `OutOfMemoryError`, `StackOverflowError (tràn ngăn xếp)`, `VirtualMachineError`, `FileNotFoundException`
+- `Error`: nếu ct gặp lỗi thì dừng ct luôn; severe problems often related to the Java Virtual Machine (JVM) or system resources, that a reasonable application should not attempt to catch or recover from.
+  * Typically, errors indicate issues beyond the program's control and necessitate changes to the system environment or application architecture rather than in-code handling.
+  * Example: `OutOfMemoryError`, `StackOverflowError (tràn ngăn xếp)`, `VirtualMachineError`, `FileNotFoundException`
 
-- **Exception**: cũng có dừng có khi không. Khi chúng ta có biện pháp bảo vệ (bảo hộ) thì ct ko dừng. Example: `NullPointerException`, `IOException`, `ArrayIndexOutOfBoundsException`, divide by 0, lỗi kết nối mạng.
+- `Exception`: cũng có dừng có khi không. Khi chúng ta có biện pháp bảo vệ (bảo hộ) thì ct ko dừng. Example: `NullPointerException`, `IOException`, `ArrayIndexOutOfBoundsException`, divide by 0, lỗi kết nối mạng.
 - Có 2 loại exception:
-  - **Checked Exceptions** (compile time Exceptions): bắt buộc phải `try-catch` or declared in the method signature using throws nếu không IDE sẽ báo lỗi ngay lập tức. VD: đội mũ bảo hiểm, `FileNotFoundException`
-  - **Unchecked Exceptions** (Runtime Exceptions, con cháu của Class `RuntimeException`): không bắt buộc `try catch` mà IDE vẫn sẽ không báo lỗi. VD: mặc áo mưa, `NullPointerException, ArrayIndexOutOfBoundsException, NumberFormatException`
+  1. `Checked Exceptions` (compile time Exceptions): bắt buộc phải `try-catch` or declared in the method signature using throws nếu không IDE sẽ báo lỗi ngay lập tức. VD: đội mũ bảo hiểm, `FileNotFoundException`
+  2. `Unchecked Exceptions` (Runtime Exceptions, con cháu của Class `RuntimeException`): không bắt buộc `try catch` mà IDE vẫn sẽ không báo lỗi. VD: mặc áo mưa, `NullPointerException, ArrayIndexOutOfBoundsException, NumberFormatException`
 
 - Cơ chế bảo hộ exception chính là `try catch`
 - Về mặt kỹ thuật thì Java cho phép mình dùng try-catch để bắt cả Error giống như bắt Exception, vì cả hai đều kế thừa từ lớp `Throwable`. Nhưng trong thực tế, việc catch Error thường không được khuyến khích ạ.
@@ -690,16 +690,15 @@ Nếu exception trong `if() {}` hay trong `try{}` thì những đoạn code nằ
 
 Cái gì sẽ ném ra ngoại lệ? => Từ 1 hàm / constructor.
 
-Có 2 loại Errors:
-
-1. **compile time**: báo đỏ khi code trong IDE, cannot compile
-2. **run time**: run project mới có lỗi, vẫn compile (biên dịch) được
+- Có 2 loại Errors:
+  1. `compile time`: báo đỏ khi code trong IDE, cannot compile
+  2. `run time`: run project mới có lỗi, vẫn compile (biên dịch) được
 
 In java's ngăn xếp gọi hàm (StackTrace) những lời gọi hàm mới nhất nằm ở trên, cũ nhất nằm bên dưới. Khi debug thì từ dòng ở cuối mò từng dòng lên trên. Mình cần tìm cái lời gọi hàm mới nhất (gần nhất latest).  
 Phải dùng dòng `e.printStackTrace();` thì chương trình mới in ngăn xếp ra cho mình.  
 Thật ra đôi khi work from top-> bottom of the stack trace cũng sẽ tìm ra lỗi cần fix.
 
-Because of **exception hierarchy**, nếu muốn catch tất cả exception thì dùng `Exception e` vì đây là parent class của tất cả exception classes.
+Because of `exception hierarchy`, nếu muốn catch tất cả exception thì dùng `Exception e` vì đây là parent class của tất cả exception classes.
 Every exception in Java is child of `java.lang.Exception` class.
 
 The `finally` statement always gets executed whether there are exceptions or not. **Even** if you put `return;` statement in the try-block. Therefore, you should avoid putting `return;` in the `finally{}` block since it will override `return;` in the try-block.
@@ -710,8 +709,8 @@ Thật ra cứ để code ra ngoài `try catch` thì nó cũng chạy y chang `f
 2. `return 0;` trong `catch{}` thì finally giả cũng không được chạy, chỉ chạy `finally {}` thật.
 
 - Ứng dụng của `finally`:
-  - close connection to database
-  - close files đang mở
+  * close connection to database
+  * close files đang mở
 
 In the try-block, after an exception is thrown the rest of the code in the try block after that exception will NOT be executed.
 
@@ -778,6 +777,11 @@ public static void omEo() throws NullPointerException { // Khai bao tôi có kha
 }
 ```
 
+---
+
+- `throw` is used in code execution
+- `throws` is used in a `method signature`.
+
 ### What if you don't catch it?
 
 Each request is usually processed in its own thread (from a thread pool). The main application thread that started the server is unaffected by individual request failures.
@@ -795,6 +799,29 @@ So in Spring Boot:
 
 - Errors block only the current request thread, not the whole server.
 - Unless you misuse threads (e.g. infinite loops, deadlocks), the API keeps serving other clients.
+
+### The try-with-resources Statement
+
+The `try-with-resources` statement is a try statement that declares one or more resources. A resource is an object that must be closed after the program is finished with it. The try-with-resources statement ensures that each resource is closed at the end of the statement.
+
+`try([resource]) {execution}`
+
+The following example reads the first line from a file. It uses an instance of `FileReader` and `BufferedReader` to read data from the file. FileReader and BufferedReader are resources that must be closed after the program is finished with it:
+
+```java
+static String readFirstLineFromFile(String path) throws IOException {
+	    try (FileReader fr = new FileReader(path);
+	         BufferedReader br = new BufferedReader(fr)) {
+	        return br.readLine();
+	    }
+	}
+```
+
+In this example, the resources declared in the `try-with-resources` statement are a `FileReader` and a `BufferedReader`. The declaration statements of these resources appear within parentheses immediately after the `try` keyword.
+
+### Common Exceptions
+
+`IOException` (Input/Output Exception) is a checked exception that signals that an I/O operation—such as reading from a file, receiving data over a network, or accessing a hard drive—has failed or been interrupted.
 
 ## Generic
 
