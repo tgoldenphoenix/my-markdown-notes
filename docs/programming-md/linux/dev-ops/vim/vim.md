@@ -37,7 +37,7 @@ To learn more about `vim` command in the terminal, check out `man vim`.
 
 Keymap in Vim do not require all the button to be pressed at once.
 
-Many command in vim have this "grammar": 
+Many command in vim have this "grammar":
 
 > operator (d, y, c) + \[number] + motion.
 
@@ -69,6 +69,7 @@ Press `x` to delete the character under the (block) cursor in normal mode.
 
 `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
 anki
+
 - `de` - to the end of the current word, INCLUDING the last character. Cái này hơi weird, nên dùng `dw`.
 - `dd` deleta whole line
 - `d$` - to the end of the line, INCLUDING the last character & the cursor. `d0` delete to beginning of line.
@@ -146,8 +147,8 @@ By itself, `g` does nothing. It's a "prefix" that waits for a second key to exec
 - `~` in normal mode toggles the case of the character currently under the cursor & moves the cursor one step to the right.
 - `~` in visual mode toggles the case of the selected area.
 - `g~` toggle case case over a specific distance (motion) without selecting it first.
-  * `g~iw` toggle case in word
-  * `g~$` toggle case to end of line
+  - `g~iw` toggle case in word
+  - `g~$` toggle case to end of line
 - `gu{motion}` Make text lowercase (e.g., guw = "go lowercase word").
 - `gU{motion}` Make text uppercase (e.g., gUw = "go uppercase word").
 - `gUaw` convert current word to uppercase
@@ -177,9 +178,9 @@ Unlike many text editors, Vim makes a distinction between **real lines** and **d
 - `g0` go to beginning of display line
   
 - Go to beginning of the line:
-  * `0` Moves the cursor to the absolute start of the line (column 1).
-  * `^` Moves the cursor to the first non-whitespace character on the line.
-  * `g^` To first nonblank character of display line
+  - `0` Moves the cursor to the absolute start of the line (column 1).
+  - `^` Moves the cursor to the first non-whitespace character on the line.
+  - `g^` To first nonblank character of display line
 - Go to end of the line: `$`
 - `g$` To end of display line
 - `g_` to go to the last non-blank character in the current line.
@@ -205,8 +206,8 @@ These mappings make `j` and `k`move down and up by display lines, while `gj`and 
 ### Word-Wise Navigation
 
 - Go to start of next word: `w` or `W`:
-  * `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
-  * `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
+  - `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
+  - `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
 - Use `w` for smaller, more fine-grain jumps, and `W` for bigger jumps across code separated only by spaces.
 - Backward to start of current / previous word: `b` or `B` (works similar to `w` and `W`).
 
@@ -234,10 +235,10 @@ Match Navigation
 - `yt{` copy everything up until the `{`
 
 - Line Number Navigation
-  * `gg`    Go to the first line of file
-  * `G`     Go to the last line of file
-  * `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
-  * `n%`    Go to n% in file
+  - `gg`    Go to the first line of file
+  - `G`     Go to the last line of file
+  - `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
+  - `n%`    Go to n% in file
 
 `<Ctrl-o>` to jump back-ward giống như khi đọc `:h`. Use `<Ctrl-]>` to jump to link.
 
@@ -329,8 +330,8 @@ Vim does nothing to indicate that a mark has been set, but if you’ve done it r
 ---
 
 - Vim provides two Normal mode commands for **jumping to a mark**. (Pay attention—they look similar!):
-  * `’{mark}` (using a single quote) moves to the line where a mark was set, positioning the cursor on the first non-whitespace character.
-  * The \`{mark} (using backtick) command moves the cursor to the exact position where a mark was set, restoring the line and the column at once.
+  - `’{mark}` (using a single quote) moves to the line where a mark was set, positioning the cursor on the first non-whitespace character.
+  - The \`{mark} (using backtick) command moves the cursor to the exact position where a mark was set, restoring the line and the column at once.
 - If you commit only one of these commands to memory, go with [\`{mark}]. Whether you care about restoring the exact position or just getting to the right line, this command will get you there. The only time you have to use the `’{mark}` form is in the context of an Ex command.
 
 The `mm` and [\`m] commands make a handy pair. Respectively, they set the mark `m` and jump to it.
@@ -338,13 +339,13 @@ The `mm` and [\`m] commands make a handy pair. Respectively, they set the mark `
 ---
 
 - The marks that Vim sets for us automatically can be really handy:
-  * [``] Position before the last jump within current file (giống `<C-o>`)
-  * \`. Location of last change
-  * \`^ Location of last insertion
-  * \`[ Start of last change or yank
-  * \`] End of last change or yank
-  * \`< Start of last visual selection
-  * \`> End of last visual selection
+  - [``] Position before the last jump within current file (giống `<C-o>`)
+  - \`. Location of last change
+  - \`^ Location of last insertion
+  - \`[ Start of last change or yank
+  - \`] End of last change or yank
+  - \`< Start of last visual selection
+  - \`> End of last visual selection
 
 ### Jump Between Matching Parentheses
 
@@ -352,9 +353,9 @@ Vim provides a motion that lets us move between opening and closing pairs of par
 By enabling the `matchit.vim` plugin, we can extend this behavior to work on pairs of XML tags as well as on keywords in some programming languages.
 
 - The `%` motion command jumps between opening & closing parentheses `(), [] or {}}`. You can jump from the open parentheses to the closing one and vice versa.
-  * If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
-  * If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
-  * It's useful for quickly navigating code blocks or checking if brackets are balanced.
+  - If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
+  - If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
+  - It's useful for quickly navigating code blocks or checking if brackets are balanced.
 
 When we use the `%` command, Vim automatically sets a mark for the location from which we jumped. We can snap back to it by pressing [``] (press the backtick two times).
 
@@ -362,7 +363,7 @@ When we use the `%` command, Vim automatically sets a mark for the location from
 
 Plugin `Surround.vim`
 
-- `S"` Surround the selection with a pair of double quote marks. We could just as easily use `S)` or `S}` if we wanted to wrap the selection with opening and closing parentheses or braces. 
+- `S"` Surround the selection with a pair of double quote marks. We could just as easily use `S)` or `S}` if we wanted to wrap the selection with opening and closing parentheses or braces.
 
 We can also use `surround.vim` to change existing delimiters. For example, we could change `{London}` to `[London]` with the `cs}]` command, which can be read as “Change surrounding `{}` braces to `[]` brackets.” Or we could go the other way with the `cs]}` command.
 
@@ -372,8 +373,8 @@ Search is a form of Command Line mode. Depending on how we entered Command Line 
 
 - You can scan for **character** within the **current line** with `f{char}` or `t{char}` (both are considered motions).
 - `f` position the cursor on top of the specified character whereas `t` takes you **till** (right before) the first letter of the match. So:
-  * If you want to search for "h" and land on "h", use `fh`.
-  * If you want to search for first "h" and land right before the match, use `th`.
+  - If you want to search for "h" and land on "h", use `fh`.
+  - If you want to search for first "h" and land right before the match, use `th`.
 - The search start with the cursor position and continuing to the end of the **current line**.
 
 - If you want to go to the next occurrence of the last `f` search, use `;`.
@@ -390,8 +391,8 @@ Search is a form of Command Line mode. Depending on how we entered Command Line 
 - Use `n` and `N` to repeat and reverse (jump to next and previous instance).
 
 - `;` & `,` khác `n` & `N` ở chỗ:
-  * `; ,` jump đến hết **current line** là stop.
-  * `n N` jump entire file & loop lại từ đầu nếu đã nhảy đến cuối file.
+  - `; ,` jump đến hết **current line** là stop.
+  - `n N` jump entire file & loop lại từ đầu nếu đã nhảy đến cuối file.
 
 - The search command `/{text}` can be used while in visual mode & operator-pending mode.
 - `d/ge<CR>` => The search command is an exclusive motion. That means that even though our cursor ends up on the “g” at the start of the word “gets,” that character is excluded from the delete operation
@@ -437,9 +438,9 @@ In Vim’s terminology, we don’t deal with a clipboard but instead with regist
 `:register` or just `:reg` see list of registers in Vim
 
 - `:reg a` to inspect content of register `a`
-  * type c: Characterwise
-  * type l: linewise; Pastes on a new line above or below the cursor.
-  * type b: blockwise
+  - type c: Characterwise
+  - type l: linewise; Pastes on a new line above or below the cursor.
+  - type b: blockwise
 
 `"<register #>p` paste selected register
 `"<register #>yy` yank the line into a selected register
@@ -607,7 +608,7 @@ For this solution, we’ll use the expression register with a touch of Vim scrip
 
 The `:echo` command is fine for revealing the value that is assigned to a variable, but ideally we want to insert that value into the document. We can do that using the expression register. In Tip 16, on page 31, we saw that the expression register can be used to do simple sums and to insert the result into the document. We can insert the value stored in variable i just by running `<C-r>=i<CR>` in Insert mode.
 
-```
+```text
 :let i=1
 qa
 I<C-r>=i<CR>)<spacebar>
@@ -632,12 +633,12 @@ When you run `:reg a` to inspect a macro:
 - `:put a`paste the contents of register `a` into a new line (paste the macro out to the document file)
 - Now we can edit the macro as plain text.
 - Yank the Macro from the Document Back into a Registe:
-  * `"add` (or `:d a`)
-  * `"ay$` > `dd`: yank every character on that line except for the carriage return
+  - `"add` (or `:d a`)
+  - `"ay$` > `dd`: yank every character on that line except for the carriage return
 
 The `dd` command performs a line-wise deletion. The register contains a trailing `^J` character:
 
-```
+```text
 ➾ :reg a
 ❮ 0f.r)wvUj^J`
 ```
@@ -700,7 +701,7 @@ From insert mode: `<C-r>{register}` paste text from `{register}`. Can also be us
 
 ---
 
-The expression register is addressed by the `=` symbol. From Insert mode we can access it by typing `<C-r>=`. This opens a prompt at the bottom of the screen where we can type the expression that we want to evaluate. When done, we hit `<CR>`, and Vim inserts the result at our current position in the document
+The **expression register** is addressed by the `=` symbol. From Insert mode we can access it by typing `<C-r>=`. This opens a prompt at the bottom of the screen where we can type the expression that we want to evaluate. When done, we hit `<CR>`, and Vim inserts the result at our current position in the document
 
 !!! Cái này hiện chưa làm được
 
@@ -722,6 +723,8 @@ From insert mode: `<C-k>{char1}{char2}`
 To replace the character under the cursor: `r`. For example: type  `rx`  to replace the character at the cursor with the character "x". You can replace "x" for other character.
 
 A capical `R` will enters Replace mode until  `<ESC>`  is pressed. Replace mode is like Insert mode, but every typed character deletes an existing character.
+
+`x` delete the character under the cursor
 
 ### Visual Mode
 

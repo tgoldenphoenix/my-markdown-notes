@@ -8,3 +8,4 @@ debt [default](https://www.oxfordlearnersdictionaries.com/definition/english/def
 
 COD
 
+Foreclosure (tịch thu/phát mãi tài sản) is a legal process in which a lender attempts to recover the balance of a loan from a borrower who has stopped making payments to the lender by forcing the sale of the asset used as the collateral for the loan.
