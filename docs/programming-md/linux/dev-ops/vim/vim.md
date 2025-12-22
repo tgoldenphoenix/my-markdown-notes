@@ -978,6 +978,10 @@ Open Files and Save Them to Disk
 
 The `:edit` command allows us to open files from within Vim, either by specifying an absolute or a relative filepath.
 
+- `buffer`: The actual text/file loaded in memory.
+- `window`: A "viewport" that looks into a buffer. You can have multiple windows looking at the same buffer.
+- `tab`: A collection or layout of windows. It is more like a "workspace" than a browser tab.
+
 ## Vim settings
 
 Vim settings are stored in `~/.vimrc` file

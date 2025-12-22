@@ -15,6 +15,8 @@ The **network core**: the mesh of packet switches and links that interconnects t
   3. Switch: The (usually 4) Ethernet ports on the back that let you wire multiple devices together.
   4. Access Point: Creates your Wi-Fi network.
 
+node: computer, as the network infrastructure that connects the devices—the routers, switches, firewalls
+
 ## The Network Edge
 
 - host = end systems. This term refers to many different things:
@@ -55,6 +57,10 @@ The postal service, of course, provides more than one service to its custom-ers.
 - A web service (or API) is a system that machines (other programs) use to get data or perform an action.
 - A web service is often a part of an internet application.
 
+## Network Devices
+
+k
+
 ## Physical Media
 
 Examples of physical media include twisted-pair copper wire, coaxial cable, multimode fiber-optic cable, terrestrial radio spectrum, and satellite radio spectrum.
@@ -87,15 +93,15 @@ The Internet has a number of special **routing protocols** that are used to auto
 
 There are two fundamental approaches to moving data through a network of links and switches: circuit switching and packet switching
 
-In **circuit-switched** networks, the resources needed along a path (buffers, link transmission rate) to provide for communication between the end systems are **reserved** for the duration of the communication session between the end systems.  
-In **packet-switched** networks, these resources are **not reserved**; a session’s messages use the resources on demand and, as a consequence, may have to wait (that is, queue) for access to a communication link.
+- In **circuit-switched** networks, the resources needed along a path (buffers, link transmission rate) to provide for communication between the end systems are **reserved** for the duration of the communication session between the end systems.
+- In **packet-switched** networks, these resources are **not reserved**; a session’s messages use the resources on demand and, as a consequence, may have to wait (that is, queue) for access to a communication link.
 
 Traditional telephone networks are examples of circuit-switched networks. Consider what happens when one person wants to send information (voice or facsimile)  to another over a telephone network. Before the sender can send the information, the network must establish a connection between the sender and the receiver. This is a bona fide connection for which the switches on the path between the sender and receiver maintain connection state for that connection. In the jargon of telephony, this connection is called a **circuit**.
 
 The Internet is packet-switched. If one of the links is congested because other packets need to be transmitted over the link at the same time, then the packet will have to wait in a buffer at the sending side of the transmission link and suffer a delay.  
 The Internet makes its best effort to deliver packets in a timely manner, but it does not make any guarantees.
 
-Although packet switching and circuit switching are both prevalent in today’s telecommunication networks, the trend has certainly been in the direction of packet switching.
+Although packet switching and circuit switching are both prevalent in today’s telecommunication networks, the **trend** has certainly been in the direction of **packet switching**.
 
 ## ISP
 

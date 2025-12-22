@@ -27,7 +27,10 @@ Note that an **IP datagram** has a total of 20 bytes of header (assuming no opti
 
 ## What’s Inside a Router?
 
-k
+Routers are not used to connect many end hosts within a LAN. Instead, they are placed at the edge of a LAN and used to enable communications between LANs and external networks, such as the internet.
+
+You might be wondering, “If that’s a router, what is the wireless router that connects my home network to the internet?” A **wireless router** (also known as a Wi-Fi router or home router) is not just a router; it’s a multifunctional network device that combines the roles of multiple different network devices.  
+These devices typically fill the roles of a router, switch, wireless access point (to provide Wi-Fi connectivity), and firewall all in one device. They are perfect for a small office/home office (SOHO) network with only a few users. However, in enterprise networks, it’s simply not feasible for a single device to fulfill all necessary roles. 
 
 ## The Internet Protocol (IP): IPv4, Addressing, IPv6, and More
 

@@ -37,3 +37,36 @@ When you request data from a resource using the fetch API, you have to wait for 
 When the resource has finished downloading, **the data might be enormous**. There's nothing that prevents you from requesting a monolithic JSON object that exceeds 50MB.
 
 What do you think would happen if you attempted to parse 50MB of JSON synchronously? It would block other scripts, and—more importantly—the UI.
+
+## Naming Convention
+
+- `camelCase`
+- `PascalCase`
+- `snake_case`
+- `kebab-case`
+- `SCREAMING_SNAKE_CASE`
+
+---
+
+javascript & node.js
+
+- variable with single underscore (`_private`) is to define **private variable**.
+- Double underscore (`__`) is not of any convention in node.js. There were only two variables (called global objects) with double underscores in node.js.
+  1. `__dirname` : used when to get the name of the directory that the currently executing script resides in.
+  2. `__filename`: used to get the filename of the code being executed.
+
+Có một cái library `Underscore.js` có syntax double underscore `__`. Nó được dùng trước khi ES6+. Hiện giờ trong older code bases có thể gặp nó. Sau này thì có `Lodash` với syntax only one underscore `_`.
+
+---
+
+Python
+
+In Python, variable names with double underscores on both sides (like `__init__` or `__dict__`) are referred to as `Dunder` (Double Under) methods or Magic Methods.
+
+You should never create your own names using this format. This is reserved for "core" Python functionality.
+
+- The single leading underscore (`_`) before a name in Python is a naming convention that signifies to other developers that the name is intended for internal use.
+- `__init__` Denotes special built-in methods recognized by the language (e.g., constructor, iterator).
+- A single underscore (`_`) is used as a variable name when you need to unpack a value but intend to ignore or throw away that value.
+
+Trong nodeJs cũng có kiểu naming convention tương tự.

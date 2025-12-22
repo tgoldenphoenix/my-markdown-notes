@@ -6,6 +6,14 @@
 
 **Data integrity**, so that the receiving entity can check for any tampering of the datagram that may have occurred while the datagram was in transit.
 
+## Firewalls
+
+You have probably heard the term firewall before regarding a piece of software on your PC. For example, Windows PCs use `Microsoft Defender Firewall` by default. This kind of firewall is a `host-based firewall`. It examines network traffic entering and exiting the host device and then decides to allow or deny (block) it. It makes these decisions based on a set of defined rules.  
+However, this is not the kind of firewall you need to know for the CCNA. The kind of firewall we will cover is the network firewall.
+
+A `network firewall` is a separate hardware appliance that serves a purpose similar to a host-based firewall but on a larger scale. It inspects all traffic entering and exiting a network and decides to allow or deny it based on a set of configured rules.  
+Traffic bên ngoài vào firewall > router > switch > hosts inside LAN.
+
 ## Network-Layer Security: IPsec and Virtual Private Networks
 
 The **IP security protocol**, more commonly known as **IPsec**, provides security at the network layer. IPsec secures IP datagrams between any two network-layer entities, including hosts and routers. Many institutions (corporations, government branches, non-profit organizations, and so on) use IPsec to create virtual private networks (VPNs) that run over the public Internet.
