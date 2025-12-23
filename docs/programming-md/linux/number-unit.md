@@ -5,7 +5,10 @@
 `(7)~8` (using subscript) means digit `7` in base 8 number NOT the number seven in decimal `(7)~10`.
 
 - Tương tự ta có:
-  - `(11)~2 = (3)~10`: `11` binary equals `3` in decimal
+  * `(11)~2 = (3)~10`: `11` binary equals `3` in decimal
+
+- `0d10` = ten decimal
+- `0x10` = ten hexadecimal = 16
 
 ## Decimal
 
@@ -140,16 +143,17 @@ The octal number system is **NOT** used for IPv4 (it use decimal from `0-255` to
 
 ## Hexadecimal
 
-Hexadecimal is base-16. Digits used: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A (10), B (11), C (12), D (13), E (14), F (15)`
+Hexadecimal is base-16. Digits used: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A (10), B (11), C (12), D (13), E (14), F (15)`.  
+Because more digits are available, hexadecimal can express large values in fewer characters.
 
 - In `C` programming language (and Java, Python, C++):
-  - The prefix `0x` signify that the number is hexadecimal literal. Example: `0xFF = 255`.
-  - `0` is the prefix for Octal. Example: `077 = 63`.
+  * The prefix `0x` signify that the number is hexadecimal literal. Example: `0xFF = 255`.
+  * `0` is the prefix for Octal. Example: `077 = 63`.
 
 It's a very compact way to represent binary data. It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and **MAC addresses**.
 
-- One "hex" digit represents four binary digits because `2^4 = 16`. Example: `F = 1111 = 15`, 15 = 8 + 4 + 2 + 1)
-- 2 hex digit represent 8 bits (1 byte, an octet): `FF = 11111111 = 255`
+- One "hex" digit = four binary digits because `2^4 = 16`. Example: `F = 1111 = 15`, 15 = 8 + 4 + 2 + 1)
+- 2 hex digit = 8 bits (1 byte, an octet): `FF = 11111111 = 255`
 
 Example: The number F3 means (15 × 16) + (3 × 1) = 243 in decimal
 

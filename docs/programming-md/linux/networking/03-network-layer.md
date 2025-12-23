@@ -1,5 +1,7 @@
 # 03-Network Layer
 
+Or Internet Layer cũng đúng
+
 ## The Basics & Terminologies
 
 - Transport layer is responsible for **process-to-process communication**.
@@ -7,7 +9,8 @@
 
 Unlike the transport and application layers, there is a piece of the network layer in each and every host and router in the network. Because of this, network-layer protocols are among the most challenging (and therefore among the most interesting!) in the protocol stack.
 
-A network-layer packet is called a **datagram**. Đừng nhầm với UDP (User Datagram Protocol) là một layer 4 (transport layer) protocol.
+A network-layer packet is called a `datagram`. Đừng nhầm với UDP (User Datagram Protocol) là một layer 4 (transport layer) protocol.  
+Đôi khi nó cũng được gọi là `packet`.
 
 - Chia Network Layer ra:
   - data plane role of each router

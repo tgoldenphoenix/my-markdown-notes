@@ -1,22 +1,31 @@
 # 04-Transport Layer
 
-UDP & TCP
-
 It is above network layer & below Application Layer.
 
 Đọc tới chapter 3.2 Multiplexing
 
-## Introduction
+## Basics & Terminologies
 
 To simplify terminology, we refer to the transport-layer packet as a **segment**.
-Của network layer là **datagram**, nhưng đừng nhầm với User Datagram Protocol (UDP).  
+Của network layer là `datagram`, nhưng đừng nhầm với User Datagram Protocol (UDP).  
 We believe that it is less confusing to refer to both TCP and UDP packets as segments, and reserve the term datagram for the network-layer packet.
 
 Recall that the transport layer lies just above the network layer in the protocol stack. Whereas a transport-layer protocol provides logical communication **between processes** running on different hosts, a network-layer protocol provides logical-communication between hosts. This distinction is subtle but important.
 
-Transport-layer protocols are implemented in the end systems but not in network routers.
+Transport-layer protocols are implemented in the end systems, NOT in the network routers.
 
 You must know the destination IP address for both UDP and TCP. TCP guarantee your packet arrive whereas UDC do not guarantee anything.
+
+Layers 2 and 3 work together to deliver a message from the source host across a network to the destination host. You might think that’s the end of the story because the message has reached its destination, but it’s actually not all the way there. It’s not enough for the data to reach the correct destination host; we need a way to address data to a specific application process on the destination host (e.g., a service running on a server). That is the role of Layer 4, the Transport Layer.
+
+Layer 4 port numbers are NOT related to the physical ports on a device that we connect cables to (which are an aspect of Layer 1, the Physical Layer). Same name, different concept.
+
+---
+
+- `UDP`: User Datagram Protocol
+- `TCP`: Transmission Control Protocol
+- `TLS`: Transport Layer Security
+- `UTP`: Unshielded Twisted Pair copper cable
 
 ## Transport-Layer Multiplexing & Demultiplexing
 
@@ -49,11 +58,13 @@ Some applications are better suited for UDP than TCP.
 
  The TCP segment has 20 bytes of header over-head in every segment, whereas UDP has only 8 bytes of overhead.
 
-## TCP
+## `TCP` - Transmission Control Protocol
 
 connection-oriented service and a reliable data transfer service.
 
-### TSL - Transport Layer Security
+used by: HTTP, HTTPS
+
+### TLS - Transport Layer Security
 
 Neither TCP nor UDP provides any encryption - the data that the sending process passes into its socket is the same data that travels over the network to the destina-tion process.
 
@@ -61,6 +72,8 @@ So, for example, if the sending process sends a password in cleartext (i.e., une
 
 TCP can be easily enhanced at the application layer with TLS to provide security services.
 
-## UDP
+## `UDP` - User Datagram Protocol
 
 connectionless, unreliable data transfer service, no guarantee
+
+used by: VoIP

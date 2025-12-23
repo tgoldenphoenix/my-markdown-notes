@@ -1,4 +1,4 @@
-# The Basics of Networking
+# Network Basics
 
 ## Terminologies
 
@@ -15,7 +15,34 @@ The **network core**: the mesh of packet switches and links that interconnects t
   3. Switch: The (usually 4) Ethernet ports on the back that let you wire multiple devices together.
   4. Access Point: Creates your Wi-Fi network.
 
-node: computer, as the network infrastructure that connects the devices—the routers, switches, firewalls
+`node`: computer, as the network infrastructure that connects the devices—the routers, switches, firewalls
+
+- There are three main addresses:
+  1. MAC address (layer 2)
+  2. IP address (layer 3)
+  3. Port number (layer 4)
+
+## Data encapsulation and de-encapsulation
+
+- Host PC prepare a layer 7 message.
+- The layer 7 message is append a layer 4 header to address certain port number.
+- Then layer 3 append its header with IP address
+
+Layer 2 is the only layer that add a trailer to the message. Những layer khác chỉ add header.  
+The Ethernet trailer contains a small block of data used to check for errors in the message. For example, errors can occur during transmission as a result of electromagnetic interference.
+
+The Layer 2 header is the beginning of the message; it is the first part sent. The Layer 2 trailer is the end of the message; it is the last part sent.
+
+- The combination of data and a Layer 4 header is called a `segment`.
+- The combination of a segment and a Layer 3 header is called a packet or `datagram`.
+- The combination of a packet and a Layer 2 header/trailer is called a `frame`. 
+
+The contents of each protocol data unit - PDU (everything encapsulated by that layer’s header/trailer) are called the payload. So, a frame’s payload is a packet, a packet’s payload is a segment, and a segment’s payload is the application data. 
+
+- Layer 4 provides a service to Layer 7 by delivering data to the appropriate application on the destination host.
+- Layer 3 provides a service to Layer 4 by delivering segments to the correct destination host.
+- Layer 2 provides a service to Layer 3 by delivering packets/datagra to the next hop.
+- Layer 1 provides a service to Layer 2 by providing a physical medium for frames to travel over.
 
 ## The Network Edge
 
@@ -193,8 +220,16 @@ Có một số GUI cho traceroute.
 ## Protocol Stack
 
 - Mnemonic: [Armadillos Take In New Ants](https://www.instructables.com/TCPIP-Layers-Mnemonic/)
+  * Application
+  * Transport
   * "In" = Internet layer (Network Layer)
   * "New Ants" = Network Access (Data Link + Physical)
+
+- Anhao Thich Nung Lon
+  * Application
+  * Transport
+  * Network (Internet layer)
+  * Link (Data Link & Physical)
 
 - There are 5 layer from Application layer (layer 5) => Physical Layer (layer 1).
 - The OSI model chia Application layer ra thêm Presentation & Session

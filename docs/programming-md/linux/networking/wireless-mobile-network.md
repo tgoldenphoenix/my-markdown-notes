@@ -1,5 +1,9 @@
 # Wireless and Mobile Networks
 
+## Terminologies
+
+`modulating` a Wi-Fi signal means taking the raw digital data (the 1s and 0s from your computer) and "piggybacking" them onto a radio wave so they can travel through the air.
+
 ## WiFi: 802.11 Wireless LANs
 
 The `IEEE 802.11 wireless LAN` is the set of standards that defines **Wi-Fi**. It's part of the IEEE 802 family of networking standards. The 802.11 standard specifically describes how wireless communication works at the Data Link (Layer 2) and Physical (Layer 1) layers of the OSI model.

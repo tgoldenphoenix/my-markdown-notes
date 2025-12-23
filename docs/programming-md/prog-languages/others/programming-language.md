@@ -11,17 +11,25 @@ In contrast to running a Python file, you can input commands in the REPL and see
 
 The main categories include imperative, declarative, object-oriented, and functional. Within these, there are sub-paradigms like procedural, logic, and event-driven programming
 
-**Imperative Programming** (lập trình mệnh lệnh): This paradigm focuses on explicitly stating how a program should achieve its result by providing a sequence of commands that modify the program's state. Thuật ngữ này thường được dùng trái ngược với lập trình khai báo.  
+`Imperative Programming` (lập trình mệnh lệnh): This paradigm focuses on explicitly stating how a program should achieve its result by providing a sequence of commands that modify the program's state. Thuật ngữ này thường được dùng trái ngược với lập trình khai báo.  
 It is simple, easy to understand  
 Ngôn ngữ hướng kịch bản (scripting language) thuộc về imperative programming
 
 **Declarative Programming** (lập trình khai báo): This paradigm focuses on what the program should compute rather than how it should compute it. The programmer specifies the desired outcome, and the system figures out the steps to achieve it
 
-**Procedural Programming** (Procedure-Oriented Programming, lập trình hướng thủ tục, hướng hàm): A subset of imperative programming, where code is organized into procedures (functions or subroutines) that are called to execute specific tasks. Examples include C, Fortran, and Pascal
+`Procedural Programming` (Procedure-Oriented Programming, lập trình hướng thủ tục, hướng hàm): A subset of imperative programming, where code is organized into procedures (functions or subroutines) that are called to execute specific tasks. Examples include C, Fortran, and Pascal
 
-**Functional Programming**: A declarative style that treats computation as the evaluation of mathematical functions and avoids changing program state. It relies heavily on functions, higher-order functions, and avoiding side effects. Examples include Haskell, Lisp, and Scala.
+- `Functional Programming`:
+  - The style focuses on writing and using functions instead of focusing on objects, as in OOP languages.
+  - First-Class and Higher-Order Functions:
+    * Pass a function as an argument to another function.
+    * Return a function from a method.
+    * Assign a function to a variable.
+  - Pure function: a pure function always produces the same output for the same input and has no side effects (it doesn't change a global variable or print to the console).
+  - Immutability: Instead of changing the contents of a list, you create a new list with the modified values. This makes code much safer for Multi-threading, as there is no risk of two threads changing the same data at once.
+  - Example in java: Lambda expression, functional interface, stream API
 
-**Object-Oriented Programming** (OOP, hướng đối tượng): This paradigm centers around the concept of "objects," which encapsulate data (attributes) and methods (functions) that operate on that data. OOP emphasizes concepts like encapsulation, inheritance, and polymorphism. Languages like Java, C++, Python, and Ruby are prominent examples
+`Object-Oriented Programming` (OOP, hướng đối tượng): This paradigm centers around the concept of "objects," which encapsulate data (attributes) and methods (functions) that operate on that data. OOP emphasizes concepts like encapsulation, inheritance, and polymorphism. Languages like Java, C++, Python, and Ruby are prominent examples
 
 Event-driven (hướng sự kiện): Programs respond to user actions or system events. Click buttons, trigger event handler function.  
 Giao diện website có buttons là event-driven programming
@@ -65,7 +73,7 @@ In Python, variable names with double underscores on both sides (like `__init__`
 
 You should never create your own names using this format. This is reserved for "core" Python functionality.
 
-- The single leading underscore (`_`) before a name in Python is a naming convention that signifies to other developers that the name is intended for internal use.
+- The single leading underscore (`_var`) before a name in Python is a naming convention that signifies to other developers that the name is intended for internal use.
 - `__init__` Denotes special built-in methods recognized by the language (e.g., constructor, iterator).
 - A single underscore (`_`) is used as a variable name when you need to unpack a value but intend to ignore or throw away that value.
 

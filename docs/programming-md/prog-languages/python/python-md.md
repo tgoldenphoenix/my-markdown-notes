@@ -130,6 +130,18 @@ Collections
 
 There are 4 built-in data types in Python used to store collections of data: Tuple, Dictionary, List, Set
 
+Using literals for instantiation
+
+```python
+list_obj = [1, 2, 3] # list literal
+
+tuple_obj = (404, "Connection Error") # tuple literal
+
+dict_obj = {"one": 1, "two": 2}
+
+set_obj = {1, 2, 3}
+```
+
 ## Dictionary & Set
 
 `Dictionaries` are used to store data values in `key:value` pairs. A dictionary is a collection which is ordered*, changeable and do not allow duplicates.
@@ -222,6 +234,13 @@ Like their math counterparts, however, set objects in Python have a series of co
 
 Thường mình sẽ convert `list` => `set` rồi dùng những methods này.
 
+---
+
+We often need to check whether the data container has the specific item under examination, a functionality that is termed `membership checking`.
+
+Although lists support membership testing, you should consider using sets if your application is concerned with membership.  
+Python requires all the items in a set to be unique because under the hood, sets are implemented by means of a hash table, which offers a significant benefit of constant item lookup time, known as O(1) time complexity. By contrast, membership testing lookup time is linear with the length of the list because Python needs to traverse the sequence to find a potential match. The more items a list has, the more time the traverse costs. Thus, you should use sets when your application is concerned with membership testing.
+
 ## List & Tuple
 
 - Similarity:
@@ -239,6 +258,8 @@ Trong Python, có một syntax gọi là `Tuple Unpacking` gần giống như ob
 
 - List is slower than tuple, consumes more memory (due to overhead for change management).
 - Tuples are more memory-efficient than lists. When a list and a tuple hold the same data, the list has a larger size than the tuple. 
+
+The `sort()` method sorts a `list` object in place, which means that sort changes the original list object. `sort()` returns `None`.
 
 ---
 
@@ -372,7 +393,224 @@ list = [1, (2, 3), 4]
 a, (b, c), d = list
 print(a, b, c, d) # 1 2 3 4
 ```
+
+## Loops, Iterables and iterations
+
+Iterables: string, list, set, dict, tuple, all sequence data types.
+
+`Iterators` are a special data type from which we can retrieve each of their elements via a process known as `iteration`.
+
+We create an iterator from an iterable by using `iter()` function. Iterators are designed to perform iteration of an iterable’s elements.  
+In our code, we rarely need to create an iterator ourselves. Instead, Python does the heavy lifting for us behind the scenes.
+
+`Iterability` refers to the characteristic of an object being an iterable, such that it can be converted to an iterator for iteration.
+
+All iterable can be used inside a `for` loop.
+
+---
+
+Instead of using literal instantiation, `list`, `tuple`, dict, and set constructors can take an iterable to create a corresponding object.
+
+```python
+integers_list = list(range(10))
+assert integers_list == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+ 
+integers_tuple = tuple(integers_list)
+assert integers_tuple == (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+ 
+dict_items = [("zero", 0), ("one", 1), ("two", 2)]
+integers_dict = dict(dict_items)
+assert integers_dict == {'zero': 0, 'one': 1, 'two': 2}
+ 
+even_numbers = (-2, 4, 0, 2, 4, 2)
+unique_evens = set(even_numbers)
+assert unique_evens == {0, 2, 4, -2}
+```
+
+In the below code example, the map function applies the built-in float function (it’s the float constructor, to be precise) to each string, and the list constructor takes the created map iterator to create a list object of floating-point numbers.
+
+```python
+numbers_str = ["1.23", "4.56", "7.89"]
+ 
+numbers_float = list(map(float, numbers_str))
+ 
+assert numbers_float == [1.23, 4.56, 7.89]
+```
+
+---
+
+The `zip` function joins the id_numbers and titles side by side, forming a zip iterator that renders elements consisting of one item from each iterable.
+
+```python
+id_numbers = [101, 102, 103]
+titles = ["Laundry", "Homework", "Soccer"]
+
+zipped_tasks = dict(zip(id_numbers, titles))
+assert zipped_tasks == {101: "Laundry", 102: "Homework", 103: "Soccer"}
+```
+
+The zip function joins two or more iterables, with each iterable contributing one item to the zip iterator’s elements. Most of the time, you use two iterables in a zip function, which mimics the action of your real-world jacket’s zipper. Thus, if you’re confused about what the zip function does, think about what your jacket’s zipper does: joins two rows of teeth, with the rows alternating to form a pair.
+
+You may know that zipping is a file-compression concept. In Python, the `zipfile` module provides the related functionalities of zipping and unzipping files
+
+### list, dictionary, and set comprehensions
+
+`list comprehension` is a concise way of creating list objects.
+
+```python
+numbers = [1, 2, 3, 4]
+squares = [x * x for x in numbers]
+ 
+assert squares == [1, 4, 9, 16]
+```
+
+list comprehension doesn’t look like literals, as it doesn’t list the items directly, but it doesn’t look like the constructor approach either, as it doesn’t call list.
+
+`[expression for item in iterable]`, in which the expression is a specific operation using each item of the iterable. 
+
+```python
+from collections import namedtuple
+ 
+Task = namedtuple("Task", "title, description, urgency")
+ 
+tasks = [
+    Task("Homework", "Physics and math", 5),
+    Task("Laundry", "Wash clothes", 3),
+    Task("Museum", "Egypt exhibit", 4)
+]
+
+titles = [task.title for task in tasks] # list comprehension
+assert titles == ['Homework', 'Laundry', 'Museum']
+```
+
 ## Functions
+
+Every Python function returns a value, although sometimes implicitly (return `None`). When we define a function that doesn’t return anything, it is still evaluated to return `None`.
+
+---
+
+Function in python can return multiple values (technically it returns a `tuple`).
+
+```python
+from statistics import mean, stdev
+
+def generate_stats(measures):
+   measure_mean = mean(measures)
+   measure_std = stdev(measures)
+   return measure_mean, measure_std
+```
+
+although it appears that we’re returning two values in the function definition. These two values are packed into a single tuple object. In other words, strictly speaking, when we appear to return multiple values in a function definition, we’re returning a single variable that is a tuple object consisting of these values. Please note that as discussed regarding tuple unpacking (section 4.4), parentheses are optional for creating a tuple object.
+
+You can apply the tuple unpacking technique to using the multiple values returned from a function, which is a concise, Pythonic way to access the individual items of the returned tuple object, as shown in the next listing.
+
+```python
+m_mean, m_std = generate_stats(measures)
+
+print(f"Mean: {m_mean}; SD: {m_std}")
+# output: Mean: 5.6; SD: 0.8786353054595518
+```
+
+Unlike Python, a Java method can only return a single value (or `void`). Java is a strictly typed language and its method signatures are defined by a single return type (e.g., `public int myMethod()`)
+
+### Type hints
+
+Proper type hints tell users what kinds of arguments our functions take and what value our functions return, making our functions more understandable.
+
+Python is `dynamically typed`—the type of variables can change after their creation.
+
+Even though Python is a dynamically typed language, we can provide type hints to the variables that we create in Python. This feature, known as `type hinting`, was added to Python 3.6. To provide a type hint, you use a semicolon after the variable name, after which you specify the type of the variable. Following are some examples:
+
+```python
+number: int = 3
+
+name: str = "John"
+
+primes: list = [1, 2, 3]
+```
+
+It’s important to know that type hinting doesn’t make Python a statically typed language and that it doesn’t enforce the typing of the variable. You can still assign a value of a different type to a variable that you create with type hinting and run the of code without problems.
+
+---
+
+Using type hints in a function
+
+The syntax `-> data_type` is used to indicate the type for the return value.
+
+```python
+from statistics import mean, stdev
+
+def generate_stats(measures: list) -> tuple:
+   measure_mean = mean(measures)
+   measure_std = stdev(measures)
+   return measure_mean, measure_std
+```
+
+---
+
+Using arguments with default values
+
+I’ve covered how to set a default value for a parameter in a function definition. When this feature is combined with type hints, all we need to know is the order of the sequence: type hint first and then the default value. The following code snippet shows an example:
+
+```python
+def calculate_product(a: int, b: int, multiplier: int = 1) -> int:
+   c = a * b * multiplier
+   return c
+```
+
+The parameter `multiplier` has a default value of `1` with the `int` type. Please note that the spaces used in specifying the parameter’s default value and type are necessary because they help improve the readability of the code. Specifically, you should have spaces before and after the type and the `=` sign.
+
+---
+
+Working with custom classes
+
+When our project grows, we introduce new classes to manage the data. These classes are new types, and we can use them as we do built-in data types such as `int`, `tuple`, and `dict`. The following listing shows how to include custom classes in function definitions by using type hints.
+
+```python
+from collections import namedtuple
+ 
+Task = namedtuple("Task", "title description urgency")
+ 
+class User:
+    pass # Uses the pass statement as a placeholder
+ 
+def assign_task(pending_task: Task, user: User):
+    pass
+```
+
+We define two classes: `Task` (using the named tuple technique) and `User` (using a typical class definition). When these classes are defined, we can use them immediately. Python knows these classes are types and that they can be used to indicate the types of the arguments in a function definition.
+
+The `pass` statement is used where code is required to fulfill syntactical requirements. As a placeholder, the `pass` statement does nothing. In the body of a class definition, we’re required to write code to implement the class. In this case, however, we can use pass to validate the class definition.
+
+---
+
+Working with container objects
+
+We have learned that several built-in data types, such as list and tuple, are containers because they can hold other objects. When it comes to type hints for these containers, you may notice that providing a type for the container itself isn’t always meaningful enough.
+
+```python
+def complete_tasks_hinted(tasks: list[Task]):
+   for task in tasks:
+       pass
+```
+
+Instead of using only `list`, you can use a pair of brackets following `list` to include the expected data type of the contained objects. In our case, we expect the list object to contain `Task` objects but not str objects. With this change, you’ll notice that the IDE can give you a warning when you use a list object of an incompatible data type, such as strings
+
+---
+
+Taking multiple data types
+
+```python
+from statistics import mean, stdev
+
+def generate_stats(measures: list[float] | tuple[float, ...]) 
+  -> tuple[float, float]:
+   measure_mean = mean(measures)
+   measure_std = stdev(measures)
+   return measure_mean, measure_std
+```
+
+### increase function flexibility with `*args` and `**kwargs`
 
 `**kwargs` (keyword arguments) allows a function to accept any number of named arguments that weren't defined in its parameter list. It collects these arguments into a dictionary, where the keys are the argument names and the values are the argument values.
 
@@ -384,13 +622,13 @@ greet_user(name="Alice", age=30, city="New York")
 # Output: {'name': 'Alice', 'age': 30, 'city': 'New York'}
 ```
 
-## Modules
+## Python Modules
 
 k
 
 ## Processing & Formatting Strings
 
- Python use f-string: `f"string {variable}"`
+Python use f-string: `f"string {variable}"`
 
 f-string supports `list`, `tuple`
 
@@ -470,6 +708,10 @@ k
 Python supports multiple inheritance, and Java does not.
 
 Python does not have the `extends` keyword.
+
+The constructor is the `__init__` function that you define.
+
+We use a custom class instead of a named tuple-based data model here. A custom class gives us the flexibility of changing the instance object’s attributes, which we can’t do with a named tuple mode
 
 ## File and Directory Access
 

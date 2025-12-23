@@ -1,8 +1,21 @@
 # 02-The Link Layer
 
+## Basics
+
 The packet of the link layer (the link-layer unit of data exchanged between sending and receiving adapters) is called `frame`.
 
 For the most part, the link layer is implemented on a chip called the **network adapter**, also sometimes known as a **network interface controller (NIC)**. The network adapter implements many link layer services including framing, link access, error detection, and so on. Thus, much of a link-layer controller’s functional-ity is implemented in hardware.
+
+The journey from one `node` to the next in the path is called a `hop`, and the job of the Data Link Layer is to provide `hop-to-hop` delivery of messages.  
+A message traveling through a switch does NOT count as a hop. Chỉ có jump from host computers & router mới gọi là `hop`.
+
+The Data Link Layer achieves this hop-to-hop delivery by using media access control (MAC) addresses, a kind of network address assigned to each port of a device. At each hop, the message is sent to the MAC address of the next hop.
+
+The destination IP address of a message remains the same throughout the journey, whereas the destination MAC address is different at each hop. 
+
+---
+
+Another term for a LAN is a `Layer 2 domain`—a portion of a network where frames are switched, and hosts connected to the switch(es) can communicate with each other without the use of a router.
 
 ## Multiple Access Links and Protocols
 
@@ -28,7 +41,7 @@ There are three types of **channel partitioning protocols**:
 
 The second broad class of multiple access protocols are **random access protocols**.
 
-## `switch` The network device
+## `switch` The Network device
 
 Devices connected to a switch are able to communicate with each other via the switch. Note that they do not typically communicate with the switch itself—the switch only serves as infrastructure over which communication can occur.
 
@@ -36,7 +49,9 @@ The role of a switch is to connect devices within a `LAN`. For example, all of t
 
 Note that the role of a switch is not to provide connectivity between LANs or to external networks. For example, you would not connect a switch directly to the internet. For that, we need another type of device.
 
-## Units
+The role of a switch is to provide many ports for end hosts to connect to the LAN. In reality, there could be 40+ end hosts connected to each switch. 
+
+## Units of data Transmission
 
 - The following are some common units of measuring bits:
   * 1 kilobit (kb) = 1,000 (thousand) bits
@@ -90,19 +105,91 @@ When connecting two devices with fiber-optic cables, it’s important to connect
 
 All types of fiber-optic cabling can carry a signal farther than copper cabling, but even within the category of fiber-optic cabling, the maximum supported length can vary greatly. 
 
+## The Ethernet header and trailer
+
+An Ethernet frame = E. header (14 bytes) + layer 3 diagram + E. trailer (4 bytes)
+
+---
+
+The `Preamble` and `Start Frame Delimiter (SFD)` are sent with each frame but are not considered part of an Ethernet frame. The reason is that they are purely a function of Layer 1, the Physical Layer. They do not contain information that influences what the receiving device decides to do with the frame (a `frame` being a layer 2 concept).
+
+The `Preamble` and `SFD` are sent with each Ethernet frame to allow the receiving device to synchronize its `receiver clock` and prepare to receive the incoming frame. This `clock` has nothing to do with the date and time but rather with how the receiving device interprets the incoming electrical signals—the receiving device needs to determine the precise length of 1 bit. 
+
+---
+
+The Type/Length field (inside E. header) is a 2-byte field that can be used either to indicate the type of the encapsulated datagram (e.g., an IP version 4 packet or an IP version 6 packet) or to indicate the length of the encapsulated packet (in bytes).  
+These days, in almost all cases, this field is used to indicate the type of the encapsulated packet: instead of this field indicating length, the end of the frame is indicated by a special signal after the frame. 
+
+---
+
+The `Frame Check Sequence (FCS)` is the only field of the Ethernet trailer. It is 4 bytes in length and is used to detect corrupted data in the frame. Before a device sends a frame, it uses an algorithm to calculate a `checksum`, a small block of data that is appended to the end of the frame as the FCS field. 
+
+Then, when the frame’s destination host receives the frame, it calculates its own checksum for the frame (with the same algorithm) and compares it to the one calculated by the sender. If the two checksums are the same, the receiver can safely assume that the data has not been corrupted in transit. However, if the checksums calculated by the sender and receiver are different, the receiver will discard the frame—the data has been corrupted in transit (perhaps because of electromagnetic interference).
+
+FCS is the name of the field, but the name for this kind of checksum is `cyclic redundancy check (CRC)`. The term `cyclic` refers to the kind of algorithm used to calculate the checksum. `Redundancy` means that the field is redundant—it expands the size of the message but doesn’t add any additional information. `Check` is self-explanatory—it is used to check if the frame traveled from source to destination without the data being corrupted.
+
+## Frame switching
+
+### MAC address learning
+
+When a switch has to make a decision about how to forward a frame, it looks up the frame’s destination MAC address in its MAC address table, which is a list of the MAC addresses in the LAN and which port each is connected to.
+
+But first, how does a switch build its MAC address table?  
+This is the role of the Source field of the Ethernet header. When a switch receives a frame on one of its ports, it examines the Source field and creates an entry for that MAC address in its MAC address table, associating that MAC address with the port the frame was received on. This entry says “To reach this MAC address, forward the frame out of this port.”  
+This makes sense: if a switch receives a frame from MAC address X on port Y, the switch knows it can reach the host with MAC address X out of port Y. This process is called `MAC address learning`.
+
+MAC addresses learned by a switch in this manner are known as `dynamic` MAC addresses—they are automatically (dynamically) learned.  
+This is in contrast to `static` MAC addresses, which are manually (statically) configured, although that is quite rare.  
+A switch will remove a dynamic MAC address from its MAC address table after 5 minutes of inactivity (if it doesn’t receive a frame from that MAC address for 5 minutes); this is called `MAC aging`.
+
+### Frame flooding and forwarding
+
+A `frame` addressed to a single destination host is called a `unicast` frame. If the switch already has an entry for the frame’s destination MAC address in its MAC address table, it is called a `known unicast frame`.
+
+An `unknown unicast frame` is a frame addressed to a single destination host, but the switch doesn’t have an entry for the frame’s destination MAC address in its MAC address table.
+
+To `flood` a frame is to send it out of all ports, except the port the frame was received on. Switches take this action on receiving an `unknown unicast frame`.
+
+- Remember what action a switch takes for each kind of unicast frame:
+  * Known unicast frame (forward)—The switch will send the frame out of the port specified by the MAC address’s entry in the MAC address table.
+  * Unknown unicast frame (flood)—The switch will send the frame out of all ports except the one it was received on.
+
+---
+
+A switch is `transparent` to its connected hosts; PC1 and PC3 address their messages directly to each other, not to SW1 or SW2, exactly as they would if they were directly connected with a single cable. This is why a message passing through a switch is not considered a hop. Also, switches do not modify the frames they switch in any way; they simply forward or flood them as appropriate. 
+
+---
+
+Although the MAC addresses of a switch’s ports don’t play a role when it is forwarding traffic between hosts, switches periodically exchange messages with each other and learn each other’s MAC addresses in the process.
+
 ## Switched Local Area Networks
 
-A router has an IP address for each of its interfaces. For each router interface there is also an ARP module (in the router) and an adapter. Because the router in Figure 6.19 has two interfaces, it has two IP addresses, two ARP modules, and two adapters.
+A router has an IP address for each of its interfaces. For each router interface there is also an `ARP module` (in the router) and an adapter. Because the router in Figure 6.19 has two interfaces, it has two IP addresses, two ARP modules, and two adapters.
 
 ## MAC Address
 
 MAC Address: Uses Hexadecimal (Base-16).
 
-A MAC address (e.g., `00:1A:2B:3C:4D:5E`) is a `48-bit = 8 bits x 6 groups`. Each group is two hex digit representing 8 bits. We use hexadecimal (digits 0-9 and A-F) because it's a very compact and readable way to represent the underlying binary values.
+Ethernet & Wi-Fi both use MAC address.
+
+- A MAC address (e.g., `00:1A:2B:3C:4D:5E`):
+  * `48-bit = 8 bits x 6 bytes`
+  * 6 group, each group is two hex digit representing 8 bits
+  * 12 hex digits
+
+We use hexadecimal (digits 0-9 and A-F) because it's a very compact and readable way to represent the underlying binary values.
 
 MAC addresses are physical. IP addresses are logical.
 
+MAC addresses are not assigned by the network admin or engineer configuring the device. Instead, each port of a network device has a MAC address that is assigned to it by the manufacturer.
+
+A MAC address is globally unique—it should not be shared by a port on any other device in the world.
+
 An adapter’s MAC address has a flat structure (as opposed to a hierarchical structure) and doesn’t change no matter where the adapter goes.
+
+---
+
+To ensure that MAC addresses remain globally unique, the first half of each MAC address (the first 3 bytes) is an `organizationally unique identifier (OUI)` assigned to the manufacturer by the IEEE. Then, the manufacturer is free to use the second half to assign unique MAC addresses to each device they manufacture.
 
 ## Terminologies
 

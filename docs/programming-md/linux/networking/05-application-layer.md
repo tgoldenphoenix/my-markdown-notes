@@ -1,5 +1,7 @@
 # 05-Application Layer
 
+hoặc gọi là layer 07 cũng đúng (even more common hơn việc gọi nó là layer 5)
+
 ## Network Application
 
 A **socket** is the interface between the application-layer process and the transport-layer protocol within a host.
