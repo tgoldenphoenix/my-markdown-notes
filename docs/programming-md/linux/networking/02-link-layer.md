@@ -1,6 +1,6 @@
 # 02-The Link Layer
 
-## Basics
+## Basics & Terminologies
 
 The packet of the link layer (the link-layer unit of data exchanged between sending and receiving adapters) is called `frame`.
 
@@ -16,6 +16,19 @@ The destination IP address of a message remains the same throughout the journey,
 ---
 
 Another term for a LAN is a `Layer 2 domain`—a portion of a network where frames are switched, and hosts connected to the switch(es) can communicate with each other without the use of a router.
+
+Physical switch có physical ports (interfaces) để cắm cables vô. Khác với cái port number cho process.
+
+---
+
+- `wifi en0`: the network interface name
+  * `en` means it uses **Ethernet framing**. Wi-Fi (802.11) traffic is typically encapsulated within an Ethernet frame format for higher-level network protocols (like TCP/IP).
+ 
+The Network Interface Card (NIC), also known as a Network Adapter, Network Card, or Network Interface Controller, is the physical hardware component that connects a computer or other device to a computer network.
+
+---
+
+`Unicast` messages can be thought of as one-to-one and `broadcast` as one-to-all. Additionally, there is another type of message called `multicast`, which is one-to-multiple (but not necessarily all).
 
 ## Multiple Access Links and Protocols
 
@@ -162,6 +175,23 @@ A switch is `transparent` to its connected hosts; PC1 and PC3 address their mess
 
 Although the MAC addresses of a switch’s ports don’t play a role when it is forwarding traffic between hosts, switches periodically exchange messages with each other and learn each other’s MAC addresses in the process.
 
+## Address Resolution Protocol
+
+The PCs know each other’s MAC address by using Address Resolution Protocol (ARP).
+
+ARP allows a host to learn the MAC address of another host in the LAN.
+
+- The ARP request message is `broadcast`.
+- The ARP reply is a unicast frame sent to the MAC address of the host that sent the ARP request.
+
+A `broadcast frame` is a frame addressed to the `broadcast MAC address: ffff.ffff.ffff`. A switch will flood broadcast frames, like unknown unicast frames. Broadcast frames are used by hosts to send messages to all other hosts in the LAN. 
+
+If an ARP request is broadcast (addressed to all other hosts in the LAN), how does the sender specify which host’s MAC address it wants to learn? It does so by specifying the **IP address** of the host it wants to know the MAC address of.
+
+After the ARP exchange is complete, PC1 knows PC3’s MAC address; it will store PC3’s MAC address in its `ARP table`, which is a list of IP addresses and their associated MAC addresses.
+
+ARP can be thought of as the bridge between Layers 2 and 3 of the TCP/IP model. ARP is used to map a known Layer 3 address (IP address) to an unknown Layer 2 address (MAC address).
+
 ## Switched Local Area Networks
 
 A router has an IP address for each of its interfaces. For each router interface there is also an `ARP module` (in the router) and an adapter. Because the router in Figure 6.19 has two interfaces, it has two IP addresses, two ARP modules, and two adapters.
@@ -191,9 +221,3 @@ An adapter’s MAC address has a flat structure (as opposed to a hierarchical st
 
 To ensure that MAC addresses remain globally unique, the first half of each MAC address (the first 3 bytes) is an `organizationally unique identifier (OUI)` assigned to the manufacturer by the IEEE. Then, the manufacturer is free to use the second half to assign unique MAC addresses to each device they manufacture.
 
-## Terminologies
-
-- `wifi en0`: the network interface name
-  * `en` means it uses **Ethernet framing**. Wi-Fi (802.11) traffic is typically encapsulated within an Ethernet frame format for higher-level network protocols (like TCP/IP).
- 
-The Network Interface Card (NIC), also known as a Network Adapter, Network Card, or Network Interface Controller, is the physical hardware component that connects a computer or other device to a computer network.

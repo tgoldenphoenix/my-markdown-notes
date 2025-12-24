@@ -2,14 +2,17 @@
 
 ## Number System Notations
 
-`(7)~8` (using subscript) means digit `7` in base 8 number NOT the number seven in decimal `(7)~10`.
-
-- Tương tự ta có:
-  * `(11)~2 = (3)~10`: `11` binary equals `3` in decimal
+- $11_2=3_{10}$: `11` binary equals `3` in decimal
+- $7_8$ (using subscript) means a `7` digit in base-8 number NOT the number seven in decimal ($7_{10}$)
 
 - `0d10` = ten decimal
 - `0x10` = ten hexadecimal = 16
+- `0b0110` = binary
 
+- In `C` programming language (and Java, Python, C++):
+  * The prefix `0x` signify that the number is hexadecimal literal. Example: `0xFF = 255`.
+  * `0` is the prefix for Octal. Example: `077 = 63`.
+  
 ## Decimal
 
 Use this online [Base Converter](https://www.rapidtables.com/convert/number/base-converter.html)
@@ -62,25 +65,29 @@ k
 
 Binary is "base-2" because it only uses two digits (0 and 1).
 
-Example: The number 1101 means (1 × 8) + (1 × 4) + (0 × 2) + (1 × 1) = 13 in decimal. Each position is a power of 2.
+Example: The number $1101_2$ means (1 × 8) + (1 × 4) + (0 × 2) + (1 × 1) = 13 in decimal. Each position is a power of 2.
 
 `0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, ...`
 
-- `2^0 = 1`.
-- `2^1 = 2`.
-- 2^2 = 4
-- 2^3 = 8
+- $2^0=1$
+- $2^1=2$
+- $2^2=4$
+- $2^3=8$
 - 2^4 = 16
 - 2^5 = 32
 - 2^6 = 64
 - 2^7 = 128
 - 2^8 = 256
 
-4 bits max `1111 = 15`, `2^4 = 16`
+4 bits max `1111 = 15` => Nhớ $2^4=16$ rồi trừ đi một là ra `15`.
 
 1 byte max `1111 111 = 255`, `2^8 = 256`
 
 `1 0000 + 1111 = 1 1111` or `16 + 15 = 31`
+
+The rightmost digit of a binary number is called the `least-significant bit`, because it has the least value. The leftmost digit is called the `most-significant bit`, because it has the greatest value.
+
+You should be able to convert **between** binary and decimal in your head, without writing down the value of each bit.
 
 ### Add & Subtract Binaries
 
@@ -89,13 +96,9 @@ k
 ### BIN -> HEX
 
 - `1011 0111`
-  - The first thing is you separate the binary in group of four, here we have two groups of four.
-  - Convert to decimal: `1011 0111 = 11 & 7`
-  - `11 & 7 = 0xB7`
-
-### BIN -> DEC
-
-k
+  * The first thing is you separate the binary in group of four, here we have two groups of four.
+  * Convert to decimal: `1011 0111 = 11 & 7`
+  * `11 & 7 = 0xB7`
 
 ## Octal
 
@@ -146,21 +149,17 @@ The octal number system is **NOT** used for IPv4 (it use decimal from `0-255` to
 Hexadecimal is base-16. Digits used: `0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A (10), B (11), C (12), D (13), E (14), F (15)`.  
 Because more digits are available, hexadecimal can express large values in fewer characters.
 
-- In `C` programming language (and Java, Python, C++):
-  * The prefix `0x` signify that the number is hexadecimal literal. Example: `0xFF = 255`.
-  * `0` is the prefix for Octal. Example: `077 = 63`.
-
-It's a very compact way to represent binary data. It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and **MAC addresses**.
+Hexadecimal is a a very compact way to represent binary data. It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and **MAC addresses**.
 
 - One "hex" digit = four binary digits because `2^4 = 16`. Example: `F = 1111 = 15`, 15 = 8 + 4 + 2 + 1)
 - 2 hex digit = 8 bits (1 byte, an octet): `FF = 11111111 = 255`
 
-Example: The number F3 means (15 × 16) + (3 × 1) = 243 in decimal
+Example: The number `F3` means (15 × 16) + (3 × 1) = 243 in decimal
 
 `0 1 2 3 4 5 6 7 8 9 A B C D E F 10 11 12 13 14 15 16 17 18 19 1A 1B 1C, ...`
 
-- `16^2 = 256 = 2^8`
-- `16^3 = 4096`
+- $16^2=256=2^8$
+- $16^3=4096$
 
 ### HEX -> BIN
 

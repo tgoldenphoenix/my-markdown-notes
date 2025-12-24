@@ -28,6 +28,28 @@ The **Routing algorithms** determine the contents of the routers’ **forwarding
 
 Note that an **IP datagram** has a total of 20 bytes of header (assuming no options). If the datagram carries a TCP segment, then each datagram carries a total of 40 bytes of header (20 bytes of IP header plus 20 bytes of TCP header) along with the application-layer message.
 
+### The IPv4 header
+
+Each row is 4 bytes (32 bits).
+
+The Options field is optional (and variable in size), so the length of the IPv4 header is variable. Without the Options field, the header is `20 bytes` in length, from the first bit of the Version field to the last bit of the Destination Address field. With the Options field at its maximum size (40 bytes), the IPv4 header is 60 bytes in length. However, the Options field is rarely used and is beyond the scope of the CCNA exam.
+
+---
+
+The next two fields are `Differentiated Services Code Point (DSCP)`, which is 6 bits in length, and `Explicit Congestion Notification (ECN)`, which is 2 bits in length. This byte of the IPv4 header used to be called the `Type of Service` field and still is sometimes, but DSCP + ECN is the current definition. 
+
+These fields are used for `Quality of Service (QoS)`, which is a network feature used to prioritize specific types of network traffic over other types.
+
+---
+
+The `Identification`, `Flags`, and `Fragment Offset` fields, 32 bits in total, are used together to support packet `fragmentation`—when a datagram is broken up into multiple smaller datagrams called `fragments`. IPv4 uses a concept called `maximum transmission unit (MTU)` to indicate the maximum size a packet should be, and any packet larger than the MTU will be fragmented. Then, the final destination host of the packet reassembles the fragments to restore the original packet.
+
+---
+
+The Time To Live (TTL) field is an 8-bit field. When a host sends a packet, it will set an initial value in this field (a common value is 64), and then each router that forwards the packet will decrease the value in this field by 1. If the value reaches 0, the router will drop the packet.
+
+Loops should not occur in a properly configured network, but mistakes can happen. The TTL field prevents packets from looping indefinitely; once the packet’s TTL reaches 0, it will be dropped.
+
 ## What’s Inside a Router?
 
 Routers are not used to connect many end hosts within a LAN. Instead, they are placed at the edge of a LAN and used to enable communications between LANs and external networks, such as the internet.
@@ -35,7 +57,7 @@ Routers are not used to connect many end hosts within a LAN. Instead, they are p
 You might be wondering, “If that’s a router, what is the wireless router that connects my home network to the internet?” A **wireless router** (also known as a Wi-Fi router or home router) is not just a router; it’s a multifunctional network device that combines the roles of multiple different network devices.  
 These devices typically fill the roles of a router, switch, wireless access point (to provide Wi-Fi connectivity), and firewall all in one device. They are perfect for a small office/home office (SOHO) network with only a few users. However, in enterprise networks, it’s simply not feasible for a single device to fulfill all necessary roles. 
 
-## The Internet Protocol (IP): IPv4, Addressing, IPv6, and More
+## IPv4
 
 - Domain name must be read from right -> left.
 - IP address should be read from left -> right (giống số decimal bình thường mình cũng đọc như vậy, hàng thousands -> hundreds -> tens).
@@ -65,7 +87,106 @@ IPv6 addresses are much longer, `128 bits = 8 groups x 16 bits`. Each group of f
 
 Example: `2001:0db8:85a3:0000:0000:8a2e:0370:7334`
 
-### Network Address Translation (NAT)
+host PC have ip address, router interfaces have ip addresses. Switches do not have ip address.
+
+## Subnet
+
+A subnet (or IP network or simply a network).
+
+To determine the subnets, detach each interface from its host or router, creating islands of isolated networks, with interfaces terminating the end points of the isolated networks. Each of these isolated networks is called a subnet
+
+In `223.1.1.0/24`, the `/24` is the subnet mask. It indicates that the leftmost 24 bits of the 32-bit quantity define the subnet address.
+
+The `10.0.0.x` is a `/24` network contains 256 ip addresses from `.0` to `.255`
+
+- Một `10.0.0/24` network can be divided into two equal `/25` networks.
+  * `.0` tới `.127`
+  * `.127 -> .255`
+
+Classless Inter-Domain Routing (CIDR) notation show the size of a subnet.
+
+Convert between CIDR notation and Subnet Mask
+
+- `10.1.1.55/28 = 255.255.255.240`
+
+- Network ID: First IP address in each Sub-network
+- Broadcast IP: Last IP address in each sub-network
+- Có chức năng đặc biệt, không được assign cho user trong IP block.
+
+- First host IP: IP address immediately after the network ID
+- Last host IP: IP address immediately before the broadcast IP
+
+The network portion of an IPv4 address is often called the `prefix` or `network prefix`. All hosts in the same LAN will share the same network portion.
+
+---
+
+Instead of indicating the prefix length with /X, another common method is to use a `netmask` (subnet mask)—another string of 32 bits that is paired with an IP address to indicate which bits of the IP address are the network portion and which are the host portion.
+
+A bit in the netmask that is set to 1 means the bit in the same position of the IP address is part of the network portion; a bit in the netmask that is set to 0 means the bit in the same position of the IP address is part of the host portion. 
+
+Like IPv4 addresses, netmasks are usually written in dotted decimal notation. 
+
+For example, an IPv4 address (`172.16.20.21`) with a netmask (`255.255.0.0`). The first 16 bits of the netmask are 1, meaning the first 16 bits of the IPv4 address are the network portion. This is equivalent to `172.16.20.21/16`
+
+- Prefix length: `/8` = netmask: `255.0.0.0`
+- Prefix length: `/16` = netmask: `255.255.0.0`
+- Prefix length: `/24` = netmask: `255.255.255.0`
+
+A netmask is always a series of 1s followed by a series of 0s; this is because IPv4 addresses are always structured to have the network portion on the left (the most significant bits) and the host portion on the right (the least significant bits). Netmasks like `0.0.0.255` or `255.0.255.0` are not possible.
+
+## Attributes of an IPv4 network
+
+The `network address` is the first address of any network, and it is used to identify the network; it cannot be assigned to a host. An IPv4 address is a network address if all bits of its host portion are set to 0.
+
+`192.168.100.0` is a network address, as indicated by the host portion of 00000000. This address is used to identify the `192.168.100.0/24` network as a whole and cannot be assigned to a host. `192.168.100.100` is a host address in the 192.168.100.0/24 network.
+
+---
+
+The `broadcast address` is the last address of any network, and like the network address, it can’t be assigned to a host. The broadcast address can be used to address a message to all hosts in the local network. An IPv4 address is a broadcast address if all bits of its host portion are set to 1
+
+`192.168.100.255` is a broadcast address, as indicated by the host portion of 11111111. This address can be used to address a message to all hosts in the 192.168.100.0/24 network.
+
+To send a message to all devices on the local network, hosts will usually address messages to `255.255.255.255`, rather than the broadcast address of their local network. `255.255.255.255` is a specially reserved broadcast address. However, the broadcast address 192.168.100.255 can be used by hosts in other networks to send a message to all hosts in the 192.168.100.0/24 network.
+
+---
+
+The **maximum number of hosts** in a network is the number of IP addresses available to assign to hosts connected to the network. To calculate the total number of IP addresses in a network, the formula is $2^y$, where y is the number of host bits.
+
+For example, with a `/24` prefix length, there are eight host bits; $2^8=256$, so there are 256 total IP addresses in a /24 network (such as `192.168.100.0/24`).
+
+However, because the network and broadcast addresses of each network can’t be assigned to hosts, we have to **subtract 2** from the total number of addresses in the network to find the maximum number of hosts. Therefore, the formula to determine the maximum number of hosts in a network is actually $2^y − 2$. For example, the maximum number of hosts of a /24 network is 254 ($2^8 − 2$). The following are the maximum number of hosts in networks with /8, /16, and /24 prefix lengths:
+
+- `/8`: $2^{24} – 2$ = 16,777,214 hosts
+- `/16`: $2^{16} – 2$ = 65,534 hosts
+- `/24`: $2^8 – 2$ = 254 hosts
+
+---
+
+First and last usable addresses
+
+The `first usable address` of a network is the first IP address that can be assigned to a host; in other words, it’s the first IP address after the network address. It is simple to calculate—just add one to the network address (change the least significant bit to 1).
+
+`192.168.100.1` is the first usable address of the 192.168.100.0/24 network. It is the first address after the network address.
+
+The first usable address of a network is often assigned to that network’s router. 
+
+The `last usable address` of a network is the last IP address that can be assigned to a host; it’s the last IP address before the broadcast address. This address is also simple to find—subtract 1 from the broadcast address (change the least significant bit to 0). 
+
+192.168.100.254 is the last usable address of the 192.168.100.0/24 network. It is the last address before the broadcast address.
+
+If you know the first and last usable addresses, you know the `range of usable addresses`: from the first usable address to the last usable address. For example, the range of usable addresses in the 192.168.100.0/24 network is from 192.168.100.1 to 192.168.100.254: 254 addresses in total.
+
+This process will become more challenging when we cover subnetting in chapter 11 of this book. When subnetting, we use prefix lengths that do not fit neatly between octets of an IP address, such as /19, /23, /28, etc. In that case, it is important to be proficient at converting between decimal and binary so you can identify the network and host bits, convert the host bits to 0 or 1 as necessary, convert them back to decimal, etc.
+
+## IPv4 address classes
+
+k
+
+## Configuring IPv4 addresses on a router
+
+End hosts like PCs usually receive their IP addresses automatically using Dynamic Host Configuration Protocol (DHCP). However, the IP addresses of network infrastructure devices like routers are usually manually configured.
+
+## Network Address Translation (NAT)
 
 The NAT-enabled router does not look like a router to the outside world. Instead the NAT router behaves to the outside world as a single device with a single IP address.
 
@@ -73,7 +194,7 @@ It uses a **NAT translation table** at the NAT router, and to include port numbe
 
 NAT router use **abitrarily-assigned** port numbers to map to multiple host inside its network.
 
-### IPv6 and NAT
+## IPv6 and NAT
 
 Yes, understanding NAT (Network Address Translation) is critically important to learn IPv6, even though IPv6 was designed specifically to eliminate the need for NAT.
 
@@ -175,32 +296,13 @@ In this scenario, the cidrIp define the source network. In the routing table, ho
 
 `0.0.0.0/0` is the range from `0.0.0.0 -> 255.255.255.255` (a range that contains every possible IP address.) Trong AWS, nếu gặp `0.0.0.0/0` thì là all (inbound & outbound).
 
-## Subnet
+## Ping
 
-A subnet (or IP network or simply a network).
+Ping is a component of the Internet Control Message Protocol (ICMP)
 
-To determine the subnets, detach each interface from its host or router, creating islands of isolated networks, with interfaces terminating the end points of the isolated networks. Each of these isolated networks is called a subnet
+Like ARP, ping consists of two messages: an `ICMP echo request` and an `ICMP echo reply`. However, unlike ARP, both messages used by ping are unicast.
 
-In `223.1.1.0/24`, the `/24` is the subnet mask. It indicates that the leftmost 24 bits of the 32-bit quantity define the subnet address.
-
-The `10.0.0.x` is a `/24` network contains 256 ip addresses from `.0` to `.255`
-
-- Một `10.0.0/24` network can be divided into two equal `/25` networks.
-  - `.0` tới `.127`
-  - `.127 -> .255`
-
-Classless Inter-Domain Routing (CIDR) notation show the size of a subnet.
-
-Convert between CIDR notation and Subnet Mask
-
-- `10.1.1.55/28 = 255.255.255.240`
-
-- Network ID: First IP address in each Sub-network
-- Broadcast IP: Last IP address in each sub-network
-- Có chức năng đặc biệt, không được assign cho user trong IP block.
-
-- First host IP: IP address immediately after the network ID
-- Last host IP: IP address immediately before the broadcast IP
+Ping can also be used to measure the `round-trip time (RTT)` between two hosts—the time it takes a message to travel from one host to another and back.
 
 ## ATM vs IP
 

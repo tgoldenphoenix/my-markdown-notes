@@ -81,7 +81,7 @@ The scope is global when a var variable is declared outside a function.
 
 Using the spread operator to overwrite an object property [here](https://dev.to/dailydevtips1/javascript-overwrite-property-in-an-object-3g32)
 
-## Modules
+## Javascript Modules
 
 Javascript was created in 1995. NodeJS was created in 2009.
 

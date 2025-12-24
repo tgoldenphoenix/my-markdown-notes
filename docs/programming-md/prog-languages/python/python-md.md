@@ -159,6 +159,10 @@ This dynamic provides great convenience when we access a dictionary’s data bec
 
 Always use view objects to access a dict’s data because these view objects are dynamic; they will update when the dictionary’s data is updated.
 
+- `dictionary.get(keyname, value)`
+  * `keyname`: Required. The keyname of the item you want to return the value from
+  * `value`: Optional. A value to return if the specified key does not exist. 
+
 ---
 
 `urgencies["Laundry"] == 3` => This syntax to access dict values is called `Subscript notation`.
@@ -259,11 +263,33 @@ Trong Python, có một syntax gọi là `Tuple Unpacking` gần giống như ob
 - List is slower than tuple, consumes more memory (due to overhead for change management).
 - Tuples are more memory-efficient than lists. When a list and a tuple hold the same data, the list has a larger size than the tuple. 
 
-The `sort()` method sorts a `list` object in place, which means that sort changes the original list object. `sort()` returns `None`.
-
 ---
 
 tuples’ immutability doesn’t prevent you from changing their items’ data. If a tuple contains lists, such as `numbers = ([1, 2], [1, 2])`, it’s valid to change the inner lists, such as adding an item to the first list (`numbers[0] .append(3)`). This operation is valid because although we change the content of the inner object, the reference to the object stays the same.
+
+### Sorting
+
+`list` items có ordered nên mình sẽ có thể sort. Nếu list chứa items như string, number thì dễ sort. Nếu list chứa `dict` thì more complicated.
+
+The default sorting order is ascending. If you specify the `reverse` parameter as `True`, you’ll get the list in descending order.
+
+The `list.sort()` method sorts a `list` object in place, which means that sort changes the original list object. `list.sort()` returns `None`.
+
+`sorted()` returns a new sorted list
+
+Another difference is that the `list.sort()` method is only defined for `lists`. In contrast, the `sorted()` function accepts any iterable (tuples, sets, dicts). You can specify a custom sorting function `key` for sorted, too.
+
+---
+
+Using a built-in function as the sorting key
+
+Besides `reverse`, the `sort` method has a `key` parameter. As indicated by its name, this parameter provides a key to the sorting problem. Specifically, you should set `key` with **a function**, which produces a value from each item in the list. These derived values are used for comparison, and the derived order determines the order of the list’s items.
+
+Not only the `sort` method has the `key` parameter. Some other functions, such as `max` and `min`, have the key parameter too. What you learn here can be applied to these functions.
+
+**Each item of the list** is sent to the `key` function. It’s important to note that this `key` function must take exactly one parameter, which corresponds to each item of the list object.
+
+Remember that the function to be set to the key argument should take exactly one parameter.
 
 ### Named Tuple
 
@@ -301,7 +327,7 @@ Task = namedtuple('Task', ['title', 'desc', 'urgency'])
 
 Note: A named tuple is a tuple object, so it’s immutable, and changing its stored data directly is not allowed.
 
-## Dealing with sequence data
+## Dealing with Sequence Data
 
 One shared characteristic of lists and tuples is that the held items have a specific **order**. These two data structures are examples of the more general data type `sequence`. Python has other sequence data types, such as strings and bytes.
 
@@ -321,7 +347,7 @@ assert fruits[:3] == ["apple", "orange", "banana"]
 assert fruits[1:] == ["orange", "banana", "strawberry"]
 ```
 
-## Unpack a Sequence, Tuple Unpacking
+### Unpack a Sequence, Tuple Unpacking
 
 Unpacking short sequences with one-to-one correspondence
 
@@ -453,26 +479,25 @@ The zip function joins two or more iterables, with each iterable contributing on
 
 You may know that zipping is a file-compression concept. In Python, the `zipfile` module provides the related functionalities of zipping and unzipping files
 
-### list, dictionary, and set comprehensions
+### list, dictionary, and set Comprehensions
 
 `list comprehension` is a concise way of creating list objects.
 
 ```python
 numbers = [1, 2, 3, 4]
 squares = [x * x for x in numbers]
- 
+
 assert squares == [1, 4, 9, 16]
 ```
 
-list comprehension doesn’t look like literals, as it doesn’t list the items directly, but it doesn’t look like the constructor approach either, as it doesn’t call list.
+list comprehension doesn’t look like literals, as it doesn’t list the items directly, but it doesn’t look like the constructor approach either, as it doesn’t call `list()`.
 
-`[expression for item in iterable]`, in which the expression is a specific operation using each item of the iterable. 
+The general syntax is: `[expression for item in iterable]`, in which the expression is a specific operation using each item of the iterable. 
 
 ```python
 from collections import namedtuple
  
-Task = namedtuple("Task", "title, description, urgency")
- 
+Task = namedtuple("Task", "title, description, urgency") 
 tasks = [
     Task("Homework", "Physics and math", 5),
     Task("Laundry", "Wash clothes", 3),
@@ -481,6 +506,25 @@ tasks = [
 
 titles = [task.title for task in tasks] # list comprehension
 assert titles == ['Homework', 'Laundry', 'Museum']
+```
+
+list comprehension is easier to read than using `map()` & lambda function.
+
+---
+
+we can create `dict` objects by using comprehension
+
+The general syntax is `{expr_key: expr_value for item in iterable}`
+
+```python
+title_dict0 = {}
+# using for loop
+for task in tasks:
+    title_dict0[task.title] = task.description
+# using comprehension
+title_dict1 = {task.title: task.description for task in tasks}
+ 
+assert title_dict0 == title_dict1
 ```
 
 ## Functions
@@ -512,6 +556,10 @@ print(f"Mean: {m_mean}; SD: {m_std}")
 ```
 
 Unlike Python, a Java method can only return a single value (or `void`). Java is a strictly typed language and its method signatures are defined by a single return type (e.g., `public int myMethod()`)
+
+---
+
+Nên viết `docstring` cho functions trong python, giống jsdoc, javadoc
 
 ### Type hints
 
@@ -612,6 +660,69 @@ def generate_stats(measures: list[float] | tuple[float, ...])
 
 ### increase function flexibility with `*args` and `**kwargs`
 
+Knowing positional and keyword arguments
+
+You may have noticed that when we call functions, in the parentheses, we sometimes use the arguments directly, and at other times, we use identifiers preceding the specified arguments. We have different terms for these two types of arguments.
+
+- When the arguments have associated identifiers, they’re `keyword arguments`, and these identifiers are used in the function body to refer to these arguments.  
+- When the arguments don’t have associated identifiers, they’re `positional arguments`. In other words, Python processes these arguments based on the arguments’ positions according to the sequence in the function definition.
+
+To understand the distinction between keyword and positional arguments, consider a simple function:
+
+```python
+def multiply_numbers(a, b):
+   return a * b
+
+# Positional
+multiply_numbers(1,2) # a = 1, b = 2
+multiply_numbers(2,1) # a = 2, b = 1
+
+# Keyword
+multiply_numbers(a=3, b=4)
+multiply_numbers(b=4, a=3)
+
+# Positional and Keyword
+multiply_numbers(5, b=6) # a = 5, b = 6
+multiply_numbers(b=6, 5) # SyntaxError
+```
+
+For a typical function like `multiply_numbers`, we can set the parameters as either positional or keyword arguments. There are a few ways to call this function with two parameters.
+
+- Key points regarding the use of positional and keyword arguments:
+  * When you use `positional arguments`, the order of these arguments matters. The arguments will be matched with the original parameters in the function head.
+  * When you use `keyword arguments`, the order of these arguments doesn't matter. The arguments will be used according to the supplied keywords/identifiers.
+  * When you use **both** positional and keyword arguments, you have to place positional arguments **before** any keyword arguments. Otherwise, you’ll raise a `SyntaxError`. 
+
+---
+
+Positional-only and keyword-only arguments
+
+There are two more advanced ways to specify how the arguments should be set: `positional-only arguments` can be set only positionally, and `keyword-only arguments` can be set only with identifiers. If you recall, the sort method has the following head: `sort(*, key=None, reverse=False)`. The `*` specifies that all the arguments behind it should be set only as keyword-only arguments.
+
+By reinforcing keyword-only arguments, you’re forcing readers to use keyword arguments, so they know exactly what parameters they’re setting. You can use this feature if you want some arguments to be set only as keyword arguments.
+
+For positional-only arguments, look at the sum function: `sum(iterable, /, start=0)`. The `/` specifies that the arguments **before** it should be set only as positional arguments. This feature can be useful, but in your code, you rarely need to set arguments that can be used only as positional arguments.
+
+---
+
+How to define a function that accepts a variable number of positional arguments.
+
+```python
+def stringify(*items): # all arguments go into one tuple
+   print(f"got {items} in {type(items)}")
+   return [str(item) for item in items]
+
+def stringify_a(item0, *items): # the remaining go to items tuple
+   print(item0, items)
+
+def stringify_b(*items, item0): # Invalid, Python doesn’t know where to stop
+   print(item0, items)
+```
+
+---
+
+How to define a function that accepts a variable number of keyword arguments
+
 `**kwargs` (keyword arguments) allows a function to accept any number of named arguments that weren't defined in its parameter list. It collects these arguments into a dictionary, where the keys are the argument names and the values are the argument values.
 
 ```python
@@ -621,6 +732,80 @@ def greet_user(**kwargs):
 greet_user(name="Alice", age=30, city="New York")
 # Output: {'name': 'Alice', 'age': 30, 'city': 'New York'}
 ```
+
+We know that the variable number of positional arguments is packed as a `tuple` object. In a similar fashion, the variable number of keyword arguments is packed into a single object: a `dict`. 
+
+```python
+def create_report(name, **grades):
+   print(f"got {grades} in {type(grades)}")
+   report_items = [f"***** Report Begin for {name} *****"]
+   for subject, grade in grades.items():
+       report_items.append(f"### {subject}: {grade}")
+   report_items.append(f"***** Report End for {name} *****")
+   print("\n".join(report_items))
+
+create_report("John", math=100, phys=98, bio=95)
+# output the following lines:
+got {'math': 100, 'phys': 98, 'bio': 95} in <class 'dict'>
+***** Report Begin for John *****
+### math: 100
+### phys: 98
+### bio: 95
+***** Report End for John *****
+```
+
+When you use `**kwargs` in a function, you should remember the syntax rule that `**kwargs` should be placed after all the other parameters. Related to this rule, positional arguments should be placed before all the keyword arguments. 
+
+In general, positional arguments should always precede keyword arguments. `*args` should be the last positional argument, and `**kwargs` should be the last keyword argument.
+
+```python
+def example(arg0, arg1, *args, kwarg0, kwarg1, **kwargs):
+    pass
+```
+
+---
+
+Although using `*args` and `**kwargs` helps improve the flexibility of the defined functions, it’s less explicit to the function’s users regarding the applicable parameters. Thus, we shouldn’t abuse this feature. Only when you can’t know how many positional or keyword arguments you expect the function to accept should you consider using *args and **kwargs. In general, it’s preferred to use explicitly named positional and keyword arguments in a function definition, because these argument names clearly indicate what the parameters are presumed to be doing.
+
+### Lambda Functions
+
+anonymous functions = lambda function/expression. This name is derived from the lambda calculus in mathematics.
+
+Phải dùng `lambda` keyword thay vì `def` như named functions.
+
+`lambda args: expression`
+
+Don’t forget that you need to append a colon to the arguments. When the lambda function contains no arguments, the colon is still required before you specify the expression.
+
+Unlike regular functions, which may return an object, lambda functions don’t return anything. When they do, you get a syntax error:
+
+```python
+lambda  x: return x * 2
+ 
+# ERROR: SyntaxError: invalid syntax
+```
+
+lambdas use expressions as opposed to statements, and `return x * 2` is a kind of statement.
+
+```python
+tasks = [
+   {'title': 'Laundry', 'desc': 'Wash clothes', 'urgency': 3},
+   {'title': 'Homework', 'desc': 'Physics + Math', 'urgency': 5},
+   {'title': 'Museum', 'desc': 'Egyptian things', 'urgency': 2}
+]
+
+tasks.sort(key=lambda x: x['urgency'], reverse=True)
+```
+
+This lambda function takes one parameter, which stands for each dict object of the list object.
+
+### Functions as objects
+
+everything is an object in Python. Python treats functions like objects too.
+
+- You can store functions in data container (dictionary)
+- You can pass function as argument
+- You can use function as return value from methods
 
 ## Python Modules
 

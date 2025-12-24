@@ -117,6 +117,6 @@ Ports on Cisco devices have a name indicating their maximum supported speed (Eth
 
 In this book, I will use a two-number system (X/Y), where the first number is the slot on the device, and the second number is the port number within that slot. A slot is a group of ports on a network device. In many cases, the ports in a slot are modular, meaning you can insert modules with different kinds of ports depending on your needs. Additionally, I will shorten the names to use the first letter only: E = Ethernet, F = FastEthernet, G = GigabitEthernet, T = TenGigabitEthernet.
 
-Furthermore, port numbers on physical Cisco switches start from 1 (G0/1, G0/2, G0/3, etc). However, for most examples in this book, I will use virtual devices running in Cisco’s emulation software CML (Cisco Modeling Labs), in which port numbers start from 0 (G0/0, G0/1, G0/2, etc).
+Furthermore, port numbers on physical Cisco switches start from 1 (`G0/1, G0/2, G0/3, etc`). However, for most examples in this book, I will use virtual devices running in Cisco’s emulation software CML (Cisco Modeling Labs), in which port numbers start from 0 (`G0/0, G0/1, G0/2, etc`).
 
 Cisco abbreviates GigabitEthernet ports as “GiX/X,” not “GX/X.”
