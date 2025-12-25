@@ -32,10 +32,10 @@ Kéo xe hỏng phanh; nối bằng **thanh nối cứng**.
 - Người đủ `16` tuổi trở lên được điều khiển **xe gắn máy**.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1`
 - Người đủ `21` tuổi trở lên được cấp giấy phép lái xe hạng `C, BE`.
-  * Cercei (`21`) bú cặc (`C`) suguru geto (`7500`)
+  - Cercei (`21`) bú cặc (`C`) suguru geto (`7500`)
 - Người đủ `24` tuổi trở lên được cấp giấy phép lái xe hạng `D1, D2, C1E, CE`.
 - Người đủ `27` tuổi trở lên được cấp giấy phép lái xe hạng `D, D1E, D2E, DE`.
-  * Bill gate (`27`) là một thằng dâm dê (hạng `D`) lái xe trên 8 chỗ
+  - Bill gate (`27`) là một thằng dâm dê (hạng `D`) lái xe trên 8 chỗ
 - Tuổi tối đa của người lái xe ô tô chở người (kể cả xe buýt) trên 29 chỗ (không kể chỗ của người lái xe), xe ô tô chở người giường nằm là đủ `57` (Queequeg) tuổi đối với nam, đủ `55` tuổi đối với nữ.
 
 ---
@@ -47,19 +47,19 @@ Kéo xe hỏng phanh; nối bằng **thanh nối cứng**.
 
 - Hạng `B1` cấp cho người lái xe **mô tô ba bánh** và các loại xe quy định cho giấy phép lái xe hạng A1;
 - Hạng `B` cấp cho người lái xe ô tô chở người đến 08 chỗ (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **đến 3.500 kg**; các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg;
-  * Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  - Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 
 - Hạng `C1` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 3.500 kg đến 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe hạng B;
-  * Hạng `C1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  - Hạng `C1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `C` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **đến** 750 kg; các loại xe quy định cho giấy phép lái xe hạng B và hạng C1;
-  * Hạng `CE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **trên** 750 kg; xe ô tô đầu kéo kéo sơ mi rơ moóc;
+  - Hạng `CE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **trên** 750 kg; xe ô tô đầu kéo kéo sơ mi rơ moóc;
 
 - Hạng `D1` cấp cho người lái xe **ô tô chở người** trên 08 chỗ (không kể chỗ của người lái xe) **đến 16 chỗ** (không kể chỗ của người lái xe); các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C;
-  * Hạng `D1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  - Hạng `D1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `D2` cấp cho người lái xe ô tô chở người (kể cả xe buýt) trên 16 chỗ (không kể chỗ của người lái xe) **đến 29 chỗ** (không kể chỗ của người lái xe); các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D2 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C, D1;
-  * Hạng `D2E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D2 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  - Hạng `D2E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D2 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `D` cấp cho người lái xe ô tô chở người (kể cả xe buýt) **trên 29 chỗ** (không kể chỗ của người lái xe); xe ô tô chở người giường nằm; các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C, D1, D2;
-  * Hạng `DE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg; xe ô tô chở khách nối toa.
+  - Hạng `DE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg; xe ô tô chở khách nối toa.
 
 ## Cự Ly & tốc độ
 
@@ -94,3 +94,30 @@ câu hỏi bị trừ hết điểm???
 
 Rơ móc kéo xe khác phải có trọng lượng lớn hơn, tương đương thì ko được
 
+## Biển Báo
+
+### Biển cấm
+
+- móc => 1,2
+- kéo => 2,3
+- cấm ô tô tải => ý cuối
+
+- Đối với xe ô tô, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
+- Xe mô tô thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm
+
+- Theo thứ tự từ rộng tới hẹp:
+  * cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ
+  * cấm xe tải
+  * cấm máy kéo (đầu kéo container)
+  * cấm xe kéo rơ móc (đầu kéo + thùng hàng)
+
+xích lô, ly bia, con ngựa => ý cuối
+
+## Thi thực hành
+
+- Ghép xe ngang (vỉa hè) Parallel Parking
+- Ghép xe dọc (vào chuồng) Perpendicular Parking hoặc Reverse Bay Parking
+- Quay đầu xe Three-point turn hoặc K-turn
+- Dừng xe ngang dốc Hill Start
+- Lùi xe Straight-line Backing hoặc Reversing in a straight line
+- Xử lý tình huống nguy hiểm Emergency Stop

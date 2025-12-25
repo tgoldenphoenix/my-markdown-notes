@@ -362,6 +362,11 @@ present tense, imperative; give order to codebase; no case
 
 `git rm file.txt`
 
+If files you have added to your `.gitignore` file are still showing up as untracked or modified, it is likely because those files were already being tracked by Git (i.e., previously committed). Git's ignore rules only apply to files that are untracked.
+
+- `git rm --cached <filename>` to remove the files from the Git index (cache) without deleting them locally
+- Or you can `git rm -r --cached .` to remove all files currently in the index (useful if many files are problematic)
+
 `git rm --cached README` _keep the file in your working tree_ but remove it from your staging area.
 
 Lỡ add, push lên github một folder rồi nhưng sau đó lại muốn bỏ thì sau khi cho vào `.gitignore` rồi phải run `git rm` nhé
@@ -1431,10 +1436,10 @@ The git stash command and git stash push command are functionally equivalent in 
   - When executed without any arguments, git stash implicitly performs the action of git stash push. It takes your current uncommitted changes (modified tracked files and staged changes) and stores them in a temporary "stash" list, reverting your working directory to a clean state matching the last commit.
 - `git stash push`:
   - This is the explicit command for creating a new stash entry. It offers additional options for more granular control over what is stashed. For instance, you can use:
-  * `git stash push -m "Descriptive message"`: To add a custom message to your stash entry, making it easier to identify later.
-  * `git stash push --include-untracked`: To also stash untracked files in addition to modified tracked files and staged changes.
-  * `git stash push --keep-index`: To stash only the modified tracked files, leaving the staged changes in the index.
-  * In essence, git stash push provides the same core functionality as a bare git stash but with the added flexibility of specifying options to control the stashing behavior and provide more descriptive messages. For simple stashing of current changes, either command will achieve the same result.
+  - `git stash push -m "Descriptive message"`: To add a custom message to your stash entry, making it easier to identify later.
+  - `git stash push --include-untracked`: To also stash untracked files in addition to modified tracked files and staged changes.
+  - `git stash push --keep-index`: To stash only the modified tracked files, leaving the staged changes in the index.
+  - In essence, git stash push provides the same core functionality as a bare git stash but with the added flexibility of specifying options to control the stashing behavior and provide more descriptive messages. For simple stashing of current changes, either command will achieve the same result.
 
 ## git-filter-repo
 
