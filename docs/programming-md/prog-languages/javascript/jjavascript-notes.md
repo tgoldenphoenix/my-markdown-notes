@@ -201,23 +201,6 @@ You should completely avoid using `var`. Just know how it works for legacy reaso
 
 **Lexical scope** is the definition area of an expression.
 
-### Closure
-
-Closure is when a function "remembers" the values in its environment at the time of created, even after those functions have finished running.  
-More formally (but still in simple terms), a closure is created when a function retains access to variables from its outer scope, even after that scope has finished executing.
-
-Closures are essential for creating functions that **maintain its state**, without relying on global variables.  
-Global variable thì open to everyone. With closures, the scope (visibility) of the variables can be better controlled, which means the possible unintended side effects can be better controlled.
-
-Some design patterns that utilize closure:
-
-- Creating private variables
-- Managing asynchronous code
-- Building function factories
-- currying and memoization.
-
-[bài blog rất hay](https://www.trevorlasn.com/blog/understanding-javascript-closures) của trevorlasn ví dụ tạo một counter function có thể increment, decrement, reset its state using closure.
-
 ## String manipulation
 
 Just like in Python, using `f-string` is much easier than casting + concatenate. For this, JS also has something called **Template literals**. Template literal uses back tick (\`) and $\{} as placeholders. In Holy C thì place holder là `%s, %f, %i`.  

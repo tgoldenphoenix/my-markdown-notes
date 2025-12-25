@@ -134,7 +134,13 @@ For example, an IPv4 address (`172.16.20.21`) with a netmask (`255.255.0.0`). Th
 
 A netmask is always a series of 1s followed by a series of 0s; this is because IPv4 addresses are always structured to have the network portion on the left (the most significant bits) and the host portion on the right (the least significant bits). Netmasks like `0.0.0.255` or `255.0.255.0` are not possible.
 
-## Attributes of an IPv4 network
+---
+
+The 192.168.1.0/24 address range allows for a single subnet with a /24 prefix length, including all addresses from 192.168.1.0 through 192.168.1.255. Dividing the /24 address block in half gives two /25 subnets, each containing 128 addresses. Or it can be divided into four /26 subnets, each containing 64 addresses. 
+
+For each bit by which you extend the prefix length, the number of possible subnets doubles, but the number of addresses in each subnet halves.
+
+### Attributes of an IPv4 network
 
 The `network address` is the first address of any network, and it is used to identify the network; it cannot be assigned to a host. An IPv4 address is a network address if all bits of its host portion are set to 0.
 
@@ -182,7 +188,7 @@ This process will become more challenging when we cover subnetting in chapter 11
 
 k
 
-## Configuring IPv4 addresses on a router
+### Configuring IPv4 addresses on a router
 
 End hosts like PCs usually receive their IP addresses automatically using Dynamic Host Configuration Protocol (DHCP). However, the IP addresses of network infrastructure devices like routers are usually manually configured.
 
@@ -321,6 +327,40 @@ Routing Algorithms with global state information are often referred to as **link
 The decentralized routing algorithm we’ll study is called a **distance-vector (DV) algorithm**.
 
 Link-state
+
+---
+
+Nếu host PC sent datagram to another host PC in the same LAN, không cần router, nó send trực tiếp đến MAC address tương ứng với destination IP address.
+
+On the other hand, if an end host like a PC wants to send a packet to a destination outside of its local network, it must send the packet to its `default gateway`—the router that provides connectivity to other networks.  
+In this case, the host just send the datagram to the MAC address of its default gateway's interface and let the router handle the rest of the journey.
+
+The default gateway’s IP address is usually the first usable address of the network. For example, in the `192.168.1.0/24` network, it’s 192.168.1.1, and in the 192.168.2.0/24 network, it’s 192.168.2.1. That doesn’t have to be the case, but it’s common practice.  
+The IP addresses of the PCs, on the other hand, are arbitrary.
+
+How does PC1 know what its default gateway is? An end host can learn the IP address of its default gateway in a couple of ways. One way is manual configuration, in which an admin manually specifies the default gateway on each device. However, this is very rare for user devices like PCs; they usually use the second method—Dynamic Host Configuration Protocol (DHCP)—to automatically learn information like their default gateway’s IP address, as well as their own IP address
+
+A host’s default gateway is configured as an IP address, not a MAC address. To learn the default gateway’s MAC address, the host must send an `ARP request` to the default gateway’s IP address.
+
+---
+
+Unlike switches, which can build their MAC address table automatically without any configuration, a router’s routing table will be empty by default—it will not be able to forward packets.
+
+A route to more than one destination IP address is called a network route; it’s a route to a network, rather than a route to a single destination IP address. A `connected route` is an example of a network route. 
+
+A connected route is a route to the network an interface is connected to.
+
+A `local route` tells the router that packets destined for the IP address specified in the route are for the router itself; it should continue to de-encapsulate the message and examine its contents. In this case, the router does not forward the packet; it just receives the packet for itself. The local route is necessary to distinguish the router’s own IP address from other IP addresses in the connected network. If R1 only had a connected route to `192.168.1.0/24` but no local route, it would forward packets destined for `192.168.1.1` out of its G0/0 interface, rather than receiving the packets for itself.
+
+A route to a single destination IP address (with a /32 prefix length) is called a `host route`; it’s a route to a single host. A local route is an example of a host route. This is in contrast to a network route, which we covered earlier; a network route is any route with a prefix length shorter than /32. 
+
+Be aware of this major difference between Layer 3 forwarding done by routers and Layer 2 forwarding done by switches: when a router looks up a packet’s destination IP address in its routing table, it looks for the `most specific matching route`. On the other hand, when a switch looks up a frame’s destination MAC address in its MAC address table, it looks for an **exact match**; partial matches don’t count.
+
+What happens if there aren’t any routes in the routing table that match a packet’s destination IP address? In that case, the router will drop the packet; it won’t flood it out of all ports like switches do with unknown unicast frames. A switch sometimes floods frames, but **a router never floods packets**; it forwards the packet, receives the packet for itself, or drops the packet.
+
+---
+
+A `static route` is a path that has been manually configured by a network administrator, rather than being learned automatically through a routing protocol like OSPF or EIGRP.
 
 ## Intra-AS Routing in the Internet: OSPF
 

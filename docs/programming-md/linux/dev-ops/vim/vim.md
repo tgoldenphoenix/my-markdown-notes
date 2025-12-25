@@ -65,7 +65,9 @@ The order can change. Both `2dw` and `d2w` achived the same result in slightly d
 
 Both delete `d` and change `c` save deleted text into register.
 
-Press `x` to delete the character under the (block) cursor in normal mode.
+- `r` change the character under the cursor in normal mode
+- `x` deletes the character under the (block) cursor in normal mode. Không thể dùng với `.`.
+- `s` delete the character under the cursor and enter insert mode. Có thể dùng với `.` để repeat.
 
 `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
 anki
@@ -147,8 +149,8 @@ By itself, `g` does nothing. It's a "prefix" that waits for a second key to exec
 - `~` in normal mode toggles the case of the character currently under the cursor & moves the cursor one step to the right.
 - `~` in visual mode toggles the case of the selected area.
 - `g~` toggle case case over a specific distance (motion) without selecting it first.
-  - `g~iw` toggle case in word
-  - `g~$` toggle case to end of line
+  * `g~iw` toggle case in word
+  * `g~$` toggle case to end of line
 - `gu{motion}` Make text lowercase (e.g., guw = "go lowercase word").
 - `gU{motion}` Make text uppercase (e.g., gUw = "go uppercase word").
 - `gUaw` convert current word to uppercase
@@ -172,15 +174,15 @@ Other prefixes
 Unlike many text editors, Vim makes a distinction between **real lines** and **display lines**. When the `wrap` setting is enabled (and it’s on by default), each line of text that exceeds the width of the window will display as wrapped, ensuring that no text is truncated from view. As a result, a single line in the file may be represented by multiple lines on the display
 
 - `j` down one real line
-- `gj` down one display line
+  - `gj` down one display line
 - `k` & `gk` are similar
 - `0` go to beginning of real line
-- `g0` go to beginning of display line
+  * `g0` go to beginning of display line
   
 - Go to beginning of the line:
-  - `0` Moves the cursor to the absolute start of the line (column 1).
-  - `^` Moves the cursor to the first non-whitespace character on the line.
-  - `g^` To first nonblank character of display line
+  * `0` goes to beginning of real line; moves the cursor to the absolute start of the line (column 1).
+  * `^` Moves the cursor to the first non-whitespace character on the line.
+  * `g^` To first nonblank character of display line
 - Go to end of the line: `$`
 - `g$` To end of display line
 - `g_` to go to the last non-blank character in the current line.
@@ -206,8 +208,8 @@ These mappings make `j` and `k`move down and up by display lines, while `gj`and 
 ### Word-Wise Navigation
 
 - Go to start of next word: `w` or `W`:
-  - `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
-  - `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
+  * `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
+  * `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
 - Use `w` for smaller, more fine-grain jumps, and `W` for bigger jumps across code separated only by spaces.
 - Backward to start of current / previous word: `b` or `B` (works similar to `w` and `W`).
 
@@ -235,10 +237,10 @@ Match Navigation
 - `yt{` copy everything up until the `{`
 
 - Line Number Navigation
-  - `gg`    Go to the first line of file
-  - `G`     Go to the last line of file
-  - `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
-  - `n%`    Go to n% in file
+  * `gg`    Go to the first line of file
+  * `G`     Go to the last line of file
+  * `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
+  * `n%`    Go to n% in file
 
 `<Ctrl-o>` to jump back-ward giống như khi đọc `:h`. Use `<Ctrl-]>` to jump to link.
 
@@ -353,9 +355,9 @@ Vim provides a motion that lets us move between opening and closing pairs of par
 By enabling the `matchit.vim` plugin, we can extend this behavior to work on pairs of XML tags as well as on keywords in some programming languages.
 
 - The `%` motion command jumps between opening & closing parentheses `(), [] or {}}`. You can jump from the open parentheses to the closing one and vice versa.
-  - If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
-  - If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
-  - It's useful for quickly navigating code blocks or checking if brackets are balanced.
+  * If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
+  * If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
+  * It's useful for quickly navigating code blocks or checking if brackets are balanced.
 
 When we use the `%` command, Vim automatically sets a mark for the location from which we jumped. We can snap back to it by pressing [``] (press the backtick two times).
 
@@ -373,8 +375,8 @@ Search is a form of Command Line mode. Depending on how we entered Command Line 
 
 - You can scan for **character** within the **current line** with `f{char}` or `t{char}` (both are considered motions).
 - `f` position the cursor on top of the specified character whereas `t` takes you **till** (right before) the first letter of the match. So:
-  - If you want to search for "h" and land on "h", use `fh`.
-  - If you want to search for first "h" and land right before the match, use `th`.
+  * If you want to search for "h" and land on "h", use `fh`.
+  * If you want to search for first "h" and land right before the match, use `th`.
 - The search start with the cursor position and continuing to the end of the **current line**.
 
 - If you want to go to the next occurrence of the last `f` search, use `;`.
@@ -553,18 +555,18 @@ Every command that we execute will be captured, right up until we press `q` agai
 
 We can inspect the contents of register a by typing the following: `:reg a`. When reading in this format, the symbol `^[` is used to stand for the Escape key. Còn Spacebar thì sẽ hiện là spacebar không có escape gì cả.
 
-`qa` to record a macro. `q` to stop recording
-`@a` to execute the marcro `"a"`
-
 ---
 
 The `@{register}` command executes the contents of the specified register (see `:h @`). We can also use `@@`, which repeats the macro that was invoked most recently.
+
+- `qa` to record a macro. `q` to stop recording
+- `@a` to execute the marcro `"a"`
 
 ---
 
 Vim’s motions can fail. For example, if our cursor is positioned on the first line of a file, the `k` command does nothing. The same goes for `j` when our cursor is on the last line of a file. By default, Vim beeps at us when a motion fails.
 
-If a motion fails while a macro is executing, then Vim aborts the rest of the macro. Consider this a feature, not a bug.  
+**If a motion fails while a macro is executing, then Vim aborts the rest of the macro**. Consider this a feature, not a bug.  
 We can use motions as a simple test of whether or not the macro should be executed in the current context.
 
 Suppose that the macro was stored in the a register. Rather than executing `@a` ten times, we could prefix it with a count: `10@a`.  
@@ -574,9 +576,9 @@ The beauty of this technique is that we can be unscrupulous about how many times
 
 The Dot Formula can be an efficient editing strategy for a small number of repeats, but it can’t be executed with a count. Overcome this limitation by recording a cheap one-off macro and playing it back with a count
 
-`qq;.q` record the marcro `;.` into the `q` register. Now we can execute the macro with a count: `11@q`. This executes `;.` eleven times.
-
-The `;` command repeats the `f+` search. When our cursor is positioned after the last `+` character on the line, the `;` motion fails and the macro aborts.
+- `qq;.q` record the marcro `;.` into the `q` register. Now we can execute the macro with a count: `11@q`. This executes `;.` eleven times.
+- The `;` command repeats the `f+` search. When our cursor is positioned after the last `+` character on the line, the `;` motion fails and the macro aborts.
+- Nếu dùng `11;.` thì nó sẽ là `11;` rồi `.` one single time
 
 In our case, we want to execute the macro ten times. But if we were to play it back eleven times, the final execution would abort. In other words, we can complete the task so long as we invoke the macro with a count of ten or more.  
 Who wants to sit there and count the exact number of times that a macro should be executed? Not me. I’d rather provide a count that I reckon to be high enough to get the job done. I often use 22, because I’m lazy and it’s easy to type. On my keyboard, the `@` and `2` characters are entered with the same button
@@ -586,13 +588,14 @@ Who wants to sit there and count the exact number of times that a macro should b
 We can make light work out of repeating the same set of changes on a range of lines by recording a macro and then playing it back on each line. There are two ways to do this: executing the macro in series or in parallel.
 
 record your macro on one line > visual select other lines > `:'<,'>normal @a`  
-The `:normal @a` command tells Vim to execute the macro once for each line in the selection. This execute the macro on each line parallel independent from the others; If an iteration fails, it does so in isolation. Whereas `22@a` executes them in series; If one iteration fail, the rest fail.
+The `:normal @a` command tells Vim to execute the macro once for each line in the selection. This execute the macro on each line **parallel** independent from the others; If an iteration fails, it does so in isolation. Whereas `22@a` **executes them in series**; If one iteration fail, the rest fail.
 
-Execute in series, if the motion fail on one line, the remaining macros to be executed is aborted.
+- Execute in series, if the motion fail on one line, the remaining macros to be executed is aborted.
+- Execute in parallel, the `:normal@a` command tells Vim to execute the macro once for each line in the selection.
 
 ---
 
-Sometimes we miss a vital step when we record a macro. There’s no need to re-record the whole thing from scratch. Instead, we can append extra commands onto the end of an existing macro.
+Sometimes we miss a vital step when we record a macro. There’s no need to re-record the whole thing from scratch. Instead, we can **append extra commands onto the end of an existing macro**.
 
 Use `:reg a` to inspect the contents of register `a`.
 
@@ -731,34 +734,42 @@ A capical `R` will enters Replace mode until  `<ESC>`  is pressed. Replace mode 
 **Visual mode** is used for selection for yank, deleting, change. . Press `v` to enter visual mode. Capital `Shift v` will enter visual line mode (select the current line).
 
 - `viw` select current word. `viW` with a capital `W` select words with hyphen `-`
-- `vi(` will select everything inside parentheses `()` and enter visual mode. `va"`
-- `vit` select in tag (html tag like `<a href="#">one</a>` will select `one`)
+- `vi(` will select everything inside parentheses `()` and enter visual mode. Similar: `va"`
+- `vit` select visual in tag (html tag like `<a href="#">one</a>` will select `one`)
 
-- Delete selection: `d`.
-- Change selection: `c`, delete & enter insert mode.
-- Copy (yanking): `y`, including the cursor.
+- Delete selection: `d`
+- Change selection: `c`
+- Copy (yanking): `y`
 
-Paste after cursor block: `p`; `P` will paste before the cursor block.\
-Note that using `p` after `yy` or `dd` will paste the new line below the current line and `P` will paste the new line above the current line.
+- Paste after cursor block: `p`; pressing an uppercase `P` will paste the selected text before cursor block.
+- Note that using `p` after `yy` or `dd` will paste the new line below the current line and `P` will paste the new line above the current line.
 
-`v  motion  :w FILENAME`  saves the Visually selected lines in file FILENAME (vimtutor Lesson 5.3: SELECTING TEXT TO WRITE)
-
-`s` delete the character under the cursor and enter insert mode.
+`v  motion  :w FILENAME`  saves the Visually selected lines in file FILENAME 
 
 Each time we move our cursor in Visual mode, we change the bounds of the selection.
 
 - Visual Mode in Vim has three sub-modes:
-  - In **character-wise** Visual mode (`v`), we can select anything from a single character up to a range of characters within a line or spanning multiple lines. This is suitable for working at the level of individual words or phrases.
-  - If we want to operate on entire lines, we can use **line-wise** Visual mode (`V` uppercase) instead.
-  - Finally, **block-wise** Visual mode (`<C-v>`) allows us to work with columnar regions of the document.
+  1. In `character-wise` Visual mode (`v`), we can select anything from a single character up to a range of characters within a line or spanning multiple lines. This is suitable for working at the level of individual words or phrases.
+  2. If we want to operate on entire lines, we can use `line-wise` Visual mode (`V` uppercase) instead.
+  3. Finally, `block-wise` Visual mode (`<C-v>`) allows us to work with columnar regions of the document.
+- We can switch between the different flavors of Visual mode in the same way that we enable them from Normal mode. If we’re in character-wise Visual mode, we can switch to the line-wise variant by pressing `V`, or to block-wise Visual mode with `<C-v>`.
 
-`gv` Reselect the last visual selection  
-The `gv`command is a useful little shortcut. It reselects the range of text that was last selected in Visual mode. No matter whether the previous selection was character-wise, line-wise, or block-wise, the `gv`command should do the right thing. The only case where it might get confused is if the last selection has since been deleted.
+---
 
-We can switch between the different flavors of Visual mode in the same way that we enable them from Normal mode. If we’re in character-wise Visual mode, we can switch to the line-wise variant by pressing `V`, or to block-wise Visual mode with `<C-v>`.
+The `I` and `A` commands placing the cursor at the start or end of the selection, respectively. So what about the `i` and `a`commands; what do they do in Visual mode?
 
-The range of a Visual mode selection is marked by **two ends**: one end is fixed and the other moves freely with our cursor. We can use the `o`key to toggle the free end.  
+In Visual and Operator-Pending modes, the `i` and `a` keys follow a different convention: they form the first half of a text object.
+
+In line-wise or block-wise visual mode, `I` & `A` will allow you to have multi-corsor insertion.
+
+---
+
+The range of a Visual mode selection is marked by **two ends**: one end is fixed and the other moves freely with our cursor. We can use `o` to toggle the free end.  
 This is really handy if halfway through defining a selection we realize that we started in the wrong place. Rather than leaving Visual mode and starting afresh, we can just hit `o`and redefine the bounds of the selection.
+
+---
+
+`gv` reselects the last visual selection. It reselects the range of text that was last selected in Visual mode. No matter whether the previous selection was character-wise, line-wise, or block-wise, the `gv`command should do the right thing. The only case where it might get confused is if the last selection has since been deleted.
 
 ---
 
@@ -773,12 +784,6 @@ As a general rule, we should prefer operator commands (in normal mode) over thei
 Visual mode is perfectly adequate for one-off changes. And even though Vim’s motions allow for surgical preci-sion, sometimes we need to modify a range of text whose structure is difficult to trace. In these cases, Visual mode is the right tool for the job.
 
 `Vr-` visual select entire current line, then change all character into "-"
-
----
-
-The `I` and `A` commands placing the cursor at the start or end of the selection, respectively. So what about the `i` and `a`commands; what do they do in Visual mode?
-
-In Visual and Operator-Pending modes the `i` and `a` keys follow a different convention: they form the first half of a text object.
 
 ### Command-Line Mode
 
@@ -972,7 +977,7 @@ Many commands are invoked by two or more keystrokes (for examples, look up `:h g
 
 Why, you might be wondering, is an entire mode dedicated to those brief moments between invoking operator and motion commands, whereas the namespaced com-mands are merely an extension of Normal mode? Good question! Because we can create custom mappings that initiate or target Operator-Pending mode. In other words, it allows us to create custom operators and motions, which in turn allows us to expand Vim’s vocabulary
 
-## Files
+## Working with Files in Vim
 
 Open Files and Save Them to Disk
 
@@ -982,7 +987,7 @@ The `:edit` command allows us to open files from within Vim, either by specifyin
 - `window`: A "viewport" that looks into a buffer. You can have multiple windows looking at the same buffer.
 - `tab`: A collection or layout of windows. It is more like a "workspace" than a browser tab.
 
-## Vim settings
+## Vim Settings
 
 Vim settings are stored in `~/.vimrc` file
 

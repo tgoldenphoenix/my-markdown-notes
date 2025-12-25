@@ -807,6 +807,94 @@ everything is an object in Python. Python treats functions like objects too.
 - You can pass function as argument
 - You can use function as return value from methods
 
+### Checking functions’ Performance with Decorators
+
+`Decorators` are **functions** that provide additional functionalities to the `decorated functions`. It’s important to note that decorators don’t change the way the decorated functions work; thus, we call this process `decoration`.
+
+```python
+import random
+import time
+
+def logging_time(func):
+   def logger(*args, **kwargs):
+       print(f"--- {func.__name__} starts")
+       start_t = time.time()
+       value_returned = func(*args, **kwargs)
+       end_t = time.time()
+       print(f"*** {func.__name__} ends; used time: {end_t - start_t:.2f} s")
+       return value_returned
+   return logger
+
+@logging_time
+def example_func2():
+   random_delay = random.randint(3, 5) * 0.1
+   time.sleep(random_delay)
+
+example_func2()
+# output the following two lines:
+--- example_func2 starts
+*** example_func2 ends; used time: 0.40 s
+```
+
+The function `example_func2()` will be decorated by the decorator function `logging_time`. We can apply this decorator function to as many functions as we like, as in this example:
+
+```python
+@logging_time
+def example_func3():
+   pass
+
+@logging_time
+def example_func4():
+   pass
+
+@logging_time
+def example_func5():
+   pass
+```
+
+The decorator function to multiple functions to perform the shared functionalities.
+
+In essence, a decorator processes a function (take the function in as input), and we call this process `decoration`.
+
+decoration is a process of creating a closure by sending an existing function to the decorator
+
+---
+
+A decorator is a kind of higher-order function; a decorator is a closure-generated function. Decoration is a process of creating a closure by sending an existing function to the decorator.
+
+---
+
+Every Python function returns a value either implicitly as `None` or as an explicitly returned value. Thus, when we define the inner function, we shouldn’t forget to add the `return` statement. Specifically, the return value should be the one that you get by calling the decorated function.
+
+---
+
+
+While Python Decorators and Java Annotations look very similar (both use the `@` symbol above a function or method), they are fundamentally different in how they work.
+
+In short: Java Annotations are metadata (labels), while Python Decorators are active code (wrappers).
+
+### Use generator functions as a memory-efficient data provider
+
+As a special kind of iterator, a `generator` is created from a generator function. Because a generator is an iterator, it can render its items one by one. A generator is special because it doesn’t store its items, and it retrieves and renders its items when needed. This characteristic means that it’s a memory-efficient iterator for data rendering. 
+
+```python
+def perfect_squares(limit):
+    n = 1
+    while n <= limit:
+        yield n * n
+        n += 1
+ 
+squares_gen = perfect_squares(upper_limit)
+ 
+sum_gen = sum(squares_gen)
+ 
+assert sum_gen == sum_list == 333333833333500000
+```
+
+The `perfect_squares` function is a `generator function`. By calling this function with `upper_limit`, we’re creating a `generator` named `squares_gen`. This generator renders perfect squares: $1^2, 2^2, 3^2, 4^2, ...$ until $1,000,000^2$.
+
+The most significant feature to observe is the `yield` keyword, which is the hallmark of a generator function. Whenever the operation executes to the yield line, it provides the item `n * n`. The coolest thing about a generator is the fact that **it remembers which item it should yield next**.
+
 ## Python Modules
 
 k
@@ -844,7 +932,7 @@ Strings that represent negative integers won’t pass the `isnumeric` check.
 
 You can also cast string into `list`, `tuple` & `dict` using the built-in `eval` function, which takes a string as though you typed it in the console and returns the evaluated result.
 
-### Join and split strings
+### Join and Split Strings
 
 When you have multiple string literals, you can join them if they’re separated by whitespaces, such as spaces, tabs, and newline characters.
 
@@ -880,23 +968,146 @@ str.rsplit(separator, maxsplit)
 - `.rsplit()`: Starts scanning the string from the right (end) and moves left.
 - If you don't provide a `maxsplit` argument, both methods behave **exactly the same**.
 
-### Regex in Python
-
-k
-
 ## Exception Handle
 
 k
 
-## OOP in Python
+## Class in Python
 
 Python supports multiple inheritance, and Java does not.
 
 Python does not have the `extends` keyword.
 
+We use a custom class instead of a named tuple-based data model here. A custom class gives us the flexibility of changing the instance object’s attributes, which we can’t do with a named tuple mode
+
+### `__init__()`
+
 The constructor is the `__init__` function that you define.
 
-We use a custom class instead of a named tuple-based data model here. A custom class gives us the flexibility of changing the instance object’s attributes, which we can’t do with a named tuple mode
+The `__init__()` method is the most essential method that you almost always define in a custom class.
+
+`def __init__(self):`
+
+`self` refers to the instance objects in the method definitions.
+
+Python creates the instance object by calling `__new__` and sends it to `__init__` as the self argument. 
+
+The instance construction is a two-step process that calls `__new__` and `__init__`.
+
+`self` is not a keyword like `def`, `for`, `class`, `lambda`. We’re not required to use self as the parameter name for `__init__()`. We can use any legitimate variable name (but it can’t be a keyword).
+
+```python
+class Task:
+   def __init__(this):
+       print("An instance is created with this instead of self.")
+
+task = Task()
+# output: An instance is created with this instead of self.
+```
+
+```python
+class Task:
+   def __init__(self, title, desc, urgency):
+       self.title = title
+       self.desc = desc
+       self.urgency = urgency
+       
+task = Task("Laundry", "Wash clothes", 3)
+```
+
+---
+
+we should specify all the instance attributes in `__init__`, even though some attributes are to be updated through a specific method call. In these cases, these attributes should have a reasonable initial value. The next listing shows the desired pattern.
+
+```python
+class Task:
+   def __init__(self, title, desc, urgency):
+       self.title = title
+       self.desc = desc
+       self.urgency = urgency
+       self.status = "created"
+       self.tags = []
+
+   def complete(self):
+       self.status = "completed"
+
+   def add_tag(self, tag):
+       self.tags.append(tag)
+```
+
+### Defining class attributes outside the `__init__` method
+
+The initialization method should provide initialization for an instance object by defining its attributes on a per-instance basis. Notably, there can be shared attributes for all instance objects. In this case, you should not include them as instance attributes and should consider class attributes instead. 
+
+- `Class attributes` are those attributes that belong to the class (as an object), and all the instance objects of the class share the attributes through the class (save memory).
+- `instance attribute`
+
+Python does NOT have a `static` keyword like Java or C++.  
+In Python, "static" behavior is the default for any variable defined directly inside the class body but outside of any methods. These are called Class Attributes.
+
+```python
+class Task:
+   # "static" attribute
+   user = "the logged in user"
+ 
+   def __init__(self, title, desc, urgency):
+       pass
+```
+
+### Define instance, static, and class methods
+
+An instance method is intended to be called on an instance object of the class. Thus, when you want to change the data of an individual instance object or run operations that rely on an individual instance object’s data, such as attributes or other instance methods, you need to define instance methods.
+
+The hallmark of an instance method is that you set `self` as its first parameter. self refers to the instance object in the `__init__` method, which is true for all instance methods.
+
+Under the hood, an instance method is invoked by the class calling the method with the instance as an argument.
+
+---
+
+Unlike an instance method, which uses self as its first parameter, a static method doesn’t use self, as it’s intended to be independent of any instance object, and there is no need to refer to a specific instance. To define a static method, we use the `staticmethod` decorator for the function within the body of the class.
+
+```python
+from datetime import datetime
+
+class Task:
+   @staticmethod
+   def get_timestamp():
+       now = datetime.now()
+       timestamp = now.strftime("%b %d %Y, %H:%M")
+       return timestamp
+
+refresh_time = f"Data Refreshed: {Task.get_timestamp()}"
+
+print(refresh_time)
+# output: Data Refreshed: Mar 04 2022, 15:43
+```
+
+`get_timestamp` is a static method defined with the `@staticmethod` decorator. In this static method, we create a formatted timestamp string, which we can use whenever we need to show users the exact time. To call this method, we use the following pattern: `CustomClass.static_method(arg0, arg1, arg2)`.
+
+---
+
+static methods are utility methods without the need to access individual instance objects. It’s possible that some methods may need to access the attributes of the class. In this case, you need to define a `class method`.
+
+The first hallmark of a class method is that you use `cls` as its first parameter. Like `self` in an instance method, cls is not a keyword, and you can give this argument other applicable names, but it’s a convention to name it cls, and every Python programmer should respect this convention.
+
+The implementation of static methods requires the staticmethod decorator. A class method also uses the `classmethod` decorator—the second hallmark of a class method. The method is called a class method because it needs to access the attributes or methods of the class.
+
+```python
+class Task:
+    def __init__(self, title, desc, urgency):
+       self.title = title
+       self.desc = desc
+       self.urgency = urgency
+       self._status = "created"
+
+   @classmethod
+   def task_from_dict(cls, task_dict):
+       title = task_dict["title"]
+       desc = task_dict["desc"]
+       urgency = task_dict["urgency"]
+       task_obj = cls(title, desc, urgency)
+       return task_obj
+```
 
 ## File and Directory Access
 
