@@ -188,7 +188,7 @@ constipation
 trout (N.): a common freshwater fish that is used for food. There are several types of trout.
 
 [parley](https://www.oxfordlearnersdictionaries.com/definition/english/parley_1?q=parley): (old-fashioned) cuộc đàm phán, a discussion between enemies or people who disagree, in order to try and find a way of solving a problem\
-parsley
+parsley: ​enlarge imagea plant with curly green leaves that are used in cooking as a herb and to decorate food
 
 [ransom](https://www.oxfordlearnersdictionaries.com/definition/english/ransom_1?q=ransom): money that is paid to somebody so that they will set free a person who is being kept as a prisoner by them
 

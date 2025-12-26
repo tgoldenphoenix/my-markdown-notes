@@ -100,6 +100,13 @@ k
   * Convert to decimal: `1011 0111 = 11 & 7`
   * `11 & 7 = 0xB7`
 
+- $1101.1011.0010.1111_2$
+  * Split the number into four-bit groups: 1101, 1011, 0010, 1111
+  * Convert each four-bit group into decimal: 13, 11, 2, 15.
+  * Convert each decimal number into hexadecimal: D, B, 2, F. 
+
+Memorizing the decimal values of hexadecimal A–F is very helpful: 0d10 = 0xA, 0d11 = 0xB, 0d12 = 0xC, 0d13 = 0xD, 0d14 = 0xE, 0d15 = 0xF.
+
 ## Octal
 
 Octal is base-8. Digits used: `0, 1, 2, 3, 4, 5, 6, 7`
@@ -160,6 +167,25 @@ Example: The number `F3` means (15 × 16) + (3 × 1) = 243 in decimal
 
 - $16^2=256=2^8$
 - $16^3=4096$
+
+| Decimal | Binary | Hexadecimal |
+|---------|--------|-------------|
+| 0       | 0000   | 0           |
+| 1       | 0001   | 1           |
+| 2       | 0010   | 2           |
+| 3       | 0011   | 3           |
+| 4       | 0100   | 4           |
+| 5       | 0101   | 5           |
+| 6       | 0110   | 6           |
+| 7       | 0111   | 7           |
+| 8       | 1000   | 8           |
+| 9       | 1001   | 9           |
+| 10      | 1010   | A           |
+| 11      | 1011   | B           |
+| 12      | 1100   | C           |
+| 13      | 1101   | D           |
+| 14      | 1110   | E           |
+| 15      | 1111   | F           |
 
 ### HEX -> BIN
 

@@ -24,6 +24,8 @@ A network-layer packet is called a `datagram`. Đừng nhầm với UDP (User Da
 
 The **Routing algorithms** determine the contents of the routers’ **forwarding tables**.
 
+`Gateway` is an old term for a router. Although we call them routers these days, the term gateway is still used in some contexts (such as default gateway
+
 ## IP Datagram Format
 
 Note that an **IP datagram** has a total of 20 bytes of header (assuming no options). If the datagram carries a TCP segment, then each datagram carries a total of 40 bytes of header (20 bytes of IP header plus 20 bytes of TCP header) along with the application-layer message.
@@ -210,6 +212,49 @@ NAT was created as a workaround for the global shortage of IPv4 addresses.
 
 - IPv4 Problem: Only 4.3 billion addresses. NAT lets a hundred devices share one public address (like one phone number for a whole apartment building).
 - IPv6 Solution: IPv6 has a nearly infinite number of addresses. Because every single device (your phone, your laptop, your smart fridge) can have its own unique, public IP address, the complexity and overhead of NAT are removed entirely.
+
+---
+
+IPv6 addresses are divided into eight groups of 16 bits (`hextet`), separated by colons, and written in hexadecimal
+
+`2001:0db8:5917:eabd:6562:17ea:c92d:59bd`
+
+IPv6 typically uses /64 prefix lengths. Although this is extremely inefficient—each subnet contains about 18 quintillion addresses—the IPv6 address space is so large that /64 prefix lengths are preferred due to their simplicity.
+
+---
+
+Removing leading zeros: any hexadecimal 0 digits on the left side of a hextet—can be removed to shorten the hextet. Here is an example
+
+- Original address—2001:0db8:0000:001b:20a1:0020:0080:34bd
+- Abbreviated address—2001:db8:0:1b:20a1:20:80:34bd
+
+Trailing zeros—those on the right side of a hextet—cannot be removed. Furthermore, the 0000 octet was abbreviated to 0—only three of the four zeros can be removed, not all four.
+
+---
+
+Omitting consecutive all-zero hextets - two or more hextets of all zeros (0x0000); the omitted hextets are represented by a double colon. Here is an example of this method:
+
+- Original address—2001:2db8:0000:0000:0000:0000:1280:34bd
+- Abbreviated address—2001:2db8::1280:34bd
+
+The original address has four consecutive all-zero hextets, which were replaced with a double colon in the abbreviated address. Because IPv6 addresses are eight hextets in length, there is no ambiguity in the abbreviated address; only four hextets are displayed, so we can deduce that four all-zero hextets were abbreviated by the double colon.
+
+A double colon can only be used once in an address. If there are multiple choices for where to use it (i.e., `2001:0db8:0000:0000:1234:0000:0000:0001`), only one series of all-zero hextets can be shortened (i.e., `2001:0db8::1234:0000:0000:0001`).
+
+The two address-abbreviation methods can be combined if the address permits it. Following is an example of abbreviating an address both by removing leading zeros and by omitting consecutive all-zero hextets:
+
+- Original address—2001:0db8:0000:0000:002f:0001:0000:34bd
+- Abbreviated address—2001:db8::2f:1:0:34bd
+
+### IPv6 address types
+
+Like IPv4, there are various IPv6 addresses and address ranges that are reserved for specific purposes.
+
+- Global unicast—Globally unique addresses that can be used for communication over the internet.
+- Unique local—Addresses that don’t have to be globally unique; they can be freely used in internal networks but can’t be used for communication over the internet.
+- Link-local—Used for communication between directly connected hosts.
+- Multicast—Used for one-to-multiple communication, allowing a single packet to be addressed to multiple hosts.
+- Anycast—Used for one-to-one-of-multiple communication, an anycast address is a unicast address that is assigned to multiple hosts. Packets are delivered to the nearest host configured with the address, often used on servers to provide services over the internet with low latency.
 
 ## Special IP addresses
 

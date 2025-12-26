@@ -4,9 +4,6 @@ The concept of closure is mentioned in JavaScript, Python, Lua
 
 first-class citizen, first class function
 
-In Python, **REPL** is an acronym for Read, Evaluate, Print, and Loop. Developers use REPL Python to communicate with the Python Interpreter.  
-In contrast to running a Python file, you can input commands in the REPL and see the results displayed immediately. The Python REPL also lets you print out object and method help, a list of all the accessible methods, and much more.
-
 ## Programming paradidigms
 
 The main categories include imperative, declarative, object-oriented, and functional. Within these, there are sub-paradigms like procedural, logic, and event-driven programming
@@ -69,11 +66,11 @@ Có một cái library `Underscore.js` có syntax double underscore `__`. Nó đ
 
 Python
 
-In Python, variable names with double underscores on both sides (like `__init__` or `__dict__`) are referred to as `Dunder` (Double Under) methods or Magic Methods.
+In Python, variable names with double underscores on both sides (like `__init__` or `__dict__`) are referred to as `Dunder` (Double Under) methods or Magic Methods.  
+You should never create your own names using this dunder format. This is reserved for "core" internal Python functionality. A future version of Python might introduce a built-in feature with that same name, causing your code to break.
 
-You should never create your own names using this format. This is reserved for "core" Python functionality.
-
-- The single leading underscore (`_var`) before a name in Python is a naming convention that signifies to other developers that the name is intended for internal use.
+- The single leading underscore (`_var`) means `protected` attribute/methods.
+- Doule leading underscore (`__var`) means `private` attribute/methods.
 - `__init__` Denotes special built-in methods recognized by the language (e.g., constructor, iterator).
 - A single underscore (`_`) is used as a variable name when you need to unpack a value but intend to ignore or throw away that value.
 

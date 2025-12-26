@@ -357,7 +357,7 @@ Sau khi A nhìn thấy được class B thì ta mới xét tiếp là class A nh
 Nếu nói protected = default + class con **nhìn thấy** tt & pt của class cha => dễ gây nhầm lẫn.  
 Nên nói là protected == default + class con **kế thừa** được tt và pt của class cha.
 
-### this and super keywords
+### The `this` & `super` keywords
 
 A subclass inherit from a **super-class** using keyword `extends`. A class can only extend from one parent. One class can have many subclass.
 
@@ -371,12 +371,14 @@ Ví dụ class `A entends B` & Class parent `B` có property `a` vậy thì:
 - Class con A có khai báo thuộc tính `a` nhưng lập trình viên không cần khai báo mà Java tự động copy những dòng khai báo thuộc tính & phương thức của class cha `B` và bỏ vào trong class `A` cho mình. Tóm lại class `A` có mô tả (khai báo) thuộc tính `a`.
 
 - `a, this.a, super.a` là 3 tên gọi chỉ **một biến duy nhất** nằm trên cơ thể class con mà nó copy được từ cha nó.
-- `super.a` chỉ có giá trị khác với 2 cái kia (`this.a và a`) khi mình override biến `a` của class cha `B` trong class con `A`. Biến `super.a` lúc này sẽ refer với cái khai báo được Java auto copy từ class cha `B` qua class con `A`.
-- Có thể hiểu class `A extends B` sẽ có 2 dòng khai báo biến `a`, một dòng copy từ `B` và một dòng tự class `A` khai báo override. Vì có 2 biến `a` cùng tên nên phải dùng `super.a, this.a` để phân biệt. Nhưng cả 2 biến **đều là của lớp con**, không có biến nào nằm trong class cha hết. Không có chuyện lớp con truy cập vào thuộc tính hay phương thức của lớp cha mà chỉ là truy cập chính những members là con đã copy của cha.
-- `this.a` được dùng để phân biệt với `a` là parameter truyền vào trong constructors. Còn bình thường nếu chỉ dùng `a` mà không ghi gì thêm hết thì nó sẽ tự hiểu là `this.a`.
+- `super.a` chỉ có giá trị khác với 2 cái kia (`this.a` & `a`) khi mình override biến `a` của class cha `B` trong class con `A`. Biến `super.a` lúc này sẽ refer với cái khai báo được Java auto copy từ class cha `B` qua class con `A`.
+- Có thể hiểu class `A extends B` sẽ có 2 dòng khai báo biến `a`, một dòng copy từ parent class `B` và một dòng tự class `A` khai báo override. Vì có 2 biến `a` cùng tên nên phải dùng `super.a, this.a` để phân biệt. Nhưng cả 2 biến **đều là của lớp con**, không có biến nào nằm trong class cha hết. Không có chuyện lớp con truy cập vào thuộc tính hay phương thức của lớp cha mà chỉ là truy cập chính những members là con đã copy của cha.
+- `this.a` còn được dùng để phân biệt với `a` là parameter truyền vào trong constructors. Còn bình thường nếu chỉ dùng `a` mà không ghi gì thêm hết thì nó sẽ tự hiểu là `this.a`.
 - Nếu class con `A` không override thì `this.a` và `super.a` là một.
 
-Từ khóa `super` chỉ có thể được dùng bởi class con để chỉ tới cha nó. Class bên ngoài (như `main()`) không thể tạo đối tượng của thằng con rồi dùng `super` để chỉ tới thằng cha của nó. Vì `super` bị "che khuất" (override) nên class bên ngoài khi nhìn vô thằng con sẽ chỉ thấy `this.anCOm()` không thể thấy `super.anCom()`.
+Từ khóa `super` **chỉ có thể được dùng bởi class con** để chỉ tới cha nó. Class bên ngoài (như `main()`) không thể tạo đối tượng của class con rồi dùng `super` để chỉ tới thằng cha của lớp con đó.
+
+Vì `super` bị "che khuất" (override) nên class bên ngoài khi nhìn vô thằng con sẽ chỉ thấy `this.anCom()` không thể thấy `super.anCom()`.
 
 `super.a, this.a và a` nghĩa là chỉ biến `a` của lớp chính class `A` chứ không phải class B  
 Ngay cả khi chúng ta sử dụng `super.a` thì ta cũng đang truy cập biến `a` của class A chứ không phải truy cập biến `a` của class B.
@@ -409,7 +411,7 @@ Override, OR (Ghi đè, che khuất):
 - Hiện tượng xuất hiện 2 phương thức `void a(String x) và void a(String y)` ---> Có gọi là cùng danh sách tham số truyền vào không?
 - `a(int a, int b)` và `a(double d, int c)` là overload. Trong Java khai parameter `int` phải truyền đúng `int` không được truyền `double` mặc dù double double có thể chứa `int`.
 
-### Phân biệt IS-A và HAS-A
+### Phân biệt `IS-A` vs `HAS-A`
 
 - IS-A: là một ...; quan hệ kế thừa
 - HAS-A: có một (sử dụng)...; quan hệ sở hữu
@@ -432,7 +434,7 @@ ConNguoi IS-A DongVat. Lớp con IS-A lớp cha.
 
 Implement interface **cũng** tạo ra quan hệ IS-A: `class Laptop implements Computer` thì `Laptop` IS-A `Computer`.
 
-## Variable scope & Non-access Modifiers
+## Variable Scope & Non-access Modifiers
 
 [colon operator : inside java method parameter](https://stackoverflow.com/questions/15600917/java-method-with-method-with-colon-in-parameter)
 

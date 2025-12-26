@@ -120,13 +120,13 @@ process(() -> System.out.println("Hello World 3"));
 
 Lambda don't need access modifier, no return type, no method name
 
-### Functional Interface
+## Functional Interface
 
 - Functional Interfaces in the Java API:
   * `java.util.Comparator`
   * `java.lang.Runnable`
   * `java.util.concurrent.Callable`
-  * `Predicate`: A `predicate` in Java is a function that returns a `boolean` value. Ví dụ method truyền `ApplePredicate` vào `filterApple()` as a filtering criteria.
+  * `java.util.function.Predicate<T>`: A `predicate` in Java is a function that returns a `boolean` value. Ví dụ method truyền `ApplePredicate` vào `filterApple()` as a filtering criteria.
 
 The signature of the abstract method of a functional interface is called a `function descriptor`.
 
@@ -224,7 +224,11 @@ roster
     .forEach(email -> System.out.println(email));
 ```
 
-### Method Reference
+### Predicate
+
+k
+
+## Method Reference
 
 You use lambda expressions to create anonymous methods. Sometimes, however, a lambda expression does nothing but call an existing method. In those cases, it's often clearer to refer to the existing method by name. Method references enable you to do this; they are compact, easy-to-read lambda expressions for methods that already have a name.
 
@@ -236,9 +240,28 @@ Arrays.sort(rosterAsArray,
 Arrays.sort(rosterAsArray, Person::compareByAge);
 ```
 
-The method reference Person::compareByAge is semantically the same as the lambda expression (a, b) -> Person.compareByAge(a, b)
+The method reference `Person::compareByAge` is semantically the same as the lambda expression `(a, b) -> Person.compareByAge(a, b)`
 
-There are four kinds of method references:
+Method references let you reuse existing method definitions and pass them like lambdas. In some cases they appear more readable and feel more natural than using lambda expressions.
+
+Method references can be seen as shorthand for lambdas calling only a specific method.
+
+When you need a method reference, the target reference is placed before the delimiter `::` and the name of the method is provided after it.
+
+For example, `Apple::getWeight` is a method reference to the method `getWeight` defined in the Apple class. (Remember that no brackets are needed after getWeight because you’re not calling it at the moment, you’re merely quoting its name.)  
+This method reference is shorthand for the lambda expression `(Apple apple) -> apple.getWeight()`. 
+
+- `(str, i) -> str.substring(i)` = `String::substring`
+- `(String s) -> System.out.println(s)` = `System.out::println`
+- `(String s) -> this.isValidName(s)` = `this::isValidName`
+
+---
+
+- There are three main kinds of method references:
+  1. A method reference to a static method (for example, the method `parseInt` of `Integer`, written `Integer::parseInt`)
+  2. A method reference to an instance method of an arbitrary type (for example, the method length of a String, written String::length)
+  3. A method reference to an **instance method of an existing object or expression** (for example, suppose you have a local variable `expensiveTransaction` that holds an object of type `Transaction`, which supports an instance method `getValue`; you can write `expensiveTransaction::getValue`)
+
 
 ## Default Methods and Java modules
 
@@ -262,6 +285,17 @@ static methods in Interfaces
 
 - **Static method** trong interface giống static method trong class: dùng `static` keyword, interface phải provide implementation không được hứa, static method belong to the interface.
 - The same can pretty much be done with abstract classes. The main difference is that abstract classes can have constructors, state, and behavior.
+
+## Java Concurrency
+
+Java has two, mostly separate concurrency APIs: the older API, which is usually called `block-structured concurrency` or `synchronization-based concurrency` or even “classic concurrency,” and the newer API, which is normally referred to by its Java package name, `java.util.concurrent`.
+
+The classic approach to concurrency was the only API available until Java 5. This is the language-level API that is built into the platform and depends upon the `synchronized` and `volatile` keywords.
+
+- Concurrent programming is fundamentally about performance.
+- There are basically no good reasons for implementing a concurrent algorithm if the system you are running on has sufficient performance that a serial algorithm will work.
+- Modern computer systems have multiple processing cores—even mobile phones have two or four cores today.
+- All Java programs are multithreaded, even those that have only a single application thread. 
 
 ## Thread
 

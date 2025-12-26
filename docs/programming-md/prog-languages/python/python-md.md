@@ -80,6 +80,11 @@ In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store pack
 
 ## Python Command-Line Programs
 
+In Python, `REPL` is an acronym for Read, Evaluate, Print, and Loop. Developers use REPL Python to communicate with the Python Interpreter.  
+In contrast to running a Python file, you can input commands in the REPL and see the results displayed immediately. The Python REPL also lets you print out object and method help, a list of all the accessible methods, and much more.
+
+Python REPL = the interactive Python interpreter
+
 This chapter focus on command-line programs written in python. Command-line techniques are very useful when you need to process large numbers of files.
 
 `python script.py`
@@ -970,7 +975,21 @@ str.rsplit(separator, maxsplit)
 
 ## Exception Handle
 
-k
+The standard way to handle exceptions in Python is to use the `try...except...` block. Many other languages use `try...catch...` blocks.
+
+```python
+def process_task_string1(text):
+   title, urgency_str = text.split(",")
+   try:
+       urgency = int(urgency_str)
+   except:
+       print("Couldn't cast the number")
+       return None
+   task = Task(title, urgency)
+   return task
+```
+
+we don’t want to fill the try clause with lots of code because it makes it hard to know which code can lead to an exception. The try clause should include only the code that can raise an exception.
 
 ## Class in Python
 
@@ -1054,17 +1073,40 @@ class Task:
        pass
 ```
 
-### Define instance, static, and class methods
+### Define Instance, static, and class methods
 
-An instance method is intended to be called on an instance object of the class. Thus, when you want to change the data of an individual instance object or run operations that rely on an individual instance object’s data, such as attributes or other instance methods, you need to define instance methods.
+An `instance method` is intended to be called on an instance object of the class. Thus, when you want to change the data of an individual instance object or run operations that rely on an individual instance object’s data, such as attributes or other instance methods, you need to define instance methods.
 
-The hallmark of an instance method is that you set `self` as its first parameter. self refers to the instance object in the `__init__` method, which is true for all instance methods.
+The hallmark of an instance method is that you set `self` as its **first parameter**. `self` refers to the instance object in the `__init__` method, which is true for all instance methods.
 
 Under the hood, an instance method is invoked by the class calling the method with the instance as an argument.
 
+```python
+class Task:
+   def __init__(self, title, desc, urgency):
+       self.title = title
+       self.desc = desc
+       self.urgency = urgency
+       self._status = "created"
+       
+   # instance method
+   def complete(self):
+       print(f"Memory Address (self): {id(self)}")
+       self.status = "completed"
+
+
+task = Task("Laundry", "Wash clothes", 3)
+task.complete()
+# output: Memory Address (self): 140508514865536
+
+task_id = f"Memory Address (task): {id(task)}"
+print(task_id)
+# output: Memory Address (task): 140508514865536
+```
+
 ---
 
-Unlike an instance method, which uses self as its first parameter, a static method doesn’t use self, as it’s intended to be independent of any instance object, and there is no need to refer to a specific instance. To define a static method, we use the `staticmethod` decorator for the function within the body of the class.
+Unlike an instance method, which uses self as its first parameter, a `static method` doesn’t use self, as it’s intended to be independent of any instance object, and there is no need to refer to a specific instance. To define a static method, we use the `staticmethod` decorator for the function within the body of the class.
 
 ```python
 from datetime import datetime
@@ -1090,7 +1132,7 @@ static methods are utility methods without the need to access individual instanc
 
 The first hallmark of a class method is that you use `cls` as its first parameter. Like `self` in an instance method, cls is not a keyword, and you can give this argument other applicable names, but it’s a convention to name it cls, and every Python programmer should respect this convention.
 
-The implementation of static methods requires the staticmethod decorator. A class method also uses the `classmethod` decorator—the second hallmark of a class method. The method is called a class method because it needs to access the attributes or methods of the class.
+The implementation of static methods requires the `staticmethod` decorator. A class method also uses the `classmethod` decorator—the second hallmark of a class method. The method is called a class method because it needs to access the attributes or methods of the class.
 
 ```python
 class Task:
@@ -1107,7 +1149,167 @@ class Task:
        urgency = task_dict["urgency"]
        task_obj = cls(title, desc, urgency)
        return task_obj
+       
+task = Task.task_from_dict(task_dict)
+
+print(task.__dict__)
+# output: {'title': 'Laundry', 'desc': 'Wash clothes',
+ 'urgency': 3, 'status': 'created', 'tags': []}
 ```
+
+we define a class method called `task_from_dict` with `@classmethod`. In the body of this method, because cls stands for the class that we’re working with (`Task`), we can use the class’s constructor directly—`cls(title, desc, urgency)`—to create an instance object. With this class method, we can conveniently create a Task instance object from a dict object
+
+From a general perspective, a class method is used mostly as a `factory method`, meaning that this kind of method is used to create an instance object from a particular form of data.
+
+### Apply access control to a class
+
+The implication of encapsulation in OOP is that you apply finer access control to the class. You expose only attributes and methods that users need to access and nothing more.
+
+```python
+class Task:
+   def __init__(self, title, desc, urgency):
+       self.title = title
+       self.desc = desc
+       self.urgency = urgency
+       self._status = "created"
+       self.note = ""
+
+   def complete(self, note = ""):
+       self.status = "completed"
+       self.note = self.format_note(note)
+     
+   def format_note(self, note):
+       formatted_note = note.title()
+       return formatted_note
+```
+
+User should not be able to call `format_note()` directly. The method is intended to be used internally only.
+
+No, Python does not have a `protected` keyword, nor does it have `private` or `public` keywords.  
+Python has no formal mechanism that restricts access to any attribute or method. In other words, everything in a class is public.
+
+- The convention in creating an access-control mechanism is to use underscores as the prefix for the attribute or method:
+  * A one-underscore prefix means protected
+  * and a double-underscore prefix means `private`
+- The same mechanism applies to creating protected and private attributes.
+
+However, `__init__` is obviously not a private method.
+
+---
+
+How to access a private method if you need to. You may want to manipulate some code within a package developed by others, for example. As shown in the following code snippet, you can access the private method by calling `_Task__format_note("a note")`:
+
+```python
+task._Task__format_note("a note")
+# output: 'A Note'
+```
+
+This technique is called `name mangling`, which converts a private method to a differently named method, allowing a private method to be called outside the class. Specifically, the name mangling follows the rule `__private_method` -> `_ClassName__private_method`. Thus, `__format_note` becomes `_Task__format_note`, and we can call this private method outside the `Task` class.
+
+using the double underscores as the prefix triggers name mangling.
+
+Python does name mangling automatically when you prefix an attribute name with two underscores (`__`). When an attribute begins with `__`, Python changes the name of the attribute by adding an underscore and the class name to the beginning of the attribute name. For example, `.__name` in a Robot class becomes `._Robot__name`.
+
+Python does not apply name magling to dunder methods like `__init__()`
+
+### Creating read-only Attributes with the property decorator
+
+```python
+class Task:
+   def __init__(self, title, desc, urgency):
+       self.title = title
+       self.desc = desc
+       self.urgency = urgency
+       self._status = "created"
+
+   @property
+   def status(self):
+       return self._status
+       
+   def complete(self):
+       self._status = "completed"
+
+task = Task("Laundry", "Wash clothes", 3)
+
+print(task.status)
+# output: created
+```
+
+- The instance has a protected attribute `_status`.
+- We define an instance method `status`, which is decorated by the property decorator.
+- In the complete method, we update the `_status` attribute. 
+
+For encapsulation purposes, we don’t allow users to set the status attribute freely. To update a task’s status to completed, for example, they should call the complete method
+
+The `@property` decorator makes a method accessible as though it’s an attribute. For simplicity, you can refer to a method with the property decorator as a property, and you don’t need to use parentheses `()` call operator to access a property.
+
+### customize string representation for a class
+
+k
+
+## Inheritance
+
+```python
+class Employee:
+   def __init__(self, name, employee_id):
+       self.name = name
+       self.employee_id = employee_id
+
+   def login(self):
+       print(f"An employee {self.name} just logged in.")
+
+   def logout(self):
+       print(f"An employee {self.name} just logged out.")
+
+
+class Supervisor(Employee):
+   pass
+```
+
+When you define a subclass, you specify the superclass in parentheses following the class’s name. Here, the superclass is `Employee`, so we place it after `Supervisor`.
+
+---
+
+Python does not have `@Override` annotation.
+
+```python
+class Supervisor(Employee):
+   def login(self):
+       print(f"A supervisor {self.name} just logged in.")
+```
+
+Python supports multiple inheritance—a class inherits from multiple classes
+
+---
+
+```python
+class Employee:
+   def __init__(self, name, employee_id):
+       self.name = name
+       self.employee_id = employee_id
+
+   # protected
+   def _request_vacation(self):
+       print("Send a vacation request to the employee's supervisor.")
+
+   # private
+   def __transfer_group(self):
+       print("Transfer the employee to a different group.")
+
+class Supervisor(Employee):
+   def do_something(self):
+       self._request_vacation()
+       self.__transfer_group()
+
+supervisor = Supervisor("John", "1001")
+supervisor.do_something()
+# output the following lines:
+Send a vacation request to the employee's supervisor.
+# ERROR: AttributeError: 'Supervisor' object has no attribute 
+ '_Supervisor__transfer_group'
+```
+
+subclasses inherit protected methods; subclass do not inherit private methods
 
 ## File and Directory Access
 
