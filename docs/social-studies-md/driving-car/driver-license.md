@@ -1,10 +1,29 @@
 # Drive car notes
 
+- Các câu bạn hay sai: 104
+- Current question:
+
 When the clutch pedal is pressed, it disengages, separating the engine's power from the transmission. Releasing the clutch pedal engages it, enabling power to flow from the engine to the transmission and then to the wheels.
 
 You press the clutch when you want to stop or nearly stop or change gear.
 
 Còn slow down chỉ cần release gas & break if necessary không cần clutch.
+
+## Basics
+
+Motorbike (mô tô 2 bánh)
+
+- A1 max 125 cm3. Can't drive Sh 150.
+- A lái > 125
+
+Car
+
+- B: max 08 chỗ (excluding the driver), max 3.500 Kg/3.5 tấn (include xe + hàng hóa)
+- C1: like B, but max 7.5 tấn
+
+Có C1, chờ 2 năm, nâng lên C, trên 7.5 tấn (full tải)
+
+Học 90 ngày (3 tháng). Thi đậu lý thuyết + mô phỏng rồi xuống sân thi thực hành. Sau đó thi 2km đường trường.
 
 ## Các câu lý thuyết bị sai
 
@@ -12,20 +31,34 @@ Thi lý thuyết chỉ có only 1 câu liệt.
 
 Có hình cảnh sát là 3, only one question chọn 4 (jesus cross)
 
-chọn **phần đường xe chạy**.
+Phần của đường bộ được sử dụng ... là **phần đường xe chạy**
 
 vạch kẻ đường **phân chia** làn đường.
 
-đảm bảo cho trẻ em **ngồi hoặc nằm**.
+- Người điều khiển giao thông đường bộ => cảnh sát giao thông
+- Người điều khiển phương tiện tham gia giao thông
 
-dừng xe, đỗ xe cách xe khác `20m` (bob ross).
+Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm**, trẻ em không được đứng trong xe.
 
-Người ngồi sau xe máy không được xài ô (dù)
+dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
+
+Người ngồi sau xe máy, mô tô 2 bánh không được xài ô (dù)
 
 - giao nhau vòng xuyến, nhường xe đến từ bên **trái**.
-- Giao nhau không vòng xuyến, nhường xe bên phải
+- Giao nhau **không** vòng xuyến, nhường xe bên phải
 
 Kéo xe hỏng phanh; nối bằng **thanh nối cứng**.
+
+- Không vượt (1 làn/chiều) khi có chướng ngại vật phía trước, hoặc xe trước đang xin vượt
+- Được phép vượt phải khi: xe trước rẻ trái, hoặc xe chuyên dùng đang làm việc (không thể vượt trái)
+
+GPLX đã bị trừ hết điểm, để phục hồi: sau ít nhất 06 tháng, kiểm tra kiến thức pháp luật -> phục hồi đủ 12 điểm
+
+Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khách an toàn & thoát hiểm
+
+ô tô của người nước ngoài tay lái bên phải => chọn cả 3
+
+máu phin thành tia (tai nạn GT): cầm máu không trực tiếp (chặn động mạch)
 
 ## Các hạng bằng lái & độ tuổi
 
@@ -61,11 +94,11 @@ Kéo xe hỏng phanh; nối bằng **thanh nối cứng**.
 - Hạng `D` cấp cho người lái xe ô tô chở người (kể cả xe buýt) **trên 29 chỗ** (không kể chỗ của người lái xe); xe ô tô chở người giường nằm; các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C, D1, D2;
   - Hạng `DE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg; xe ô tô chở khách nối toa.
 
-## Cự Ly & tốc độ
+## Cự Ly & Tốc Độ
 
 Trong khu đông dân cư
 
-Xe gắn máy & xe máy chuyên dùng always `40 km/h` (tất cả mọi con đường).
+Xe gắn máy & xe máy chuyên dùng always `40 km/h` max (tất cả mọi con đường).
 
 - Tất cả các loại xe còn lại:
   - Đường 2 chiều (chỉ có vạch sơn): `50 km`
@@ -88,6 +121,12 @@ có số `60` => cả 2 ý trên hoặc chọn ý 1
 
 Lấy max value trừ đi `25`
 
+- Khoảng cách an toàn tối thiểu:
+  * 60 km/h = 35m
+  * 60 - 80 km/h = 55m
+  * 80 - 100 km/h = 70m
+  * 100-120 km/h = 100m
+
 ## Others
 
 câu hỏi bị trừ hết điểm???
@@ -106,12 +145,33 @@ Rơ móc kéo xe khác phải có trọng lượng lớn hơn, tương đương 
 - Xe mô tô thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm
 
 - Theo thứ tự từ rộng tới hẹp:
-  * cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ
-  * cấm xe tải
-  * cấm máy kéo (đầu kéo container)
-  * cấm xe kéo rơ móc (đầu kéo + thùng hàng)
+  - cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ
+  - cấm xe (ô tô) tải
+  - cấm máy kéo (đầu kéo container)
+  - cấm xe kéo rơ móc (đầu kéo + thùng hàng)
 
 xích lô, ly bia, con ngựa => ý cuối
+
+- Xe buýt là phương tiện công cộng, xe ưu tiên của nhà nước => không có biển nào cấm xe buýt
+- Chỉ có biển cấm ô tô chở khách
+
+- Thấy 2 biển mô tô (2 bánh) và ô tô (4 bánh) đi chung => áp dụng mẹo cấm 1 - được 3
+  * Câu hỏi có chữ cấm => chọn 1
+  * có chữ được => chọn 3
+
+- xe mô tô:
+  * có vẽ người
+  * 18 tuổi
+  * phải thi gplx A1, A
+  * xe trên 50cm3
+- xe gắn máy:
+  * chỉ vẽ xe, không vẽ người
+  * 16 tuổi
+  * không cần GPLX
+  * xe dưới 50cm3
+
+- Tốc độ màu đỏ là tối đa
+- Màu xanh là tối thiểu
 
 ## Thi thực hành
 
