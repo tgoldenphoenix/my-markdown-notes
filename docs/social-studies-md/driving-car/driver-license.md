@@ -1,6 +1,6 @@
 # Drive car notes
 
-- Các câu bạn hay sai: 104
+- Các câu bạn hay sai: 278
 - Current question:
 
 When the clutch pedal is pressed, it disengages, separating the engine's power from the transmission. Releasing the clutch pedal engages it, enabling power to flow from the engine to the transmission and then to the wheels.
@@ -59,6 +59,24 @@ Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khá
 ô tô của người nước ngoài tay lái bên phải => chọn cả 3
 
 máu phin thành tia (tai nạn GT): cầm máu không trực tiếp (chặn động mạch)
+
+Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy => bình tĩnh, đư xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy
+
+khởi hành xe số tự động: đạp phanh chân hết cỡ, vào số và nhả phanh đỗ (hand brake)
+
+Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng, kéo về phí sau
+
+xuống dốc dài, về số thấp (không về số 0 hay số cao)
+
+tăng ga từ từ, giảm ga thật nhanh
+
+bộ phận giảm thanh: bắt buộc
+
+kính chắn gió ô tô: kính an toàn
+
+Động cơ diesel không nổ: có tạp chất
+
+Niên hạn xe khách (>8 chỗ): không quá 20 năm
 
 ## Các hạng bằng lái & độ tuổi
 
