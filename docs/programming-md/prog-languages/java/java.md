@@ -250,7 +250,12 @@ System.out.println(a == b);
 ## Arrays & The Collections Framework
 
 The **Java Collections Framework** provides a set of **interfaces** (like `List`, `Set`, and `Map`) and a set of classes (`ArrayList`, `HashSet`, `HashMap`, etc.) that implement those interfaces.  
-All of these are part of the java.util package.
+All of these are part of the `java.util package`
+
+- `java.util.Collection<E>` The root interface in the collection hierarchy
+- `java.util.Collections` a class consists exclusively of static methods that operate on or return collections.
+
+---
 
 - `List` - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own. 
 - `ArrayList` - a concrete class that implements the `List` interface.
@@ -827,14 +832,12 @@ In this example, the resources declared in the `try-with-resources` statement ar
 
 ## Generic
 
- [This video](https://www.youtube.com/watch?v=K1iu1kXkVoA) by John explain generic good!
-
 Generic means `generic classes`. Using Generics, it is possible to create classes that work with different data types (generic classes). An entity such as class, interface, or method that operates on a parameterized type is a **generic entity**.  
 Generic còn gọi là `parameterized types`.  
 
 A type variable can be any non-primitive type you specify: any class type, any interface type, any array type, or even another type variable. Khi pass vô generics phải là reference type or wrapper classes like `Interger` không được pass primitive type (`int`).
 
-`<T>` shorts for `<Type>`
+`<T>` is short for `<Type>`
 
 Generic thường gặp trong `ArrayList<>`
 
@@ -850,8 +853,6 @@ You can also multiple bounds.
 
 In addition to having generic classes, you can also have have generic methods. They can take arguments of different types.
 
-`<?>` is a generic wildcard
-
 [Java extends vs implements](https://stackoverflow.com/questions/10839131/implements-vs-extends-when-to-use-whats-the-difference)
 
 ```java
@@ -864,9 +865,28 @@ Interfaces do not have arguments. The `Predicate<T>` means "this is a generic In
 
 `?` is the **wildcard generic**. It means: “Some type, but I don’t know (or care) exactly which one.”
 
+### Wildcards
+
+In generic code, the question mark (`?`), called the wildcard, represents an unknown type.
+
+Upper Bounded Wildcards
+
+To write the method that works on lists of `Number` and the subtypes of `Number`, such as `Integer`, `Double`, and `Float`, you would specify `List<? extends Number>`.  
+The term `List<Number>` is more restrictive than `List<? extends Number>` because the former matches a list of type Number only, whereas the latter matches a list of type `Number` or any of its subclasses.
+
+Note that, in this context, `extends` is used in a general sense to mean either "extends" (as in classes) or `implements` (as in interfaces).
+
+---
+
+Lower Bounded Wildcards
+
+Note: You can specify an upper bound for a wildcard, or you can specify a lower bound, but you cannot specify both.
+
+To write the method that works on lists of `Integer` and the supertypes of `Integer`, such as `Integer`, `Number`, and `Object`, you would specify `List<? super Integer>`. The term `List<Integer>` is more restrictive than `List<? super Integer>` because the former matches a list of type Integer only, whereas the latter matches a list of any type that is a supertype of Integer.
+
 ## Enums
 
-You should use enum types any time you need to represent a fixed set of constants. That includes natural enum types such as the planets in our solar system and data sets where you know all possible values at compile time—for example, the choices on a menu, command line flags, and so on.
+You should use enum types any time you need to represent a **fixed set of constants**. That includes natural enum types such as the planets in our solar system and data sets where you know all possible values at compile time—for example, the choices on a menu, command line flags, and so on.
 
 The constructor for an enum type must be package-private or private access. It automatically creates the constants that are defined at the beginning of the enum body. You cannot invoke an enum constructor yourself.
 
@@ -879,9 +899,7 @@ public enum Day {
 
 Enum có thể được truyền vào class constructor dưới dạng parameter.
 
-## Annonation (@)
-
-[video](https://www.youtube.com/watch?v=DkZr7_c9ry8&t=8s) by John good!
+## Annonation (`@`)
 
 Annotations are meta-data. Annotation is proccessed by compiler or at run-time.
 

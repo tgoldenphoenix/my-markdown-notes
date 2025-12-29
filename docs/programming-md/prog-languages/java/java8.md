@@ -17,7 +17,7 @@
 
 Java 8 was released in March 2014, Java 9 in September 2017, Java 10 in March 2018, and Java 11 planned for September 2018.
 
-## method References
+## Method References
 
 Method Reference: The double colon operator (`::`))
 
@@ -285,37 +285,3 @@ static methods in Interfaces
 
 - **Static method** trong interface giống static method trong class: dùng `static` keyword, interface phải provide implementation không được hứa, static method belong to the interface.
 - The same can pretty much be done with abstract classes. The main difference is that abstract classes can have constructors, state, and behavior.
-
-## Java Concurrency
-
-Java has two, mostly separate concurrency APIs: the older API, which is usually called `block-structured concurrency` or `synchronization-based concurrency` or even “classic concurrency,” and the newer API, which is normally referred to by its Java package name, `java.util.concurrent`.
-
-The classic approach to concurrency was the only API available until Java 5. This is the language-level API that is built into the platform and depends upon the `synchronized` and `volatile` keywords.
-
-- Concurrent programming is fundamentally about performance.
-- There are basically no good reasons for implementing a concurrent algorithm if the system you are running on has sufficient performance that a serial algorithm will work.
-- Modern computer systems have multiple processing cores—even mobile phones have two or four cores today.
-- All Java programs are multithreaded, even those that have only a single application thread. 
-
-## Thread
-
-Java `threads` allow a block of code to be executed concurrently with the rest of the program.
-
-The Runnable interface represents a block of code to be executed; note that the code returns void (no result).
-
-```java
-// java.lang.Runnable
-public interface Runnable {
-    void run();
-}
-
-Thread t = new Thread(new Runnable() {
-    public void run() {
-        System.out.println("Hello world");
-    }
-});
-```
-
-### `Callable` interface
-
-k

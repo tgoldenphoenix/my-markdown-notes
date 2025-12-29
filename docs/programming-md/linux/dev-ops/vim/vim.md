@@ -174,7 +174,7 @@ Other prefixes
 Unlike many text editors, Vim makes a distinction between **real lines** and **display lines**. When the `wrap` setting is enabled (and it’s on by default), each line of text that exceeds the width of the window will display as wrapped, ensuring that no text is truncated from view. As a result, a single line in the file may be represented by multiple lines on the display
 
 - `j` down one real line
-  - `gj` down one display line
+  * `gj` down one display line
 - `k` & `gk` are similar
 - `0` go to beginning of real line
   * `g0` go to beginning of display line
