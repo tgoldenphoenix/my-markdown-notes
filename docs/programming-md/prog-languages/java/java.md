@@ -261,10 +261,10 @@ All of these are part of the `java.util package`
 - `ArrayList` - a concrete class that implements the `List` interface.
 
 - Interfaces:
-  - `List`: Ordered collection that allows duplicates
-  - `Map`: Stores key-value pairs with unique keys
+  - `interface List<E> extends Collection<E>`: Ordered collection that allows duplicates
+  - `Map<K,V>`: Stores key-value pairs with unique keys
   - `Set`: Collection of unique elements
-- Class: `ArrayList`, `HashMap`, `HashSet`
+- Class implements those interfaces: `ArrayList<E>`, `HashMap<K,V>`, `HashSet`
 
 Collection là một loại đối tượng có thể chứa các địa chỉ trỏ đến các đối tượng khác. Collection không chứa the objects themselves. Mỗi phần tử trong collection là một address, not object.
 

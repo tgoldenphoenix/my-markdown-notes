@@ -4,7 +4,7 @@ The concept of closure is mentioned in JavaScript, Python, Lua
 
 first-class citizen, first class function
 
-## Programming paradidigms
+## Programming Paradidigms
 
 The main categories include imperative, declarative, object-oriented, and functional. Within these, there are sub-paradigms like procedural, logic, and event-driven programming
 
@@ -32,6 +32,10 @@ Event-driven (hướng sự kiện): Programs respond to user actions or system 
 Giao diện website có buttons là event-driven programming
 
 These paradigms are not mutually exclusive, and many modern languages support multiple paradigms, allowing developers to choose the most suitable approach for a given task. For example, Python and JavaScript are **multi-paradigm** languages (ngôn ngữ hỗ trợ nhiều mô hình lập trình khác nhau) that support both object-oriented and functional programming
+
+## Comparing Languages
+
+C and C++ remain popular for building operating systems and various other embedded systems because of their small runtime footprint and in spite of their lack of programming safety. This lack of safety can lead to programs crashing unpredictably and exposing security holes for viruses and the like; indeed, type-safe languages such as Java and C# have supplanted C and C++ in various applications when the additional runtime footprint is acceptable.
 
 ## Async
 

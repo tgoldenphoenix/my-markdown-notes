@@ -1,6 +1,6 @@
 # Driver's License notes
 
-- Các câu bạn hay sai: 278
+- Các câu bạn hay sai: 304 (all)
 - Current question:
 
 When the clutch pedal is pressed, it disengages, separating the engine's power from the transmission. Releasing the clutch pedal engages it, enabling power to flow from the engine to the transmission and then to the wheels.
@@ -78,7 +78,17 @@ kính chắn gió ô tô: kính an toàn
 
 Niên hạn xe khách (>8 chỗ): không quá 20 năm
 
-## Các hạng bằng lái & độ tuổi
+hộp số xe ô tô: giúp xe lùi
+
+`abs`: báo hiệu hệ thống chống bó cứng phanh bị lỗi
+
+để khởi động xe, bạn phải đạp hết hành trình bàn đạp chân phanh
+
+áp xuất dầu ở mức thấp
+
+đèn táp lô 2 hình tam giác đỏ: báo hiệu xe đang tình huống nguy hiểm
+
+## Các hạng bằng lái & Độ tuổi
 
 - Người đủ `16` tuổi trở lên được điều khiển **xe gắn máy**.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1`
@@ -190,6 +200,18 @@ xích lô, ly bia, con ngựa => ý cuối
 
 - Tốc độ màu đỏ là tối đa
 - Màu xanh là tối thiểu
+
+- chiều dài đoạn đường => chọn biển 2 mũi tên thẳng đứng
+- Chiều ngang => mũi tên nằm ngang
+- chiều cao => mũi tên trên dưới
+
+- Dừng/đỗ xe ngày chẳn lẽ
+  * ngày lẻ chọn ý 1
+  * ngày chẳn chọn ý 2
+  * Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
+
+- thấy biển dấu trừ => mẹo **và - 2** (chọn đáp án có chữ **và**, không có thì chọn ý 2)
+  * Biển 1 và biển 2 => chọn
 
 ## Thi thực hành
 
