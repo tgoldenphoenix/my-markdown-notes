@@ -34,6 +34,9 @@ In Java, you are managing Memory (RAM). In SQL, you are managing Data Persistenc
 
 In java, multiple Threads within the same program try to access a shared variable, object, or memory address in RAM
 
+- recurrent (adj): that happens again and again
+- concurrent (with something): (adj) existing or happening at the same time 
+
 ## Thread Objects
 
 Java `threads` allow a block of code to be executed concurrently with the rest of the program.

@@ -32,7 +32,350 @@ In contrast, in the `imperative programming` (lập trình mệnh lệnh) paradi
 
 Since Java 8, Method & lambda are first-class citizen in Java. Class are second-class citizen.
 
-## Method References
+The idea is that calls to functions or methods can be efficiently and safely executed in parallel in the absence of mutable shared state. 
+
+### Behavior parameterization
+
+`Behavior parameterization` is a software development pattern that lets you handle frequent requirement changes. In a nutshell, it means taking a block of code and making it available without executing it. This block of code can be called later by other parts of your programs, which means that you can defer the execution of that block of code. For instance, you could pass the block of code as an argument to another method that will execute it later. As a result, the method’s behavior is parameterized based on that block of code. 
+
+This pattern is historically verbose in Java. Lambda expressions in Java 8 onward tackle the problem of verbosity.
+
+It is used to tell a `Thread` to execute a block of code or even perform GUI event handling
+
+Nếu dùng normal value like `String`, `Int`, `boolean` (`value parameterization`) để parameterize method thì không có gì đáng để bàn rồi.
+
+---
+
+You need a better way than adding lots of parameters to cope with changing requirements. One possible solution is to model your selection criteria: you’re working with apples and returning a `boolean` based on some attributes of `Apple`. For example, is it green? Is it heavier than 150 g? We call this a `predicate` (a function that returns a `boolean`). Let’s therefore define an interface to **model the selection criteria**:
+
+```java
+public interface ApplePredicate{
+    boolean test (Apple apple);
+}
+```
+
+You can now declare multiple implementations of `ApplePredicate` to represent different selection criteria:
+
+```java
+public class AppleHeavyWeightPredicate implements ApplePredicate {
+    public boolean test(Apple apple) {
+        return apple.getWeight() > 150;
+    }
+}
+
+public class AppleGreenColorPredicate implements ApplePredicate {
+    public boolean test(Apple apple) {
+        return GREEN.equals(apple.getColor());
+    }
+}
+```
+
+What you just did is related to the `strategy design pattern` (see http://en.wikipedia.org/wiki/Strategy_pattern), which lets you define a family of algorithms, encapsulate each algorithm (called a strategy), and select an algorithm at run time. In this case the family of algorithms is `ApplePredicate` and the different strategies are `AppleHeavyWeightPredicate` and `AppleGreenColorPredicate`.
+
+But how can you make use of the different implementations of `ApplePredicate`? You need your `filterApples` method to accept an `ApplePredicate` objects to test a condition on an `Apple`. This is what behavior parameterization means: the ability to tell a method to take multiple behaviors (or strategies) as parameters and use them internally to accomplish different behaviors.
+
+Nếu parameter là một interface thì arguments có thể là class implement cái interface đó.
+
+---
+
+Unfortunately, because the `filterApples` method can only take objects, you have to wrap that code inside an `ApplePredicate` object. What you’re doing is similar to passing code inline, because you’re passing a `boolean` expression through an object that implements the `test` method. You’ll see that by using lambdas, you can directly pass the expression `RED.equals(apple.getColor()) && apple.getWeight() > 150` to the `filterApples` method without having to define multiple `ApplePredicate` classes. This removes unnecessary verbosity.
+
+---
+
+behavior parameterization is great because it enables you to separate the logic of iterating the collection to filter and the behavior to apply on each element of that collection. As a consequence, you can reuse the same method and give it different behaviors to achieve different things
+
+### abstracting over `List` type
+
+There’s one more step that you can do in your journey toward abstraction. At the moment, the filterApples method works only for Apple. But you can also abstract on the List type to go beyond the problem domain you’re thinking of, as shown:
+
+```java
+public interface Predicate<T> {
+    boolean test(T t);
+}
+public static <T> List<T> filter(List<T> list, Predicate<T> p) {
+    List<T> result = new ArrayList<>();
+    for(T e: list) {
+        if(p.test(e)) {
+            result.add(e);
+        }
+    }
+    return result;
+}
+```
+
+You can now use the method filter with a List of bananas, oranges, Integers, or Strings! Here’s an example, using lambda expressions:
+
+```java
+List<Apple> redApples =
+  filter(inventory, (Apple apple) -> RED.equals(apple.getColor()));
+List<Integer> evenNumbers =
+  filter(numbers, (Integer i) -> i % 2 == 0);
+```
+
+### Real-world examples
+
+Many methods in the Java API can be parameterized with different behaviors. These methods are often used together with anonymous classes. We show four examples, which should solidify the idea of passing code for you: sorting with a `Comparator`, executing a block of code with `Runnable`, returning a result from a task using `Callable`, and GUI event handling.
+
+---
+
+Sorting with a `Comparator`
+
+From Java 8, a `List` comes with a `sort` method (you could also use `Collections.sort`). The behavior of `sort` can be parameterized using a `java.util.Comparator` object, which has the following interface:
+
+```java
+// java.util.Comparator
+public interface Comparator<T> {
+    int compare(T o1, T o2);
+}
+
+// an anonymous class
+inventory.sort(new Comparator<Apple>() {
+    public int compare(Apple a1, Apple a2) {
+      return a1.getWeight().compareTo(a2.getWeight());
+    }
+});
+
+// lambda expression
+inventory.sort(
+  (Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight()));
+```
+
+Even though `Comparator` is an interface, you can still `new` it. This is a hidden mechanic in Java. This only works for anonymous class passed as argument like the code example above.
+
+- When you write `new Comparator<Apple>() { ... }`, the Java compiler sees that you are trying to instantiate an interface. Since that’s impossible, it immediately does these things for you:
+  * It creates a hidden, unnamed class file (usually named something like `YourClassName$1.class`).
+  * It makes that hidden class `implement Comparator<Apple>`.
+  * It puts your `compare` method inside that hidden class.
+  * It then calls `new` on that hidden class, not the interface.
+
+---
+
+Executing a block of code with Runnable
+
+Java threads allow a block of code to be executed concurrently with the rest of the program. But how can you tell a thread what block of code it should run? Several threads may each run different code. What you need is a way to represent a piece of code to be executed later. Until Java 8, only objects could be passed to the `Thread` constructor, so the typical clumsy usage pattern was to pass an anonymous class containing a `run` method that returns `void` (no result). Such anonymous classes implement the Runnable interface.
+
+In Java, you can use the Runnable interface to represent a block of code to be executed; note that the code returns void (no result):
+
+```java
+// java.lang.Runnable
+public interface Runnable {
+    void run();
+}
+```
+
+You can use this interface to create threads with your choice of behavior, as follows:
+
+```java
+Thread t = new Thread(new Runnable() {
+    public void run() {
+        System.out.println("Hello world");
+    }
+});
+```
+
+But since Java 8 you can use a lambda expression, so the call to Thread would look like this:
+
+```java
+Thread t = new Thread(() -> System.out.println("Hello world"));
+```
+
+## Lambdas Expressions
+
+- Java có: `lambdas` and `Anonymous Classes`
+- Javascript có khái niệm `anonymous function`
+- In Java, lambda có thể coi như là `anonymous function` methods without declared names, but which can also be passed as arguments to a method as you can with an anonymous class.
+- While JavaScript is a `functions-first` language where a function can exist on its own, Java is strictly object-oriented. This means a Java "anonymous function" must always be tied to a Functional Interface (an interface with exactly one method).
+
+Behavior parameterization could, prior to Java 8, be encoded using anonymous classes. `Behavior parameterization` ngắn gọn khi là có thể pass a method to another method mà không cần phải tạo object (hay anonymous class).
+
+The Streams API is built on the idea of passing code to parameterize the behavior of its operations.
+
+Lambdas technically don’t let you do anything that you couldn’t do prior to Java 8. But you no longer have to write clumsy code using anonymous classes to benefit from behavior parameterization! Lambda expressions will encourage you to adopt the style of behavior parameterization
+
+You could define a method `add1` inside a class `MyMathsUtils` and then write `MyMaths-Utils::add1!` Yes, you could, but the new lambda syntax is more concise for cases where you don’t have a convenient method and class available.
+
+Từ interface `ApplePredicate` có thể có two classes implement: `AppleGreenColorPredicate` & `AppleHeavyWeightPredicate`.
+
+- Mức độ verbose từ cao xuống thấp:
+  * Classes
+  * Anonymous class
+  * lambdas
+
+A lambda expression can be understood as a concise representation of an anonymous function that can be passed around. It doesn’t have a name, but it has a list of parameters, a body, a return type, and also possibly a list of exceptions that can be thrown.
+
+A lambda expression can be passed as argument to a method or stored in a variable.
+
+```java
+// before
+Comparator<Apple> byWeight = new Comparator<Apple>() {
+    public int compare(Apple a1, Apple a2){
+        return a1.getWeight().compareTo(a2.getWeight());
+    }
+};
+// after (with lambda expression)
+Comparator<Apple> byWeight =
+    (Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight());
+```
+
+Notice that here, you can `new Comparator` which is a functional interface, not a class. It works for this case. I think it must be a functional interface for this technique to work.
+
+five examples of valid lambda expressions in Java 8.
+
+```java
+// Takes one parameter of type String and returns an int. It has no return statement as return is implied.
+(String s) -> s.length()
+  
+// Takes one parameter of type Apple and returns a boolean (whether the apple is heavier than 150 g).
+(Apple a) -> a.getWeight() > 150
+  
+// Takes two parameters of type int and returns no value (void return). Its body contains two statements (not an expression).
+(int x, int y) -> {
+    System.out.println("Result:");
+    System.out.println(x + y);
+}
+
+// Takes no parameter and returns the int 42
+() -> 42
+
+// Takes two parameters of type Apple and returns an int representing the comparison of their weights
+(Apple a1, Apple a2) -> a1.getWeight().compareTo(a2.getWeight())
+```
+
+```java
+// expression-style lambda
+(parameters) -> expression
+// block-style lambda
+(parameters) -> { statements; }
+
+// no parameters and returns void. 
+() -> {}
+// no parameters and returns a String as an expression.
+() -> "Raoul"
+// no parameters and returns a String (using an explicit return statement, within a block).  
+() -> { return "Mario"; }
+
+// curly braces are required as follows: (Integer i) -> { return "Alan" + i; }.
+(Integer i) -> return "Alan" + i; // INVALID
+
+// remove the curly braces and semicolon as follows: (String s) -> "Iron Man"
+(String s) -> { "Iron Man"; } // INVALID
+
+// Creating objects
+() -> new Apple(10)
+
+// Consuming from an object
+(Apple a) -> {
+  System.out.println(a.getWeight());
+}
+```
+
+### Where and how to use lambdas
+
+You can use a lambda expression in the context of a `functional interface`. You can pass a lambda as argument to a method that expects an object of the type of a functional interface. 
+
+```java
+List<Apple> greenApples =
+        filter(inventory, (Apple a) -> GREEN.equals(a.getColor()));
+```
+
+- A `Funtional Interface` is an interface that specifies **exactly one abstract method**. And Lambda is a shortcut to define an implementation of a FI.
+- FIs can contains other types of method (static method, default method).
+
+A functional interface có thể `extends` từ một `tagging interface`:
+
+```java
+// java.awt.event.ActionListener functional interface
+public interface ActionListener extends EventListener {
+    void actionPerformed(ActionEvent e);
+}
+```
+
+---
+
+```java
+public interface Adder {
+    int add(int a, int b);
+}
+public interface SmartAdder extends Adder {
+    int add(double a, double b);
+```
+
+Only `Adder` is a functional interface.  
+`SmartAdder` isn’t a functional interface because it specifies two abstract methods called `add` (one is inherited from `Adder`).
+
+---
+
+ Lambda expressions let you provide the implementation of the abstract method of a functional interface directly inline and **treat the whole expression as an instance of a functional interface** (more technically speaking, an instance of a **concrete implementation** of the functional interface). You can achieve the same thing with an anonymous inner class, although it’s clumsier: you provide an implementation and instantiate it directly inline.
+
+The following code is valid because `Runnable` is a functional interface defining only one abstract method, `run`:
+
+```java
+// uses a lambda
+Runnable r1 = () -> System.out.println("Hello World 1");
+// uses an anonymous class
+Runnable r2 = new Runnable() {
+    public void run() {
+        System.out.println("Hello World 2");
+    }
+};
+public static void process(Runnable r) {
+    r.run();
+}
+process(r1); // Hellow World 1
+process(r2); // Hellow World 2
+process(() -> System.out.println("Hello World 3")); // Prints “Hello World 3” with a lambda passed directly
+```
+
+Lambda don't need access modifier, no return type, no method name
+
+---
+
+If a lambda exceeds a few lines in length (so that its behavior isn’t instantly clear), you should instead use a method reference to a named method with a descriptive name instead of using an anonymous lambda. Code clarity should be your guide.
+
+You’ve seen that you can abstract over behavior and make your code adapt to requirement changes, but the process is verbose because you need to declare multiple classes that you instantiate only once. Let’s see how to improve that.
+
+### Function descriptor
+
+The signature of the abstract method of the functional interface describes the signature of the lambda expression. We call this abstract method a `function descriptor`. For example, the `Runnable` interface can be viewed as the signature of a function that accepts nothing and returns nothing (`void`) because it has only one abstract method called `run`, which accepts nothing and returns nothing (`void`).
+
+a lambda expression can be assigned to a variable or passed to a method expecting a functional interface as argument, provided the lambda expression has the same signature as the abstract method of the functional interface.
+
+```java
+public void process(Runnable r) {
+    r.run();
+}
+process(() -> System.out.println("This is awesome!!")); // This is awesome!!
+```
+
+The lambda expression `() -> System.out.println("This is awesome!!")` takes no parameters and returns `void`. This is exactly the signature of the `run` method defined in the `Runnable` interface.
+
+```java
+public Callable<String> fetch() {
+  return () -> "Tricky example ;-)";
+}
+```
+
+This example is valid because the return type of the method `fetch` is `Callable<String>`. `Callable<String>` defines a method with the signature `() -> String` when `T` is replaced with `String`. Because the lambda `() -> "Tricky example ;-)"` has the signature `() -> String`, the lambda can be used in this context.
+
+### Anonymous Classes
+
+Java has mechanisms called `anonymous classes`, which let you declare and instantiate a class at the same time. They enable you to improve your code one step further by making it a little more concise. But they’re not entirely satisfactory.
+
+Anonymous classes are like the `local classes` (a named class defined in a block - could be class or interface) that you’re already familiar with in Java. But anonymous classes don’t have a name. They allow you to declare and instantiate a class at the same time. In short, they allow you to create ad hoc implementations.
+
+But anonymous classes are still not good enough. First, they tend to be bulky because they take a lot of space. Second, many programmers find them confusing to use.
+
+Verbosity in general is bad; it discourages the use of a language feature because it takes a long time to write and maintain verbose code, and it’s not pleasant to read! Good code should be easy to comprehend at a glance.
+
+Using anonymous class, you still have to create an object and explicitly implement a method to define a new behavior (for example, the method `test` for `Predicate` or the method `handle` for `EventHandler`).
+
+To achieve behaviour parameterization, from verbose to concise: name class > anonymous class > lambda
+
+### Type checking, type inference, and restrictions
+
+There’s no need to fully understand the next section right away, and you may wish to come back to it later and move on to section 3.6 about method references.
+
+### Method References
 
 Method Reference (giá trị tham chiếu tới hàm): The double colon operator (`::`))
 
@@ -107,73 +450,15 @@ This method reference is shorthand for the lambda expression `(Apple apple) -> a
   2. A method reference to an instance method of an arbitrary type (for example, the method length of a String, written String::length)
   3. A method reference to an **instance method of an existing object or expression** (for example, suppose you have a local variable `expensiveTransaction` that holds an object of type `Transaction`, which supports an instance method `getValue`; you can write `expensiveTransaction::getValue`)
 
-## Lambdas Expressions
-
-- Java có: `lambdas` and `Anonymous Classes`
-- Javascript có khái niệm `anonymous function`
-- While JavaScript is a `functions-first` language where a function can exist on its own, Java is strictly object-oriented. This means a Java "anonymous function" must always be tied to a Functional Interface (an interface with exactly one method).
-
-Behavior parameterization could, prior to Java 8, be encoded using anonymous classes. `Behavior parameterization` ngắn gọn khi là có thể pass a method to another method mà không cần phải tạo object (hay anonymous class).
-
-The Streams API is built on the idea of passing code to parameterize the behavior of its operations.
-
-Lambdas technically don’t let you do anything that you couldn’t do prior to Java 8. But you no longer have to write clumsy code using anonymous classes to benefit from behavior parameterization! Lambda expressions will encourage you to adopt the style of behavior parameterization
-
-You could define a method `add1` inside a class `MyMathsUtils` and then write `MyMaths-Utils::add1!` Yes, you could, but the new lambda syntax is more concise for cases where you don’t have a convenient method and class available.
-
-Từ interface `ApplePredicate` có thể có two classes implement: `AppleGreenColorPredicate` & `AppleHeavyWeightPredicate`.
-
-- Mức độ verbose từ cao xuống thấp:
-  * Classes
-  * Anonymous class
-  * lambdas
-
----
-
-You can use a lambda expression in the context of a functional interface. In the code shown here, you can pass a lambda as second argument to the method filter because it expects an object of type Predicate<T>, which is a functional interface. 
-
-```java
-List<Apple> greenApples =
-        filter(inventory, (Apple a) -> GREEN.equals(a.getColor()));
-```
-
-- A `Funtional Interface` is an interface that specifies exactly one abstract method. And Lambda is a shortcut to define an implementation of a FI.
-- FIs can contains other types of method (static method, default method).
-
- Lambda expressions let you provide the implementation of the abstract method of a functional interface directly inline and treat the whole expression as an instance of a functional interface (more technically speaking, an instance of a concrete implementation of the functional interface). You can achieve the same thing with an anonymous inner class, although it’s clumsier: you provide an implementation and instantiate it directly inline.
-
-The following code is valid because `Runnable` is a functional interface defining only one abstract method, `run`:
-
-```java
-// uses a lambda
-Runnable r1 = () -> System.out.println("Hello World 1");
-// uses an anonymous class
-Runnable r2 = new Runnable() {
-    public void run() {
-        System.out.println("Hello World 2");
-    }
-};
-public static void process(Runnable r) {
-    r.run();
-}
-process(r1);
-process(r2);
-process(() -> System.out.println("Hello World 3"));
-```
-
-Lambda don't need access modifier, no return type, no method name
-
----
-
-If a lambda exceeds a few lines in length (so that its behavior isn’t instantly clear), you should instead use a method reference to a named method with a descriptive name instead of using an anonymous lambda. Code clarity should be your guide.
-
 ## Functional Interface
 
-- Functional Interfaces in the Java API:
-  * `java.util.Comparator`
+- Some Functional Interfaces in the Java API:
+  * `java.util.Comparator<T>`
   * `java.lang.Runnable`
-  * `java.util.concurrent.Callable`
+  * `java.util.concurrent.Callable<V>`
   * `java.util.function.Predicate<T>`: A `predicate` in Java is a function that returns a `boolean` value. Ví dụ method truyền `ApplePredicate` vào `filterApple()` as a filtering criteria.
+  * `Supplier<T>` with function descriptors `() -> T`
+  * `IntBinaryOperator` used to combine two values `(int a, int b) -> a * b`
 
 The signature of the abstract method of a functional interface is called a `function descriptor`.
 
@@ -271,13 +556,141 @@ roster
     .forEach(email -> System.out.println(email));
 ```
 
+---
+
+In order to use different lambda expressions, you need a set of functional interfaces that can describe common `function descriptors` (lambda-expression signatures). Several functional interfaces are already available in the Java API.  
+The Java library designers for Java 8 have helped you by introducing several new functional interfaces inside the `java.util.function` package.
+ 
 ### Predicate
 
 The word `predicate` is often used in mathematics to mean something function-like that takes a value for an argument and returns true or false.
 
+The `java.util.function.Predicate<T>` interface defines an abstract method named `test` that accepts an object of generic type `T` and returns a `boolean`. It’s available out of the box!
+
+```java
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t);
+}
+public <T> List<T> filter(List<T> list, Predicate<T> p) {
+    List<T> results = new ArrayList<>();
+    for(T t: list) {
+        if(p.test(t)) {
+            results.add(t);
+        }
+    }
+    return results;
+}
+Predicate<String> nonEmptyStringPredicate = (String s) -> !s.isEmpty();
+List<String> nonEmpty = filter(listOfStrings, nonEmptyStringPredicate);
+```
+
+### Consumer
+
+The `java.util.function.Consumer<T>` interface defines an abstract method named `accept` that takes an object of generic type `T` and returns no result (`void`). You might use this interface when you need to access an object of type `T` and perform some operations on it.
+
+```java
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+public <T> void forEach(List<T> list, Consumer<T> c) {
+    for(T t: list) {
+        c.accept(t);
+    }
+}
+// print all the elements of the list
+forEach(
+         Arrays.asList(1,2,3,4,5),
+        (Integer i) -> System.out.println(i)
+       );
+```
+
+### Function
+
+The `java.util.function.Function<T, R>` interface defines an abstract method named `apply` that takes an object of generic type `T` as input and returns an object of generic type `R`. You might use this interface when you need to define a lambda that maps information from an input object to an output (for example, extracting the weight of an apple or mapping a string to its length). In the listing that follows, we show how you can use it to create a method map to transform a list of `Strings` into a list of `Integers` containing the length of each String.
+
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+    R apply(T t);
+}
+public <T, R> List<R> map(List<T> list, Function<T, R> f) {
+    List<R> result = new ArrayList<>();
+    for(T t: list) {
+        result.add(f.apply(t));
+    }
+    return result;
+}
+// [7, 2, 6]
+List<Integer> l = map(
+                       Arrays.asList("lambdas", "in", "action"),
+                       (String s) -> s.length()
+               );
+```
+
+### Primitive specializations
+
+To refresh a little: every Java type is either a reference type (for example, `Byte`, `Integer`, `Object`, `List`) or a primitive type (for example, `int`, `double`, `byte`, `char`). But generic parameters (for example, the `T` in `Consumer<T>`) can be bound only to reference types. This is due to how generics are internally implemented. As a result, in Java there’s a mechanism to convert a primitive type into a corresponding reference type. This mechanism is called `boxing`. The opposite approach (converting a reference type into a corresponding primitive type) is called `unboxing`. Java also has an autoboxing mechanism to facilitate the task for programmers: boxing and unboxing operations are done automatically. For example, this is why the following code is valid (an `int` gets boxed to an `Integer`):
+
+```java
+List<Integer> list = new ArrayList<>();
+for (int i = 300; i < 400; i++){
+    list.add(i);
+}
+```
+
+But this comes with a performance cost. Boxed values are a wrapper around primitive types and are stored on the heap. Therefore, boxed values use more memory and require additional memory lookups to fetch the wrapped primitive value.
+
+Java 8 also added a specialized version of the functional interfaces we described earlier in order to avoid autoboxing operations when the inputs or outputs are primitives. For example, in the following code, using an `IntPredicate` avoids a boxing operation of the value `1000`, whereas using a `Predicate<Integer>` would box the argument `1000` to an `Integer` object:
+
+```java
+public interface IntPredicate {
+    boolean test(int t);
+}
+IntPredicate evenNumbers = (int i) -> i % 2 == 0;
+evenNumbers.test(1000); // True (no boxing)
+
+Predicate<Integer> oddNumbers = (Integer i) -> i % 2 != 0;
+oddNumbers.test(1000); // False (boxing)
+```
+
+In general, the appropriate primitive type precedes the names of functional interfaces that have a specialization for the input type parameter (for example, `DoublePredicate`, `IntConsumer`, `LongBinaryOperator`, `IntFunction`, and so on). The `Function` interface also has variants for the output type parameter: `ToIntFunction<T>`, `IntToDoubleFunction`, and so on.
+
+### What about exceptions?
+
+You have two options if you need the body of a lambda expression to throw an exception: define your own functional interface that declares the checked exception, or wrap the lambda body with a try/catch block.
+
+Decalre a new functional interface Buffered-Reader-Processor that explicitly declared an IOException:
+
+```java
+@FunctionalInterface
+public interface BufferedReaderProcessor {
+    String process(BufferedReader b) throws IOException;
+}
+BufferedReaderProcessor p = (BufferedReader br) -> br.readLine();
+```
+
+But you may be using an API that expects a functional interface such as `Function<T, R>` and there’s no option to create your own. You’ll see in the next chapter that the Streams API makes heavy use of the functional interfaces from table 3.2. In this case, you can explicitly catch the checked exception:
+
+```java
+Function<BufferedReader, String> f =
+  (BufferedReader b) -> {
+    try {
+      return b.readLine();
+    }
+    catch(IOException e) {
+      throw new RuntimeException(e);
+    }
+  };
+```
+
 ## `Optional<T>`
 
-Java 8 introduced the `Optional<T>` class that, if used consistently, can help you avoid null-pointer exceptions. It’s a container object that may or may not contain a value. `Optional<T>` includes methods to explicitly deal with the case where a value is absent, and as a result you can avoid null-pointer exceptions. It uses the type system to allow you to indicate when a variable is anticipated to potentially have a missing value.
+Common functional languages (SML, OCaml, Haskell) also provide further constructs to help programmers. One of these is avoiding `null` by explicit use of more descriptive data types.
+
+Java 8 introduced the `Optional<T>` class that, if used consistently, can help you avoid `null-pointer exceptions`. It’s a container object that may or may not contain a value.  
+The `Optional<T>` class includes methods to explicitly deal with the case where a value is absent, and as a result you can avoid null-pointer exceptions. It uses the type system to allow you to indicate when a variable is anticipated to potentially have a missing value.
 
 ## The Streams API
 
