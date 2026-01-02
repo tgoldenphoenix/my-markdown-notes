@@ -1,19 +1,19 @@
-# Modern Java & Java 8
+# Modern Java: Java 8 & Beyond
 
 ## Java Version & History
 
 - Companies and tutorials often stick to Long-Term Support (LTS) versions, because they’re supported for many years.
-  * Java 8 → LTS
-  * Java 11 → LTS
-  * Java 17 → LTS
+  - Java 8 → LTS
+  - Java 11 → LTS
+  - Java 17 → LTS
 - Non-LTS versions (9, 10, 12, 13, 14, 15, 16) only had 6 months of support, so many skipped them.
 
 - Java 8 (or Java SE 8, codenamed "Oak") was officially released by Oracle on March 18, 2014.
-  * stream API
-  * Lambda expression & functional interfaces: provide support for functional programming paradigms
-  * method references (the double colon operator (`::`))
-  * Optional class: A new class for handling null values safely, reducing NullPointerException errors and improving code robustness
-  * static and default methods in interfaces
+  - stream API
+  - Lambda expression & functional interfaces: provide support for functional programming paradigms
+  - method references (the double colon operator (`::`))
+  - Optional class: A new class for handling null values safely, reducing NullPointerException errors and improving code robustness
+  - static and default methods in interfaces
 
 Java 8 was released in March 2014, Java 9 in September 2017, Java 10 in March 2018, and Java 11 planned for September 2018.
 
@@ -32,11 +32,11 @@ In contrast, in the `imperative programming` (lập trình mệnh lệnh) paradi
 
 Since Java 8, Method & lambda are first-class citizen in Java. Class are second-class citizen.
 
-The idea is that calls to functions or methods can be efficiently and safely executed in parallel in the absence of mutable shared state. 
+The idea is that calls to functions or methods can be efficiently and safely executed in parallel in the absence of mutable shared state.
 
 ### Behavior parameterization
 
-`Behavior parameterization` is a software development pattern that lets you handle frequent requirement changes. In a nutshell, it means taking a block of code and making it available without executing it. This block of code can be called later by other parts of your programs, which means that you can defer the execution of that block of code. For instance, you could pass the block of code as an argument to another method that will execute it later. As a result, the method’s behavior is parameterized based on that block of code. 
+`Behavior parameterization` is a software development pattern that lets you handle frequent requirement changes. In a nutshell, it means taking a block of code and making it available without executing it. This block of code can be called later by other parts of your programs, which means that you can defer the execution of that block of code. For instance, you could pass the block of code as an argument to another method that will execute it later. As a result, the method’s behavior is parameterized based on that block of code.
 
 This pattern is historically verbose in Java. Lambda expressions in Java 8 onward tackle the problem of verbosity.
 
@@ -70,7 +70,7 @@ public class AppleGreenColorPredicate implements ApplePredicate {
 }
 ```
 
-What you just did is related to the `strategy design pattern` (see http://en.wikipedia.org/wiki/Strategy_pattern), which lets you define a family of algorithms, encapsulate each algorithm (called a strategy), and select an algorithm at run time. In this case the family of algorithms is `ApplePredicate` and the different strategies are `AppleHeavyWeightPredicate` and `AppleGreenColorPredicate`.
+What you just did is related to the `strategy design pattern` (see <http://en.wikipedia.org/wiki/Strategy_pattern>), which lets you define a family of algorithms, encapsulate each algorithm (called a strategy), and select an algorithm at run time. In this case the family of algorithms is `ApplePredicate` and the different strategies are `AppleHeavyWeightPredicate` and `AppleGreenColorPredicate`.
 
 But how can you make use of the different implementations of `ApplePredicate`? You need your `filterApples` method to accept an `ApplePredicate` objects to test a condition on an `Apple`. This is what behavior parameterization means: the ability to tell a method to take multiple behaviors (or strategies) as parameters and use them internally to accomplish different behaviors.
 
@@ -143,10 +143,10 @@ inventory.sort(
 Even though `Comparator` is an interface, you can still `new` it. This is a hidden mechanic in Java. This only works for anonymous class passed as argument like the code example above.
 
 - When you write `new Comparator<Apple>() { ... }`, the Java compiler sees that you are trying to instantiate an interface. Since that’s impossible, it immediately does these things for you:
-  * It creates a hidden, unnamed class file (usually named something like `YourClassName$1.class`).
-  * It makes that hidden class `implement Comparator<Apple>`.
-  * It puts your `compare` method inside that hidden class.
-  * It then calls `new` on that hidden class, not the interface.
+  - It creates a hidden, unnamed class file (usually named something like `YourClassName$1.class`).
+  - It makes that hidden class `implement Comparator<Apple>`.
+  - It puts your `compare` method inside that hidden class.
+  - It then calls `new` on that hidden class, not the interface.
 
 ---
 
@@ -197,9 +197,9 @@ You could define a method `add1` inside a class `MyMathsUtils` and then write `M
 Từ interface `ApplePredicate` có thể có two classes implement: `AppleGreenColorPredicate` & `AppleHeavyWeightPredicate`.
 
 - Mức độ verbose từ cao xuống thấp:
-  * Classes
-  * Anonymous class
-  * lambdas
+  - Classes
+  - Anonymous class
+  - lambdas
 
 A lambda expression can be understood as a concise representation of an anonymous function that can be passed around. It doesn’t have a name, but it has a list of parameters, a body, a return type, and also possibly a list of exceptions that can be thrown.
 
@@ -271,7 +271,7 @@ five examples of valid lambda expressions in Java 8.
 
 ### Where and how to use lambdas
 
-You can use a lambda expression in the context of a `functional interface`. You can pass a lambda as argument to a method that expects an object of the type of a functional interface. 
+You can use a lambda expression in the context of a `functional interface`. You can pass a lambda as argument to a method that expects an object of the type of a functional interface.
 
 ```java
 List<Apple> greenApples =
@@ -334,7 +334,7 @@ If a lambda exceeds a few lines in length (so that its behavior isn’t instantl
 
 You’ve seen that you can abstract over behavior and make your code adapt to requirement changes, but the process is verbose because you need to declare multiple classes that you instantiate only once. Let’s see how to improve that.
 
-### Function descriptor
+### Function Descriptor
 
 The signature of the abstract method of the functional interface describes the signature of the lambda expression. We call this abstract method a `function descriptor`. For example, the `Runnable` interface can be viewed as the signature of a function that accepts nothing and returns nothing (`void`) because it has only one abstract method called `run`, which accepts nothing and returns nothing (`void`).
 
@@ -375,6 +375,17 @@ To achieve behaviour parameterization, from verbose to concise: name class > ano
 
 There’s no need to fully understand the next section right away, and you may wish to come back to it later and move on to section 3.6 about method references.
 
+the Java compiler could infer the types of the parameters of a lambda expression by using the context in which the lambda appears.
+
+```java
+// Comparator represents a function descriptor (T, T) -> int
+inventory.sort((Apple a1, Apple a2)
+                -> a1.getWeight().compareTo(a2.getWeight())
+);
+// equivalent
+inventory.sort((a1, a2) -> a1.getWeight().compareTo(a2.getWeight()));
+```
+
 ### Method References
 
 Method Reference (giá trị tham chiếu tới hàm): The double colon operator (`::`))
@@ -401,7 +412,7 @@ File[] hiddenFiles = new File(".").listFiles(new FileFilter() {
 File[] hiddenFiles = new File(".").listFiles(File::isHidden);
 ```
 
-Analogous to using an `object reference` (giá trị tham chiếu đối tượng) when you pass an object around (and object references are created by `new`), in Java 8 when you write `File::isHidden`, you create a `method reference` (giá trị tham chiếu tới một hàm), which can similarly be passed around. 
+Analogous to using an `object reference` (giá trị tham chiếu đối tượng) when you pass an object around (and object references are created by `new`), in Java 8 when you write `File::isHidden`, you create a `method reference` (giá trị tham chiếu tới một hàm), which can similarly be passed around.
 
 Vì mình đọc API doc và biết trong class `java.io.File` có sẵn method `isHidden()` nên dùng method reference là cách làm nhanh nhất.  
 Nếu giả sử không có sẵn method `isHidden()` thì mình sẽ nghĩ tới dùng lambda (anonymous function). The lambda syntax is more concise for cases where you don’t have a convenient method and class available.
@@ -412,9 +423,9 @@ Nếu giả sử không có sẵn method `isHidden()` thì mình sẽ nghĩ tớ
 Programs using these concepts are said to be written in `functional-programming style`; this phrase means “writing programs that pass functions around as first-class values.”
 
 - Khi một method (like `filterApples()`) accept a functional interface as its parameter (as the filtering condition):
-  * You can pass in a method reference
-  * Or you can pass in a lambda expression
-  * Cả 2 techniques này có mục đích chung là: provide the implementation for the one abstract method required by the functional interface
+  - You can pass in a method reference
+  - Or you can pass in a lambda expression
+  - Cả 2 techniques này có mục đích chung là: provide the implementation for the one abstract method required by the functional interface
 
 ---
 
@@ -430,15 +441,17 @@ Arrays.sort(rosterAsArray, Person::compareByAge);
 
 The method reference `Person::compareByAge` is semantically the same as the lambda expression `(a, b) -> Person.compareByAge(a, b)`
 
-Method references let you reuse existing method definitions and pass them like lambdas. In some cases they appear more readable and feel more natural than using lambda expressions.
+- Method references let you reuse existing method definitions and pass them like lambdas. In some cases they appear more readable and feel more natural than using lambda expressions.  
+- Method references can be seen as shorthand for lambdas calling only a specific method.
 
-Method references can be seen as shorthand for lambdas calling only a specific method.
+The basic idea is that if a lambda represents “call this method directly,” it’s best to refer to the method by name rather than by a description of how to call it. Indeed, a method reference lets you create a lambda expression from an existing method implementation.
 
 When you need a method reference, the target reference is placed before the delimiter `::` and the name of the method is provided after it.
 
 For example, `Apple::getWeight` is a method reference to the method `getWeight` defined in the Apple class. (Remember that no brackets are needed after getWeight because you’re not calling it at the moment, you’re merely quoting its name.)  
-This method reference is shorthand for the lambda expression `(Apple apple) -> apple.getWeight()`. 
+This method reference is shorthand for the lambda expression `(Apple apple) -> apple.getWeight()`.
 
+- `() -> Thread.currentThread().dumpStack()` == `Thread.currentThread()::dumpStack`
 - `(str, i) -> str.substring(i)` = `String::substring`
 - `(String s) -> System.out.println(s)` = `System.out::println`
 - `(String s) -> this.isValidName(s)` = `this::isValidName`
@@ -447,18 +460,104 @@ This method reference is shorthand for the lambda expression `(Apple apple) -> a
 
 - There are three main kinds of method references:
   1. A method reference to a static method (for example, the method `parseInt` of `Integer`, written `Integer::parseInt`)
-  2. A method reference to an instance method of an arbitrary type (for example, the method length of a String, written String::length)
+  2. A method reference to an instance method of an arbitrary type (for example, the method length of a String, written `String::length`)
   3. A method reference to an **instance method of an existing object or expression** (for example, suppose you have a local variable `expensiveTransaction` that holds an object of type `Transaction`, which supports an instance method `getValue`; you can write `expensiveTransaction::getValue`)
+
+- `(String s) -> s.toUpperCase()` = `String::toUpperCase`
+- `() -> expensiveTransaction.getValue()` = `expensiveTransaction::getValue`
+
+```java
+private boolean isValidName(String string) {
+    return Character.isUpperCase(string.charAt(0));
+}
+// Predicate<String>
+filter(words, this::isValidName)
+```
+
+### Constructor references
+
+You can create a reference to an existing constructor using its name and the keyword `new` as follows: `ClassName::new`. It works similarly to a reference to a static method.
+
+For example, suppose there’s a zero-argument constructor. This fits the signature `() -> Apple` of `Supplier`; you can do the following:
+
+```java
+// Constructor reference to the default Apple() constructor
+Supplier<Apple> c1 = Apple::new;
+// Calling Supplier’s get method produces a new Apple.
+Apple a1 = c1.get();
+
+// equivalent code
+Supplier<Apple> c1 = () -> new Apple(); // Lambda expression to create an Apple using the default constructor
+Apple a1 = c1.get();
+```
+
+If you have a constructor with signature `Apple(Integer weight)`, it fits the signature of the `Function` interface, so you can do this:
+
+```java
+Function<Integer, Apple> c2 = Apple::new;
+Apple a2 = c2.apply(110);
+
+// equivalent
+Function<Integer, Apple> c2 = (weight) -> new Apple(weight);
+Apple a2 = c2.apply(110);
+```
+
+### Compose lambda expressions
+
+```java
+// Reversed order
+// sort the apples by decreasing weight
+inventory.sort(comparing(Apple::getWeight).reversed());
+// .reversed() a a default method of Comparator
+```
+
+```java
+// Chaining Comparators
+inventory.sort(comparing(Apple::getWeight)
+         .reversed() // Sorts by decreasing weight
+         .thenComparing(Apple::getCountry)); // Sorts further by country when two apples have same weight
+```
+
+---
+
+The `Predicate` interface includes three methods that let you reuse an existing Predicate to create more complicated ones: `negate`, `and`, and `or`.
+
+```java
+// an apple that is not red
+Predicate<Apple> notRedApple = redApple.negate(); // Produces the negation of the existing Predicate object redApple
+// an apple is both red and heavy
+Predicate<Apple> redAndHeavyApple =
+    redApple.and(apple -> apple.getWeight() > 150);
+// apples that are red and heavy (above 150 g) or only green apples
+Predicate<Apple> redAndHeavyAppleOrGreen =
+    redApple.and(apple -> apple.getWeight() > 150)
+            .or(apple -> GREEN.equals(a.getColor()));
+```
+
+Note that the precedence of methods `and` and `or` in the chain is from left to right—there is no equivalent of bracketing. So `a.or(b).and(c)` must be read as `(a || b) && c`. Similarly, `a.and(b).or(c)` must be read as as `(a && b) || c`.
+
+---
+
+The Function interface comes with two default methods for this, andThen and `compose`, which both return an instance of `Function`.
+
+The method `andThen` returns a function that first applies a given function to an input and then applies another function to the result of that application. For example, given a function `f` that increments a number `(x -> x + 1)` and another function `g` that multiples a number by 2, you can combine them to create a function `h` that first increments a number and then multiplies the result by 2:
+
+```java
+Function<Integer, Integer> f = x -> x + 1;
+Function<Integer, Integer> g = x -> x * 2;
+Function<Integer, Integer> h = f.andThen(g);
+int result = h.apply(1); // This returns 4.
+```
 
 ## Functional Interface
 
 - Some Functional Interfaces in the Java API:
-  * `java.util.Comparator<T>`
-  * `java.lang.Runnable`
-  * `java.util.concurrent.Callable<V>`
-  * `java.util.function.Predicate<T>`: A `predicate` in Java is a function that returns a `boolean` value. Ví dụ method truyền `ApplePredicate` vào `filterApple()` as a filtering criteria.
-  * `Supplier<T>` with function descriptors `() -> T`
-  * `IntBinaryOperator` used to combine two values `(int a, int b) -> a * b`
+  - `java.util.Comparator<T>`
+  - `java.lang.Runnable`
+  - `java.util.concurrent.Callable<V>`
+  - `java.util.function.Predicate<T>`: A `predicate` in Java is a function that returns a `boolean` value. Ví dụ method truyền `ApplePredicate` vào `filterApple()` as a filtering criteria.
+  - `Supplier<T>` with function descriptors `() -> T`
+  - `IntBinaryOperator` used to combine two values `(int a, int b) -> a * b`
 
 The signature of the abstract method of a functional interface is called a `function descriptor`.
 
@@ -560,7 +659,7 @@ roster
 
 In order to use different lambda expressions, you need a set of functional interfaces that can describe common `function descriptors` (lambda-expression signatures). Several functional interfaces are already available in the Java API.  
 The Java library designers for Java 8 have helped you by introducing several new functional interfaces inside the `java.util.function` package.
- 
+
 ### Predicate
 
 The word `predicate` is often used in mathematics to mean something function-like that takes a value for an argument and returns true or false.
@@ -695,7 +794,7 @@ The `Optional<T>` class includes methods to explicitly deal with the case where 
 ## The Streams API
 
  A `stream` is a sequence of data items that are conceptually produced one at a time. A program might read items from an input stream one by one and similarly write items to an output stream.
- 
+
 **Stream operations** are divided into intermediate operations (return `Stream<T>`) and terminal operations (return a result of definite type). Intermediate operations allow chaining.  
 Operations on streams don’t change the source.
 
@@ -794,7 +893,7 @@ Parallelism in Java and no shared mutable state
 
  First, the library handles partitioning—breaking down a big stream into several smaller streams to be processed in parallel for you.  
  Second, this parallelism almost for free from streams, works only if the methods passed to library methods like filter don’t interact (for example, by having mutable shared objects). But it turns out that this restriction feels natural to a coder (see, by way of example, our `Apple::isGreenApple` example). Although the primary meaning of functional in functional programming means “using functions as first-class values,” it often has a secondary nuance of “no interaction during execution between components.”
- 
+
 ## Default Methods and Java modules
 
 Prior to Java 8 you can **update (or evolve) an interface** only if you update all the classes that implement it—a logistical nightmare! This issue is resolved in Java 8 by `default methods`. Java 8 added default methods to support **evolvable interfaces**.
@@ -803,9 +902,9 @@ Prior to Java 8 you can **update (or evolve) an interface** only if you update a
 - Unlike regular interface methods, we declare them with the `default` keyword at the beginning of the method signature, and they **provide an implementation**. Classes that implement the interface không cần phải implement default methods nữa.
 - Mục đích của default method là để cho phép add more method to interface mà không phải viết thêm code trong các class that had already implemented that interface. It allowes interfaces to evolve without breaking existing implementations, improving the flexibility of the language
 
-- When a class implements several interfaces that define the same default methods thì: 
-  * (1) class đó phải khai báo cụ thể muốn dùng default method của interface nào hoặc
-  * (2) class đó phải tự provide implementation của riêng nó cho default method (giống abstract method).
+- When a class implements several interfaces that define the same default methods thì:
+  - (1) class đó phải khai báo cụ thể muốn dùng default method của interface nào hoặc
+  - (2) class đó phải tự provide implementation của riêng nó cho default method (giống abstract method).
 
 an interface can now contain method signatures for which an implementing class doesn’t provide an implementation. Then who implements them? The missing method bodies are given as part of the interface (hence default implementations) rather than in the implementing class.  
 This provides a way for an interface designer to enlarge an interface beyond those methods that were originally planned—without breaking existing code. Java 8 allows the existing default keyword to be used in interface specifications to achieve this.
@@ -840,3 +939,27 @@ relatively few programmers will need to write default methods themselves and bec
 ---
 
 But wait a second. A single class can implement multiple interfaces, right? If you have multiple default implementations in several interfaces, does that mean you have a form of multiple inheritance in Java? Yes, to some extent. We show in chapter 13 that there are some rules that prevent issues such as the infamous `diamond inheritance problem` in C++.
+
+## Java 11
+
+k
+
+## The language and the platform
+
+- The Java language—The Java language is the statically typed, object-oriented language. One obvious point about source code written in the Java language is that it’s human-readable (or it should be!).
+- The Java platform—The platform is the software that provides a `runtime environment`. It’s the `JVM` that links and executes your code as provided to it in the form of (not human-readable) class files. It doesn’t directly interpret Java language source files but instead requires them to be **converted to class files first**.
+
+The link between the language and platform is the class file `.class`.
+
+Java source code is transformed into `.class` files, then manipulated at load time before being JIT-compiled.
+
+`javac` compile `.java` (human-readable) into `.class`. The `.class` files are loaded into a JVM. Class loading is an essential feature of the Java platform.
+
+Is Java a compiled (biên dịch) or interpreted language (thông dịch)? => Both.
+
+The standard picture of Java is of a language that’s compiled into `.class` files before being run on a JVM. If pressed, many developers can also explain that bytecode starts off by being interpreted by the JVM but will undergo just-in-time (JIT) compilation at some later point.
+
+JVM bytecode is more like a halfway house between human-readable source and machine code. In the technical terms of compiler theory, bytecode is really a form of `intermediate language (IL)` rather than actual machine code. This means that the process of turning Java source into bytecode isn’t really compilation in the sense that a C++ or a Go programmer would understand it, and `javac` isn’t a compiler in the same sense as `gcc` is—it’s really a class file generator for Java source code. The real compiler in the Java ecosystem is the `JIT compiler`.
+
+The existence of the source code compiler, `javac`, leads many developers to think of Java as a static, compiled language. One of the big secrets is that at runtime, the Java environment is actually very dynamic.
+

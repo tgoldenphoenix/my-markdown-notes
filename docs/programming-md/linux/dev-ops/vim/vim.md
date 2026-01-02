@@ -10,7 +10,7 @@ auto-indent entire file
 
 ## Starting `vim` & Basic Commands
 
-`vim --version` tells you the current Vim version and all available features marked with either `+` or `-`.
+`vim --version` tells you the current Vim version and all available features marked with either `+` or `-`.
 
 Open a file in vim: `vim filename.c` nếu file chưa tồn tại thì vim sẽ create a new file. Neovim command là `nvim`. You can also open multiple files at once.
 
@@ -149,8 +149,8 @@ By itself, `g` does nothing. It's a "prefix" that waits for a second key to exec
 - `~` in normal mode toggles the case of the character currently under the cursor & moves the cursor one step to the right.
 - `~` in visual mode toggles the case of the selected area.
 - `g~` toggle case case over a specific distance (motion) without selecting it first.
-  * `g~iw` toggle case in word
-  * `g~$` toggle case to end of line
+  - `g~iw` toggle case in word
+  - `g~$` toggle case to end of line
 - `gu{motion}` Make text lowercase (e.g., guw = "go lowercase word").
 - `gU{motion}` Make text uppercase (e.g., gUw = "go uppercase word").
 - `gUaw` convert current word to uppercase
@@ -174,15 +174,15 @@ Other prefixes
 Unlike many text editors, Vim makes a distinction between **real lines** and **display lines**. When the `wrap` setting is enabled (and it’s on by default), each line of text that exceeds the width of the window will display as wrapped, ensuring that no text is truncated from view. As a result, a single line in the file may be represented by multiple lines on the display
 
 - `j` down one real line
-  * `gj` down one display line
+  - `gj` down one display line
 - `k` & `gk` are similar
 - `0` go to beginning of real line
-  * `g0` go to beginning of display line
+  - `g0` go to beginning of display line
   
 - Go to beginning of the line:
-  * `0` goes to beginning of real line; moves the cursor to the absolute start of the line (column 1).
-  * `^` Moves the cursor to the first non-whitespace character on the line.
-  * `g^` To first nonblank character of display line
+  - `0` goes to beginning of real line; moves the cursor to the absolute start of the line (column 1).
+  - `^` Moves the cursor to the first non-whitespace character on the line.
+  - `g^` To first nonblank character of display line
 - Go to end of the line: `$`
 - `g$` To end of display line
 - `g_` to go to the last non-blank character in the current line.
@@ -208,8 +208,8 @@ These mappings make `j` and `k`move down and up by display lines, while `gj`and 
 ### Word-Wise Navigation
 
 - Go to start of next word: `w` or `W`:
-  * `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
-  * `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
+  - `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
+  - `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
 - Use `w` for smaller, more fine-grain jumps, and `W` for bigger jumps across code separated only by spaces.
 - Backward to start of current / previous word: `b` or `B` (works similar to `w` and `W`).
 
@@ -237,10 +237,10 @@ Match Navigation
 - `yt{` copy everything up until the `{`
 
 - Line Number Navigation
-  * `gg`    Go to the first line of file
-  * `G`     Go to the last line of file
-  * `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
-  * `n%`    Go to n% in file
+  - `gg`    Go to the first line of file
+  - `G`     Go to the last line of file
+  - `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
+  - `n%`    Go to n% in file
 
 `<Ctrl-o>` to jump back-ward giống như khi đọc `:h`. Use `<Ctrl-]>` to jump to link.
 
@@ -342,12 +342,12 @@ The `mm` and [\`m] commands make a handy pair. Respectively, they set the mark `
 
 - The marks that Vim sets for us automatically can be really handy:
   - [``] Position before the last jump within current file (giống `<C-o>`)
-  - \`. Location of last change
-  - \`^ Location of last insertion
-  - \`[ Start of last change or yank
-  - \`] End of last change or yank
-  - \`< Start of last visual selection
-  - \`> End of last visual selection
+  - `. Location of last change
+  - `^ Location of last insertion
+  - `[ Start of last change or yank
+  - `] End of last change or yank
+  - `< Start of last visual selection
+  - `> End of last visual selection
 
 ### Jump Between Matching Parentheses
 
@@ -355,9 +355,9 @@ Vim provides a motion that lets us move between opening and closing pairs of par
 By enabling the `matchit.vim` plugin, we can extend this behavior to work on pairs of XML tags as well as on keywords in some programming languages.
 
 - The `%` motion command jumps between opening & closing parentheses `(), [] or {}}`. You can jump from the open parentheses to the closing one and vice versa.
-  * If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
-  * If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
-  * It's useful for quickly navigating code blocks or checking if brackets are balanced.
+  - If your cursor is on an opening bracket like `(`, `{`, or `[`, pressing `%` jumps to the corresponding closing bracket.
+  - If your cursor is on a closing bracket like `)`, `}`, or `]`, pressing `%` jumps back to the corresponding opening bracket.
+  - It's useful for quickly navigating code blocks or checking if brackets are balanced.
 
 When we use the `%` command, Vim automatically sets a mark for the location from which we jumped. We can snap back to it by pressing [``] (press the backtick two times).
 
@@ -375,8 +375,8 @@ Search is a form of Command Line mode. Depending on how we entered Command Line 
 
 - You can scan for **character** within the **current line** with `f{char}` or `t{char}` (both are considered motions).
 - `f` position the cursor on top of the specified character whereas `t` takes you **till** (right before) the first letter of the match. So:
-  * If you want to search for "h" and land on "h", use `fh`.
-  * If you want to search for first "h" and land right before the match, use `th`.
+  - If you want to search for "h" and land on "h", use `fh`.
+  - If you want to search for first "h" and land right before the match, use `th`.
 - The search start with the cursor position and continuing to the end of the **current line**.
 
 - If you want to go to the next occurrence of the last `f` search, use `;`.
@@ -407,9 +407,7 @@ In normal mode, move the cursor to any **word** (not character) > press `*` to s
 
 ### The `:substitute` command
 
-The `:substitute` command in Vim (often shortened to `:s`) is used to find and replace text.
-
-It is an Ex command.
+The `:substitute` Ex command in Vim (often shortened to `:s`) is used to find and replace text.
 
 `:s/target/replacement`
 
@@ -744,7 +742,7 @@ A capical `R` will enters Replace mode until  `<ESC>`  is pressed. Replace mode 
 - Paste after cursor block: `p`; pressing an uppercase `P` will paste the selected text before cursor block.
 - Note that using `p` after `yy` or `dd` will paste the new line below the current line and `P` will paste the new line above the current line.
 
-`v  motion  :w FILENAME`  saves the Visually selected lines in file FILENAME 
+`v  motion  :w FILENAME`  saves the Visually selected lines in file FILENAME
 
 Each time we move our cursor in Visual mode, we change the bounds of the selection.
 
@@ -787,13 +785,13 @@ Visual mode is perfectly adequate for one-off changes. And even though Vim’s m
 
 ### Command-Line Mode
 
-> In the beginning, there was ed. ed begat ex, and ex begat vi, and vi begat Vim.
+> In the beginning, there was `ed`. `ed` begat `ex`, and `ex` begat `vi`, and `vi` begat `Vim`.
 
-Command-Line mode prompts us to enter an Ex command, a search pattern, or an expression.
+Command-Line mode prompts us to enter: an Ex command, a search pattern, or an expression.
 
 `vi` traces its ancestry back to a line editor called ex, which is why we have **Ex commands**. For some line-oriented tasks, Ex commands are still the best tool for the job.
 
-When we press the `:` key, Vim switches into Command-Line mode. Command-Line mode is also enabled when we press `/` to bring up a search prompt or `<C-r>=` to access the expression register.
+When we press the `:` key, Vim switches into `Command-Line mode`. Command-Line mode is also enabled when we press `/` to bring up a search prompt or `<C-r>=` to access the expression register.
 
 - `:[range]delete [x]` Delete specified lines into register `[x]`
 - `:[range]yank [x]` Yank specified lines into register `[x]`
@@ -812,20 +810,21 @@ The `:normal` command provides a convenient way to make the same change on a ran
 ---
 
 Many Ex commands can be given a `[range]` of lines to act upon. We can specify the start and end of a range with either a line number, a mark, or a pattern.  
-`:{start},{end}`: both the {start} and {end} are addresses. We can use line numbers, patter or a mark for addresses.  
+`:{start},{end}`: both the `{start}` and `{end}` are addresses. We can use line numbers, patter or a mark for addresses.  
 When we specify a `[range]`, it always represents a set of contiguous lines. It’s also possible to execute an Ex command on a set of noncontiguous lines using the :global command.
 
 The `:print` or `:p` command doesn’t perform any useful work, but it helps to illustrate which lines make up a range.
 
 - `:{line-number}` jump to `{line-number}`
-- `:1` first line of the file
+- `:1` jumps to first line of the file
 - `:$` jump to last line of the file (giống `G`). In normal mode, `$` jumps to end of line.
-- `0` Virtual line above first line of the file
-- `.` Line where the cursor is placed
-- `'m` Line containing mark m
-- `'<` Start of visual selection
-- `'>` End of visual selection
-- `%` The entire file, all the lines in the current file (shorthand for `:1,$`)
+- `:0` refers to the virtual line above first line of the file
+- `:.` Line where the cursor is placed
+- `:'m` Line containing mark m
+- `:'<` Start of visual selection
+  * `:'>` End of visual selection
+  * => `:'<,'>`
+- `:%` The entire file, all the lines in the current file (shorthand for `:1,$`)
 
 Line 0 doesn’t really exist, but it can be useful as an address in certain con-texts. In particular, it can be used as the final argument in the `:copy {address}` and :move {address} commands when we want to copy or move a range of lines to the top of a file.
 
@@ -835,11 +834,15 @@ Line 0 doesn’t really exist, but it can be useful as an address in certain con
 
 `:.,$p` print from current line to end of file.
 
-The command `:%p` is equivalent to running `:1,$p`. Using this shorthand in combination with the `:substitute` command is very common:
+The command `:%p` is equivalent to running `:1,$p` (print all). Using this shorthand `:%` in combination with the `:substitute` command is very common:
 
 `:%s/Practical/Pragmatic/` => This command tells Vim to replace the first occurrence of “Practical” with “Pragmatic” on each line.
 
-You can select a range of lines using visual mode, then press `:` key, the command-line prompt will be prepopulated with the range `:'<,'>`. It looks cryptic, but you can think of it simply as a range standing for the visual selection. Then we can specify our Ex command, and it will execute on every selected line.
+---
+
+You can **specify a range of lines for ex-command using visual mode**: enter visual-line mode, select, then press `:` key, the command-line prompt will be prepopulated with the range `:'<,'>`. It looks cryptic, but you can think of it simply as a range standing for the visual selection. Then we can specify our Ex command, and it will execute on every selected line.
+
+`:'<,'>s/const/let` => substitute `const` by `let` in the visually selected range of lines
 
 ---
 
@@ -860,7 +863,7 @@ The `.` symbol stands for the current line, so `:.,.+3` is equivalent to :2,5 in
 
 ---
 
-The `:copy` command (and its shorthand :t) lets us duplicate one or more lines from one part of the document to another, while the :move command lets us place them somewhere else in the document.
+The `:copy` command (and its shorthand `:t`) lets us duplicate one or more lines from one part of the document to another, while the :move command lets us place them somewhere else in the document.
 
 The format of the copy command goes like this: `:[range]copy {address}`  
 We could shorten the :copy command to only two letters, as `:co`. Or we can be even more succinct by using the `:t` command, which is a synonym for :copy. As a mnemonic, you can think of it as copy TO.
@@ -875,7 +878,7 @@ In this example `:6copy.`, we could have used a variant of yyp to duplicate the 
 
 ---
 
-The :move command looks similar to the :copy command: `:[range]move {address}`. We can shorten it to a single letter: `:m`.
+The `:move` command looks similar to the :copy command: `:[range]move {address}`. We can shorten it to a single letter: `:m`.
 
 Dùng visual-line mode select range of lines, press `:'<,'>m$` to move to the end of file.
 
@@ -883,7 +886,7 @@ Remember that the '<,'> range stands for the visual selection. We could easily m
 
 ---
 
-If we want to run a Normal mode command on a series of consecutive lines, we can do so using the `:normal` command. When used in combination with the dot command or a macro, we can perform repetitive tasks with very little effort
+If we want to **run a Normal-mode command on a series of consecutive lines**, we can do so using the `:normal` command. When used in combination with the dot command or a macro, we can perform repetitive tasks with very little effort
 
 Use visual-line mode to select range of line > `:'<,'>normal .` => For each line in the visual selection, execute the Normal mode `.` command.
 

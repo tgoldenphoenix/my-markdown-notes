@@ -110,11 +110,11 @@ It returns a boolean value: `true` if the object is an instance of the specified
 Every primitive type in the Java language has a JDK counterpart class. [xem table 4](https://developer.ibm.com/learningpaths/java-get-started/java-language-basics/#listing1)
 
 - Primitives:
-  * Live in the stack, access fast
-  * Need the least amount of memory (they are primitive)
+  - Live in the stack, access fast
+  - Need the least amount of memory (they are primitive)
 - Object wrapper counterparts:
-  * Live in the heap, access slow
-  * Need more memory (bytes)
+  - Live in the heap, access slow
+  - Need more memory (bytes)
 - Đây không phải vấn đề lớn cần để tâm.
 
 ```java
@@ -257,7 +257,7 @@ All of these are part of the `java.util package`
 
 ---
 
-- `List` - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own. 
+- `List` - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own.
 - `ArrayList` - a concrete class that implements the `List` interface.
 
 - Interfaces:
@@ -587,8 +587,6 @@ Reference variable can only point to object not interface.
 
 ---
 
-
-
 ## The four main principles of OOP
 
 The core principle is abstraction. Without it, the others couldn't exist.
@@ -682,8 +680,8 @@ The compiler automatically provides a no-argument, **default constructor** for a
 Exception khác với Errors:
 
 - `Error`: nếu ct gặp lỗi thì dừng ct luôn; severe problems often related to the Java Virtual Machine (JVM) or system resources, that a reasonable application should not attempt to catch or recover from.
-  * Typically, errors indicate issues beyond the program's control and necessitate changes to the system environment or application architecture rather than in-code handling.
-  * Example: `OutOfMemoryError`, `StackOverflowError (tràn ngăn xếp)`, `VirtualMachineError`, `FileNotFoundException`
+  - Typically, errors indicate issues beyond the program's control and necessitate changes to the system environment or application architecture rather than in-code handling.
+  - Example: `OutOfMemoryError`, `StackOverflowError (tràn ngăn xếp)`, `VirtualMachineError`, `FileNotFoundException`
 
 - `Exception`: cũng có dừng có khi không. Khi chúng ta có biện pháp bảo vệ (bảo hộ) thì ct ko dừng. Example: `NullPointerException`, `IOException`, `ArrayIndexOutOfBoundsException`, divide by 0, lỗi kết nối mạng.
 - Có 2 loại exception:
@@ -716,8 +714,8 @@ Thật ra cứ để code ra ngoài `try catch` thì nó cũng chạy y chang `f
 2. `return 0;` trong `catch{}` thì finally giả cũng không được chạy, chỉ chạy `finally {}` thật.
 
 - Ứng dụng của `finally`:
-  * close connection to database
-  * close files đang mở
+  - close connection to database
+  - close files đang mở
 
 In the try-block, after an exception is thrown the rest of the code in the try block after that exception will NOT be executed.
 
@@ -817,11 +815,11 @@ The following example reads the first line from a file. It uses an instance of `
 
 ```java
 static String readFirstLineFromFile(String path) throws IOException {
-	    try (FileReader fr = new FileReader(path);
-	         BufferedReader br = new BufferedReader(fr)) {
-	        return br.readLine();
-	    }
-	}
+     try (FileReader fr = new FileReader(path);
+          BufferedReader br = new BufferedReader(fr)) {
+         return br.readLine();
+     }
+ }
 ```
 
 In this example, the resources declared in the `try-with-resources` statement are a `FileReader` and a `BufferedReader`. The declaration statements of these resources appear within parentheses immediately after the `try` keyword.
@@ -880,9 +878,11 @@ Note that, in this context, `extends` is used in a general sense to mean either 
 
 Lower Bounded Wildcards
 
-Note: You can specify an upper bound for a wildcard, or you can specify a lower bound, but you cannot specify both.
+**Note**: You can specify an upper bound for a wildcard, or you can specify a lower bound, but you cannot specify both.
 
-To write the method that works on lists of `Integer` and the supertypes of `Integer`, such as `Integer`, `Number`, and `Object`, you would specify `List<? super Integer>`. The term `List<Integer>` is more restrictive than `List<? super Integer>` because the former matches a list of type Integer only, whereas the latter matches a list of any type that is a supertype of Integer.
+To write the method that works on lists of `Integer` and the supertypes of `Integer`, such as `Number`, and `Object`, you would specify `List<? super Integer>`. The term `List<Integer>` is more restrictive than `List<? super Integer>` because the former matches a list of type Integer only, whereas the latter matches a list of any type that is a supertype of Integer.
+
+`java.util.List.sort(Comparator<? super E> c)` expects a `Comparator` object as argument. Type `E` or any of its parent type.
 
 ## Enums
 
