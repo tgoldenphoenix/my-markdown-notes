@@ -249,7 +249,7 @@ System.out.println(a == b);
 
 ## Arrays & The Collections Framework
 
-The **Java Collections Framework** provides a set of **interfaces** (like `List`, `Set`, and `Map`) and a set of classes (`ArrayList`, `HashSet`, `HashMap`, etc.) that implement those interfaces.  
+The **Java Collections Framework** provides a set of **interfaces** (like `List`, `Set`, and `Map`) and a set of classes (the most common are `ArrayList`, `HashSet`, `HashMap`) that implement those interfaces.  
 All of these are part of the `java.util package`
 
 - `java.util.Collection<E>` The root interface in the collection hierarchy

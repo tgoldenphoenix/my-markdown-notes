@@ -963,3 +963,94 @@ JVM bytecode is more like a halfway house between human-readable source and mach
 
 The existence of the source code compiler, `javac`, leads many developers to think of Java as a static, compiled language. One of the big secrets is that at runtime, the Java environment is actually very dynamic.
 
+## Enhanced type inference (the `var` keyword)
+
+Java has historically had a reputation as a verbose language. However, in recent versions, the language has evolved to make more and more use of `type inference`. This feature of the `source code compiler` enables the compiler to work out some of the type information in programs automatically. As a result, it doesn’t need to be told everything explicitly.
+
+The aim of type inference is to reduce boilerplate content, remove duplication, and allow for more concise and readable code.
+
+This trend started with Java 5, when generic methods were introduced. Generic methods permit a very limited form of type inference of generic type arguments, so that instead of having to explicitly provide the exact type that is needed, like this:
+
+```java
+List<Integer> empty = Collections.<Integer>emptyList();
+// the generic type parameter can be omitted on the right-hand side, like so:
+List<Integer> empty = Collections.emptyList();
+```
+
+Code below declares that you have some users, whom you identify by userid (which is an integer), and each user has a set of properties (modeled as a map of string to strings) specific to that user. The compiler work out the type information on the right side.
+
+```java
+// prior to java 7
+Map<Integer, Map<String, String>> usersLists =
+                        new HashMap<Integer, Map<String, String>>();
+// from java 7 onward
+Map<Integer, Map<String, String>> usersLists = new HashMap<>();
+```
+
+Because the shortened type declaration looks like a diamond, this form is called “diamond syntax.”
+
+In Java 8, more type inference was added to support the introduction of lambda expressions, like this example where the type inference algorithm can conclude that the type of `s` is a `String`:
+
+```java
+Function<String, Integer> lengthFn = s -> s.length();
+```
+
+---
+
+In modern Java, type inference has been taken one step further, with the arrival of `Local Variable Type Inference (LVTI)`, otherwise known as `var`. This feature was **added in Java 10** and allows the developer to infer the types of variables, instead of the types of values, like this:
+
+```java
+var names = new ArrayList<String>();
+```
+
+This is implemented by making `var` a reserved, “magic” type name rather than a language keyword. Developers can still in theory use `var` as the name of a variable, method, or package.
+
+The intention of `var` is to reduce verbosity in Java code and to be familiar to programmers coming to Java from other languages. It does NOT introduce dynamic typing, and all Java variables **continue to have static types at all times**—you just don’t need to write them down explicitly in all cases.
+
+Type inference in Java is local, and in the case of var, the type inference algorithm examines only the declaration of the local variable. This means it cannot be used for fields, method arguments, or return types.
+
+`var` is implemented solely in the source code compiler (`javac`) and has no runtime or performance effect whatsoever.
+
+## Small changes in Java 11
+
+Collections factories (JEP 213)
+
+add simple factory methods to the relevant interfaces, exploiting the fact that Java 8 added the ability to have static methods on interfaces.
+
+```java
+Set<String> set = Set.of("a", "b", "c");
+var list = List.of("x", "y");
+```
+
+For maps, a different factory method, `ofEntries()`, is used in combination with a static helper method, entry()
+
+```java
+Map.ofEntries(
+    entry(k1, v1),
+    entry(k2, v2),
+    // ...
+    entry(kn, vn));
+```
+
+the factory methods produce instances of immutable types. These class are new implementations of the Java Collections interfaces that are immutable—they are not the familiar, mutable classes (such as `ArrayList` and `HashMap`). Attempts to modify instances of these types will result in an exception being thrown.
+
+```java
+jshell> var ints = List.of(2, 3, 5, 7);
+ints ==> [2, 3, 5, 7]
+ 
+jshell> ints.getClass();
+$2 ==> class java.util.ImmutableCollections$ListN
+```
+
+---
+
+Single-file source-code programs (JEP 330)
+
+The usual way that Java programs are executed is by compiling source code to a class file and then starting up a virtual machine process that acts as an execution container to interpret the bytecode of the class.  
+This is very different from languages like Python, Ruby, and Perl, where the source code of a program is interpreted directly. The Unix environment has a long history of these types of scripting languages, but Java has not traditionally been counted among them.
+
+With the arrival of JEP 330, Java 11 offers a new way to execute programs. Source code can be compiled in memory and then executed by the interpreter without ever producing a `.class` file on disk. This gives a user experience that is like Python and other scripting languages.
+
+## Java modules
+
+k
