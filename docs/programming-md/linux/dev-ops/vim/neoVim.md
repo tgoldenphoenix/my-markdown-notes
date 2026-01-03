@@ -23,25 +23,36 @@ Trong i3 có mod key, trong vim có **leader key**.
 
 Plugins are installed (by package manager such as Lazy.nvim and Packer) inside `~/.local/share/nvim`
 
-[vim.o](https://neovim.io/doc/user/lua-guide.html#_vim.o): behaves like :set
-vim.go: behaves like :setglobal\
+- [vim.o](https://neovim.io/doc/user/lua-guide.html#_vim.o): behaves like `:set`
+- vim.go: behaves like :setglobal
 
 - `vim` is for latex
 - `lvim` is lazy vim for markdown notes
 
-**Save session:**
+Neovim uses the Lua programming language for plugin development (and configuration) in addition to the native VimScript that its sibling uses.
 
-## Runtimepath
+However, where most Vim plugins also run on Neovim, the inverse is not always true, and there are Lua plugins that only work with Neovim.
 
-The `after/` directory [here](https://neovim.discourse.group/t/neovim-after-folder/3318/3)
+## LazyVim
 
-## Nerds font
+To get the best Vim editing experience, you want a GPU accelerated terminal. What’s that mean? Basically that you will be using the chip designed to render photo-realistic video for rendering source code.
+
+- kitty has good documentation, alacritty; wezterm bad documentation
+- Windows Terminal does claim to be GPU accelerated
+
+Install terminal font and configure your terminal to use it.
+
+The `Lazy.nvim plugin manager` should not be confused with `LazyVim` itself, though both are maintained by the same person.
+
+`<space>l` open the plugin manager. Press `q` to close it.
+
+Sync to running install, clean, and update in a single action
+
+press the spacebar to enter “Space mode”. Space mode is a LazyVim concept; it does not exist in a raw Neovim installation.
+
+`Dashboard mode` là cái dashboard khi mới mở neovim lên
 
 ## Navigating project, File tree
-
-**TODO:**
-
-- telescope
 
 Telescope is a fuzzy finder, dùng chung với LSP. Mở file trực tiếp đòi hỏi phải nhớ project structure trong đầu (which is helpful) và nó là cách nhanh nhất để navigate files.
 

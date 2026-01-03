@@ -9,7 +9,7 @@ The classic approach to concurrency was the only API available until Java 5. Thi
 - Concurrent programming is fundamentally about performance.
 - There are basically no good reasons for implementing a concurrent algorithm if the system you are running on has sufficient performance that a serial algorithm will work.
 - Modern computer systems have multiple processing cores—even mobile phones have two or four cores today.
-- All Java programs are multithreaded, even those that have only a single application thread. 
+- All Java programs are multithreaded, even those that have only a single application thread.
 
 ---
 
@@ -35,7 +35,7 @@ In Java, you are managing Memory (RAM). In SQL, you are managing Data Persistenc
 In java, multiple Threads within the same program try to access a shared variable, object, or memory address in RAM
 
 - recurrent (adj): that happens again and again
-- concurrent (with something): (adj) existing or happening at the same time 
+- concurrent (with something): (adj) existing or happening at the same time
 
 ## Thread Objects
 
@@ -81,8 +81,9 @@ Only one thread can be progressing through any of an object’s synchronized blo
 
 - Only objects—not primitives—can be locked.
 - Locking an array of objects doesn’t lock the individual objects.
-- A static synchronized method locks the Class object, because there’s no instance object to lock. 
+- A static synchronized method locks the Class object, because there’s no instance object to lock.
 
 ---
 
 `Thread Interference` happens when two operations, running in different threads, but acting on the same data, interleave. This means that the two operations consist of multiple steps, and the sequences of steps overlap.
+

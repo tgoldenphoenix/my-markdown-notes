@@ -27,7 +27,7 @@ Write changes to file (save file): `:write` or `:w`. If it is a new file, you ne
 `:w {filename}` save the current Vim file as filename to disk.
 
 write & quit: `:wq`  
-`:x` is also write & quit but it only writes (saves) the file if there have been changes. If there are no changes, it just quits without saving whereas `:wp`Always writes (saves) the file, even if no changes were made, and then quits.
+`:x` is also write & quit but it only writes (saves) the file if there have been changes. If there are no changes, it just quits without saving whereas `:wp` always writes (saves) the file, even if no changes were made, and then quits.
 
 Also being a terminal command, you can combine `vim` with many other terminal commands. For example, you can redirect the output of the `ls` command to be edited in Vim with `ls -l | vim -`.
 
@@ -333,7 +333,7 @@ Vim does nothing to indicate that a mark has been set, but if you’ve done it r
 
 - Vim provides two Normal mode commands for **jumping to a mark**. (Pay attention—they look similar!):
   - `’{mark}` (using a single quote) moves to the line where a mark was set, positioning the cursor on the first non-whitespace character.
-  - The \`{mark} (using backtick) command moves the cursor to the exact position where a mark was set, restoring the line and the column at once.
+  - The `` \`{mark} `` (using backtick) command moves the cursor to the exact position where a mark was set, restoring the line and the column at once.
 - If you commit only one of these commands to memory, go with [\`{mark}]. Whether you care about restoring the exact position or just getting to the right line, this command will get you there. The only time you have to use the `’{mark}` form is in the context of an Ex command.
 
 The `mm` and [\`m] commands make a handy pair. Respectively, they set the mark `m` and jump to it.
@@ -449,7 +449,27 @@ In Vim’s terminology, we don’t deal with a clipboard but instead with regist
 
 Let's say you `yy` a line, then `dd` another line. Now you want to paste the line you yanked. Instead of typing `p` (deleting also copy in Vim), you type `"0p`. The `"0"` register stores the last thing that you yank, not by deleting & copy
 
-To paste the text from register a ten times, do `10"ap`
+To paste the text from register a ten times, do `10"ap`
+
+---
+
+The Named Registers (`"a-"z`)
+
+We can specify which register we want to use by prefixing the command with `"{register}`. If we don’t specify a register, then Vim will use the unnamed register.
+
+Vim has one named register for each letter of the alphabet (see `:h quote_alpha`)
+
+When we address a named register with a lowercase letter, it overwrites the specified register, whereas when we use an uppercase letter, it appends to the specified register.
+
+- `"ayiw`  yank the current word into register `a`
+- `"bdd` cut the current line into register b
+- `"ap`paste the word from register `a`
+- `"bp`paste the line from register `b`
+
+- In insert mode, `<C-r>{register}` to paste text from register (không dùng `"{register}p`). Cái này giống `<C-v>` bình thường. Trong neovim có plugin hiện register content.
+- `Ctrl-r` in normal mode is redo (undo an undo).
+- `<C-r>"` insert the contents of the unnamed register
+- The backtick \` and single quote `'` is used to jumps to a mark
 
 ---
 
@@ -480,21 +500,6 @@ As the name suggests, the yank register is set only when we use the `y{motion}` 
 
 ---
 
-The Named Registers (`"a-"z`)
-
-We can specify which register we want to use by prefixing the command with `"{register}`. If we don’t specify a register, then Vim will use the unnamed register.
-
-Vim has one named register for each letter of the alphabet (see `:h quote_alpha`)
-
-When we address a named register with a lowercase letter, it overwrites the specified register, whereas when we use an uppercase letter, it appends to the specified register.
-
-- `"ayiw`  yank the current word into register `a`
-- `"bdd` cut the current line into register b
-- `"ap`paste the word from register `a`
-- `"bp`paste the line from register `b`
-
----
-
 The Black Hole Register `"_`
 
 You might be wondering what Vim’s equivalent is for really deleting text—that is, how can you remove text from the document and not copy it into any registers? Vim’s answer is a special register called the black hole, from which nothing returns. The **black hole register** is addressed by the `_` symbol (see `:h quote_`), so `"_d{motion}` performs a true deletion (instead of "cut").
@@ -505,9 +510,9 @@ This can be useful if we want to delete text without overwriting the contents of
 
 The System Clipboard (`"+`) and Selection (`"*`) Registers
 
-All of the registers that we’ve discussed so far are internal to Vim. If we want to copy some text from inside of Vim and paste it into an external program (or vice versa), then we have to use one of the system clipboards.
+All of the registers that we’ve discussed so far are internal to Vim. If we want to copy some text from inside of Vim and paste it into an **external program** (or vice versa), then we have to use one of the `system clipboards`.
 
-Vim’s plus register references the system clipboard and is addressed by the `+` symbol (see `:h quote+`)
+Vim’s plus register `"+` references the system clipboard and is addressed by the `+` symbol (see `:h quote+`)
 
 If we use the cut or copy command to capture text in an external application, then we can paste it inside Vim using `"+p` command (or `<C-r>+` from the Insert mode). Conversely, if we prefix Vim’s yank or delete commands with `"+`, the specified text will be captured in the system clipboard. That means we can easily paste it inside other applications
 
@@ -536,12 +541,6 @@ Vim provides a handful of registers whose values are set implicitly. These are k
 When we use the `p` command in Visual mode, Vim replaces the selection with the contents of the specified register (see `:h v_p`)
 
 We can get away with using the unnamed register for both the yank and put operations because there’s no delete step. Instead, we combine the delete and put operations into a single step that replaces the selection.
-
----
-
-In insert mode, `<C-r>{register}` to paste text from register. Cái này giống `<C-v>` bình thường.
-
-`<C-r>"` insert the contents of the unnamed register
 
 ## Macros
 
@@ -678,12 +677,13 @@ NOTE:  You can also read the output of an external command.  For example, `:r !l
 
 `:e ~/.vimrc` switch to editing a new file.
 
+### Insert Mode
+
 - To enter insert mode:
   - `i` before the focus block or `I` to insert to beginning of the line (equal `^i`)
   - After the cursor (appending): `a` or `A` append to end of line (equal `$a`)
-  - open a new line below the cursor: `o` | `O` (upper-case) open new line above (equal `ko`).
-
-### Insert Mode
+  - open a new line below the cursor: `o`; uppercase `O` will open new line above (equal `ko`).
+  - `gi` go to the last place you entered Insert mode, and enter Insert mode again
 
 - `^h` delete back one character (equal backspace)
 - `^w` delete back one word
@@ -702,6 +702,16 @@ From insert mode: `<C-r>{register}` paste text from `{register}`. Can also be us
 
 ---
 
+**Replace mode** is identical to Insert mode, except that it overwrites existing text in the document.
+
+To replace the character under the cursor: `r`. For example: type  `rx`  to replace the character at the cursor with the character "x". You can replace "x" for other character.
+
+A capical `R` will enters Replace mode until  `<ESC>`  is pressed. Replace mode is like Insert mode, but every typed character deletes an existing character.
+
+`x` delete the character under the cursor and store it in unname register by default.
+
+---
+
 The **expression register** is addressed by the `=` symbol. From Insert mode we can access it by typing `<C-r>=`. This opens a prompt at the bottom of the screen where we can type the expression that we want to evaluate. When done, we hit `<CR>`, and Vim inserts the result at our current position in the document
 
 !!! Cái này hiện chưa làm được
@@ -716,16 +726,6 @@ From insert mode: `<C-k>{char1}{char2}`
 - `<C k>12` type ½
 - `14`, `34`
 - `:h digraphs-default`, `:h digraphs-table`
-
----
-
-**Replace mode** is identical to Insert mode, except that it overwrites existing text in the document.
-
-To replace the character under the cursor: `r`. For example: type  `rx`  to replace the character at the cursor with the character "x". You can replace "x" for other character.
-
-A capical `R` will enters Replace mode until  `<ESC>`  is pressed. Replace mode is like Insert mode, but every typed character deletes an existing character.
-
-`x` delete the character under the cursor
 
 ### Visual Mode
 
@@ -806,6 +806,10 @@ When we press the `:` key, Vim switches into `Command-Line mode`. Command-Line m
 We can use Ex commands to read and write files (`:edit` and `:write`), to create tabs (`:tabnew`) or split windows (`:split`), or to interact with the argument list (`:prev/:next`) or the buffer list (:bprev/:bnext). In fact, Vim has an Ex command for just about everything
 
 The `:normal` command provides a convenient way to make the same change on a range of lines
+
+`Ctrl-r{register}` also work in command-line mode like in insert mode
+
+Tab-completion in command-line mode: use `tab` and `S-tab` or `^p` & `^n` to cycle through the options. Use `^-y` to accept the option
 
 ---
 

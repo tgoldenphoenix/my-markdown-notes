@@ -940,11 +940,7 @@ relatively few programmers will need to write default methods themselves and bec
 
 But wait a second. A single class can implement multiple interfaces, right? If you have multiple default implementations in several interfaces, does that mean you have a form of multiple inheritance in Java? Yes, to some extent. We show in chapter 13 that there are some rules that prevent issues such as the infamous `diamond inheritance problem` in C++.
 
-## Java 11
-
-k
-
-## The language and the platform
+## The language and the Platform
 
 - The Java language—The Java language is the statically typed, object-oriented language. One obvious point about source code written in the Java language is that it’s human-readable (or it should be!).
 - The Java platform—The platform is the software that provides a `runtime environment`. It’s the `JVM` that links and executes your code as provided to it in the form of (not human-readable) class files. It doesn’t directly interpret Java language source files but instead requires them to be **converted to class files first**.
@@ -1053,4 +1049,36 @@ With the arrival of JEP 330, Java 11 offers a new way to execute programs. Sourc
 
 ## Java modules
 
-k
+Java 9 introduces Java Platform Modules (also known as JPMS, Jigsaw, or just “modules”). This is a major enhancement and change to the Java platform that had been discussed for many years.
+
+This will enable you to use JDK and third-party modules in your build as well as packaging apps or libraries as modules.
+
+I don't need to know this for now...
+
+## Class files and bytecode
+
+Java `.class` files contains bytecode.
+
+class loading is the process by which the JVM locates and activates a new type for use in a running program. Central to that discussion are the `Class` objects that represent types in the JVM. These concepts build into the major language feature known as reflection (or Core Reflection).
+
+class loading is the process by which new classes are incorporated into a running JVM process.
+
+The arrival of the modular JVM introduces some (small) changes to class loading (prior to Java8)
+
+`javap` is used for examining and dissecting class files
+
+`Java Hotspot`
+
+### Class loading and class objects
+
+Java is not the only language that uses the JVM. As long as a language can be compiled into Java Bytecode (the `.class` file format), the JVM will run it. Example: Kotlin, Scala, Groovy
+
+A `.class` file defines a type for the JVM, complete with fields, methods, inheritance information, annotations, and other metadata. A class is the fundamental unit of program code that the Java platform will understand, accept, and execute.
+
+One way of looking at the JVM is that it is an execution container. In this view, the purpose of the JVM is to consume class files and execute the bytecode they contain. To achieve this, the JVM must retrieve the contents of the class file as a data stream of bytes, convert it to a useable form, and add it to the running state.
+
+## The Java Virtual Machine
+
+The Java Virtual Machine knows nothing of the Java programming language, only of a particular binary format, the class file format. A class file contains `Java Virtual Machine instructions` (or `bytecodes`) and a symbol table, as well as other ancillary information.
+
+Compiled code to be executed by the Java Virtual Machine is represented using a hardware- and operating system-independent binary format, typically (but not necessarily) stored in a file, known as the class file format. The class file format precisely defines the representation of a class or interface
