@@ -68,6 +68,7 @@ Both delete `d` and change `c` save deleted text into register.
 - `r` change the character under the cursor in normal mode
 - `x` deletes the character under the (block) cursor in normal mode. Không thể dùng với `.`.
 - `s` delete the character under the cursor and enter insert mode. Có thể dùng với `.` để repeat.
+  * In lazyvim, this becomes `flash.nvim`
 
 `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
 anki
@@ -181,13 +182,15 @@ Unlike many text editors, Vim makes a distinction between **real lines** and **d
   
 - Go to beginning of the line:
   - `0` goes to beginning of real line; moves the cursor to the absolute start of the line (column 1).
-  - `^` Moves the cursor to the first non-whitespace character on the line.
+  - `^` Moves the cursor to the first non-whitespace character on the line (where the text begins).
   - `g^` To first nonblank character of display line
 - Go to end of the line: `$`
 - `g$` To end of display line
 - `g_` to go to the last non-blank character in the current line.
 
 `y^` yank to the start of the line.
+
+`0` is the only numeric key that maps to a command because the others all start a count. But it wouldn’t make sense to start a count with `0`, so we get to use it for “move to the zeroth column”.
 
 If you want to go to the column `n` in the current line, you can use `n|`.
 
@@ -209,12 +212,19 @@ These mappings make `j` and `k`move down and up by display lines, while `gj`and 
 
 - Go to start of next word: `w` or `W`:
   - `w` defines a "word" is a sequence of letters, digits, and underscores, OR a sequence of other non-blank characters (like punctuation), separated by whitespace, `:`, `-`, etc (configurable).
-  - `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
+  - Shifted `W` defines a "WORD" is simply a sequence of any non-blank characters, separated **only by whitespace** (spaces, tabs, newlines).
 - Use `w` for smaller, more fine-grain jumps, and `W` for bigger jumps across code separated only by spaces.
 - Backward to start of current / previous word: `b` or `B` (works similar to `w` and `W`).
 
+```txt
+myObj.methodName('foo', 'bar', 'baz')
+-----ww---------w-w--w--ww--w--ww--w---->
+------------------------W------W-------->
+```
+
 - Forward to end of current / next word: `e` & `E`
-- Backward to end of previous word `ge` or `gE`
+- Backward to end of previous word `ge` or `gE` (go to end of previous word). You can use `be` (but this is two motion)
+  * `4ge` works as you would expect but `g4e` does not work
 
 - `ea` Append at the end of the current word
 - `gea` append at the end of the previous word
@@ -239,7 +249,7 @@ Match Navigation
 - Line Number Navigation
   - `gg`    Go to the first line of file
   - `G`     Go to the last line of file
-  - `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. `:<line number>` do the same thing for example: `:1206`
+  - `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. You can also use the ex-command `:<line number>` which do the same thing. For example: `:1206`
   - `n%`    Go to n% in file
 
 `<Ctrl-o>` to jump back-ward giống như khi đọc `:h`. Use `<Ctrl-]>` to jump to link.
@@ -254,10 +264,9 @@ Type `CTRL-g` to show your location in the file and the file status.
 
 Scrolling
 
-- `CTRL+f` - move cursor Forward full page
-- `CTRL+b` - move cursor Backwards full page
-- `CTRL+u` - move cursor Up half page
-- `CTRL+d` - move cursor Down half page
+- `CTRL+f` & `CTRL+b` - move cursor Forward/Backwards full page. Can be prefixed with a count.
+- `CTRL+u` & `CTRL+d` - move cursor Up/Down half page
+- `^y` & `^e` scroll the window by a single line
 
 - `zt` - move screen so cursor is at Top
 - `zb` - move screen so cursor is at Bottom
@@ -709,6 +718,9 @@ To replace the character under the cursor: `r`. For example: type  `rx`  to repl
 A capical `R` will enters Replace mode until  `<ESC>`  is pressed. Replace mode is like Insert mode, but every typed character deletes an existing character.
 
 `x` delete the character under the cursor and store it in unname register by default.
+
+- `s` delete the character under the cursor and enter insert mode. Có thể dùng với `.` để repeat.
+  * In lazyvim, this becomes `flash.nvim`
 
 ---
 

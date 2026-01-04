@@ -7,7 +7,7 @@ Try these plugins:
 - nvim-surround
 - powerline
 
-## General notes
+## General Notes
 
 The primeagen có terminal mà khi mở vim cái background transparent hiện wallpaper luôn. Kể cả ở ngoài terminal cũng transparent luôn
 
@@ -51,6 +51,39 @@ Sync to running install, clean, and update in a single action
 press the spacebar to enter “Space mode”. Space mode is a LazyVim concept; it does not exist in a raw Neovim installation.
 
 `Dashboard mode` là cái dashboard khi mới mở neovim lên
+
+## Moving around in a File
+
+### Seek mode: `flash.nvim`
+
+If you can see the code you want to navigate to (i.e. because the file is currently open and the code is scrolled into view), `flash.nvim` is almost always the fastest way to move your cursor there.
+
+To invoke `flash.nvim`, press the `s` key in Normal mode (seek). The text fades to a uniform colour and there’s a little lightning symbol in the status bar indicating that Flash mode is active.  
+Since you know where you want the cursor to be, your eyes are probably looking right at it, and you know exactly what character is at that location. So after entering Seek mode, simply type the character you want to jump to.
+
+If you have multiple files open in split windows (which we’ll discuss in Chapter 9), Seek mode can be used to move your cursor anywhere on the screen, not just in the currently active split.
+
+Remember, `flash.nvim` seek mode only works if the text you want to jump to is visible on the screen. You can’t label something you can’t see!
+
+---
+
+`flash.nvim` also modify the `f`, `F`, `t`, `T` motions:
+
+The default `f` only work inside current line, not anymore.
+
+You can use `3f` (with a count) to jump. Shift `F` to find or jump backward (can also be counted). You can still use `;` & `,` to jump.
+
+`t` & `T` for "till" work similarly
+
+`d2ts` will delete all text between the cursor and the second `s` it encounters, but leave that s alone
+
+### Z Mode
+
+The `z` menu mode (normal mode) is an eclectic mix of cursor positioning, code folding, and random commands.
+
+## Finding files
+
+`<space>fc` find files in the LazyVim configuration directory
 
 ## Navigating project, File tree
 
@@ -107,7 +140,7 @@ Muốn delete/change entries in harpoon thì phải "write" the change to the ha
 
 **Reference:**
 
-## Auto-completion & snippet
+## Auto-completion & Snippet
 
 `nvim-cmp` is a completion plugin for neovim coded in Lua. It require `L3MON4D3/LuaSnip` which is called a **snippet engine**.
 
@@ -178,7 +211,7 @@ Thường mình sẽ dùng `opts` để config vì nó được automatically pa
 
 ## LSP & Treesitter
 
-chafa /Users/anhao/Desktop/phuong.jpeg --format symbols --symbols vhalf --size 60x17 --stretch; sleep .1
+`chafa /Users/anhao/Desktop/phuong.jpeg --format symbols --symbols vhalf --size 60x17 --stretch; sleep .1` => terminal graphic
 
 ## Nvim Key mapping
 

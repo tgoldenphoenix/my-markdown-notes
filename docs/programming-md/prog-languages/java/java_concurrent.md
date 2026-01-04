@@ -17,7 +17,9 @@ The classic approach to concurrency was the only API available until Java 5. Thi
 
 In concurrent programming, there are two basic units of execution: `processes` and `threads`. In the Java programming language, concurrent programming is mostly concerned with threads.
 
-Most implementations of the Java virtual machine run as **a single process**. Multiprocess applications are beyond the scope of this lesson.
+A process has a self-contained execution environment. A process generally has a complete, private set of basic run-time resources; in particular, each process has its own memory space.
+
+Most implementations of the `Java virtual machine` run as **a single process**. Multiprocess applications are beyond the scope of this lesson.
 
 `Threads` are sometimes called lightweight processes. Both processes and threads provide an execution environment, but creating a new thread requires fewer resources than creating a new process.  
 Threads exist within a process — every process has at least one. Threads share the process's resources, including memory and open files. This makes for efficient, but potentially problematic, communication.
@@ -44,7 +46,8 @@ Java `threads` allow a block of code to be executed concurrently with the rest o
 Each thread is associated with an instance of the class `Thread`. You simply instantiate Thread each time the application needs to initiate an asynchronous task.
 
 - An application that creates an instance of Thread must provide the code that will run in that thread. There are two ways to do this:
-  1. Provide a `Runnable` object. The Runnable interface defines a single method, run, meant to contain the code executed in the thread. The Runnable object is passed to the Thread constructor, as in the HelloRunnable example:
+  1. Provide a `Runnable` object. The Runnable interface defines a single method, run, meant to contain the code executed in the thread. The Runnable object is passed to the Thread constructor, as in the HelloRunnable example.
+  2. Subclass Thread. The Thread class itself implements Runnable, though its run method does nothing. An application can subclass Thread, providing its own implementation of run, as in the `HelloThread` example.
 
 ```java
 public class HelloRunnable implements Runnable {
@@ -55,9 +58,57 @@ public class HelloRunnable implements Runnable {
     public static void main(String args[]) {
         (new Thread(new HelloRunnable())).start();
     }
+}
 
+public class HelloThread extends Thread {
+    public void run() {
+        System.out.println("Hello from a thread!");
+    }
+
+    public static void main(String args[]) {
+        (new HelloThread()).start();
+    }
 }
 ```
+
+both examples invoke `Thread.start` in order to start the new thread.
+
+---
+
+Thread.sleep causes the current thread to suspend execution for a specified period.
+
+The SleepMessages example uses sleep to print messages at four-second intervals:
+
+```java
+public class SleepMessages {
+    public static void main(String args[])
+        throws InterruptedException {
+        String importantInfo[] = {
+            "Mares eat oats",
+            "Does eat oats",
+            "Little lambs eat ivy",
+            "A kid will eat ivy too"
+        };
+
+        for (int i = 0;
+             i < importantInfo.length;
+             i++) {
+            //Pause for 4 seconds
+            Thread.sleep(4000);
+            //Print a message
+            System.out.println(importantInfo[i]);
+        }
+    }
+}
+```
+
+Notice that main declares that it throws `InterruptedException`. This is an exception that sleep throws when another thread interrupts the current thread while sleep is active. Since this application has not defined another thread to cause the interrupt, it doesn't bother to catch InterruptedException.
+
+### Interrupts
+
+An interrupt is an indication to a thread that it should stop what it is doing and do something else. It's up to the programmer to decide exactly how a thread responds to an interrupt, but it is very common for the thread to terminate.
+
+A thread sends an interrupt by invoking interrupt on the Thread object for the thread to be interrupted.
 
 ### `Callable` interface
 
