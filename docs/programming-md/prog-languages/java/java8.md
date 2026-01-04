@@ -793,7 +793,7 @@ The `Optional<T>` class includes methods to explicitly deal with the case where 
 
 ## The Streams API
 
- A `stream` is a sequence of data items that are conceptually produced one at a time. A program might read items from an input stream one by one and similarly write items to an output stream.
+A `stream` is a sequence of data items that are conceptually produced one at a time. A program might read items from an input stream one by one and similarly write items to an output stream.
 
 **Stream operations** are divided into intermediate operations (return `Stream<T>`) and terminal operations (return a result of definite type). Intermediate operations allow chaining.  
 Operations on streams don’t change the source.
@@ -806,7 +806,12 @@ Collections is mostly about storing and accessing data, whereas Streams is mostl
 
 Although it may seem odd at first, often the **fastest** way to filter a collection (for example, to use filterApples in the previous section on a list) is to convert it to a stream, process it in parallel, and then convert it back to a list.
 
----
+By default, Java Streams are sequential.
+
+`java.util` & `java.util.stream` are two different package
+
+Java stream let you manipulate collections of data in a `declarative` way (you express a query rather than code an ad hoc implementation for it).  
+In addition, streams can be processed in parallel transparently, without you having to write any multithreaded code! This increase performance when you process a large collection.
 
 ```java
 long count = list.stream().distinct().count();
@@ -827,16 +832,8 @@ roster
     .forEach(email -> System.out.println(email));
 ```
 
-The operations filter, map, and `forEach` are aggregate operations. `Aggregate operations` process elements from a stream, NOT directly from a collection (which is the reason why the first method invoked in this example is `.stream()`).  
+The operations `filter`, `map`, and `forEach` are aggregate operations. `Aggregate operations` process elements from a stream, NOT directly from a collection (which is the reason why the first method invoked in this example is `.stream()`).  
 A stream is a sequence of elements. Unlike a collection, it is not a data structure that stores elements. Instead, a stream carries values from a source, such as collection, through a `pipeline`. A pipeline is a sequence of stream operations, which in this example is filter-map-forEach. In addition, aggregate operations typically **accept lambda expressions** as parameters, enabling you to customize how they behave.
-
----
-
-By default, Java Streams are sequential.
-
-`java.util` & `java.util.stream` are two different package
-
----
 
 ```java
 // java.util.stream package, Stream<T> interface
