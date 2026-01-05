@@ -868,7 +868,7 @@ Map<Dish.Type, List<Dish>> dishesByType =
 
 Stream elements are computed on demand, lazy constructed item. Khi consumer cần thì stream item sẽ được computed.
 
-In contrast, collection elements must be all computed & stored, present in memory before they are available to be process by consumer. 
+In contrast, collection elements must be all computed & stored, present in memory before they are available to be process by consumer.
 
 ---
 

@@ -33,6 +33,10 @@ Neovim uses the Lua programming language for plugin development (and configurati
 
 However, where most Vim plugins also run on Neovim, the inverse is not always true, and there are Lua plugins that only work with Neovim.
 
+## General Keybinds
+
+`<space> qq` close neovim
+
 ## LazyVim
 
 To get the best Vim editing experience, you want a GPU accelerated terminal. What’s that mean? Basically that you will be using the chip designed to render photo-realistic video for rendering source code.
@@ -138,7 +142,24 @@ Each project có ~ 4 mark ứng với 4 important file and 4 fingers. Tất cả
 
 Muốn delete/change entries in harpoon thì phải "write" the change to the harpoon menu with a `:w` [src](https://www.reddit.com/r/neovim/comments/1axs71c/how_do_i_delete_a_file_entry_in_harpoon/).
 
-**Reference:**
+### File Pickers & Fuzzy Search
+
+`<space><space>` opens “Files In Current Project” picker (root dir)
+
+In `fuzzy search`, you can "skip" characters inside the searching keyword.
+
+- By default, the match is case insensitive. However, if you do use any capitalized letters in your search, it switches to a case sensitive mode (this is sometimes referred to as “smart case”).
+- That means that `Ch` will match all the `Chapters`, but `cH` will not match anything. More interesting, `chF` will also not match anything at all because the presence of the capitalized `F` makes the whole thing case sensitive, and the chapters are all named with a capital C, so the lowercase `c` is not able to match them.
+
+Sometimes you will start typing a word and realize you need to match something earlier in the path to distinguish it. For example, I started typing `outline`. “Outline” is a common word in this app. There are 243 matching files, and I realize I should probably have typed `comp` in front to narrow it to just files in the component directory. I could switch to Normal mode and edit the beginning of the line, but it’s faster to just type `<space>comp`. The picker will interpret the space as “filter the lines again, fuzzy matching this new word from the beginning”. Here we can see that only `comp...outline`
+
+You can press `Enter` to open the file you want or you can even use a sort of Seek mode. Press the `Alt-s` keys while in the picker’s input area. You’ll see a label show up beside every line in the picker. These characters are labels for each line in the picker. Simply press one of the shown letters on your keyboard, and whichever line the label associated with that letter is on will be selected. Then press Enter to actually open the file.
+
+If you want to open multiple files from the picker, instead of pressing `Enter`, press `Tab` to select the file. Navigate to other lines and press Tab to select them as well. Press Enter to confirm your selection.
+
+If you need to scroll the results window to see something lower down in the list, use the `Control-d` and `Control-u` keys. If you want to scroll the preview window, use Control-f, and Control-b instead.
+
+Finally, if you are in the picker window and decide you don’t want to open any files after all (or you got the information you needed from looking at the preview), press `Escape` **twice**. Why twice? The first time you press escape will put you into normal mode so you can use all the usual normal mode commands to edit your filter.
 
 ## Auto-completion & Snippet
 

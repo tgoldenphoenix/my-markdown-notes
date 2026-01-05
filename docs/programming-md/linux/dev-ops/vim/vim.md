@@ -825,6 +825,8 @@ The `:normal` command provides a convenient way to make the same change on a ran
 
 Tab-completion in command-line mode: use `tab` and `S-tab` or `^p` & `^n` to cycle through the options. Use `^-y` to accept the option
 
+You can `:cd` change directory & `:pwd` inside neovim.
+
 ---
 
 Many Ex commands can be given a `[range]` of lines to act upon. We can specify the start and end of a range with either a line number, a mark, or a pattern.  
