@@ -33,11 +33,11 @@ Neovim uses the Lua programming language for plugin development (and configurati
 
 However, where most Vim plugins also run on Neovim, the inverse is not always true, and there are Lua plugins that only work with Neovim.
 
-## General Keybinds
+## General Keybinding Commands
 
 `<space> qq` close neovim
 
-## LazyVim
+## Lazyvim Distro Basic
 
 To get the best Vim editing experience, you want a GPU accelerated terminal. What’s that mean? Basically that you will be using the chip designed to render photo-realistic video for rendering source code.
 
@@ -55,6 +55,23 @@ Sync to running install, clean, and update in a single action
 press the spacebar to enter “Space mode”. Space mode is a LazyVim concept; it does not exist in a raw Neovim installation.
 
 `Dashboard mode` là cái dashboard khi mới mở neovim lên
+
+### The `lazy.nvim` plugin manager
+
+- `:Lazy`
+- `:LazyExtras`
+
+any Lua files inside the `lua/plugins` subdirectory will automatically be loaded by LazyVim, no matter what their name is.
+
+- `.config/nvim/lua/config/keymaps.lua` This is typically where you configure or modify keybindings that are not specific to plugins, but rather modify core Neovim or LazyVim functionality.
+- In the `keys` field of the Lua table passed to a plugin. This is typically where you map global Normal mode keybindings to set up a plugin.
+- In the `opts` (options) argument passed into a plugin’s configuration. The format of the options for any one plugin are plugin-specific, but many plugins prefer to set up keymaps on your behalf through options instead of having you do the mapping yourself. This is especially true if the keymaps define a different “mode” or only apply if the plugin is currently open or active.
+
+## Lua
+
+`:help lua`
+
+`:help lua-guide-api` to learn about the vim-specific APIs.
 
 ## Moving around in a File
 
@@ -85,11 +102,7 @@ You can use `3f` (with a count) to jump. Shift `F` to find or jump backward (can
 
 The `z` menu mode (normal mode) is an eclectic mix of cursor positioning, code folding, and random commands.
 
-## Finding files
-
-`<space>fc` find files in the LazyVim configuration directory
-
-## Navigating project, File tree
+## Navigating Project, File Tree
 
 Telescope is a fuzzy finder, dùng chung với LSP. Mở file trực tiếp đòi hỏi phải nhớ project structure trong đầu (which is helpful) và nó là cách nhanh nhất để navigate files.
 
@@ -97,19 +110,15 @@ Telescope is a fuzzy finder, dùng chung với LSP. Mở file trực tiếp đò
 
 `breadcrumbs.nvim` hiện breadcrum on top of the screen
 
-Trong vim có khái niệm [mark](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md#marking-position).
-
 plugin "lua line" change indicate which buffer is changed and require saving bằng dấu chấm giống trong VScode
 
 Cần phân biệt search (word) in find vs search file (name).
 
-Learn Vim the Smart way's [article](https://github.com/iggredible/Learn-Vim/blob/master/ch03_searching_files.md) about searching files and find phrases in files in Vim.
-
-You can search files without plugins and search with fzf.vim plugin
+`<space>fc` find files in the LazyVim configuration directory
 
 [This post](https://stackoverflow.com/questions/51306648/why-is-used-to-search-recursively-through-current-directory-in-vimgrep-vim) cover the two asterisk sign `**` in vim
 
-[This article](https://vonheikemen.github.io/devlog/tools/using-netrw-vim-builtin-file-explorer/) cover `netrw`, vim's builtin file explorer.
+`netrw` is vim's builtin file explorer.
 
 If you used a modern text editor before, you are probably familiar with windows and tabs. Vim, however, uses _three_ display abstractions instead of two: **buffers, windows, and tabs.**
 
@@ -128,7 +137,14 @@ You can use just one window and switch between buffers.
 
 A **tab** is a collection of windows. Think of it like a layout for windows.
 
-### File tree (side-bar)
+### File tree explorer (the side-bar)
+
+- `<space>-e` root directory (e for explorer)
+- `<space>-E` cwd
+
+`<space>-o` open markdown structure view on the right side
+
+To hide the explorer window, just press `<Space>e` again while it is visible, or press `q`.
 
 sidebar khá là chậm. Nó chỉ nên dùng để understand the tree-structure of the project. Không nên dùng để navigate between files.
 
@@ -142,7 +158,7 @@ Each project có ~ 4 mark ứng với 4 important file and 4 fingers. Tất cả
 
 Muốn delete/change entries in harpoon thì phải "write" the change to the harpoon menu with a `:w` [src](https://www.reddit.com/r/neovim/comments/1axs71c/how_do_i_delete_a_file_entry_in_harpoon/).
 
-### File Pickers & Fuzzy Search
+### File Pickers & Fuzzy Finding
 
 `<space><space>` opens “Files In Current Project” picker (root dir)
 
@@ -160,6 +176,19 @@ If you want to open multiple files from the picker, instead of pressing `Enter`,
 If you need to scroll the results window to see something lower down in the list, use the `Control-d` and `Control-u` keys. If you want to scroll the preview window, use Control-f, and Control-b instead.
 
 Finally, if you are in the picker window and decide you don’t want to open any files after all (or you got the information you needed from looking at the preview), press `Escape` **twice**. Why twice? The first time you press escape will put you into normal mode so you can use all the usual normal mode commands to edit your filter.
+
+### The Difference Between “Root” and “Cwd”
+
+- `<space><space>` or `<space>ff` is mapped to “Find Files (Root Directory)”.
+- `<space>fF`, where the second F is shifted, is mapped to an action called “Find Files (cwd)”.
+
+`cwd` refers to whatever directory your terminal was in when you typed `nvim` to open the editor. You can `:cd path/to/directory` change directory & `:pwd` inside neovim.  
+If you `cd`, `<space>fF` will be shown relative to the new directory you have changed into.
+
+The `root directory` is not a Vim concept, but is instead a Language Server Protocol (LSP) concept. The root directory is the directory that the LSP infers is the “home” directory of the currently open file. How the LSP does this is language (and language server) dependent.  
+For example, in Javascript or Typescript projects it probably searches parent directories for the presence of a package.json or tsconfig.json file to detect the root directory. whereas in a Python project it might instead look for things like pyproject.toml or `poetry.lock`. Alternatively, some LSPs might just use the presence of a `.git` folder as the “root” of the project’s workspace.
+
+The only reason this root directory is “often the same as your cwd” is that this is usually the folder you want to work from when you are working on a project, so it’s the one you cd into before you open Neovim.
 
 ## Auto-completion & Snippet
 
@@ -298,4 +327,3 @@ Benjamin Brast-McKie [github repo](https://github.com/benbrastmckie/.config)
 [here](https://gist.github.com/dtr2300/2f867c2b6c051e946ef23f92bd9d1180) Overview of Nvim Events
 
 **Read later**:
-

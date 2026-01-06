@@ -68,7 +68,7 @@ Both delete `d` and change `c` save deleted text into register.
 - `r` change the character under the cursor in normal mode
 - `x` deletes the character under the (block) cursor in normal mode. Không thể dùng với `.`.
 - `s` delete the character under the cursor and enter insert mode. Có thể dùng với `.` để repeat.
-  * In lazyvim, this becomes `flash.nvim`
+  - In lazyvim, this becomes `flash.nvim`
 
 `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
 anki
@@ -224,7 +224,7 @@ myObj.methodName('foo', 'bar', 'baz')
 
 - Forward to end of current / next word: `e` & `E`
 - Backward to end of previous word `ge` or `gE` (go to end of previous word). You can use `be` (but this is two motion)
-  * `4ge` works as you would expect but `g4e` does not work
+  - `4ge` works as you would expect but `g4e` does not work
 
 - `ea` Append at the end of the current word
 - `gea` append at the end of the previous word
@@ -722,7 +722,7 @@ A capical `R` will enters Replace mode until  `<ESC>`  is pressed. Replace mode 
 `x` delete the character under the cursor and store it in unname register by default.
 
 - `s` delete the character under the cursor and enter insert mode. Có thể dùng với `.` để repeat.
-  * In lazyvim, this becomes `flash.nvim`
+  - In lazyvim, this becomes `flash.nvim`
 
 ---
 
@@ -825,7 +825,7 @@ The `:normal` command provides a convenient way to make the same change on a ran
 
 Tab-completion in command-line mode: use `tab` and `S-tab` or `^p` & `^n` to cycle through the options. Use `^-y` to accept the option
 
-You can `:cd` change directory & `:pwd` inside neovim.
+You can `:cd path/to/directory` change directory & `:pwd` inside neovim.
 
 ---
 
@@ -842,8 +842,8 @@ The `:print` or `:p` command doesn’t perform any useful work, but it helps to 
 - `:.` Line where the cursor is placed
 - `:'m` Line containing mark m
 - `:'<` Start of visual selection
-  * `:'>` End of visual selection
-  * => `:'<,'>`
+  - `:'>` End of visual selection
+  - => `:'<,'>`
 - `:%` The entire file, all the lines in the current file (shorthand for `:1,$`)
 
 Line 0 doesn’t really exist, but it can be useful as an address in certain con-texts. In particular, it can be used as the final argument in the `:copy {address}` and :move {address} commands when we want to copy or move a range of lines to the top of a file.
