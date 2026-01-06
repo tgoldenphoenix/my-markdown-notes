@@ -132,6 +132,10 @@ k
 
 A concurrent application's ability to execute in a timely manner is known as its `liveness`.
 
+A live system is one in which every attempted activity eventually either progresses or fails. A system that is not live is basically stuck—it will neither progress toward success or fail.
+
+`Deadlock` describes a situation where two or more threads are blocked forever, waiting for each other.
+
 ## The Java Memory Model (JMM)
 
 The Java Memory Model (JMM) is a set of rules that determines how and when different threads can see values written to shared variables by other threads.
@@ -148,7 +152,13 @@ The key to avoiding memory consistency errors is understanding the `happens-befo
 
 ---
 
-The Java programming language provides two basic synchronization idioms: _synchronized methods_ and `synchronized statements`.
+The Java programming language provides two basic synchronization idioms: `synchronized methods` and `synchronized statements`.
+
+### Intrinsic Locks and Synchronization
+
+Synchronization is built around an internal entity known as the intrinsic lock or `monitor lock`.
+
+Every object has an intrinsic lock associated with it. By convention, a thread that needs exclusive and consistent access to an object's fields has to acquire the object's intrinsic lock before accessing them, and then release the intrinsic lock when it's done with them. A thread is said to _own_ the intrinsic lock between the time it has acquired the lock and released the lock. As long as a thread owns an intrinsic lock, no other thread can acquire the same lock. The other thread will block when it attempts to acquire the lock.
 
 ## Block-structured concurrency (pre-Java 5)
 
@@ -166,3 +176,8 @@ Only one thread can be progressing through any of an object’s synchronized blo
 
 `Thread Interference` happens when two operations, running in different threads, but acting on the same data, interleave. This means that the two operations consist of multiple steps, and the sequences of steps overlap.
 
+## Atomic classes
+
+The package `java.util.concurrent.atomic` contains several classes that have names starting with `Atomic`, for example, `AtomicBoolean`, `AtomicInteger`, AtomicLong, and AtomicReference. These classes are one of the simplest examples of a concurrency primitive—a class that can be used to build workable, safe concurrent applications.
+
+The point of an atomic is to provide thread-safe mutable variables. Each of the four classes provides access to a single variable of the appropriate type.
