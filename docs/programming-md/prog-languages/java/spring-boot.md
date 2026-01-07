@@ -1,4 +1,4 @@
-# Spring Framework
+# Spring Framework Notes
 
 ## Terminologies
 
@@ -9,8 +9,6 @@ MVC SoC separation of Concern
 aspect oriented lập trình hướng khía cạnh
 
 ## Maven
-
-[Maven overview video by Marco Codes](https://www.youtube.com/watch?v=Xatr8AZLOsE&t=1140s)
 
 Maven + github action dùng cho CI/CD. Mỗi lần commit thì sẽ chạy github action để build, test automatically để application không bị lỗi.
 
@@ -140,7 +138,18 @@ While Spring Data JPA simplifies working with JPA entities by providing reposito
 
 Khi có những utility object chỉ dùng một lần thì tự `new` object khỏi xài bean cũng được.
 
-## Controller layer
+## Spring Basics
+
+At its core, Spring offers a `container`, often referred to as the `Spring application context`, that creates and manages application components. These components, or `beans`, are wired together inside the Spring application context to make a complete application
+
+The act of wiring beans together is based on a pattern known as `dependency injection (DI)`. Rather than have components create and maintain the life cycle of other beans that they depend on, a `dependency-injected application` relies on a separate entity (the container) to create and maintain all components and inject those into the beans that need them. This is done typically through constructor arguments or property accessor methods.
+
+Historically, the way you would guide Spring’s application context to wire beans together was with one or more XML files that described the components and their relationship to other components.\
+In recent versions of Spring, however, a Java-based configuration is more common (using annotation).
+
+Java-based configuration offers several benefits over XML-based configuration, including greater type safety and improved refactorability. Even so, explicit configuration with either Java or XML is necessary only if Spring is unable to automatically configure the components.
+
+## Controller Layer
 
 No business logic inside controller.
 

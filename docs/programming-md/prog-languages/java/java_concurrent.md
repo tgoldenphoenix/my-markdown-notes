@@ -77,6 +77,8 @@ both examples invoke `Thread.start` in order to start the new thread.
 
 You don't call `.start()` on `main`. The JVM handles that for you automatically.
 
+Threads are represented by the `Thread` class. The only way for a user to create a thread is to create an object of this class; each thread is associated with such an object. A thread will start when the `start()` method is invoked on the corresponding `Thread` object.
+
 ### Sleep
 
 `Thread.sleep` causes the current thread to suspend execution for a specified period.
@@ -142,7 +144,7 @@ The Java Memory Model (JMM) is a set of rules that determines how and when diffe
 
 ## Synchronization
 
- synchronization can introduce `thread contention`, which occurs when two or more threads try to access the same resource simultaneously and cause the Java runtime to execute one or more threads more slowly, or even suspend their execution. Starvation and livelock are forms of thread contention.
+synchronization can introduce `thread contention`, which occurs when two or more threads try to access the same resource simultaneously and cause the Java runtime to execute one or more threads more slowly, or even suspend their execution. Starvation and livelock are forms of thread contention.
 
 `Thread Interference` happens when two operations, running in different threads, but acting on the same data, interleave. 
 
@@ -154,11 +156,40 @@ The key to avoiding memory consistency errors is understanding the `happens-befo
 
 The Java programming language provides two basic synchronization idioms: `synchronized methods` and `synchronized statements`.
 
+Other mechanisms, such as reads and writes of `volatile` variables and the use of classes in the `java.util.concurrent` package, provide alternative ways of synchronization.
+
+### Lock & Monitor
+
+The Java programming language provides multiple mechanisms for communicating between threads. The most basic of these methods is `synchronization`, which is implemented using `monitors`.
+
+Each object in Java is associated with a monitor, which a thread can `lock` or `unlock`. Only one thread at a time may hold a lock on a monitor. Any other threads attempting to lock that monitor are blocked until they can obtain a lock on that monitor. A thread `t` may lock a particular monitor multiple times; each unlock reverses the effect of one lock operation.
+
+The `synchronized statement` computes a reference to an object; it then attempts to perform a lock action on that object's monitor and does not proceed further until the lock action has successfully completed. After the lock action has been performed, the body of the `synchronized` statement is executed. If execution of the body is ever completed, either normally or abruptly, an unlock action is automatically performed on that same monitor.
+
+- A `synchronized method` automatically performs a lock action when it is invoked; its body is not executed until the lock action has successfully completed. 
+  * If the method is an instance method, it locks the monitor associated with the instance for which it was invoked (that is, the object that will be known as `this` during execution of the body of the method).
+  * If the method is `static`, it locks the monitor associated with the `Class` object that represents the class in which the method is defined.
+- If execution of the method's body is ever completed, either normally or abruptly, an unlock action is automatically performed on that same monitor.
+
 ### Intrinsic Locks and Synchronization
 
 Synchronization is built around an internal entity known as the intrinsic lock or `monitor lock`.
 
 Every object has an intrinsic lock associated with it. By convention, a thread that needs exclusive and consistent access to an object's fields has to acquire the object's intrinsic lock before accessing them, and then release the intrinsic lock when it's done with them. A thread is said to _own_ the intrinsic lock between the time it has acquired the lock and released the lock. As long as a thread owns an intrinsic lock, no other thread can acquire the same lock. The other thread will block when it attempts to acquire the lock.
+
+## Wait Sets and Notification
+
+Every **object**, in addition to having an associated monitor, has an associated `wait set`. A wait set is a set of threads.
+
+When an object is first created, its wait set is empty. Elementary actions that add threads to and remove threads from wait sets are `atomic`. Wait sets are manipulated solely through the methods `Object.wait`, `Object.notify`, and `Object.notifyAll`.
+
+Wait set manipulations can also be affected by the `interruption status` of a thread, and by the `Thread` class's methods dealing with interruption. Additionally, the `Thread` class's methods for sleeping and joining other threads have properties derived from those of wait and notification actions.
+
+### wait
+
+Wait actions occur upon invocation of `wait()`, or the timed forms `wait(long millisecs)` and `wait(long millisecs, int nanosecs)`.
+
+A thread returns normally from a wait if it returns without throwing an `InterruptedException`.
 
 ## Block-structured concurrency (pre-Java 5)
 
