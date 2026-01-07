@@ -61,11 +61,17 @@ press the spacebar to enter “Space mode”. Space mode is a LazyVim concept; i
 - `:Lazy`
 - `:LazyExtras`
 
-any Lua files inside the `lua/plugins` subdirectory will automatically be loaded by LazyVim, no matter what their name is.
+any Lua files inside the `lua/plugins` subdirectory will automatically be loaded by LazyVim, no matter what their name is. You can disable default lazyvim plugins, install new one or pass option to default lazyvim plugins.
 
 - `.config/nvim/lua/config/keymaps.lua` This is typically where you configure or modify keybindings that are not specific to plugins, but rather modify core Neovim or LazyVim functionality.
 - In the `keys` field of the Lua table passed to a plugin. This is typically where you map global Normal mode keybindings to set up a plugin.
 - In the `opts` (options) argument passed into a plugin’s configuration. The format of the options for any one plugin are plugin-specific, but many plugins prefer to set up keymaps on your behalf through options instead of having you do the mapping yourself. This is especially true if the keymaps define a different “mode” or only apply if the plugin is currently open or active.
+
+To be clear, `keys` is a LazyVim concept (technically, it’s actually part of the underlying Lazy.nvim plugin manager). Any plugin configuration can have a keys array table, and those keybindings will be merged with the default Neovim keybindings, the LazyVim keybindings, your custom global keybindings, AND any other plugin keybindings.
+
+Each item in the keys table is another Lua table with (in this case) three fields. The first two fields are positional and represent the keybinding name and the Lua callback function that gets called whenever that keybinding is invoked. The third field is a named field, `desc`, which provides a string description that will be shown in the Space mode menu.
+
+Special keys are indicated to Vim’s keybinding engine using angle brackets, so you will often see notations such as <Space>, <Right>, <Left> or `<BS>`, `<leader>`.
 
 ## Lua
 

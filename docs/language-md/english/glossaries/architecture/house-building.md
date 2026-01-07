@@ -34,6 +34,8 @@ Whiz roller: dùng để sơn vôi
 
 ## Roof
 
+slate roof, Slate is a fine-grained, foliated, homogeneous, metamorphic rock derived from an original shale-type sedimentary rock composed of clay or volcanic ash through low-grade, regional metamorphism.
+
 Tôn: Sheet metal, tole
 
 [Thatching](https://en.wikipedia.org/wiki/Thatching) is the craft of building a roof with dry vegetation such as straw, water reed, sedge (Cladium mariscus), rushes, heather, or palm branches, layering the vegetation so as to shed water away from the inner roof.  
