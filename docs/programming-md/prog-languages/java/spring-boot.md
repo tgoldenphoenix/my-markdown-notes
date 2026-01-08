@@ -251,6 +251,21 @@ Like DI, AOP supports **loose coupling** of application objects. But with AOP, *
 
 AOP enables you to centralize in one place—an aspect—logic that would normally be scattered throughout an application. When Spring wires your beans together, these aspects can be woven in at runtime, effectively giving the beans new behavior.
 
+## Spring Boot Basics
+
+Spring Boot applications tend to bring everything they need with them and don’t need to be deployed to some application server (Tomcat). You never deployed your application to Tomcat—Tomcat is a part of your application!
+
+## Spring Boot POM
+
+For maven, `pom.xml` is the `build file`
+
+- spring dependency:
+  * a library (a `.jar` file) that your code needs to compile and **run**. It is included in your final application.
+- Spring plugins:
+  * Only used At Build-time (when you type `mvn clean install`). 
+
+You need to worry only about which version of Spring Boot you’re using (inside `<parent>spring-boot-starter-parent</>`). You can trust that the versions of the libraries brought in transitively (spring `starter` dependencies) will be compatible for a given version of Spring Boot.
+
 ## Bugs & fixes
 
 `There is already 'accountController' bean method` => lỗi controller bị trùng url [stack overflow](https://stackoverflow.com/questions/54885516/springboot-gets-an-error-there-is-already-controller-bean-method-when-two-get)

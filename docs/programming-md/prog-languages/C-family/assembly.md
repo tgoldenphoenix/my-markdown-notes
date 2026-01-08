@@ -7,7 +7,50 @@
 - `D`, double word, 4 bytes
 - `Q`, quad word, 8 bytes ($2^3$)
 - `T`, ten bytes
- 
+
+## Operating System
+
+`Segments` exist in RAM, but they are managed and "understood" by the CPU.
+
+ physical memory = RAM
+
+When you double-click or run an `.exe` file, it undergoes a process called `Loading`. A program cannot run directly on the disk because the CPU can only "talk" to RAM and its own registers at the speeds required for execution.
+
+The Operating System (OS) is effectively the first and most important program loaded into RAM.
+
+`swap file` in on hard drive
+
+Each process has their own segment on RAM and they are all managed by the OS (which is also on RAM)
+
+- The OS divides the total RAM into two main zones to protect itself from your programs (and to protect your programs from each other).
+  * `Kernel Space`: This is the "High Ground" where the `OS Kernel` lives. It is strictly protected. If your C or Assembly program tries to read or write to this memory directly, the CPU hardware will immediately trigger a "General Protection Fault" and kill your program.
+  * User Space: This is where your individual `Processes` (like your C driver, Java JVM, or a web browser) live. Each process thinks it is the only program in the world.
+
+each segments on RAM has their own corresponding segment registers on CPU.
+
+the memory segment in RAM of each process is further divided into `.data`, `.text`, and `.bss`, heap, stack
+
+heap & stack are on RAM. heap are shared between threads of the same process. Each process has its own heap to work with.
+
+Why stack overflow but heap does not?
+
+- The Heap doesn't have a fixed "limit" like the 1MB stack. If your program needs more space, the OS just gives it more pages of RAM.
+- The Stack is a fixed-size, rigid structure allocated the moment a thread is born.
+
+---
+
+The assembler translate `.asm` into a binary `.obj` file. This binary file is organized into sections that correspond to the directives you wrote:
+
+- Header: Information about the file (machine type, number of sections).
+- `.text` section: The actual binary opcodes for your instructions (e.g., 55 for push rbp).
+- `.data` section: The raw bytes for your strings and initialized constants.
+
+---
+
+reverse engineer from binary to assembly or C is very difficult and not viable.
+
+However, reverse from java byte code `.class` back to `.java` is actually easy. A Java `decompiler` can often give you back code that looks almost identical to the original source. This is why Java developers use "Obfuscators" to scramble their code if they want to hide their secrets.
+
 ## Registers
 
 `registers` is a special kind of memory built right into the CPU that is very small, but extremely fast to access
@@ -73,11 +116,13 @@ dec dl ; dl--
 
 ## Directives
 
-A directive is an artifact of the assembler not the CPU. They are gen-erally used to either instruct the assembler to do something or inform the assembler of something. They are not translated into machine code.
+A directive is an artifact of the assembler, not the CPU. They are generally used to either instruct the assembler to do something or inform the assembler of something. They are NOT translated into machine code.
 
-NASM code passes through a preprocessor just like C. It has many of the same preprocessor commands as C. However, NASM’s preprocessor directives start with a `%` instead of a # as in C.
+NASM code passes through a `preprocessor` just like C. It has many of the same preprocessor commands as C. However, NASM’s `preprocessor directives` start with a `%` instead of a # as in C.
 
-The `equ` directive can be used to define a symbol. `Symbols` are named constants that can be used in the assembly program. The format is
+---
+
+The `equ` directive can be used to define a symbol. `Symbols` are **named constants** that can be used in the assembly program. The format is:
 
 `symbol equ value`
 
@@ -85,7 +130,7 @@ Symbol values can not be redefined later.
 
 ---
 
-The `%define` directive is similar to C’s `#define` directive. It is most commonly used to define constant macros just as in C.
+The `%define` directive is similar to C’s `#define` directive. It is most commonly used to define **constant macros** just as in C.
 
 ```txt
 %define SIZE 100
@@ -99,7 +144,7 @@ The above code defines a macro named `SIZE` and shows its use in a `MOV` instruc
 `Data directives` are used in data segments to define room for memory. There are two ways memory can be reserved. The first way only defines room for data; the second way defines room and an initial value.
 
 - The first method uses one of the `RESX` directives. The `X` is replaced with a letter that determines the size of the object (or objects) that will be stored.
-- The second method (that defines an initial value, too) uses one of the `DX` directives. The `X` letters are the same as those in the RESX directives.
+- The second method (that defines an initial value, too) uses one of the `DX` directives. The `X` letters are the same as those in the `RESX` directives.
 
 ```txt
 L1 db 0 ; byte labeled L1 with initial value 0
@@ -144,6 +189,12 @@ Consider the following instruction:
 This statement produces an `operation size not specified error`. Why? Because the assembler does not know whether to store the 1 as a byte, word or double word. To fix this, add a `size specifier`:
 
 `mov dword [L6], 1 ; store a 1 at L6`
+
+This tells the assembler to store an 1 at the double word that starts at `L6`. Other size specifiers are: BYTE, WORD, QWORD and TWORD
+
+## Input and Output
+
+k
 
 ## Memory and Addresses
 

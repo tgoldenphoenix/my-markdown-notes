@@ -1,6 +1,6 @@
 # Java Concurrent Programming
 
-## Basics & Terminologies
+## Basics & Jargon
 
 Java has two, mostly separate concurrency APIs: the older API, which is usually called `block-structured concurrency` or `synchronization-based concurrency` or even “classic concurrency,” and the newer API, which is normally referred to by its Java package name, `java.util.concurrent`.
 
@@ -38,6 +38,19 @@ In java, multiple Threads within the same program try to access a shared variabl
 
 - recurrent (adj): that happens again and again
 - concurrent (with something): (adj) existing or happening at the same time
+
+`mutual exclusion`: only one process or thread accesses a shared resource (like a variable or file) at a time, preventing data corruption from simultaneous access, known as a race condition
+
+This is one of the most surprising and dangerous facts about modern programming. Both your Compiler (like `GCC` or the Java JIT) and your `CPU hardware` can—and will—reorder your instructions to make them run faster. As long as the result is the same **for a single thread**, the compiler assumes it is safe to move code around. However, in Concurrency, this can break your program in ways that are nearly impossible to debug.
+
+## Stack, Heap & Shared Variables
+
+- The Heap is a single, large memory area allocated to the entire JVM. All threads share this same space.
+- Every time a new thread is created, the JVM allocates a **completely private** `Stack` for that thread. No other thread can see or touch another thread's stack.
+
+While the object is always on the heap, the pointer (reference) to that object is often on the stack.
+
+Local variables (The variables declared inside the body of the method) are never shared between threads and are unaffected by the memory model.
 
 ## Thread Objects
 
@@ -162,7 +175,7 @@ Other mechanisms, such as reads and writes of `volatile` variables and the use o
 
 The Java programming language provides multiple mechanisms for communicating between threads. The most basic of these methods is `synchronization`, which is implemented using `monitors`.
 
-Each object in Java is associated with a monitor, which a thread can `lock` or `unlock`. Only one thread at a time may hold a lock on a monitor. Any other threads attempting to lock that monitor are blocked until they can obtain a lock on that monitor. A thread `t` may lock a particular monitor multiple times; each unlock reverses the effect of one lock operation.
+Each object in Java is associated with a `monitor`, which a thread can `lock` or `unlock`. Only one thread at a time may hold a lock on a monitor. Any other threads attempting to lock that monitor are blocked until they can obtain a lock on that monitor. A thread `t` may lock a particular monitor multiple times; each unlock reverses the effect of one lock operation.
 
 The `synchronized statement` computes a reference to an object; it then attempts to perform a lock action on that object's monitor and does not proceed further until the lock action has successfully completed. After the lock action has been performed, the body of the `synchronized` statement is executed. If execution of the body is ever completed, either normally or abruptly, an unlock action is automatically performed on that same monitor.
 
@@ -173,9 +186,60 @@ The `synchronized statement` computes a reference to an object; it then attempts
 
 ### Intrinsic Locks and Synchronization
 
-Synchronization is built around an internal entity known as the intrinsic lock or `monitor lock`.
+Synchronization is built around an internal entity known as the `intrinsic lock` or `monitor lock` (or simply as a `monitor.`).
 
 Every object has an intrinsic lock associated with it. By convention, a thread that needs exclusive and consistent access to an object's fields has to acquire the object's intrinsic lock before accessing them, and then release the intrinsic lock when it's done with them. A thread is said to _own_ the intrinsic lock between the time it has acquired the lock and released the lock. As long as a thread owns an intrinsic lock, no other thread can acquire the same lock. The other thread will block when it attempts to acquire the lock.
+
+When a thread "locks" an object, it becomes the owner of that object's monitor.
+
+An object has only one lock and one monitor. So if an object has multiple `synchronized` methods, only one thread can execute one method at a given time. Other threads are blocked, even if they try to call a completely different method.  
+But other threads can call non-synchronized method while an object is locked.
+
+A `synchronized` method only stops other threads that are trying to enter other synchronized parts of that same object. It provides zero protection against threads calling non-synchronized methods.
+
+---
+
+If, in the following example, one thread repeatedly calls the method `one`, and another thread repeatedly calls the method `two`, then method `two` could occasionally print a value for `j` that is greater than the value of `i`, because the example includes no synchronization and, under the rules explained in, the shared values of `i` and `j` might be updated out of order.
+
+One way to prevent this out-or-order behavior would be to declare methods `one` and `two` to be `synchronized`. This prevents method `one` and method `two` from being executed concurrently, and furthermore guarantees that the shared values of `i` and `j` are both updated **before** method `one` returns. Therefore method `two` **never** observes a value for `j` greater than that for `i`; indeed, it always observes the same value for `i` and `j`.
+
+Another approach would be to declare `i` and `j` to be `volatile`.
+
+```java
+class Test {
+    static int i = 0, j = 0;
+    static void one() { i++; j++; }
+    static void two() {
+        System.out.println("i=" + i + " j=" + j);
+    }
+}
+
+// Using synchronized
+class Test {
+    static int i = 0, j = 0;
+    static synchronized void one() { i++; j++; }
+    static synchronized void two() {
+        System.out.println("i=" + i + " j=" + j);
+    }
+}
+
+// Using volatile
+class Test {
+    static volatile int i = 0, j = 0;
+    static void one() { i++; j++; }
+    static void two() {
+        System.out.println("i=" + i + " j=" + j);
+    }
+}
+```
+
+## `volatile` fields
+
+The Java programming language allows threads to access shared variables. As a rule, to ensure that shared variables are consistently and reliably updated, a thread should ensure that it has exclusive use of such variables by obtaining a lock that, conventionally, enforces **mutual exclusion** for those shared variables.
+
+The Java programming language provides a second mechanism, `volatile` fields, that is more convenient than locking for some purposes.
+
+A field may be declared `volatile`, in which case the Java Memory Model ensures that all threads see a consistent value for the variable
 
 ## Wait Sets and Notification
 
@@ -185,7 +249,7 @@ When an object is first created, its wait set is empty. Elementary actions that 
 
 Wait set manipulations can also be affected by the `interruption status` of a thread, and by the `Thread` class's methods dealing with interruption. Additionally, the `Thread` class's methods for sleeping and joining other threads have properties derived from those of wait and notification actions.
 
-### wait
+### Wait
 
 Wait actions occur upon invocation of `wait()`, or the timed forms `wait(long millisecs)` and `wait(long millisecs, int nanosecs)`.
 

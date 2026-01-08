@@ -21,11 +21,15 @@ EJB  (Enterprise JavaBeans) cũng là một technologies used for developing ent
 
 ## Thymeleaf
 
-Trong forms dùng **selection expressions**: `*{firstName}`
+Trong forms dùng `selection expressions`: `*{firstName}`
 
 **Message expression** trong file `application.properties`. `#{welcome.text}`
 
 **Link expression** `@{manage/edit}`
+
+`<img th:src="@{/images/TacoCloud.png}"/>`
+
+This line uses a Thymeleaf `th:src` attribute and an `@{...}` expression to reference the image with a context-relative path.
 
 ## JSP Servlet
 
