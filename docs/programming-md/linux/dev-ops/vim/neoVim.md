@@ -73,6 +73,29 @@ Each item in the keys table is another Lua table with (in this case) three field
 
 Special keys are indicated to Vim’s keybinding engine using angle brackets, so you will often see notations such as <Space>, <Right>, <Left> or `<BS>`, `<leader>`.
 
+---
+
+If you supply an `opts` table, it will be merged with the default LazyVim one (if there is one).
+
+You’ll need to read each plugin’s documentation to know exactly what options are available for it. You’ll also need to review the default configuration that LazyVim sets up for that plugin so you understand how it will merge.
+
+the `opts` entry in a Lazy.nvim plugin’s configuration table can also be a function instead of a static table. The function accepts the previous opts table as it was configured by LazyVim as an argument. Your function needs to **modify** this table to suit your desired behaviour.  
+The function based version of opts does not return a new opts table; it needs to modify the one that was passed in.
+
+---
+
+The opts table depends entirely on what the plugin expects. You want to read the documentation on the github page of the plugin.
+
+Most modern Lua plugins will be documented as having to call a `setup` function with a Lua table containing the configuration. If the plugin you are trying to set up does not have explicit Lazy.nvim instructions, don’t worry: Whatever gets passed into that setup function is what you need to include in the `opts` passed to the LazyVim plugin manager.
+
+```lua
+require('guess-indent').setup {
+  auto_cmd = true,  -- Set to false to disable automatic execution
+  override_editorconfig = false,
+  -- more configs...
+}
+```
+
 ## Lua
 
 `:help lua`
@@ -92,6 +115,10 @@ If you have multiple files open in split windows (which we’ll discuss in Chapt
 
 Remember, `flash.nvim` seek mode only works if the text you want to jump to is visible on the screen. You can’t label something you can’t see!
 
+The default `s` in vim deletes the character under the cursor & enter insert mode.
+
+`flash.nvim` sẽ auto-generate `jump labels`. Mình chọn label mà mình muốn jump đến.
+
 ---
 
 `flash.nvim` also modify the `f`, `F`, `t`, `T` motions:
@@ -102,7 +129,7 @@ You can use `3f` (with a count) to jump. Shift `F` to find or jump backward (can
 
 `t` & `T` for "till" work similarly
 
-`d2ts` will delete all text between the cursor and the second `s` it encounters, but leave that s alone
+`dsfoos` to delete text between the current cursor position and the label `s` that pops up when you use Seek mode to seek to `foo`. Note that Seek mode always jumps to the **beginning** of the word you searched for. This means that if the foo you jump to is after the current cursor location, the oo will not be deleted, but the f will. But if the foo you jump to is before the current cursor location, all three letters of foo will be deleted.
 
 ### Z Mode
 

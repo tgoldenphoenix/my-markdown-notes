@@ -66,20 +66,30 @@ The order can change. Both `2dw` and `d2w` achived the same result in slightly d
 Both delete `d` and change `c` save deleted text into register.
 
 - `r` change the character under the cursor in normal mode
-- `x` deletes the character under the (block) cursor in normal mode. Không thể dùng với `.`.
+- `x` deletes the character under the (block) cursor in normal mode. Không thể dùng với `.` (dot operator)
+  * Similar `dl` = `x`
+  * `5x` delete five characters starting with the one under the cursor
+  * (not useful) Shifted `X` = `dh` delete one character to the left side
 - `s` delete the character under the cursor and enter insert mode. Có thể dùng với `.` để repeat.
   - In lazyvim, this becomes `flash.nvim`
 
-`dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
-anki
-
+- `dw` - delete until the start of the next word, EXCLUDING its first character. `2dw` or `d2w` delete two words | `5d5w` 5 times delete 5 words. Note that the cursor must be placed at the beginning of the word when using `dw`.
 - `de` - to the end of the current word, INCLUDING the last character. Cái này hơi weird, nên dùng `dw`.
-- `dd` deleta whole line
+- `dd` delete whole line
+  * `d3d` deletes 3 lines; `3dd` deletes one line three times
 - `d$` - to the end of the line, INCLUDING the last character & the cursor. `d0` delete to beginning of line.
+  * Capital `D` = `d$`
 - `di"` to delete inside quote. If you are in the middle of a word: `diw` or delete-in-word.
 - `daw` delete a word => không còn thừa white space
 - `diw` delete in word => còn thừa white space
 - `dap` delete a paragraph; use the `ap` motion
+- `dh` delete the character to the left of the cursor.
+- `d3w` delete three words. `3dw` delete one word, three times.
+- `d2fe` to delete all text between the cursor location and the **second** `e` after the cursor, including that second e.
+  * `d2Ta` to delete all text between the cursor and the second `a` **behind** (before) the cursor, not including that second `a`.
+  * `d2ts` will delete all text between the cursor and the second `s` it encounters, but leave that `s` alone
+
+---
 
 The change operator `c` requires a motion command immediately following it to specify what text to change. It deletes the text defined by the motion and then puts you into Insert mode.
 
@@ -88,9 +98,21 @@ The change operator `c` requires a motion command immediately following it to sp
 - `ciw` Change in word
 - `ci"` Change inside double quotes.  Example: `print("Tran Kim Phuong")`. You can also use it with square brackets `()` and curly brackets `{}`.
 - `ca"` Change around quotes. Giống change in quote nhưng sẽ delete (cut) luôn 2 cái `""` quotes
-- `C` (uppercase) == `c$`
+- Shifted `C` = `c$` (change to end of line)
 - `s` == `cl` changes (deletes) the single character under the cursor and puts you into Insert mode. `l` alone move one character to the right.
-- `S` (upper-case) == `cc` == `^C` (upper-case) change the entire current line.
+  * Shifted `S` = `cc` = `^C` (upper-case) change the entire current line.
+
+There is no inverse shortcut verb for “delete to the beginning of the line”, so you’ll have to use `d^` or d0 instead, where ^ is the motion to jump to the first non-blank character and 0 is the motion to jump to the first column regardless of whether it is blank.
+
+---
+
+Use a capital `J` (Join lines) from anywhere in the line will delete the newline at the end of the current line.
+
+If you need to merge multiple consecutive lines together, J takes a count.
+
+It generally does the right thing around whitespace (replacing indentation with a single space), but if you need to do a join without modifying whitespace, use the two-character verb `gJ`.
+
+---
 
 Vim with **markup (like HTML tags)**
 
@@ -710,6 +732,9 @@ Insert Normal Mode: when we’re in Insert mode and we want to run only one Norm
 When the current line is right at the top or bottom of the window, I sometimes want to scroll the screen to see a bit more context. The `zz`command redraws the screen with the current line in the middle of the window, which allows us to read half a screen above and below the line we’re working on. I’ll often trigger this from Insert Normal mode by tapping out `<C-o>zz`. That puts me straight back into Insert mode so that I can continue typing uninterrupted.
 
 From insert mode: `<C-r>{register}` paste text from `{register}`. Can also be used in command-line mode.
+
+
+you can use counts with the `i`, I, a, and A commands. For example: `80i*<Escape>` enter `*` 80 times.
 
 ---
 
