@@ -204,6 +204,12 @@ There is no syntactic difference between a **JavaBean** and another class -- a c
 
 Spring MVC chỉ có `@GetMapping` & `@PostMapping`, API mới có Put, Delete
 
+Spring APIs (REST Controllers) typically use `@RequestBody`, while Spring MVC (Web Controllers) use `@ModelAttribute`.
+
+`Model` is an object that ferries data between a controller and whatever view is charged with rendering that data. Ultimately, data that’s placed in `Model` attributes is copied into the servlet request attributes, where the view can find them and use them to render a page in the user’s browser.
+
+methods that are also annotated with `@ModelAttribute` are invoked when a request is handled and will construct the model object.
+
 ## IoC and Dependency Injection (DI)
 
 DI and AOP are central to everything in Spring. Thus you must understand how to use these principal functions of Spring to be able to use the rest of the framework.
@@ -265,6 +271,35 @@ For maven, `pom.xml` is the `build file`
   * Only used At Build-time (when you type `mvn clean install`). 
 
 You need to worry only about which version of Spring Boot you’re using (inside `<parent>spring-boot-starter-parent</>`). You can trust that the versions of the libraries brought in transitively (spring `starter` dependencies) will be compatible for a given version of Spring Boot.
+
+## Lombok
+
+Lombok’s magic is applied at compile time, so there’s no need for it to be available at run time. Excluding it like this keeps it out of the resulting JAR or WAR file.
+
+```xml
+pom.xml
+
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <configuration>
+        <excludes>
+          <exclude>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+          </exclude>
+        </excludes>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+```
+
+The Lombok dependency provides you with Lombok annotations (such as `@Data`) at development time and with automatic method generation at compile time. But you’ll also need to add Lombok as an extension in your IDE, or your IDE will complain, with errors about missing methods and final properties that aren’t being set. Visit <https://projectlombok.org/> to find out how to install Lombok in your IDE of choice.
+
+It bears repeating that when using Lombok, you must install the Lombok plugin into your IDE. Without it, your IDE won’t be aware that Lombok is providing getters, setters, and other methods and will complain that they are missing.
 
 ## Bugs & fixes
 

@@ -43,6 +43,18 @@ In java, multiple Threads within the same program try to access a shared variabl
 
 This is one of the most surprising and dangerous facts about modern programming. Both your Compiler (like `GCC` or the Java JIT) and your `CPU hardware` can—and will—reorder your instructions to make them run faster. As long as the result is the same **for a single thread**, the compiler assumes it is safe to move code around. However, in Concurrency, this can break your program in ways that are nearly impossible to debug.
 
+## Concurrency vs Parallelism
+
+đồng thời và parallelism song song
+
+Node.js is fundamentally different from C, C++, Java. While C, C++, and Java are `Multi-threaded`, Node.js is `Single-threaded` but Asynchronous.
+
+The Event Loop: Instead of giving every user a new thread (which consumes RAM), Node uses one thread and an "Event Loop." When it hits an I/O task (like reading a database), it hands the task **to the OS** and moves to the next user.
+
+JavaScript: Because JS is single-threaded, you never have to worry about synchronized blocks or "Data Races" on variables—there is only ever one thread touching them!
+
+It basically means you only worry about one thread in node.js (other thread is handled by the OS or environment) while in C, C++ and Java, you must manage multiple thread yourself if your want to achieve better concurrency performance.
+
 ## Stack, Heap & Shared Variables
 
 - The Heap is a single, large memory area allocated to the entire JVM. All threads share this same space.
@@ -155,6 +167,14 @@ A live system is one in which every attempted activity eventually either progres
 
 The Java Memory Model (JMM) is a set of rules that determines how and when different threads can see values written to shared variables by other threads.
 
+### Happens-before Order 
+
+Two actions can be ordered by a `happens-before relationship`. If one action happens-before another, then the first is visible to and ordered **before** the second. 
+
+If we have two actions x and y, we write `hb(x, y)` to indicate that x happens-before y. 
+
+- If x and y are actions of the same thread and x comes before y in `program order`, then `hb(x, y)`.
+
 ## Synchronization
 
 synchronization can introduce `thread contention`, which occurs when two or more threads try to access the same resource simultaneously and cause the Java runtime to execute one or more threads more slowly, or even suspend their execution. Starvation and livelock are forms of thread contention.
@@ -233,7 +253,7 @@ class Test {
 }
 ```
 
-## `volatile` fields
+## The `volatile` keyword
 
 The Java programming language allows threads to access shared variables. As a rule, to ensure that shared variables are consistently and reliably updated, a thread should ensure that it has exclusive use of such variables by obtaining a lock that, conventionally, enforces **mutual exclusion** for those shared variables.
 
@@ -254,6 +274,19 @@ Wait set manipulations can also be affected by the `interruption status` of a th
 Wait actions occur upon invocation of `wait()`, or the timed forms `wait(long millisecs)` and `wait(long millisecs, int nanosecs)`.
 
 A thread returns normally from a wait if it returns without throwing an `InterruptedException`.
+
+- `wait()`:
+  * wait for a signal (notify)
+  * Must be called inside a `synchronized` block.
+- `sleep()`:
+  * Pauses for a fixed amount of time.
+  * Can be called anywhere
+
+The invocation of `wait` does not return until another thread has issued a notification that some special event may have occurred — though NOT necessarily the event this thread is waiting for:
+
+When a thread invokes `wait` on an object, it must own the intrinsic lock for that object — otherwise an error is thrown. Invoking `wait` inside a `synchronized` method is a simple way to acquire the intrinsic lock.
+
+When `wait` is invoked, the thread releases the lock and suspends execution. At some future time, another thread will acquire the same lock and invoke `Object.notifyAll`, informing all threads waiting on that lock that something important has happened:
 
 ## Block-structured concurrency (pre-Java 5)
 

@@ -112,3 +112,101 @@ MSYS2 allows you to build native Windows programs.
 A C program should compile cleanly without warnings.
 
 A single `.c` can be ported and compile on different machine architecture. An assembly only work on a specific machine.
+
+## Data Types
+
+### Signed & Unsigned
+
+C and C++ are unusual amongst languages nowadays in making a distinction between signed and unsigned integers.
+
+An int is `signed` by default, meaning it can represent **both** positive and negative values. An `unsigned` is an integer that can never be negative.
+
+If you take an `unsigned 0` and subtract `1` from it, the result wraps around (`arithmetic underflow`), leaving a very large number (2^32-1 with the typical 32-bit integer size).
+
+You should use unsigned values whenever you are dealing with bit values, i.e. direct representations of the contents of memory; or when doing manipulations such as bit masking or shifting on data, for example when writing low-level code to read binary file formats such as audio files; or if you happen to be doing work such as embedded programming where type sizes and alignments really matter.
+
+But stick to `signed` integers otherwise. You'll avoid a whole class of common problems.
+
+## Control flow
+
+Functions are a way to transfer control unconditionally. The call transfers control unconditionally _to_ the function, and a `return` statement unconditionally transfers it _back_ to the caller.
+
+### Conditional Execution `if`
+
+```c
+if (i > 25) {
+  j = i - 25;
+}
+```
+
+`i > 25` is called the `controlling expression`, and the part in `{ ... }` is called the `secondary block`.
+
+The `if (...) ... else ...` is a `selection statement`. It selects one of the two possible code paths:
+
+```c
+if (condition) secondary-block0
+else secondary-block1
+```
+
+- zero `0` = `false`
+- non-zero = `true`
+
+In `bool`, a `true` is `1`; while `false` is `0`. But it’s important to use `false` and `true` (and not the numbers) to emphasize that a value is to be interpreted as a condition.
+
+In C, all scalars have a truth value. Here, `scalar` types include all the numerical types such as `size_t`, `bool`, `int`, `pointer`, etc…
+
+### Iteration, loops
+
+```c
+// counts `i` down from `10` to `1`, inclusive
+// when i becomes 0, it will evaluate to false, and the loop will stop
+for (size_t i = 10; i; --i) {
+  something(i);
+}
+
+for (size_t i = 0, stop = upper_bound(); i < stop; ++i) {
+  something_else(i);
+}
+
+// counts down from `9` to `0`
+// do not loop forever
+for (size_t i = 9; i <= 9; --i) {
+  something_else(i);
+}
+```
+
+`i` is called the `loop variable`.
+
+---
+
+```c
+while (condition) secondary-block
+
+// do while
+do secondary-block while(condition);
+```
+
+if the condition immediately evaluates to `false`, a `while` loop will not run its secondary block at all, but the `do` loop will unconditionally run its block at least once before ever looking at the condition.
+
+`do` always needs a semicolon after its `while (condition)` to terminate the statement.
+
+```c
+for (;;) {
+  double prod = a*x;
+  if (fabs(1.0 - prod) < ε) {     // Stops if close enough
+    break;
+  }
+  x *= (2.0 - prod);              // Heron approximation
+}
+
+// similar
+while (true) {
+  double prod = a*x;
+  if (fabs(1.0 - prod) < ε) {       // Stops if close enough
+    break;
+  }
+  x *= (2.0 - prod);                // Heron approximation
+}
+```
+
+`for (;;)` here is equivalent to `while (true)`. The fact that the controlling expression of `for` (the middle part between the `;;`) can be omitted and is interpreted as “always **`true`**” is just a historical artifact in the rules of C and has no other special purpose.

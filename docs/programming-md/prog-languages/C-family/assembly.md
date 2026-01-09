@@ -8,6 +8,8 @@
 - `Q`, quad word, 8 bytes ($2^3$)
 - `T`, ten bytes
 
+All `C symbols` (i.e., functions and global variables) have a underscore prefix appended to them by the C compiler. (This rule is specifically for DOS/Windows, the Linux C compiler does not prepend anything to C symbol names.)
+
 ## Operating System
 
 `Segments` exist in RAM, but they are managed and "understood" by the CPU.
@@ -149,11 +151,15 @@ The above code defines a macro named `SIZE` and shows its use in a `MOV` instruc
 ```txt
 L1 db 0 ; byte labeled L1 with initial value 0
 L2 dw 1000 ; word labeled L2 with initial value 1000
+L3 db 110101b ; byte initialized to binary 110101 (53 in decimal) 
+L4 db 12h ; byte initialized to hex 12 (18 in decimal)
+L5 db 17o ; byte initialized to octal 17 (15 in decimal)
+L6 dd 1A92h ; double word initialized to hex 1A92
 L7 resb 1 ; 1 uninitialized byte
 L8 db "A" ; byte initialized to ASCII code for A (65)
 ```
 
-Double quotes and single quotes are treated the same. Consecutive data definitions are stored sequentially in memory. That is, the word `L2` is stored immediately after `L1` in memory. Sequences of memory may also be defined.
+Double quotes and single quotes are **treated the same**. Consecutive data definitions are stored sequentially in memory. That is, the word `L2` is stored immediately after `L1` in memory. Sequences of memory may also be defined.
 
 ```txt
 L9 db 0, 1, 2, 3 ; defines 4 bytes
@@ -161,7 +167,7 @@ L10 db "w", "o", "r", ’d’, 0 ; defines a C string = "word"
 L11 db ’word’, 0 ; same as L10
 ```
 
-For large sequences, NASM’s `TIMES` directive is often useful. This direc-tive repeats its operand a specified number of times. For example,
+For large sequences, NASM’s `TIMES` directive is often useful. This directive repeats its operand a specified number of times. For example,
 
 ```txt
 L12 times 100 db 0 ; equivalent to 100 (db 0)’s
@@ -175,7 +181,11 @@ In 32-bit mode, addresses are 32-bit. Here are some examples:
 ```txt
 mov al, [L1] ; copy byte at L1 into AL
 mov eax, L1 ; EAX = address of byte at L1
-mov al, [L6] ; copy first byte of double word at L6 into AL
+mov [L1], ah ; copy AH into byte at L1
+mov eax, [L6] ; copy double word at L6 into EAX
+add eax, [L6] ; EAX = EAX + double word at L6
+add [L6], eax ; double word at L6 += EAX
+mov al, [L6] ; copy first byte of double word at L6 into AL (line 7)
 ```
 
 Line 7 of the examples shows an important property of NASM. The assembler does not keep track of the type of data that a label refers to. It is up to the programmer to make sure that he (or she) uses a label correctly. Later it will be common to store addresses of data in registers and use the register like a pointer variable in C. Again, no checking is made that a pointer is used correctly. In this way, assembly is **much more error prone than even C**.
@@ -199,3 +209,36 @@ k
 ## Memory and Addresses
 
 k
+
+## Assembler
+
+To assemble the code into object file:
+
+`nasm -f object-format first.asm`
+
+where object-format is either `coff`, `elf`, obj or win32 depending on what C compiler will be used.
+
+---
+
+Object File (`.o`, `.obj`) is binary. It is the direct output of the Compiler (for C) or the Assembler (for your Assembly code). The addresses are relative so you cannot run an object file directly. It contains the `.text` and .data segments you defined, but they are "orphans" waiting to be joined with others.
+
+The Executable File (`.exe`) are the "finished product." It is created by the `Linker`, which takes one or more object files and stitches them together.
+
+Linking is the process of combining the machine code and data in `object files` and `library files` together to create an `executable file`.
+
+For example, to link the code for the first program:
+
+```bash
+# -c means to just compile, do not attempt to link yet
+gcc -c driver.c
+
+# linking
+# This creates an executable called first.exe
+gcc -o first driver.o first.o asm io.o
+```
+
+It is possible to combine the compiling and linking step. For example,
+
+`gcc -o first driver.c first.o asm io.o`
+
+Now gcc will compile `driver.c` into object file and then link.
