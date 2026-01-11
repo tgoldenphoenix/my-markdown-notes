@@ -5,10 +5,10 @@
 statement: instruction, call a function
 
 - `Identifiers` are “names” that we (or the C standard) give to certain entities in the program. Here we have `A`, `i`, `main`, `printf`, `size_t`, and `EXIT_SUCCESS`. Identifiers can be:
-  * variables
-  * Type: `size_t`. The trailing `_t` means that the identifier refers to a type.
-  * function: `main`, `printf`
-  * Constants, such as `EXIT_SUCCESS`.
+  - variables
+  - Type: `size_t`. The trailing `_t` means that the identifier refers to a type.
+  - function: `main`, `printf`
+  - Constants, such as `EXIT_SUCCESS`.
 
 Attributes Attributes such as `[[ maybe_unused ]]` are placed into double square brackets as shown and provide some supplemental information to the principle structure of the program. **NOTE**: This feature is new in C23, so your compiler might not yet implement it.
 
@@ -16,7 +16,7 @@ Attributes Attributes such as `[[ maybe_unused ]]` are placed into double sq
 
 A `directive` in C is a special instruction, beginning with a hash symbol (`#`), that is processed by the C preprocessor before the source code is actually compiled. These are not part of the C language syntax itself but serve as commands for text manipulation and conditional processing of the source file.
 
-Example: `#include`, `#define`, 
+Example: `#include`, `#define`,
 
 ---
 
@@ -79,7 +79,7 @@ For an array with n elements, the first element has index 0, and the last has in
  ---
 
 C does NOT implement `pass by reference`; instead, it has another mechanism to pass the control of a variable to another function: by taking addresses and transmitting pointers.
- 
+
 ## `printf`
 
 `printf` uses `format specifiers` that start with the percent (`%`) character (`%g`). Escape characters start with backslash (`\n`).
@@ -115,6 +115,8 @@ A single `.c` can be ported and compile on different machine architecture. An as
 
 ## Data Types
 
+`size_t` corresponds to “sizes,” so they are numbers that cannot be negative. Their range of possible values starts at 0 (natural numbers).
+
 ### Signed & Unsigned
 
 C and C++ are unusual amongst languages nowadays in making a distinction between signed and unsigned integers.
@@ -126,6 +128,10 @@ If you take an `unsigned 0` and subtract `1` from it, the result wraps around (`
 You should use unsigned values whenever you are dealing with bit values, i.e. direct representations of the contents of memory; or when doing manipulations such as bit masking or shifting on data, for example when writing low-level code to read binary file formats such as audio files; or if you happen to be doing work such as embedded programming where type sizes and alignments really matter.
 
 But stick to `signed` integers otherwise. You'll avoid a whole class of common problems.
+
+## Expressing computations
+
+In `a + b`, `+` is the operator; `a`, `b` are the operands.
 
 ## Control flow
 
@@ -210,3 +216,4 @@ while (true) {
 ```
 
 `for (;;)` here is equivalent to `while (true)`. The fact that the controlling expression of `for` (the middle part between the `;;`) can be omitted and is interpreted as “always **`true`**” is just a historical artifact in the rules of C and has no other special purpose.
+

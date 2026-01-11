@@ -170,12 +170,13 @@ By itself, `g` does nothing. It's a "prefix" that waits for a second key to exec
 ### The `g` Prefix
 
 - `~` in normal mode toggles the case of the character currently under the cursor & moves the cursor one step to the right.
-- `~` in visual mode toggles the case of the selected area.
+  * `~` in visual mode toggles the case of the selected area.
 - `g~` toggle case case over a specific distance (motion) without selecting it first.
   - `g~iw` toggle case in word
   - `g~$` toggle case to end of line
 - `gu{motion}` Make text lowercase (e.g., guw = "go lowercase word").
-- `gU{motion}` Make text uppercase (e.g., gUw = "go uppercase word").
+  * `gU{motion}` Make text uppercase (e.g., gUw = "go uppercase word").
+  * `gUU` & `guu` apply to the whole line
 - `gUaw` convert current word to uppercase
 
 `vU` uppercases the letter under the cursor.
@@ -464,6 +465,8 @@ Type   `:%s/old/new/gc`    to find every occurrence in the whole file, with a pr
 
 Vim’s registers are simply containers that hold text. They can be used in the manner of a clipboard for cutting, copying, and pasting text, or they can be used to record a macro by saving a sequence of keystrokes.
 
+Register are named after the CPU register in assembly.
+
 In Vim’s terminology, we don’t deal with a clipboard but instead with registers.
 
 `:h registers` not `:h register`
@@ -623,15 +626,15 @@ The `:normal @a` command tells Vim to execute the macro once for each line in th
 - Execute in series, if the motion fail on one line, the remaining macros to be executed is aborted.
 - Execute in parallel, the `:normal@a` command tells Vim to execute the macro once for each line in the selection.
 
----
+### Append to a macro
 
 Sometimes we miss a vital step when we record a macro. There’s no need to re-record the whole thing from scratch. Instead, we can **append extra commands onto the end of an existing macro**.
 
 Use `:reg a` to inspect the contents of register `a`.
 
-If we type `qa`, then Vim will record our keystrokes, saving them into register `a` by overwriting the existing contents of that register. If we type `qA`, then Vim will record our keystrokes, appending them to the existing contents of register a.
+If we type `qa`, then Vim will record our keystrokes, saving them into register `a` by **overwriting** the existing contents of that register. But if we type `qA` (with capital `A`), then Vim will **append** to the existing contents of register `a`.
 
-This little trick saves us from having to re-record the entire macro from scratch. But we can use it only to tack commands on at the end of a macro. If we wanted to add something at the beginning or somewhere in the middle of a macro, this technique would be of no use to us. In Tip 71, on page 176, we’ll learn about a more powerful method for amending a macro after it has been recorded.
+This little trick saves us from having to re-record the entire macro from scratch. But we can use it only to tack commands on **at the end** of a macro. If we wanted to add something at the beginning or somewhere in the middle of a macro, this technique would be of no use to us.
 
 ---
 

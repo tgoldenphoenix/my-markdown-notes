@@ -61,7 +61,7 @@ Examples:
 - `/\./g`: => matches a single “.” character, not the wildcard notation.
 - `\\` => dùng để escape a bach slash
 
-___
+---
 
 In your source code, you have to keep in mind which characters get special treatment inside strings by your programming language. That is because those characters are processed by the compiler, before the regex library sees the string. So the regex `1\+1=2` must be written as `"1\\+1=2"` in C++ code. The C++ compiler turns the escaped backslash in the source code into a single backslash in the string that is passed on to the regex library. To match `c:\temp`, you need to use the regex `c:\\temp`. As a string in C++ source code, this regex becomes `"c:\\\\temp"`. Four backslashes to match a single one indeed.
 
@@ -69,7 +69,7 @@ In your source code, you have to keep in mind which characters get special treat
 
 ### Unicode Categories
 
-The Unicode standard recommends that regular expression engines support the `\p{Property_Set=Property_Value}` syntax to match any character that has the specified value for the specified property. For example, `\p{Numeric_Value=1}+` should match all of `1¹١۱१১৴੧૧୧௧౧೧൧๑໑༡₁⅟Ⅰⅰ①⑴⒈❶➀➊〡㊀１`. 
+The Unicode standard recommends that regular expression engines support the `\p{Property_Set=Property_Value}` syntax to match any character that has the specified value for the specified property. For example, `\p{Numeric_Value=1}+` should match all of `1¹١۱१১৴੧૧୧௧౧೧൧๑໑༡₁⅟Ⅰⅰ①⑴⒈❶➀➊〡㊀１`.
 
 The syntax `\p{Property}` should be used to match any character that has the specified binary property. `\p{Hex_Digit}+` should match `0123456789ABCDEFabcdef０１２３４５６７８９ＡＢＣＤＥＦａｂｃｄｅｆ`.  
 Unicode suggests this shorter notation as an alternative for categories and scripts. So you could use `\p{Nd}` instead of `\p{gc=Nd}` and `\p{Common}` instead of `\p{Script=Common}`.
@@ -165,7 +165,7 @@ Remember, the character or pattern has to be present consecutively. That is, th
 
 `*` allows zero, one, or many matches of the preceding element (zero or more).
 
-Distinguish: 
+Distinguish:
 
 - Regex's wildcard is `.` which match any one character.
 - Globbing's wildcard is `*`which match any sequence of zero or more characters.
@@ -181,9 +181,9 @@ The asterisk or star tells the engine to attempt to match the preceding token ze
 ### Limiting Repetition `{}`
 
 Recall that you use `+` to look for one or more characters and the asterisk `*` to look for zero or more characters. These are convenient but sometimes you want to match **a certain range** of patterns.  
-You can specify the lower and upper number of patterns with `{} `**quantity specifiers** (quantifier).
+You can specify the lower and upper number of patterns with `{}`**quantity specifiers** (quantifier).
 
-- `{n}` Matches exactly n instances of the preceding element 
+- `{n}` Matches exactly n instances of the preceding element
 - `{min,}` Matches at least min instances (note the comma)
 - `{min,max}` Matches any number of instances from min to max
 
@@ -194,9 +194,9 @@ Example:
 - Match the word "haaah" with the letter "a" repeat exactly 3 times (no more no less): `/ha{3}h/`.
 
 - This quantifier can be used with any character, or special metacharacters, for example:
-  * `w{3}` (three w's)
-  * `[wxy]{5}` (five characters, each of which can be a w, x, or y)
-  * `.{2,6}` (between two and six of any character)
+  - `w{3}` (three w's)
+  - `[wxy]{5}` (five characters, each of which can be a w, x, or y)
+  - `.{2,6}` (between two and six of any character)
 
 You could use `\b[1-9][0-9]{3}\b` to match a number between 1000 and 9999. `\b[1-9][0-9]{2,4}\b` matches a number between 100 and 99999. Notice the use of the word boundaries.
 
@@ -218,7 +218,7 @@ Like the plus, the star and the repetition using curly braces are greedy.
 
 ---
 
-The quick fix to this problem is to make the plus lazy instead of greedy. Lazy quantifiers are sometimes also called “ungreedy” or “reluctant”. You can do that by putting a question mark after the plus in the regex. You can do the same with the star, the curly braces and the question mark itself. So our example becomes `<.+?>`. 
+The quick fix to this problem is to make the plus lazy instead of greedy. Lazy quantifiers are sometimes also called “ungreedy” or “reluctant”. You can do that by putting a question mark after the plus in the regex. You can do the same with the star, the curly braces and the question mark itself. So our example becomes `<.+?>`.
 
 In this case, there is a better option than making the plus lazy. We can use a greedy plus and a negated character class: `<[^>]+>`. The reason why this is better is because of the backtracking. When using the lazy plus, the engine has to backtrack for each character in the HTML tag that it is trying to match. When using the negated character class, no backtracking occurs at all when the string contains valid HTML code. Backtracking slows down the regex engine.
 
@@ -256,7 +256,7 @@ A literal `\-` ở trong character set thì phải escape, ở ngoài thì khôn
 - `[0-9a-fxA-FX]` matches a hexadecimal digit or the letter X. Again, the order of the characters and the ranges does not matter.
 - `[a-z]`, `[a-zA-Z]`, `[0-9]`, `[a-f]`, `/a-z0-9/ig`
 
-___
+---
 
 A **Negated Character Set** matches any character that is not in the character class.
 
@@ -267,13 +267,13 @@ It is important to remember that a negated character class still must match a ch
 NOTE: The `^` symbol is also used to match the beginning of a line together with the `$`.
 
 - Special characters that need to be escaped inside character class:
-  * `[` and `]`: start & end of the character class.
-  * `\`: for escaping characters `[\\]`. Example: `[\\x]` matches a backslash or an x.
-  * `-` and `^`: character range & class negation
+  - `[` and `]`: start & end of the character class.
+  - `\`: for escaping characters `[\\]`. Example: `[\\x]` matches a backslash or an x.
+  - `-` and `^`: character range & class negation
 - The usual metacharacters are normal characters inside a character class, and do not need to be escaped by a backslash. To search for a star or plus, use `[+*]`. Your regex will work fine if you escape the regular metacharacters inside a character class, but doing so significantly reduces readability.
 
 - The closing bracket ], the caret ^ and the hyphen - can be included by escaping them with a backslash, or by placing them in a position where they do not take on their special meaning.
-- To include an unescaped caret as a literal, place it anywhere except right after the opening bracket. `[x^]` matches an x or a caret. 
+- To include an unescaped caret as a literal, place it anywhere except right after the opening bracket. `[x^]` matches an x or a caret.
 
 Example:
 
@@ -284,7 +284,7 @@ Example:
 - `/[Gg]r[ae]y/` => match 4 different spellings and capitalization of the word "gray/grey" at once.
 - `[^0-9\r\n]` matches any character that is not a digit, carriage return, or line feed.
 
-___
+---
 
 Repeating Character Classes
 
@@ -292,10 +292,10 @@ If you repeat a character class by using the `?`, `*` or `+` operators then you�
 
 If you want to repeat the matched character, rather than the class, then you need to use backreferences. `([0-9])\1+` matches `222` but not `837`. When applied to the string 833337, it matches 3333 in the middle of this string. If you do not want that then you need to use word boundaries or lookaround.
 
-___
+---
 
 The regex `gr(a|e)y` uses alternation instead of a character class.
- 
+
 ### Shorthand Character Sets
 
 Using character sets, you were able to search for all letters of the alphabet with `[a-z]`. This kind of character class is common enough that there is a shorthand for it, although it still includes a few characters to learn.
@@ -322,7 +322,7 @@ Consider whether `[0-9]` or `\d` is more appropriate for your regex as the latte
 
 `[\da-fA-F]` matches a hexadecimal digit, and is equivalent to `[0-9a-fA-F]` if your flavor only matches ASCII characters with `\d`.
 
-Many regex flavors support `\h` to match only horizontal whitespace, which includes the tab and all characters in the “space separator” Unicode category. It is the same as `[\t\p{Zs}]`.
+Many regex flavors support `\h` to match only horizontal whitespace, which includes the tab and all characters in the “space separator” Unicode category. It is the same as `[\t\p{Zs}]`.
 
 and `\v` to match only vertical whitespace, which includes all characters treated as line breaks in the Unicode standard. It is the same as `[\n\cK\f\r\x85\x{2028}\x{2029}]`.
 
@@ -330,7 +330,7 @@ If your flavor supports \h and \v then you should definitely use them instead of
 
 The most common forms of whitespace you will use with regular expressions are the space `␣`, the tab `\t`, the new line `\n` and the carriage return `\r` (useful in Windows environments), and these special characters match each of their respective whitespaces.
 
-You can search for whitespace characters using `\s`, which is a lowercase s. This pattern not only matches whitespaces characters, but also carriage return (enter key), tab, form feed, and new line characters or line breaks. 
+You can search for whitespace characters using `\s`, which is a lowercase s. This pattern not only matches whitespaces characters, but also carriage return (enter key), tab, form feed, and new line characters or line breaks.
 
 Search for non-whitespace using `\S`, equal to the character class `[^ \r\t\f\n\v]`.
 
@@ -379,7 +379,7 @@ Since parentheses can nest, how do you know which match is which? Easy—the mat
 
 If a group is matched more than once, only the contents of the last match are returned. For example, with the pattern `(I am the (walrus|egg man)\. ?){1,2}` matching the text "I am the egg man. I am the walrus." There are two results, one for each set of parentheses:
 
-1. I am the walrus. 
+1. I am the walrus.
 2. walrus
 
 Note that both capture groups actually matched twice. However, only the last text to match each set of parentheses is actually captured.
@@ -394,7 +394,7 @@ All the quantifiers including the star `*`, `+`, repetition {m,n} and the questi
 
 **Non-capturing group `(?:)`**
 
-Use the special syntax `(?:Value)` to group tokens without creating a capturing group. This is more efficient if you don’t plan to use the group’s contents. 
+Use the special syntax `(?:Value)` to group tokens without creating a capturing group. This is more efficient if you don’t plan to use the group’s contents.
 
 In `Set(?:Value)?`, do not confuse the question mark in the non-capturing group syntax with the quantifier.  
 The question mark and the colon after the opening parenthesis (`(?:`) are the syntax that creates a non-capturing group.  
@@ -404,7 +404,7 @@ In the pattern `/(?:ha)-ha,(haa)-\1/g`, there are two groups. However, the first
 
 `color=(?:red|green|blue)` is another regex with a non-capturing group. This regex has no quantifiers. The group is needed to keep the three alternatives together.
 
-**Nested groups**
+Nested groups
 
 When you are working with complex data, you can easily find yourself having to extract multiple layers of information, which can result in nested groups. Generally, the results of the captured groups are in the order in which they are defined (in order by open parenthesis).
 
@@ -426,13 +426,13 @@ The first parenthesis starts backreference number one, the second number two, et
 
 ---
 
-**Named Groups and Backreferences**
+Named Groups and Backreferences
 
 If your regex has many groups, keeping track of their numbers can get cumbersome. Make your regexes easier to read by naming your groups. `(?<mygroup>[abc])=\k<mygroup>` is identical to `([abc])=\1`, except that you can refer to the group by its name. If this doesn’t work then try the Python-style syntax `(?P<mygroup>[abc])=(?P=mygroup)`. Though the Python-style named backreference uses parentheses as part of its syntax, it is not a group.
 
 ## Alternation `|`
 
-The pipe character `|` (also called the "Or" operator) allows to specify that an expression can be in different expressions. Thus, all possible statements are written separated by the pipe sign `|`. This differs from charset `[abc]`, charsets operate at the character level while (`|`) alternatives are at the expression level. 
+The pipe character `|` (also called the "Or" operator) allows to specify that an expression can be in different expressions. Thus, all possible statements are written separated by the pipe sign `|`. This differs from charset `[abc]`, charsets operate at the character level while (`|`) alternatives are at the expression level.
 
 For example, the following expression would select both "cat" and "rat": `/(c|r)at/g`.\
 If you want to find either Penguin or Pumpkin in a string, you can use the following regex: `/P(engu|umpk)in/g`
@@ -471,7 +471,7 @@ Placed after the pattern that you want to match.
 
 `q(?=u)` matches the q in question, but not in Iraq or iraqi. This is positive lookahead. The u is not part of the overall regex match. The lookahead matches at each position in the string before a u.
 
-**Positive & Negative Lookbehind: (?<=) (?<!)**
+Positive & Negative Lookbehind: ``(?<=) (?<!)`
 
 Thêm dấu `<` vào Lookahead, placed before the pattern that you want to match.
 
@@ -537,7 +537,7 @@ In `^\d{5}$`, The `^` and $ match the beginning and end of the search text but d
 
 Permanent Start of String and End of String Anchors
 
-`\A` only ever matches at the start of the string. Likewise, \Z only ever matches at the end of the string. These two tokens never match at line breaks. This is true in all regex flavors discussed in this tutorial, even when you turn on “multiline mode”. 
+`\A` only ever matches at the start of the string. Likewise, \Z only ever matches at the end of the string. These two tokens never match at line breaks. This is true in all regex flavors discussed in this tutorial, even when you turn on “multiline mode”.
 
 JavaScript, `std::regex`, POSIX, and XPath do not support \A and \Z. You’re stuck with using the caret and dollar for this purpose.
 
@@ -596,7 +596,7 @@ Free-Spacing in Character Classes
 A character class is generally treated as a single token.  
 `[abc]` is not the same as `[ a b c ]`. The former matches one of three letters, while the latter matches those three letters or a space.
 
-In other words: free-spacing mode has no effect inside character classes. Spaces and line breaks inside character classes will be included in the character class. This means that in free-spacing mode, you can use `\ ` or `[ ]` to match a single space. Use whichever you find more readable. The hexadecimal escape `\x20` also works, of course.
+In other words: free-spacing mode has no effect inside character classes. Spaces and line breaks inside character classes will be included in the character class. This means that in free-spacing mode, you can use `\` or `[ ]` to match a single space. Use whichever you find more readable. The hexadecimal escape `\x20` also works, of course.
 
 ---
 
@@ -606,7 +606,7 @@ Another feature of free-spacing mode is that the `#` character starts a comment.
 
 Putting it all together, the regex to match a valid date can be clarified by writing it across multiple lines:
 
-```
+```txt
 # Match a 20th or 21st century date in yyyy-mm-dd format
 ((?:19|20)\d\d)            # year (group 1)
 [- /.]                     # separator
@@ -621,7 +621,7 @@ Comments Without Free-Spacing
 
 Many flavors also allow you to add comments to your regex without using free-spacing mode. The syntax is `(?#comment)` where “comment” can be whatever you want, as long as it does not contain a closing parenthesis. The regex engine ignores everything after the `(?#` until the first closing parenthesis. A line break does not end such a comment.
 
-```
+```txt
 an(?#this is a comment
 I can even add a line break)hao
 ```

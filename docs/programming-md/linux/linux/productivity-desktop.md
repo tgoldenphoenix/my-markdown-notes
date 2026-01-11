@@ -155,14 +155,14 @@ Key tables may be viewed with the `:list-keys` command.
 
 Config location: `~/.config/sketchybar`
 
-**Installation notes:**
+Installation notes:
 
 Dependencies: brew install `font-hack-nerd-font`, `jq` (command line JSON processor), `font-sf-pro`, `sf-symbols`\
 Hide the default MacOs menu bar
 
 `brew services start sketchybar` services will automatically start at computer startup (why???)
 
-`sketchybar --reload`
+`sketchybar --reload` nếu icon bị lỗi
 
 References
 
@@ -264,7 +264,7 @@ Zsh Config files
 
 You should go through [the configuration files of random Github users](https://github.com/search?q=zsh+dotfiles&ref=commandbar&type=repositories) to get a better idea of what each file should contain.
 
-**zinit package manager**
+zinit package manager
 
 `zinit zstatus`
 
@@ -316,7 +316,7 @@ stow -D <packagename> # delete stowed package
 stow -R <packagename> # restows package
 ```
 
-**References**
+References
 
 [GNU stow official doc](https://www.gnu.org/software/stow/manual/stow.html) coi mấy cái command arguments trong này
 

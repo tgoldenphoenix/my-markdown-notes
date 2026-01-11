@@ -8,8 +8,6 @@ Nguồn gốc tên gọi: Trà Vinh. Tên gọi tỉnh Trà Vinh có nguồn g�
 
 ## Địa Lý
 
-### Vị trí địa lý
-
 Trà Vinh là tỉnh duyên hải Đồng bằng sông Cửu Long, có vị trí địa lý:
 
 - Phía Đông giáp Biển Đông với 65 km bờ biển.
