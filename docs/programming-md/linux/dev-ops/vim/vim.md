@@ -256,24 +256,31 @@ So what are the similarities and differences between a word and a WORD? Both wor
 
 ### Sentence & Paragraph Navigation
 
-Let's talk about what a sentence is first. A sentence ends with either `. ! ?` followed by an EOL, a space, or a tab. You can jump to the next sentence with `)` and the previous sentence with `(`.
+Let's talk about what a sentence is first. A sentence ends with a `.`, `!` or `?` followed by whitespace (an EOL, a space, or a tab). You can jump to the next sentence with `)` and the previous sentence with `(`.
+
+In addition to stopping after punctuation followed by whitespace, navigating by sentence also stops on "paragraph boundaries", which is to say "blank lines". If you are using sentences with counts, this can throw your navigation off because you need to add an extra step for each paragraph, as well as the punctuation that normally defines a sentence.
+
+---
+
+A paragraph is defined as all the content between two empty lines, and that is a concept that makes sense in a programming context. Most developers structure their code with logically connected statements separated by blanks.
 
 - `{` Jump to the previous paragraph
 - `}` Jump to the next paragraph
-- `%` jump between matching parentheses
 
-Match Navigation
+---
 
-- Select the openning curly bracket `{`, press `%` to jump to its closing bracket.
+- `%` jump between matching brackets. Select the openning bracket and press `%` to jump to its closing bracket.
 - `d%` delete to the closing bracket
 - `dt(` delete everthing up until the opening bracket
 - `yt{` copy everything up until the `{`
 
+---
+
 - Line Number Navigation
-  - `gg`    Go to the first line of file
-  - `G`     Go to the last line of file
-  - `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. You can also use the ex-command `:<line number>` which do the same thing. For example: `:1206`
-  - `n%`    Go to n% in file
+  * `gg`    Go to the first line of file
+  * `G`     Go to the last line of file
+  * `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. You can also use the ex-command `:<line number>` which do the same thing. For example: `:1206`
+  * `n%`    Go to n% in file
 
 - `<Ctrl-o>` to jump back-ward; Go to the place you jumped from. Giống như khi đọc `:h`. Use `<Ctrl-]>` to jump to link.
 - `^-i` to jump forward in jump history

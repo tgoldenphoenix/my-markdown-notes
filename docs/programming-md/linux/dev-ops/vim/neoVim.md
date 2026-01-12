@@ -68,7 +68,8 @@ Use `:help vim.cmd()` to run vimL inside .lua files.
 
 lua array index start with `1` not `0`
 
-**References:**
+References:
+
 [Guide to using Lua in Nvim](https://neovim.io/doc/user/lua-guide.html#lua-guide) or `:help lua-guide` on how Neovim integrates Lua\
 [Lua engine in nvim doc](https://neovim.io/doc/user/lua.html#_introduction) or `:help lua`\
 [Learn X in Y Lua](https://learnxinyminutes.com/docs/lua/)
@@ -177,6 +178,31 @@ You can use `3f` (with a count) to jump. Shift `F` to find or jump backward (can
 ### Z Mode
 
 The `z` menu mode (normal mode) is an eclectic mix of cursor positioning, code folding, and random commands.
+
+## Unimpaired Mode
+
+Like the sentence and paragraph motions (`(`, `)`, `{` and `}`), the square brackets (`[` & `]`) allow you to move to the previous or next _something_, except the something depends what key you type after the square bracket.
+
+Collectively, these pairs of navigation techniques are sometimes referred to as `Unimpaired mode`, as they harken back to a foundational Vim plugin called `vim-unimpaired` by a famous Vim plugin author named `Tim Pope`. LazyVim doesn’t use this plugin directly, but the spirit of the plugin lives on.
+
+The commands to work with `(`, `<`, and { are quite a bit more nuanced than they look. They **don’t** blindly jump to the next (if you started with `]`) or previous (if you used `[`) parenthesis, angle bracket, or curly bracket. If you wanted to do that, you could just use `f(` or `F(`.  
+Instead, they will jump to the next **unmatched** parenthesis, angle bracket, or curly bracket. That effectively means that keystrokes such as `[(` or `]}` mean “jump out”. So if you are in the middle of a block of code surrounded by `{}` you can easily jump to the end of that block using `]}` or to the beginning of it using `[{`, no matter how many other curly-bracket delimited code blocks exist inside that object. This is useful in a wide variety of programming contexts, so invest some time to get used to it.
+
+As a shortcut, you can also use `[%` and `]%` where the `%` key is basically a placeholder for “whatever is bracketing me.” They will jump to the beginning or end of whichever parenthesis, curly bracket, angle bracket, or square bracket you are currently in.
+
+That last one (square bracket), is important, because unlike the others, `[[` and `]]` do not jump out of square brackets, so using `[%` and `]%` is your only option if you need to jump out of them.
+
+### Jump by Reference
+
+Instead of jumping out of square brackets as you might expect, the easy to type `[[` and `]]` are reserved for a more common operation: jumping to other references to the variable under the cursor (in the same file).
+
+This feature typically uses the language server for the current language, so it is usually smarter than a blind search. Only actual uses of that function or variable are jumped to instead of instances of that word in the middle of other variables, types, or comments as would happen with a search operation.
+
+As you move your cursor, LazyVim will automatically highlight other variable instances in the file so you can easily see where `]]` or `[[` will move the cursor to.
+
+### Jump by Language Features
+
+k
 
 ## Navigating Project, File Tree
 

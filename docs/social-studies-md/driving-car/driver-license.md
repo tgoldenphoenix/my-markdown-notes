@@ -172,7 +172,7 @@ Rơ móc kéo xe khác phải có trọng lượng lớn hơn, tương đương 
 - Đối với xe ô tô, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
 - Xe mô tô thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm
 
-- Theo thứ tự từ rộng tới hẹp:
+- Theo thứ tự từ rộng tới hẹp (nhỏ tới lớn):
   - cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ
   - cấm xe (ô tô) tải
   - cấm máy kéo (đầu kéo container)
@@ -212,6 +212,12 @@ xích lô, ly bia, con ngựa => ý cuối
 
 - thấy biển dấu trừ => mẹo **và - 2** (chọn đáp án có chữ **và**, không có thì chọn ý 2)
   * Biển 1 và biển 2 => chọn
+
+Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
+
+- Thấy 3 biển hình tròn rỗng
+  * đáp án ghi con số biển 1, 2, 3 => ý 2
+  * đáp án ko ghi số => ý 1
 
 ## Thi thực hành
 
