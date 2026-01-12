@@ -242,3 +242,7 @@ It is possible to combine the compiling and linking step. For example,
 `gcc -o first driver.c first.o asm io.o`
 
 Now gcc will compile `driver.c` into object file and then link.
+
+---
+
+The `-l listing-file` switch can be used to tell nasm to create a listing file of a given name. This file shows how the code was assembled. 

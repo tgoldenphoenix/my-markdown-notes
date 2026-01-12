@@ -133,6 +133,70 @@ But stick to `signed` integers otherwise. You'll avoid a whole class of common p
 
 In `a + b`, `+` is the operator; `a`, `b` are the operands.
 
+- There are three types of operators:
+  * The operators that operate on values:
+    * Arithmetic operator: `+ - * /`
+    * Remainder operation `%`
+  * Those that operate on objects:
+    * The assignment operator `=`
+    * The increment & decrement operators `++i` & `--i`
+  * Those that operate on types.
+
+### Arithmetic Operators
+
+The operators `+` and `-` have `unary variants`. `-b` gives the negative of `b`: a value a such that $b + a = 0$. `+a` simply provides the value of `a`. 
+
+- In C, a `well-defined operator` refers to an operator whose behavior is strictly governed by the C Standard, ensuring that the result is predictable across different compilers and hardware. 
+- When an operator is "well-defined," the compiler is not allowed to "guess" or optimize in a way that changes the outcome. This is the opposite of Undefined Behavior (like dividing by zero) or Unspecified Behavior (like the order of function arguments).
+
+Unsigned arithmetic is always well defined.
+
+The operations `+`, -, and * on size_t provide the mathematically correct result if it is representable as a `size_t` (is within the range `[0, SIZE_MAX]`).
+
+When the result is not in that range and thus is not `representable` as a `size_t` value, we speak of `arithmetic overflow`. Overflow can happen, for example, if we multiply two values that are so large that their mathematical product is greater than `SIZE_MAX`. We’ll look at how C deals with overflow in the next section.
+
+---
+
+The operators `/` and `%` are a bit more complicated because they correspond to integer division and the remainder operation.
+
+`a/b` evaluates to the number of times b fits into a, and `a%b` is the remaining value once the maximum number of `bs` are removed from `a`.
+
+The operators `/` and `%` come in pairs: if we have `z = a / b`, the remainder `a%b` can be computed as $a - (z\cdot b)$. 
+
+For unsigned values, `a == (a/b)*b + (a%b)`.
+
+There is only one value that is not allowed for these two operations: `0`. Division by zero is forbidden.
+
+Unsigned `/` and `%` are only well defined if the second operand is not 0.
+
+The `%` operator can also be used to explain additive and multiplicative arithmetic on unsigned types a bit better. As already mentioned, when an unsigned type is given a value outside its range, it is said to `overflow`. In that case, the result is reduced as if the `%` operator had been used. The resulting value “wraps around” the range of the type. In the case of `size_t`, the range is `0 to SIZE_MAX`.
+
+This means for `size_t` values, `SIZE_MAX + 1` is equal to `0`, and `0 - 1` is equal to `SIZE_MAX`. 
+
+### Operators that modify objects
+
+- In the expression `a = 42`
+  * `a` is the objcet
+  * `42` is the value
+  * `=` is the assignment operator
+
+- For the increment and decrement operators, there are two other forms: `postfix increment` and `postfix decrement`. They differ from the one we have seen in the result they provide to the surrounding expression.
+  * The prefix versions of these operators (`++a` and `--a`) do the operation first and then return the result, much like the corresponding assignment operators (`a+=1` and `a-=1`); 
+  * the postfix operations return the value before the operation and perform the modification of the object thereafter.
+- For any of them, the effect on the variable is the same: the incremented or decremented value. 
+
+### Boolean context
+
+- zero `0` = `false`
+- non-zero = `true`
+
+Remember that `false` and `true` are nothing more than fancy names for 0 and 1, respectively. So, they can be used in arithmetic or for array indexing. In the following code, c will always be 1, and d will be 1 if a and b are equal and 0 otherwise: 
+
+```c
+size_t c = (a < b) + (a == b) + (a > b);
+size_t d = (a <= b) + (a >= b) - 1;
+```
+
 ## Control flow
 
 Functions are a way to transfer control unconditionally. The call transfers control unconditionally _to_ the function, and a `return` statement unconditionally transfers it _back_ to the caller.
