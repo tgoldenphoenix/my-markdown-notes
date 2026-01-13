@@ -37,6 +37,8 @@ However, where most Vim plugins also run on Neovim, the inverse is not always tr
 
 `<space> qq` close neovim
 
+`<space>us` enable spell check
+
 ## Lua & Vimscript
 
 `:help lua`
@@ -201,6 +203,36 @@ This feature typically uses the language server for the current language, so it 
 As you move your cursor, LazyVim will automatically highlight other variable instances in the file so you can easily see where `]]` or `[[` will move the cursor to.
 
 ### Jump by Language Features
+
+The `[c`, `]c`, `[f`, `]f`, `[m`, and `]m` keybindings allow you to navigate around a source code file by jumping to the previous or next class/type definition, function definition, or method definition. The usefulness of these features depends a bit on both the language you are using and the way the Language Service for the language is configured, but it works well in common languages.
+
+By default, those keybindings all jump to the start of the previous or next class/function/method. If you instead want to jump to the end, just add a Shift keypress: `[C`, `]C`, `[F`, `]F`, `[M`, and `]M` will get you there.
+
+Note that these are not the same as “jump out” behaviour: if you have a nested or anonymous function or callback defined inside the function you are currently editing, the `]F` keybinding will jump to the end of the nested function, not to the end of the function after the one you are currently in.
+
+I personally don’t use these keybindings very much as there are other ways to navigate symbols in a document that we will discuss later. But if you are editing a large function and you want to quickly jump to the next function in the file, `]f` is probably going to get you there faster than using `j` with a count you need to calculate, or even a `Control-d` followed by `S` to go to seek mode.
+
+### Jump to End of Indention
+
+If you are working with indentation-based code such as Python or deeply nested tag-based markup such as HTML and JSX, you may find the `[i` and `]i` pairs helpful.
+
+These are provided as part of the `snacks` suite of plugins, via `snacks.indent`. This plugin helps visualize the levels of indentation in a file.
+
+the unimpaired commands `[i` or `]i` to jump out of the current indentation level; it will go either to the top or the bottom of whichever indentation line is currently highlighted.
+
+### Jumping to Diagnostics
+
+Jump to diagnostics are `[d` and `]d`. If you only want to focus on errors and ignore hints and warnings, you can use `[e` and `]e`. Analogously, the `[w` and `]w` keybindings navigate between only warnings.
+
+If you are editing a file in a language that enables spellcheck, or you have enabled it explicitly with <Space>us, misspellings can be jumped to with `[s` and `]s`.
+
+Finally, if you use `TODO` or `FIXME` comments in your code, you can jump between them using `[t` and `]t`.
+
+### Jumping to Git Revisions
+
+`[h` and `]h` allow you to jump to the next git “hunk”. A “git hunk” just refers to a section of a file that contains modifications that haven’t been staged or committed yet.
+
+## Text Objects
 
 k
 
