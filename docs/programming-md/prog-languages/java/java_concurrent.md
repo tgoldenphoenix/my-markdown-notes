@@ -64,7 +64,7 @@ While the object is always on the heap, the pointer (reference) to that object i
 
 Local variables (The variables declared inside the body of the method) are never shared between threads and are unaffected by the memory model.
 
-## Thread Objects
+## The `Thread` Object
 
 Java `threads` allow a block of code to be executed concurrently with the rest of the program.
 
@@ -154,13 +154,26 @@ It is important to note that neither `Thread.sleep` nor `Thread.yield` have any 
   * The thread remains `RUNNABLE`. It moves from the "Running" sub-state back to the "Ready" sub-state.
   * It doesn't necessarily stop. If no other threads are waiting, the OS might give the CPU right back to the same thread immediately.
 
-### Interrupts
+### Wait & Joins
 
-An interrupt is an indication to a thread that it should stop what it is doing and do something else. It's up to the programmer to decide exactly how a thread responds to an interrupt, but it is very common for the thread to terminate.
+Wait actions occur upon invocation of `wait()`, or the timed forms `wait(long millisecs)` and `wait(long millisecs, int nanosecs)`.
 
-A thread sends an interrupt by invoking `interrupt` on the `Thread` object **for the thread to be interrupted**. For the interrupt mechanism to work correctly, the interrupted thread must support its own interruption.
+A thread returns normally from a wait if it returns without throwing an `InterruptedException`.
 
-### Joins
+- `wait()`:
+  * wait for a signal (notify)
+  * Must be called inside a `synchronized` block.
+- `sleep()`:
+  * Pauses for a fixed amount of time.
+  * Can be called anywhere
+
+The invocation of `wait` does not return until another thread has issued a notification that some special event may have occurred — though NOT necessarily the event this thread is waiting for:
+
+When a thread invokes `wait` on an object, it must own the intrinsic lock for that object — otherwise an error is thrown. Invoking `wait` inside a `synchronized` method is a simple way to acquire the intrinsic lock.
+
+When `wait` is invoked, the thread releases the lock and suspends execution. At some future time, another thread will acquire the same lock and invoke `Object.notifyAll`, informing all threads waiting on that lock that something important has happened.
+
+---
 
 The `join` method allows one thread to wait for the completion of another. If `t` is a Thread object whose thread is currently executing,
 
@@ -189,11 +202,15 @@ public static void main(String[] args) throws InterruptedException {
 }
 ```
 
-### `Callable` interface
+### Wait Sets and Notification
 
-k
+Every **object**, in addition to having an associated monitor, has an associated `wait set`. A wait set is a set of threads.
 
-### The State model for a thread
+When an object is first created, its wait set is empty. Elementary actions that add threads to and remove threads from wait sets are `atomic`. Wait sets are manipulated solely through the methods `Object.wait`, `Object.notify`, and `Object.notifyAll`.
+
+Wait set manipulations can also be affected by the `interruption status` of a thread, and by the `Thread` class's methods dealing with interruption. Additionally, the `Thread` class's methods for sleeping and joining other threads have properties derived from those of wait and notification actions.
+
+### Thread States
 
 Java has an enum called `Thread.State`.
 
@@ -224,6 +241,167 @@ The word "Runnable" literally means "Capable of running, but currently waiting f
   * Running: The CPU is physically executing the thread's instructions (the Instruction Pointer is moving through your .text segment).
   * Ready: The thread has everything it needs to run, but the OS has "preempted" it to give another thread a turn.
 
+---
+
+A `java.lang.Thread` object is just that: a Java object that lives in the heap and contains metadata about an operating system thread that either exists, used to exist, or will potentially exist in the future.
+
+- The states of the thread object in java corresponds to OS thread states on mainstream operating systems.
+  * `NEW`—the `Thread` object has been created, but the actual OS thread has not.
+  * `RUNNABLE`—The thread is available to run. The OS is responsible for scheduling it.
+  * `BLOCKED`—The thread is not running; it needs to acquire a lock or is in a system call.
+  * `WAITING`—The thread is not running; it has called `Object.wait()` or `Thread.join()`.
+  * `TIMED_WAITING`—The thread is not running; it has called `Thread.sleep()`.
+  * `TERMINATED`—The thread is not running; it has completed execution. 
+
+All threads start in the `NEW` state and finish in the `TERMINATED` state, whether the thread’s `run()` method exits normally or throws an exception.
+
+The Java thread state model does NOT distinguish between whether a `RUNNABLE` thread is actually physically executing at that precise moment or is waiting (in the run queue).
+
+The actual creation of the thread is done by the `start()` method, which calls into native code to actually perform the relevant system calls (e.g., `clone()` on Linux) to create the thread and begin code execution in the thread’s `run()` method.  
+Calling `start()` change the thread state from `new` -> `RUNNABLE`.
+
+### Thread Methods
+
+The standard Thread API in Java breaks down into three groups of methods.
+
+- The first is a group of methods for reading metadata about the thread:
+  * `getId()` thread id; is fixed for the lifetime of the thread
+  * `getName()`
+  * `getState()`
+  * `getPriority()`
+  * `isAlive()`
+  * `isDaemon()`
+  * `isInterrupted()`
+
+- The second group of methods:
+  * `setDaemon()`
+  * `setName()`
+  * `setPriority()`
+  * `setUncaughtExceptionHandler()` 
+
+- Finally, the following set of thread control methods are used to start new threads and interact with other running threads:
+  * `start()`
+  * `interrupt()`
+  * `join()`
+- Note that `Thread.sleep()` does not appear in this list, because it’s a static method that targets only the current thread.
+
+Some of the thread methods with timeouts (e.g., `Thread.join()` with a timeout parameter) may actually result in the thread being placed into `TIMED_WAITING` instead of `WAITING`.
+
+### Interrupting Threads
+
+An interrupt is an indication to a thread that it should stop what it is doing and do something else. It's up to the programmer to decide exactly how a thread responds to an interrupt, but it is very common for the thread to terminate.
+
+A thread sends an interrupt by invoking `interrupt` on the `Thread` object **for the thread to be interrupted**. For the interrupt mechanism to work correctly, the interrupted thread must support its own interruption.
+
+Many methods that throw `InterruptedException`, such as `sleep`, are designed to cancel their current operation and return immediately when an interrupt is received.
+
+```java
+for (int i = 0; i < importantInfo.length; i++) {
+    // Pause for 4 seconds
+    try {
+        Thread.sleep(4000);
+    } catch (InterruptedException e) {
+        // We've been interrupted: no more messages.
+        return;
+    }
+    // Print a message
+    System.out.println(importantInfo[i]);
+}
+```
+
+What if a thread goes a long time without invoking a method that throws `InterruptedException`? Then it must periodically invoke Thread.interrupted, which returns true if an interrupt has been received. For example:
+
+```java
+for (int i = 0; i < inputs.length; i++) {
+    heavyCrunch(inputs[i]);
+    // Thread.interrrupted() resets the interrupt status flag to false
+    if (Thread.interrupted()) {
+        // We've been interrupted: no more crunching.
+        return;
+    }
+}
+```
+
+---
+
+```java
+// Creates and starts a new thread that will run forever
+var t = new Thread(() -> { while (true); });
+t.start();
+
+// Asks the thread to interrupt itself (i.e., stop executing)
+t.interrupt();
+// Waits in our main thread for the other to complete
+t.join();
+```
+
+If you run this code, you may be surprised to find that our `join()` will block forever. What’s happening here is that thread interruption is `opt-in`—the methods being called in a thread have to explicitly check the interrupt state and respond to it, and our naive while loop never makes such a check. We can fix this in our loop by doing the expected check, as follows:
+
+```java
+// Checks our current thread’s interrupt state instead of looping on true
+var t = new Thread(() -> { while (!Thread.interrupted()); });
+t.start();
+ 
+t.interrupt();
+t.join();
+```
+
+Now our loop will exit when requested, and our join() no longer blocks forever.
+
+It is common for methods in the JDK that are blocking—whether on IO, waiting on a lock, or other scenarios—to check the thread interrupt state. The convention is that these methods will throw `InterruptedException`, a checked exception. This explains why, for instance, `Thread.sleep()` requires you to add the `InterruptedException` to the method signature or handle it.
+
+a pertinent fact about handling interrupts in our code: checks for the thread’s interruption state actually reset the state. The code that throws the standard `InterruptedException` cleared that interrupt, because it’s considered “handled” when the exception is thrown.
+
+---
+
+We have the following two methods for checking the interrupt state: a static `Thread.interrupted()`, which implicitly looks at the current thread, and an instance level `isInterrupted()` on a thread object. The static version clears the state after checking and is what’s expected for use before throwing an `InterruptedException`. The instance method, on the other hand, doesn’t alter the state.
+
+The interrupt mechanism is implemented using an internal flag known as the `interrupt status`. Invoking `Thread.interrupt` sets this flag. When a thread checks for an interrupt by invoking the static method `Thread.interrupted`, interrupt status is cleared. The non-static `isInterrupted` method, which is used by one thread to query the interrupt status of another, does not change the interrupt status flag.
+
+By convention, any method that exits by throwing an `InterruptedException` clears interrupt status when it does so.
+
+---
+
+interrupt a thread does not kill a thread. Instead, it sets a boolean flag (the "interrupt status") on the thread and wakes it up if it happens to be sleeping or waiting.
+
+- If the thread is in a state where it is blocked—specifically `Thread.sleep()`, `Object.wait()`, or `Thread.join()`—the JVM responds to the interrupt immediately.
+  * The thread is yanked out of the `TIMED_WAITING` or `WAITING` state.
+  * It moves back to `RUNNABLE`.
+  * An `InterruptedException` is thrown.
+  * Crucially: The interrupt flag is cleared (reset to `false`).
+
+If the thread is actively working (e.g., doing a for loop) and you call interrupt(), nothing happens automatically. The thread will continue to run at full speed. It is the responsibility of the thread's code to check its own status. If the code never checks `Thread.currentThread().isInterrupted()`, the interrupt is completely ignored.
+
+### Handle Thread Exeption
+
+Another issue for multithreaded programming is how to handle exceptions that may be thrown from within a thread. For example, suppose that we are executing a `Runnable` of unknown provenance. If it throws an exception and dies, then other code may not be aware of it. Fortunately, the Thread API provides the ability to add uncaught exception handlers to a thread before starting it, like this example:
+
+```java
+var badThread = new Thread(() -> {
+    throw new UnsupportedOperationException(); });
+ 
+// Set a name before starting the thread
+badThread.setName("An Exceptional Thread");
+ 
+// Set the handler
+badThread.setUncaughtExceptionHandler((t, e) -> {
+    System.err.printf("Thread %d '%s' has thrown exception " +
+                    "%s at line %d of %s",
+            t.getId(),
+            t.getName(),
+            e.toString(),
+            e.getStackTrace()[0].getLineNumber(),
+            e.getStackTrace()[0].getFileName()); });
+ 
+badThread.start();
+```
+
+The handler is an instance of `UncaughtExceptionHandler`, which is a `functional interface`.
+
+## Immutability
+
+Immutable objects are objects that either have no state or that have only final fields (which must, therefore, be populated in the constructors of the objects). These are always safe and live, because their state can’t be mutated, so they can never be in an inconsistent state.
+
 ## Liveness
 
 A concurrent application's ability to execute in a timely manner is known as its `liveness`.
@@ -247,6 +425,27 @@ To deal with deadlocks, one technique is to always acquire locks in the same ord
 ## The Java Memory Model (JMM)
 
 The Java Memory Model (JMM) is a set of rules that determines how and when different threads can see values written to shared variables by other threads.
+
+The JMM is described in section 17.4 of the Java Language Specification (JLS). This is a formal part of the spec, and it describes the JMM in terms of synchronization actions and some quite mathematical concepts, for example, a partial order for operations.  
+This is great from the point of view of language theorists and implementers of the Java spec (compiler and JVM makers), but it’s worse for application developers who need to understand the details of how their multithreaded code will execute.
+
+- the Synchronizes-With and Happens-Before relationships between blocks of code:
+  * `Happens-Before`—This relationship indicates that one block of code fully completes before the other can start.
+  * `Synchronizes-With`—An action will synchronize its view of an object with main memory before continuing.
+
+- The JMM has these main rules:
+  * An unlock operation on a monitor `Synchronizes-With` later locks operations.
+  * A write to a volatile variable Synchronizes-With later reads from the variable.
+  * If an action A `Synchronizes-With` action `B`, then `A Happens-Before B`.
+  * If A comes before B in program order, within a thread, then A Happens-Before B.
+
+The general statement of the first two rules is that “releases happen before acquires.” In other words, the locks that a thread holds when writing are released before the locks can be acquired by other operations (including reads). For example, the rules guarantee that if one thread writes a value to a volatile variable, then any thread that later reads that variable will see the value that was written (assuming no other writes have taken place).
+
+- Additional rules, which are really about sensible behavior, follow:
+  * The completion of a constructor Happens-Before the finalizer for that object starts to run (an object has to be fully constructed before it can be finalized).
+  * An action that starts a thread Synchronizes-With the first action of the new thread.
+  * `Thread.join()` Synchronizes-With the last (and all other) actions in the thread being joined.
+  * If X Happens-Before Y and Y Happens-Before Z, then X Happens-Before Z (transitivity).
 
 ### Happens-before Order 
 
@@ -353,33 +552,6 @@ This seems fantastic at first glance—the class is both safe and live. The prob
 
 In real, larger systems, this sort of manual verification would not be possible due to the amount of code. It’s too easy for bugs to creep into larger codebases that use this approach, which is another reason that the Java community began to look for more robust approaches. 
 
-## Wait Sets and Notification
-
-Every **object**, in addition to having an associated monitor, has an associated `wait set`. A wait set is a set of threads.
-
-When an object is first created, its wait set is empty. Elementary actions that add threads to and remove threads from wait sets are `atomic`. Wait sets are manipulated solely through the methods `Object.wait`, `Object.notify`, and `Object.notifyAll`.
-
-Wait set manipulations can also be affected by the `interruption status` of a thread, and by the `Thread` class's methods dealing with interruption. Additionally, the `Thread` class's methods for sleeping and joining other threads have properties derived from those of wait and notification actions.
-
-### Wait
-
-Wait actions occur upon invocation of `wait()`, or the timed forms `wait(long millisecs)` and `wait(long millisecs, int nanosecs)`.
-
-A thread returns normally from a wait if it returns without throwing an `InterruptedException`.
-
-- `wait()`:
-  * wait for a signal (notify)
-  * Must be called inside a `synchronized` block.
-- `sleep()`:
-  * Pauses for a fixed amount of time.
-  * Can be called anywhere
-
-The invocation of `wait` does not return until another thread has issued a notification that some special event may have occurred — though NOT necessarily the event this thread is waiting for:
-
-When a thread invokes `wait` on an object, it must own the intrinsic lock for that object — otherwise an error is thrown. Invoking `wait` inside a `synchronized` method is a simple way to acquire the intrinsic lock.
-
-When `wait` is invoked, the thread releases the lock and suspends execution. At some future time, another thread will acquire the same lock and invoke `Object.notifyAll`, informing all threads waiting on that lock that something important has happened:
-
 ## Memory Flush
 
 "flush" in conputer memory does not mean getting rid of the data (delete them). "flush" means to force data out of a temporary, fast storage area (like a cache or a buffer) and into its final, more permanent destination (like RAM or a Hard Drive).
@@ -470,8 +642,12 @@ A Java compiler is allowed to reorder program text instructions if, in a given t
 
 It’s important to understand that volatile guarantees a consistent value of a shared variable; however, the absence of the volatile modifier doesn’t mean or guarantee that multiple threads always get an inconsistent value of the shared variable. In the absence of the volatile modifier, other threads may occasionally get an inconsistent value of the shared variable. Therefore, let’s not expect that by removing the volatile modifier in the example application TaskRunner, the application starts to print inconsistent values for a shared variable; however, it could happen.
 
-## Atomic classes
+## Atomic Classes
 
-The package `java.util.concurrent.atomic` contains several classes that have names starting with `Atomic`, for example, `AtomicBoolean`, `AtomicInteger`, AtomicLong, and AtomicReference. These classes are one of the simplest examples of a concurrency primitive—a class that can be used to build workable, safe concurrent applications.
+As we saw in the previous chapter, Java has supported concurrency since the very beginning. However, with the advent of Java 5 (which was itself over 15 years ago), a new way of thinking about concurrency in Java emerged. This was spearheaded by the package `java.util.concurrent`, which contained a rich new toolbox for working with multithreaded code.
 
-The point of an atomic is to provide thread-safe mutable variables. Each of the four classes provides access to a single variable of the appropriate type.
+The package `java.util.concurrent.atomic` contains several classes that have names starting with `Atomic`, for example, `AtomicBoolean`, `AtomicInteger`, AtomicLong, and AtomicReference. These classes are one of the simplest examples of a `concurrency primitive`—a class that can be used to build workable, safe concurrent applications.
+
+**WARNING**: Atomic classes don’t inherit from the similarly named classes, so AtomicBoolean can’t be used in place of a Boolean, and an AtomicInteger isn’t an Integer (but it does extend Number).
+
+The point of an atomic is to provide **thread-safe mutable variables**. Each of the four classes provides access to a single variable of the appropriate type.

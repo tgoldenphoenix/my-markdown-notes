@@ -1,6 +1,6 @@
 # Design Pattern
 
-## Singleton Pattern
+## Singleton Pattern Notes
 
 Singleton is a creational design pattern that lets you ensure that a class has only one instance and provide a global access point to this instance
 
@@ -8,7 +8,15 @@ Singleton là 1 trong 5 design pattern của nhóm `Creational Design Pattern`.
 
 ## Factory Method
 
-k
+`Factory Method` is a `creational design pattern` that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created.
+
+Both the Factory Method and the Closure are patterns used to "manufacture" objects or logic, but they come from different worlds: one from Object-Oriented Programming (OOP) and the other from Functional Programming (FP).
+
+The Factory Method pattern suggests that you replace direct object construction calls (using the `new` operator) with calls to a special factory method. Don’t worry: the objects are still created via the new operator, but it’s being called from within the factory method. Objects returned by a factory method are often referred to as `products`.
+
+you can override the factory method in a subclass and change the class of products being created by the method.
+
+There’s a slight limitation though: subclasses may return different types of products only if these products have a common base class or interface. Also, the factory method in the base class should have its return type declared as this interface.
 
 ## Closure
 

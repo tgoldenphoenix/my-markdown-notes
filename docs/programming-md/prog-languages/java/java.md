@@ -69,10 +69,10 @@ Khi biên dịch thì IDE chỉ quan tâm đến khai báo. Miễn là khai báo
 Còn trong chạy thật, khi run-time. Thì nó mới xét đến bản chất thật sự của class mà biến tham chiếu đang trỏ đến và nó **chỉ cho ép downcasting thật sự khi có quan hệ** `IS-A`. Có thể kiểu khai báo là `HocVien` nhưng bản chất pointer trỏ đến một object `SinhVien`. Khai báo là một chuyện, bản chất là chuyện khác.
 
 - `IS-A` (liên quan tới inheritance): con cháu IS-A cha, ông nội.
-  - `Dog` IS-A `Animal` but `Animal` not IS-A `Dog`
-  - `SinhVien` IS-A `HocVien`
+  * `Dog` IS-A `Animal` but `Animal` not IS-A `Dog`
+  * `SinhVien` IS-A `HocVien`
 - `HAS-A` (không liên quan tới inheritance): If Class A "has-a" Class B, it means Class A uses or contains an object of Class B as a part of its own structure or functionality.
-  - A `Car` class "has-a" `Engine` class. This means the Car class has an Engine object as one of its fields, and it utilizes the Engine's functionalities.
+  * A `Car` class "has-a" `Engine` class. This means the Car class has an Engine object as one of its fields, and it utilizes the Engine's functionalities.
 
 ```java
 class Animal {}
@@ -675,6 +675,21 @@ Types of Constructors in Java:
 
 The compiler automatically provides a no-argument, **default constructor** for any class without constructors. This default constructor will call the no-argument constructor of the superclass. In this situation, the compiler will complain if the superclass does not have a no-argument constructor so you must verify that it does. If your class has no explicit superclass, then it has an implicit superclass of `Object`, which does have a no-argument constructor.
 
+- If you write no constructors at all, the compiler automatically inserts a hidden `public MyClass() { super(); }`.
+- If you write at least one constructor (even if it has arguments). The compiler will NOT create a default no-argument constructor. It assumes you want to control exactly how the object is built.
+
+---
+
+In Java, constructors are not inherited by subclasses. Instead, the superclass's constructor is called when a subclass object is created, either automatically or explicitly using the super keyword.
+
+Constructors are not considered class members and thus cannot be inherited or overridden.
+
+If a subclass constructor does not explicitly call a superclass constructor using `super()`, the Java compiler automatically inserts an implicit call to the superclass's **no-argument (default) constructor** as the first line of the subclass constructor.
+
+ If the superclass only defines parameterized constructors and no default constructor, the subclass must explicitly call one of the superclass's constructors using super(arguments). This call must be the **very first statement** in the subclass constructor.
+
+ When a subclass object is created, the constructors run from the top of the inheritance hierarchy down. The superclass constructor executes first, followed by the subclass constructor. 
+ 
 ## Exception & Error Handling
 
 Exception khác với Errors:
@@ -686,9 +701,9 @@ Exception khác với Errors:
 - `Exception`: cũng có dừng có khi không. Khi chúng ta có biện pháp bảo vệ (bảo hộ) thì ct ko dừng. Example: `NullPointerException`, `IOException`, `ArrayIndexOutOfBoundsException`, divide by 0, lỗi kết nối mạng.
 - Có 2 loại exception:
   1. `Checked Exceptions` (compile time Exceptions): bắt buộc phải `try-catch` or declared in the method signature using throws nếu không IDE sẽ báo lỗi ngay lập tức. VD: đội mũ bảo hiểm, `FileNotFoundException`
-  2. `Unchecked Exceptions` (Runtime Exceptions, con cháu của Class `RuntimeException`): không bắt buộc `try catch` mà IDE vẫn sẽ không báo lỗi. VD: mặc áo mưa, `NullPointerException, ArrayIndexOutOfBoundsException, NumberFormatException`
+  2. `Unchecked Exceptions` (Runtime Exceptions, con cháu của Class `RuntimeException`): không bắt buộc try-catch mà IDE vẫn sẽ không báo lỗi. VD: mặc áo mưa, `NullPointerException`, `ArrayIndexOutOfBoundsException`, `NumberFormatException`
 
-- Cơ chế bảo hộ exception chính là `try catch`
+- Cơ chế bảo hộ exception chính là `try-catch`
 - Về mặt kỹ thuật thì Java cho phép mình dùng try-catch để bắt cả Error giống như bắt Exception, vì cả hai đều kế thừa từ lớp `Throwable`. Nhưng trong thực tế, việc catch Error thường không được khuyến khích ạ.
 
 Nếu exception trong `if() {}` hay trong `try{}` thì những đoạn code nằm sau exception sẽ không được chạy.
