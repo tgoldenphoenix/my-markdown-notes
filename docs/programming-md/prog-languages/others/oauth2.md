@@ -1,4 +1,6 @@
-# OAuth 2.0 notes
+# OAuth 2.0 Notes
+
+## Basics & Jargon
 
 OAuth is a security protocol used to protect web APIs.
 

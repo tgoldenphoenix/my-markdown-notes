@@ -1,4 +1,4 @@
-# Git & github notes
+# Git & github Notes
 
 Check if Git is installed locally: `git --version`
 
@@ -15,15 +15,15 @@ How to read git synopsis: [stack overflow](https://stackoverflow.com/questions/6
 
 Git is a **distributed** version control system (DVCS). In comparison with a **centralized** VCS.
 
-## git config
+## Git Config
 
 Show git config: `git config --list`  
 You can view all of your settings and where they are coming from using:: `git config --list --show-origin`  
 The global gitconfig file on Macbook is at: `/opt/homebrew/etc/gitconfig`
 
 - Mới tải Git về thì run these commands:
-  - `git config --global user.name "tgoldenphoenix"`
-  - `git config --global user.email johndoe@example.com`
+  * `git config --global user.name "tgoldenphoenix"`
+  * `git config --global user.email johndoe@example.com`
 - Sau đó generate & add SSH key on local machine & on Github. Phải có cả authentication key & signing key (cùng một key nhưng tạo 2 chức năng).
 
 To set `main` as the default branch name do: `git config --global init.defaultBranch main`  
@@ -1798,7 +1798,7 @@ Tags in Git are read-only, unlike the tags you might be familiar with if you’r
 
 Có thể checkout ra tags nhưng không thay đổi được. Muốn thay đổi thì từ tag tạo branch.
 
-## git submodule
+## Git submodule
 
 Sometimes you need to track multiple repositories as if they’re all in the same repository. This might be because of a dependency on some third-party library or possibly because your in-house project has been divided into multiple projects to help make them more manageable.
 Git allows you to track external repositories through what it calls sub-modules. These allow you to store a repository within another repository while keeping the two histories completely independent
@@ -1855,6 +1855,12 @@ The SHA-1 checksum is a 40 hexadecimal digits number.
 ## Git Hooks
 
 Hooks are scripts that are executed automatically in certain conditions.
+
+## Common Errors
+
+Nếu tải file `.zip` về window, extract rồi copy-paste qua WSL thì sẽ bị lỗi zone identifiner
+
+phải clone trực tiếp từ WSL, không có copy qua lại
 
 ## Further readings
 

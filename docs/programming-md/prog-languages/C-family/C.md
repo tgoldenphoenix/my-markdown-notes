@@ -280,3 +280,65 @@ while (true) {
 ```
 
 `for (;;)` here is equivalent to `while (true)`. The fact that the controlling expression of `for` (the middle part between the `;;`) can be omitted and is interpreted as “always **`true`**” is just a historical artifact in the rules of C and has no other special purpose.
+
+## The Abstract State Machine
+
+C programs primarily reason about values and not about their representation (binary).
+
+The representation that a particular value has should, in most cases, not be your concern. The compiler is there to organize the translation back and forth between values and representations.
+
+For an optimization to be valid, it is only important that a C compiler produces an executable that reproduces the `observable states`. Observable states consist of the contents of some variables (and similar entities that we will see later) and the output as they evolve during the execution of the program. This whole mechanism of change is called the `abstract state machine`. 
+
+To explain the abstract state machine, we first have to look into the concepts of a `value` (what state are we in), the `type` (what this state represents), and the `representation` (how state is distinguished). As the term `abstract` suggests, C’s mechanism allows different platforms to realize the abstract state machine of a given program differently according to their needs and capacities. This permissiveness is one of the keys to C’s potential for optimization.
+
+---
+
+A `value` in C is an abstract entity that usually exists beyond your program, the particular implementation of that program, and the representation of the value during a particular run of the program. As an example, the value and concept of `0` should and will always have the same effects on all C platforms: adding that value to another value `x` will again be `x`, and evaluating a value `0` in a control expression will always trigger the `false` branch of the control statement.
+
+The `data` of a program execution consists of all the assembled values of all objects at a given moment. The `state` of the program execution is determined by
+
+* The executable
+* The current point of execution
+* The data
+* Outside intervention, such as the I/O from the user
+
+If we abstract from the last point, an executable that runs with the same data from the same point of execution must give the same result. But since C programs should be portable between systems, we want more than that. We don’t want the result of a computation to depend on the executable (which is platform specific) but ideally to depend only on the program specification itself. An important step to achieve this platform independence is the concept of `types`.
+
+---
+
+A `type` is an additional property that C associates with `values`. Up to now, we have seen several such types, most prominently `size_t`, but also `double` and `bool`.
+
+- All values have a type that is statically determined.
+- Possible operations on a value are determined by its type.
+- A value’s type determines the results of all operations.
+
+---
+
+- C only imposes properties on representations such that the results of operations can be deduced a priori from two different sources:
+  * The values of the operands
+  * Some characteristic values that describe the particular platform
+
+For example, the operations on the type `size_t` can be entirely determined when inspecting the value of SIZE_WIDTH in addition to the operands. We call the model to represent values of a given `type` on a given platform the `binary representation` of the type.  
+A type’s binary representation determines the results of all operations.
+
+A type’s binary representation is observable.
+
+This binary representation is still a model and thus an `abstract representation` in the sense that it doesn’t completely determine how values are stored in the memory of a computer or on a disk or other persistent storage device. That representation is the `object representation`. In contrast to the binary representation, the object representation is usually not of much concern to us as long as we don’t want to hack together values of objects in main memory or have to communicate between computers that have different platform models.
+
+As a consequence, all computation is fixed through the values, types, and their `binary representations` that are specified in the program. The program text describes an `abstract state machine` that regulates how the program switches from one state to the next. These transitions are determined by value, type, and binary representation only => Programs execute as if following the abstract state machine.
+
+### Optimization
+
+How a concrete executable manages to follow the description of the abstract state machine is left to the discretion of the compiler creators. Most modern C compilers produce code that _doesn’t_ follow the exact code prescription: they cheat wherever they can and only respect the observable states of the abstract state machine.
+
+The compiler may perform changes to the execution order as long as there will be no observable difference in the result.
+
+> Type determines optimization opportunities.
+
+static type help compiler to have accurate prediction, allow for better performance than dynamic type
+
+## Basic Types
+
+C has a series of `basic types` and means of constructing `derived types` from them
+
+All basic values in C are numbers, but there are different kinds of numbers. As a principal distinction, we have two different classes of numbers, each with two subclasses: `unsigned integers`, `signed integers`, `real floating-point numbers`, and `complex floating-point numbers`. Each of these four classes contains several types. They differ according to their `precision`, which determines the valid range of values that are allowed for a particular type.
