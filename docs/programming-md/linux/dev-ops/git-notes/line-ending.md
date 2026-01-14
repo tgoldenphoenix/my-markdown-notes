@@ -6,11 +6,11 @@ Computers need to know when to start a new line, but the characters used to repr
 
 - There are 2 control characters that represent line endings:
 - carriage return
-  * aka `CR` `\r` `^M` `0x0d`
-  * represents a cursor movement back to column 0
+  - aka `CR` `\r` `^M` `0x0d`
+  - represents a cursor movement back to column 0
 - line feed
-  * aka `LF` `\n` `$` `0x0a`
-  * represents a cursor movement directly downward
+  - aka `LF` `\n` `$` `0x0a`
+  - represents a cursor movement directly downward
 
 - Windows uses CR + LF to represent line-endings
 - Any unix-like operating operating system (linux, BSD, macOS) represents line-endings with a single `LF`.
@@ -43,26 +43,26 @@ never gonna give you up^M$
 never gonna let you down^M$
 ```
 
-In VS Code, the current file's line ending (CRLF or LF) is displayed in the bottom-right corner of the status bar. 
+In VS Code, the current file's line ending (CRLF or LF) is displayed in the bottom-right corner of the status bar.
 
 ## Fix line-endings for one-off files
 
 - use a tool like
-  * `dos2unix` / `unix2dos`
-  * `vim` `sed` `tr` etc...
+  - `dos2unix` / `unix2dos`
+  - `vim` `sed` `tr` etc...
 
 most reliable is probably `dos2unix` ([may require install](https://formulae.brew.sh/formula/dos2unix))
 
 ```shell
-$ dos2unix crlf.txt # convert to LF
-$ unix2dos lf.txt   # convert to CRLF
+dos2unix crlf.txt # convert to LF
+unix2dos lf.txt   # convert to CRLF
 ```
 
 some other ways
 
 ```shell
-$ sed 's/\r$//' crlf.txt > lf.txt
-$ tr -d '\r' < crlf.txt > lf.txt
+sed 's/\r$//' crlf.txt > lf.txt
+tr -d '\r' < crlf.txt > lf.txt
 ```
 
 ## To Configure git (+repos)
@@ -148,13 +148,13 @@ One final layer on all this is that you can create a file called `.gitattributes
 
 Or you could do this to tell Git to never replace `CRLF` with `LF` for txt files like this:
 
-```
+```txt
 *.txt -crlf
 ```
 
 Or you could do this to tell Git to only replace `CRLF` with `LF` when writing, but to read back `LF` when writing the working directory for txt files like this:
 
-```
+```txt
 *.txt crlf=input
 ```
 
@@ -164,7 +164,7 @@ Enter the new system which is available in Git 1.7.2 and above.
 
 The new system moves to defining all of this in the `.gitattributes` file that you keep with your repository. This means that line endings can be encapsulated entirely within a repository and don’t depend on everyone having the proper global settings.
 
-In the new system you are in charge of telling git which files you would like `CRLF` to `LF` replacement to be done on. This is done with a `text` attribute in your repository’s `.gitattributes` file. In this case the [man page]() is actually quite helpful. Here are some examples of using the `text` attribute:
+In the new system you are in charge of telling git which files you would like `CRLF` to `LF` replacement to be done on. This is done with a `text` attribute in your repository’s `.gitattributes` file. In this case the man page is actually quite helpful. Here are some examples of using the `text` attribute:
 
 - `*.txt text` Set all files matching the filter `*.txt` to be text. This means that Git will run `CRLF` to `LF` replacement on these files every time they are written to the object database and the reverse replacement will be run when writing out to the working directory.
 - `*.txt -text` Unset all files matching the filter. These files will never run through the `CRLF` to `LF` replacement.
@@ -196,7 +196,7 @@ Here is an example you might use for a C# project:
 
 One final note that the man page for gitattributes mentions is that you can tell git to detect _all_ text files and automatically normalize them (convert `CRLF` to `LF`):
 
-```
+```txt
 *       text=auto
 ```
 
@@ -222,18 +222,18 @@ What does this warning mean?
 How to fix
 
 - The default value for `core.autocrlf` is selected during Git installation and stored in system-wide gitconfig (`\Program Files\Git\etc\gitconfig` on Windows, `/etc/gitconfig` on Linux). Also there are (cascading in the following order):
-  * "global" (per-user) gitconfig located at `~/.gitconfig`, yet another
-  * "global" (per-user) gitconfig at `$XDG_CONFIG_HOME/git/config` or $HOME/.config/git/config and
-  * "local" (per-repo) gitconfig at `.git/config` in the working directory.
+  - "global" (per-user) gitconfig located at `~/.gitconfig`, yet another
+  - "global" (per-user) gitconfig at `$XDG_CONFIG_HOME/git/config` or $HOME/.config/git/config and
+  - "local" (per-repo) gitconfig at `.git/config` in the working directory.
 
 - So, write git config core.autocrlf in the working directory to check the currently used value and
-  * git config --system core.autocrlf false            # per-system solution
-  * `git config --global core.autocrlf false`            # per-user solution
-  * git config --local core.autocrlf false              # per-project solution
+  - git config --system core.autocrlf false            # per-system solution
+  - `git config --global core.autocrlf false`            # per-user solution
+  - git config --local core.autocrlf false              # per-project solution
 
 - Warnings
-  * git config settings can be overridden by gitattributes settings.
-  * crlf -> lf conversion only happens when adding new files, crlf files already existing in the repo aren't affected.
+  - git config settings can be overridden by gitattributes settings.
+  - crlf -> lf conversion only happens when adding new files, crlf files already existing in the repo aren't affected.
 
 ### renormalize
 
@@ -247,3 +247,4 @@ Since 2018, git can --renormalize repo fixing the existing line endings as requi
 - [dos2unix source](https://waterlan.home.xs4all.nl/dos2unix.html)
 - [how autocrlf works](https://stackoverflow.com/questions/1967370/git-replacing-lf-with-crlf)
 - ["Mind the End of Your Line" further reading](https://adaptivepatchwork.com/2012/03/01/mind-the-end-of-your-line/)
+

@@ -244,7 +244,7 @@ The difference between `around` and `inside` contexts with these objects is whet
 
 - `diw` delete inside word
 - `daw` delete around word; delete the word and **one** surrounding space character, so everything lines up correctly afterward with a single space
-  * `daW`
+  - `daW`
 - `dis` & `das` delete sentence
 - `dip` & `dap`; when in `inside` mode, the blank line after the paragraph being deleted will still be there, but in `around` mode, it will remove the extra blank.
 
@@ -252,6 +252,57 @@ The difference between `around` and `inside` contexts with these objects is whet
 - Typically, I use `i` when I am changing a word, sentence or paragraph, with a `c` verb, since I want to replace it with something else that will need to have surrounding whitespace. But I use a when I am deleting the textual object with `d` because I don’t intend to replace it, so I want the whitespace to behave as if that object never existed.
 
 ### Quotes and Brackets
+
+`di[`, `da(`, `ci{` or `ca<`.
+
+These actually work with counts so you can delete the “third surrounding curly brackets” instead of the “nearest surrounding curly brackets” if you want to. I can never remember where to put the count, though! If your memory is better than mine, the syntax is to place the count **before** the a or i. So for example, `d2a{` will delete everything inside the second-nearest set of curly brackets. I’m not sure if that makes sense, so here’s a visual:
+
+```javascript
+class Foo {
+    function bar() {
+       let obj = {fizz: 'buzz'}
+    }
+}
+```
+
+- If my cursor is on the colon between fizz and 'buzz' then you can expect the following effects:
+  - di{ will delete fizz: 'buzz' but leave the surrounding curly brackets.
+  - c2i{ will remove the entire let obj = line and leave my cursor in Insert mode inside the curly brackets defining the function body.
+  - c2a{ will do the same thing, but also remove those curly brackets, so I’m left with a function bar() that has no body.
+  - d3i{ will remove the entire function and leave me with an empty Foo class.
+
+You can also delete things between certain pieces of punctuation. For example, `ci*` and `ca_` are useful for replacing the contents of text marked as bold or italic in Markdown files.
+
+If you want to operate on the entire buffer, use the `ag` or `ig` text object. So `cag` is the quickest way to scrap everything and start over and yig will copy the buffer so you can paste it into a pastebin or chatbot. The `g` may seem like an odd choice, but it has a symmetry to the fact that gg and G jump to the beginning or end of the file. If you need a mnemonic, think of yig as “yank in global”.
+
+### Language Features
+
+- LazyVim adds some helpful operators to perform a command on an entire function or class definition, objects, and (in HTML and JSX), tags. These are summarized below:
+  - `c`: Act on class or type
+  - `f`: Act on function or method
+  - `o`: Act on an “object” (the mnemonic is a stretch) such as blocks, loops, or conditionals
+  - `t`: Act on an HTML-like tag (works with JSX)
+  - `i`: Act on a “scope”, which is essentially an indentation level (only available if the aforementioned `mini.indentscope` extra is installed)
+
+### Next and Last Text Object
+
+The text object feature is great if you are already inside the object you want to operate on, but LazyVim is configured (using a plugin called `mini.ai`) so that you can even operate on objects that are only near your cursor position.
+
+Once installed, the next and last text objects can be accessed by prefixing the object you want to access with a `l` or `n`.
+
+Consider the Foo.bar Javascript class again:
+
+```javascript
+class Foo {
+    function bar() {
+       let obj = {fizz: 'buzz'}
+    }
+}
+```
+
+If my cursor is on the `{` of the `function bar` line, I can type `cin{` to delete the contents of the `fizz: 'buzz'` object and place my cursor there in insert mode. I can save myself an entire navigation with just one extra n keystroke.
+
+## Seeking Surrounding Objects
 
 k
 
