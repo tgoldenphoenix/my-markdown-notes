@@ -234,6 +234,25 @@ Finally, if you use `TODO` or `FIXME` comments in your code, you can jump betwee
 
 ## Text Objects
 
+`a` and `i` means around and inside (though in my head I always just pronounce them as “a” and “in”). The difference is that a operations tend to select everything that inside selects plus a bit of surrounding context that depends on the object that is defined.
+
+### Textual Objects
+
+The operators `w`, `s`, and `p` are used to perform an operation on an entire word, sentence, or paragraph, as defined previously: word is contiguous non-punctuation, sentence is anything that ends in a `.`, `?`, or `!`, and paragraph is anything separated by two newlines.
+
+The difference between `around` and `inside` contexts with these objects is whether or not the surrounding whitespace is also affected.
+
+- `diw` delete inside word
+- `daw` delete around word; delete the word and **one** surrounding space character, so everything lines up correctly afterward with a single space
+  * `daW`
+- `dis` & `das` delete sentence
+- `dip` & `dap`; when in `inside` mode, the blank line after the paragraph being deleted will still be there, but in `around` mode, it will remove the extra blank.
+
+- `around` usually correctly sync up the white spaces after deletion more than `inside`
+- Typically, I use `i` when I am changing a word, sentence or paragraph, with a `c` verb, since I want to replace it with something else that will need to have surrounding whitespace. But I use a when I am deleting the textual object with `d` because I don’t intend to replace it, so I want the whitespace to behave as if that object never existed.
+
+### Quotes and Brackets
+
 k
 
 ## Navigating Project, File Tree

@@ -150,10 +150,10 @@ có số `60` => cả 2 ý trên hoặc chọn ý 1
 Lấy max value trừ đi `25`
 
 - Khoảng cách an toàn tối thiểu:
-  * 60 km/h = 35m
-  * 60 - 80 km/h = 55m
-  * 80 - 100 km/h = 70m
-  * 100-120 km/h = 100m
+  - 60 km/h = 35m
+  - 60 - 80 km/h = 55m
+  - 80 - 100 km/h = 70m
+  - 100-120 km/h = 100m
 
 ## Others
 
@@ -184,19 +184,19 @@ xích lô, ly bia, con ngựa => ý cuối
 - Chỉ có biển cấm ô tô chở khách
 
 - Thấy 2 biển mô tô (2 bánh) và ô tô (4 bánh) đi chung => áp dụng mẹo cấm 1 - được 3
-  * Câu hỏi có chữ cấm => chọn 1
-  * có chữ được => chọn 3
+  - Câu hỏi có chữ cấm => chọn 1
+  - có chữ được => chọn 3
 
 - xe mô tô:
-  * có vẽ người
-  * 18 tuổi
-  * phải thi gplx A1, A
-  * xe trên 50cm3
+  - có vẽ người
+  - 18 tuổi
+  - phải thi gplx A1, A
+  - xe trên 50cm3
 - xe gắn máy:
-  * chỉ vẽ xe, không vẽ người
-  * 16 tuổi
-  * không cần GPLX
-  * xe dưới 50cm3
+  - chỉ vẽ xe, không vẽ người
+  - 16 tuổi
+  - không cần GPLX
+  - xe dưới 50cm3
 
 - Tốc độ màu đỏ là tối đa
 - Màu xanh là tối thiểu
@@ -204,20 +204,39 @@ xích lô, ly bia, con ngựa => ý cuối
 - chiều dài đoạn đường => chọn biển 2 mũi tên thẳng đứng
 - Chiều ngang => mũi tên nằm ngang
 - chiều cao => mũi tên trên dưới
+- Các biển báo giống:
+  - cấm xe ô tô và mô tô đi về bên phải và bên trái
 
 - Dừng/đỗ xe ngày chẳn lẽ
-  * ngày lẻ chọn ý 1
-  * ngày chẳn chọn ý 2
-  * Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
+  - ngày lẻ chọn ý 1
+  - ngày chẳn chọn ý 2
+  - Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
 
-- thấy biển dấu trừ => mẹo **và - 2** (chọn đáp án có chữ **và**, không có thì chọn ý 2)
-  * Biển 1 và biển 2 => chọn
+- một gạch cấm đỗ xe (đậu xe) cho phép dừng tạm thời
+- hai gạch dấu X là cấm đỗ và cấm dừng
+
+- thấy biển dấu trừ (cấm đi ngược chiều) => mẹo **và - 2** (chọn đáp án có chữ **và**, không có thì chọn ý 2)
+  - Biển 1 và biển 2 => chọn
 
 Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
 
 - Thấy 3 biển hình tròn rỗng
-  * đáp án ghi con số biển 1, 2, 3 => ý 2
-  * đáp án ko ghi số => ý 1
+  - đáp án ghi con số biển 1, 2, 3 => ý 2
+  - đáp án ko ghi số => ý 1
+
+Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ **không được phép** => là chọn luôn
+
+- cấm tải trọng:
+  - biển chỉ ghi số => tải trọng toàn bộ
+  - có vẽ trục => tải trọng trên trục xe
+- Cấm xe có tải trọng > số ghi trên biển
+
+- các biển vẽ mũi tên: cấm rẽ trái thì sẽ không cấm quay đầu, trừ khi hai mũi tên lồng nhau
+- Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái thì phải đi trái
+
+### Hiệu lệnh & chỉ dẫn
+
+k
 
 ## Thi thực hành
 
