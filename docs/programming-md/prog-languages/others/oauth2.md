@@ -239,13 +239,25 @@ When the browser follows this redirect, it will be served by the client applicat
 
 ## The OAuth Client
 
+## Register an OAuth client with an authorization server
+
+the OAuth client and the authorization server need to know a few things about each other before they can talk.
+
+An OAuth client is identified by a special string known as the client identifier. The client identifier needs to be unique for each client at a given authorization server, and is therefore almost always assigned by the authorization server to the client.
+
+This assignment could happen through a developer portal, dynamic client registration, or through some other process. 
+
+Our client is also what’s known as a `confidential client` in the OAuth world, which means that it has a shared secret that it stores in order to authenticate itself when talking with the authorization server, known as the `client_secret`. The client_secret can be passed to the authorization server’s token endpoint in several different ways, but in our example we will be using `HTTP Basic`.
+
+The client_secret is also nearly always assigned by the authorization server
+
 ### Grant Types
 
 - A **Grant Type (or Authorization Grant or Flow)** defines the specific method or workflow a client application uses to obtain an Access Token from an authorization server. If successful it ultimately results in the client getting a token.
   * `Authorization Code Grant Type` là một trong những authorization grant type. The entire OAuth process is the authorization grant: the client sending the user to the authorization endpoint, then receiving the code, then finally trading the code for the token.
   * Other OAuth grant types: implicit grant type or client credentials grant type
 
-The **authorization code grant type** fully separates all of the different OAuth parties and is consequently the **most foundational** and complex of the core grant types that we’ll cover in this book. All of the other OAuth grant types are optimizations of this one, suited for specific use cases and environments.
+The `authorization code grant type` fully separates all of the different OAuth parties and is consequently the **most foundational** and complex of the core grant types that we’ll cover in this book. All of the other OAuth grant types are optimizations of this one, suited for specific use cases and environments.
 
 - The Authorization Client can send the resource owner (which in our case is the end user at the client) over to the authorization server’s authorization endpoint.
 - The server then sends an authorization code back to the client through its `redirect_uri`.

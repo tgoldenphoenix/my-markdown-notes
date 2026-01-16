@@ -104,60 +104,6 @@ You need to worry only about which version of Spring Boot you’re using (inside
 
 `xmlns` là viết tắt của `XML namespace`, dùng để định danh các thẻ và thuộc tính trong tài liệu XML, giúp phân biệt các yếu tố có tên giống nhau nhưng thuộc các bộ khác nhau.
 
-## Java Servlets, Spring MVC, Spring Boot and Spring without Boot
-
-A **Java Servlet** is a Java class that extends the capabilities of servers, typically web servers, by responding to various types of requests, most commonly HTTP requests. Servlets are a key component in building dynamic web applications using Java.
-
-**JSP, or JavaServer Pages**, is a server-side technology that enables developers to create dynamic web pages by embedding Java code directly within HTML. It is an extension of Java Servlets and part of the Java EE (now Jakarta EE) platform.  
-JSP is converted into servlet & HTML.
-
-**Spring MVC** is a web application framework built on top of Servlets. It provides a higher level of abstraction, simplifying web development through conventions, annotations, and a clear architectural pattern (Model-View-Controller).  
-Không dùng react mà dùng thymeleaf cho phần "View". This is a server-side rendering (SSR) technology.
-
-- Spring MVC:
-  * manual configuration (XML config)
-  * Typically deployed as a WAR file in a separate application server.
-  * more boilerplate code
-- Spring Boot:
-  * opinionated default configs, reducing manual setup.
-  * Can be deployed as a standalone executable JAR with an embedded server.
-  * Minimizes boilerplate code
-
-Spring web bao gồm restAPI (`@RestController`) & MVC (`@Controller`)
-
-Web container: Apache Tomcat, Glassfish, etc
-
-`web.xml` is the Deployment Descriptor map HTTP request với từng servlet xử lý cho phù hợp.
-
-Spring boot sẽ lo phần: configuration xml, embedded tomcat server. Developer dùng annotation like (`@Component`) để "communicate" with spring boot.  
-Spring boot has its opinionated configurations whether you like it or not.
-
-Spring Framework without boot mình phải tự làm configuration bằng một file `.xml` specifying which class is component.
-Spring MVC is a web framework built on Java Servlet API. Tự config, không có embeded Tomcat server
-
-spring framework 6.x còn spring boot là 3.x version.
-
-spring boot tích hợp sẳn Tomcat, nên gọi là no-server.
-
-Spring Profiles = configuration.
-
-Nếu không xài spring boot annotation thì sẽ phải tự config xml vài cái sau đây:
-
-- Which class is component class để container biết tạo object (Spring bean)
-- setter injection, constructor injection, autowire
-
-Spring Boot cũng có configuration trong file `application.properties` nhưng nó dễ hơn xml nhiều. Và Spring chủ yếu dùng annotations.  
-Behind the scene, spring Boot still uses spring Framework.
-
-Console java app có thể run in the jvm. Nhưng web app thì phải run in a web server (web container, tomcat) để có thể nhận và response HTTP requests. Java servlets run in the container.
-
-Ultimately, behind the scene, spring, particularly Spring MVC, use servlets and it run on tomcat. Nhưng Spring embed tomcat in the project nên mình không phải install.
-
-web server only send JSON data and not the layout. Native app có layout lúc tải về. Web app thì có react, angular lo phần HTML.
-
-- `@RestController` REST api = Representational State Transer. It means you transer only the data (state) to the client not the layout.
-- `@Controller` có thể trả về client data hoặc layout (Thymeleaf, jsp - JavaServer Pages)
-
 ## Model, POJO, java Bean, spring beans
 
 A POJO, or **Plain Old Java Object**, is a simple Java object that is NOT bound by any special restrictions or framework-specific requirements. It's essentially a regular Java class that can be used in any Java application and is not tied to any specific framework like EJB (Enterprise JavaBeans) or JPA.  
@@ -165,9 +111,9 @@ POJOs are typically straightforward classes used primarily for **data storage**,
 
 These POJOs can also be considered JavaBeans if they follow the JavaBean conventions (private fields, public getters/setters, a no-argument constructor, and implementing Serializable).
 
-While these domain model POJOs/JavaBeans are used within a Spring application, they are not necessarily Spring Beans themselves unless explicitly configured as such (e.g., by annotating them with `@Component`, `@Entity`, or defining them with @Bean in a @Configuration class).
+While these domain model POJOs/JavaBeans are used within a Spring application, they are not necessarily Spring Beans themselves unless explicitly configured as such (e.g., by annotating them with `@Component`, `@Entity`, or defining them with `@Bean` in a `@Configuration` class).
 
-### Spring bean vs. Java Beans
+### Spring Bean vs. Java Beans
 
 JavaBeans là những Class có thuộc tính được khai `private`, muốn truy cập những thuộc tính này phải dùng setters, getters. Java Bean có mục đích là:
 
@@ -259,16 +205,6 @@ Các layer chỉ được gọi layer ngay bên dưới nó. Không được g�
 
 There is no syntactic difference between a **JavaBean** and another class -- a class is a JavaBean if it follows the following standards. Java bean khác với spring bean.
 
-## Spring MVC
-
-Spring MVC chỉ có `@GetMapping` & `@PostMapping`, API mới có Put, Delete
-
-Spring APIs (REST Controllers) typically use `@RequestBody`, while Spring MVC (Web Controllers) use `@ModelAttribute`.
-
-`Model` is an object that ferries data between a controller and whatever view is charged with rendering that data. Ultimately, data that’s placed in `Model` attributes is copied into the servlet request attributes, where the view can find them and use them to render a page in the user’s browser.
-
-methods that are also annotated with `@ModelAttribute` are invoked when a request is handled and will construct the model object.
-
 ## IoC and Dependency Injection (DI)
 
 DI and AOP are central to everything in Spring. Thus you must understand how to use these principal functions of Spring to be able to use the rest of the framework.
@@ -335,17 +271,88 @@ Java EE (now called Jakarta EE) is primarily used for building enterprise-level 
 
 EJB  (Enterprise JavaBeans) cũng là một technologies used for developing enterprise Java applications nhưng nó khác Spring.
 
+## Spring MVC
+
+Spring MVC chỉ có `@GetMapping` & `@PostMapping`, API mới có Put, Delete
+
+Spring APIs (REST Controllers) typically use `@RequestBody`, while Spring MVC (Web Controllers) use `@ModelAttribute`.
+
+`Model` is an object that ferries data between a controller and whatever view is charged with rendering that data. Ultimately, data that’s placed in `Model` attributes is copied into the servlet request attributes, where the view can find them and use them to render a page in the user’s browser.
+
+Methods that are also annotated with `@ModelAttribute` are invoked when a request is handled and will construct the model object.
+
 ## Thymeleaf
 
 Trong forms dùng `selection expressions`: `*{firstName}`
 
-**Message expression** trong file `application.properties`. `#{welcome.text}`
+`Message expression` trong file: `application.properties`. `#{welcome.text}`
 
-**Link expression** `@{manage/edit}`
+Link expression: `@{manage/edit}`
 
 `<img th:src="@{/images/TacoCloud.png}"/>`
 
-This line uses a Thymeleaf `th:src` attribute and an `@{...}` expression to reference the image with a context-relative path.
+ `th:src=""` is called an attribute 
+ 
+ `@{...}` is an expression or operator to reference the image with a context-relative path.
+
+`*{...}` refers to the fields of the object defined by `th:object="${}"`
+
+- `${...}` is the Variable Expressions (Global Scope)
+- `*{...}` is the Selection Expressions (Local Scope)
+
+## Java Servlets, Spring MVC, Spring Boot and Spring without Boot
+
+A **Java Servlet** is a Java class that extends the capabilities of servers, typically web servers, by responding to various types of requests, most commonly HTTP requests. Servlets are a key component in building dynamic web applications using Java.
+
+**JSP, or JavaServer Pages**, is a server-side technology that enables developers to create dynamic web pages by embedding Java code directly within HTML. It is an extension of Java Servlets and part of the Java EE (now Jakarta EE) platform.  
+JSP is converted into servlet & HTML.
+
+**Spring MVC** is a web application framework built on top of Servlets. It provides a higher level of abstraction, simplifying web development through conventions, annotations, and a clear architectural pattern (Model-View-Controller).  
+Không dùng react mà dùng thymeleaf cho phần "View". This is a server-side rendering (SSR) technology.
+
+- Spring MVC:
+  * manual configuration (XML config)
+  * Typically deployed as a WAR file in a separate application server.
+  * more boilerplate code
+- Spring Boot:
+  * opinionated default configs, reducing manual setup.
+  * Can be deployed as a standalone executable JAR with an embedded server.
+  * Minimizes boilerplate code
+
+Spring web bao gồm restAPI (`@RestController`) & MVC (`@Controller`)
+
+Web container: Apache Tomcat, Glassfish, etc
+
+`web.xml` is the Deployment Descriptor map HTTP request với từng servlet xử lý cho phù hợp.
+
+Spring boot sẽ lo phần: configuration xml, embedded tomcat server. Developer dùng annotation like (`@Component`) để "communicate" with spring boot.  
+Spring boot has its opinionated configurations whether you like it or not.
+
+Spring Framework without boot mình phải tự làm configuration bằng một file `.xml` specifying which class is component.
+Spring MVC is a web framework built on Java Servlet API. Tự config, không có embeded Tomcat server
+
+spring framework 6.x còn spring boot là 3.x version.
+
+spring boot tích hợp sẳn Tomcat, nên gọi là no-server.
+
+Spring Profiles = configuration.
+
+Nếu không xài spring boot annotation thì sẽ phải tự config xml vài cái sau đây:
+
+- Which class is component class để container biết tạo object (Spring bean)
+- setter injection, constructor injection, autowire
+
+Spring Boot cũng có configuration trong file `application.properties` nhưng nó dễ hơn xml nhiều. Và Spring chủ yếu dùng annotations.  
+Behind the scene, spring Boot still uses spring Framework.
+
+Console java app có thể run in the jvm. Nhưng web app thì phải run in a web server (web container, tomcat) để có thể nhận và response HTTP requests. Java servlets run in the container.
+
+Ultimately, behind the scene, spring, particularly Spring MVC, use servlets and it run on tomcat. Nhưng Spring embed tomcat in the project nên mình không phải install.
+
+web server only send JSON data and not the layout. Native app có layout lúc tải về. Web app thì có react, angular lo phần HTML.
+
+- `@RestController` REST api = Representational State Transer. It means you transer only the data (state) to the client not the layout.
+- `@Controller` có thể trả về client data hoặc layout (Thymeleaf, jsp - JavaServer Pages)
 
 ## JSP Servlet
 
@@ -373,18 +380,20 @@ mỗi file servelt chỉ có một endpoint
   - Suitable for sensitive data (e.g., passwords, personal information) and operations that modify server-side resources (e.g., form submissions, file uploads).
   - No practical limit on data length.
 
+### Forward vs Redirect
+
 - `forward`:
-  - Cả 2 (forward & redirect) đều là chuyển trang phía server, client không liên quan.
-  - Forward chuyển dữ liệu đi theo. **KHÔNG** tạo request object mới mà chỉ chuyển tiếp request. The browser's URL remains unchanged.
-  - Request attributes and parameters are preserved during the forward.
-  - If the previous scope is required, but the application also wants to perform an internal action then use forwarding.
-  - login thành công => forward kèm theo dữ liệu user
+  * Cả 2 (forward & redirect) đều là chuyển trang phía server, client không liên quan.
+  * Forward chuyển dữ liệu đi theo. **KHÔNG** tạo request object mới mà chỉ chuyển tiếp request. The browser's URL remains unchanged.
+  * Request attributes and parameters are preserved during the forward.
+  * If the previous scope is required, but the application also wants to perform an internal action then use forwarding.
+  * login thành công => forward kèm theo dữ liệu user
 - `sendRedirect`:
-  - Chuyển trang không kèm theo dữ liệu. Force the client to make a new request. The browser's URL is changed.
-  - Redirect chạy nhanh hơn forward => ưu điểm của re-direct.
-  - To discard the scope or if the new content isn’t associated with the original request – such as a redirect to a login page or completing a form submission – then use redirecting.
-  - This is useful when we want to send the user to a different domain or server outside of our web application.
-  - đăng nhập thất bại, thông báo server đang bị lỗi
+  * Chuyển trang không kèm theo dữ liệu. Force the client to make a new request. The browser's URL is changed.
+  * Redirect chạy nhanh hơn forward => ưu điểm của re-direct.
+  * To discard the scope or if the new content isn’t associated with the original request – such as a redirect to a login page or completing a form submission – then use redirecting.
+  * This is useful when we want to send the user to a different domain or server outside of our web application.
+  * đăng nhập thất bại, thông báo server đang bị lỗi
 
 Trong spring thường bỏ redirect và chỉ xử dụng forward.
 
@@ -407,7 +416,7 @@ Unfortunately, JSPs are slow to compile, hard to debug, leave basic form validat
 
 In light of the MVC design pattern, the servlet acts as a controller and JSP as a view.
 
----
+### Attribute vs Parameter
 
 - `Attritube`:
   * diễn ra ở server; attribute là dữ liệu do phía server tự bịa đặt ra attach to the request client gởi lên.
@@ -424,6 +433,8 @@ In light of the MVC design pattern, the servlet acts as a controller and JSP as 
   * `@PathVariable` là `product/{productId}`
   * `RequestBody` là raw json inside body
 
+### Request vs Session
+
 - `HttpServletRequest`:
   * Scope: Represents a single client request to the server. Its attributes are available only for the duration of that specific request.
   * Lifetime: Created when a client sends a request and destroyed after the server sends the response.
@@ -435,6 +446,10 @@ In light of the MVC design pattern, the servlet acts as a controller and JSP as 
   * Purpose: Used to maintain stateful information about a particular user across multiple pages or requests (e.g., user login status, shopping cart contents, user preferences).
   * Example: Storing a user ID after successful login using session.setAttribute("userId", user.getId()).
 
+Trong MVC, mình có: `SessionAttributes`, `ModelAttributes`. `Attribute` là key-value pairs mình bịa ra và attach vào trong `Model` hoặc `Session`.
+
+`Model` scope only lasts for one single HTTP request. It is used to pass data from a Controller to View
+
 ### DispatcherServlet
 
 The **DispatcherServlet** is the front controller in the Spring MVC framework that acts as a single entry point for all incoming HTTP requests, routing them to the appropriate controller for processing and then delegating the response to the appropriate view.
@@ -444,6 +459,10 @@ The **DispatcherServlet** is the front controller in the Spring MVC framework th
 - Có 2 cách mapping servlet:
   * dùng annotation
   * Dùng `web.xml`
+
+## Spring API
+
+`@RestController` this controller returns JSON, not HTML view
 
 ## Strut
 

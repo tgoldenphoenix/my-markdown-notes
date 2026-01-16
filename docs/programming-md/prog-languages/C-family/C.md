@@ -22,6 +22,8 @@ Example: `#include`, `#define`,
 
 The most dangerous constructs in C are the so-called `casts`.
 
+In C, a `header file` (ending in `.h`) is a text file that contains declarations of functions, macros, and data types (semantic types).
+
 ### Declarations
 
 Before we may use a particular `identifier` in a program, we have to give the compiler a `declaration` that specifies what that identifier is supposed to represent. In this way, identifiers differ from `keywords`: keywords are predefined by the language and must not be declared or redefined.
@@ -342,3 +344,47 @@ static type help compiler to have accurate prediction, allow for better performa
 C has a series of `basic types` and means of constructing `derived types` from them
 
 All basic values in C are numbers, but there are different kinds of numbers. As a principal distinction, we have two different classes of numbers, each with two subclasses: `unsigned integers`, `signed integers`, `real floating-point numbers`, and `complex floating-point numbers`. Each of these four classes contains several types. They differ according to their `precision`, which determines the valid range of values that are allowed for a particular type.
+
+Type `char` is special since it can behave like unsigned or signed, depending on the platform.
+
+In C, khi nếu không specify thì ngầm hiểu là đang refer to `signed` types. Tức là `int` = `signed int`, `short` = `signed short`. Còn muốn refer to `unsigned` thì phải explicitly write out `unsigned int`, `unsigned short`.
+
+Khi viết `unsigned` or `signed` thì ngầm hiểu refer to `unsigned int` or `signed int`
+
+There are six types that we can’t use directly for arithmetic, the `narrow types` (any integer type that is smaller than a standard `int`). They are `promoted` to one of the wider types before they are considered in an arithmetic expression. Nowadays, on any realistic platform, this promotion will be a `signed int` of the same value as the narrow type, regardless of whether the narrow type was signed. 
+
+narrow types: `char`, `bool`
+
+- A `signed int` is 4 bytes (32 bits); from $-2,147,483,648$ to $2,147,483,648$
+- The leftmost bit (most significant bit, MSB) is the `sign bit`
+  * If the sign bit is `0`, the number is positive.
+  * If the sign bit is `1`, the number is negative.
+
+### Specifying values 
+
+`literal` = numerical constants
+
+- `077 Octal integer literal`—This is specified by a sequence of digits, the first being 0 and the following between 0 and 7. For example, `077` has the value `63`. This type of specification merely has historical value and is **rarely used nowadays**. Only one octal literal is commonly used: 0 itself. 
+- `0xFFFF Hexadecimal integer literal`—This is specified by starting with `0x` followed by a sequence of digits between 0, …, 9 and a, …, f. For example, `0xbeaf = 48,815`. The a, …, f and x can also be written in capitals, 0XBEAF. 
+- `0b1010 Binary integer literal`—This is specified by starting with 0b followed by a sequence of 0 or 1 digits. For example, `0b1010` has the value 10. The leading 0b may also be written as 0B instead. Binary literals were introduced in C23.
+- `1.7E-13 Decimal floating-point literals`—These literals are quite familiar as the version with a decimal point. But there is also the “scientific” notation with an exponent. In the general form, `mEe` is interpreted as $m\cdot 10^{e}$. Example: `1.7E-13` = $1.7 \times 10^{-13}$
+- `0x1.7aP-13 Hexadecimal floating-point literals`—These are usually used to describe floating-point values in a form that makes it easy to specify values that have exact representations. The general form `0XhPe` is interpreted as $h\cdot 2^{e}$. Here, $h$ is specified as a hexadecimal fraction. The exponent $e$ is still specified as a decimal number.
+- `’a’ Integer character literal`—These are characters put between `’` single quotes, such as `’a’` or `’?’`. These have values that are only implicitly fixed by the C standard. For example, ’a’ corresponds to the integer code for the character a of the Latin alphabet.
+  * Among character literals, the `\` character has a special meaning. For example, we already have seen `’\n’` for the newline character.
+- `"hello" String literals`—They specify text, such as that needed for the printf and puts functions. Again, the `\` character is special, as with character literals.
+
+> Numerical literals are never negative.
+
+That is, if we write something like `-34` or `-1.5E-23` ($-1.5\times 10^{-23}$), the leading sign is not considered part of the number but is the negation operator applied to the number that comes after it.
+
+> Don’t use binary, octal, or hexadecimal literals for negative values. Use decimal literals for negative values.
+
+### Implicit conversions
+
+k
+
+## Derived data types
+
+- All other data types in C are derived from the basic types that we know now. There are four strategies for deriving data types. Two of them are called `aggregate data types` because they combine multiple instances of one or several other data types:
+  * `Arrays` These combine items that all have the same base type (section 6.1).
+  * `Structures` These combine items that may have different base types (section 6.3).
