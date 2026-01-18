@@ -236,6 +236,52 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 
 ### Hiệu lệnh & chỉ dẫn
 
+- Thấy biển chữ T (màu xanh mũi tên trắng)
+  * câu hỏi thấy chữ **trước ngã ba** => chọn ý 3
+  * không có trước ngã ba => chọn ý 1
+
+Biển chữ T only đặt sau ngã ba, ngã tư; không đặt trước.
+
+Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay đầu
+
+- Thấy hình biển có số 50 - 60 màu xanh:
+  * Chọn luôn đáp án có chữ **và**.
+  * Các câu còn lại hỏi: **tối đa chọn biển 50 - tối thiểu chọn biển 60**.
+
+- Biển màu đó là start hiệu lực tốc độ tối đa
+- Biển màu xanh:
+  * Có dấu gạch => hết hiệu lực biển maximum màu đỏ
+  * không có gạch, có số (60) => tốc độ tối thiểu
+
+- Câu hỏi có chữ **đi đúng làn** => chọn biển có vẽ xe
+- Câu hỏi có chữ **từng làn đường** => chọn cả hai biển
+
+- **rẽ ra** có làn đường xe khách => mũi tên nằm ngang
+- **phía trước** => mũi tên thẳng đứng
+
+- hình tròn phải theo (hiệu lệnh)
+- hình vuông là chỉ dẫn đường một chiều
+
+- Thấy biển đầu ô tô => chọn đáp án **có**
+- Thấy biển ô tô quay ngang => chọn không
+
+- Câu hỏi về cầu vượt ghi nhớ **vuông liên tròn cắt**:
+  * Cầu vượt liên thông là hình vuông
+  * Cầu vượt cắt qua là hình tròn
+
+- Người đi lên là lên cầu (vượt qua đường)
+- người đi xuống là xuống hầm
+
+- Thấy biển chữ ZONE:
+  * hỏi biển 1 => ý 1; hỏi biển 3 => ý 3
+  * Hỏi tên đường => chọn ý 3
+
+địa giới == địa phận
+
+Biển CSGT => phải giảm tốc độ đến mức an toàn và không được vượt
+
+### Biển nguy hiểm
+
 k
 
 ## Thi thực hành

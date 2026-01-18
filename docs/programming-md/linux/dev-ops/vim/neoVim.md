@@ -302,9 +302,74 @@ class Foo {
 
 If my cursor is on the `{` of the `function bar` line, I can type `cin{` to delete the contents of the `fizz: 'buzz'` object and place my cursor there in insert mode. I can save myself an entire navigation with just one extra n keystroke.
 
-## Seeking Surrounding Objects
+### Seeking Surrounding Objects
 
-k
+The flash.nvim plugin that gave us Seek mode, has another trick up its sleeve: the holy grail of text objects. After specifying a verb, you can use the `S` key (there is no `i` or `a` required) to be presented with a bunch of **paired labels** around the primary code objects surrounding your cursor.
+
+The labels in this image are in green, and (typically) go in alphabetical order from “innermost” to “outermost”. The primary difference from Seek mode is that **each label comes in pairs**; there are two `a` labels, two `b` labels, and so on. The text object is whatever is between those labels.
+
+If the next character I press is `a` (or enter, to accept the default), then I will change everything inside the curly brackets defining the obj. If I press `b`, it will also replace those curly brackets. Pressing `c` will change the entire assignment and d will change the contents of the function. Hitting e replaces the curly brackets as well, and f changes the full function definition. The g label is the contents of the class, while h changes the entire class.
+
+This is a super useful tool when you need to change, delete, or copy a complex structure that does not immediately map to any of the other objects.
+
+---
+
+Seeking Surrounding Objects Remotely => This function would be useful If I worked with code a lot in neovim. [read here](https://lazyvim-ambitious-devs.phillips.codes/course/chapter-7/#_seeking_surrounding_objects_remotely)
+
+## Operating on Surrounding Pairs
+
+We’ve already seen the text objects to operate on the contents of pairs of quotation marks or brackets, but what if you want to keep the content but change the surrounding pair?
+
+Maybe you want to change a double quoted string such as `"hello world"` to a single quoted `'hello world'`. Or maybe you are changing a `obj.get(some_variable)` method lookup to a `obj[some_variable]` index lookup, and need to change the surrounding parentheses to square brackets.
+
+LazyVim ships with the `mini.surround` plugin for this kind of behaviour, but it’s not installed by default. It is an extra.
+
+### Add Surrounding Pair
+
+The default verb for adding a surrounding pair is `gsa`. That will place your editor in operator-pending mode, and you now have to type the motion or text object to cover the text you want to surround with something. Once you have finished inputting that object, you need to type the character you want to surround it with, such as " or ( or ). The difference between the latter two is that, while both will surround the text with parentheses, the ( will also put extra spaces inside the parentheses.
+
+- `gsai[(` will select the contents of a set of square brackets (using `i[`) and place parentheses separated by spaces inside the square brackets. So if you start with [foo bar] and type gsai[(, you will end up with `[( foo bar )]`.
+- `gsai[)` does the same thing, except there are no spaces added, so the same `[foo bar]` will become `[(foo bar)]`.
+- `gsaa[)` will place the parentheses outside the square brackets, because you selected with `a[` instead of `i[`. So this time, our example becomes `([foo bar])`.
+- `gsa$"` will surround all the text between the current cursor position and the end of the line with double quotation marks.
+- `gsaSb'` will surround the text object that you select with the label `b` after an `S` operation with single quotation marks.
+
+### Delete Surrounding Pair
+
+Deleting a pair is a little easier, as you don’t need to specify a text object. Just use `gsd` followed by the indicator of whichever pair you want to remove.
+
+So if you want to delete the [] surrounding the cursor, you can use `gsd[`.
+
+If you want to delete deeply nested elements, you need to put a count before the `gsd` verb. So use `2gsd{` to delete the second set of curly braces outside your current cursor position. For example, if your cursor is inside the `def` of the string `{abc {def}}`, typing `2gsd{` results in `abc {def}`, leaving the “inner” curly braces around `def`, but removing the second outer set around the whole.
+
+### Replace Surrounding Pair
+
+Replacing is similar to deleting, except the verb is `gsr` and you need to type the character you want to replace the existing character with after you type the existing character.
+
+So if you have the text `"hello world"` and your cursor is inside it, you can use `gsr"'` to change the double quotes to single quotes: `'hello world'`.
+
+### Navigate Surrounding Characters
+
+To move your cursor to the beginning or end of the pair. You can often do this using Seek mode, Find mode, or the Unimpaired mode commands such as [(, but there are other commands that are more syntax aware if you need them.
+
+The vim built-in is the `%` motion.
+
+The mini.ai plugin provides a similar feature using the `g[` and `g]` shortcuts. These shortcuts both need to be followed by a character type, so e.g. `g[(` will jump back to the nearest surrounding open parenthesis, and `g]]` will jump to the nearest closing square bracket. If you give it a count, it will jump out of that many surrounding pairs.
+
+### XML or HTML Tags
+
+The `mini.surround` plugin is mostly for working with pairs of characters, but it can also operate on html-like tags.
+
+Say you have a block of text and you want to surround it with the `<p>` tags. String together the command `gsaapt`. That is `gsa` for “add surrounding” followed by `ap` for “around paragraph”. So we’re going to add something around a paragraph. Instead of a quote or bracket, we say the thing we are going to add is a `t` for tag.
+
+mini.surround will understand that you want to add a tag, and pop up a little prompt window to enter the tag you want to add. Type the `p` for the tag you want to create. You don’t need angle brackets; just the tag name.  
+If the tag you want to add has attributes, you can add them to the prompt. `mini.surround` is smart enough to know that the attributes only go on the opening tag.
+
+## Clipboard, Registers, and Selection
+
+The LazyVim configuration sets up the Neovim clipboard system to work with the OS clipboard automatically.
+
+`d` & `c` in neovim (not in `vim`) saved text into the system clipboard.
 
 ## Navigating Project, File Tree
 
