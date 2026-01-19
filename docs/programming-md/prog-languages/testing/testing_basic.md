@@ -10,6 +10,8 @@ Tester: kiểm thử viên
 
 `Functional testing` simply means evaluating the compliance of a system or component with the requirements.
 
+PRD: Product Requirements Document
+
 ## Manual Testing vs Automation Testing
 
 Automation testing là phương pháp kiểm thử tự động. Người tester sẽ phải viết các kịch bản kiểm thử sau đó sử dụng các tool hỗ trợ để thực hiện kiểm thử, phương pháp này sẽ giúp việc kiểm thử hiệu quả và tốn ít thời gian hơn. Automation testing giúp chạy các kịch bản kiểm thử lặp lại nhiều lần và các task kiểm thử khác khó thực hiện bằng tay như performance testing và stress testing.
@@ -40,9 +42,9 @@ Automation testing là phương pháp kiểm thử tự động. Người tester
 - Gọi là black-box test vì tester không thấy phần bên trong. Công việc cần làm là nhập dữ liệu đầu vào (input) và kiểm tra kết quả trả về có đúng như mong muốn hay không.
 - White-box test vì tester thấy phần code bên trong. Phải viết code.
 
-## SRS
+## SRS - Software Requirements Specification
 
-Người Nhật gọi SRS là user story.
+Người Nhật gọi SRS là `user story`.
 
 Agile/scrum chỉ dùng user story.
 
