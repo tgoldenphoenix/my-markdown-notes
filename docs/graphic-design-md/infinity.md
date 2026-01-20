@@ -1,3 +1,3 @@
-# Infinity Notes
+# Affinity Notes
 
 k
