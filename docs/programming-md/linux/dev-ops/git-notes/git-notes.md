@@ -1016,6 +1016,8 @@ Khi switch branch phải có clean working state (no un-commited changes). Trư�
 
 ### prune
 
+`git prune` is a low-level Git command for performing garbage collection by deleting "unreachable" or "orphaned" objects (commits, blobs, etc.) from the local repository's object database. These are objects that are no longer referenced by any branch, tag, or other reference, helping to free up disk space and improve performance
+
 ```bash
 $ git log --oneline
 e1f685b (HEAD -> main, origin/main, origin/HEAD) Merge pull request #19 VN_PRO-787-use-const into main
@@ -1096,10 +1098,11 @@ Any code that is preceded by “<<<<<<<” is the code in your current branch, a
 ### Rebase
 
 In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
-Very often you will want to bring changes from `main` to my personal branch. Merge main into our personal branch allows you to see the latest update. Khi đó thường dùng rebase thay vì merge.
+Very often you will want to bring changes from `main` to your personal branch. Merge `main` into our personal branch allows you to see the latest update. Khi đó thường dùng rebase thay vì merge.
 
-rebase can be used as a clean up tool (clean up commits)
+rebase can also be used as a clean up tool (clean up commits)
 
+`git rabase` chỉ có conflict khi sửa cùng một dòng. Sửa cùng một file nhưng khác dòng rabase không có conflict.  
 Sau khi rebase xong kể cả không có conflict vẫn phải check lại code.
 
 With the rebase command, you can take all the changes that were committed on one branch and re-apply them on a different branch.
@@ -1111,19 +1114,15 @@ git checkout experiment
 git rebase master
 ```
 
-Nếu merge thì checkout qua `master` rồi merge `feature` into `master`. Checkout to the final branch.
+In comparison to merge thì checkout qua `master` rồi merge `feature` into `master` (checkout to the final branch).
 
 Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue`
 
 git rebase `their vs --our`: `our` thực chất là `main` chứ không phải nhánh của mình => dễ bị nhầm
 
-```bash
-anhao@Anonimous MINGW64 ~/desktop/demo-git (anhao)
-$ git log --oneline
-b6be74d (HEAD -> anhao) anhao add 03
-d40d7ba anhao add 02
-3a19186 (origin/main, origin/HEAD, main) Merge pull request #7 from anhaoerv/anhao
+---
 
+```bash
 anhao@Anonimous MINGW64 ~/desktop/demo-git (anhao)
 $ git log --oneline
 b6be74d (HEAD -> anhao) anhao add 03
@@ -1150,9 +1149,7 @@ e3eeaa0 anhao add 02
   - `main` không đổi
   - `feature` vẫn có 2 commit nhưng on the tip of `main`
   - `feature` không có thêm merge commit
-  - `feature` không bị mất commit, chỉ bị "rabase"
-
-`git rabase` có conflict khi sửa cùng một dòng. Sửa cùng một file nhưng khác dòng rabase không có conflict.
+  - `feature` không bị mất commit, chỉ bị "rebase"
 
 rebase rồi `push --force` lên để làm đẹp nhánh
 

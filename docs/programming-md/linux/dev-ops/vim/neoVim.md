@@ -371,6 +371,10 @@ The LazyVim configuration sets up the Neovim clipboard system to work with the O
 
 `d` & `c` in neovim (not in `vim`) saved text into the system clipboard.
 
+Visual mode keymaps are independent of Normal mode keymaps, and plugins occasionally neglect to set them up for both modes. LazyVim is really good about keymaps, though, so you will rarely be surprised.
+
+TODO: The Yanky.nvim Plugin
+
 ## Navigating Project, File Tree
 
 Telescope is a fuzzy finder, dùng chung với LSP. Mở file trực tiếp đòi hỏi phải nhớ project structure trong đầu (which is helpful) và nó là cách nhanh nhất để navigate files.

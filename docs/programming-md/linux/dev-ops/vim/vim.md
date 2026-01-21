@@ -484,11 +484,21 @@ In Vim’s terminology, we don’t deal with a clipboard but instead with regist
   - type c: Characterwise
   - type l: linewise; Pastes on a new line above or below the cursor.
   - type b: blockwise
+- Nếu có cài plugin thì `"` sẽ có menu pop up showing you the contents of all registers
+- `<Space>s"` to open a picker dialog that allows you to search all registers (plugin)
+  * To show the same menu from Insert or Command mode, use Ctrl-r instead of `"`.
 
-`"<register #>p` paste selected register
-`"<register #>yy` yank the line into a selected register
+To access a register from Normal mode, use the `"` character followed by the name of the register you want to access. Then issue the verb and motion you want to perform on that register.
 
-`"+"` is a special register represent your computer's clipboard. You can `Cmd c` on a browser (copy into clipboard). Then in Vim insert mode type `"+p` to paste the clipboard into Vim file
+- `"<register #>p` paste selected register
+- `"<register #>yy` yank the line into a selected register
+- `"ad32` => delete three words and store them in the `a` register instead of the system clipboard (default in neovim)
+- `"ap` => put text stored in register `a`
+- `"+yy`, `"+dd` => yank & delete into system clipboard
+
+`"A<motion>` will **append** the text into the register
+
+If you want to copy the contents of one register to another register, you can use the ex command `:let @a = @b` where a and b are the names of the registers you want to copy to and from. The most common use of this operation is to copy the contents of the system clipboard (which may have come from a different program) into a named register so it doesn’t get lost the next time you issue a verb. For example, `:let @b = @+` will copy the system clipboard into register `b`.
 
 Let's say you `yy` a line, then `dd` another line. Now you want to paste the line you yanked. Instead of typing `p` (deleting also copy in Vim), you type `"0p`. The `"0"` register stores the last thing that you yank, not by deleting & copy
 
@@ -521,6 +531,8 @@ The unnamed register `""`
 If we don’t specify which register we want to interact with, then Vim will use the unnamed register, which is addressed by the `"` symbol (see :h quote_quote).  
 To address this register explicitly, we have to use two double quote marks: for example, `""p`, which is effectively equivalent to `p` by itself.
 
+In LazyVim, by default, the registers named * and + are always identical to the default (unnamed) register, and represent the contents of the system clipboard.
+
 `x` cuts the character under the cursor, placing a copy of it in the **unnamed register**. Then the `p` command pastes the contents of the unnamed register after the cursor position.  
 Taken together, the `xp` commands can be considered as “Transpose/swap the next two characters.”
 
@@ -533,7 +545,7 @@ The `ddp` sequence could be considered to stand for “Transpose the order of th
 
 The Yank Register `"0`
 
-When we use the `y{motion}` command, the specified text is copied not only into the unnamed register but also into the yank register, which is addressed by the `0` symbol.
+When we use the `y{motion}` command, the specified text is copied not only into the unnamed register (or the clipboard register) but also into the yank register, which is addressed by the `0` symbol. Change & delete does not affect this register.
 
 As the name suggests, the yank register is set only when we use the `y{motion}` command. To put it another way: it’s not set by the `x`, `s`, `c{motion}`, and `d{motion}` commands.
 
@@ -547,11 +559,15 @@ The Black Hole Register `"_`
 
 You might be wondering what Vim’s equivalent is for really deleting text—that is, how can you remove text from the document and not copy it into any registers? Vim’s answer is a special register called the black hole, from which nothing returns. The **black hole register** is addressed by the `_` symbol (see `:h quote_`), so `"_d{motion}` performs a true deletion (instead of "cut").
 
-This can be useful if we want to delete text without overwriting the contents of the unnamed register.
+This can be useful if we want to delete text without overwriting the contents of the unnamed register (or the system clipboard in lazy neovim).
 
 ---
 
 The System Clipboard (`"+`) and Selection (`"*`) Registers
+
+`"+"` is a special register represent your computer's clipboard. You can `Ctrl-c` on a browser (copy into clipboard). Then in Vim insert mode type `"+p` to paste the clipboard into Vim file
+
+In LazyVim, by default, the registers named * and + are always identical to the default (unnamed) register, and represent the contents of the system clipboard.
 
 All of the registers that we’ve discussed so far are internal to Vim. If we want to copy some text from inside of Vim and paste it into an **external program** (or vice versa), then we have to use one of the `system clipboards`.
 
@@ -560,6 +576,8 @@ Vim’s plus register `"+` references the system clipboard and is addressed by t
 If we use the cut or copy command to capture text in an external application, then we can paste it inside Vim using `"+p` command (or `<C-r>+` from the Insert mode). Conversely, if we prefix Vim’s yank or delete commands with `"+`, the specified text will be captured in the system clipboard. That means we can easily paste it inside other applications
 
 In Windows and Mac OS X, there is no primary clipboard, so we can use the `"+` and `"*` registers interchangeably: they both represent the system clipboard.
+
+Some operating systems (Unix-based, usually) actually have two Operating System clipboards, an implicit one for text you select, and one for text you explicitly copy with Control-c (in most programs). This text would be stored in the `"*` register and the OS lets you paste it elsewhere with (typically) a middle click.
 
 ---
 
@@ -573,9 +591,9 @@ More Registers
 
 Vim provides a handful of registers whose values are set implicitly. These are known collectively as the read-only registers
 
-- `"%`Name of the current file
+- `"%` stores the name of the currently editing file. It is always relative to the current working directory of the editor (usually the folder you were in when you started Neovim). The only time I ever want to access this register is to copy the filename to the system clipboard with :let @+ = @% so I can paste it into a GUI app or my terminal.
 - `"#` Name of the alternate file
-- `".` Last inserted text
+- `".` Last inserted text. So if you type the command `ifoo<Escape>` somewhere in the document and move somewhere else in the document and type ".p, it will insert the word “foo” at the new cursor position.
 - `":` Last Ex command
 - `"/` Last search pattern
 
@@ -601,6 +619,8 @@ The `@{register}` command executes the contents of the specified register (see `
 
 - `qa` to record a macro. `q` to stop recording
 - `@a` to execute the marcro `"a"`
+- The `Q` command to play back a recording always plays back the most recently _recorded_ command, regardless of register.
+  * `@@` always replay whichever register you most recently _played_.
 
 ---
 
@@ -633,7 +653,7 @@ The `:normal @a` command tells Vim to execute the macro once for each line in th
 - Execute in series, if the motion fail on one line, the remaining macros to be executed is aborted.
 - Execute in parallel, the `:normal@a` command tells Vim to execute the macro once for each line in the selection.
 
-### Append to a macro
+### Append to a Macro
 
 Sometimes we miss a vital step when we record a macro. There’s no need to re-record the whole thing from scratch. Instead, we can **append extra commands onto the end of an existing macro**.
 
@@ -664,7 +684,7 @@ Before we begin recording the macro, we set the variable i to 1. Inside the macr
 
 We can still visual select > `:'<,'>normal @a` to execute the macro parallel, the numbers still increase by one for each line normally.
 
----
+### Editing macros
 
 In Tip 68, on page 168, we saw that adding commands at the end of a macro is straightforward. But what if we want to remove the last command? Or change something at the beginning of the macro? In this tip, we’ll learn how to **edit the content of a macro just as if it were plain text**.
 
@@ -673,9 +693,9 @@ When you run `:reg a` to inspect a macro:
 - the `^[` symbol represents the Escape key. No matter whether you press `<Esc>` or `<C-[>`.
 - the `<80>kb` symbol represents the backspace key.
 
-- `:put a`paste the contents of register `a` into a new line (paste the macro out to the document file)
+- `:put a` will paste the contents of register `a` into a new line (paste the macro out to the document file)
 - Now we can edit the macro as plain text.
-- Yank the Macro from the Document Back into a Registe:
+- Yank the Macro from the document back into a Register:
   - `"add` (or `:d a`)
   - `"ay$` > `dd`: yank every character on that line except for the carriage return
 
@@ -689,6 +709,14 @@ The `dd` command performs a line-wise deletion. The register contains a trailing
 Having followed these steps, register a now contains a new and improved macro. We can use it on the example text that we met at the start of this tip.
 
 Why didn’t we just use the `"ap` command? In this context, the `p` command would paste the contents of the a register after the cursor position on the current line. The :put command, on the other hand, always pastes below the current line, whether the specified register contains a line-wise or a character-wise set of text
+
+---
+
+For example, let’s say I recorded a command as `qadw2wdeq`, which records to the a register (`qa`), deletes a word (`dw`), skips ahead two words (`2w`), and then deletes the next word (de), then ends the recording with q. But too late, I realize I should have skipped over 3 words, not two words.
+
+I can use `"ap` to paste the contents of the recording, which will look like this: dw2wde. Then I can use f2 to jump to the 2 digit, followed by `r3` to replace it with a 3. Now I can use `"ayiw` to replace the contents of the register with `dw3wde`.
+
+Now if I want to play back that modified command, I can just use @a as usual.
 
 ## The Dot Command
 
@@ -741,7 +769,7 @@ Insert Normal Mode: when we’re in Insert mode and we want to run only one Norm
 
 When the current line is right at the top or bottom of the window, I sometimes want to scroll the screen to see a bit more context. The `zz`command redraws the screen with the current line in the middle of the window, which allows us to read half a screen above and below the line we’re working on. I’ll often trigger this from Insert Normal mode by tapping out `<C-o>zz`. That puts me straight back into Insert mode so that I can continue typing uninterrupted.
 
-From insert mode: `<C-r>{register}` paste text from `{register}`. Can also be used in command-line mode.
+From insert mode: `<C-r>{register}` paste text from `{register}`. Can also be used in command-line mode. The `r` stands for "register".
 
 
 you can use counts with the `i`, I, a, and A commands. For example: `80i*<Escape>` enter `*` 80 times.
@@ -787,6 +815,7 @@ From insert mode: `<C-k>{char1}{char2}`
 - Delete selection: `d`
 - Change selection: `c`
 - Copy (yanking): `y`
+  * `Y` yanks from cursor to end of line
 
 - Paste after cursor block: `p`; pressing an uppercase `P` will paste the selected text before cursor block.
 - Note that using `p` after `yy` or `dd` will paste the new line below the current line and `P` will paste the new line above the current line.
@@ -801,6 +830,10 @@ Each time we move our cursor in Visual mode, we change the bounds of the selecti
   3. Finally, `block-wise` Visual mode (`<C-v>`) allows us to work with columnar regions of the document.
 - We can switch between the different flavors of Visual mode in the same way that we enable them from Normal mode. If we’re in character-wise Visual mode, we can switch to the line-wise variant by pressing `V`, or to block-wise Visual mode with `<C-v>`.
 
+Visual mode > select > `r` will replace all the characters with the same character.
+
+You can exit Visual mode temporarily without completely losing your selection. From Normal mode, use the `gv` (“go to last visual selection”) command to return to the selection. This is useful if you are about to perform a visual operation and realize you need to look something up, make an edit, or copy something from elsewhere in the file, then go back to the selection.
+
 ---
 
 The `I` and `A` commands placing the cursor at the start or end of the selection, respectively. So what about the `i` and `a`commands; what do they do in Visual mode?
@@ -811,8 +844,10 @@ In line-wise or block-wise visual mode, `I` & `A` will allow you to have multi-c
 
 ---
 
-The range of a Visual mode selection is marked by **two ends**: one end is fixed and the other moves freely with our cursor. We can use `o` to toggle the free end.  
-This is really handy if halfway through defining a selection we realize that we started in the wrong place. Rather than leaving Visual mode and starting afresh, we can just hit `o`and redefine the bounds of the selection.
+The range of a Visual mode selection is marked by **two ends**: one end is fixed and the other moves freely with our cursor. We can use `o` (for “other end”) to toggle the free end.  
+This is really handy if halfway through defining a selection we realize that we started in the wrong place. Rather than leaving Visual mode and starting afresh, we can just hit `o` and redefine the bounds of the selection.
+
+You can’t get into Insert mode from Visual mode, so the o command gets reused for this purpose.
 
 ---
 

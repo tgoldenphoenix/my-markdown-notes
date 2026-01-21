@@ -278,9 +278,28 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
 
 địa giới == địa phận
 
-Biển CSGT => phải giảm tốc độ đến mức an toàn và không được vượt
+Biển ghi chữ "CSGT"" => phải giảm tốc độ đến mức an toàn và không được vượt
+
+Biển hình vuông là chỉ dẫn không cấm quay đầu xe
 
 ### Biển nguy hiểm
+
+- 2 mũi tên thẳng đứng là đường hai chiều
+- 2 mũi tên nằm ngang là giao nhau với đường hai chiều
+
+- Đường đôi => ly nằm ngửa
+- kết thúc đường đôi => ly úp
+
+- Upside-down triangle, red border, yellow background, no image => giao nhau với đường ưu tiên
+- Sa hình => xe đó đi last
+
+- đỏ cấm
+- vàng nguy hiểm
+- xanh hiệu lệnh
+- vuông chỉ dẫn
+- Biển nào báo sắp đến chỗ giao nhau nguy hiểm => cả ba biển
+
+## Sa hình
 
 k
 
