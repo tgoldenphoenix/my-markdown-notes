@@ -1,5 +1,11 @@
 # Learn LaTeX
 
+## Jargon
+
+`pdfLaTeX` là latex compiler that compile `.tex` into `pdf`
+
+`luaLaTeX` is a more advanced compiler
+
 ## Why LaTeX? & Installing
 
 [Why LaTeX?](https://www.youtube.com/watch?v=9eLjt5Lrocw) Youtube video
@@ -14,15 +20,78 @@ On MacOS and Ubuntu, mactek version is stored in `/usr/local/texlive/2023/bin/`.
 
 [cách fix](https://www.xm1math.net/texmaker/texmakermac.html) lỗi install texmaker on Mac báo lỗi
 
-## Understanding packages and class files
+## Class, Commands, Options, and Packages
 
-The default formatting in LaTeX documents is determined by the **class** used by that document. This default look can be changed and more functionalities can be added by means of a **package**. The class file names have the `.cls` extension, the package file names have the **.sty** extension.
+The **default formatting** in LaTeX documents is determined by the `class` used by that document. This default look can be changed and more functionalities can be added by means of a `package`. The class file names have the `.cls` extension, the package file names have the **.sty** extension.
 
 A `standalone` is both a package and a class.
 
 LaTeX environments are used to apply specific typesetting effect(s) to a section of your document’s content. An environment starts with `\begin{name}` and ends with `\end{name}`
 
-## Manage a multi-file LaTeX projects
+class: `scrbook` from `KOMA-Script`, `beamer`, moderncv, article (or scrartcl), and scrreprt.
+
+The scrbook class provides several `options` to customize the format of the book.
+
+- `Commands` in LATEX are denoted by the backslash `\` as the first character before their names. 
+- The `argument` is filled inside the curly brackets {} following the command.
+
+### Packages
+
+You can build your own commands. Fortunately, many, many people have built their own commands already and made them available to $\text{\LaTeX}$ users in packages. Packages allow us to use extra commands without having to include tons and tons of code in the preamble of a document.
+
+AMS Math packages; AMS stands for "American Mathematical Society"
+
+[parskip](https://www.overleaf.com/learn/latex/Articles/How_to_change_paragraph_spacing_in_LaTeX) to change paragraph spacing in LaTeX
+
+[blindtext](https://ctan.org/pkg/blindtext?lang=en) tạo lorem ipsum để test
+
+[how to](https://tex.stackexchange.com/questions/10868/accessing-mac-mactex-install-folder) Find out path of a package on your computer
+
+## Structure Hierarchy
+
+Một book chia ra nhiều `chapter`. Mỗi `chapter` có nhiều `section`.
+
+```latex
+% <preamble before the main document>
+\begin{document}
+...
+\chapter{The Basic Set-up and Structure of a \LaTeX{} Book}
+...
+\section{Class, Commands, Options, and Packages}
+\paragraph{Class}
+For each \LaTeX{} document, we need to specify its \textit{class}. Throughout this book, ...
+\end{document}
+```
+
+---
+
+Latex auto number chapters. However, we can manually override that by invoking the command `\setcounter{chapter}{<number >}`.
+
+To achieve the effect of Chapter 0 at the very beginning, we use `\setcounter{chapter}{-1}` so that the counter increases by 1 to 0 as intended when Chapter 0 is generated. The same can be done for sections.
+
+---
+
+starred ver-sions like `\chapter*{<chapter_name>}`, `\section*{<section_name>}`, \subsection*{<section_name>}, and so on, neither display nor in-crement the numbering/counters.
+
+---
+
+We can create references to chapters/sections by appending the `\label{<label_name>}` after their declarations, and then use them via `\ref{<label_name>}`.
+
+```latex
+\chapter{Installing or Preparing \LaTeX{}}
+\label{chap:install}
+...
+
+\ref{chap:install}
+```
+
+---
+
+The `\par` command signals the end of a paragraph and appends a vertical line spacing afterwards
+
+`\\` or `\newline`: These commands end the current line but do not start a new paragraph. The following text belongs to the same logical paragraph, which means no indentation or extra vertical spacing (controlled by `\parskip`) will be applied. They should be used sparingly, often within specific environments like tabular.
+
+## Managing a multi-file LaTeX projects
 
 [OverLeaf](https://www.overleaf.com/learn/latex/Management_in_a_large_project) Management in a large project: `\input`, `\include`
 
@@ -34,17 +103,22 @@ the University of Oslo's [tutorial](https://github.com/uio-latex/Introduction-to
 
 `\input` for TikZ code
 
-## Packages
+## Formatting of Text and Paragraphs
 
-You can build your own commands. Fortunately, many, many people have built their own commands already and made them available to $\text{\LaTeX}$ users in packages. Packages allow us to use extra commands without having to include tons and tons of code in the preamble of a document.
+### Text Attributes
 
-AMS Math packages; AMS stands for "American Mathematical Society"
+To control the local font size for some places, we can use the size commands.
 
- [parskip](https://www.overleaf.com/learn/latex/Articles/How_to_change_paragraph_spacing_in_LaTeX) to change paragraph spacing in LaTeX
+`\tiny`, `\scriptsize`, `footnotesize`, `\small`, `\large`, etc...
 
-[blindtext](https://ctan.org/pkg/blindtext?lang=en) tạo lorem ipsum để test
+```latex
+produces \par
+{\small Though she be but little} {\LARGE she is fierce} \\ % scope \scriptsize % switch
+taken from Shakespeare’s A Midsummer Night’s Dream
+\normalsize % back to default ...
+```
 
-[how to](https://tex.stackexchange.com/questions/10868/accessing-mac-mactex-install-folder) Find out path of a package on your computer
+The double backslash `\\` sign breaks the current line and starts a new line right below. And again, the curly brackets `{}` limit the effect of commands within their scope.
 
 ## PGF/TikZ
 

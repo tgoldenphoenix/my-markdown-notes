@@ -34,3 +34,12 @@ $12x12=144$
 
 $2^8=128$
 
+## Calculus
+
+Calculus: vi tích phân
+
+giải tích: analysis
+
+integral: tích phân
+
+differential: vi phân
