@@ -1,4 +1,4 @@
-# Math Terms
+# Math Basic Terms
 
 [bilateral symmetry](https://www.britannica.com/science/bilateral-symmetry): đối xứng trục
 
@@ -15,6 +15,8 @@ A [helix](https://en.wikipedia.org/wiki/Helix) (pl. helices) is a shape like a c
 An [axiom](https://en.wikipedia.org/wiki/Axiom), postulate, or assumption (tiên đề, định đề) is a statement that is taken to be true, to serve as a premise or starting point for further reasoning and arguments. The word comes from the Ancient Greek word ἀξίωμα (axíōma), meaning 'that which is thought worthy or fit' or 'that which commends itself as evident'.
 
 In mathematics and formal logic, a [theorem](https://en.wikipedia.org/wiki/Theorem) (định lý) is a statement that has been proven, or can be proven. The _proof_ of a theorem is a logical argument that uses the inference rules of a deductive system to establish that the theorem is a logical consequence of the axioms and previously proved theorems.
+
+**Cartesian coordinate system** (Hệ tọa độ Descartes, hệ tọa độ $Oxy$)
 
 ## Arithmetic
 

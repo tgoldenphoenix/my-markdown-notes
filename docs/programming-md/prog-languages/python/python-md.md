@@ -1,5 +1,9 @@
 # Python Notes
 
+## Jargon
+
+`dunder` = double underscore. It refers to special methods or attributes that start and end with two underscores, like `__init__` or `__str__`. These are also called `Magic Methods` because they aren't usually called by you directly. Instead, they are "magically" called by the Python interpreter behind the scenes when you perform certain actions.
+
 ## Installation
 
 [uv](https://docs.astral.sh/uv/) is a Python package and project manager, written in Rust.
@@ -57,7 +61,7 @@ $ touch main.py
 $ pip freeze > requirements.txt
 ```
 
-Using `uv`
+Now using `uv`:
 
 ```bash
 $ uv init new_app
@@ -77,6 +81,14 @@ $ uv run main.py
 In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store package information in `pyproject.toml & .lock` file, deleting venv will not cause any damage.
 
 `uv sync` create the `venv` using the `.lock` file.
+
+---
+
+`uv pip install numpy` => install OK but stored inside `.venv`, no change to the `pyproject.toml`
+
+---
+
+`uv run main.py`
 
 ## Python Command-Line Programs
 
@@ -112,32 +124,19 @@ This technique prevent code from being executed when a file is imported as a mod
 
 Run `python3` in the terminal to run python in the terminal. Use `<C-d>` or type `exit()` to leave the Python prompt and return to a terminal prompt.
 
-Use `"""` or three backticks to create multi-line comments in Python.
+Use `"""` or three backticks to create multi-line comments in Python.  
+The same `"""` syntax is also used to create multi-line string literals.
 
-The `"""` is also used to create multi-line string literals.
+### Built-in Data Types
 
-## Built-in Data Types
+In Python, an `int` is an object. Unlike languages like Java or C++, Python does **NOT** have the concept of primitive types. Every value you interact with—whether it is an integer, a boolean, or even a function—is a full-blown object.
 
-In Python, an int is an object. Unlike languages like Java or C++, Python does not have the concept of primitive types. Every value you interact with—whether it is an integer, a boolean, or even a function—is a full-blown object.
+There are three distinct **Numeric Types**: integers, floating-point numbers, and complex numbers (`int`, `float`, `complex`).
 
-- `bool`
-- `str`: a string
-
----
-
-Numeric Types
-
-There are three distinct numeric types: integers, floating-point numbers, and complex numbers (`int`, `float`, `complex`).
-
----
-
-Collections
-
-There are 4 built-in data types in Python used to store collections of data: Tuple, Dictionary, List, Set
-
-Using literals for instantiation
+There are 4 built-in data types in Python used to store **collections** of data: Tuple, Dictionary, `List`, `Set`.
 
 ```python
+# Using literals for instantiation
 list_obj = [1, 2, 3] # list literal
 
 tuple_obj = (404, "Connection Error") # tuple literal
@@ -149,7 +148,7 @@ set_obj = {1, 2, 3}
 
 ## Dictionary & Set
 
-`Dictionaries` are used to store data values in `key:value` pairs. A dictionary is a collection which is ordered*, changeable and do not allow duplicates.
+`Dictionaries` are used to store data values in `key:value` pairs. A dictionary is a collection which is ordered, changeable and do not allow duplicates.
 
 What makes `dict` different from `list`, `tuple`, and set is the fact that it contains key-value pairs instead of individual objects.
 
@@ -255,8 +254,8 @@ Python requires all the items in a set to be unique because under the hood, sets
 - Similarity:
   * ordered items; objects are accessible through indexing
   * Allow duplicate values
-- Tuple:
-  * is immutable; cannot change, add or remove items after the tuple has been created; cannot reassign item
+- `Tuple`:
+  * is **immutable**; cannot change, add or remove items after the tuple has been created; cannot reassign item
 - `List`:
   * is mutable; we can append new items to the end of a list, insert items into the middle, change the items, and remove items.
 
