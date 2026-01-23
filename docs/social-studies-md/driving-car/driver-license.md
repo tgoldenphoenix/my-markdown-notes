@@ -31,7 +31,7 @@ Thi lý thuyết chỉ có only 1 câu liệt.
 
 Có hình cảnh sát là 3, only one question chọn 4 (jesus cross)
 
-Phần của đường bộ được sử dụng ... là **phần đường xe chạy**
+Phần của đường bộ được sử dụng [...] là **phần đường xe chạy**
 
 vạch kẻ đường **phân chia** làn đường.
 
@@ -40,7 +40,7 @@ vạch kẻ đường **phân chia** làn đường.
 
 Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm**, trẻ em không được đứng trong xe.
 
-dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
+Dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
 
 Người ngồi sau xe máy, mô tô 2 bánh không được xài ô (dù)
 
@@ -56,15 +56,15 @@ GPLX đã bị trừ hết điểm, để phục hồi: sau ít nhất 06 tháng
 
 Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khách an toàn & thoát hiểm
 
-ô tô của người nước ngoài tay lái bên phải => chọn cả 3
+ô tô của người nước ngoài tay lái bên phải => chọn cả ba ý
 
-máu phin thành tia (tai nạn GT): cầm máu không trực tiếp (chặn động mạch)
+máu phun thành tia (tai nạn GT): cầm máu không trực tiếp (chặn động mạch)
 
 Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy => bình tĩnh, đư xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy
 
 khởi hành xe số tự động: đạp phanh chân hết cỡ, vào số và nhả phanh đỗ (hand brake)
 
-Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng, kéo về phí sau
+Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng, kéo về phía sau
 
 xuống dốc dài, về số thấp (không về số 0 hay số cao)
 
@@ -88,15 +88,17 @@ hộp số xe ô tô: giúp xe lùi
 
 đèn táp lô 2 hình tam giác đỏ: báo hiệu xe đang tình huống nguy hiểm
 
+Rơ móc kéo xe khác phải có trọng lượng lớn hơn, tương đương thì ko được
+
 ## Các hạng bằng lái & Độ tuổi
 
 - Người đủ `16` tuổi trở lên được điều khiển **xe gắn máy**.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1`
 - Người đủ `21` tuổi trở lên được cấp giấy phép lái xe hạng `C, BE`.
-  - Cercei (`21`) bú cặc (`C`) suguru geto (`7500`)
+  * Cercei (`21`) bú C*c (`C`) suguru geto (`7500`)
 - Người đủ `24` tuổi trở lên được cấp giấy phép lái xe hạng `D1, D2, C1E, CE`.
 - Người đủ `27` tuổi trở lên được cấp giấy phép lái xe hạng `D, D1E, D2E, DE`.
-  - Bill gate (`27`) là một thằng dâm dê (hạng `D`) lái xe trên 8 chỗ
+  * Bill gate (`27`) là một thằng dâm Dê (hạng `D`) lái xe 29 chỗ chở bà nội Ngọc
 - Tuổi tối đa của người lái xe ô tô chở người (kể cả xe buýt) trên 29 chỗ (không kể chỗ của người lái xe), xe ô tô chở người giường nằm là đủ `57` (Queequeg) tuổi đối với nam, đủ `55` tuổi đối với nữ.
 
 ---
@@ -108,33 +110,31 @@ hộp số xe ô tô: giúp xe lùi
 
 - Hạng `B1` cấp cho người lái xe **mô tô ba bánh** và các loại xe quy định cho giấy phép lái xe hạng A1;
 - Hạng `B` cấp cho người lái xe ô tô chở người đến 08 chỗ (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **đến 3.500 kg**; các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg;
-  - Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  * Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 
 - Hạng `C1` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 3.500 kg đến 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe hạng B;
-  - Hạng `C1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  * Hạng `C1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `C` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **đến** 750 kg; các loại xe quy định cho giấy phép lái xe hạng B và hạng C1;
-  - Hạng `CE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **trên** 750 kg; xe ô tô đầu kéo kéo sơ mi rơ moóc;
+  * Hạng `CE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **trên** 750 kg; xe ô tô đầu kéo kéo sơ mi rơ moóc;
 
 - Hạng `D1` cấp cho người lái xe **ô tô chở người** trên 08 chỗ (không kể chỗ của người lái xe) **đến 16 chỗ** (không kể chỗ của người lái xe); các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C;
-  - Hạng `D1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  * Hạng `D1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `D2` cấp cho người lái xe ô tô chở người (kể cả xe buýt) trên 16 chỗ (không kể chỗ của người lái xe) **đến 29 chỗ** (không kể chỗ của người lái xe); các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D2 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C, D1;
-  - Hạng `D2E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D2 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  * Hạng `D2E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D2 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `D` cấp cho người lái xe ô tô chở người (kể cả xe buýt) **trên 29 chỗ** (không kể chỗ của người lái xe); xe ô tô chở người giường nằm; các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C, D1, D2;
-  - Hạng `DE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg; xe ô tô chở khách nối toa.
+  * Hạng `DE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg; xe ô tô chở khách nối toa.
 
 ## Cự Ly & Tốc Độ
 
-Trong khu đông dân cư
-
-Xe gắn máy & xe máy chuyên dùng always `40 km/h` max (tất cả mọi con đường).
-
+- Trong khu đông dân cư:
+- Xe gắn máy & xe máy chuyên dùng always `40 km/h` max (tất cả mọi con đường).
 - Tất cả các loại xe còn lại:
-  - Đường 2 chiều (chỉ có vạch sơn): `50 km`
-  - Đường đôi (có con lươn): `60 km`
+  * Đường 2 chiều (chỉ có vạch sơn): `50 km`
+  * Đường đôi (có con lươn): `60 km`
 
 ---
 
-Ngoài khu dân cư
+Ngoài khu dân cư:
 
 |              | Đến 28 | Trên 28 | Buýt | Móc |
 |--------------|--------|---------|------|-----|
@@ -150,16 +150,10 @@ có số `60` => cả 2 ý trên hoặc chọn ý 1
 Lấy max value trừ đi `25`
 
 - Khoảng cách an toàn tối thiểu:
-  - 60 km/h = 35m
-  - 60 - 80 km/h = 55m
-  - 80 - 100 km/h = 70m
-  - 100-120 km/h = 100m
-
-## Others
-
-câu hỏi bị trừ hết điểm???
-
-Rơ móc kéo xe khác phải có trọng lượng lớn hơn, tương đương thì ko được
+  * 60 km/h = 35m
+  * 60 - 80 km/h = 55m
+  * 80 - 100 km/h = 70m
+  * 100-120 km/h = 100m
 
 ## Biển Báo
 
@@ -169,14 +163,14 @@ Rơ móc kéo xe khác phải có trọng lượng lớn hơn, tương đương 
 - kéo => 2,3
 - cấm ô tô tải => ý cuối
 
-- Đối với xe ô tô, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
-- Xe mô tô thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm
+- Đối với xe **ô tô**, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
+- Xe **mô tô** thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm
 
 - Theo thứ tự từ rộng tới hẹp (nhỏ tới lớn):
-  - cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ
-  - cấm xe (ô tô) tải
-  - cấm máy kéo (đầu kéo container)
-  - cấm xe kéo rơ móc (đầu kéo + thùng hàng)
+  * cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ
+  * cấm xe (ô tô) tải
+  * cấm máy kéo (đầu kéo container)
+  * cấm xe kéo rơ móc (đầu kéo + thùng hàng), đầu kéo không có thùng hàng vẫn được đi
 
 xích lô, ly bia, con ngựa => ý cuối
 
@@ -184,19 +178,19 @@ xích lô, ly bia, con ngựa => ý cuối
 - Chỉ có biển cấm ô tô chở khách
 
 - Thấy 2 biển mô tô (2 bánh) và ô tô (4 bánh) đi chung => áp dụng mẹo cấm 1 - được 3
-  - Câu hỏi có chữ cấm => chọn 1
-  - có chữ được => chọn 3
+  * Câu hỏi có chữ cấm => chọn 1
+  * có chữ được => chọn 3
 
 - xe mô tô:
-  - có vẽ người
-  - 18 tuổi
-  - phải thi gplx A1, A
-  - xe trên 50cm3
+  * có vẽ người
+  * 18 tuổi
+  * phải thi gplx A1, A
+  * xe trên 50cm3
 - xe gắn máy:
-  - chỉ vẽ xe, không vẽ người
-  - 16 tuổi
-  - không cần GPLX
-  - xe dưới 50cm3
+  * chỉ vẽ xe, không vẽ người
+  * 16 tuổi
+  * không cần GPLX
+  * xe dưới 50cm3
 
 - Tốc độ màu đỏ là tối đa
 - Màu xanh là tối thiểu
@@ -205,30 +199,30 @@ xích lô, ly bia, con ngựa => ý cuối
 - Chiều ngang => mũi tên nằm ngang
 - chiều cao => mũi tên trên dưới
 - Các biển báo giống:
-  - cấm xe ô tô và mô tô đi về bên phải và bên trái
+  * cấm xe ô tô và mô tô đi về bên phải và bên trái
 
 - Dừng/đỗ xe ngày chẳn lẽ
-  - ngày lẻ chọn ý 1
-  - ngày chẳn chọn ý 2
-  - Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
+  * ngày lẻ chọn ý 1
+  * ngày chẳn chọn ý 2
+  * Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
 
 - một gạch cấm đỗ xe (đậu xe) cho phép dừng tạm thời
 - hai gạch dấu X là cấm đỗ và cấm dừng
 
-- thấy biển dấu trừ (cấm đi ngược chiều) => mẹo **và - 2** (chọn đáp án có chữ **và**, không có thì chọn ý 2)
-  - Biển 1 và biển 2 => chọn
+- Thấy biển dấu trừ (cấm đi ngược chiều) => mẹo **và - 2** (chọn đáp án có chữ **và**, không có thì chọn ý 2)
+  * Biển 1 và biển 2 => chọn
 
 Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
 
 - Thấy 3 biển hình tròn rỗng
-  - đáp án ghi con số biển 1, 2, 3 => ý 2
-  - đáp án ko ghi số => ý 1
+  * đáp án ghi con số biển 1, 2, 3 => ý 2
+  * đáp án ko ghi số => ý 1
 
 Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ **không được phép** => là chọn luôn
 
 - cấm tải trọng:
-  - biển chỉ ghi số => tải trọng toàn bộ
-  - có vẽ trục => tải trọng trên trục xe
+  * biển chỉ ghi số => tải trọng toàn bộ
+  * có vẽ trục => tải trọng trên trục xe
 - Cấm xe có tải trọng > số ghi trên biển
 
 - các biển vẽ mũi tên: cấm rẽ trái thì sẽ không cấm quay đầu, trừ khi hai mũi tên lồng nhau
@@ -236,7 +230,7 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 
 ### Hiệu lệnh & chỉ dẫn
 
-- Thấy biển chữ T (màu xanh mũi tên trắng)
+- Thấy biển chữ T hai mũi tên hai bên (tròn màu xanh mũi tên trắng)
   * câu hỏi thấy chữ **trước ngã ba** => chọn ý 3
   * không có trước ngã ba => chọn ý 1
 
@@ -248,7 +242,8 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
   * Chọn luôn đáp án có chữ **và**.
   * Các câu còn lại hỏi: **tối đa chọn biển 50 - tối thiểu chọn biển 60**.
 
-- Biển màu đó là start hiệu lực tốc độ tối đa
+- Biển màu đỏ là start hiệu lực tốc độ tối đa
+- Hết hạn chế tối đa: tròn, blue border, number, gạch chéo
 - Biển màu xanh:
   * Có dấu gạch => hết hiệu lực biển maximum màu đỏ
   * không có gạch, có số (60) => tốc độ tối thiểu
@@ -278,7 +273,7 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
 
 địa giới == địa phận
 
-Biển ghi chữ "CSGT"" => phải giảm tốc độ đến mức an toàn và không được vượt
+Biển ghi chữ "CSGT" => phải giảm tốc độ đến mức an toàn và không được vượt
 
 Biển hình vuông là chỉ dẫn không cấm quay đầu xe
 

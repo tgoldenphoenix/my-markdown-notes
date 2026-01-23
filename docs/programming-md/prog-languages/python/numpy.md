@@ -31,8 +31,10 @@ axes = dimensions
  [0., 1., 2.]]
 ```
 
-- 2D array => Oy đi `[0, - vô cực]`, Ox đi `[0, + vô cực]`
-- 3D array => Oy đi `[0, - vô cực]`, Ox đi `[0, + vô cực]`, Oz đi `[0, + vô cực]` mũi tên hướng về phía đi vào trong màn hình
+- 2D array (matrix) => Oy đi `[0, - vô cực]`, Ox đi `[0, + vô cực]`
+- 3D array (cube, lists of matrices) => Oy đi `[0, - vô cực]`, Ox đi `[0, + vô cực]`, Oz đi `[0, + vô cực]` mũi tên hướng về phía đi vào trong màn hình
+
+Khi print 3D array thì nó print last axis (Oz) top to bottom
 
 ## `ndarray`
 
@@ -51,6 +53,6 @@ array([[ 0,  1,  2,  3,  4],
        [10, 11, 12, 13, 14]])
 ```
 
-### Printing Arrays
+---
 
-f
+`.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)` or `.reshape(number of row, number of column, height)`
