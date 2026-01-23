@@ -373,7 +373,16 @@ The LazyVim configuration sets up the Neovim clipboard system to work with the O
 
 Visual mode keymaps are independent of Normal mode keymaps, and plugins occasionally neglect to set them up for both modes. LazyVim is really good about keymaps, though, so you will rarely be surprised.
 
-TODO: The Yanky.nvim Plugin
+## Buffers and Layouts
+
+The absolute easiest way to switch between buffers is using the H and L (i.e. Shift-h and Shift-l) keys. You will switch the buffer visible in the currently active window to whichever buffer is to the left or right of the current buffer in the buffer line.  
+Alternatively, you can use the `[b` and `]b` commands which map to the same thing.
+
+`<Space><Backtick>` jumps between the current file and the file that was most recently opened in the current window. In Vim parlance, this is referred to as “the alternate file.”
+
+If you have too many buffers opened, the buffer line cannot show them all. `<Space><comma>` opens a filterable, scrollable list of currently open buffers. This is useful if you are working on large projects that have so many files that searching through them with `<Space><Space>` is difficult. Open the relatively low number of files that you actually need to access as active buffers, so they are easy to filter in the `<Space><comma>` buffer list.
+
+TODO: closing buffers
 
 ## Navigating Project, File Tree
 

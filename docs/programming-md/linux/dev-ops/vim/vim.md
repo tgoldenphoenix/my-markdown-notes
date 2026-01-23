@@ -1076,9 +1076,17 @@ Open Files and Save Them to Disk
 
 The `:edit` command allows us to open files from within Vim, either by specifying an absolute or a relative filepath.
 
-- `buffer`: The actual text/file loaded in memory.
-- `window`: A "viewport" that looks into a buffer. You can have multiple windows looking at the same buffer.
+- When you type `nvim`, you open a neovim **client**.
 - `tab`: A collection or layout of windows. It is more like a "workspace" than a browser tab.
+  * One client can have multiple tabs. Only one tab is visible at any one time.
+- `window` (pane, split): A "viewport" that looks into a buffer. You can have multiple windows looking at the same buffer.
+  * a window is a section of the screen that is dedicated to viewing a buffer.
+  * One tab can have multiple windows
+  * there is no overlap between windows. The excepton is floating windows such as the ones that pop up when you open a picker or Lazy Extras.
+- `buffer`: The actual text/file loaded in memory.
+  * One buffer can be displayed in multiple windows, which means you can have two side-by-side views into the same file at different scroll positions.
+  * If a buffer is visible in two places, they will have the exact same contents (other than scrolling position).
+  * There is only ever one underlying buffer open for each file, no matter how many views of the buffer are visible in different windows or tabs.
 
 ## Vim Settings
 

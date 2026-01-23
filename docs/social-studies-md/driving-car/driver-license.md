@@ -295,9 +295,22 @@ Biển hình vuông là chỉ dẫn không cấm quay đầu xe
 
 - đỏ cấm
 - vàng nguy hiểm
-- xanh hiệu lệnh
+  * Biển nào báo sắp đến chỗ giao nhau nguy hiểm => cả ba biển màu vàng
+- xanh (tròn) hiệu lệnh
 - vuông chỉ dẫn
-- Biển nào báo sắp đến chỗ giao nhau nguy hiểm => cả ba biển
+
+Biển báo đường dành riêng cho người đi bộ => xe không được vào nên không có chuyện nhường đường
+
+- Thấy 3 biển mũi tên => đỏ (tròn) nhường - xanh (vuông) ưu tiên (được ưu tiên qua đường hẹp)
+  * Also dùng trong sa hình
+- vàng thì không có gì đặc biệt
+
+- cả hai biển dấu nhân chữ X => giao nhau **vuông góc** với đường sắt (không có rào chắn)
+- quân hàm => giao nhau **không** vuông góc với đường sắt
+
+- Lên 9, xuống 10
+- dốc lên chọn biển số 9%
+- dốc xuống chọn biển số 10%
 
 ## Sa hình
 
