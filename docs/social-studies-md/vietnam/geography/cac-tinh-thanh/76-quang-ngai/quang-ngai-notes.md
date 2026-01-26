@@ -2,6 +2,8 @@
 
 Biển số: 76 - Gojo Satoru
 
+Sau sát nhập, Quảng Ngãi có thêm tỉnh Kon Tum
+
 ## Places
 
 núi Thiên Ấn, sông Trà Khúc

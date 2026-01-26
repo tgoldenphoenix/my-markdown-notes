@@ -382,7 +382,100 @@ Alternatively, you can use the `[b` and `]b` commands which map to the same thin
 
 If you have too many buffers opened, the buffer line cannot show them all. `<Space><comma>` opens a filterable, scrollable list of currently open buffers. This is useful if you are working on large projects that have so many files that searching through them with `<Space><Space>` is difficult. Open the relatively low number of files that you actually need to access as active buffers, so they are easy to filter in the `<Space><comma>` buffer list.
 
-TODO: closing buffers
+`<Space>bo` Close all buffers other than the active one
+
+`<Space>.` open the **scratch buffer**.
+
+### Windows
+
+In vim, window = pane or split.
+
+The window management commands are collected in the `<Space>w` submode menu
+
+- `<Space>wv` split window in half vertically
+  - In a file explorer, use `Ctrl-v` to open a new file in vertical split
+- `<Space>ws` split window in half horizontally
+  - In a file explorer, use `Ctrl-s` to open a new file in horizontal split
+
+To move your cursor between window splits, use `Ctrl` + `h j k l`.  
+The `mrjones2014/smart-splits.nvim plugin` can be configured to navigate between Vim windows and Kitty, Wezterm, or Tmux panes with the same keybindings.
+
+- You can close a window at any time using one of three keybindings:
+  - `<Space>wq` closes the window, and if it is the only window open, exits (quits) Neovim.
+  - `<Space>wc` closes the window unless it is the only window open, in which case it displays an error and refuses to close.
+  - `<Space>wd` deletes the window. It is actually doing exactly the same operation as `<Space>wc`, but it is helpful for muscle memory for its symmetry with <Space>bd to “delete” an open buffer.
+- In all three cases, the buffer remains open in the bufferline. Only the window split is closed.
+
+If, instead, you want to close all splits except the active one, use `<Space>wo` for “only this window” or “close other” (whichever is easier to remember).
+
+---
+
+The easiest way to resize Vim splits is to use… the mouse. There is a vertical bar between vertical splits that you can click and drag on. The mouse cursor doesn’t change to give you any feedback that you can click and drag on it, but it works.
+
+To change everything to a “default” size, use `<Space>w=` which will make all the windows “equally high and wide.”
+
+---
+
+## Folding
+
+Most fold operations are accessible from the z mode menu accessible by typing z in Normal mode.
+
+- To collapse a section of code into a fold, use whatever navigation operations you like to get to that section and type zc for “collapse fold”.
+- To open it again, use zo for “open fold”.
+- Alternatively, if you only want to remember a single keybinding, za will toggle a fold, collapsing if you are not on a folded line and expanding if you are.
+
+If you have collapsed some folds and want to quickly get back to a point where there are no folds collapsed, use zR to open all folds. I had no idea what mnemonic is supposed to work with R, but an early reader helpfully pointed out that zr is “reduce folding”, so zR is “Reduce folding BUT BIGGER”.
+
+You can even nest folds by folding already folded code. If you want to open folds recursively, use zO, which will open a fold and any folds that are nested under that fold.
+
+The way LazyVim is configured, you don’t have much control over what gets folded, but it will usually do something close to what you expect based on where your cursor is in the document. “What you expect” depends on both the LSP and the TreeSitter grammar for the language you are working on, but I find it best to just let it do its thing and not disagree with it.
+
+If you find that you want way more control over code folding, I recommend reading :help folding in its entirety. More than likely, you’ll decide that actually, you don’t want more control over folding and just want LazyVim to handle it for you!
+
+## Session
+
+LazyVim has built-in session management enabled by default. Simply close LazyVim with `<Space>qq` and you’re done. Tomorrow morning, use your terminal to cd to the folder you were working in. Open the session to the dashboard with the nvim command and hit s to be on your way.
+
+Sessions are scoped to folders. So every time you change your working directory a different session is stored and kept up to date until you exit. To open a session, either cd to a directory in your terminal before opening Neovim, or use the :cd command after opening it.  
+Alternatively, use the `<space>qS` command after you open Neovim. This will open a picker with all the folders you have recently worked in. Select one of those folders and LazyVim will automatically :cd to that folder and open the session.
+
+## Programming Language Support
+
+Visual Studio Code brought the world the concept of language servers, and all other text editors jumped on the idea.
+
+Neovim build support for language servers into the editor itself.
+
+In addition, Neovim also has built-in support for TreeSitter, a powerful library for parsing and identifying abstract syntax trees in source code while it is being edited, and LazyVim is configured with the plugins needed to make TreeSitter Just Work.
+
+Language Server protocol gives us support for things like code navigation, signature help, auto-completion, certain highlighting and formatting behaviours, diagnostics, and more. TreeSitter gives us better syntax highlighting, code folding, and syntax based navigation such as provided by the S command you already know.
+
+### Mason.nvim
+
+The Lazy Extras may not install everything you need. For example, instead of the default Typescript formatting and linting tools, I prefer to use a new hyper-fast up-and-comer called Biome.
+
+To install things like this, you can use the Mason.nvim plugin, which is pre-installed with LazyVim. To open Mason, use the `<Space>cm` keybinding. The window that pops up looks similar to the Lazy.nvim and Lazy Extras floating window, although it ships with annoyingly unrelated keybindings.
+
+Mason is a very large database of programming language support tooling, including language servers, formatters, and linters, along with the instructions to install them.
+
+Mason.nvim does assume a certain baseline is already installed on your system; for example if you are going to install something that is Rust-based, you better have a `cargo` binary, and if you are going to install something that requires Python support, Python and pip need to be available. In most cases, if you are coding in a given language, you already have the tools Mason needs to do its thing. The main thing that Mason takes care of is ensuring that the tools are installed in such a way that other Neovim plugins can find them.
+
+use i to install the package under the cursor. The only other command you will use frequently in Mason is Shift-U to update all installed tools, and you can look up the rest with `g?`.
+
+### Validating Things Installed Cleanly
+
+As good as both LazyExtras and Mason are at installing language servers, linting, and formatting tools, setting them up is one of the places most likely to go wrong, no matter which editor you are using. So now is a good time to introduce several commands to validate that things are working as expected.
+
+First, LazyVim pops up notifications in the upper right corner, as you have seen with the plugin updates. These disappear after a few seconds. Every once in a while, you need to be able to refer back to them.  
+The secret is to use the keybinding `<Space>sn` to open the “Noice” search menu. Noice is the plugin that provides those little popups. Most often, you’ll want to follow this with either an a or an l to see all recent Noice messages, or just the last one.
+
+The second command you’ll need for debugging LSPs is `<Space>cl`, which runs the command `:LspInfo`. It displays information about any language servers that are currently running and which buffers they are attached to.
+
+If your LSP is having temporary problems—like showing incorrect diagnostics or unable to find a file you know is there—sometimes it just needs to be given a good kick with `:LspRestart`. The Svelte language server has a nasty habit of not picking up new files, so I’ve been using this one often enough lately to add a keybinding for it.
+
+Two other super useful commands are `:checkhealth` and `:LazyHealth`. Both provide information about the health of various installed plugins. The former is a Neovim command that plugins can register themselves with to provide plugin health information, while the latter provides LazyVim-specific information. There is a lot of overlap in the output, but I find the `:LazyHealth` output is easier to read, and the :checkhealth output to be a bit more comprehensive. So I usually use :LazyHealth first and switch to checkhealth only if :LazyHealth didn’t yield the answer I need.  
+Don’t expect to see green check marks across the board; you’ll make yourself crazy. For example, my checkhealth output contains a bunch of warnings from Mason. I have warnings for languages that I don’t generally need to edit files in. So if you don’t code in Java, there’s no reason to waste cycles trying to make the java warning go away.
+
+TODO: Diagnostics
 
 ## Navigating Project, File Tree
 

@@ -307,9 +307,32 @@ Biển báo đường dành riêng cho người đi bộ => xe không được v
 - dốc lên chọn biển số 9%
 - dốc xuống chọn biển số 10%
 
+### Vạch kẻ đường
+
+trắng cùng, đứt đè, vàng tim  
+V cho khoảng cách thoi hình người đi
+
+- Hỏi vạch cùng chiều => chọn vạch trắng
+- Hỏi vạch tim đường => vạch vàng
+- Vạch được phép đè  => vạch nét đứt (both vàng & trắng)
+- Vạch hình chữ V (> >   > >) => khoảng cách
+- Vạch hình thoi => sắp đến chỗ người đi bộ qua đường
+
+---
+
+- Hướng tránh trên cao tốc:
+  * Tránh bên trái => dấu sắc ////
+  * Bên phải => dấu huyền `\\\\\`
+  * Cả hai bên => chữ V (^^^^^)
+
 ## Sa hình
 
-k
+Nếu có biển báo thì xét biển báo trước, không cần quan tâm hướng đi vội.
+
+Cái biển Giao nhau với đường ưu tiên (upside-down triangle) nhiều khi nó không có tô màu!!!  
+Nếu có biển tam giác lộn ngược thì là đi cuối cùng
+
+Cái biển hình thoi "Bắt đầu đường ưu tiên" có hiệu lực với cả chiếc xe đối diện (xe nhìn phía sau biển báo) và xe chính diện (xe nhìn vào mặt biển báo)
 
 ## Thi thực hành
 

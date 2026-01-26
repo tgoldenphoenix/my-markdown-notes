@@ -1077,7 +1077,7 @@ Open Files and Save Them to Disk
 The `:edit` command allows us to open files from within Vim, either by specifying an absolute or a relative filepath.
 
 - When you type `nvim`, you open a neovim **client**.
-- `tab`: A collection or layout of windows. It is more like a "workspace" than a browser tab.
+- `tab` (or layout): A collection or layout of windows. It is more like a "workspace" than a browser tab.
   * One client can have multiple tabs. Only one tab is visible at any one time.
 - `window` (pane, split): A "viewport" that looks into a buffer. You can have multiple windows looking at the same buffer.
   * a window is a section of the screen that is dedicated to viewing a buffer.
