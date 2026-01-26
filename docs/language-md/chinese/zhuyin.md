@@ -1,3 +1,0 @@
-# Zhuyin Notes
-
-k
