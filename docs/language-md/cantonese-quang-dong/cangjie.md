@@ -5,6 +5,30 @@ Like 学. The code should be 火月弓木(FBND) according to cangjie rules but i
 
 To google the code: type a character in traditional font and follow it with 簡體倉頡碼 in search box.
 
+## Decomposition Rules
+
+Double unit characters: F+L // F2+L
+
+---
+
+- 實 (十 田十 金) => The 2nd unit takes two radicals so we only take the last radical of the third unit
+- We only take the first + last radical of the last unit only when the **second unit** takes one radical.
+- Còn normal là: 1st, last // 1st, last // last
+
 ## Notable Codes
 
-k
+元 (一一山) vs. 克 (十口竹山)
+
+己 (尸山) vs. 已 (尸山) same
+
+少 (火竹) vs. 小 (弓金)
+
+刀 (尸竹) vs. 刃 (尸竹戈)
+
+寸 (木戈) and 特 (竹手土木戈)
+
+冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木卜十)
+
+又 (弓大); 水=又 vs. 大=dấu x (メ)
+
+ 

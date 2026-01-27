@@ -327,22 +327,44 @@ V cho khoảng cách thoi hình người đi
 
 ## Sa hình
 
+> Nhất lỡ - nhì ưu - tam đường - tứ hướng - hướng rẽ ưu tiên
+
+Xe đi qua vạch trắng gọi là xe đi lỡ, sẽ được đi trước đầu tiên
+
+hỏa > quân > công > thương: cứu hỏa > quân sự > công an > cứu thương
+
+đôi khi 2 xe được đi cùng một lúc thì dùng chữ **và** thay vì dấu comma `,`
+
+---
+
 Nếu có biển báo thì xét biển báo trước, không cần quan tâm hướng đi vội.
 
-Cái biển Giao nhau với đường ưu tiên (upside-down triangle) nhiều khi nó không có tô màu!!!  
-Nếu có biển tam giác lộn ngược thì là đi cuối cùng
+- Cái biển Giao nhau với đường ưu tiên (upside-down triangle) nhiều khi nó không có tô màu!!!
+- Nếu có biển tam giác lộn ngược thì là đi cuối cùng
+- Nhiều khi phải xét cái biển hình vuông nhỏ ở phía dưới biển tam giác lộn ngược để biết hướng rẽ ưu tiên (trong trường hợp này không xét hướng rẽ mà theo biển báo)
 
 Cái biển hình thoi "Bắt đầu đường ưu tiên" có hiệu lực với cả chiếc xe đối diện (xe nhìn phía sau biển báo) và xe chính diện (xe nhìn vào mặt biển báo)
-
-2 xe đường cùng cấp, face-to-face, nếu không có đường trống, ta xét tiếp tục xét: rẽ phải > đi thẳng > rẽ trái
 
 ---
 
 câu hỏi không có biển báo
 
+Trên tuyến đường cùng cấp & không có biển báo thì bên phải xe nào đường trống thì xe đó được đi trước (same as quy tắc đồng hồ)
+
 - Nếu có một bên đường trống => để tay vào đường trống, quay theo chiều clock wise đụng xe nào thì xe đó đi trước
 - Roundabout nếu có đường trống cũng dùng phương pháp này được
 - 2 xe trên đường cùng cấp (không face-to-face) cũng dùng quy tắc này
+
+---
+
+- 2 xe đường cùng cấp, face-to-face, nếu không có đường trống, ta xét tiếp tục xét: rẽ phải > đi thẳng > rẽ trái
+- Các xe ưu tiên được xét trước hướng rẽ
+
+Vòng xuyến nhường đường cho xe bên trái.
+
+---
+
+Câu hỏi có dàn 6 đèn giao thông
 
 ## Thi thực hành
 
