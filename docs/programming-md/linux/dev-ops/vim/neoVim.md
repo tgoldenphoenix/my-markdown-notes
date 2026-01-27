@@ -475,7 +475,15 @@ If your LSP is having temporary problems—like showing incorrect diagnostics or
 Two other super useful commands are `:checkhealth` and `:LazyHealth`. Both provide information about the health of various installed plugins. The former is a Neovim command that plugins can register themselves with to provide plugin health information, while the latter provides LazyVim-specific information. There is a lot of overlap in the output, but I find the `:LazyHealth` output is easier to read, and the :checkhealth output to be a bit more comprehensive. So I usually use :LazyHealth first and switch to checkhealth only if :LazyHealth didn’t yield the answer I need.  
 Don’t expect to see green check marks across the board; you’ll make yourself crazy. For example, my checkhealth output contains a bunch of warnings from Mason. I have warnings for languages that I don’t generally need to edit files in. So if you don’t code in Java, there’s no reason to waste cycles trying to make the java warning go away.
 
-TODO: Diagnostics
+### Diagnostic
+
+If the window doesn’t pop up when you navigate to the diagnostic, you can use the `<Space>cd` keybinding to invoke it as long as your cursor is positioned somewhere within the underlined text. You can make the window disappear by moving your cursor with any motion key.
+
+### Code Actions
+
+Navigate to a diagnostic using whatever keybindings work for you (I live by ]d) and then invoke the <Space>ca menu where c and a mean “code action.” A picker menu will pop up with a list of any actions you can take.
+
+TODO: Configuring Non-standard LSPs
 
 ## Navigating Project, File Tree
 

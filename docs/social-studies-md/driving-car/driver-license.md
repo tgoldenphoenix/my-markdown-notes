@@ -334,6 +334,16 @@ Nếu có biển tam giác lộn ngược thì là đi cuối cùng
 
 Cái biển hình thoi "Bắt đầu đường ưu tiên" có hiệu lực với cả chiếc xe đối diện (xe nhìn phía sau biển báo) và xe chính diện (xe nhìn vào mặt biển báo)
 
+2 xe đường cùng cấp, face-to-face, nếu không có đường trống, ta xét tiếp tục xét: rẽ phải > đi thẳng > rẽ trái
+
+---
+
+câu hỏi không có biển báo
+
+- Nếu có một bên đường trống => để tay vào đường trống, quay theo chiều clock wise đụng xe nào thì xe đó đi trước
+- Roundabout nếu có đường trống cũng dùng phương pháp này được
+- 2 xe trên đường cùng cấp (không face-to-face) cũng dùng quy tắc này
+
 ## Thi thực hành
 
 - Ghép xe ngang (vỉa hè) Parallel Parking
