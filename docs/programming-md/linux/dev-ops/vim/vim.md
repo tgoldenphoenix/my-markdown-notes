@@ -368,6 +368,8 @@ While they both use a single character (like a or B) as a label, they do not sha
 The `m{a-zA-Z}` command marks the current cursor location with the designated letter.  
 Lowercase marks are local to each individual buffer, whereas uppercase marks are **globally** accessible.
 
+If I had marked the line with a capital letter (e.g. mA), I would be able to jump to the mark no matter which file is currently open using `'A`.
+
 Vim does nothing to indicate that a mark has been set, but if you’ve done it right, then you should be able to jump directly to your mark with only two keystrokes from anywhere in the file.
 
 ---

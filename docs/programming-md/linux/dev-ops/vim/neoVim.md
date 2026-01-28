@@ -483,7 +483,45 @@ If the window doesn’t pop up when you navigate to the diagnostic, you can use 
 
 Navigate to a diagnostic using whatever keybindings work for you (I live by ]d) and then invoke the <Space>ca menu where c and a mean “code action.” A picker menu will pop up with a list of any actions you can take.
 
-TODO: Configuring Non-standard LSPs
+## Navigating Source Files
+
+### Go To Definition
+
+`gd` (go to definition)
+
+Go to definition is context dependent. It is enable by the language server.
+
+Typically, once you’ve jumped to a definition and learned what you need to learn from that file, you’ll immediately want to jump back to where you started. You can do this easily using `Control-o`, as we discussed in Chapter 3 (and Control-i can move forward in your jump history).
+
+---
+
+The inverse of the Go to Definition command is “Go to References”. If you are looking at a function, variable, type, etc, and want to see all the places that variable is accessed, use the `gr` command.
+
+Unlike with a definition or declaration, there will typically be more than one reference to a given word (a variable in isolation is a useless variable, indeed). So when you type gr it usually won’t immediately jump to a location. Instead it will pop up a picker view of all the references to the word that was under your cursor, with all the preview and filtering luxury that the picker always brings.
+
+### Hover help
+
+Most non-modal editors show you some help or “hover” text when you hold your mouse over a word or symbol. The quantity and value of this text varies widely depending on the LSP, but usually includes a function signature and documentation for the word under the cursor.
+
+It’s probably possible to set up Neovim to show help texts on hover, but why would you move your hand to the mouse when LazyVim has such amazing navigation on the keyboard? Instead, use the (shifted) `K` keybinding. Yeah, K is a pretty stupid mnemonic to remember, but H and ? were already taken.
+
+---
+
+The `nvim-treesitter-context` extra is a helpful way to know where you are in the current file. It uses treesitter to figure out which functions and types you are in, and then pins the lines that define those types to the top of the editor. Enable it as usual by visiting :LazyExtras and hitting x over the line that contains nvim-treesitter-context.
+
+This plugin keeps track of which class or function your cursor is currently in. If the function or type definition is so long that the signature scrolls off the screen, it will helpfully copy that signature into the first line or lines of the code window, highlighted with a slightly different background colour.
+
+The effect is quite subtle, but the definitions that make their way into this context section tend to be exactly what you need while coding. If they fit on one line I can see function signatures and return types. You really don’t notice how often you have to scroll up to see what a variable is named in a function signature until you don’t have to do it anymore! And if you DO need to scroll up to the signature, simply type the relative line number followed by k and you’re there with no searching required.
+
+If you need to disable the context temporarily, use the keybinding `<Space>ut`. We haven’t seen much of the <Space>u menu yet, where you can toggle various User Interface effects. This is largely because the default user interface is configured well enough that you don’t want to change it often!
+
+### Listing Symbols
+
+Another handy LSP feature is to search all the symbols in the current file or project. If you are editing a particularly long file and need to jump to a function that is not terribly close to your cursor, you might use the `<Space>ss` command (mnemonic is “search symbols”). As hinted by the double s, this is expected to be a fairly common action.
+
+## Searching…
+
+TODO:
 
 ## Navigating Project, File Tree
 
