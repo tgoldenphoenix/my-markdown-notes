@@ -225,8 +225,8 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
   * có vẽ trục => tải trọng trên trục xe
 - Cấm xe có tải trọng > số ghi trên biển
 
-- các biển vẽ mũi tên: cấm rẽ trái thì sẽ không cấm quay đầu, trừ khi hai mũi tên lồng nhau
-- Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái thì phải đi trái
+- Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ không cấm quay đầu, trừ khi hai mũi tên lồng nhau
+- Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái thì bắt buộc phải đi theo bên trái, không được phép quay đầu
 
 ### Hiệu lệnh & chỉ dẫn
 
@@ -364,7 +364,30 @@ Vòng xuyến nhường đường cho xe bên trái.
 
 ---
 
-Câu hỏi có dàn 6 đèn giao thông
+- Câu hỏi có dàn 6 đèn giao thông:
+  * có 1 chữ **xe con** => chọn luôn
+  * 2 hoặc 3 chữ xe con (cả 4 xe nghĩa là cũng có xe con) => bỏ lấy đáp án còn lại
+- Lưu ý: 2 câu ngoại lệ thì chọn ý 2:
+  * 538: tất cả các loại xe trên (câu này trong các đáp án không có chữ "xe con")
+  * 565: xe khách, xe mô tô (câu này có tới 2 đáp án không có chữ xe con)
+
+- Thấy đoàn xe đang đua trên nhiều làn đường (câu hỏi vi phạm) => nhìn xe cuối: lấy số bánh trừ 1 kết quả là đáp án:
+  * Xe cuối mô tô 2 bánh trừ 1 chọn ý 1
+  * Xe cuối ô tô 4 bánh trừ 1 chọn ý 3
+- Xe chạy đè vạch kẻ liền là vi phạm
+- Ngoại lệ câu 554 (không hỏi vi phạm mà hỏi xe nào chấp hành đúng quy tắc giao thông) chọn ý 2
+
+Biển hiệu lệnh (tròn xanh) chỉ cho phép rẽ trái thì không được phép quay đầu.
+
+Muốn quay đầu, rẽ phải, rẽ trái thì phải lên giữa ngã tư, qua vạch mới được phép quay đầu.
+
+Biển cấm xe tải vượt thì không có cấm xe khách nên xe khách được phép vượt.
+
+Khi xe đằng trước đang vượt thì xe phía sau không được phép vượt.
+
+## Mô Phỏng
+
+k
 
 ## Thi thực hành
 

@@ -1309,7 +1309,7 @@ $ git log --all --decorate --oneline --graph
 
 Không được thay đổi `main` mà không có review.
 
-### Interactive rebasing
+### Interactive Rebasing
 
 Interactive rebasing gives you the opportunity to alter commits as they are moved to the new branch. This is even more powerful than an automated rebase, since it offers complete control over the branch’s commit history. Typically, this is used to clean up a messy history before merging a feature branch into main. You can do editing, deleting, and squashing.
 
@@ -1332,10 +1332,10 @@ pick 9480b3d Message for commit #2
 pick 5c67e61 Message for commit #3
 ```
 
-In git log the most recent commit is on top. In interactive rebasing view, the most recent commit is on bottom (reverse order).
+**NOTE**: In git log the most recent commit is on top. However, in interactive rebasing view, the most recent commit is on bottom (reverse order).  
+khi `rebase -i` thì order ngược lại với `git log`
 
-the following command begins an interactive rebase of only the last 3 commits: `git checkout feature git rebase -i HEAD~3`
-
+`git checkout feature; git rebase -i HEAD~3` => begins an interactive rebase of only the last 3 commits  
 Git use zero-based indexing, so `HEAD~1` the last commit & `HEAD~0` is where you are standing on.
 
 Make lots of small commits and tidy them up later using interactive rebase. Use `git push origin --force-with-lease`.
@@ -1350,11 +1350,106 @@ re-order commit => run `rebase -i` > change the order of the commits lines
 
 squashing commits => `rebase -` > change `pick` into `squash`
 
-khi `rebase -i` thì order ngược lại với `git log`
-
 Breaking One Commit into multiple commits
 
-### Squashing Commits
+- `pick` = use commit as is
+- `reword` = use, but edit the commit message
+- `edit` = use, but stop for amending
+- `squash` = use, but meld into previous commit (the above listed)
+- `fixup` = like `squash` but keep only the previous commit's log message
+  * The difference between squash and fixup, is that `squash` let's you edit the resulting commit log message; fixup, on the other hand, defaults to using the previous commit's log message.
+- `drop` = remove commit
+
+nếu có `edit` thì sau khi edit, run `git rebase --continue`
+
+```bash
+anhao@Anonimous MINGW64 ~/desktop/document/my-latex-documents (on-company)
+$ git log --all --decorate --oneline --graph -6
+* b5a7d29 (HEAD -> on-company, origin/on-company) finish tikz tutorial: Karl's picture
+* 297f397 end day 26 Jan
+* c9f9e16 create a directory to learn tikz
+* b1fdac3 (origin/main, origin/HEAD, main) finish class 31 algebra: Exponential Equations and Logarithmic Equations
+* 44bac72 finish class 30 algebra: Exponential Equations and an Intro to Logarithms (Part II)
+* a73e9bb finish class 29 algebra: Exponential Equations and an Introduction to Logarithms
+
+anhao@Anonimous MINGW64 ~/desktop/document/my-latex-documents (on-company)
+$ git rebase -i HEAD~3
+
+############
+pick c9f9e16 # create a directory to learn tikz
+pick 297f397 # end day 26 Jan
+fixed -C b5a7d29 # finish tikz tutorial: Karl's picture
+# Rebase b1fdac3..b5a7d29 onto b1fdac3 (3 commands)
+############
+
+# After editing the git-rebase-todo file in your editor, run
+$ git rebase --continue
+Successfully rebased and updated refs/heads/on-company.
+
+anhao@Anonimous MINGW64 ~/desktop/document/my-latex-documents (on-company)
+$ git log --all --decorate --oneline --graph
+* ec8bc58 (HEAD -> on-company) finish tikz tutorial: Karl's picture
+| * b5a7d29 (origin/on-company) finish tikz tutorial: Karl's picture
+| * 297f397 end day 26 Jan
+|/
+* c9f9e16 create a directory to learn tikz
+* b1fdac3 (origin/main, origin/HEAD, main) finish class 31 algebra: Exponential Equations and Logarithmic Equations
+* 44bac72 finish class 30 algebra: Exponential Equations and an Intro to Logarithms (Part II)
+* a73e9bb finish class 29 algebra: Exponential Equations and an Introduction to Logarithms
+
+anhao@Anonimous MINGW64 ~/desktop/document/my-latex-documents (on-company)
+$ git log --all --decorate --oneline --graph
+* ec8bc58 (HEAD -> on-company) finish tikz tutorial: Karl's picture
+| * b5a7d29 (origin/on-company) finish tikz tutorial: Karl's picture
+| * 297f397 end day 26 Jan
+|/
+* c9f9e16 create a directory to learn tikz
+* b1fdac3 (origin/main, origin/HEAD, main) finish class 31 algebra: Exponential Equations and Logarithmic Equations
+* 44bac72 finish class 30 algebra: Exponential Equations and an Intro to Logarithms (Part II)
+* a73e9bb finish class 29 algebra: Exponential Equations and an Introduction to Logarithms
+
+```
+
+The auto-generated comments inside the `git-rebase-todo` file:
+
+```bash
+# Commands:
+# p, pick <commit> = use commit
+# r, reword <commit> = use commit, but edit the commit message
+# e, edit <commit> = use commit, but stop for amending
+# s, squash <commit> = use commit, but meld into previous commit
+# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
+#                    commit's log message, unless -C is used, in which case
+#                    keep only this commit's message; -c is same as -C but
+#                    opens the editor
+# x, exec <command> = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with 'git rebase --continue')
+# d, drop <commit> = remove commit
+# l, label <label> = label current HEAD with a name
+# t, reset <label> = reset HEAD to a label
+# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
+#         create a merge commit using the original merge commit's
+#         message (or the oneline, if no original merge commit was
+#         specified); use -c <commit> to reword the commit message
+# u, update-ref <ref> = track a placeholder for the <ref> to be updated
+#                       to this position in the new commits. The <ref> is
+#                       updated at the end of the rebase
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+```
+
+---
+
+As with all operations related to rewriting history... Unless you know exactly what you're doing and have good communication within your team – only rewrite commits that have not yet been published remotely!
+
+---
+
+Squashing Commits
 
 Squashed commits take the history of one branch and compress— or “squash”—it into one commit on top of another branch.
 

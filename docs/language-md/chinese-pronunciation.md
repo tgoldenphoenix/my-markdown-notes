@@ -74,8 +74,8 @@ p -> 胖, \[phán]\[pàng], fat, béo\
 `d` đọc là chữ `t` tờ trong tiếng việt. Nhớ [Yang de xin](https://www.youtube.com/watch?v=dIUjMv0ktSY)\
 Phân biệt `d` vs `t`.
 
-`g` đọc là `c`. Ex: gēge (ca ca)\
-Phân biệt `g` vs `k` => `g` đọc không bật hơi.
+- `g` đọc là `c`. Ex: gēge (ca ca)
+  * Phân biệt `g` vs `k` => `g` đọc không bật hơi.
 
 `h` có 2 cách học. Đọc nặng thành `kh`, đọc nhẹ là `h`. Linh hoạt tùy trường hợp.
 
@@ -94,22 +94,24 @@ u -> `wu` or `w`. Example: chữ 我 là uo -> "uan" -> "wan", 王老师 "wáng 
 
 Trong Chinese, không có quy tắc chuẩn để đọc 'y' nên cứ nghe rồi bắt chước.
 
-z, c, s + ư đọc khép răng, để lưỡi sau răng thụt ra thụt vào đập vào chân răng.\
-`c` đọc bật hơi, vị trí lưỡi giống "z"\
-`s` đọc giống tiếng việt chữ "sư" trong sư huynh
+- z, c, s + ư đọc khép răng, để lưỡi sau răng thụt ra thụt vào đập vào chân răng.
+  * `c` đọc bật hơi, vị trí lưỡi giống "z"
+  * `s` đọc giống tiếng việt chữ "sư" trong sư huynh
 
-zh, ch, sh, r (+ư) => cong lưỡi\
-`ch` đọc bật hơi
+- zh, ch, sh, r (+ư) => cong lưỡi
+ * `ch` đọc bật hơi
 
 Quy tắc 7 âm cuối cùng khó đọc nhất: z, c, s, zh, ch, sh, r + `i` => đọc là `ư`, viết thì vẫn viết là "i".
 
-### Cantonese
+### Cantonese Initials
 
 Cantonese có 8 TM. Mandarin có 21 TM
 
 j -> y
 
-## Thanh Điệu (tone, dấu)
+c = ch
+
+## Thanh Điệu (Tone, dấu)
 
 Tiếng Trung có 4 thanh chính + 1 thanh nhẹ: Thanh 1, thanh 2, thanh 3, thanh 4 + 1 thanh nhẹ.\
 Tiếng Việt có 5 dấu chính + 1 dấu ngang.
@@ -131,20 +133,29 @@ The half 3rd tone:
 
 ### Cantonese
 
+Tiếng Việt có 6 thanh điệu chính, bao gồm: thanh ngang (không dấu), huyền, sắc, hỏi, ngã, và nặng.  
 Tiếng Quảng Đông cũng có sáu thanh điệu nhưng rất khác với tiếng Việt.
 
 Thanh 1, 3, 6 đều là dấu ngang; cấp độ giảm dần 1 > 3 > 6
 
 - Thanh 1 giống thanh ngang trong tiếng Quan Thoại. Một vài người hoa ở VN đọc thanh 1 thành dấu sắc tiếng Việt.
 - Thanh 3 giống thanh ngang trong tiếng Việt. Từ thanh 1 xuống 2 cấp độ.
-- Thanh 6 phát âm dễ nhất cho người Việt là dấu huyền nhưng thấp hơn (phát âm phần cuối dấu huyền thấp xuống nhưng ngang qua )
+- Thanh 6 phát âm dễ nhất cho người Việt là dấu huyền nhưng thấp hơn (phát âm phần cuối dấu huyền thấp xuống nhưng ngang qua)
+  * vẫn kéo dài
+
+- so (1) > fa > me (3) > re > do (6)
+- má ma ma ma mà
+
+---
 
 Thanh 2, 5 là thanh _đi lên_. Thanh 2 cao hơn thanh 5
 
-- Thanh 2 tiếng Quảng giống thanh 2 (đi lên) trong Quan Thoại nhưng dài hơn. Không giống dấu hỏi hay dấu sắc tiếng việt. Phần đi lên chậm.
+- Thanh 2 tiếng Quảng giống thanh 2 (đi lên) trong Quan Thoại nhưng dài hơn. Không giống dấu hỏi hay dấu sắc tiếng việt. Đọc như dấu sắc nhưng phần đi lên chậm.
 - Thanh 5 giống dấu nặng trong giọng miền Nam
 
-Thanh 4 là thanh duy nhất đi xuống. Giống dấu huyền tiếng Việt.
+---
+
+Thanh 4 là **thanh duy nhất đi xuống**. Giống dấu huyền tiếng Việt.
 
 Người Hoa ở Việt Nam gọi là bị ảnh hưởng bởi ngữ âm của tiếng Việt do giao thoa ngôn ngữ suốt mấy trăm năm nên nhiều âm trong tiếng Quảng "trở nên thuần Việt" tức là vị Việt Hoá theo âm của Tiếng Việt
 
