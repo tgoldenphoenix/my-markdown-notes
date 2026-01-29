@@ -16,8 +16,6 @@ An [axiom](https://en.wikipedia.org/wiki/Axiom), postulate, or assumption (tiên
 
 In mathematics and formal logic, a [theorem](https://en.wikipedia.org/wiki/Theorem) (định lý) is a statement that has been proven, or can be proven. The _proof_ of a theorem is a logical argument that uses the inference rules of a deductive system to establish that the theorem is a logical consequence of the axioms and previously proved theorems.
 
-**Cartesian coordinate system** (Hệ tọa độ Descartes, hệ tọa độ $Oxy$)
-
 ## Arithmetic
 
 Cách chia lấy qua phần thập phân. Ví dụ $1/2=0.5$; $3/4=0.75$.
@@ -45,3 +43,13 @@ giải tích: analysis
 integral: tích phân
 
 differential: vi phân
+
+## Coordinate Systems
+
+Cartesian coordinate system: hệ tọa độ Descartes, hệ tọa độ $Oxy$.
+
+polar coordinate system: hệ tọa độ cực
+
+cylindrical coordinate system
+
+spherical coordinate system: hệ tọa độ cầu

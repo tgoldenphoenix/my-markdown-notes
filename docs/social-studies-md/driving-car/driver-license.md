@@ -192,8 +192,10 @@ xích lô, ly bia, con ngựa => ý cuối
   * không cần GPLX
   * xe dưới 50cm3
 
-- Tốc độ màu đỏ là tối đa
-- Màu xanh là tối thiểu
+- Biển có ghi số, red border, white background là tốc độ tối đa
+  * Hết tốc độ tối đa là blue border, white background, one cross (nếu không ghi số thì là "hết mọi lệnh cấm")
+- Màu xanh, no border là tốc độ tối thiểu
+  * Hết tốc độ tối thiểu là no border, blue background, cross
 
 - chiều dài đoạn đường => chọn biển 2 mũi tên thẳng đứng
 - Chiều ngang => mũi tên nằm ngang
@@ -228,56 +230,7 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 - Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ không cấm quay đầu, trừ khi hai mũi tên lồng nhau
 - Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái thì bắt buộc phải đi theo bên trái, không được phép quay đầu
 
-### Hiệu lệnh & chỉ dẫn
-
-- Thấy biển chữ T hai mũi tên hai bên (tròn màu xanh mũi tên trắng)
-  * câu hỏi thấy chữ **trước ngã ba** => chọn ý 3
-  * không có trước ngã ba => chọn ý 1
-
-Biển chữ T only đặt sau ngã ba, ngã tư; không đặt trước.
-
-Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay đầu
-
-- Thấy hình biển có số 50 - 60 màu xanh:
-  * Chọn luôn đáp án có chữ **và**.
-  * Các câu còn lại hỏi: **tối đa chọn biển 50 - tối thiểu chọn biển 60**.
-
-- Biển màu đỏ là start hiệu lực tốc độ tối đa
-- Hết hạn chế tối đa: tròn, blue border, number, gạch chéo
-- Biển màu xanh:
-  * Có dấu gạch => hết hiệu lực biển maximum màu đỏ
-  * không có gạch, có số (60) => tốc độ tối thiểu
-
-- Câu hỏi có chữ **đi đúng làn** => chọn biển có vẽ xe
-- Câu hỏi có chữ **từng làn đường** => chọn cả hai biển
-
-- **rẽ ra** có làn đường xe khách => mũi tên nằm ngang
-- **phía trước** => mũi tên thẳng đứng
-
-- hình tròn phải theo (hiệu lệnh)
-- hình vuông là chỉ dẫn đường một chiều
-
-- Thấy biển đầu ô tô => chọn đáp án **có**
-- Thấy biển ô tô quay ngang => chọn không
-
-- Câu hỏi về cầu vượt ghi nhớ **vuông liên tròn cắt**:
-  * Cầu vượt liên thông là hình vuông
-  * Cầu vượt cắt qua là hình tròn
-
-- Người đi lên là lên cầu (vượt qua đường)
-- người đi xuống là xuống hầm
-
-- Thấy biển chữ ZONE:
-  * hỏi biển 1 => ý 1; hỏi biển 3 => ý 3
-  * Hỏi tên đường => chọn ý 3
-
-địa giới == địa phận
-
-Biển ghi chữ "CSGT" => phải giảm tốc độ đến mức an toàn và không được vượt
-
-Biển hình vuông là chỉ dẫn không cấm quay đầu xe
-
-### Biển nguy hiểm
+### Biển Nguy Hiểm
 
 - 2 mũi tên thẳng đứng là đường hai chiều
 - 2 mũi tên nằm ngang là giao nhau với đường hai chiều
@@ -307,15 +260,74 @@ Biển báo đường dành riêng cho người đi bộ => xe không được v
 - dốc lên chọn biển số 9%
 - dốc xuống chọn biển số 10%
 
-### Vạch kẻ đường
+### Hiệu lệnh & Chỉ Dẫn
 
-trắng cùng, đứt đè, vàng tim  
-V cho khoảng cách thoi hình người đi
+- Các biển hình tròn là biển hiệu lệnh thì bắt buộc phải theo (hiệu lệnh)
+  * Hiệu lệnh có 2 mũi tên lồng nhau (Các xe chỉ được đi thẳng và rẽ phải) thì xe được phép quay đầu.
+- Các biển hình vuông là chỉ dẫn, không cấm quay đầu xe
 
-- Hỏi vạch cùng chiều => chọn vạch trắng
-- Hỏi vạch tim đường => vạch vàng
+- Thấy biển chữ `T` hai mũi tên chĩa ra hai bên (tròn màu xanh mũi tên trắng)
+  * câu hỏi thấy chữ **trước ngã ba** => chọn ý 3
+  * không có trước ngã ba => chọn ý 1
+- Biển chữ T only đặt sau ngã ba, ngã tư; không đặt trước.
+
+Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay đầu
+
+- Thấy hình biển có số 50 - 60 màu xanh:
+  * Chọn luôn đáp án có chữ **và**.
+  * Các câu còn lại hỏi: **tối đa chọn biển 50 - tối thiểu chọn biển 60**.
+
+- Biển màu đỏ là start hiệu lực tốc độ tối đa
+- Hết hạn chế tối đa: tròn, blue border, number, gạch chéo
+- Biển màu xanh:
+  * Có dấu gạch => hết hiệu lực biển maximum màu đỏ
+  * không có gạch, có số (60) => tốc độ tối thiểu
+
+- Câu hỏi có chữ **đi đúng làn** => chọn biển có vẽ xe
+- Câu hỏi có chữ **từng làn đường** => chọn cả hai biển
+
+- **rẽ ra** có làn đường xe khách => mũi tên nằm ngang
+- **phía trước** => mũi tên thẳng đứng
+
+- Thấy biển đầu ô tô (Đường dành cho xe ô tô) => chọn đáp án **có**; xe tải & xe khách đi vào được
+- Thấy biển ô tô quay ngang (Đường dành cho xe ô tô con) => chọn không; xe tải & xe khách không được phép đi vào
+
+- Câu hỏi về cầu vượt ghi nhớ **vuông liên tròn cắt**:
+  * Cầu vượt liên thông là hình vuông
+  * "Cầu vượt cắt qua" là hình tròn
+- Người đi lên là lên cầu (vượt qua đường)
+  * người đi xuống là xuống hầm
+
+- Thấy biển chữ ZONE:
+  * hỏi biển 1 => ý 1; hỏi biển 3 => ý 3
+  * Hỏi tên đường => chọn ý 3
+
+Câu hỏi có chữ "địa giới" => chọn biển có chữ "địa phận"
+
+Biển ghi chữ "CSGT" => phải giảm tốc độ đến mức an toàn và không được vượt
+
+- Biển có hai mũi tên nằm thẳng:
+  * Hình vuông, màu xanh => Biển chỉ dẫn "Được ưu tiên qua đường hẹp"
+  * tam giác, nền vàng => Đường hai chiều
+  * Red border, nền trắng => Biển cấm "Nhường đường cho xe cơ giới đi ngược chiều qua đường hẹp"
+
+- Phía trước có làn đường dành cho ô tô khách => mũi tên chỉ forward
+- Rẽ ra đường có làn đường dành cho ô tô khách => mũi tên nằm ngang
+
+- 3 biển gạch sọc đen nền vàng "Chướng ngại vật phía trước":
+  * gạch `////` => đi về bên trái
+  * gạch `\\\\` => đi về bên phải
+  * Gạch `^^^^` => đi được cả 2 hướng
+
+### Vạch Kẻ Đường
+
+- Trắng cùng, đứt đè, vàng tim  
+- V cho khoảng cách, thoi hình người đi
+
+- Hỏi vạch cùng chiều (phân chia các làn xe chạy cùng chiều nhau) => chọn vạch trắng
 - Vạch được phép đè  => vạch nét đứt (both vàng & trắng)
-- Vạch hình chữ V (> >   > >) => khoảng cách
+- Hỏi vạch tim đường (phân chia hai chiều xe chạy ngược chiều) => vạch vàng
+- Vạch hình chữ V (`> >   > >`) => khoảng cách
 - Vạch hình thoi => sắp đến chỗ người đi bộ qua đường
 
 ---
@@ -347,7 +359,7 @@ Cái biển hình thoi "Bắt đầu đường ưu tiên" có hiệu lực với
 
 ---
 
-câu hỏi không có biển báo
+Câu hỏi không có biển báo
 
 Trên tuyến đường cùng cấp & không có biển báo thì bên phải xe nào đường trống thì xe đó được đi trước (same as quy tắc đồng hồ)
 
@@ -364,9 +376,9 @@ Vòng xuyến nhường đường cho xe bên trái.
 
 ---
 
-- Câu hỏi có dàn 6 đèn giao thông:
-  * có 1 chữ **xe con** => chọn luôn
-  * 2 hoặc 3 chữ xe con (cả 4 xe nghĩa là cũng có xe con) => bỏ lấy đáp án còn lại
+- Các câu hỏi có dàn 6 đèn giao thông:
+  * Nếu chỉ có một đáp án có chữ **xe con** => chọn luôn
+  * Nếu có 2 hoặc 3 đáp án chứa chữ xe con (đáp án nói "cả 4 xe" nghĩa là cũng có xe con) => ta bỏ lấy đáp án còn lại không có chữ xe con
 - Lưu ý: 2 câu ngoại lệ thì chọn ý 2:
   * 538: tất cả các loại xe trên (câu này trong các đáp án không có chữ "xe con")
   * 565: xe khách, xe mô tô (câu này có tới 2 đáp án không có chữ xe con)
