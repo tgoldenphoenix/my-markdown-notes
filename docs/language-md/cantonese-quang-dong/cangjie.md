@@ -43,10 +43,6 @@ Triple-unit characters
 
 成 (戈竹尸)
 
-之 (戈弓人)
-
-勿 (心竹竹)
-
 - 公 (金戈)
 
 - 頁 (一月山金)
@@ -84,10 +80,24 @@ Triple-unit characters
 
 - 儿 (中山)
 - 見 (月山竹山)
-- 現 (一土 月山山)
+- 現 (一土 月山山) - two unit, take F2+L of the second unit
 
 - 像 (人 弓日人)
 - 象 (弓日心人) - one unit character, take F3+L
+
+入 (人竹)
+
+- 可 (一弓口)
+- 才 (木竹)
+- 之 (戈弓人)
+- 勿 (心竹竹)
+
+再 (一土月)
+
+- 及 (弓竹 水)
+- 乃 (弓竹 尸)
+
+爾 (一火月大)
 
 ## Resources
 

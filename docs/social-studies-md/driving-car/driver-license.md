@@ -29,7 +29,10 @@ Học 90 ngày (3 tháng). Thi đậu lý thuyết + mô phỏng rồi xuống s
 
 Thi lý thuyết chỉ có only 1 câu liệt.
 
-Có hình cảnh sát là 3, only one question chọn 4 (jesus cross)
+- Có hình cảnh sát là 3, only one question chọn 4 (jesus cross)
+- Giơ tay thẳng đứng: tất cả dừng, trừ xe đã ở trong ngã tư được phép tiếp tục đi
+- Giang ngang tay: trái phải đi; trước sau dừng
+- Tay phải giơ trước: sau & phải dừng; trước rẽ phải, trái đi các hướng, người đi bộ qua đường đi sau người điều khiển
 
 Phần của đường bộ được sử dụng [...] là **phần đường xe chạy**
 
@@ -89,6 +92,8 @@ hộp số xe ô tô: giúp xe lùi
 đèn táp lô 2 hình tam giác đỏ: báo hiệu xe đang tình huống nguy hiểm
 
 Rơ móc kéo xe khác phải có trọng lượng lớn hơn, tương đương thì ko được
+
+Xe xuống dốc phải nhường đường cho xe đang lên dốc.
 
 ## Các hạng bằng lái & Độ tuổi
 
@@ -164,7 +169,8 @@ Lấy max value trừ đi `25`
 - cấm ô tô tải => ý cuối
 
 - Đối với xe **ô tô**, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
-- Xe **mô tô** thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm
+  * Cấm ô tô thì sẽ cấm luôn cả xe tải.
+- Xe **mô tô** thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm.
 
 - Theo thứ tự từ rộng tới hẹp (nhỏ tới lớn):
   * cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ
@@ -181,13 +187,13 @@ xích lô, ly bia, con ngựa => ý cuối
   * Câu hỏi có chữ cấm => chọn 1
   * có chữ được => chọn 3
 
-- xe mô tô:
+- Biển cấm xe mô tô:
   * có vẽ người
-  * 18 tuổi
+  * ≥ 18 tuổi
   * phải thi gplx A1, A
   * xe trên 50cm3
-- xe gắn máy:
-  * chỉ vẽ xe, không vẽ người
+- Biển cấm xe **gắn máy**:
+  * chỉ vẽ xe, không vẽ người, red border, white background
   * 16 tuổi
   * không cần GPLX
   * xe dưới 50cm3
@@ -214,7 +220,11 @@ xích lô, ly bia, con ngựa => ý cuối
 - Thấy biển dấu trừ (cấm đi ngược chiều) => mẹo **và - 2** (chọn đáp án có chữ **và**, không có thì chọn ý 2)
   * Biển 1 và biển 2 => chọn
 
-Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
+- Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
+  * Biển stop không phải đường cấm mà là phải dừng xe và nhường đường
+  * Đường cấm là biển red border, white background, không vẽ hình
+- Xe ưu tiên gặp biển `(-)` cấm đi ngược chiều vẫn đi bình thường
+- Biển `()`, red border, white background, không vẽ hình là biển "đường cấm"
 
 - Thấy 3 biển hình tròn rỗng
   * đáp án ghi con số biển 1, 2, 3 => ý 2
@@ -227,8 +237,8 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
   * có vẽ trục => tải trọng trên trục xe
 - Cấm xe có tải trọng > số ghi trên biển
 
-- Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ không cấm quay đầu, trừ khi hai mũi tên lồng nhau
-- Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái thì bắt buộc phải đi theo bên trái, không được phép quay đầu
+- Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ không cấm quay đầu, trừ khi vẽ hai mũi tên lồng nhau.
+- Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái / phải hay đi thẳng thì bắt buộc phải đi theo hướng mũi tên, không được phép quay đầu.
 
 ### Biển Nguy Hiểm
 
@@ -248,10 +258,6 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 - vuông chỉ dẫn
 
 Biển báo đường dành riêng cho người đi bộ => xe không được vào nên không có chuyện nhường đường
-
-- Thấy 3 biển mũi tên => đỏ (tròn) nhường - xanh (vuông) ưu tiên (được ưu tiên qua đường hẹp)
-  * Also dùng trong sa hình
-- vàng thì không có gì đặc biệt
 
 - cả hai biển dấu nhân chữ X => giao nhau **vuông góc** với đường sắt (không có rào chắn)
 - quân hàm => giao nhau **không** vuông góc với đường sắt
@@ -304,11 +310,12 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
 
 Câu hỏi có chữ "địa giới" => chọn biển có chữ "địa phận"
 
-Biển ghi chữ "CSGT" => phải giảm tốc độ đến mức an toàn và không được vượt
+Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc độ đến mức an toàn và không được vượt
 
 - Biển có hai mũi tên nằm thẳng:
+  * đỏ (tròn) nhường - xanh (vuông) ưu tiên (được ưu tiên qua đường hẹp)
   * Hình vuông, màu xanh => Biển chỉ dẫn "Được ưu tiên qua đường hẹp"
-  * tam giác, nền vàng => Đường hai chiều
+  * Tam giác, nền vàng => Đường hai chiều
   * Red border, nền trắng => Biển cấm "Nhường đường cho xe cơ giới đi ngược chiều qua đường hẹp"
 
 - Phía trước có làn đường dành cho ô tô khách => mũi tên chỉ forward
@@ -341,9 +348,9 @@ Biển ghi chữ "CSGT" => phải giảm tốc độ đến mức an toàn và k
 
 > Nhất lỡ - nhì ưu - tam đường - tứ hướng - hướng rẽ ưu tiên
 
-Xe đi qua vạch trắng gọi là xe đi lỡ, sẽ được đi trước đầu tiên
-
-hỏa > quân > công > thương: cứu hỏa > quân sự > công an > cứu thương
+- Nhất lỡ => Xe đi qua vạch trắng gọi là xe đi lỡ, sẽ được đi trước đầu tiên
+- Nhì ưu => hỏa > quân > công > thương: cứu hỏa > quân sự > công an > cứu thương
+- Tam đường => đường ưu tiên và không ưu tiên
 
 đôi khi 2 xe được đi cùng một lúc thì dùng chữ **và** thay vì dấu comma `,`
 
@@ -355,21 +362,21 @@ Nếu có biển báo thì xét biển báo trước, không cần quan tâm hư
 - Nếu có biển tam giác lộn ngược thì là đi cuối cùng
 - Nhiều khi phải xét cái biển hình vuông nhỏ ở phía dưới biển tam giác lộn ngược để biết hướng rẽ ưu tiên (trong trường hợp này không xét hướng rẽ mà theo biển báo)
 
-Cái biển hình thoi "Bắt đầu đường ưu tiên" có hiệu lực với cả chiếc xe đối diện (xe nhìn phía sau biển báo) và xe chính diện (xe nhìn vào mặt biển báo)
+- Cái biển hình thoi "Bắt đầu đường ưu tiên" có hiệu lực với cả chiếc xe đối diện (xe nhìn phía sau biển báo) và xe chính diện (xe nhìn vào mặt biển báo)
+- Nhưng đôi khi một đường có hai biển ưu tiên và ko ưu tiên nằm đối diện nhau
 
 ---
 
 Câu hỏi không có biển báo
 
-Trên tuyến đường cùng cấp & không có biển báo thì bên phải xe nào đường trống thì xe đó được đi trước (same as quy tắc đồng hồ)
-
-- Nếu có một bên đường trống => để tay vào đường trống, quay theo chiều clock wise đụng xe nào thì xe đó đi trước
-- Roundabout nếu có đường trống cũng dùng phương pháp này được
+- Trên tuyến đường cùng cấp & không có biển báo thì bên phải xe nào đường trống thì xe đó được đi trước (same as quy tắc đồng hồ)
+- Quy tắc đồng hồ: nếu có một bên đường trống => để tay vào đường trống, quay theo chiều clock-wise đụng xe nào thì xe đó đi trước
+- Roundabout nếu có đường trống cũng dùng phương pháp này được (và quy tắc nhường xe bên trái)
 - 2 xe trên đường cùng cấp (không face-to-face) cũng dùng quy tắc này
 
 ---
 
-- 2 xe đường cùng cấp, face-to-face, nếu không có đường trống, ta xét tiếp tục xét: rẽ phải > đi thẳng > rẽ trái
+- 2 xe đường cùng cấp, face-to-face, nếu không có đường trống, ta xét tiếp tục xét hướng đi: rẽ phải > đi thẳng > rẽ trái
 - Các xe ưu tiên được xét trước hướng rẽ
 
 Vòng xuyến nhường đường cho xe bên trái.
@@ -379,7 +386,7 @@ Vòng xuyến nhường đường cho xe bên trái.
 - Các câu hỏi có dàn 6 đèn giao thông:
   * Nếu chỉ có một đáp án có chữ **xe con** => chọn luôn
   * Nếu có 2 hoặc 3 đáp án chứa chữ xe con (đáp án nói "cả 4 xe" nghĩa là cũng có xe con) => ta bỏ lấy đáp án còn lại không có chữ xe con
-- Lưu ý: 2 câu ngoại lệ thì chọn ý 2:
+- Lưu ý: 2 câu ngoại lệ thì **chọn ý 2**:
   * 538: tất cả các loại xe trên (câu này trong các đáp án không có chữ "xe con")
   * 565: xe khách, xe mô tô (câu này có tới 2 đáp án không có chữ xe con)
 
@@ -387,7 +394,7 @@ Vòng xuyến nhường đường cho xe bên trái.
   * Xe cuối mô tô 2 bánh trừ 1 chọn ý 1
   * Xe cuối ô tô 4 bánh trừ 1 chọn ý 3
 - Xe chạy đè vạch kẻ liền là vi phạm
-- Ngoại lệ câu 554 (không hỏi vi phạm mà hỏi xe nào chấp hành đúng quy tắc giao thông) chọn ý 2
+- Ngoại lệ câu 554 (câu này KHÔNG hỏi vi phạm mà hỏi xe nào chấp hành ĐÚNG quy tắc giao thông) **chọn ý 2**.
 
 Biển hiệu lệnh (tròn xanh) chỉ cho phép rẽ trái thì không được phép quay đầu.
 
@@ -396,6 +403,8 @@ Muốn quay đầu, rẽ phải, rẽ trái thì phải lên giữa ngã tư, qu
 Biển cấm xe tải vượt thì không có cấm xe khách nên xe khách được phép vượt.
 
 Khi xe đằng trước đang vượt thì xe phía sau không được phép vượt.
+
+Tại nơi giao nhai, trên đoạn đường có làn đường dành cho người đi bộ cắt ngang thì không được phép vượt.
 
 ## Mô Phỏng
 
