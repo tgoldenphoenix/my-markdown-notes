@@ -16,8 +16,8 @@ Double-unit characters: F+L // F2+L
 Triple-unit characters
 
 - Còn normal là: 1st, last // 1st, last // last
-  * We only take the first + last radical of the last unit only when the **second unit** takes one radical.
-  * 實 (十 田十 金) => In this character, the 2nd unit takes two radicals (not one), so we only take the last radical of the third unit
+  - We only take the first + last radical of the last unit only when the **second unit** takes one radical.
+  - 實 (十 田十 金) => In this character, the 2nd unit takes two radicals (not one), so we only take the last radical of the third unit
 
 ## Notable Character Codes
 
@@ -29,11 +29,16 @@ Triple-unit characters
 
 刀 (尸竹) vs. 刃 (尸竹戈)
 
-寸 (木戈) and 特 (竹手 土 木戈)
+- 寸 (木戈)
+- 特 (竹手 土 木戈)
+- 時 (日土木戈)
 
 冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木卜十)
 
-又 (弓大); 水=又 vs. 大=dấu x (メ)
+- 又 (弓大); 水 = 又 vs. 大 = dấu x (メ)
+- 夂 (竹水)
+- 攵 (人大)
+  * 做 (人 十口 大)
 
 老 (十大心)
 
@@ -46,14 +51,14 @@ Triple-unit characters
 - 公 (金戈)
 
 - 頁 (一月山金)
-  * 頭 (一廿 一月金)
-  * 豆 (一口廿)
+  - 頭 (一廿 一月金)
+  - 豆 (一口廿)
 
 - 通 (卜 弓戈月) - road
 - 建 (弓大 中手) - stretch
 
 - 通 (卜 弓戈月) - chop seal, two unit, take F2+L of second unit
-  * 甬 (弓戈月手)
+  - 甬 (弓戈月手)
 - 子 (弓木); 了 (弓弓)
 
 - 反 (竹水) - drag
@@ -99,13 +104,29 @@ Triple-unit characters
 
 爾 (一火月大)
 
+決 (水木大)
+
+- 權 (木廿口土)
+- 隹 (人土)
+
+- 強 (弓戈中戈)
+- 虫 (中一戈)
+
+- 尤 (戈大山)
+- 就 (卜火戈大山)
+
+- 言 (卜一一口)
+- 許 (卜口 人十)
+
+- 直 (十月一一)
+
 ## Resources
 
-tool hán nôm của ĐH khoa học tự nhiên: https://tools.clc.hcmus.edu.vn/
+tool hán nôm của ĐH khoa học tự nhiên: <https://tools.clc.hcmus.edu.vn/>
 
-Hội Nghiên cứu và Ứng dụng Hán Nôm 會研究吧應用漢喃: https://hannom-rcv.org/index.php?uiLang=vi
+Hội Nghiên cứu và Ứng dụng Hán Nôm 會研究吧應用漢喃: <https://hannom-rcv.org/index.php?uiLang=vi>
 
- Bộ Gõ WinVNKey: https://winvnkey.sourceforge.net/hannom/SoLuocCachNhapChuHanNom-toanbo.htm
+ Bộ Gõ WinVNKey: <https://winvnkey.sourceforge.net/hannom/SoLuocCachNhapChuHanNom-toanbo.htm>
 
  <https://rime.im/>
- 
+

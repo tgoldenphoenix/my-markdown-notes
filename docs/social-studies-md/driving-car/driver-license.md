@@ -41,7 +41,7 @@ vạch kẻ đường **phân chia** làn đường.
 - Người điều khiển giao thông đường bộ => cảnh sát giao thông
 - Người điều khiển phương tiện tham gia giao thông
 
-Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm**, trẻ em không được đứng trong xe.
+Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm**, trẻ em không thể đứng ở ngoài chứ đừng nói trong xe.
 
 Dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
 
@@ -373,6 +373,7 @@ Câu hỏi không có biển báo
 - Quy tắc đồng hồ: nếu có một bên đường trống => để tay vào đường trống, quay theo chiều clock-wise đụng xe nào thì xe đó đi trước
 - Roundabout nếu có đường trống cũng dùng phương pháp này được (và quy tắc nhường xe bên trái)
 - 2 xe trên đường cùng cấp (không face-to-face) cũng dùng quy tắc này
+- Quy tắc đồng hồ được ưu tiên hơn hướng đi
 
 ---
 
