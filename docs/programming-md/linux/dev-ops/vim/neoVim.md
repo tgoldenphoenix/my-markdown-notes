@@ -669,6 +669,10 @@ Lua patterns use the percent sign instead of the backslash to escape characters.
 
 always use `noremap` or its relatives (e.g. vnoremap) unless you have an explicit reason not to (e.g. when working with <Plug> or <SID> mappings, which are meant to be remapped
 
+## Installing Neovim on Windows
+
+k
+
 ## Vim is not an IDE
 
 [IDE, text editor and PDE](https://www.youtube.com/watch?v=QMVIJhC9Veg&t=354s) video by  TJ DeVries

@@ -1,4 +1,4 @@
-# Cangjie input method
+ # Cangjie input method
 
 When using cangjie to type simplified characters, the codes seems inconsistent. basic characters don't seem to work like simplified versions of 學, 話 etc.  
 Like 学. The code should be 火月弓木(FBND) according to cangjie rules but in Windows 11, the correct code is 戈月弓木(IBND). It is actually not too bad as you can easily google the correct code. I found few words that even google and cangjie guide books didn't give me the correct answers. BTW, for 讠in 话, if 戈女(IV) doesn't work, try 戈弓(IN).
@@ -7,7 +7,7 @@ To google the code: type a character in traditional font and follow it with 簡�
 
 ## Decomposition Rules
 
-Single-unit character: F3+L
+Single-unit characters if includes more than 4 radicals: F3+L
 
 Double-unit characters: F+L // F2+L
 
@@ -15,15 +15,16 @@ Double-unit characters: F+L // F2+L
 
 Triple-unit characters
 
-- Còn normal là: 1st, last // 1st, last // last
-  - We only take the first + last radical of the last unit only when the **second unit** takes one radical.
-  - 實 (十 田十 金) => In this character, the 2nd unit takes two radicals (not one), so we only take the last radical of the third unit
+- Normally là: 1st, last // 1st, last // last (F+L // F+L // L)
+  * We take the first + last radical of the last unit only when the **second unit** takes one radical => F+L // F // F+L
+  * 實 (十 田十 金) => In this character, the 2nd unit takes two radicals (not one), so we only take the last radical of the third unit
 
 ## Notable Character Codes
 
 元 (一一山) vs. 克 (十口竹山)
 
-己 (尸山) vs. 已 (尸山) same
+- 己 (尸山) vs. 已 (尸山) same
+- 巳 (口山)
 
 少 (火竹) vs. 小 (弓金)
 
@@ -40,8 +41,6 @@ Triple-unit characters
 - 攵 (人大)
   * 做 (人 十口 大)
 
-老 (十大心)
-
 代 (人戈心)
 
 艮 (日女)
@@ -51,22 +50,18 @@ Triple-unit characters
 - 公 (金戈)
 
 - 頁 (一月山金)
-  - 頭 (一廿 一月金)
-  - 豆 (一口廿)
+  * 頭 (一廿 一月金)
+  * 豆 (一口廿)
 
 - 通 (卜 弓戈月) - road
 - 建 (弓大 中手) - stretch
 
 - 通 (卜 弓戈月) - chop seal, two unit, take F2+L of second unit
-  - 甬 (弓戈月手)
+  * 甬 (弓戈月手)
 - 子 (弓木); 了 (弓弓)
 
-- 反 (竹水) - drag
-- 原 (一竹日火) - cliff
-- 所 (竹尸竹一中)
-
 - 那 (尸手 弓中)
-- 阝 )弓中)
+- 阝 (弓中)
 
 - 何 (人 一弓口)
 - 丁 (一弓)
@@ -117,8 +112,43 @@ Triple-unit characters
 
 - 言 (卜一一口)
 - 許 (卜口 人十)
+- 論 (卜口 人一月)
 
 - 直 (十月一一)
+
+受 (月月水)
+
+事 (十中中弓)
+
+- 老 (十大心)
+- 反 (竹水) - drag
+  * 所 (竹尸 竹一中)
+- 原 (一竹日火) - cliff
+  * 一 = 厂
+
+- 止 (卜中一)
+- 正 (一卜中一)
+  * 政 (一一 人大)
+- 匕 (山竹)
+  * 此 (卜一 心) - two unit character: F+L // F2+L
+  * 些 (卜心 一一) - three unit character; take F-L of the first unit
+
+- 面 (一田尸中)
+
+- 咼 (月月口)
+- 過 (卜 月月口)
+
+- 乍 (人尸)
+
+無 (人廿火)
+
+回 (田口)
+
+- 耳 (尸十)
+- 聲 (土水 尸十) - two unit character
+
+- 巾 (中月)
+- 制 (竹月 中弓)
 
 ## Resources
 

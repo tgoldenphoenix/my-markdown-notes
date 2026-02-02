@@ -25,7 +25,7 @@ Có C1, chờ 2 năm, nâng lên C, trên 7.5 tấn (full tải)
 
 Học 90 ngày (3 tháng). Thi đậu lý thuyết + mô phỏng rồi xuống sân thi thực hành. Sau đó thi 2km đường trường.
 
-## Các câu lý thuyết bị sai
+## Các Câu lý thuyết bị sai
 
 Thi lý thuyết chỉ có only 1 câu liệt.
 
@@ -95,7 +95,9 @@ Rơ móc kéo xe khác phải có trọng lượng lớn hơn, tương đương 
 
 Xe xuống dốc phải nhường đường cho xe đang lên dốc.
 
-## Các hạng bằng lái & Độ tuổi
+Phân loại đường bộ theo chức năng phục vụ: gồm cả đường bên & đường nội bộ
+
+## Các Hạng bằng lái & Độ tuổi
 
 - Người đủ `16` tuổi trở lên được điều khiển **xe gắn máy**.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1`
@@ -148,7 +150,7 @@ Ngoài khu dân cư:
 
 Chọn "ô tô kéo rơ moóc" ở đầu câu.
 
-## Khoảng cách an toàn
+## Khoảng Cách An toàn
 
 có số `60` => cả 2 ý trên hoặc chọn ý 1
 
@@ -172,9 +174,9 @@ Lấy max value trừ đi `25`
   * Cấm ô tô thì sẽ cấm luôn cả xe tải.
 - Xe **mô tô** thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm.
 
-- Theo thứ tự từ rộng tới hẹp (nhỏ tới lớn):
-  * cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ
-  * cấm xe (ô tô) tải
+- Theo thứ tự từ rộng tới hẹp (xe nhỏ tới xe lớn hơn):
+  * cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ xe cơ giới trừ xe máy hai bánh, xe gắn máy
+  * cấm xe (ô tô) **tải** (không kéo moóc)
   * cấm máy kéo (đầu kéo container)
   * cấm xe kéo rơ móc (đầu kéo + thùng hàng), đầu kéo không có thùng hàng vẫn được đi
 
@@ -239,6 +241,7 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 
 - Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ không cấm quay đầu, trừ khi vẽ hai mũi tên lồng nhau.
 - Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái / phải hay đi thẳng thì bắt buộc phải đi theo hướng mũi tên, không được phép quay đầu.
+  * Biển hiệu lệnh màu xanh hình vuông 2 mũi tên quay đầu ("khu vực quay xe") không cấm rẽ trái.
 
 ### Biển Nguy Hiểm
 
@@ -265,6 +268,10 @@ Biển báo đường dành riêng cho người đi bộ => xe không được v
 - Lên 9, xuống 10
 - dốc lên chọn biển số 9%
 - dốc xuống chọn biển số 10%
+
+- 2 Biển báo giống nhau:
+- Biển cầu hẹp => hình vẽ bị hẹp ở giữa middle
+- Biển "đường bị thu hẹp hai bên", bên trái, bên phải => hình vẽ hẹp ở phía cuối đường (phía trước)
 
 ### Hiệu lệnh & Chỉ Dẫn
 
