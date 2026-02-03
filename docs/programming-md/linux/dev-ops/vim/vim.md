@@ -418,8 +418,8 @@ Search is a form of Command Line mode. Depending on how we entered Command Line 
 
 - You can scan for **character** within the **current line** with `f{char}` or `t{char}` (both are considered motions).
 - `f` position the cursor on top of the specified character whereas `t` takes you **till** (right before) the first letter of the match. So:
-  - If you want to search for "h" and land on "h", use `fh`.
-  - If you want to search for first "h" and land right before the match, use `th`.
+  * If you want to search for "h" and land on "h", use `fh`.
+  * If you want to search for first "h" and land right before the match, use `th`.
 - The search start with the cursor position and continuing to the end of the **current line**.
 
 - If you want to go to the next occurrence of the last `f` search, use `;`.
@@ -436,8 +436,8 @@ Search is a form of Command Line mode. Depending on how we entered Command Line 
 - Use `n` and `N` to repeat and reverse (jump to next and previous instance).
 
 - `;` & `,` khác `n` & `N` ở chỗ:
-  - `; ,` jump đến hết **current line** là stop.
-  - `n N` jump entire file & loop lại từ đầu nếu đã nhảy đến cuối file.
+  * `; ,` jump đến hết **current line** là stop.
+  * `n N` jump entire file & loop lại từ đầu nếu đã nhảy đến cuối file.
 
 - The search command `/{text}` can be used while in visual mode & operator-pending mode.
 - `d/ge<CR>` => The search command is an exclusive motion. That means that even though our cursor ends up on the “g” at the start of the word “gets,” that character is excluded from the delete operation
@@ -447,6 +447,31 @@ Khi đọc `help` của vim: To go back to where you came from press  `CTRL-o`  
 When the search reaches the end of the file it will continue at the start, unless the `wrapscan` option has been reset.
 
 In normal mode, move the cursor to any **word** (not character) > press `*` to search forwards for the next occurrence of that word, or press `#` to search backwards. Sau đó dùng `n` and `N`.
+
+### Ignore Case
+
+If you enter your search term as all lowercase letters, LazyVim will ignore case by default, but if you include a capital letter in your search term, it will enable case sensitivity. So searching for `in` will match `in` and `In`, but searching for `In` will only match `In`.
+
+If you expressly want to search for **only** lowercase matches, you can modify the search term by inserting the two characters `\C` (that `C` is capitalized) somewhere in it.
+
+Conveniently, it doesn’t have to be at the beginning of the search term; if there is a `\C` anywhere in the search string, it will make the whole search case sensitive. So, imagine you were looking for the lowercase word “initiate”. If you start typing `in` and realize it’s matching a bunch of unnecessary `In` because ignore case is enabled, you can append `\C` (so you end up with `in\C`) to switch to ignore case mode before typing `iti` (so the total search string is `in\Citi`).
+
+If you want to disable ignore case temporarily, type the colon command `:set noignorecase`. This will only last until you exit Neovim, or explicitly enable it again with `:set ignorecase`.
+
+If you want to make the change permanent, open your `options.lua` file and add `vim.opt.ignorecase = false` somewhere in it. Note that now if you want to make any specific search case **in**sensitive, you need to use lowercase `\c` instead of `\C` in the search phrase.
+
+### Regular Expressions
+
+- `.` matches _any_ single character. If you need to search for a literal period, escape it with `\.`.
+- `\S` matches any _non-whitespace_ character.
+- The `*` character matches the preceding expression zero or more times. Notably, `.*` will match any string of characters of arbitrary length.
+- The `\+` string will match the preceding expression one or more times. (This is notably different from most regular expression parsers I’ve seen, where you don’t need the `\` before the `+` to match one or more). It can be combined with e.g. `\S` to match any word without spaces: `\S\+`.
+- `\=` can be used to match the preceding pattern zero or one times. Useful for things like `https\=:` where the “s” is optional. This pattern is usually `?` in most regular expression engines, and in fact `\?` also works for this. However, it would confuse Vim when the command to invoke search backwards is `?`, so `\=` wins.
+- `\\` matches a literal backslash and `\/` matches a literal forward slash.
+
+If you want to “disable” regular expression matching for a specific search, place `\V` at the beginning of the line (or in the middle of the line if you only need to disable it for the remaining part of the search). The “V” stands for “very nomagic”, and if you want to be extremely confused, type `:help magic`. It is so confusing, in fact, that you will prefer to learn to just use regular expressions (yes, I am aware how very confusing that is. Vim’s interpretation of magic is worse).
+
+If you desperately need a regular expression to do something you can ask ChatGPT skim through `:help regular expressions` to find the syntax you need. You will come away either enlightened or frustrated.
 
 ### The `:substitute` command
 
@@ -530,16 +555,10 @@ When we address a named register with a lowercase letter, it overwrites the spec
 
 The unnamed register `""`
 
-If we don’t specify which register we want to interact with, then Vim will use the unnamed register, which is addressed by the `"` symbol (see :h quote_quote).  
+If we don’t specify which register we want to interact with, then Vim will use the unnamed register, which is addressed by the `"` symbol (see `:h quote_quote`).  
 To address this register explicitly, we have to use two double quote marks: for example, `""p`, which is effectively equivalent to `p` by itself.
 
-In LazyVim, by default, the registers named * and + are always identical to the default (unnamed) register, and represent the contents of the system clipboard.
-
-`x` cuts the character under the cursor, placing a copy of it in the **unnamed register**. Then the `p` command pastes the contents of the unnamed register after the cursor position.  
-Taken together, the `xp` commands can be considered as “Transpose/swap the next two characters.”
-
-We can just as easily transpose the order of two lines of text. `dd` cuts the current line, placing it into the unnamed register. `p` pastes the contents of the unnamed register after the current line.  
-The `ddp` sequence could be considered to stand for “Transpose the order of this line and its successor.”
+In LazyVim, by default, the registers named `*` and `+` are always identical to the default (unnamed) register, and represent the contents of the system clipboard.
 
 `diw` cuts a word & copy it into unnamed register.
 

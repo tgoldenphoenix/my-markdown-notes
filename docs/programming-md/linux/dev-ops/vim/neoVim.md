@@ -33,6 +33,54 @@ Neovim uses the Lua programming language for plugin development (and configurati
 
 However, where most Vim plugins also run on Neovim, the inverse is not always true, and there are Lua plugins that only work with Neovim.
 
+---
+
+Use `g<Control-g>` to spit out a message containing some helpful info about the current cursor position.
+
+### Transposed Characters
+
+`x` cuts the character under the cursor, placing a copy of it in the **unnamed register**. Then the `p` command pastes the contents of the unnamed register after the cursor position.  
+Taken together, the `xp` commands can be considered as “Transpose/swap the next two characters.”
+
+We can just as easily transpose the order of two lines of text. `dd` cuts the current line, placing it into the unnamed register. `p` pastes the contents of the unnamed register after the current line.  
+The `ddp` sequence could be considered to stand for “Transpose the order of this line and its successor.”
+
+Simply use `xp` to swap a character with the one to the right of it. For example, if you have typed `ra` when you meant to type `ar`, put your cursor on the `r` and hit `xp`.
+
+### Commenting and Uncommenting Code
+
+LazyVim ships with a plugin for commenting and uncommenting code in older versions of Neovim, but as of Neovim 0.10, this is actually a native Neovim feature.
+
+The verb for toggling comments is `gc` and can be followed by a motion or text object. So `gc5j` will comment this line and the five lines below it, while `gcap` will comment out an entire block separated by newlines.
+
+To comment out a single line, use the easy-to-type shortcut `gcc`. This command can take a count, so `5gcc` will comment out five lines (a little easier to type than `gc4j`).
+
+As with most verbs, `gc` can also be applied to a visual selection with e.g. `V5jgc`.
+
+The `gc` verb is actually a toggle, so if a line is currently commented, it will uncomment it instead of commenting it a second time. Thus, `gccgcc` is a no-op. However, note that if you have a selection that contains commented and uncommented lines, you will end up with a double comment. This is usually what you want: If you temporarily comment out a block that contains other comments, when you uncomment that block, you probably want the original comments to stay commented.
+
+As a shortcut, if you want to add a new comment line above or below the current line, instead of commenting the current line, you can use `gcO` and `gco`. Technically this is a new verb, but for memory’s sake, think of it as combining `gc` with the verbs to open a new line (`o` and `O`).
+
+### Incrementing and Decrementing Numbers
+
+If your cursor is currently on a number in Normal mode, you can use `Control-a` to increment that number. This command is somewhat smart and does the “right thing” if your number needs new digits. So `9` becomes `10` and `99` becomes `100` when you press `Control-a` anywhere in the number.
+
+To decrement a number, use `Control-x`.
+
+### Insert Mode Keybindings
+
+If you are in Insert mode, and want to perform a single Normal mode action before going back to Insert mode, you can use `ctrl-o`. Perform the one Normal mode command, and you’ll be back in Insert mode immediately.
+
+You can bind `;;` to `Control-O`
+
+```txt
+vim.keymap.set("i", ";;", "<C-o>", { desc = "Normal mode single operation" })
+```
+
+The important bit here is the `"i"` as the first argument. This tells Neovim that the keymapping should happen in Insert mode instead of Normal mode (`"n"`). You can also use `"o"` for operator pending mode and `v` for visual and select modes, among others.
+
+TODO: Spell Check
+
 ## General Keybinding Commands
 
 `<space> qq` close neovim
@@ -519,9 +567,16 @@ If you need to disable the context temporarily, use the keybinding `<Space>ut`. 
 
 Another handy LSP feature is to search all the symbols in the current file or project. If you are editing a particularly long file and need to jump to a function that is not terribly close to your cursor, you might use the `<Space>ss` command (mnemonic is “search symbols”). As hinted by the double s, this is expected to be a fairly common action.
 
-## Searching…
+## Searching And Replacing
 
-TODO:
+### Search In Project
+
+If you need to search for a word across your entire codebase, instead of just in one file, use the command `<Space>/` instead of just `/`. It will pop up the ever-so-familiar picker, this time in something called `live_grep` mode.  
+The `live` in LazyVim’s "live grep" means that the searching happens as you type instead of waiting to run a command line like the `grep` utility does.
+
+LazyVim uses a tool called `ripgrep` that is a lot faster and more featureful than the original `grep` tool, so make sure you have `ripgrep` installed and available on your path as `rg`.
+
+Annoyingly, this search mode is completely different from Vim’s built-in search. It just passes your pattern to `ripgrep` and behaves the way `ripgrep` does. And `ripgrep` doesn’t know about things like Vim’s strange regular expression engine. It _does_ support regular expressions, but they use maddeningly different syntax from Vim. Which is to say, the same syntax as pretty much everything that isn’t Vim. It’s Vim that’s maddening here, not `ripgrep`. Just so we’re all clear.
 
 ## Navigating Project, File Tree
 
@@ -625,6 +680,21 @@ Neovim có 3 types of tex file: plaintex, tex (for LaTeX), latex. [Read here](ht
 
 Pressing `<Tab>` in visual mode will then store the visually-selected text in a LuaSnip variable called `LS_SELECT_RAW`, which we will reference later to retrieve the visual selection.
 
+LazyVim ships with the `blink.cmp` plugin. Among other completions, it connects to Neovim 0.10’s built-in snippets functionality. It can load [VS Code-style snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets).
+
+The list shows possible completions. I can move my cursor up and down the list with the _arrow_ keys or `Control-n` and `Control-p` (`j` and `k` won’t work here because I’m still in Insert mode). Most completions have a preview box pop up with documentation or an example of the completion.
+
+If I then press the `Control-y` key, which confirms a completion (or `Enter` if you use the LazyVim defaults or `Right Arrow` if you have configured `blink.cmp` the way I have), the snippet is inserted into my editor:
+
+---
+
+- If you are unfamiliar with VS Code snippet syntax:
+  * `prefix` is the string you type in Insert mode to trigger the snippet. In this case, it is `<scr`.
+  * `description` is a string that describes it in the preview pain.
+  * `body` is a list of lines in the snippet.
+  * `$1`, `$2`, `$3` represent “tab stops” in the snippet.
+  * `${2:<div></div>}` represents a tab stop with placeholder content that can be typed over.
+
 REFERENCES:
 
 Luasnip README, LuaSnip , `luasnip.txt` (inside doc/ directory)
@@ -651,6 +721,21 @@ Lua patterns use the percent sign instead of the backslash to escape characters.
 ## `LSP` & Treesitter
 
 `chafa /Users/anhao/Desktop/phuong.jpeg --format symbols --symbols vhalf --size 60x17 --stretch; sleep .1` => terminal graphic
+
+## Source Control
+
+Lazyvim is preconfigured with a handful of carefully configured plugins that make your version control life much better.
+
+The simplest of these uses the file picker to list files that have changed since the last commit. This will behave similarly to other file picker operations, except it only lists files that have modifications in git.
+
+You can open it with `<Space>gs`. I use it a lot for switching between files related to whatever feature I am currently working on, and actually prefer it to the buffer picker (which only shows opened files) we discussed in Chapter 9.
+
+- The symbols themselves are straightforward:
+  * `M` means the file on that line contains modifications since the last commit
+  * `D` means it has been deleted
+  * `?` means it is an untracked file (has been added to the working directory but not staged or committed)
+  * `A` means it is a new file that has been staged in git
+- If the sign shows up in the _first_ column, it means the file has been staged and will be included in the next commit. If it is in the _second_ column, then it means the file is not yet staged. If symbols show up in both columns, some parts of it have been staged and some parts have not.
 
 ## Nvim Key mapping
 

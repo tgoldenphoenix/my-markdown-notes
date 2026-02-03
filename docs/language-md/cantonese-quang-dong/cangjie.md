@@ -1,7 +1,7 @@
  # Cangjie input method
 
 When using cangjie to type simplified characters, the codes seems inconsistent. basic characters don't seem to work like simplified versions of 學, 話 etc.  
-Like 学. The code should be 火月弓木(FBND) according to cangjie rules but in Windows 11, the correct code is 戈月弓木(IBND). It is actually not too bad as you can easily google the correct code. I found few words that even google and cangjie guide books didn't give me the correct answers. BTW, for 讠in 话, if 戈女(IV) doesn't work, try 戈弓(IN).
+Like 学. The code should be 火月弓木(FBND) according to cangjie rules but in Windows 11, the correct code is 戈月弓木(IBND). It is actually not too bad as you can easily google the correct code. I found few words that even google and cangjie guide books didn't give me the correct answers. BTW, for 讠in 话, if 戈女 (IV) doesn't work, try 戈弓 (IN).
 
 To google the code: type a character in traditional font and follow it with 簡體倉頡碼 in search box.
 
@@ -21,44 +21,114 @@ Triple-unit characters
 
 ## Notable Character Codes
 
-元 (一一山) vs. 克 (十口竹山)
+### Human leg
+
+- 元 (一一山) vs. 克 (十口竹山)
+- 儿 (中山)
+- 見 (月山竹山)
+- 現 (一土 月山山) - two unit, take F2+L of the second unit
+- 穴 (十金)
+  * 空 (十金 一) two unit character
+- 尤 (戈大山)
+- 就 (卜火戈大山)
+
+### Corpse 尸
 
 - 己 (尸山) vs. 已 (尸山) same
 - 巳 (口山)
+- 刀 (尸竹) vs. 刃 (尸竹戈)
+- 耳 (尸十)
+- 聲 (土水 尸十) - two unit character
 
-少 (火竹) vs. 小 (弓金)
+### 弓, 戈, 心, 竹
 
-刀 (尸竹) vs. 刃 (尸竹戈)
+**Bow 弓 vs. Halberd 戈**
+
+- 通 (卜 弓戈月) - chop seal, two unit, take F2+L of second unit
+  * 甬 (弓戈月手)
+- 子 (弓木); 了 (弓弓)
+- 公 (金戈)
+- 乃 (弓竹 尸)
+  * 及 (弓竹 水)
+- 強 (弓戈中戈)
+- 虫 (中一戈)
+
+**Heart 心**
+
+- 代 (人 戈心)
+- Halberd 戈
+
+**Bamboo 竹**
+
+- 管 (竹十口口)
+
+### Moon 月
+
+- 受 (月月水)
+- 咼 (月月口)
+  * 過 (卜 月月口)
+- 巾 (中月)
+- 制 (竹月 中弓)
+
+### Middle 中
+
+- 事 (十中中弓)
+
+### Fire 火
+
+- 爾 (一火月大)
+- 少 (火竹) vs. 小 (弓金)
+
+### Twenty 廿
+
+- 權 (木廿口土)
+  * 隹 (人土)
+
+### Tree 木
 
 - 寸 (木戈)
-- 特 (竹手 土 木戈)
-- 時 (日土木戈)
+  * 特 (竹手 土 木戈)
+  * 時 (日 土木戈)
 
-冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木卜十)
+### 水, 大
+
+**Water 水**
+
+- 冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木 卜十)
+- 永 (戈弓水)
+  * 樣 (木 廿土 水) three unit; take last radical of the 3rd unit
+- 決 (水 木大)
 
 - 又 (弓大); 水 = 又 vs. 大 = dấu x (メ)
 - 夂 (竹水)
 - 攵 (人大)
   * 做 (人 十口 大)
+ 
+**Big 大**
 
-代 (人戈心)
+- 老 (十大心)
+- 反 (竹水) - Drag
+  * 所 (竹尸 竹一中)
+- 原 (一 竹日火) - Cliff
+  * 一 = 厂
+
+### Fortune telling 卜
+
+- 通 (卜 弓戈月) - road
+- 建 (弓大  中手) - stretch
+
+### Others
 
 艮 (日女)
 
 成 (戈竹尸)
 
-- 公 (金戈)
-
 - 頁 (一月山金)
   * 頭 (一廿 一月金)
   * 豆 (一口廿)
-
-- 通 (卜 弓戈月) - road
-- 建 (弓大 中手) - stretch
-
-- 通 (卜 弓戈月) - chop seal, two unit, take F2+L of second unit
-  * 甬 (弓戈月手)
-- 子 (弓木); 了 (弓弓)
+- 首 (廿竹月山)
+  * 道 (卜 廿竹山)
+- 百 (一日)
 
 - 那 (尸手 弓中)
 - 阝 (弓中)
@@ -66,10 +136,8 @@ Triple-unit characters
 - 何 (人 一弓口)
 - 丁 (一弓)
 
-- 道 (卜廿竹山)
-- 首 (廿竹月山)
-
-會 (人 一 田日) - three unit character (only take the F+L of the 3rd unit)
+- Meeting
+- 會 (人 一 田日) - three unit character (only take the F+L of the 3rd unit)
 
 - 其 (廿一一金)
 - 期 (廿金 月) - double unit characters, only take F+L of the first unit
@@ -77,10 +145,6 @@ Triple-unit characters
 
 - 糹 = 糸 = 女戈火
 - 總 (女火 竹田 心) - triple unit character, only take F+L of the first unit 糹
-
-- 儿 (中山)
-- 見 (月山竹山)
-- 現 (一土 月山山) - two unit, take F2+L of the second unit
 
 - 像 (人 弓日人)
 - 象 (弓日心人) - one unit character, take F3+L
@@ -94,37 +158,11 @@ Triple-unit characters
 
 再 (一土月)
 
-- 及 (弓竹 水)
-- 乃 (弓竹 尸)
-
-爾 (一火月大)
-
-決 (水木大)
-
-- 權 (木廿口土)
-- 隹 (人土)
-
-- 強 (弓戈中戈)
-- 虫 (中一戈)
-
-- 尤 (戈大山)
-- 就 (卜火戈大山)
-
 - 言 (卜一一口)
 - 許 (卜口 人十)
 - 論 (卜口 人一月)
 
 - 直 (十月一一)
-
-受 (月月水)
-
-事 (十中中弓)
-
-- 老 (十大心)
-- 反 (竹水) - drag
-  * 所 (竹尸 竹一中)
-- 原 (一竹日火) - cliff
-  * 一 = 厂
 
 - 止 (卜中一)
 - 正 (一卜中一)
@@ -135,20 +173,15 @@ Triple-unit characters
 
 - 面 (一田尸中)
 
-- 咼 (月月口)
-- 過 (卜 月月口)
-
 - 乍 (人尸)
 
 無 (人廿火)
 
 回 (田口)
 
-- 耳 (尸十)
-- 聲 (土水 尸十) - two unit character
+- 外 (弓戈卜)
 
-- 巾 (中月)
-- 制 (竹月 中弓)
+- 量 (日 一 田土) triple-unit character but the second unit only has one radical
 
 ## Resources
 

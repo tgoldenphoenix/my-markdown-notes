@@ -25,27 +25,30 @@ Có C1, chờ 2 năm, nâng lên C, trên 7.5 tấn (full tải)
 
 Học 90 ngày (3 tháng). Thi đậu lý thuyết + mô phỏng rồi xuống sân thi thực hành. Sau đó thi 2km đường trường.
 
+- **Câu liệt**:
+  * người lái xe mô tô hai bánh không được dùng ô; không được dùng thiết bị âm thanh (trừ trợ thính)
+  * Người ngồi sau xe máy, mô tô 2 bánh không được xài ô (dù)
+
+Nguời ngồi sau không đội mũ bảo hiểm: phạt cả người lái và người ngồi sau
+
 ## Các Câu lý thuyết bị sai
 
 Thi lý thuyết chỉ có only 1 câu liệt.
 
 - Có hình cảnh sát là 3, only one question chọn 4 (jesus cross)
 - Giơ tay thẳng đứng: tất cả dừng, trừ xe đã ở trong ngã tư được phép tiếp tục đi
-- Giang ngang tay: trái phải đi; trước sau dừng
+- Giang ngang tay (jesus cross): trái phải đi; trước sau dừng
 - Tay phải giơ trước: sau & phải dừng; trước rẽ phải, trái đi các hướng, người đi bộ qua đường đi sau người điều khiển
 
 Phần của đường bộ được sử dụng [...] là **phần đường xe chạy**
 
-vạch kẻ đường **phân chia** làn đường.
+- vạch kẻ đường **phân chia** làn đường.
+- dải phân cách phân chia **phần đường xe chạy** [...]
 
 - Người điều khiển giao thông đường bộ => cảnh sát giao thông
 - Người điều khiển phương tiện tham gia giao thông
 
 Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm**, trẻ em không thể đứng ở ngoài chứ đừng nói trong xe.
-
-Dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
-
-Người ngồi sau xe máy, mô tô 2 bánh không được xài ô (dù)
 
 - giao nhau vòng xuyến, nhường xe đến từ bên **trái**.
 - Giao nhau **không** vòng xuyến, nhường xe bên phải
@@ -91,13 +94,27 @@ hộp số xe ô tô: giúp xe lùi
 
 đèn táp lô 2 hình tam giác đỏ: báo hiệu xe đang tình huống nguy hiểm
 
-Rơ móc kéo xe khác phải có trọng lượng lớn hơn, tương đương thì ko được
+- Rơ móc kéo xe khác phải có trọng lượng **lớn hơn**, tương đương thì ko được
+- Có một câu đọc giống như vậy => chọn "chỉ được kéo rơ moóc phù hợp với thiết kế của xe" (ý sai sẽ nói là trọng lượng tương đương là sai)
 
 Xe xuống dốc phải nhường đường cho xe đang lên dốc.
 
 Phân loại đường bộ theo chức năng phục vụ: gồm cả đường bên & đường nội bộ
 
-## Các Hạng bằng lái & Độ tuổi
+- Xe cơ giới, xe máy chuyên dùng phải đi trên làn đường **bên trái**.
+- Di chuyển tốc độ thấp => đi về phía bên phải
+
+có lửa, khói hoặc nhiệt độ cao bất thường => **Bình tĩnh**, đưa xe sát vào lề đường [...]
+
+Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu phải nằm trong khoảng vạch mức tối thiểu và tối đa được thể hiện trên que thăm
+
+Vượt xe là khi chiều đường chỉ có **1 làn đường**.
+
+Được sử dụng còi từ 5 giờ đến 22 giờ
+
+Không được quay đầu xe trên cầu. Nhưng được phép quay đầu xe ở phía trước hoặc phía sau của phần đường dành cho người đi bộ qua đường, trên đường quốc lộ.
+
+## Các hạng Bằng Lái & Độ tuổi
 
 - Người đủ `16` tuổi trở lên được điều khiển **xe gắn máy**.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1`
@@ -136,8 +153,8 @@ Phân loại đường bộ theo chức năng phục vụ: gồm cả đường 
 - Trong khu đông dân cư:
 - Xe gắn máy & xe máy chuyên dùng always `40 km/h` max (tất cả mọi con đường).
 - Tất cả các loại xe còn lại:
-  * Đường 2 chiều (chỉ có vạch sơn): `50 km`
-  * Đường đôi (có con lươn): `60 km`
+  * Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
+  * Đường đôi (có con lươn): `60 km/h`
 
 ---
 
@@ -147,6 +164,8 @@ Ngoài khu dân cư:
 |--------------|--------|---------|------|-----|
 | Đường đôi    | 90     | 80      | 70   | 60  |
 | Đ. Hai chiều | 80     | 70      | 60   | 50  |
+
+Đường đôi = đường một chiều
 
 Chọn "ô tô kéo rơ moóc" ở đầu câu.
 
@@ -162,6 +181,9 @@ Lấy max value trừ đi `25`
   * 80 - 100 km/h = 70m
   * 100-120 km/h = 100m
 
+- Dừng xe, đỗ xe cách lề đường, hè phố không quá `0,25` mét.
+- Dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
+
 ## Biển Báo
 
 ### Biển cấm
@@ -173,6 +195,7 @@ Lấy max value trừ đi `25`
 - Đối với xe **ô tô**, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
   * Cấm ô tô thì sẽ cấm luôn cả xe tải.
 - Xe **mô tô** thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm.
+  * cấm mô tô thì cấm cả mô tô 3 bánh
 
 - Theo thứ tự từ rộng tới hẹp (xe nhỏ tới xe lớn hơn):
   * cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ xe cơ giới trừ xe máy hai bánh, xe gắn máy
@@ -219,14 +242,12 @@ xích lô, ly bia, con ngựa => ý cuối
 - một gạch cấm đỗ xe (đậu xe) cho phép dừng tạm thời
 - hai gạch dấu X là cấm đỗ và cấm dừng
 
-- Thấy biển dấu trừ (cấm đi ngược chiều) => mẹo **và - 2** (chọn đáp án có chữ **và**, không có thì chọn ý 2)
-  * Biển 1 và biển 2 => chọn
-
 - Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
   * Biển stop không phải đường cấm mà là phải dừng xe và nhường đường
   * Đường cấm là biển red border, white background, không vẽ hình
-- Xe ưu tiên gặp biển `(-)` cấm đi ngược chiều vẫn đi bình thường
+- Xe ưu tiên gặp biển `(-)` "cấm đi ngược chiều" vẫn đi bình thường
 - Biển `()`, red border, white background, không vẽ hình là biển "đường cấm"
+- "Biển nào dưới đây các phương tiên không được phép đi vào" => chọn cả 2 biển "đường cấm" và "đường một chiều|
 
 - Thấy 3 biển hình tròn rỗng
   * đáp án ghi con số biển 1, 2, 3 => ý 2
@@ -273,6 +294,8 @@ Biển báo đường dành riêng cho người đi bộ => xe không được v
 - Biển cầu hẹp => hình vẽ bị hẹp ở giữa middle
 - Biển "đường bị thu hẹp hai bên", bên trái, bên phải => hình vẽ hẹp ở phía cuối đường (phía trước)
 
+Biển vẽ hình tia sét => chọn "có đường dây điện cắt ngang phía trên" KHÔNG chọn "sét đánh" là sai.
+
 ### Hiệu lệnh & Chỉ Dẫn
 
 - Các biển hình tròn là biển hiệu lệnh thì bắt buộc phải theo (hiệu lệnh)
@@ -303,7 +326,7 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
 - **phía trước** => mũi tên thẳng đứng
 
 - Thấy biển đầu ô tô (Đường dành cho xe ô tô) => chọn đáp án **có**; xe tải & xe khách đi vào được
-- Thấy biển ô tô quay ngang (Đường dành cho xe ô tô con) => chọn không; xe tải & xe khách không được phép đi vào
+- Thấy biển ô tô quay ngang (Đường dành cho xe ô tô con) => chọn **không**; xe tải & xe khách không được phép đi vào
 
 - Câu hỏi về cầu vượt ghi nhớ **vuông liên tròn cắt**:
   * Cầu vượt liên thông là hình vuông
