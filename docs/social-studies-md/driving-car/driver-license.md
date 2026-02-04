@@ -35,7 +35,7 @@ Nguời ngồi sau không đội mũ bảo hiểm: phạt cả người lái và
 
 Thi lý thuyết chỉ có only 1 câu liệt.
 
-- Có hình cảnh sát là 3, only one question chọn 4 (jesus cross)
+- Có hình cảnh sát là chọn ý 3, only one question chọn ý 4 (jesus cross)
 - Giơ tay thẳng đứng: tất cả dừng, trừ xe đã ở trong ngã tư được phép tiếp tục đi
 - Giang ngang tay (jesus cross): trái phải đi; trước sau dừng
 - Tay phải giơ trước: sau & phải dừng; trước rẽ phải, trái đi các hướng, người đi bộ qua đường đi sau người điều khiển
@@ -51,12 +51,13 @@ Phần của đường bộ được sử dụng [...] là **phần đường xe
 Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm**, trẻ em không thể đứng ở ngoài chứ đừng nói trong xe.
 
 - giao nhau vòng xuyến, nhường xe đến từ bên **trái**.
-- Giao nhau **không** vòng xuyến, nhường xe bên phải
+- Giao nhau **không** vòng xuyến, nhường xe bên phải.
 
 Kéo xe hỏng phanh; nối bằng **thanh nối cứng**.
 
 - Không vượt (1 làn/chiều) khi có chướng ngại vật phía trước, hoặc xe trước đang xin vượt
-- Được phép vượt phải khi: xe trước rẻ trái, hoặc xe chuyên dùng đang làm việc (không thể vượt trái)
+- Được phép **vượt phải** khi: xe trước có tín hiệu rẽ trái hoặc đang rẽ trái, hoặc xe chuyên dùng đang làm việc mà không thể vượt trái
+  * Khi xe phía trước đang đi sát lề đường bên trái thì không được vượt phải
 
 GPLX đã bị trừ hết điểm, để phục hồi: sau ít nhất 06 tháng, kiểm tra kiến thức pháp luật -> phục hồi đủ 12 điểm
 
@@ -96,6 +97,7 @@ hộp số xe ô tô: giúp xe lùi
 
 - Rơ móc kéo xe khác phải có trọng lượng **lớn hơn**, tương đương thì ko được
 - Có một câu đọc giống như vậy => chọn "chỉ được kéo rơ moóc phù hợp với thiết kế của xe" (ý sai sẽ nói là trọng lượng tương đương là sai)
+- Xe ô tô không được kéo theo nhiều xe ô tô, chỉ được kéo một chiếc thôi.
 
 Xe xuống dốc phải nhường đường cho xe đang lên dốc.
 
@@ -110,20 +112,37 @@ Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu ph�
 
 Vượt xe là khi chiều đường chỉ có **1 làn đường**.
 
-Được sử dụng còi từ 5 giờ đến 22 giờ
+- Được sử dụng còi từ 5 giờ đến 22 giờ
+- Muốn vượt xe ban đêm (22h-5h) trong khu dân cư: chỉ được báo hiệu bằng đèn
 
 Không được quay đầu xe trên cầu. Nhưng được phép quay đầu xe ở phía trước hoặc phía sau của phần đường dành cho người đi bộ qua đường, trên đường quốc lộ.
+
+Thứ tự xuống phà: xe cơ giới, xe máy chuyên dùng xuống trước, xe thô sơ người đi bộ xuống sau.
+
+Đường sắt có tín hiệu/rào chắn đang hoạt động: người tham gia giao thông đường bộ phải dừng lại **bên phải** đường của mình, trước vạch dừng xe.
 
 ## Các hạng Bằng Lái & Độ tuổi
 
 - Người đủ `16` tuổi trở lên được điều khiển **xe gắn máy**.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1`
+  * Captain Ahab cosplay Clint Eastwood drive ô tô hạng B chở người đến 8 chỗ (one ship worth of mates) & đến 3.500 Kg
 - Người đủ `21` tuổi trở lên được cấp giấy phép lái xe hạng `C, BE`.
   * Cercei (`21`) bú C*c (`C`) suguru geto (`7500`)
 - Người đủ `24` tuổi trở lên được cấp giấy phép lái xe hạng `D1, D2, C1E, CE`.
+  * Beric Dondarion 
 - Người đủ `27` tuổi trở lên được cấp giấy phép lái xe hạng `D, D1E, D2E, DE`.
-  * Bill gate (`27`) là một thằng dâm Dê (hạng `D`) lái xe 29 chỗ chở bà nội Ngọc
+  * Bill gate (`27`) là một thằng dâm Dê (hạng `D`) lái xe trên 29 chỗ chở bà nội Ngọc
 - Tuổi tối đa của người lái xe ô tô chở người (kể cả xe buýt) trên 29 chỗ (không kể chỗ của người lái xe), xe ô tô chở người giường nằm là đủ `57` (Queequeg) tuổi đối với nam, đủ `55` tuổi đối với nữ.
+
+Loại tất cả đáp án có số tuổi: 17, 23, 22
+
+- B => 8 chỗ
+  - BE => rơ moóc trên 750 Kg 
+- C => xe tải 7.500 Kg
+- D => 16 chỗ, 29 chỗ
+  * D1 => đến 16 chỗ
+  * D2 => đến 29 chỗ
+  * D => trên 29 chỗ 
 
 ---
 
@@ -133,8 +152,8 @@ Không được quay đầu xe trên cầu. Nhưng được phép quay đầu xe
 - Hạng `A` cấp cho người lái xe mô tô hai bánh có dung tích xi-lanh **trên 125 cm3** hoặc có công suất động cơ điện trên 11 kW và các loại xe quy định cho giấy phép lái xe hạng A1;
 
 - Hạng `B1` cấp cho người lái xe **mô tô ba bánh** và các loại xe quy định cho giấy phép lái xe hạng A1;
-- Hạng `B` cấp cho người lái xe ô tô chở người đến 08 chỗ (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **đến 3.500 kg**; các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg;
-  * Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+- Hạng `B` cấp cho người lái xe ô tô chở người **đến 08 chỗ** (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **đến 3.500 kg**; các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg;
+  * Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên **750 kg**;
 
 - Hạng `C1` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 3.500 kg đến 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe hạng B;
   * Hạng `C1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
@@ -158,7 +177,7 @@ Không được quay đầu xe trên cầu. Nhưng được phép quay đầu xe
 
 ---
 
-Ngoài khu dân cư:
+Ngoài khu vực dân cư:
 
 |              | Đến 28 | Trên 28 | Buýt | Móc |
 |--------------|--------|---------|------|-----|
@@ -234,7 +253,7 @@ xích lô, ly bia, con ngựa => ý cuối
 - Các biển báo giống:
   * cấm xe ô tô và mô tô đi về bên phải và bên trái
 
-- Dừng/đỗ xe ngày chẳn lẽ
+- Dừng/đỗ xe ngày chẳn lẽ => biển red border, cross, blue background
   * ngày lẻ chọn ý 1
   * ngày chẳn chọn ý 2
   * Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
@@ -348,7 +367,7 @@ Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc đ
   * Tam giác, nền vàng => Đường hai chiều
   * Red border, nền trắng => Biển cấm "Nhường đường cho xe cơ giới đi ngược chiều qua đường hẹp"
 
-- Phía trước có làn đường dành cho ô tô khách => mũi tên chỉ forward
+- Biển "Phía trước có làn đường dành cho ô tô khách" => mũi tên chỉ forward
 - Rẽ ra đường có làn đường dành cho ô tô khách => mũi tên nằm ngang
 
 - 3 biển gạch sọc đen nền vàng "Chướng ngại vật phía trước":
