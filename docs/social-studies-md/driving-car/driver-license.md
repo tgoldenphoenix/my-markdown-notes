@@ -138,7 +138,7 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 
 - B => 8 chỗ
   - BE => rơ moóc trên 750 Kg 
-- C => xe tải 7.500 Kg
+- C => xe tải trên 7.500 Kg
 - D => 16 chỗ, 29 chỗ
   * D1 => đến 16 chỗ
   * D2 => đến 29 chỗ
@@ -173,7 +173,8 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 - Xe gắn máy & xe máy chuyên dùng always `40 km/h` max (tất cả mọi con đường).
 - Tất cả các loại xe còn lại:
   * Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
-  * Đường đôi (có con lươn): `60 km/h`
+  * Đường đôi (có con lươn, đường một chiều): `60 km/h`
+- Câu hỏi 50 => chọn xe chở hàng bốn bánh có gắn động cơ (không chọn xe chở người bốn bánh)
 
 ---
 
@@ -192,7 +193,7 @@ Chọn "ô tô kéo rơ moóc" ở đầu câu.
 
 có số `60` => cả 2 ý trên hoặc chọn ý 1
 
-Lấy max value trừ đi `25`
+Lấy max value trừ đi `20` or `25` 
 
 - Khoảng cách an toàn tối thiểu:
   * 60 km/h = 35m
@@ -285,9 +286,6 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 
 ### Biển Nguy Hiểm
 
-- 2 mũi tên thẳng đứng là đường hai chiều
-- 2 mũi tên nằm ngang là giao nhau với đường hai chiều
-
 - Đường đôi => ly nằm ngửa
 - kết thúc đường đôi => ly úp
 
@@ -361,11 +359,11 @@ Câu hỏi có chữ "địa giới" => chọn biển có chữ "địa phận"
 
 Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc độ đến mức an toàn và không được vượt
 
-- Biển có hai mũi tên nằm thẳng:
-  * đỏ (tròn) nhường - xanh (vuông) ưu tiên (được ưu tiên qua đường hẹp)
+- Biển có hai mũi tên song song, vertical => đỏ (tròn) nhường - xanh (vuông) ưu tiên (được ưu tiên qua đường hẹp)
   * Hình vuông, màu xanh => Biển chỉ dẫn "Được ưu tiên qua đường hẹp"
-  * Tam giác, nền vàng => Đường hai chiều
-  * Red border, nền trắng => Biển cấm "Nhường đường cho xe cơ giới đi ngược chiều qua đường hẹp"
+  * Hình tròn, red border, nền trắng, hai mũi tên vertical => Biển cấm "Nhường đường cho xe cơ giới đi ngược chiều qua đường hẹp"
+- Tam giác, red border, nền vàng, hai mũi tên vertical => Đường hai chiều
+  * 2 mũi tên nằm ngang là "giao nhau với đường hai chiều"
 
 - Biển "Phía trước có làn đường dành cho ô tô khách" => mũi tên chỉ forward
 - Rẽ ra đường có làn đường dành cho ô tô khách => mũi tên nằm ngang
