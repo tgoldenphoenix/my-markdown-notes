@@ -121,6 +121,9 @@ Thứ tự xuống phà: xe cơ giới, xe máy chuyên dùng xuống trước, 
 
 Đường sắt có tín hiệu/rào chắn đang hoạt động: người tham gia giao thông đường bộ phải dừng lại **bên phải** đường của mình, trước vạch dừng xe.
 
+- Lái xe liên tục: không quá 4 giờ
+- Lái xe làm việc không quá 10 giờ trong một ngày
+
 ## Các hạng Bằng Lái & Độ tuổi
 
 - Người đủ `16` tuổi trở lên được điều khiển **xe gắn máy**.
