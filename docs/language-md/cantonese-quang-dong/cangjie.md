@@ -21,7 +21,9 @@ Triple-unit characters
 
 ## Notable Character Codes
 
-### Human leg
+### 金, 人, Human leg
+
+**Human Leg**
 
 - 元 (一一山) vs. 克 (十口竹山)
 - 儿 (中山)
@@ -31,6 +33,29 @@ Triple-unit characters
   * 空 (十金 一) two unit character
 - 尤 (戈大山)
 - 就 (卜火戈大山)
+
+- 入 (人竹)
+- 八 (竹人)
+- 人 人
+- 儿 (中山)
+
+**Gold 金**
+
+- 分 (金 尸竹)
+- 公 (金戈)
+
+- Meeting
+- 會 (人 一 田日) - triple-unit character (only take the F+L of the 3rd unit)
+- 倉 (人戈日口)
+- 輸 (十十 人一弓) - triple-unit character
+
+**Human 人**
+
+從 (竹人人人人)
+
+- 豪 (卜口月人)
+- 豕 (一尸竹人)
+- 象 (弓日心人)
 
 ### Corpse 尸
 
@@ -75,6 +100,9 @@ Triple-unit characters
 - 巾 (中月)
 - 制 (竹月 中弓)
 
+- 且 (月一)
+- 目 (月山)
+
 ### Middle 中
 
 - 事 (十中中弓)
@@ -85,6 +113,8 @@ Triple-unit characters
 - 少 (火竹) vs. 小 (弓金)
 
 ### 廿, 一
+
+**Twenty 廿**
 
 - 權 (木廿口土)
   * 隹 (人土)
@@ -97,6 +127,12 @@ Triple-unit characters
 - 百 (一日)
 
 - 業 (廿金廿木)
+
+- 並 廿廿金
+
+**One 一**
+
+- 碼 (一口 尸手火)
 
 ### 水, 大, 木
 
@@ -120,9 +156,12 @@ Triple-unit characters
 - 竹 = Drag
 - 反 (竹水) - Drag
   * 所 (竹尸 竹一中)
-
 - 一 = 厂 (Cliff)
-- 原 (一 竹日火)
+  * 原 (一  竹日火)
+- 右 (大口) => by one's side là 大
+- 廁 度 => 戈 cave
+
+- sick bed: 病 (大一人月)
 
 **Tree 木**
 
@@ -131,6 +170,13 @@ Triple-unit characters
   * 時 (日 土木戈)
 
 - 決 (水木大)
+
+- 東 (木田)
+  * 陳 (弓中 木田 )
+
+### 十
+
+安 is 十 not 戈
 
 ### Fortune telling 卜
 
@@ -142,19 +188,19 @@ Triple-unit characters
 - 艮 (日女)
 - 以 (女戈人)
 
-### 金, 人
-
-- 分 (金 尸竹)
-- 公 (金戈)
-
-- Meeting
-- 會 (人 一 田日) - three unit character (only take the F+L of the 3rd unit)
-
 ### Hand 手
 
 - 表 (手一女)
 
+### Mountain 山
+
+- 範 (竹 十十 山) - triple-unit character
+
 ### Others
+
+- 几 竹弓
+- 鳳 竹弓一日火
+  * 鳥 竹日卜火
 
 - 那 (尸手 弓中)
 - 阝 (弓中)
