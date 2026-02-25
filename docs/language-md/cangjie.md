@@ -16,21 +16,21 @@ Double-unit characters: F+L // F2+L
 Triple-unit characters
 
 - Normally là: 1st, last // 1st, last // last (F+L // F+L // L)
-  * We take the first + last radical of the last unit only when the **second unit** takes one radical => F+L // F // F+L
-  * 實 (十 田十 金) => In this character, the 2nd unit takes two radicals (not one), so we only take the last radical of the third unit
+  - We take the first + last radical of the last unit only when the **second unit** takes one radical => F+L // F // F+L
+  - 實 (十 田十 金) => In this character, the 2nd unit takes two radicals (not one), so we only take the last radical of the third unit
 
 ## Notable Character Codes
 
 ### 金, 人, Human leg
 
-**Human Leg**
+Human Leg
 
 - 元 (一一山) vs. 克 (十口竹山)
 - 儿 (中山)
 - 見 (月山竹山)
 - 現 (一土 月山山) - two unit, take F2+L of the second unit
 - 穴 (十金)
-  * 空 (十金 一) two unit character
+  - 空 (十金 一) two unit character
 - 尤 (戈大山)
 - 就 (卜火戈大山)
 
@@ -39,7 +39,7 @@ Triple-unit characters
 - 人 人
 - 儿 (中山)
 
-**Gold 金**
+Gold 金
 
 - 分 (金 尸竹)
 - 公 (金戈)
@@ -49,7 +49,7 @@ Triple-unit characters
 - 倉 (人戈日口)
 - 輸 (十十 人一弓) - triple-unit character
 
-**Human 人**
+Human 人
 
 從 (竹人人人人)
 
@@ -69,25 +69,25 @@ Triple-unit characters
 
 ### 弓, 戈, 心, 竹
 
-**Bow 弓 vs. Halberd 戈**
+Bow 弓 vs. Halberd 戈
 
 - 通 (卜 弓戈月) - chop seal, two unit, take F2+L of second unit
-  * 甬 (弓戈月手)
+  - 甬 (弓戈月手)
 - 子 (弓木); 了 (弓弓)
 - 公 (金戈)
 - 乃 (弓竹 尸)
-  * 及 (弓竹 水)
+  - 及 (弓竹 水)
 - 強 (弓戈中戈)
 - 虫 (中一戈)
 - 至 (一戈土)
-  * 到 (一土  中  弓) Triple unit character
+  - 到 (一土  中  弓) Triple unit character
 
-**Heart 心**
+Heart 心
 
 - 代 (人 戈心)
 - Halberd 戈
 
-**Bamboo 竹**
+Bamboo 竹
 
 - 管 (竹十口口)
 - 話 (卜口  竹十口)
@@ -96,7 +96,7 @@ Triple-unit characters
 
 - 受 (月月水)
 - 咼 (月月口)
-  * 過 (卜 月月口)
+  - 過 (卜 月月口)
 - 巾 (中月)
 - 制 (竹月 中弓)
 
@@ -114,65 +114,65 @@ Triple-unit characters
 
 ### 廿, 一
 
-**Twenty 廿**
+Twenty 廿
 
 - 權 (木廿口土)
-  * 隹 (人土)
+  - 隹 (人土)
 
 - 頁 (一月山金)
-  * 頭 (一廿 一月金)
-  * 豆 (一口廿)
+  - 頭 (一廿 一月金)
+  - 豆 (一口廿)
 - 首 (廿竹月山)
-  * 道 (卜 廿竹山)
+  - 道 (卜 廿竹山)
 - 百 (一日)
 
 - 業 (廿金廿木)
 
 - 並 廿廿金
 
-**One 一**
+One 一
 
 - 碼 (一口 尸手火)
 
 ### 水, 大, 木
 
-**Water 水**
+Water 水
 
 - 冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木 卜十)
 - 永 (戈弓水)
-  * 樣 (木 廿土 水) three unit; take last radical of the 3rd unit
+  - 樣 (木 廿土 水) three unit; take last radical of the 3rd unit
 - 決 (水 木大); 治 (水 戈口)
 
 - 又 (弓大); 水 = 又 vs. 大 = dấu x (メ)
 - 夂 (竹水)
 - 攵 (人大)
-  * 做 (人 十口 大)
+  - 做 (人 十口 大)
 
-**Big 大**
+Big 大
 
 - 老 (十大心)
 - 更 (一中田大)
 
 - 竹 = Drag
 - 反 (竹水) - Drag
-  * 所 (竹尸 竹一中)
+  - 所 (竹尸 竹一中)
 - 一 = 厂 (Cliff)
-  * 原 (一  竹日火)
+  - 原 (一  竹日火)
 - 右 (大口) => by one's side là 大
 - 廁 度 => 戈 cave
 
 - sick bed: 病 (大一人月)
 
-**Tree 木**
+Tree 木
 
 - 寸 (木戈)
-  * 特 (竹手 土 木戈)
-  * 時 (日 土木戈)
+  - 特 (竹手 土 木戈)
+  - 時 (日 土木戈)
 
 - 決 (水木大)
 
 - 東 (木田)
-  * 陳 (弓中 木田 )
+  - 陳 (弓中 木田 )
 
 ### 十
 
@@ -200,7 +200,7 @@ Triple-unit characters
 
 - 几 竹弓
 - 鳳 竹弓一日火
-  * 鳥 竹日卜火
+  - 鳥 竹日卜火
 
 - 那 (尸手 弓中)
 - 阝 (弓中)
@@ -235,10 +235,10 @@ Triple-unit characters
 
 - 止 (卜中一)
 - 正 (一卜中一)
-  * 政 (一一 人大)
+  - 政 (一一 人大)
 - 匕 (山竹)
-  * 此 (卜一 心) - two unit character: F+L // F2+L
-  * 些 (卜心 一一) - three unit character; take F-L of the first unit
+  - 此 (卜一 心) - two unit character: F+L // F2+L
+  - 些 (卜心 一一) - three unit character; take F-L of the first unit
 
 - 面 (一田尸中)
 
@@ -261,4 +261,3 @@ Hội Nghiên cứu và Ứng dụng Hán Nôm 會研究吧應用漢喃: <https:
  Bộ Gõ WinVNKey: <https://winvnkey.sourceforge.net/hannom/SoLuocCachNhapChuHanNom-toanbo.htm>
 
  <https://rime.im/>
-
