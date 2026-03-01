@@ -26,7 +26,7 @@ Triple-unit characters
 === Human Leg
 
 - 儿 (中山)
-  * 金 is 儿 in compound
+  - 金 is 儿 in compound
 
 - 元 (一一山) vs. 克 (十口竹山)
 - 見 (月山竹山)
@@ -75,8 +75,10 @@ Triple-unit characters
   - 巳 (口山)
 - 灵 (尸一 // 火)
   - 𠴌 (口 // 尸一火)
+- 區 (尸口口口)
 
 - 刀 (尸竹) vs. 刃 (尸竹戈)
+- 司 (尸一口)
 - 成 (戈竹尸)
 
 - 耳 (尸十)
@@ -94,6 +96,7 @@ Triple-unit characters
 
 - 通 (卜 // 弓戈月) - chop seal; double unit, take F2+L of second unit
   - 甬 (弓戈月手)
+- 色 (弓日山)
 
 - 子 (弓木); 了 (弓弓)
 - 乃 (弓竹 尸)
@@ -119,7 +122,15 @@ Triple-unit characters
 - 𥹰 (火女 // 弓人)
   - 久 (弓人)
 
-=== Halberd 戈
+- 阝 (弓中)
+- 都 (十日 // 弓中)
+  - 者 (十大日)
+
+- 殳 (竹弓水)
+- 發 (弓人 // 弓 // 竹水) - triple unit
+  - 癶 (弓戈卜人)
+
+=== Halberd, fiesta (戈)
 
 - 公 (金戈)
 - 強 (弓 // 戈中戈)
@@ -127,15 +138,30 @@ Triple-unit characters
 - 至 (一戈土)
   - 到 (一土 //  中 //  弓) Triple unit character
 
+- 或 (戈口一)
+- 弋 (戈心) - arrow
+  * 代 (人戈心)
+
 === Heart 心
 
 - 代 (人 戈心)
   - Halberd 戈
 
+- 勿 (心竹竹)
+
+- 化 (人心)
+
+- 勺 (心戈)
+- 砲 (一口 // 心口山) - double unit
+
 === Bamboo 竹
 
 - 管 (竹十口口)
 - 話 (卜口 // 竹十口)
+
+- 形 (一廿 // 竹竹竹) - double unit
+  - 彡 (竹竹竹)
+  - 开 (一廿)
 
 ### Moon 月
 
@@ -143,6 +169,7 @@ Triple-unit characters
 - 咼 (月月口)
   - 過 (卜 // 月月口)
 
+- 雨 (一中月卜) - 卜 is two dấu phết
 - 巾 (中月)
 - 制 (竹月 // 中 // 弓)
 
@@ -154,9 +181,14 @@ Triple-unit characters
 
 - 再 (一土月)
 
+- 然 (月大 // 火)
+  - 犬 (戈大)
+  - 夕 (弓戈)
+
 ### Middle 中
 
 - 事 (十中中弓)
+- 肅 (中難)
 
 - 婁 (中中女)
 - 樓 (木 // 中中女)
@@ -204,6 +236,10 @@ Triple-unit characters
 
 - 展 (尸廿女)
 
+- 开 (一廿)
+
+- 世 (心廿)
+
 === One `一`
 
 - 碼 (一口 // 尸手火)
@@ -214,6 +250,9 @@ Triple-unit characters
 
 - 羽 (尸一 // 尸戈一) - double unit
 - 白 (竹日)
+
+- 場 (土 // 日 // 一竹) - triple unit
+- 勿 (心竹竹)
 
 ### 水, 大, 木
 
@@ -256,6 +295,8 @@ Triple-unit characters
   - 特 (竹手 土 木戈)
   - 時 (日 土木戈)
 
+- 也 (心木)
+
 - 決 (水木大)
 
 - 東 (木田)
@@ -273,12 +314,19 @@ Triple-unit characters
 - 言 (卜一一口)
 - 許 (卜口 // 人十)
 
-### Fortune telling 卜
+### Fortune Telling 卜
 
 - 通 (卜 弓戈月) - road
+- 進 (卜人土)
+  - 隹 (人土)
+
 - 建 (弓大  中手) - stretch
 
 - 外 (弓戈卜)
+
+- 雨 (一中月卜) - 卜 is two dấu phết
+  * 巾 (中月)
+- 冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木 // 卜十)
 
 ### Woman 女
 
@@ -293,6 +341,8 @@ Triple-unit characters
 ### Hand 手
 
 - 表 (手一女)
+
+- 看 (竹手月山)
 
 ### Mountain 山
 
@@ -310,13 +360,46 @@ Triple-unit characters
 === 難
 
 - 臼 (竹難)
-- 與 (竹難卜金)
-- 學 (竹月 // 弓木)
+- 兒 (竹難竹山) - single unit
+- 與 (竹難卜金) - single unit, F3+L
+- 興 (竹難月金)
+- 學 (竹月 // 弓木) - double unit
   - 𦥯 (竹難大月)
 
-=== Others
+- 姊 (女 // 中難竹)
+- 齊 (卜難)
+- 卍 (弓難)
+- 身 (竹難竹)
+- 兼 (廿難金)
+- 龜 (弓難山)
+- 黽 (口難山)
 
-k
+- 鹿 (戈難心)
+- 廌 (戈難火)
+- 慶 (戈難水)
+
+- 淵 (水 // 中難中)
+- 肅 (中難)
+
+=== Others & Exceptions
+
+- 門 (日弓)
+  * 開 (日弓 // 一廿)
+- 鬥 (中弓)
+
+- 畿 minus the 田 (女戈)
+  * 幾 (女戈 // 竹戈)
+
+- 鬼 (竹山戈)
+
+- 虎 (卜心 // 竹山)
+  - 虍 (tiger radical) (卜心)
+
+- 亡 (卜女)
+  - 吂 (卜女口)
+- 亡 on top of 口 (吂) is an exception.
+
+- 气 (人一弓)
 
 ## Resources
 
