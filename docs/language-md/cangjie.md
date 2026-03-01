@@ -26,6 +26,7 @@ Triple-unit characters
 === Human Leg
 
 - 儿 (中山)
+  * 金 is 儿 in compound
 
 - 元 (一一山) vs. 克 (十口竹山)
 - 見 (月山竹山)
@@ -44,6 +45,8 @@ Triple-unit characters
 
 - 分 (金 // 尸竹)
 - 公 (金戈)
+
+- 金 is 儿 in compound
 
 === Meeting
 
@@ -69,9 +72,9 @@ Triple-unit characters
 ### Corpse 尸
 
 - 己 (尸山) vs. 已 (尸山) same
-  * 巳 (口山)
+  - 巳 (口山)
 - 灵 (尸一 // 火)
-  * 𠴌 (口 // 尸一火)
+  - 𠴌 (口 // 尸一火)
 
 - 刀 (尸竹) vs. 刃 (尸竹戈)
 - 成 (戈竹尸)
@@ -100,9 +103,9 @@ Triple-unit characters
 
 - 几 (竹弓)
 - 鳳 (竹弓 // 一日火)
-  * 鳥 (竹日卜火)
+  - 鳥 (竹日卜火)
 - 飞 (弓人)
-  * 飛 (弓人 // 竹廿人)
+  - 飛 (弓人 // 竹廿人)
 
 - 丁 (一弓)
 - 𡨸 (十弓十弓木)
@@ -114,20 +117,20 @@ Triple-unit characters
 - 勿 (心竹竹)
 
 - 𥹰 (火女 // 弓人)
-  * 久 (弓人)
+  - 久 (弓人)
 
 === Halberd 戈
 
 - 公 (金戈)
 - 強 (弓 // 戈中戈)
-  * 虫 (中一戈)
+  - 虫 (中一戈)
 - 至 (一戈土)
-  * 到 (一土 //  中 //  弓) Triple unit character
+  - 到 (一土 //  中 //  弓) Triple unit character
 
 === Heart 心
 
 - 代 (人 戈心)
-  * Halberd 戈
+  - Halberd 戈
 
 === Bamboo 竹
 
@@ -191,13 +194,15 @@ Triple-unit characters
 - 並 廿廿金
 
 - 𢝙 (心 // 一火 // 廿)
-  * 皿 (月廿)
+  - 皿 (月廿)
 
 - 無 (人廿火)
 
 - 其 (廿一一金)
 - 期 (廿金 月) - double unit characters, only take F+L of the first unit
 - 基 (廿金土) - double unit character, only take F+L of the first unit
+
+- 展 (尸廿女)
 
 === One `一`
 
@@ -206,6 +211,9 @@ Triple-unit characters
 
 - 丁 (一弓)
 - 𡨸 (十弓十弓木)
+
+- 羽 (尸一 // 尸戈一) - double unit
+- 白 (竹日)
 
 ### 水, 大, 木
 
@@ -226,17 +234,21 @@ Triple-unit characters
 - 老 (十大心)
 - 更 (一中田大)
 
-=== Drag, Cliff, Cave
+=== Drag, Cliff, Cave, Sick Bed
 
 - 竹 = Drag
-- 反 (竹水) - Drag
+- 反 (竹水)
   - 所 (竹尸 // 竹一中)
+- 爬 (竹人 // 日山)
+- 爪 (竹中人)
+
 - 一 = 厂 (Cliff)
   - 原 (一  竹日火)
+
 - 右 (大口) => by one's side là 大
 - 廁 度 => 戈 cave
 
-- sick bed: 病 (大一人月)
+- sick bed: 病 (大 // 一人月)
 
 === Tree 木
 
@@ -255,6 +267,8 @@ Triple-unit characters
 
 - 営 (火月 // 口竹口)
   - 呂 (口竹口)
+- 宫 (十口口)
+- 官 (十 // 口中口)
 
 - 言 (卜一一口)
 - 許 (卜口 // 人十)
@@ -274,7 +288,7 @@ Triple-unit characters
 
 - 以 (女戈人)
 - 糹 = 糸 = 女戈火
-  * 總 (女火 // 竹田 // 心) - triple unit character, only take F+L of the first unit 糹
+  - 總 (女火 // 竹田 // 心) - triple unit character, only take F+L of the first unit 糹
 
 ### Hand 手
 
@@ -298,7 +312,11 @@ Triple-unit characters
 - 臼 (竹難)
 - 與 (竹難卜金)
 - 學 (竹月 // 弓木)
-  * 𦥯 (竹難大月)
+  - 𦥯 (竹難大月)
+
+=== Others
+
+k
 
 ## Resources
 
