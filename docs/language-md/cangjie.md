@@ -47,6 +47,9 @@ Triple-unit characters
 - 公 (金戈)
 
 - 金 is 儿 in compound
+- 西 (一金田) - west
+  * 覀 (一中中田)
+- 賈 (一田 // 月山金) - double unit
 
 === Meeting
 
@@ -79,6 +82,7 @@ Triple-unit characters
 
 - 刀 (尸竹) vs. 刃 (尸竹戈)
 - 司 (尸一口)
+- 幻 (女戈 // 尸)
 - 成 (戈竹尸)
 
 - 耳 (尸十)
@@ -145,7 +149,9 @@ Triple-unit characters
 === Heart 心
 
 - 代 (人 戈心)
-  - Halberd 戈
+  * Halberd 戈
+  * 黛 (人心 // 田土火)
+  * 黑 (田土 // 火) - double unit
 
 - 勿 (心竹竹)
 
@@ -165,7 +171,9 @@ Triple-unit characters
 
 ### Moon 月
 
-- 受 (月月水)
+- 受 (月月水) - claw
+- 隱 (弓中 // 月一心) - double unit, take F2+L of the second unit
+
 - 咼 (月月口)
   - 過 (卜 // 月月口)
 
@@ -191,7 +199,7 @@ Triple-unit characters
 - 肅 (中難)
 
 - 婁 (中中女)
-- 樓 (木 // 中中女)
+  * 樓 (木 // 中中女)
 
 - 止 (卜中一)
 - 正 (一卜中一)
@@ -254,6 +262,9 @@ Triple-unit characters
 - 場 (土 // 日 // 一竹) - triple unit
 - 勿 (心竹竹)
 
+- 紅 (女火 // 一) - double unit
+- 隱 (弓中 // 月一心) - double unit, take F2+L of the second unit
+
 ### 水, 大, 木
 
 === Water 水
@@ -292,8 +303,9 @@ Triple-unit characters
 === Tree 木
 
 - 寸 (木戈)
-  - 特 (竹手 土 木戈)
-  - 時 (日 土木戈)
+  * 特 (竹手 土 木戈)
+  * 時 (日 土木戈)
+- 村 (木木戈)
 
 - 也 (心木)
 
@@ -337,6 +349,10 @@ Triple-unit characters
 - 以 (女戈人)
 - 糹 = 糸 = 女戈火
   - 總 (女火 // 竹田 // 心) - triple unit character, only take F+L of the first unit 糹
+- 幻 (女戈 // 尸)
+
+- 甄 (一土 // 一女弓) - double unit
+  * 瓦 (一女弓戈)
 
 ### Hand 手
 
@@ -400,6 +416,16 @@ Triple-unit characters
 - 亡 on top of 口 (吂) is an exception.
 
 - 气 (人一弓)
+
+- 夢 (廿 // 田中 // 弓)
+  * 罒 (田中中 )
+
+- 黑 (田土 // 火) - double unit
+
+- 識 (卜口 // 卜戈日)
+- 戠 (卜日戈)
+
+- 靈 (一月口口人)
 
 ## Resources
 
