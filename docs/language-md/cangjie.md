@@ -141,7 +141,7 @@ Triple-unit characters
 
 - 公 (金戈)
 - 強 (弓 // 戈中戈)
-  - 虫 (中一戈)
+  * 虫 (中一戈)
 - 至 (一戈土)
   - 到 (一土 //  中 //  弓) Triple unit character
 
@@ -206,10 +206,13 @@ Triple-unit characters
 
 - 止 (卜中一)
 - 正 (一卜中一)
-  - 政 (一一 人大)
+  * 政 (一一 人大)
 - 匕 (山竹)
-  - 此 (卜一 心) - two unit character: F+L // F2+L
-  - 些 (卜心 一一) - three unit character; take F-L of the first unit
+  * 此 (卜一 心) - two unit character: F+L // F2+L
+  * 些 (卜心 一一) - three unit character; take F-L of the first unit
+
+- 風 (竹弓 // 竹中戈)
+  - 虫 (中一戈)
 
 ### Fire 火
 
@@ -291,15 +294,17 @@ Triple-unit characters
 
 - 竹 = Drag
 - 反 (竹水)
-  - 所 (竹尸 // 竹一中)
+  * 所 (竹尸 // 竹一中)
 - 爬 (竹人 // 日山)
 - 爪 (竹中人)
 
 - 一 = 厂 (Cliff)
-  - 原 (一  竹日火)
+  * 原 (一  竹日火)
 
 - 右 (大口) => by one's side là 大
-- 廁 度 => 戈 cave
+
+- 戈 = cave
+- 廁 度
 
 - sick bed: 病 (大 // 一人月)
 
@@ -383,7 +388,7 @@ Triple-unit characters
 - 與 (竹難卜金) - single unit, F3+L
 - 興 (竹難月金)
 - 學 (竹月 // 弓木) - double unit
-  - 𦥯 (竹難大月)
+  * 𦥯 (竹難大月)
 
 - 姊 (女 // 中難竹)
 - 齊 (卜難)
