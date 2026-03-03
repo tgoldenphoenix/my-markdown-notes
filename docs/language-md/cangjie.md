@@ -98,6 +98,9 @@ Triple-unit characters
 
 === Bow 弓
 
+- 歹 (一弓戈)
+  * 殃 (一弓 // 中月大)
+
 - 通 (卜 // 弓戈月) - chop seal; double unit, take F2+L of second unit
   - 甬 (弓戈月手)
 - 色 (弓日山)
