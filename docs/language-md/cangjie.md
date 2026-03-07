@@ -84,11 +84,15 @@ Triple-unit characters
 - 司 (尸一口)
 - 幻 (女戈 // 尸)
 - 成 (戈竹尸)
+- 馬 (尸手尸火)
+- 方 (卜竹尸)
 
 - 耳 (尸十)
   - 聲 (土水 // 尸十) - double unit character
+  - 聰 (尸十 // 竹田心)
 
 - 乍 (人尸)
+  - 作 (人人尸)
 - 面 (一田尸中)
 
 - 那 (尸手 弓中)
@@ -161,6 +165,7 @@ Triple-unit characters
 - 化 (人心)
 
 - 勺 (心戈)
+  - 的 (竹日 // 心戈)
 - 砲 (一口 // 心口山) - double unit
 
 === Bamboo 竹
@@ -214,6 +219,10 @@ Triple-unit characters
 - 風 (竹弓 // 竹中戈)
   - 虫 (中一戈)
 
+- 中 = cloak
+- 複 (中 // 人日水) - double unit
+  * 复 (人日竹水)
+
 ### Fire 火
 
 - 爾 (一火月大)
@@ -226,8 +235,11 @@ Triple-unit characters
 
 === Twenty 廿 (nhập)
 
-- 權 (木廿口土)
+- bộ thảo (grass)
+- 權 (木 // 廿口土)
   - 隹 (人土)
+- 懂 (心 // 廿 // 竹土)
+  * 重 (竹十田土)
 
 - 頁 (一月山金)
   - 頭 (一廿 // 一月金)
@@ -254,6 +266,9 @@ Triple-unit characters
 
 - 世 (心廿)
 
+- 立 (卜廿)
+  * 意 (卜廿日心)
+
 === One `一`
 
 - 碼 (一口 // 尸手火)
@@ -278,7 +293,9 @@ Triple-unit characters
 - 冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木 // 卜十)
 - 永 (戈弓水)
   - 樣 (木 // 廿土 // 水) three unit; take last radical of the 3rd unit
-- 決 (水 木大); 治 (水 戈口)
+- 決 (水 // 木大); 治 (水 // 戈口)
+
+- 法 (水 // 土戈)
 
 - 又 (弓大) - 水 = 又 vs. 大 = dấu x (メ)
 - 夂 (竹水)
@@ -299,14 +316,16 @@ Triple-unit characters
 - 爪 (竹中人)
 
 - 一 = 厂 (Cliff)
-  * 原 (一  竹日火)
+  * 原 (一 // 竹日火)
 
 - 右 (大口) => by one's side là 大
+- 石 (一口)
+- sick bed: 病 (大 // 一人月)
 
 - 戈 = cave
-- 廁 度
-
-- sick bed: 病 (大 // 一人月)
+- 度 (戈廿水)
+- 廁 (戈 // 月金 // 弓) - triple unit
+  * 則 (月金 // 中 // 弓) - triple unit
 
 === Tree 木
 
@@ -316,6 +335,8 @@ Triple-unit characters
 - 村 (木木戈)
 
 - 也 (心木)
+
+- 來 (木人人)
 
 - 決 (水木大)
 
@@ -358,6 +379,8 @@ Triple-unit characters
 - 糹 = 糸 = 女戈火
   - 總 (女火 // 竹田 // 心) - triple unit character, only take F+L of the first unit 糹
 - 幻 (女戈 // 尸)
+- 亥 (卜女竹人)
+  * 刻 (卜人 // 中 // 弓)
 
 - 甄 (一土 // 一女弓) - double unit
   * 瓦 (一女弓戈)
@@ -367,6 +390,8 @@ Triple-unit characters
 - 表 (手一女)
 
 - 看 (竹手月山)
+
+- 我 (竹手戈)
 
 ### Mountain 山
 
@@ -379,7 +404,7 @@ Triple-unit characters
 
 - 量 (日 // 一 // 田土) triple-unit character but the second unit only has one radical
 
-### Others, 難
+### Others, 難, and Exceptions
 
 === 難
 
@@ -418,6 +443,8 @@ Triple-unit characters
 
 - 虎 (卜心 // 竹山)
   - 虍 (tiger radical) (卜心)
+
+- 隹 (人土)
 
 - 亡 (卜女)
   - 吂 (卜女口)
