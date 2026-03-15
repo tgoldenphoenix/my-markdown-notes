@@ -17,7 +17,7 @@ The order of taxa:
 
 Mnemonic: Dear King Philip Came Over For Good Sex.
 
-[Clade](https://en.wikipedia.org/wiki/Clade) (nhánh) or monophyletic group (in contrast with Paraphiletic group)
+[Clade](https://en.wikipedia.org/wiki/Clade) (nhánh) or **monophyletic group** (in contrast with Paraphiletic group)
 
 ## Eukarya domain
 

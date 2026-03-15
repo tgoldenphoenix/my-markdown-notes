@@ -125,6 +125,14 @@ Tobacco: thuốc lá
 Cigarette: thuốc lá; electronic cigarette (or vape)
 Cigar: Xì gà to hơn cigarette
 
+## Rubiaceae Family
+
+Rubiaceae (họ Thiến Thảo, họ Cà Phê) is a family of flowering plants, commonly known as the coffee, madder, or bedstraw family.
+
+- Paederia (cây mơ lông)
+- mặt dưới lá thường có màu tím
+- Ăn sống, dùng làm bánh rau mơ
+
 ## Corn
 
 [corn kernel](https://en.wikipedia.org/wiki/Corn_kernel)
