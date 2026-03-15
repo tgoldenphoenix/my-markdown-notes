@@ -66,6 +66,7 @@ Triple-unit characters
 - 豕 (一尸竹人)
 - 象 (弓日心人) - one unit character, take F3+L
   - 像 (人 弓日人)
+- 飞 (弓人)
 
 - 入 (人竹) vs. 八 (竹人)
 - 人 (人)
@@ -77,6 +78,7 @@ Triple-unit characters
 - 灵 (尸一 // 火)
   - 𠴌 (口 // 尸一火)
 - 區 (尸口口口)
+- 長 (尸一女)
 
 - 刀 (尸竹) vs. 刃 (尸竹戈)
 - 司 (尸一口)
@@ -102,7 +104,7 @@ Triple-unit characters
 
 anki
 
-- 歹 (一弓戈)
+- 歹 (一弓戈) - evening
   - 殃 (一弓 // 中月大)
 
 - 通 (卜 // 弓戈月) - chop seal; double unit, take F2+L of second unit
@@ -183,7 +185,7 @@ anki
 
 - 卜 = hat
 - 月= claw, crown
-- 十 = house
+- 十 = house (roof)
 
 - Birdhouse
 - 受 (月月水) - claw
@@ -205,10 +207,13 @@ anki
 - 調 (卜口 // 月土口)
 
 - 再 (一土月)
+- 稱 (竹木 // 月土月)
 
 - 然 (月大 // 火)
   - 犬 (戈大)
-  - 夕 (弓戈)
+  - 夕 (弓戈) - evening
+
+- 歹 (一弓戈) - evening
 
 - 望 (卜月竹土) - double unit; F+L // F2+L
 
@@ -325,7 +330,12 @@ anki
 
 - 竹 = Drag
 - 反 (竹水)
-  - 所 (竹尸 // 竹一中)
+- 戶 (竹尸) - drag
+  * 篇 (竹竹尸月)
+  * 扁 (竹尸月廿)
+  * 所 (竹尸 // 竹一中)
+- 户 (戈尸)
+- 𠂆 (竹竹)
 - 爬 (竹人 // 日山)
 - 爪 (竹中人)
 
@@ -409,6 +419,8 @@ anki
 
 - 我 (竹手戈)
 
+- 指 (手心日)
+
 ### Mountain 山
 
 - 範 (竹 十十 山) - triple-unit character
@@ -478,6 +490,9 @@ anki
 - 戠 (卜日戈)
 
 - 靈 (一月口口人)
+
+- 犭 (大尸竹)
+- 狼 (大竹 // 戈日女) - pack of wild dogs
 
 ## Resources
 
