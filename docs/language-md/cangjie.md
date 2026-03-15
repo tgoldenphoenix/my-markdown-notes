@@ -421,6 +421,9 @@ anki
 
 - 指 (手心日)
 
+- 毛 (竹手山)
+  * 毫 (卜口月山)
+
 ### Mountain 山
 
 - 範 (竹 十十 山) - triple-unit character
@@ -436,12 +439,13 @@ anki
 
 === 難
 
-- 臼 (竹難)
+- 臼 (竹難) - mortar
 - 兒 (竹難竹山) - single unit
 - 與 (竹難卜金) - single unit, F3+L
 - 興 (竹難月金)
 - 學 (竹月 // 弓木) - double unit
   - 𦥯 (竹難大月)
+- 鼠 (竹難女卜女)
 
 - 姊 (女 // 中難竹)
 - 齊 (卜難)
