@@ -498,6 +498,14 @@ anki
 - 犭 (大尸竹)
 - 狼 (大竹 // 戈日女) - pack of wild dogs
 
+## Rime input
+
+user folder:
+
+- windows黄鼠狼：%APPDATA%\Rime
+- mac松鼠：~/library/rime
+- ibus：~/.config/ibus/rime
+
 ## Resources
 
 tool hán nôm của ĐH khoa học tự nhiên: <https://tools.clc.hcmus.edu.vn/>
