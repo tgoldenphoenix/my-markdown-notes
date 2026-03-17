@@ -16,27 +16,29 @@ fog: a thick cloud of very small drops of water in the air close to the land or 
 
 It was one of those less [lowering](https://www.oxfordlearnersdictionaries.com/definition/english/lour?q=lowering), but still grey and gloomy enough mornings of the transition, when with a fair wind the ship was rushing through the water with a vindictive sort of leaping and melancholy rapidity, that as I mounted to the deck at the call of the forenoon watch, so soon as I levelled my glance towards the taffrail, foreboding shivers ran over me.
 
-[overcast](https://www.oxfordlearnersdictionaries.com/definition/english/overcast?q=overcast): u ám; covered with clouds; not bright
+overcast: u ám; covered with clouds; not bright
 
-## Climate types
+## Climate Classification
 
-[sultry](https://www.oxfordlearnersdictionaries.com/definition/english/sultry?q=sultry): (of the weather or air) very hot, humid and uncomfortable
+sultry: (of the weather or air) very hot, humid and uncomfortable
 
-In geography, the [temperate climates](https://en.wikipedia.org/wiki/Temperate_climate) (ôn đới) of Earth occur in the middle latitudes (approximately 23.5° to 66.5° N/S of the Equator), which span between the tropics and the polar regions of Earth. These zones generally have wider temperature ranges throughout the year and more distinct seasonal changes compared to tropical climates, where such variations are often small; they usually differ only in the amount of precipitation.
+In geography, the `temperate climates` (ôn đới) of Earth occur in the middle latitudes (approximately 23.5° to 66.5° N/S of the Equator), which span between the tropics and the polar regions of Earth. These zones generally have wider temperature ranges throughout the year and more distinct seasonal changes compared to tropical climates, where such variations are often small; they usually differ only in the amount of precipitation.
+
+arid climate: khí hậu khô cằn, sa mạc
 
 ## Weather Phenomenons
 
 A [squall](https://en.wikipedia.org/wiki/Squall) (cơn tố) is a sudden, sharp increase in wind speed lasting minutes, as opposed to a wind gust, which lasts for only seconds. They are usually associated with active weather, such as rain showers, thunderstorms, or heavy snow.
 
-[gale](https://www.oxfordlearnersdictionaries.com/definition/english/gale?q=gale): cơn lốc; an extremely strong wind
+gale: cơn lốc; an extremely strong wind
 
-[drizzle](https://www.oxfordlearnersdictionaries.com/definition/english/drizzle_1?q=drizzle): rain lightly
+drizzle: rain lightly
 
-A [thunderstorm](https://en.wikipedia.org/wiki/Thunderstorm) (cơn dông or giông), also known as an electrical storm or a lightning storm, is a storm characterized by the presence of lightning[1] and its acoustic effect on the Earth's atmosphere, known as thunder.
+A `thunderstorm` (cơn dông or giông), also known as an electrical storm or a lightning storm, is a storm characterized by the presence of lightning and its acoustic effect on the Earth's atmosphere, known as thunder.
 
-## States of the sky
+## States of the Sky
 
-[bleak](https://www.oxfordlearnersdictionaries.com/definition/english/bleak?q=bleak): ảm đạm
+bleak: ảm đạm
 
 ## Time
 
