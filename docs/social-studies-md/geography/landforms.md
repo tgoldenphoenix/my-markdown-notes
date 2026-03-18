@@ -6,16 +6,16 @@
 [ashore](https://www.oxfordlearnersdictionaries.com/definition/english/ashore?q=ashore): lên bờ; towards, onto or on land, having come from an area of water such as the sea or a river  
 abroad, aboard
 
-[Archipelago](https://en.wikipedia.org/wiki/Archipelago) (quần đảo): island group, island chain, a group of many islands.
+An estuary (cửa sông) is a partially enclosed coastal body of brackish water where freshwater from rivers or streams meets and mixes with saltwater from the open sea.
 
-Example:
+- An `archipelago` (quần đảo): island group, island chain, a group of many islands.
+- A `peninsula` (bán đảo) is a landform that extends from a mainland and is surrounded by water on most sides.
 
-Japan is an archipelagic country.  
-The Indonesian Archipelago, located in Asia and Oceania, is the _largest archipelago_ in the world.
+- Example:
+  * Japan is an archipelagic country.
+  * The Indonesian Archipelago, located in Asia and Oceania, is the _largest archipelago_ in the world.
 
-A [peninsula](https://en.wikipedia.org/wiki/Peninsula) (bán đảo) is a landform that extends from a mainland and is surrounded by water on most sides.
-
-A [promontory](https://en.wikipedia.org/wiki/Promontory) (mũi đất) is a raised mass of land that projects into a lowland or a body of water (in which case it is a peninsula).  
+A `promontory` (mũi đất) is a raised mass of land that projects into a lowland or a body of water (in which case it is a peninsula).  
 pomegranate
 
 In geography, a _cape_ (mũi đất) is a headland, peninsula or promontory extending into a body of water, usually a sea.\
