@@ -102,15 +102,13 @@ Triple-unit characters
 
 === Bow 弓
 
-anki
-
 - 歹 (一弓戈) - evening
   - 殃 (一弓 // 中月大)
 
 - 通 (卜 // 弓戈月) - chop seal; double unit, take F2+L of second unit
   - 甬 (弓戈月手)
 - 色 (弓日山)
-
+anki
 - 子 (弓木); 了 (弓弓)
 - 乃 (弓竹 尸)
   - 及 (弓竹 水)
@@ -135,9 +133,13 @@ anki
 - 𥹰 (火女 // 弓人)
   - 久 (弓人)
 
-- 阝 (弓中)
+- 阝 (弓中) - pinnacle
 - 都 (十日 // 弓中)
   - 者 (十大日)
+
+- 卩 (尸中) - postage stamp
+- 谷 (金人口) - valley
+  - 卻 (金口 // 尸中)
 
 - 殳 (竹弓水)
 - 發 (弓人 // 弓 // 竹水) - triple unit
@@ -230,15 +232,17 @@ anki
 - 正 (一卜中一)
   - 政 (一一 人大)
 - 匕 (山竹)
-  - 此 (卜一 心) - two unit character: F+L // F2+L
-  - 些 (卜心 一一) - three unit character; take F-L of the first unit
+  - 此 (卜一 // 心) - two unit character: F+L // F2+L
+  - 些 (卜心 // 一一) - three unit character; take F-L of the first unit
 
-- 風 (竹弓 // 竹中戈)
+- 風 (竹弓 // 竹中戈) - wind
   - 虫 (中一戈)
 
 - 中 = cloak
 - 複 (中 // 人日水) - double unit
   - 复 (人日竹水)
+
+- 央 (中月大)
 
 ### Fire 火
 
@@ -314,9 +318,11 @@ anki
 
 - 法 (水 // 土戈)
 
+- taskmaster
 - 又 (弓大) - 水 = 又 vs. 大 = dấu x (メ)
 - 夂 (竹水)
 - 攵 (人大)
+  - 故 (十口 // 人大)
   - 做 (人 // 十口 // 大)
 
 - 求 (戈十水)
@@ -409,7 +415,12 @@ anki
   - 刻 (卜人 // 中 // 弓)
 
 - 甄 (一土 // 一女弓) - double unit
-  - 瓦 (一女弓戈)
+  - 瓦 (一女弓戈) - tile
+
+- 彔 (女弓一水)
+  - 碌 (一口 // 女弓水)
+
+- 叫 (口女中) - cornucopia
 
 ### Hand 手
 
