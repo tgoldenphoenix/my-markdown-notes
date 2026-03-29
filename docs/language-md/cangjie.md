@@ -16,8 +16,9 @@ Double-unit characters: F+L // F2+L
 Triple-unit characters
 
 - Normally là: 1st, last // 1st, last // last (F+L // F+L // L)
-  - We take the first + last radical of the last unit only when the **second unit** takes one radical => F+L // F // F+L
-  - 實 (十 // 田十 // 金) => In this character, the 2nd unit takes two radicals (not one), so we only take the last radical of the third unit
+- We take the first + last radical of the last unit only when the **second unit** takes one radical => F+L // F // F+L
+  * 實 (十 // 田十 // 金) => In this character, the 2nd unit takes two radicals (not one), so we only take the last radical of the third unit
+  * 瑛 (一土 // 廿 // 中大)
 
 ## Notable Character Codes
 
@@ -73,8 +74,10 @@ Triple-unit characters
 
 ### Corpse 尸
 
+- snake
 - 己 (尸山) vs. 已 (尸山) same
   - 巳 (口山)
+  - 記 (卜口 // 尸山)
 - 灵 (尸一 // 火)
   - 𠴌 (口 // 尸一火)
 - 區 (尸口口口)
@@ -160,6 +163,8 @@ anki
   - 到 (一土 //  中 //  弓) Triple unit character
 
 - 或 (戈口一)
+  * 國 (田戈口一)
+  * 国 (田 // 一土戈)
 - 弋 (戈心) - arrow
   - 代 (人戈心) - substitute
 - 伐 (人戈) - fell
@@ -201,9 +206,10 @@ anki
 - 愛 (月月心水) - love
 - 隱 (弓中 // 月一心) - double unit, take F2+L of the second unit
 
-- 骨 (月月月)
+- 骨 (月月月) - skeleton
 - 咼 (月月口)
   - 過 (卜 // 月月口)
+- 媧 (女 // 月月口)
 
 - 雨 (一中月卜) - 卜 is two dấu phết
 - 巾 (中月)
@@ -215,8 +221,12 @@ anki
 
 - 調 (卜口 // 月土口)
 
-- 再 (一土月)
+- 再 (一土月) - again
 - 稱 (竹木 // 月土月)
+- 補 (中 // 戈十月)
+
+- 冓 (廿廿土月) - funnel
+- 講 (卜口 // 廿廿月)
 
 - 然 (月大 // 火)
   - 犬 (戈大)
@@ -249,7 +259,11 @@ anki
 - 複 (中 // 人日水) - double unit
   - 复 (人日竹水)
 
-- 央 (中月大)
+- 央 (中月大) - center
+- 瑛 (一土 // 廿 // 中大)
+
+- 申 (中田中)
+- 神 (戈火 // 中田中)
 
 ### Fire 火
 
@@ -338,6 +352,9 @@ anki
   - 故 (十口 // 人大)
   - 做 (人 // 十口 // 大)
 
+- 釵 (金 // 水戈)
+- 叉 (水戈)
+
 - 求 (戈十水)
 - 彔 (女弓一水)
 - 礻 (戈弓火) - garment
@@ -348,6 +365,9 @@ anki
 - 更 (一中田大)
 
 - 為 (戈大弓火)
+
+- 左 (大一) - left
+- 隨 (弓中 // 卜 // 大月)
 
 === Drag, Cliff, Cave, Sick Bed
 
@@ -365,8 +385,8 @@ anki
 - 一 = 厂 (Cliff)
   - 原 (一 // 竹日火)
 
-- 右 (大口) => by one's side là 大
-- 石 (一口)
+- 右 (大口) => by one's side là 大; right
+- 石 (一口) - stone
 - sick bed: 病 (大 // 一人月)
 
 - 戈 = cave
@@ -377,10 +397,13 @@ anki
 === Tree 木
 
 - 寸 (木戈) - glue
-  - 特 (竹手 // 土 木戈)
-  - 時 (日 // 土木戈)
 - 村 (木木戈)
 - 才 (木竹)
+
+- 寺 (土木戈) - Buddhist temple
+  - 特 (竹手 // 土 木戈)
+  - 時 (日 // 土木戈)
+  * 侍 (人 // 土木戈)
 
 - 也 (心木)
 - 世 (心廿)
@@ -407,8 +430,9 @@ anki
 - 言 (卜一一口)
 - 許 (卜口 // 人十)
 
-- 補 (中 // 戈十月)
+- 補 (中 // 戈十月) - dog tag
   * 甫 (戈十月)
+- 稱 (竹木 // 月土月)
 
 ### Fortune Telling 卜
 
@@ -416,13 +440,17 @@ anki
 - 進 (卜人土)
   - 隹 (人土)
 
-- 建 (弓大  中手) - stretch
+- 建 (弓大 // 中手) - stretch
+- 廴 (弓弓大)
 
 - 外 (弓戈卜)
 
 - 雨 (一中月卜) - 卜 is two dấu phết
   - 巾 (中月)
 - 冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木 // 卜十)
+
+- 走 (土卜人) - run
+- 起 (土人 // 尸山)
 
 ### Woman 女
 
@@ -526,6 +554,7 @@ anki
 
 - 夢 (廿 // 田中 // 弓) - dream
   - 罒 (田中中) - net
+- 梦 (木木 // 弓戈)
 - 還 (卜 // 田中女)
 
 - 黑 (田土 // 火) - double unit
