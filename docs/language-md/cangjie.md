@@ -29,8 +29,12 @@ Triple-unit characters
 - 儿 (中山)
 
 - 元 (一一山) vs. 克 (十口竹山)
-- 見 (月山竹山)
+- 見 (月山竹山) - see
   - 現 (一土 // 月山山) - double unit character, take F2+L of the second unit
+  * 见 (月竹山)
+
+- 贝 (月人)
+  * 貝 (月山金)
 
 - 金 is 儿 in compound
 - 穴 (十金) - animal leg
@@ -89,6 +93,7 @@ Triple-unit characters
 - 成 (戈竹尸)
 - 馬 (尸手尸火)
 - 方 (卜竹尸)
+- 分 (金 // 尸竹)
 
 - 別/别 (口尸 // 中 // 弓)
   - 另 (口大尸)
@@ -154,6 +159,8 @@ anki
 - 發 (弓人 // 弓 // 竹水) - triple unit
   - 癶 (弓戈卜人)
 
+- 乾 (十十 // 人弓) - fish hook
+
 === Halberd, fiesta (戈)
 
 - 公 (金戈)
@@ -176,7 +183,8 @@ anki
   - 黛 (人心 // 田土火)
   - 黑 (田土 // 火) - double unit
 
-- 勿 (心竹竹)
+- 勿 (心竹竹) - knot
+- 物 (竹手 // 心竹竹)
 
 - 化 (人心)
 
@@ -213,6 +221,7 @@ anki
 
 - 雨 (一中月卜) - 卜 is two dấu phết
 - 巾 (中月)
+- 帝 (卜月中月)
 - 制 (竹月 // 中 // 弓)
 
 - 且 (月一)
@@ -313,8 +322,9 @@ anki
 
 - 世 (心廿)
 
-- 立 (卜廿)
+- 立 (卜廿) - stand up
   - 意 (卜廿日心)
+- 帝 (卜月中月)
 
 === One `一`
 
@@ -347,7 +357,9 @@ anki
 - 法 (水 // 土戈)
 
 - 又 (弓大) - 水 = 又 vs. 大 = dấu x (メ)
-- 夂 (竹水)
+  * 支 (十水)
+- 夂 (竹水) - walking legs
+  * 處 (卜心 // 竹水弓)
 - 攵 (人大) - taskmaster
   - 故 (十口 // 人大)
   - 做 (人 // 十口 // 大)
@@ -384,6 +396,7 @@ anki
 
 - 一 = 厂 (Cliff)
   - 原 (一 // 竹日火)
+- 辰 (一一一女)
 
 - 右 (大口) => by one's side là 大; right
 - 石 (一口) - stone
@@ -418,6 +431,8 @@ anki
 - 東 (木田)
   - 陳 (弓中 木田 )
 
+- 速 (卜木中)
+
 ### Ten 十
 
 安 is 十 not 戈
@@ -448,6 +463,9 @@ anki
 - 雨 (一中月卜) - 卜 is two dấu phết
   - 巾 (中月)
 - 冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木 // 卜十)
+
+- 实 (十卜大)
+- 實 (十田十金)
 
 - 走 (土卜人) - run
 - 起 (土人 // 尸山)
@@ -488,7 +506,10 @@ anki
   * 毫 (卜口月山)
 
 - 丰 (手十) - bountiful
+- 積 (竹木 // 手一 // 金) - triple unit
 - 峰 (山 // 竹水 // 十) - triple unit
+- 生 (竹手一) - life, cell
+  * 隆 (弓中 // 竹水一) - triple unit
 
 ### Mountain 山
 
@@ -501,6 +522,16 @@ anki
 
 - 量 (日 // 一 // 田土) triple-unit character but the second unit only has one radical
 
+- 實 (十田十金)
+
+- 覽 (尸田 // 月山山) - double unit
+- 览 (中戈 // 月竹山)
+
+### Ground 土
+
+- 主 (卜土)
+- 王 (一土)
+
 ### Others, 難, and Exceptions
 
 === 難
@@ -510,7 +541,8 @@ anki
 - 與 (竹難卜金) - single unit, F3+L
 - 興 (竹難月金)
 - 學 (竹月 // 弓木) - double unit
-  - 𦥯 (竹難大月)
+  * 𦥯 (竹難大月)
+  * 覺 (竹月 // 月山山) - double unit
 - 鼠 (竹難女卜女)
 
 - 姊 (女 // 中難竹)
@@ -542,6 +574,7 @@ anki
 
 - 虎 (卜心 // 竹山)
   - 虍 (tiger radical) (卜心)
+- 處 (卜心 // 竹水弓)
 
 - 隹 (人土)
 
