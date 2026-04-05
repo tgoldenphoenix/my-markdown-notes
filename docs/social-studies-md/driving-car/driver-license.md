@@ -25,13 +25,13 @@ Có C1, chờ 2 năm, nâng lên C, trên 7.5 tấn (full tải)
 
 Học 90 ngày (3 tháng). Thi đậu lý thuyết + mô phỏng rồi xuống sân thi thực hành. Sau đó thi 2km đường trường.
 
+## Các câu lý thuyết bị sai
+
 - **Câu liệt**:
   - người lái xe mô tô hai bánh không được dùng ô; không được dùng thiết bị âm thanh (trừ trợ thính)
   - Người ngồi sau xe máy, mô tô 2 bánh không được xài ô (dù)
 
 Nguời ngồi sau không đội mũ bảo hiểm: phạt cả người lái và người ngồi sau
-
-## Các câu lý thuyết bị sai
 
 Thi lý thuyết chỉ có only 1 câu liệt.
 
@@ -42,8 +42,8 @@ Thi lý thuyết chỉ có only 1 câu liệt.
 
 Phần của đường bộ được sử dụng [...] là **phần đường xe chạy**
 
-- vạch kẻ đường **phân chia** làn đường.
-- dải phân cách phân chia **phần đường xe chạy** [...]
+- Vạch kẻ đường **phân chia** làn đường.
+- Dải phân cách phân chia **phần đường xe chạy** [...]
 
 - Người điều khiển giao thông đường bộ => cảnh sát giao thông
 - Người điều khiển phương tiện tham gia giao thông
@@ -53,7 +53,7 @@ Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc n�
 - giao nhau vòng xuyến, nhường xe đến từ bên **trái**.
 - Giao nhau **không** vòng xuyến, nhường xe bên phải.
 
-Kéo xe hỏng phanh; nối bằng **thanh nối cứng**.
+Kéo xe hỏng phanh => nối bằng **thanh nối cứng**.
 
 - Không vượt (1 làn/chiều) khi có chướng ngại vật phía trước, hoặc xe trước đang xin vượt
 - Được phép **vượt phải** khi: xe trước có tín hiệu rẽ trái hoặc đang rẽ trái, hoặc xe chuyên dùng đang làm việc mà không thể vượt trái
@@ -67,9 +67,9 @@ Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khá
 
 máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn động mạch)
 
-Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy => bình tĩnh, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy
+Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, nhiệt độ cao bất thường => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy
 
-khởi hành xe số tự động: đạp phanh chân hết cỡ, vào số và nhả phanh đỗ (hand brake)
+Khởi hành xe số tự động: đạp phanh chân hết cỡ, vào số và nhả phanh đỗ (hand brake)
 
 Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng, kéo về phía sau
 
@@ -89,24 +89,26 @@ hộp số xe ô tô: giúp xe lùi
 
 `abs`: báo hiệu hệ thống chống bó cứng phanh bị lỗi
 
-để khởi động xe, bạn phải đạp hết hành trình bàn đạp chân phanh
+Để khởi động xe, bạn phải đạp hết hành trình bàn đạp chân phanh
 
-áp xuất dầu ở mức thấp
+Áp xuất dầu ở mức thấp
 
 đèn táp lô 2 hình tam giác đỏ: báo hiệu xe đang tình huống nguy hiểm
 
 - Rơ móc kéo xe khác phải có trọng lượng **lớn hơn**, tương đương thì ko được
 - Có một câu đọc giống như vậy => chọn "chỉ được kéo rơ moóc phù hợp với thiết kế của xe" (ý sai sẽ nói là trọng lượng tương đương là sai)
 - Xe ô tô không được kéo theo nhiều xe ô tô, chỉ được kéo một chiếc thôi.
+- Xe mô tô hai bánh, xe gắn máy không được kéo đẩy xe khác.
 
 Xe xuống dốc phải nhường đường cho xe đang lên dốc.
 
 Phân loại đường bộ theo chức năng phục vụ: gồm cả đường bên & đường nội bộ
 
 - Xe cơ giới, xe máy chuyên dùng phải đi trên làn đường **bên trái**.
+- Xe thô sơ đi làn đường bên phải trong cùng.
 - Di chuyển tốc độ thấp => đi về phía bên phải
 
-có lửa, khói hoặc nhiệt độ cao bất thường => **Bình tĩnh**, đưa xe sát vào lề đường [...]
+Đường sắt có tín hiệu/rào chắn đang hoạt động: người tham gia giao thông đường bộ phải dừng lại **bên phải** đường của mình, trước vạch dừng xe.
 
 Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu phải nằm trong khoảng vạch mức tối thiểu và tối đa được thể hiện trên que thăm
 
@@ -119,10 +121,16 @@ Không được quay đầu xe trên cầu. Nhưng được phép quay đầu xe
 
 Thứ tự xuống phà: xe cơ giới, xe máy chuyên dùng xuống trước, xe thô sơ người đi bộ xuống sau.
 
-Đường sắt có tín hiệu/rào chắn đang hoạt động: người tham gia giao thông đường bộ phải dừng lại **bên phải** đường của mình, trước vạch dừng xe.
-
 - Lái xe liên tục: không quá 4 giờ
 - Lái xe làm việc không quá 10 giờ trong một ngày
+
+Không dừng, đỗ xe: miệng cống, hầm, phạm vi an toàn đường sắt.
+
+Xe sau xin vượt (không an toàn): Có tín hiệu rẽ trái báo chưa an toàn không được vượt.
+
+Xe ưu tiên (trừ xe tang) khi làm nhiệm vụ: Không hạn chế tốc độ, không phụ thuộc tín hiệu đèn giao thông, được đi ngược chiều trên làn đường dừng khẩn cấp cao tốc.
+
+Lắp giám sát hành trình: chọn cả 2 ý
 
 ## Các hạng Bằng Lái & Độ tuổi
 
@@ -455,11 +463,30 @@ Biển cấm xe tải vượt thì không có cấm xe khách nên xe khách đ�
 
 Khi xe đằng trước đang vượt thì xe phía sau không được phép vượt.
 
-Tại nơi giao nhai, trên đoạn đường có làn đường dành cho người đi bộ cắt ngang thì không được phép vượt.
+Tại nơi giao nhau, trên đoạn đường có làn đường dành cho người đi bộ cắt ngang thì không được phép vượt.
 
 ## Mô Phỏng
 
-k
+Cao tốc vào ban đêm: chú ý xi nhan xe của mình và xe tải phía trước, nháy sáng 2 lấn vừa tắt là bấm
+
+Tất cả các xe trước mặt trên cao tốc xi nhan chờ nháy sáng 2 lần mới bấm
+
+Các tình huống thấy xe phía sau vượt lên thì chờ bánh đè vạch làn xe mình mới bấm
+
+- Exception: xe tải nhập làn từ bên phải => đầu xe tải chạm bụi cây nhỏ là bấm (không chờ nó lấn làn mới bấm)
+- Exception: xe con đỏ chuyển làn => vừa thấy đèn cảnh báo công trường nháy sáng là bấm
+
+Cao tốc đường trống không là để ý mặt đường có vệt trắng (semen) thì đợi chạm vệt trắng thứ 3 là bấm; Không thì đợi chạm vào mũi nhọn ngã ba là bấm.
+
+Tình huống duy nhất có mặt trời => vừa thấy nửa con bò bên tay phải là bấm; hoặc nhìn gương chiếu hậu bên tay trái, vừa mất chiếc xe con màu trắng, nhìn gương thấy đủ 2 cột đèn là bấm
+
+Trên cao tốc, vừa thấy đầu xe ngược chiều là bấm luôn
+
+Đèn phanh xe tải (2 đèn) sáng là bấm
+
+---
+
+kkk
 
 ## Thi thực hành
 
