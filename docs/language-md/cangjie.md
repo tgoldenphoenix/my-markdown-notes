@@ -42,7 +42,9 @@ Triple-unit characters
 - 西 (一金田) - west
   - 覀 (一中中田)
 - 賈 (一田 // 月山金) - double unit
+  * 贾 (一田月人)
 - 四 (田金)
+- 陸 (弓中 // 土金土)
 
 - 尤 (戈大山)
   - 就 (卜火 // 戈大山)
@@ -515,6 +517,8 @@ anki
 
 - 範 (竹 十十 山) - triple-unit character
 
+- 寶 (十一山金)
+
 ### Rice Field 田
 
 - 曾 (金田日)
@@ -524,13 +528,19 @@ anki
 
 - 實 (十田十金)
 
+- 賈 (一田 // 月山金) - double unit
+
 - 覽 (尸田 // 月山山) - double unit
 - 览 (中戈 // 月竹山)
 
 ### Ground 土
 
 - 主 (卜土)
-- 王 (一土)
+- 王 (一土) - king
+- 玉 (一土戈)
+- 宝 (十一土戈)
+
+- 角 (弓月土)
 
 ### Others, 難, and Exceptions
 

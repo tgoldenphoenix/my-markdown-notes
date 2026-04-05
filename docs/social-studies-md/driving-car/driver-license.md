@@ -26,12 +26,12 @@ Có C1, chờ 2 năm, nâng lên C, trên 7.5 tấn (full tải)
 Học 90 ngày (3 tháng). Thi đậu lý thuyết + mô phỏng rồi xuống sân thi thực hành. Sau đó thi 2km đường trường.
 
 - **Câu liệt**:
-  * người lái xe mô tô hai bánh không được dùng ô; không được dùng thiết bị âm thanh (trừ trợ thính)
-  * Người ngồi sau xe máy, mô tô 2 bánh không được xài ô (dù)
+  - người lái xe mô tô hai bánh không được dùng ô; không được dùng thiết bị âm thanh (trừ trợ thính)
+  - Người ngồi sau xe máy, mô tô 2 bánh không được xài ô (dù)
 
 Nguời ngồi sau không đội mũ bảo hiểm: phạt cả người lái và người ngồi sau
 
-## Các Câu lý thuyết bị sai
+## Các câu lý thuyết bị sai
 
 Thi lý thuyết chỉ có only 1 câu liệt.
 
@@ -57,7 +57,7 @@ Kéo xe hỏng phanh; nối bằng **thanh nối cứng**.
 
 - Không vượt (1 làn/chiều) khi có chướng ngại vật phía trước, hoặc xe trước đang xin vượt
 - Được phép **vượt phải** khi: xe trước có tín hiệu rẽ trái hoặc đang rẽ trái, hoặc xe chuyên dùng đang làm việc mà không thể vượt trái
-  * Khi xe phía trước đang đi sát lề đường bên trái thì không được vượt phải
+  - Khi xe phía trước đang đi sát lề đường bên trái thì không được vượt phải
 
 GPLX đã bị trừ hết điểm, để phục hồi: sau ít nhất 06 tháng, kiểm tra kiến thức pháp luật -> phục hồi đủ 12 điểm
 
@@ -65,9 +65,9 @@ Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khá
 
 ô tô của người nước ngoài tay lái bên phải => chọn cả ba ý
 
-máu phun thành tia (tai nạn GT): cầm máu không trực tiếp (chặn động mạch)
+máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn động mạch)
 
-Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy => bình tĩnh, đư xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy
+Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy => bình tĩnh, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy
 
 khởi hành xe số tự động: đạp phanh chân hết cỡ, vào số và nhả phanh đỗ (hand brake)
 
@@ -128,24 +128,24 @@ Thứ tự xuống phà: xe cơ giới, xe máy chuyên dùng xuống trước, 
 
 - Người đủ `16` tuổi trở lên được điều khiển **xe gắn máy**.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1`
-  * Captain Ahab cosplay Clint Eastwood drive ô tô hạng B chở người đến 8 chỗ (one ship worth of mates) & đến 3.500 Kg
+  - Captain Ahab (18) cosplay Clint Eastwood (3.500 kg) drive ô tô hạng B chở người đến 8 chỗ (one ship worth of mates) & đến 3.500 Kg
 - Người đủ `21` tuổi trở lên được cấp giấy phép lái xe hạng `C, BE`.
-  * Cercei (`21`) bú C*c (`C`) suguru geto (`7500`)
+  - Cercei (`21`) bú C*c (`C`) suguru geto (`7500`)
 - Người đủ `24` tuổi trở lên được cấp giấy phép lái xe hạng `D1, D2, C1E, CE`.
-  * Beric Dondarion 
+  - Beric Dondarion
 - Người đủ `27` tuổi trở lên được cấp giấy phép lái xe hạng `D, D1E, D2E, DE`.
-  * Bill gate (`27`) là một thằng dâm Dê (hạng `D`) lái xe trên 29 chỗ chở bà nội Ngọc
+  - Bill gate (`27`) là một thằng dâm Dê (hạng `D`) lái xe trên 29 chỗ chở bà nội Ngọc
 - Tuổi tối đa của người lái xe ô tô chở người (kể cả xe buýt) trên 29 chỗ (không kể chỗ của người lái xe), xe ô tô chở người giường nằm là đủ `57` (Queequeg) tuổi đối với nam, đủ `55` tuổi đối với nữ.
 
 Loại tất cả đáp án có số tuổi: 17, 23, 22
 
 - B => 8 chỗ
-  - BE => rơ moóc trên 750 Kg 
+  - BE => rơ moóc trên 750 Kg
 - C => xe tải trên 7.500 Kg
 - D => 16 chỗ, 29 chỗ
-  * D1 => đến 16 chỗ
-  * D2 => đến 29 chỗ
-  * D => trên 29 chỗ 
+  - D1 => đến 16 chỗ
+  - D2 => đến 29 chỗ
+  - D => trên 29 chỗ
 
 ---
 
@@ -156,27 +156,27 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 
 - Hạng `B1` cấp cho người lái xe **mô tô ba bánh** và các loại xe quy định cho giấy phép lái xe hạng A1;
 - Hạng `B` cấp cho người lái xe ô tô chở người **đến 08 chỗ** (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **đến 3.500 kg**; các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg;
-  * Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên **750 kg**;
+  - Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên **750 kg**;
 
 - Hạng `C1` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 3.500 kg đến 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe hạng B;
-  * Hạng `C1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  - Hạng `C1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `C` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **đến** 750 kg; các loại xe quy định cho giấy phép lái xe hạng B và hạng C1;
-  * Hạng `CE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **trên** 750 kg; xe ô tô đầu kéo kéo sơ mi rơ moóc;
+  - Hạng `CE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **trên** 750 kg; xe ô tô đầu kéo kéo sơ mi rơ moóc;
 
 - Hạng `D1` cấp cho người lái xe **ô tô chở người** trên 08 chỗ (không kể chỗ của người lái xe) **đến 16 chỗ** (không kể chỗ của người lái xe); các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C;
-  * Hạng `D1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  - Hạng `D1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `D2` cấp cho người lái xe ô tô chở người (kể cả xe buýt) trên 16 chỗ (không kể chỗ của người lái xe) **đến 29 chỗ** (không kể chỗ của người lái xe); các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D2 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C, D1;
-  * Hạng `D2E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D2 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
+  - Hạng `D2E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D2 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `D` cấp cho người lái xe ô tô chở người (kể cả xe buýt) **trên 29 chỗ** (không kể chỗ của người lái xe); xe ô tô chở người giường nằm; các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C, D1, D2;
-  * Hạng `DE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg; xe ô tô chở khách nối toa.
+  - Hạng `DE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg; xe ô tô chở khách nối toa.
 
 ## Cự Ly & Tốc Độ
 
 - Trong khu đông dân cư:
 - Xe gắn máy & xe máy chuyên dùng always `40 km/h` max (tất cả mọi con đường).
 - Tất cả các loại xe còn lại:
-  * Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
-  * Đường đôi (có con lươn, đường một chiều): `60 km/h`
+  - Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
+  - Đường đôi (có con lươn, đường một chiều): `60 km/h`
 - Câu hỏi 50 => chọn xe chở hàng bốn bánh có gắn động cơ (không chọn xe chở người bốn bánh)
 
 ---
@@ -196,13 +196,13 @@ Chọn "ô tô kéo rơ moóc" ở đầu câu.
 
 có số `60` => cả 2 ý trên hoặc chọn ý 1
 
-Lấy max value trừ đi `20` or `25` 
+Lấy max value trừ đi `20` or `25`
 
 - Khoảng cách an toàn tối thiểu:
-  * 60 km/h = 35m
-  * 60 - 80 km/h = 55m
-  * 80 - 100 km/h = 70m
-  * 100-120 km/h = 100m
+  - 60 km/h = 35m
+  - 60 - 80 km/h = 55m
+  - 80 - 100 km/h = 70m
+  - 100-120 km/h = 100m
 
 - Dừng xe, đỗ xe cách lề đường, hè phố không quá `0,25` mét.
 - Dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
@@ -216,15 +216,15 @@ Lấy max value trừ đi `20` or `25`
 - cấm ô tô tải => ý cuối
 
 - Đối với xe **ô tô**, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
-  * Cấm ô tô thì sẽ cấm luôn cả xe tải.
+  - Cấm ô tô thì sẽ cấm luôn cả xe tải.
 - Xe **mô tô** thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm.
-  * cấm mô tô thì cấm cả mô tô 3 bánh
+  - cấm mô tô thì cấm cả mô tô 3 bánh
 
 - Theo thứ tự từ rộng tới hẹp (xe nhỏ tới xe lớn hơn):
-  * cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ xe cơ giới trừ xe máy hai bánh, xe gắn máy
-  * cấm xe (ô tô) **tải** (không kéo moóc)
-  * cấm máy kéo (đầu kéo container)
-  * cấm xe kéo rơ móc (đầu kéo + thùng hàng), đầu kéo không có thùng hàng vẫn được đi
+  - cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ xe cơ giới trừ xe máy hai bánh, xe gắn máy
+  - cấm xe (ô tô) **tải** (không kéo moóc)
+  - cấm máy kéo (đầu kéo container)
+  - cấm xe kéo rơ móc (đầu kéo + thùng hàng), đầu kéo không có thùng hàng vẫn được đi
 
 xích lô, ly bia, con ngựa => ý cuối
 
@@ -232,60 +232,60 @@ xích lô, ly bia, con ngựa => ý cuối
 - Chỉ có biển cấm ô tô chở khách
 
 - Thấy 2 biển mô tô (2 bánh) và ô tô (4 bánh) đi chung => áp dụng mẹo cấm 1 - được 3
-  * Câu hỏi có chữ cấm => chọn 1
-  * có chữ được => chọn 3
+  - Câu hỏi có chữ cấm => chọn 1
+  - có chữ được => chọn 3
 
 - Biển cấm xe mô tô:
-  * có vẽ người
-  * ≥ 18 tuổi
-  * phải thi gplx A1, A
-  * xe trên 50cm3
+  - có vẽ người
+  - ≥ 18 tuổi
+  - phải thi gplx A1, A
+  - xe trên 50cm3
 - Biển cấm xe **gắn máy**:
-  * chỉ vẽ xe, không vẽ người, red border, white background
-  * 16 tuổi
-  * không cần GPLX
-  * xe dưới 50cm3
+  - chỉ vẽ xe, không vẽ người, red border, white background
+  - 16 tuổi
+  - không cần GPLX
+  - xe dưới 50cm3
 
 - Biển có ghi số, red border, white background là tốc độ tối đa
-  * Hết tốc độ tối đa là blue border, white background, one cross (nếu không ghi số thì là "hết mọi lệnh cấm")
+  - Hết tốc độ tối đa là blue border, white background, one cross (nếu không ghi số thì là "hết mọi lệnh cấm")
 - Màu xanh, no border là tốc độ tối thiểu
-  * Hết tốc độ tối thiểu là no border, blue background, cross
+  - Hết tốc độ tối thiểu là no border, blue background, cross
 
 - chiều dài đoạn đường => chọn biển 2 mũi tên thẳng đứng
 - Chiều ngang => mũi tên nằm ngang
 - chiều cao => mũi tên trên dưới
 - Các biển báo giống:
-  * cấm xe ô tô và mô tô đi về bên phải và bên trái
+  - cấm xe ô tô và mô tô đi về bên phải và bên trái
 
 - Dừng/đỗ xe ngày chẳn lẽ => biển red border, cross, blue background
-  * ngày lẻ chọn ý 1
-  * ngày chẳn chọn ý 2
-  * Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
+  - ngày lẻ chọn ý 1
+  - ngày chẳn chọn ý 2
+  - Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
 
 - một gạch cấm đỗ xe (đậu xe) cho phép dừng tạm thời
 - hai gạch dấu X là cấm đỗ và cấm dừng
 
 - Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
-  * Biển stop không phải đường cấm mà là phải dừng xe và nhường đường
-  * Đường cấm là biển red border, white background, không vẽ hình
+  - Biển stop không phải đường cấm mà là phải dừng xe và nhường đường
+  - Đường cấm là biển red border, white background, không vẽ hình
 - Xe ưu tiên gặp biển `(-)` "cấm đi ngược chiều" vẫn đi bình thường
 - Biển `()`, red border, white background, không vẽ hình là biển "đường cấm"
 - "Biển nào dưới đây các phương tiên không được phép đi vào" => chọn cả 2 biển "đường cấm" và "đường một chiều|
 
 - Thấy 3 biển hình tròn rỗng
-  * đáp án ghi con số biển 1, 2, 3 => ý 2
-  * đáp án ko ghi số => ý 1
+  - đáp án ghi con số biển 1, 2, 3 => ý 2
+  - đáp án ko ghi số => ý 1
 
 Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ **không được phép** => là chọn luôn
 
 - cấm tải trọng:
-  * biển chỉ ghi số => tải trọng toàn bộ
-  * có vẽ trục => tải trọng trên trục xe
+  - biển chỉ ghi số => tải trọng toàn bộ
+  - có vẽ trục => tải trọng trên trục xe
 - Cấm xe có tải trọng > số ghi trên biển
 
 - Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ không cấm quay đầu, trừ khi vẽ hai mũi tên lồng nhau.
 - Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái / phải hay đi thẳng thì bắt buộc phải đi theo hướng mũi tên, không được phép quay đầu.
-  * Biển hiệu lệnh màu xanh hình vuông 2 mũi tên quay đầu ("khu vực quay xe") không cấm rẽ trái.
+  - Biển hiệu lệnh màu xanh hình vuông 2 mũi tên quay đầu ("khu vực quay xe") không cấm rẽ trái.
 
 ### Biển Nguy Hiểm
 
@@ -297,7 +297,7 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 
 - đỏ cấm
 - vàng nguy hiểm
-  * Biển nào báo sắp đến chỗ giao nhau nguy hiểm => cả ba biển màu vàng
+  - Biển nào báo sắp đến chỗ giao nhau nguy hiểm => cả ba biển màu vàng
 - xanh (tròn) hiệu lệnh
 - vuông chỉ dẫn
 
@@ -319,25 +319,25 @@ Biển vẽ hình tia sét => chọn "có đường dây điện cắt ngang ph�
 ### Hiệu lệnh & Chỉ Dẫn
 
 - Các biển hình tròn là biển hiệu lệnh thì bắt buộc phải theo (hiệu lệnh)
-  * Hiệu lệnh có 2 mũi tên lồng nhau (Các xe chỉ được đi thẳng và rẽ phải) thì xe được phép quay đầu.
+  - Hiệu lệnh có 2 mũi tên lồng nhau (Các xe chỉ được đi thẳng và rẽ phải) thì xe được phép quay đầu.
 - Các biển hình vuông là chỉ dẫn, không cấm quay đầu xe
 
 - Thấy biển chữ `T` hai mũi tên chĩa ra hai bên (tròn màu xanh mũi tên trắng)
-  * câu hỏi thấy chữ **trước ngã ba** => chọn ý 3
-  * không có trước ngã ba => chọn ý 1
+  - câu hỏi thấy chữ **trước ngã ba** => chọn ý 3
+  - không có trước ngã ba => chọn ý 1
 - Biển chữ T only đặt sau ngã ba, ngã tư; không đặt trước.
 
 Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay đầu
 
 - Thấy hình biển có số 50 - 60 màu xanh:
-  * Chọn luôn đáp án có chữ **và**.
-  * Các câu còn lại hỏi: **tối đa chọn biển 50 - tối thiểu chọn biển 60**.
+  - Chọn luôn đáp án có chữ **và**.
+  - Các câu còn lại hỏi: **tối đa chọn biển 50 - tối thiểu chọn biển 60**.
 
 - Biển màu đỏ là start hiệu lực tốc độ tối đa
 - Hết hạn chế tối đa: tròn, blue border, number, gạch chéo
 - Biển màu xanh:
-  * Có dấu gạch => hết hiệu lực biển maximum màu đỏ
-  * không có gạch, có số (60) => tốc độ tối thiểu
+  - Có dấu gạch => hết hiệu lực biển maximum màu đỏ
+  - không có gạch, có số (60) => tốc độ tối thiểu
 
 - Câu hỏi có chữ **đi đúng làn** => chọn biển có vẽ xe
 - Câu hỏi có chữ **từng làn đường** => chọn cả hai biển
@@ -349,32 +349,32 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
 - Thấy biển ô tô quay ngang (Đường dành cho xe ô tô con) => chọn **không**; xe tải & xe khách không được phép đi vào
 
 - Câu hỏi về cầu vượt ghi nhớ **vuông liên tròn cắt**:
-  * Cầu vượt liên thông là hình vuông
-  * "Cầu vượt cắt qua" là hình tròn
+  - Cầu vượt liên thông là hình vuông
+  - "Cầu vượt cắt qua" là hình tròn
 - Người đi lên là lên cầu (vượt qua đường)
-  * người đi xuống là xuống hầm
+  - người đi xuống là xuống hầm
 
 - Thấy biển chữ ZONE:
-  * hỏi biển 1 => ý 1; hỏi biển 3 => ý 3
-  * Hỏi tên đường => chọn ý 3
+  - hỏi biển 1 => ý 1; hỏi biển 3 => ý 3
+  - Hỏi tên đường => chọn ý 3
 
 Câu hỏi có chữ "địa giới" => chọn biển có chữ "địa phận"
 
 Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc độ đến mức an toàn và không được vượt
 
 - Biển có hai mũi tên song song, vertical => đỏ (tròn) nhường - xanh (vuông) ưu tiên (được ưu tiên qua đường hẹp)
-  * Hình vuông, màu xanh => Biển chỉ dẫn "Được ưu tiên qua đường hẹp"
-  * Hình tròn, red border, nền trắng, hai mũi tên vertical => Biển cấm "Nhường đường cho xe cơ giới đi ngược chiều qua đường hẹp"
+  - Hình vuông, màu xanh => Biển chỉ dẫn "Được ưu tiên qua đường hẹp"
+  - Hình tròn, red border, nền trắng, hai mũi tên vertical => Biển cấm "Nhường đường cho xe cơ giới đi ngược chiều qua đường hẹp"
 - Tam giác, red border, nền vàng, hai mũi tên vertical => Đường hai chiều
-  * 2 mũi tên nằm ngang là "giao nhau với đường hai chiều"
+  - 2 mũi tên nằm ngang là "giao nhau với đường hai chiều"
 
 - Biển "Phía trước có làn đường dành cho ô tô khách" => mũi tên chỉ forward
 - Rẽ ra đường có làn đường dành cho ô tô khách => mũi tên nằm ngang
 
 - 3 biển gạch sọc đen nền vàng "Chướng ngại vật phía trước":
-  * gạch `////` => đi về bên trái
-  * gạch `\\\\` => đi về bên phải
-  * Gạch `^^^^` => đi được cả 2 hướng
+  - gạch `////` => đi về bên trái
+  - gạch `\\\\` => đi về bên phải
+  - Gạch `^^^^` => đi được cả 2 hướng
 
 ### Vạch Kẻ Đường
 
@@ -390,9 +390,9 @@ Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc đ
 ---
 
 - Hướng tránh trên cao tốc:
-  * Tránh bên trái => dấu sắc ////
-  * Bên phải => dấu huyền `\\\\\`
-  * Cả hai bên => chữ V (^^^^^)
+  - Tránh bên trái => dấu sắc ////
+  - Bên phải => dấu huyền `\\\\\`
+  - Cả hai bên => chữ V (^^^^^)
 
 ## Sa hình
 
@@ -435,15 +435,15 @@ Vòng xuyến nhường đường cho xe bên trái.
 ---
 
 - Các câu hỏi có dàn 6 đèn giao thông:
-  * Nếu chỉ có một đáp án có chữ **xe con** => chọn luôn
-  * Nếu có 2 hoặc 3 đáp án chứa chữ xe con (đáp án nói "cả 4 xe" nghĩa là cũng có xe con) => ta bỏ lấy đáp án còn lại không có chữ xe con
+  - Nếu chỉ có một đáp án có chữ **xe con** => chọn luôn
+  - Nếu có 2 hoặc 3 đáp án chứa chữ xe con (đáp án nói "cả 4 xe" nghĩa là cũng có xe con) => ta bỏ lấy đáp án còn lại không có chữ xe con
 - Lưu ý: 2 câu ngoại lệ thì **chọn ý 2**:
-  * 538: tất cả các loại xe trên (câu này trong các đáp án không có chữ "xe con")
-  * 565: xe khách, xe mô tô (câu này có tới 2 đáp án không có chữ xe con)
+  - 538: tất cả các loại xe trên (câu này trong các đáp án không có chữ "xe con")
+  - 565: xe khách, xe mô tô (câu này có tới 2 đáp án không có chữ xe con)
 
 - Thấy đoàn xe đang đua trên nhiều làn đường (câu hỏi vi phạm) => nhìn xe cuối: lấy số bánh trừ 1 kết quả là đáp án:
-  * Xe cuối mô tô 2 bánh trừ 1 chọn ý 1
-  * Xe cuối ô tô 4 bánh trừ 1 chọn ý 3
+  - Xe cuối mô tô 2 bánh trừ 1 chọn ý 1
+  - Xe cuối ô tô 4 bánh trừ 1 chọn ý 3
 - Xe chạy đè vạch kẻ liền là vi phạm
 - Ngoại lệ câu 554 (câu này KHÔNG hỏi vi phạm mà hỏi xe nào chấp hành ĐÚNG quy tắc giao thông) **chọn ý 2**.
 
