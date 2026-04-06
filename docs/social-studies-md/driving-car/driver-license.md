@@ -61,39 +61,40 @@ Kéo xe hỏng phanh => nối bằng **thanh nối cứng**.
 
 GPLX đã bị trừ hết điểm, để phục hồi: sau ít nhất 06 tháng, kiểm tra kiến thức pháp luật -> phục hồi đủ 12 điểm
 
-Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khách an toàn & thoát hiểm
+Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khách an toàn & thoát hiểm (ý 1 và ý 2)
 
 ô tô của người nước ngoài tay lái bên phải => chọn cả ba ý
 
 máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn động mạch)
 
-Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, nhiệt độ cao bất thường => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy
+- Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, nhiệt độ cao bất thường => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy
+- Nếu **xét thấy có khả năng dập tắt đám cháy** => chọn "cả hai ý trên"; tắt khóa điện + sử dụng nước
 
-Khởi hành xe số tự động: đạp phanh chân hết cỡ, vào số và nhả phanh đỗ (hand brake)
+- Khởi hành xe số tự động: đạp phanh chân hết cỡ (hết hành trình), vào số và nhả phanh đỗ (hand brake)
+- Khởi hành xe số sàn: đạp ly hợp (côn) hết hành trình
 
-Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng, kéo về phía sau
+Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng, kéo về **phía sau** đồng thới bóp khóa hãm.
 
-xuống dốc dài, về số thấp (không về số 0 hay số cao)
+- Khi xuống dốc dài, về số thấp (không về số 0, số N hay số cao), đạp ½ ly hợp (côn)
 
 tăng ga từ từ, giảm ga thật nhanh
 
-bộ phận giảm thanh: bắt buộc
+Bộ phận giảm thanh: bắt buộc
 
-kính chắn gió ô tô: kính an toàn
+Kính chắn gió ô tô => là loại kính **an toàn**
 
-Động cơ diesel không nổ: có tạp chất
+Động cơ diesel không nổ: nhiên liệu lẫn tạp chất
 
-Niên hạn xe khách (>8 chỗ): không quá 20 năm
+- Niên hạn xe ô tô khách chở người (>8 chỗ): không quá 20 năm
+- Niên hạn xe **ô tô tải**: không quá 25 năm
 
-hộp số xe ô tô: giúp xe lùi
+Hộp số xe ô tô => giúp xe lùi
 
-`abs`: báo hiệu hệ thống chống bó cứng phanh bị lỗi
+`abs` => báo hiệu hệ thống chống bó cứng phanh bị lỗi
 
-Để khởi động xe, bạn phải đạp hết hành trình bàn đạp chân phanh
+Áp suất dầu ở mức thấp (màu đỏ)
 
-Áp xuất dầu ở mức thấp
-
-đèn táp lô 2 hình tam giác đỏ: báo hiệu xe đang tình huống nguy hiểm
+Đèn táp lô hiện biểu tượng 2 hình tam giác đỏ: báo hiệu xe đang ở tình huống nguy hiểm
 
 - Rơ móc kéo xe khác phải có trọng lượng **lớn hơn**, tương đương thì ko được
 - Có một câu đọc giống như vậy => chọn "chỉ được kéo rơ moóc phù hợp với thiết kế của xe" (ý sai sẽ nói là trọng lượng tương đương là sai)
@@ -110,7 +111,7 @@ Phân loại đường bộ theo chức năng phục vụ: gồm cả đường 
 
 Đường sắt có tín hiệu/rào chắn đang hoạt động: người tham gia giao thông đường bộ phải dừng lại **bên phải** đường của mình, trước vạch dừng xe.
 
-Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu phải nằm trong khoảng vạch mức tối thiểu và tối đa được thể hiện trên que thăm
+Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu phải **nằm trong khoảng** vạch mức tối thiểu và tối đa được thể hiện trên que thăm
 
 Vượt xe là khi chiều đường chỉ có **1 làn đường**.
 
@@ -121,8 +122,8 @@ Không được quay đầu xe trên cầu. Nhưng được phép quay đầu xe
 
 Thứ tự xuống phà: xe cơ giới, xe máy chuyên dùng xuống trước, xe thô sơ người đi bộ xuống sau.
 
-- Lái xe liên tục: không quá 4 giờ
-- Lái xe làm việc không quá 10 giờ trong một ngày
+- Lái xe **liên tục**: không quá 4 giờ
+- Lái xe làm việc không quá 10 giờ **trong một ngày**.
 
 Không dừng, đỗ xe: miệng cống, hầm, phạm vi an toàn đường sắt.
 
@@ -131,6 +132,18 @@ Xe sau xin vượt (không an toàn): Có tín hiệu rẽ trái báo chưa an t
 Xe ưu tiên (trừ xe tang) khi làm nhiệm vụ: Không hạn chế tốc độ, không phụ thuộc tín hiệu đèn giao thông, được đi ngược chiều trên làn đường dừng khẩn cấp cao tốc.
 
 Lắp giám sát hành trình: chọn cả 2 ý
+
+Xe đưa đón học sinh: Được ưu tiên phân luồng, điều tiết, bố trí nơi dừng/đỗ (không có xe dẫn đường).
+
+Có một câu hỏi "những hành vi nào dưới đây là thiếu văn hóa khi xảy ra ùn tắc?" => Chọn "Bấm còi liên tục thúc giục; đi trên vỉa hè"
+
+Có một câu rẽ phải: tín hiệu rẽ sớm, giảm tốc độ (chọn ý 2, không chọn ý 3 dài hơn là sai)
+
+Đi qua rãnh lớn (số sàn): về số 1, từ từ và KHÔNG tăng số
+
+Điều chỉnh ghế (động cơ đã nổ): cần số ở N, P, hoặc số 0
+
+Cái hình thiết bị => dùng để kích (hay nâng) xe ô tô
 
 ## Các hạng Bằng Lái & Độ tuổi
 
@@ -185,7 +198,7 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 - Tất cả các loại xe còn lại:
   - Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
   - Đường đôi (có con lươn, đường một chiều): `60 km/h`
-- Câu hỏi 50 => chọn xe chở hàng bốn bánh có gắn động cơ (không chọn xe chở người bốn bánh)
+- Câu hỏi "tốc độ khai thác tối đa 50" => chọn xe **chở hàng** bốn bánh có gắn động cơ (không chọn xe chở người bốn bánh)
 
 ---
 
@@ -217,7 +230,7 @@ Lấy max value trừ đi `20` or `25`
 
 ## Biển Báo
 
-### Biển cấm
+### Biển Cấm
 
 - móc => 1,2
 - kéo => 2,3
@@ -226,13 +239,14 @@ Lấy max value trừ đi `20` or `25`
 - Đối với xe **ô tô**, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
   - Cấm ô tô thì sẽ cấm luôn cả xe tải.
 - Xe **mô tô** thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm.
-  - cấm mô tô thì cấm cả mô tô 3 bánh
+  - cấm mô tô (biển vẽ hình người lái mô tô) thì cấm cả mô tô 3 bánh.
+  - cấm ô tô thì cấm luôn cả mô tô 3 bánh.
 
 - Theo thứ tự từ rộng tới hẹp (xe nhỏ tới xe lớn hơn):
-  - cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ xe cơ giới trừ xe máy hai bánh, xe gắn máy
+  - cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ xe cơ giới trừ xe máy hai bánh, xe gắn máy và các loại xe ưu tiên theo quy định
   - cấm xe (ô tô) **tải** (không kéo moóc)
   - cấm máy kéo (đầu kéo container)
-  - cấm xe kéo rơ móc (đầu kéo + thùng hàng), đầu kéo không có thùng hàng vẫn được đi
+  - cấm xe kéo rơ móc (đầu kéo + thùng hàng, máy kéo kéo theo rơ moóc), đầu kéo không có thùng hàng vẫn được đi
 
 xích lô, ly bia, con ngựa => ý cuối
 
@@ -243,7 +257,7 @@ xích lô, ly bia, con ngựa => ý cuối
   - Câu hỏi có chữ cấm => chọn 1
   - có chữ được => chọn 3
 
-- Biển cấm xe mô tô:
+- Biển cấm xe **mô tô**:
   - có vẽ người
   - ≥ 18 tuổi
   - phải thi gplx A1, A
@@ -254,9 +268,9 @@ xích lô, ly bia, con ngựa => ý cuối
   - không cần GPLX
   - xe dưới 50cm3
 
-- Biển có ghi số, red border, white background là tốc độ tối đa
+- Biển có ghi số, red border, white background là tốc độ **tối đa**.
   - Hết tốc độ tối đa là blue border, white background, one cross (nếu không ghi số thì là "hết mọi lệnh cấm")
-- Màu xanh, no border là tốc độ tối thiểu
+- Màu xanh, no border là tốc độ **tối thiểu**.
   - Hết tốc độ tối thiểu là no border, blue background, cross
 
 - chiều dài đoạn đường => chọn biển 2 mũi tên thẳng đứng
@@ -270,8 +284,8 @@ xích lô, ly bia, con ngựa => ý cuối
   - ngày chẳn chọn ý 2
   - Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
 
-- một gạch cấm đỗ xe (đậu xe) cho phép dừng tạm thời
-- hai gạch dấu X là cấm đỗ và cấm dừng
+- Một gạch cấm đỗ xe (đậu xe) cho phép dừng tạm thời
+- Hai gạch dấu X là cấm đỗ và cấm dừng
 
 - Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
   - Biển stop không phải đường cấm mà là phải dừng xe và nhường đường
@@ -287,13 +301,17 @@ xích lô, ly bia, con ngựa => ý cuối
 Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ **không được phép** => là chọn luôn
 
 - cấm tải trọng:
-  - biển chỉ ghi số => tải trọng toàn bộ
-  - có vẽ trục => tải trọng trên trục xe
+  - biển chỉ ghi số => hạn chế tải trọng **toàn bộ** xe
+  - có vẽ trục => hạn chế tải trọng **trên trục xe**
 - Cấm xe có tải trọng > số ghi trên biển
 
-- Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ không cấm quay đầu, trừ khi vẽ hai mũi tên lồng nhau.
+- Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ **không** cấm quay đầu, trừ khi vẽ hai mũi tên lồng nhau.
 - Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái / phải hay đi thẳng thì bắt buộc phải đi theo hướng mũi tên, không được phép quay đầu.
   - Biển hiệu lệnh màu xanh hình vuông 2 mũi tên quay đầu ("khu vực quay xe") không cấm rẽ trái.
+
+3 biển "hạn chế chiều cao", "hạn chế tải trọng trên trục xe", "hạn chế tải trọng toàn bộ xe" => áp dụng với cả xe ưu tiên theo luật định (không được phép đi qua)
+
+Biển `> 3,2 m <` => hạn chế **chiều ngang** của xe và hàng (không phải chiều dài của xe)
 
 ### Biển Nguy Hiểm
 
@@ -311,8 +329,9 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 
 Biển báo đường dành riêng cho người đi bộ => xe không được vào nên không có chuyện nhường đường
 
-- cả hai biển dấu nhân chữ X => giao nhau **vuông góc** với đường sắt (không có rào chắn)
-- quân hàm => giao nhau **không** vuông góc với đường sắt
+- Cả hai biển dấu nhân chữ X => giao nhau **vuông góc** với đường sắt (không có rào chắn)
+- Biển có hình quân hàm => giao nhau **không** vuông góc với đường sắt
+- Biển có hình đầu kéo xe lửa => "giao nhau với đường sắt không có rào chắn"
 
 - Lên 9, xuống 10
 - dốc lên chọn biển số 9%
@@ -322,13 +341,16 @@ Biển báo đường dành riêng cho người đi bộ => xe không được v
 - Biển cầu hẹp => hình vẽ bị hẹp ở giữa middle
 - Biển "đường bị thu hẹp hai bên", bên trái, bên phải => hình vẽ hẹp ở phía cuối đường (phía trước)
 
-Biển vẽ hình tia sét => chọn "có đường dây điện cắt ngang phía trên" KHÔNG chọn "sét đánh" là sai.
+Biển vẽ hình tia sét => chọn "có đường dây điện cắt ngang phía trên" KHÔNG chọn "khu vực nguy hiểm có sét đánh" là sai.
 
-### Hiệu lệnh & Chỉ Dẫn
+- đường có ổ gà, lồi lõm => two boobs
+- đường có gồ giảm tốc phía trước => chỉ có một chỗ lồi lên
+
+### Hiệu Lệnh & Chỉ Dẫn
 
 - Các biển hình tròn là biển hiệu lệnh thì bắt buộc phải theo (hiệu lệnh)
   - Hiệu lệnh có 2 mũi tên lồng nhau (Các xe chỉ được đi thẳng và rẽ phải) thì xe được phép quay đầu.
-- Các biển hình vuông là chỉ dẫn, không cấm quay đầu xe
+- Các biển **hình vuông** là chỉ dẫn => không cấm quay đầu xe.
 
 - Thấy biển chữ `T` hai mũi tên chĩa ra hai bên (tròn màu xanh mũi tên trắng)
   - câu hỏi thấy chữ **trước ngã ba** => chọn ý 3
@@ -370,11 +392,12 @@ Câu hỏi có chữ "địa giới" => chọn biển có chữ "địa phận"
 
 Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc độ đến mức an toàn và không được vượt
 
-- Biển có hai mũi tên song song, vertical => đỏ (tròn) nhường - xanh (vuông) ưu tiên (được ưu tiên qua đường hẹp)
-  - Hình vuông, màu xanh => Biển chỉ dẫn "Được ưu tiên qua đường hẹp"
-  - Hình tròn, red border, nền trắng, hai mũi tên vertical => Biển cấm "Nhường đường cho xe cơ giới đi ngược chiều qua đường hẹp"
-- Tam giác, red border, nền vàng, hai mũi tên vertical => Đường hai chiều
-  - 2 mũi tên nằm ngang là "giao nhau với đường hai chiều"
+- Biển có hai mũi tên vertical `↑↓` => đỏ (tròn) nhường - xanh (vuông) ưu tiên
+  - Hình vuông, màu xanh => Biển chỉ dẫn "Được **ưu tiên** qua đường hẹp"
+  - Hình tròn, red border, nền trắng, hai mũi tên vertical `↑↓` => Biển cấm: "**Nhường đường** cho xe cơ giới đi ngược chiều qua đường hẹp".
+
+- Tam giác, red border, nền vàng, hai mũi tên vertical `↑↓` => Đường hai chiều
+  - Nếu vẽ hình 2 mũi tên nằm ngang horizontal là: "giao nhau với đường hai chiều".
 
 - Biển "Phía trước có làn đường dành cho ô tô khách" => mũi tên chỉ forward
 - Rẽ ra đường có làn đường dành cho ô tô khách => mũi tên nằm ngang
@@ -467,6 +490,12 @@ Tại nơi giao nhau, trên đoạn đường có làn đường dành cho ngư�
 
 ## Mô Phỏng
 
+35/50 điểm là đậu (có 10 câu) => 5 câu 3 điểm + 5 câu 4 điểm là đậu
+
+Có tổng cộng 120 tình huống
+
+### Trên đường Cao Tốc
+
 Cao tốc vào ban đêm: chú ý xi nhan xe của mình và xe tải phía trước, nháy sáng 2 lấn vừa tắt là bấm
 
 Tất cả các xe trước mặt trên cao tốc xi nhan chờ nháy sáng 2 lần mới bấm
@@ -486,7 +515,22 @@ Trên cao tốc, vừa thấy đầu xe ngược chiều là bấm luôn
 
 ---
 
-kkk
+Sáng đèn phanh (2 đèn) là bấm
+
+xe máy sáng đèn phanh là bấm
+
+- Có một tình huống xe con màu trắng đèn phanh siêu nhỏ rất khó thấy => lưu ý
+- Có một tình huống đường đèo đèn phanh mờ, hắt lên vách núi => lưu ý
+- Có một tình huống ban đêm, đèn phanh xe con chớp rất nhanh => lưu ý
+
+---
+
+- Xe ngược chiều lấn làn bánh trước xe đè lên vạch tim đường là bấm
+- Xe cùng chiều tạt đầu bánh trước xe đè lên vạch làn mình là bấm
+
+Có một tình huống xe máy chạy ngược chiều lấn làn, nháy xi nhan là bấm
+
+Có câu phải chờ đầu xe bán tải đè lên dải phân cách mới bấm, không bấm sớm quá
 
 ## Thi thực hành
 
