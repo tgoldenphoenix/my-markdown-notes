@@ -269,9 +269,9 @@ xích lô, ly bia, con ngựa => ý cuối
   - xe dưới 50cm3
 
 - Biển có ghi số, red border, white background là tốc độ **tối đa**.
-  - Hết tốc độ tối đa là blue border, white background, one cross (nếu không ghi số thì là "hết mọi lệnh cấm")
+  - Hết tốc độ tối đa là biển hình tròn, blue border, ghi số, white background, gạch chéo ba sọc `///` (biển này nếu không ghi số thì là "hết mọi lệnh cấm")
 - Màu xanh, no border là tốc độ **tối thiểu**.
-  - Hết tốc độ tối thiểu là no border, blue background, cross
+  - Hết tốc độ tối thiểu là no border, blue background, ghi số, một gạch chéo màu đỏ
 
 - chiều dài đoạn đường => chọn biển 2 mũi tên thẳng đứng
 - Chiều ngang => mũi tên nằm ngang
@@ -348,32 +348,22 @@ Biển vẽ hình tia sét => chọn "có đường dây điện cắt ngang ph�
 
 ### Hiệu Lệnh & Chỉ Dẫn
 
-- Các biển hình tròn là biển hiệu lệnh thì bắt buộc phải theo (hiệu lệnh)
+- Các biển **hình tròn** là biển hiệu lệnh thì bắt buộc phải theo (hiệu lệnh)
   - Hiệu lệnh có 2 mũi tên lồng nhau (Các xe chỉ được đi thẳng và rẽ phải) thì xe được phép quay đầu.
 - Các biển **hình vuông** là chỉ dẫn => không cấm quay đầu xe.
 
 - Thấy biển chữ `T` hai mũi tên chĩa ra hai bên (tròn màu xanh mũi tên trắng)
-  - câu hỏi thấy chữ **trước ngã ba** => chọn ý 3
-  - không có trước ngã ba => chọn ý 1
+  - câu hỏi có cụm từ **trước ngã ba** => chọn ý 3
+  - Nếu không có cụm từ "trước ngã ba" => chọn ý 1
 - Biển chữ T only đặt sau ngã ba, ngã tư; không đặt trước.
 
 Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay đầu
 
-- Thấy hình biển có số 50 - 60 màu xanh:
-  - Chọn luôn đáp án có chữ **và**.
-  - Các câu còn lại hỏi: **tối đa chọn biển 50 - tối thiểu chọn biển 60**.
-
-- Biển màu đỏ là start hiệu lực tốc độ tối đa
-- Hết hạn chế tối đa: tròn, blue border, number, gạch chéo
-- Biển màu xanh:
-  - Có dấu gạch => hết hiệu lực biển maximum màu đỏ
-  - không có gạch, có số (60) => tốc độ tối thiểu
-
 - Câu hỏi có chữ **đi đúng làn** => chọn biển có vẽ xe
 - Câu hỏi có chữ **từng làn đường** => chọn cả hai biển
 
-- **rẽ ra** có làn đường xe khách => mũi tên nằm ngang
-- **phía trước** => mũi tên thẳng đứng
+- Biển "**rẽ ra** đường có làn đường có làn đường xe khách" => mũi tên nằm ngang
+- Biển "**phía trước** có làn đường dành cho ô tô khách" => mũi tên thẳng đứng chỉ forward
 
 - Thấy biển đầu ô tô (Đường dành cho xe ô tô) => chọn đáp án **có**; xe tải & xe khách đi vào được
 - Thấy biển ô tô quay ngang (Đường dành cho xe ô tô con) => chọn **không**; xe tải & xe khách không được phép đi vào
@@ -390,7 +380,7 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
 
 Câu hỏi có chữ "địa giới" => chọn biển có chữ "địa phận"
 
-Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc độ đến mức an toàn và không được vượt
+Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc độ đến mức an toàn và không được vượt (không cần phải dừng xe).
 
 - Biển có hai mũi tên vertical `↑↓` => đỏ (tròn) nhường - xanh (vuông) ưu tiên
   - Hình vuông, màu xanh => Biển chỉ dẫn "Được **ưu tiên** qua đường hẹp"
@@ -398,9 +388,6 @@ Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc đ
 
 - Tam giác, red border, nền vàng, hai mũi tên vertical `↑↓` => Đường hai chiều
   - Nếu vẽ hình 2 mũi tên nằm ngang horizontal là: "giao nhau với đường hai chiều".
-
-- Biển "Phía trước có làn đường dành cho ô tô khách" => mũi tên chỉ forward
-- Rẽ ra đường có làn đường dành cho ô tô khách => mũi tên nằm ngang
 
 - 3 biển gạch sọc đen nền vàng "Chướng ngại vật phía trước":
   - gạch `////` => đi về bên trái
@@ -494,7 +481,7 @@ Tại nơi giao nhau, trên đoạn đường có làn đường dành cho ngư�
 
 Có tổng cộng 120 tình huống
 
-### Trên đường Cao Tốc
+---
 
 Cao tốc vào ban đêm: chú ý xi nhan xe của mình và xe tải phía trước, nháy sáng 2 lấn vừa tắt là bấm
 
@@ -531,6 +518,10 @@ xe máy sáng đèn phanh là bấm
 Có một tình huống xe máy chạy ngược chiều lấn làn, nháy xi nhan là bấm
 
 Có câu phải chờ đầu xe bán tải đè lên dải phân cách mới bấm, không bấm sớm quá
+
+---
+
+xe tải và xe con đỏ thì bật xi nhan phải đợi nháy sáng lần 2 là bấm
 
 ## Thi thực hành
 
