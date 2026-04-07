@@ -101,7 +101,7 @@ Hộp số xe ô tô => giúp xe lùi
 - Xe ô tô không được kéo theo nhiều xe ô tô, chỉ được kéo một chiếc thôi.
 - Xe mô tô hai bánh, xe gắn máy không được kéo đẩy xe khác.
 
-Xe xuống dốc phải nhường đường cho xe đang lên dốc.
+Xe **xuống dốc** phải nhường đường cho xe đang lên dốc.
 
 Phân loại đường bộ theo chức năng phục vụ: gồm cả đường bên & đường nội bộ
 
@@ -284,8 +284,8 @@ xích lô, ly bia, con ngựa => ý cuối
   - ngày chẳn chọn ý 2
   - Một gạch cấm đỗ xe ngày lẻ; hai gạch cấm ngày chẳn; không có gạch là 30 ngày chẳn lẽ đều cấm hết
 
-- Một gạch cấm đỗ xe (đậu xe) cho phép dừng tạm thời
-- Hai gạch dấu X là cấm đỗ và cấm dừng
+- Một gạch `(\)` => cấm đỗ xe (đậu xe) cho phép dừng tạm thời
+- Hai gạch dấu `X` là cấm đỗ và cấm dừng
 
 - Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
   - Biển stop không phải đường cấm mà là phải dừng xe và nhường đường
@@ -399,9 +399,9 @@ Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc đ
 - Trắng cùng, đứt đè, vàng tim  
 - V cho khoảng cách, thoi hình người đi
 
-- Hỏi vạch cùng chiều (phân chia các làn xe chạy cùng chiều nhau) => chọn vạch trắng
+- Hỏi vạch cùng chiều (phân chia các làn xe chạy **cùng chiều** nhau) => chọn vạch trắng
 - Vạch được phép đè  => vạch nét đứt (both vàng & trắng)
-- Hỏi vạch tim đường (phân chia hai chiều xe chạy ngược chiều) => vạch vàng
+- Hỏi vạch tim đường (phân chia hai chiều xe chạy **ngược chiều** nhau) => vạch vàng
 - Vạch hình chữ V (`> >   > >`) => khoảng cách
 - Vạch hình thoi => sắp đến chỗ người đi bộ qua đường
 
@@ -417,7 +417,7 @@ Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc đ
 > Nhất lỡ - nhì ưu - tam đường - tứ hướng - hướng rẽ ưu tiên
 
 - Nhất lỡ => Xe đi qua vạch trắng gọi là xe đi lỡ, sẽ được đi trước đầu tiên
-- Nhì ưu => hỏa > quân > công > thương: cứu hỏa > quân sự > công an > cứu thương
+- Nhì ưu => `hỏa > quân > công > thương`: cứu hỏa > quân sự > công an > cứu thương
 - Tam đường => đường ưu tiên và không ưu tiên
 
 đôi khi 2 xe được đi cùng một lúc thì dùng chữ **và** thay vì dấu comma `,`
@@ -454,22 +454,22 @@ Vòng xuyến nhường đường cho xe bên trái.
 
 - Các câu hỏi có dàn 6 đèn giao thông:
   - Nếu chỉ có một đáp án có chữ **xe con** => chọn luôn
-  - Nếu có 2 hoặc 3 đáp án chứa chữ xe con (đáp án nói "cả 4 xe" nghĩa là cũng có xe con) => ta bỏ lấy đáp án còn lại không có chữ xe con
-- Lưu ý: 2 câu ngoại lệ thì **chọn ý 2**:
+  - Nếu có 2 hoặc 3 đáp án chứa chữ "xe con" (đáp án nói "cả 4 xe" nghĩa là cũng có xe con) => ta bỏ lấy đáp án còn lại không có chữ xe con
+- Lưu ý: 2 câu ngoại lệ thì đều **chọn ý 2**:
   - 538: tất cả các loại xe trên (câu này trong các đáp án không có chữ "xe con")
   - 565: xe khách, xe mô tô (câu này có tới 2 đáp án không có chữ xe con)
 
-- Thấy đoàn xe đang đua trên nhiều làn đường (câu hỏi vi phạm) => nhìn xe cuối: lấy số bánh trừ 1 kết quả là đáp án:
+- Thấy đoàn xe đang "chạy đua" với nhau trên nhiều làn đường (câu hỏi vi phạm) => nhìn xe cuối: lấy số bánh trừ 1 kết quả là đáp án:
   - Xe cuối mô tô 2 bánh trừ 1 chọn ý 1
   - Xe cuối ô tô 4 bánh trừ 1 chọn ý 3
 - Xe chạy đè vạch kẻ liền là vi phạm
-- Ngoại lệ câu 554 (câu này KHÔNG hỏi vi phạm mà hỏi xe nào chấp hành ĐÚNG quy tắc giao thông) **chọn ý 2**.
+- Ngoại lệ câu 554 (câu này KHÔNG hỏi vi phạm mà hỏi xe nào chấp hành **ĐÚNG** quy tắc giao thông) **chọn ý 2**.
 
 Biển hiệu lệnh (tròn xanh) chỉ cho phép rẽ trái thì không được phép quay đầu.
 
 Muốn quay đầu, rẽ phải, rẽ trái thì phải lên giữa ngã tư, qua vạch mới được phép quay đầu.
 
-Biển cấm xe tải vượt thì không có cấm xe khách nên xe khách được phép vượt.
+Biển cấm xe tải vượt thì **không** có cấm xe khách nên xe khách được phép vượt.
 
 Khi xe đằng trước đang vượt thì xe phía sau không được phép vượt.
 
@@ -483,7 +483,8 @@ Có tổng cộng 120 tình huống
 
 ---
 
-Cao tốc vào ban đêm: chú ý xi nhan xe của mình và xe tải phía trước, nháy sáng 2 lấn vừa tắt là bấm
+- Cao tốc vào **ban đêm**: chú ý xi nhan **xe của mình** và xe tải phía trước, nháy sáng 2 lấn vừa tắt là bấm
+- Có **hai** tình huống phải đếm xi nhan **xe mình** sáng tới lần thứ 4 mới bấm. (một câu có cầu vượt cắt qua.)
 
 Tất cả các xe trước mặt trên cao tốc xi nhan chờ nháy sáng 2 lần mới bấm
 
@@ -494,15 +495,13 @@ Các tình huống thấy xe phía sau vượt lên thì chờ bánh đè vạch
 
 Cao tốc đường trống không là để ý mặt đường có vệt trắng (semen) thì đợi chạm vệt trắng thứ 3 là bấm; Không thì đợi chạm vào mũi nhọn ngã ba là bấm.
 
-Tình huống duy nhất có mặt trời => vừa thấy nửa con bò bên tay phải là bấm; hoặc nhìn gương chiếu hậu bên tay trái, vừa mất chiếc xe con màu trắng, nhìn gương thấy đủ 2 cột đèn là bấm
-
 Trên cao tốc, vừa thấy đầu xe ngược chiều là bấm luôn
 
 Đèn phanh xe tải (2 đèn) sáng là bấm
 
 ---
 
-Sáng đèn phanh (2 đèn) là bấm
+Sáng đèn phanh (2 đèn) là bấm, không chờ sáng lần thứ 2
 
 xe máy sáng đèn phanh là bấm
 
@@ -521,7 +520,25 @@ Có câu phải chờ đầu xe bán tải đè lên dải phân cách mới b�
 
 ---
 
-xe tải và xe con đỏ thì bật xi nhan phải đợi nháy sáng lần 2 là bấm
+Xe tải và xe con đỏ thì bật xi nhan phải đợi nháy sáng lần 2 là bấm
+
+Thấy xe SH trước mặt là đợi SH sáng xi nhan, đèn vừa sáng là bấm, không đợi sáng lần 2.
+
+Thấy xe đang dừng đỗ, đứng yên ở trong lề đường, thấy đèn xi nhan vừa sáng là bấm liền, không đợi sáng lần 2
+
+Có câu người đi bộ qua đường từ bên trái, vừa thấy nó đi ra là bấm liền
+
+- Biển báo hình con bò => đầu xe sắp chạm chân đống rơm bên phải là bấm (cách một khoảng nhỏ)
+- Đàn bò qua đường => canh khung chữ A của xe mình vừa che khuất đống rơm là bấm.
+- Tình huống duy nhất có **mặt trời** => vừa thấy nửa con bò bên tay phải là bấm; hoặc nhìn gương chiếu hậu bên tay trái, vừa mất chiếc xe con màu trắng, nhìn gương thấy đủ 2 cột đèn là bấm
+- Có một tình huống con bò bên phải, thấy con bò nhúc nhích, gật đầu đi ra đường là bấm (không chú ý đến con bò đầu tiên)
+- Tình huống sương mù tránh đàn bò ở khúc cua => xe con ngược chiều vừa đi tới gương chiếu hậu của xe mình là bấm
+
+Ban ngày, thấy xe đạp vừa đi xuống đường là bấm.
+
+Hầm chui, vừa thấy đầu xe tải đi vào hầm chui là bấm.
+
+Xòng xuyến, thấy đầu xe buýt chạm cây cột chỉ tên đường là bấm
 
 ## Thi thực hành
 
