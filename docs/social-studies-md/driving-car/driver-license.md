@@ -497,8 +497,6 @@ Cao tốc đường trống không là để ý mặt đường có vệt trắn
 
 Trên cao tốc, vừa thấy đầu xe ngược chiều là bấm luôn
 
-Đèn phanh xe tải (2 đèn) sáng là bấm
-
 ---
 
 Sáng đèn phanh (2 đèn) là bấm, không chờ sáng lần thứ 2
@@ -539,6 +537,13 @@ Ban ngày, thấy xe đạp vừa đi xuống đường là bấm.
 Hầm chui, vừa thấy đầu xe tải đi vào hầm chui là bấm.
 
 Xòng xuyến, thấy đầu xe buýt chạm cây cột chỉ tên đường là bấm
+
+- **Sương mù đường xấu**, xe tải lấn làn vượt => vừa thấy đầu xe tải nhô ra là bấm
+- **Sương mù đường đẹp** => vừa thấy đầu xe con trắng lấn làn vượt là bấm
+- Sương mù xe khác có biển báo công trường thi công => nhìn bên phải, vừa thấy tới gần sát biển công trường là bấm
+
+- Em bé sang đường ban đêm (có biển báo em bé sang đường) => không nhìn thấy cửa màu đỏ sau cột biển báo là bấm
+- Trẻ em trên đường ban ngày => qua khuất không nhìn thấy hàng rào xanh thứ 2 là bấm
 
 ## Thi thực hành
 
