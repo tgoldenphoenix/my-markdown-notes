@@ -45,10 +45,10 @@ Phần của đường bộ được sử dụng [...] là **phần đường xe
 - Vạch kẻ đường **phân chia** làn đường.
 - Dải phân cách phân chia **phần đường xe chạy** [...]
 
-- Người điều khiển giao thông đường bộ => cảnh sát giao thông
+- Người **điều khiển giao thông** đường bộ => cảnh sát giao thông
 - Người điều khiển phương tiện tham gia giao thông
 
-Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm**, trẻ em không thể đứng ở ngoài chứ đừng nói trong xe.
+Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm** => nhớ trẻ em không thể đứng ở ngoài chứ đừng nói trong xe.
 
 - giao nhau vòng xuyến, nhường xe đến từ bên **trái**.
 - Giao nhau **không** vòng xuyến, nhường xe bên phải.
@@ -292,7 +292,7 @@ xích lô, ly bia, con ngựa => ý cuối
   - Đường cấm là biển red border, white background, không vẽ hình
 - Xe ưu tiên gặp biển `(-)` "cấm đi ngược chiều" vẫn đi bình thường
 - Biển `()`, red border, white background, không vẽ hình là biển "đường cấm"
-- "Biển nào dưới đây các phương tiên không được phép đi vào" => chọn cả 2 biển "đường cấm" và "đường một chiều|
+- "Biển nào dưới đây các phương tiên không được phép đi vào" => chọn cả 2 biển "đường cấm" và "đường một chiều"
 
 - Thấy 3 biển hình tròn rỗng
   - đáp án ghi con số biển 1, 2, 3 => ý 2
@@ -396,7 +396,7 @@ Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc đ
 
 ### Vạch Kẻ Đường
 
-- Trắng cùng, đứt đè, vàng tim  
+- Trắng cùng, đứt đè, vàng tim
 - V cho khoảng cách, thoi hình người đi
 
 - Hỏi vạch cùng chiều (phân chia các làn xe chạy **cùng chiều** nhau) => chọn vạch trắng
