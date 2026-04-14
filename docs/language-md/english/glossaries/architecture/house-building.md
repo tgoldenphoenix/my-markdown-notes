@@ -92,6 +92,8 @@ plywood: ván ép, gỗ dán
 
 patio (Spanish for 'courtyard, forecourt, yard, little garden') is an outdoor space generally used for dining or recreation that adjoins a structure and is typically paved. "Covered pario" là sẽ có mái che.
 
+conveyor belt: băng tải
+
 Wheelbarrow: xe rùa
 
 Steel wire: dây sắt
