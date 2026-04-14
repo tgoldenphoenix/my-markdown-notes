@@ -225,7 +225,7 @@ Lấy max value trừ đi `20` or `25`
   - 80 - 100 km/h = 70m
   - 100-120 km/h = 100m
 
-- Dừng xe, đỗ xe cách lề đường, hè phố không quá `0,25` mét.
+- Dừng xe, đỗ xe cách lề đường, hè phố không quá `0,25` mét => hình dán jesus christ phía sau xe.
 - Dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
 
 ## Biển Báo
@@ -354,7 +354,7 @@ Biển vẽ hình tia sét => chọn "có đường dây điện cắt ngang ph�
 
 - Thấy biển chữ `T` hai mũi tên chĩa ra hai bên (tròn màu xanh mũi tên trắng)
   - câu hỏi có cụm từ **trước ngã ba** => chọn ý 3
-  - Nếu không có cụm từ "trước ngã ba" => chọn ý 1
+  - Nếu không có cụm từ **trước ngã ba** => chọn ý 1
 - Biển chữ T only đặt sau ngã ba, ngã tư; không đặt trước.
 
 Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay đầu
