@@ -28,7 +28,7 @@ Học 90 ngày (3 tháng). Thi đậu lý thuyết + mô phỏng rồi xuống s
 ## Các câu lý thuyết bị sai
 
 - **Câu liệt**:
-  - người lái xe mô tô hai bánh không được dùng ô; không được dùng thiết bị âm thanh (trừ trợ thính)
+  - người lái xe mô tô hai bánh không được dùng ô; không được dùng thiết bị âm thanh (trừ trợ thính) => chọn "cả hai ý trên"
   - Người ngồi sau xe máy, mô tô 2 bánh không được xài ô (dù)
 
 Nguời ngồi sau không đội mũ bảo hiểm: phạt cả người lái và người ngồi sau
@@ -59,7 +59,8 @@ Kéo xe hỏng phanh => nối bằng **thanh nối cứng**.
 - Được phép **vượt phải** khi: xe trước có tín hiệu rẽ trái hoặc đang rẽ trái, hoặc xe chuyên dùng đang làm việc mà không thể vượt trái
   - Khi xe phía trước đang đi sát lề đường bên trái thì không được vượt phải
 
-GPLX đã bị trừ hết điểm, để phục hồi: sau ít nhất 06 tháng, kiểm tra kiến thức pháp luật -> phục hồi đủ 12 điểm
+- GPLX đã bị trừ hết điểm, để phục hồi: sau ít nhất 06 tháng, kiểm tra kiến thức pháp luật -> phục hồi đủ 12 điểm
+- Phải tham gia thi kiểm tra mới được phục hồi điểm (không chọn câu "cả hai ý trên")
 
 Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khách an toàn & thoát hiểm (ý 1 và ý 2)
 
@@ -92,7 +93,7 @@ Hộp số xe ô tô => giúp xe lùi
 
 `abs` => báo hiệu hệ thống chống bó cứng phanh bị lỗi
 
-Áp suất dầu ở mức thấp (màu đỏ)
+Áp suất dầu ở mức thấp (hình cái can dầu màu đỏ có giọt nước chảy ra)
 
 Đèn táp lô hiện biểu tượng 2 hình tam giác đỏ: báo hiệu xe đang ở tình huống nguy hiểm
 
@@ -129,7 +130,7 @@ Không dừng, đỗ xe: miệng cống, hầm, phạm vi an toàn đường s�
 
 Xe sau xin vượt (không an toàn): Có tín hiệu rẽ trái báo chưa an toàn không được vượt.
 
-Xe ưu tiên (trừ xe tang) khi làm nhiệm vụ: Không hạn chế tốc độ, không phụ thuộc tín hiệu đèn giao thông, được đi ngược chiều trên làn đường dừng khẩn cấp cao tốc.
+Xe ưu tiên (trừ xe tang) khi làm nhiệm vụ: Không hạn chế tốc độ, không phụ thuộc tín hiệu đèn giao thông, được đi ngược chiều trên làn đường dừng khẩn cấp cao tốc => cả 3 ý trên
 
 Lắp giám sát hành trình: chọn cả 2 ý
 
@@ -145,15 +146,17 @@ Có một câu rẽ phải: tín hiệu rẽ sớm, giảm tốc độ (chọn �
 
 Cái hình thiết bị => dùng để kích (hay nâng) xe ô tô
 
+Điều kiện lái xe tham gia giao thông => không cần phải là người đứng trên trong đăng ký xe mới được lái
+
 ## Các hạng Bằng Lái & Độ tuổi
 
-- Người đủ `16` tuổi trở lên được điều khiển **xe gắn máy**.
-- Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1`
+- Người đủ `16` tuổi đến dưới `18` tuổi chỉ được điều khiển **xe gắn máy** => Arya Stark little girl lái xe gắn máy only
+- Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1` (mô tô hai bánh có dung tích xi lanh đến 125 $cm^3$)
   - Captain Ahab (18) cosplay Clint Eastwood (3.500 kg) drive ô tô hạng B chở người đến 8 chỗ (one ship worth of mates) & đến 3.500 Kg
 - Người đủ `21` tuổi trở lên được cấp giấy phép lái xe hạng `C, BE`.
   - Cercei (`21`) bú C*c (`C`) suguru geto (`7500`)
 - Người đủ `24` tuổi trở lên được cấp giấy phép lái xe hạng `D1, D2, C1E, CE`.
-  - Beric Dondarion
+  - Beric Dondarion lái xe trung chuyển 16 chỗ phương trang
 - Người đủ `27` tuổi trở lên được cấp giấy phép lái xe hạng `D, D1E, D2E, DE`.
   - Bill gate (`27`) là một thằng dâm Dê (hạng `D`) lái xe trên 29 chỗ chở bà nội Ngọc
 - Tuổi tối đa của người lái xe ô tô chở người (kể cả xe buýt) trên 29 chỗ (không kể chỗ của người lái xe), xe ô tô chở người giường nằm là đủ `57` (Queequeg) tuổi đối với nam, đủ `55` tuổi đối với nữ.
@@ -172,8 +175,8 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 
 15 hạng của Giấy phép lái xe:
 
-- Hạng `A1` cấp cho người lái xe mô tô hai bánh có dung tích xi-lanh **đến 125 cm3** hoặc có công suất động cơ điện đến 11 kW;
-- Hạng `A` cấp cho người lái xe mô tô hai bánh có dung tích xi-lanh **trên 125 cm3** hoặc có công suất động cơ điện trên 11 kW và các loại xe quy định cho giấy phép lái xe hạng A1;
+- Hạng `A1` cấp cho người lái xe mô tô hai bánh có dung tích xi lanh **đến 125 cm3** hoặc có công suất động cơ điện đến 11 kW;
+- Hạng `A` cấp cho người lái xe mô tô hai bánh có dung tích xi lanh **trên 125 cm3** hoặc có công suất động cơ điện trên 11 kW và các loại xe quy định cho giấy phép lái xe hạng A1;
 
 - Hạng `B1` cấp cho người lái xe **mô tô ba bánh** và các loại xe quy định cho giấy phép lái xe hạng A1;
 - Hạng `B` cấp cho người lái xe ô tô chở người **đến 08 chỗ** (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **đến 3.500 kg**; các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg;
@@ -220,9 +223,9 @@ có số `60` => cả 2 ý trên hoặc chọn ý 1
 Lấy max value trừ đi `20` or `25`
 
 - Khoảng cách an toàn tối thiểu:
-  - 60 km/h = 35m
-  - 60 - 80 km/h = 55m
-  - 80 - 100 km/h = 70m
+  - 60 km/h = 35m => shinobu 60
+  - 60 - 80 km/h = 55m => hotarou 80
+  - 80 - 100 km/h = 70m => aokiji 100
   - 100-120 km/h = 100m
 
 - Dừng xe, đỗ xe cách lề đường, hè phố không quá `0,25` mét => hình dán jesus christ phía sau xe.
@@ -243,7 +246,7 @@ Lấy max value trừ đi `20` or `25`
   - cấm ô tô thì cấm luôn cả mô tô 3 bánh.
 
 - Theo thứ tự từ rộng tới hẹp (xe nhỏ tới xe lớn hơn):
-  - cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ xe cơ giới trừ xe máy hai bánh, xe gắn máy và các loại xe ưu tiên theo quy định
+  - cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ xe **cơ giới** trừ xe máy hai bánh, xe gắn máy và các loại xe ưu tiên theo quy định
   - cấm xe (ô tô) **tải** (không kéo moóc)
   - cấm máy kéo (đầu kéo container)
   - cấm xe kéo rơ móc (đầu kéo + thùng hàng, máy kéo kéo theo rơ moóc), đầu kéo không có thùng hàng vẫn được đi
@@ -289,7 +292,7 @@ xích lô, ly bia, con ngựa => ý cuối
 
 - Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
   - Biển stop không phải đường cấm mà là phải dừng xe và nhường đường
-  - Đường cấm là biển red border, white background, không vẽ hình
+  - Biển **đường cấm** là biển red border, white background, không vẽ hình `𐤏`
 - Xe ưu tiên gặp biển `(-)` "cấm đi ngược chiều" vẫn đi bình thường
 - Biển `()`, red border, white background, không vẽ hình là biển "đường cấm"
 - "Biển nào dưới đây các phương tiên không được phép đi vào" => chọn cả 2 biển "đường cấm" và "đường một chiều"
@@ -311,7 +314,7 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 
 3 biển "hạn chế chiều cao", "hạn chế tải trọng trên trục xe", "hạn chế tải trọng toàn bộ xe" => áp dụng với cả xe ưu tiên theo luật định (không được phép đi qua)
 
-Biển `> 3,2 m <` => hạn chế **chiều ngang** của xe và hàng (không phải chiều dài của xe)
+Biển `> 3,2 m <` => hạn chế **chiều ngang** của xe và hàng (không phải chiều dài của xe) => còn một biển giống vậy "hạn chế chiều cao"
 
 ### Biển Nguy Hiểm
 
@@ -343,9 +346,11 @@ Biển báo đường dành riêng cho người đi bộ => xe không được v
 
 Biển vẽ hình tia sét => chọn "có đường dây điện cắt ngang phía trên" KHÔNG chọn "khu vực nguy hiểm có sét đánh" là sai.
 
-- đường có ổ gà, lồi lõm => two boobs
+- đường có ổ gà, lồi lõm => two boobs => chick, gà mái => ổ gà
 - đường có gồ giảm tốc phía trước => chỉ có một chỗ lồi lên
 
+ Biển báo **đoạn đường có nền yếu** vẽ dấu `!` và biểu tượng "đứt gãy địa chất"
+ 
 ### Hiệu Lệnh & Chỉ Dẫn
 
 - Các biển **hình tròn** là biển hiệu lệnh thì bắt buộc phải theo (hiệu lệnh)
@@ -365,7 +370,7 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
 - Biển "**rẽ ra** đường có làn đường có làn đường xe khách" => mũi tên nằm ngang
 - Biển "**phía trước** có làn đường dành cho ô tô khách" => mũi tên thẳng đứng chỉ forward
 
-- Thấy biển đầu ô tô (Đường dành cho xe ô tô) => chọn đáp án **có**; xe tải & xe khách đi vào được
+- Thấy biển đầu ô tô (Đường dành cho xe ô tô) (square, blue background) => chọn đáp án **có**; xe tải & xe khách đi vào được
 - Thấy biển ô tô quay ngang (Đường dành cho xe ô tô con) => chọn **không**; xe tải & xe khách không được phép đi vào
 
 - Câu hỏi về cầu vượt ghi nhớ **vuông liên tròn cắt**:
@@ -459,7 +464,7 @@ Vòng xuyến nhường đường cho xe bên trái.
   - 538: tất cả các loại xe trên (câu này trong các đáp án không có chữ "xe con")
   - 565: xe khách, xe mô tô (câu này có tới 2 đáp án không có chữ xe con)
 
-- Thấy đoàn xe đang "chạy đua" với nhau trên nhiều làn đường (câu hỏi vi phạm) => nhìn xe cuối: lấy số bánh trừ 1 kết quả là đáp án:
+- Thấy đoàn xe đang "chạy đua" (racing) với nhau trên nhiều làn đường (câu hỏi vi phạm) => nhìn xe cuối: lấy số bánh trừ 1 kết quả là đáp án:
   - Xe cuối mô tô 2 bánh trừ 1 chọn ý 1
   - Xe cuối ô tô 4 bánh trừ 1 chọn ý 3
 - Xe chạy đè vạch kẻ liền là vi phạm
