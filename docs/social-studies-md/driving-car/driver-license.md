@@ -50,8 +50,8 @@ Phần của đường bộ được sử dụng [...] là **phần đường xe
 
 Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm** => nhớ trẻ em không thể đứng ở ngoài chứ đừng nói trong xe.
 
-- giao nhau vòng xuyến, nhường xe đến từ bên **trái**.
-- Giao nhau **không** vòng xuyến, nhường xe bên phải.
+- Giao nhau **có vòng xuyến**, nhường xe đến từ bên **trái**.
+- Giao nhau **không** vòng xuyến, nhường xe **bên phải** (câu điểm liệt.)
 
 Kéo xe hỏng phanh => nối bằng **thanh nối cứng**.
 
@@ -68,8 +68,8 @@ Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khá
 
 máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn động mạch)
 
-- Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, nhiệt độ cao bất thường => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy
-- Nếu **xét thấy có khả năng dập tắt đám cháy** => chọn "cả hai ý trên"; tắt khóa điện + sử dụng nước
+- Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, nhiệt độ cao bất thường => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy (không chọn cả ba ý trên)
+- Nếu **xét thấy có khả năng dập tắt đám cháy** => chọn "cả hai ý trên": tắt khóa điện, hô hoán, gọi cảnh sát + sử dụng nước để dập lửa
 
 - Khởi hành xe số tự động: đạp phanh chân hết cỡ (hết hành trình), vào số và nhả phanh đỗ (hand brake)
 - Khởi hành xe số sàn: đạp ly hợp (côn) hết hành trình
@@ -86,8 +86,8 @@ Kính chắn gió ô tô => là loại kính **an toàn**
 
 Động cơ diesel không nổ: nhiên liệu lẫn tạp chất
 
-- Niên hạn xe ô tô khách chở người (>8 chỗ): không quá 20 năm
-- Niên hạn xe **ô tô tải**: không quá 25 năm
+- Niên hạn xe **ô tô khách** chở người (>8 chỗ): không quá 20 năm => chở người là chở bob ross
+- Niên hạn xe **ô tô tải**: không quá 25 năm => ô tô tải chở cây thập giá chúa jesus
 
 Hộp số xe ô tô => giúp xe lùi
 
@@ -97,22 +97,22 @@ Hộp số xe ô tô => giúp xe lùi
 
 Đèn táp lô hiện biểu tượng 2 hình tam giác đỏ: báo hiệu xe đang ở tình huống nguy hiểm
 
-- Rơ móc kéo xe khác phải có trọng lượng **lớn hơn**, tương đương thì ko được
+- Rơ móc kéo xe khác phải có trọng lượng **lớn hơn**, tương đương thì vẫn ko được
 - Có một câu đọc giống như vậy => chọn "chỉ được kéo rơ moóc phù hợp với thiết kế của xe" (ý sai sẽ nói là trọng lượng tương đương là sai)
 - Xe ô tô không được kéo theo nhiều xe ô tô, chỉ được kéo một chiếc thôi.
 - Xe mô tô hai bánh, xe gắn máy không được kéo đẩy xe khác.
 
 Xe **xuống dốc** phải nhường đường cho xe đang lên dốc.
 
-Phân loại đường bộ theo chức năng phục vụ: gồm cả đường bên & đường nội bộ
+Phân loại đường bộ theo chức năng phục vụ: gồm cả đường bên & đường nội bộ.
 
 - Xe cơ giới, xe máy chuyên dùng phải đi trên làn đường **bên trái**.
 - Xe thô sơ đi làn đường bên phải trong cùng.
-- Di chuyển tốc độ thấp => đi về phía bên phải
+- Di chuyển tốc độ thấp => đi về phía bên phải.
 
 Đường sắt có tín hiệu/rào chắn đang hoạt động: người tham gia giao thông đường bộ phải dừng lại **bên phải** đường của mình, trước vạch dừng xe.
 
-Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu phải **nằm trong khoảng** vạch mức tối thiểu và tối đa được thể hiện trên que thăm
+Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu phải **nằm trong khoảng vạch** mức tối thiểu và tối đa được thể hiện trên que thăm
 
 Vượt xe là khi chiều đường chỉ có **1 làn đường**.
 
@@ -134,23 +134,25 @@ Xe ưu tiên (trừ xe tang) khi làm nhiệm vụ: Không hạn chế tốc đ�
 
 Lắp giám sát hành trình: chọn cả 2 ý
 
-Xe đưa đón học sinh: Được ưu tiên phân luồng, điều tiết, bố trí nơi dừng/đỗ (không có xe dẫn đường).
+Xe đưa đón trẻ em mầm non, học sinh: Được ưu tiên phân luồng, điều tiết, bố trí nơi dừng/đỗ (chứ không được bố trí xe dẫn gì hết).
 
 Có một câu hỏi "những hành vi nào dưới đây là thiếu văn hóa khi xảy ra ùn tắc?" => Chọn "Bấm còi liên tục thúc giục; đi trên vỉa hè"
 
 Có một câu rẽ phải: tín hiệu rẽ sớm, giảm tốc độ (chọn ý 2, không chọn ý 3 dài hơn là sai)
 
-Đi qua rãnh lớn (số sàn): về số 1, từ từ và KHÔNG tăng số
+Đi qua rãnh lớn cắt ngang mặt đường (số sàn): về số 1, từ từ và **KHÔNG** tăng số
 
 Điều chỉnh ghế (động cơ đã nổ): cần số ở N, P, hoặc số 0
 
 Cái hình thiết bị => dùng để kích (hay nâng) xe ô tô
 
-Điều kiện lái xe tham gia giao thông => không cần phải là người đứng trên trong đăng ký xe mới được lái
+Điều kiện lái xe tham gia giao thông => **không cần** phải là người đứng tên trong đăng ký xe mới được lái
+
+Hệ thống bôi trơn **không** có vai trò cung cấp "một lượng nhiên liệu đầy đủ" => chọn "cả hai ý" là sai
 
 ## Các hạng Bằng Lái & Độ tuổi
 
-- Người đủ `16` tuổi đến dưới `18` tuổi chỉ được điều khiển **xe gắn máy** => Arya Stark little girl lái xe gắn máy only
+- Người đủ `16` tuổi đến dưới `18` tuổi chỉ được điều khiển **xe gắn máy** => `Arya Stark` little girl lái **xe gắn máy** only.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1` (mô tô hai bánh có dung tích xi lanh đến 125 $cm^3$)
   - Captain Ahab (18) cosplay Clint Eastwood (3.500 kg) drive ô tô hạng B chở người đến 8 chỗ (one ship worth of mates) & đến 3.500 Kg
 - Người đủ `21` tuổi trở lên được cấp giấy phép lái xe hạng `C, BE`.
@@ -199,9 +201,11 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 - Trong khu đông dân cư:
 - Xe gắn máy & xe máy chuyên dùng always `40 km/h` max (tất cả mọi con đường).
 - Tất cả các loại xe còn lại:
-  - Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
   - Đường đôi (có con lươn, đường một chiều): `60 km/h`
-- Câu hỏi "tốc độ khai thác tối đa 50" => chọn xe **chở hàng** bốn bánh có gắn động cơ (không chọn xe chở người bốn bánh)
+  - Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
+- Câu hỏi "trên đường bộ (trừ đường cao tốc), ..., tốc độ khai thác tối đa 50" => chọn xe **chở hàng** bốn bánh có gắn động cơ (không chọn xe chở người bốn bánh)
+
+=> Nhớ "đường đôi là chạy nhanh gấp đôi, đường hai chiều là phải chạy chậm hơn".
 
 ---
 
@@ -209,8 +213,8 @@ Ngoài khu vực dân cư:
 
 |              | Đến 28 | Trên 28 | Buýt | Móc |
 |--------------|--------|---------|------|-----|
-| Đường đôi    | 90     | 80      | 70   | 60  |
-| Đ. Hai chiều | 80     | 70      | 60   | 50  |
+| Đường đôi (một chiều)    | 90     | 80      | 70   | 60  |
+| Đ. Hai chiều (một chiều có một làn xe cơ giới) | 80     | 70      | 60   | 50  |
 
 Đường đôi = đường một chiều
 
@@ -223,10 +227,10 @@ có số `60` => cả 2 ý trên hoặc chọn ý 1
 Lấy max value trừ đi `20` or `25`
 
 - Khoảng cách an toàn tối thiểu:
-  - 60 km/h = 35m => shinobu 60
-  - 60 - 80 km/h = 55m => hotarou 80
-  - 80 - 100 km/h = 70m => aokiji 100
-  - 100-120 km/h = 100m
+  - 60 km/h = 35m => Clint east wood chở shinobu trên con ngựa
+  - 60 - 80 km/h = 55m => Edward elric chở hotarou xe trên xe hơi
+  - 80 - 100 km/h = 70m => aokiji flying on ice fast with Gon
+  - 100-120 km/h = 100m => giữ khoảng cách tối đa 100 m là ok rồi
 
 - Dừng xe, đỗ xe cách lề đường, hè phố không quá `0,25` mét => hình dán jesus christ phía sau xe.
 - Dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
@@ -242,8 +246,9 @@ Lấy max value trừ đi `20` or `25`
 - Đối với xe **ô tô**, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
   - Cấm ô tô thì sẽ cấm luôn cả xe tải.
 - Xe **mô tô** thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm.
-  - cấm mô tô (biển vẽ hình người lái mô tô) thì cấm cả mô tô 3 bánh.
-  - cấm ô tô thì cấm luôn cả mô tô 3 bánh.
+
+- cấm mô tô (biển vẽ hình người lái mô tô) thì cấm luôn cả mô tô 3 bánh chở hạn.
+- cấm ô tô thì cấm luôn cả **mô tô 3 bánh** chở hàng.
 
 - Theo thứ tự từ rộng tới hẹp (xe nhỏ tới xe lớn hơn):
   - cấm ô tô, xe mô tô 3 bánh => cấm toàn bộ xe **cơ giới** trừ xe máy hai bánh, xe gắn máy và các loại xe ưu tiên theo quy định
@@ -253,8 +258,7 @@ Lấy max value trừ đi `20` or `25`
 
 xích lô, ly bia, con ngựa => ý cuối
 
-- Xe buýt là phương tiện công cộng, xe ưu tiên của nhà nước => không có biển nào cấm xe buýt
-- Chỉ có biển cấm ô tô chở khách
+Xe buýt là phương tiện công cộng, xe ưu tiên của nhà nước => không có biển nào cấm xe buýt. Chỉ có biển cấm ô tô chở khách
 
 - Thấy 2 biển mô tô (2 bánh) và ô tô (4 bánh) đi chung => áp dụng mẹo cấm 1 - được 3
   - Câu hỏi có chữ cấm => chọn 1
@@ -272,7 +276,7 @@ xích lô, ly bia, con ngựa => ý cuối
   - xe dưới 50cm3
 
 - Biển có ghi số, red border, white background là tốc độ **tối đa**.
-  - Hết tốc độ tối đa là biển hình tròn, blue border, ghi số, white background, gạch chéo ba sọc `///` (biển này nếu không ghi số thì là "hết mọi lệnh cấm")
+  - Hết tốc độ tối đa là biển hình tròn, blue border, ghi số, **white background**, gạch chéo ba sọc `///` (biển này nếu không ghi số thì là "hết mọi lệnh cấm")
 - Màu xanh, no border là tốc độ **tối thiểu**.
   - Hết tốc độ tối thiểu là no border, blue background, ghi số, một gạch chéo màu đỏ
 
@@ -293,7 +297,7 @@ xích lô, ly bia, con ngựa => ý cuối
 - Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
   - Biển stop không phải đường cấm mà là phải dừng xe và nhường đường
   - Biển **đường cấm** là biển red border, white background, không vẽ hình `𐤏`
-- Xe ưu tiên gặp biển `(-)` "cấm đi ngược chiều" vẫn đi bình thường
+- Xe ưu tiên gặp biển `(-)` "cấm đi ngược chiều" vẫn được phép đi bình thường.
 - Biển `()`, red border, white background, không vẽ hình là biển "đường cấm"
 - "Biển nào dưới đây các phương tiên không được phép đi vào" => chọn cả 2 biển "đường cấm" và "đường một chiều"
 
@@ -334,7 +338,7 @@ Biển báo đường dành riêng cho người đi bộ => xe không được v
 
 - Cả hai biển dấu nhân chữ X => giao nhau **vuông góc** với đường sắt (không có rào chắn)
 - Biển có hình quân hàm => giao nhau **không** vuông góc với đường sắt
-- Biển có hình đầu kéo xe lửa => "giao nhau với đường sắt không có rào chắn"
+- Biển có hình đầu kéo xe lửa => "giao nhau với đường sắt **không có rào chắn**"
 
 - Lên 9, xuống 10
 - dốc lên chọn biển số 9%
@@ -344,7 +348,7 @@ Biển báo đường dành riêng cho người đi bộ => xe không được v
 - Biển cầu hẹp => hình vẽ bị hẹp ở giữa middle
 - Biển "đường bị thu hẹp hai bên", bên trái, bên phải => hình vẽ hẹp ở phía cuối đường (phía trước)
 
-Biển vẽ hình tia sét => chọn "có đường dây điện cắt ngang phía trên" KHÔNG chọn "khu vực nguy hiểm có sét đánh" là sai.
+Biển vẽ hình tia sét => chọn "có đường **dây điện** cắt ngang phía trên" **KHÔNG** chọn ý "khu vực nguy hiểm có **sét đánh**" là sai.
 
 - đường có ổ gà, lồi lõm => two boobs => chick, gà mái => ổ gà
 - đường có gồ giảm tốc phía trước => chỉ có một chỗ lồi lên
@@ -370,7 +374,7 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
 - Biển "**rẽ ra** đường có làn đường có làn đường xe khách" => mũi tên nằm ngang
 - Biển "**phía trước** có làn đường dành cho ô tô khách" => mũi tên thẳng đứng chỉ forward
 
-- Thấy biển đầu ô tô (Đường dành cho xe ô tô) (square, blue background) => chọn đáp án **có**; xe tải & xe khách đi vào được
+- Thấy biển vẽ đầu xe ô tô (Đường dành cho xe ô tô) (square, blue background) => chọn đáp án **có**; xe tải & xe khách đi vào được
 - Thấy biển ô tô quay ngang (Đường dành cho xe ô tô con) => chọn **không**; xe tải & xe khách không được phép đi vào
 
 - Câu hỏi về cầu vượt ghi nhớ **vuông liên tròn cắt**:
@@ -383,7 +387,7 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
   - hỏi biển 1 => ý 1; hỏi biển 3 => ý 3
   - Hỏi tên đường => chọn ý 3
 
-Câu hỏi có chữ "địa giới" => chọn biển có chữ "địa phận"
+Câu hỏi có chữ "địa giới" => chọn biển có chữ "địa phận" (nằm chính giữa)
 
 Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc độ đến mức an toàn và không được vượt (không cần phải dừng xe).
 
@@ -453,16 +457,14 @@ Câu hỏi không có biển báo
 - 2 xe đường cùng cấp, face-to-face, nếu không có đường trống, ta xét tiếp tục xét hướng đi: rẽ phải > đi thẳng > rẽ trái
 - Các xe ưu tiên được xét trước hướng rẽ
 
-Vòng xuyến nhường đường cho xe bên trái.
-
 ---
 
 - Các câu hỏi có dàn 6 đèn giao thông:
   - Nếu chỉ có một đáp án có chữ **xe con** => chọn luôn
-  - Nếu có 2 hoặc 3 đáp án chứa chữ "xe con" (đáp án nói "cả 4 xe" nghĩa là cũng có xe con) => ta bỏ lấy đáp án còn lại không có chữ xe con
+  - Nếu có 2 hoặc 3 đáp án chứa chữ "xe con" (đáp án nói "cả 4 xe" nghĩa là cũng có xe con) => ta bỏ lấy đáp án còn lại **không** có chữ xe con.
 - Lưu ý: 2 câu ngoại lệ thì đều **chọn ý 2**:
-  - 538: tất cả các loại xe trên (câu này trong các đáp án không có chữ "xe con")
-  - 565: xe khách, xe mô tô (câu này có tới 2 đáp án không có chữ xe con)
+  - `538`: tất cả các loại xe trên thì sẽ bao gồm xe con luôn (câu này trong các đáp án không có chữ "xe con")
+  - `565`: xe khách, xe mô tô (câu này chỉ có 2/4 đáp án có chữ xe con nên loại hai đáp án này)
 
 - Thấy đoàn xe đang "chạy đua" (racing) với nhau trên nhiều làn đường (câu hỏi vi phạm) => nhìn xe cuối: lấy số bánh trừ 1 kết quả là đáp án:
   - Xe cuối mô tô 2 bánh trừ 1 chọn ý 1
