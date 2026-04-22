@@ -27,13 +27,13 @@ Học 90 ngày (3 tháng). Thi đậu lý thuyết + mô phỏng rồi xuống s
 
 ## Các câu lý thuyết bị sai
 
+Thi lý thuyết chỉ có 3 câu điểm liệt.
+
 - **Câu liệt**:
-  - người lái xe mô tô hai bánh không được dùng ô; không được dùng thiết bị âm thanh (trừ trợ thính) => chọn "cả hai ý trên"
-  - Người ngồi sau xe máy, mô tô 2 bánh không được xài ô (dù)
+  - người lái xe mô tô hai bánh không được dùng ô (umbrella); không được dùng thiết bị âm thanh (trừ trợ thính) => chọn "cả hai ý trên"
+  - Người ngồi sau xe máy, người được chở trên mô tô 2 bánh cũng **không được xài ô (dù)** khi trời mưa
 
-Nguời ngồi sau không đội mũ bảo hiểm: phạt cả người lái và người ngồi sau
-
-Thi lý thuyết chỉ có only 1 câu liệt.
+Nguời ngồi sau không đội mũ bảo hiểm: phạt **cả người lái và người ngồi sau.**
 
 - Có hình cảnh sát là chọn ý 3, only one question chọn ý 4 (jesus cross)
 - Giơ tay thẳng đứng: tất cả dừng, trừ xe đã ở trong ngã tư được phép tiếp tục đi
@@ -71,10 +71,10 @@ máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn
 - Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, nhiệt độ cao bất thường => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy (không chọn cả ba ý trên)
 - Nếu **xét thấy có khả năng dập tắt đám cháy** => chọn "cả hai ý trên": tắt khóa điện, hô hoán, gọi cảnh sát + sử dụng nước để dập lửa
 
-- Khởi hành xe số tự động: đạp phanh chân hết cỡ (hết hành trình), vào số và nhả phanh đỗ (hand brake)
+- Khởi hành xe số tự động: đạp phanh chân hết cỡ (**hết hành trình**), vào số và nhả phanh đỗ (hand brake), kiểm tra số rồi mới lăn bánh.
 - Khởi hành xe số sàn: đạp ly hợp (côn) hết hành trình
 
-Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng, kéo về **phía sau** đồng thới bóp khóa hãm.
+Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng phải kéo cần phanh tay về **phía sau** đồng thời bóp khóa hãm.
 
 - Khi xuống dốc dài, về số thấp (không về số 0, số N hay số cao), đạp ½ ly hợp (côn)
 
@@ -82,7 +82,7 @@ tăng ga từ từ, giảm ga thật nhanh
 
 Bộ phận giảm thanh: bắt buộc
 
-Kính chắn gió ô tô => là loại kính **an toàn**
+Kính chắn gió ô tô => là loại kính **an toàn** (không chọn kính trong suốt là sai)
 
 Động cơ diesel không nổ: nhiên liệu lẫn tạp chất
 
@@ -93,7 +93,7 @@ Hộp số xe ô tô => giúp xe lùi
 
 `abs` => báo hiệu hệ thống chống bó cứng phanh bị lỗi
 
-Áp suất dầu ở mức thấp (hình cái can dầu màu đỏ có giọt nước chảy ra)
+Áp suất dầu ở mức thấp (hình cái can dầu màu đỏ có giọt nước chảy ra); không chọn ý "thiếu dầu phanh" là sai
 
 Đèn táp lô hiện biểu tượng 2 hình tam giác đỏ: báo hiệu xe đang ở tình huống nguy hiểm
 
@@ -110,6 +110,8 @@ Phân loại đường bộ theo chức năng phục vụ: gồm cả đường 
 - Xe thô sơ đi làn đường bên phải trong cùng.
 - Di chuyển tốc độ thấp => đi về phía bên phải.
 
+Thứ tự xuống phà: xe cơ giới, xe máy chuyên dùng xuống trước, xe thô sơ người đi bộ xuống sau.
+
 Đường sắt có tín hiệu/rào chắn đang hoạt động: người tham gia giao thông đường bộ phải dừng lại **bên phải** đường của mình, trước vạch dừng xe.
 
 Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu phải **nằm trong khoảng vạch** mức tối thiểu và tối đa được thể hiện trên que thăm
@@ -120,8 +122,6 @@ Vượt xe là khi chiều đường chỉ có **1 làn đường**.
 - Muốn vượt xe ban đêm (22h-5h) trong khu dân cư: chỉ được báo hiệu bằng đèn
 
 Không được quay đầu xe trên cầu. Nhưng được phép quay đầu xe ở phía trước hoặc phía sau của phần đường dành cho người đi bộ qua đường, trên đường quốc lộ.
-
-Thứ tự xuống phà: xe cơ giới, xe máy chuyên dùng xuống trước, xe thô sơ người đi bộ xuống sau.
 
 - Lái xe **liên tục**: không quá 4 giờ
 - Lái xe làm việc không quá 10 giờ **trong một ngày**.
@@ -150,11 +150,15 @@ Cái hình thiết bị => dùng để kích (hay nâng) xe ô tô
 
 Hệ thống bôi trơn **không** có vai trò cung cấp "một lượng nhiên liệu đầy đủ" => chọn "cả hai ý" là sai
 
+câu điểm liệt: được phép quay đầu xe ở phía trước hoặc phía sau của phần đường dành cho người đi bộ, trên đường quốc lộ => chọn ý "không được quay đầu xe trên cầu"
+
+dây đai an toàn: cơ cấu hãm giữ chặt dây khi giật dây đột ngột => nếu chọn "mở ra khi giật dây" hoặc "cả hai ý trên" là sai
+
 ## Các hạng Bằng Lái & Độ tuổi
 
 - Người đủ `16` tuổi đến dưới `18` tuổi chỉ được điều khiển **xe gắn máy** => `Arya Stark` little girl lái **xe gắn máy** only.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1` (mô tô hai bánh có dung tích xi lanh đến 125 $cm^3$)
-  - Captain Ahab (18) cosplay Clint Eastwood (3.500 kg) drive ô tô hạng B chở người đến 8 chỗ (one ship worth of mates) & đến 3.500 Kg
+  - Captain Ahab (18) hire Clint Eastwood (3.500 kg) drive a Boat (hạng `B`) chở người đến 8 chỗ (one ship worth of mates) & đến 3.500 Kg
 - Người đủ `21` tuổi trở lên được cấp giấy phép lái xe hạng `C, BE`.
   - Cercei (`21`) bú C*c (`C`) suguru geto (`7500`)
 - Người đủ `24` tuổi trở lên được cấp giấy phép lái xe hạng `D1, D2, C1E, CE`.
@@ -182,7 +186,7 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 
 - Hạng `B1` cấp cho người lái xe **mô tô ba bánh** và các loại xe quy định cho giấy phép lái xe hạng A1;
 - Hạng `B` cấp cho người lái xe ô tô chở người **đến 08 chỗ** (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **đến 3.500 kg**; các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg;
-  - Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên **750 kg**;
+  - Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe **hạng B kéo rơ moóc** có khối lượng toàn bộ theo thiết kế trên **750 kg**;
 
 - Hạng `C1` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 3.500 kg đến 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe hạng B;
   - Hạng `C1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
@@ -196,6 +200,9 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 - Hạng `D` cấp cho người lái xe ô tô chở người (kể cả xe buýt) **trên 29 chỗ** (không kể chỗ của người lái xe); xe ô tô chở người giường nằm; các loại xe ô tô chở người quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe các hạng B, C1, C, D1, D2;
   - Hạng `DE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng D kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg; xe ô tô chở khách nối toa.
 
+- Có giấy phép hạng DE chỉ được lái xe hạng D, không được lái xe hạng C
+- Tương tự có giấy phép hạng CE chỉ được lái hạng C, không được lái hạng D1
+
 ## Cự Ly & Tốc Độ
 
 - Trong khu đông dân cư:
@@ -204,8 +211,9 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
   - Đường đôi (có con lươn, đường một chiều): `60 km/h`
   - Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
 - Câu hỏi "trên đường bộ (trừ đường cao tốc), ..., tốc độ khai thác tối đa 50" => chọn xe **chở hàng** bốn bánh có gắn động cơ (không chọn xe chở người bốn bánh)
+  - Hỏi tốc độ khai thác 60 hoặc 50 km/h thì không chọn xe gắn máy, xe máy chuyên dùng (chỉ chạy được 40)
 
-=> Nhớ "đường đôi là chạy nhanh gấp đôi, đường hai chiều là phải chạy chậm hơn".
+=> Nhớ **đường đôi là chạy nhanh gấp đôi, đường hai chiều là phải chạy chậm hơn.**
 
 ---
 
@@ -218,7 +226,7 @@ Ngoài khu vực dân cư:
 
 Đường đôi = đường một chiều
 
-Chọn "ô tô kéo rơ moóc" ở đầu câu.
+Chọn "ô tô kéo rơ moóc" ở đầu câu. Có một ý giống là "xe buýt; ô tô đầu kéo kéo sơ mi rơ moóc" => không được chọn ý này là sai
 
 ## Khoảng Cách An toàn
 
@@ -236,6 +244,8 @@ Lấy max value trừ đi `20` or `25`
 - Dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
 
 ## Biển Báo
+
+Có 5 nhóm biển báo: cấm, nguy hiểm, hiệu lệnh, chỉ dẫn, biển phụ
 
 ### Biển Cấm
 
@@ -278,7 +288,7 @@ Xe buýt là phương tiện công cộng, xe ưu tiên của nhà nước => kh
 - Biển có ghi số, red border, white background là tốc độ **tối đa**.
   - Hết tốc độ tối đa là biển hình tròn, blue border, ghi số, **white background**, gạch chéo ba sọc `///` (biển này nếu không ghi số thì là "hết mọi lệnh cấm")
 - Màu xanh, no border là tốc độ **tối thiểu**.
-  - Hết tốc độ tối thiểu là no border, blue background, ghi số, một gạch chéo màu đỏ
+  - Hết tốc độ tối thiểu là no border, blue background, ghi số, một gạch chéo solid màu đỏ
 
 - chiều dài đoạn đường => chọn biển 2 mũi tên thẳng đứng
 - Chiều ngang => mũi tên nằm ngang
@@ -312,7 +322,7 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
   - có vẽ trục => hạn chế tải trọng **trên trục xe**
 - Cấm xe có tải trọng > số ghi trên biển
 
-- Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ **không** cấm quay đầu, trừ khi vẽ hai mũi tên lồng nhau.
+- Các biển vẽ mũi tên: cấm rẽ trái (tròn, viền màu đỏ) thì sẽ **không** cấm quay đầu, trừ khi biển báo vẽ hai mũi tên lồng nhau.
 - Các biển hiệu lệnh (hình tròn màu xanh) nếu mũi tên chỉ bên trái / phải hay đi thẳng thì bắt buộc phải đi theo hướng mũi tên, không được phép quay đầu.
   - Biển hiệu lệnh màu xanh hình vuông 2 mũi tên quay đầu ("khu vực quay xe") không cấm rẽ trái.
 
@@ -338,7 +348,8 @@ Biển báo đường dành riêng cho người đi bộ => xe không được v
 
 - Cả hai biển dấu nhân chữ X => giao nhau **vuông góc** với đường sắt (không có rào chắn)
 - Biển có hình quân hàm => giao nhau **không** vuông góc với đường sắt
-- Biển có hình đầu kéo xe lửa => "giao nhau với đường sắt **không có rào chắn**"
+- Biển có hình đầu kéo xe lửa (cói khói smoke) => "giao nhau với đường sắt **không có rào chắn**" (tránh nhầm với biển "giao nhau với tàu điện", ở VN không có tàu điện)
+- Biển vẽ hình hàng rào là biển "giao nhau với đường sắt có rào chắn", 2 biển kia là "không có rào chắn"
 
 - Lên 9, xuống 10
 - dốc lên chọn biển số 9%
@@ -389,12 +400,11 @@ Biển "Các xe chỉ được đi thẳng và rẽ trái" vẫn cho phép quay 
 
 Câu hỏi có chữ "địa giới" => chọn biển có chữ "địa phận" (nằm chính giữa)
 
-Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc độ đến mức an toàn và không được vượt (không cần phải dừng xe).
+Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc độ đến mức an toàn và không được vượt (**không cần phải dừng xe**).
 
 - Biển có hai mũi tên vertical `↑↓` => đỏ (tròn) nhường - xanh (vuông) ưu tiên
-  - Hình vuông, màu xanh => Biển chỉ dẫn "Được **ưu tiên** qua đường hẹp"
+  - Hình vuông, blue background, hai mũi tên vertical `↑↓` => Biển chỉ dẫn "Được **ưu tiên** qua đường hẹp"
   - Hình tròn, red border, nền trắng, hai mũi tên vertical `↑↓` => Biển cấm: "**Nhường đường** cho xe cơ giới đi ngược chiều qua đường hẹp".
-
 - Tam giác, red border, nền vàng, hai mũi tên vertical `↑↓` => Đường hai chiều
   - Nếu vẽ hình 2 mũi tên nằm ngang horizontal là: "giao nhau với đường hai chiều".
 
@@ -466,7 +476,7 @@ Câu hỏi không có biển báo
   - `538`: tất cả các loại xe trên thì sẽ bao gồm xe con luôn (câu này trong các đáp án không có chữ "xe con")
   - `565`: xe khách, xe mô tô (câu này chỉ có 2/4 đáp án có chữ xe con nên loại hai đáp án này)
 
-- Thấy đoàn xe đang "chạy đua" (racing) với nhau trên nhiều làn đường (câu hỏi vi phạm) => nhìn xe cuối: lấy số bánh trừ 1 kết quả là đáp án:
+- Thấy đoàn xe đang "chạy đua" (racing) với nhau trên nhiều làn đường (câu hỏi "những xe nào vi phạm quy tắc giao thông") => nhìn xe cuối: lấy số bánh trừ 1 kết quả là đáp án:
   - Xe cuối mô tô 2 bánh trừ 1 chọn ý 1
   - Xe cuối ô tô 4 bánh trừ 1 chọn ý 3
 - Xe chạy đè vạch kẻ liền là vi phạm
