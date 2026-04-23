@@ -57,7 +57,7 @@ Kéo xe hỏng phanh => nối bằng **thanh nối cứng**.
 
 - Không vượt (1 làn/chiều) khi có chướng ngại vật phía trước, hoặc xe trước đang xin vượt
 - Được phép **vượt phải** khi: xe trước có tín hiệu rẽ trái hoặc đang rẽ trái, hoặc xe chuyên dùng đang làm việc mà không thể vượt trái
-  - Khi xe phía trước đang đi sát lề đường bên trái thì không được vượt phải
+  - Khi xe phía trước đang đi sát lề đường bên trái thì **không** được vượt phải
 
 - GPLX đã bị trừ hết điểm, để phục hồi: sau ít nhất 06 tháng, kiểm tra kiến thức pháp luật -> phục hồi đủ 12 điểm
 - Phải tham gia thi kiểm tra mới được phục hồi điểm (không chọn câu "cả hai ý trên")
@@ -71,8 +71,8 @@ máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn
 - Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, nhiệt độ cao bất thường => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy (không chọn cả ba ý trên)
 - Nếu **xét thấy có khả năng dập tắt đám cháy** => chọn "cả hai ý trên": tắt khóa điện, hô hoán, gọi cảnh sát + sử dụng nước để dập lửa
 
-- Khởi hành xe số tự động: đạp phanh chân hết cỡ (**hết hành trình**), vào số và nhả phanh đỗ (hand brake), kiểm tra số rồi mới lăn bánh.
-- Khởi hành xe số sàn: đạp ly hợp (côn) hết hành trình
+- Khởi hành xe số tự động có trang bị chìa khóa thông minh: đạp bàn đạp phanh chân hết cỡ (**hết hành trình**), vào số và nhả phanh đỗ (hand brake), kiểm tra số rồi mới lăn bánh.
+- Khởi hành xe số sàn: đạp ly hợp (côn) hết hành trình12
 
 Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng phải kéo cần phanh tay về **phía sau** đồng thời bóp khóa hãm.
 
@@ -84,7 +84,7 @@ Bộ phận giảm thanh: bắt buộc
 
 Kính chắn gió ô tô => là loại kính **an toàn** (không chọn kính trong suốt là sai)
 
-Động cơ diesel không nổ: nhiên liệu lẫn tạp chất
+Động cơ diesel không nổ => nhiên liệu lẫn tạp chất.
 
 - Niên hạn xe **ô tô khách** chở người (>8 chỗ): không quá 20 năm => chở người là chở bob ross
 - Niên hạn xe **ô tô tải**: không quá 25 năm => ô tô tải chở cây thập giá chúa jesus
@@ -124,7 +124,7 @@ Vượt xe là khi chiều đường chỉ có **1 làn đường**.
 Không được quay đầu xe trên cầu. Nhưng được phép quay đầu xe ở phía trước hoặc phía sau của phần đường dành cho người đi bộ qua đường, trên đường quốc lộ.
 
 - Lái xe **liên tục**: không quá 4 giờ
-- Lái xe làm việc không quá 10 giờ **trong một ngày**.
+- Lái xe làm việc không quá 10 giờ **trong một ngày** (or else Aokiji will arrest you!).
 
 Không dừng, đỗ xe: miệng cống, hầm, phạm vi an toàn đường sắt.
 
@@ -154,7 +154,7 @@ câu điểm liệt: được phép quay đầu xe ở phía trước hoặc ph�
 
 dây đai an toàn: cơ cấu hãm giữ chặt dây khi giật dây đột ngột => nếu chọn "mở ra khi giật dây" hoặc "cả hai ý trên" là sai
 
-## Các hạng Bằng Lái & Độ tuổi
+## Các hạng Bằng Lái & Độ Tuổi
 
 - Người đủ `16` tuổi đến dưới `18` tuổi chỉ được điều khiển **xe gắn máy** => `Arya Stark` little girl lái **xe gắn máy** only.
 - Người đủ `18` tuổi trở lên được cấp giấy phép lái xe hạng `A1, A, B1, B, C1` (mô tô hai bánh có dung tích xi lanh đến 125 $cm^3$)
@@ -266,7 +266,7 @@ Có 5 nhóm biển báo: cấm, nguy hiểm, hiệu lệnh, chỉ dẫn, biển 
   - cấm máy kéo (đầu kéo container)
   - cấm xe kéo rơ móc (đầu kéo + thùng hàng, máy kéo kéo theo rơ moóc), đầu kéo không có thùng hàng vẫn được đi
 
-xích lô, ly bia, con ngựa => ý cuối
+xích lô, ly bia, con ngựa => ý cuối (nhiều khi là ý 4, không phải ý 3)
 
 Xe buýt là phương tiện công cộng, xe ưu tiên của nhà nước => không có biển nào cấm xe buýt. Chỉ có biển cấm ô tô chở khách
 
@@ -412,6 +412,10 @@ Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc đ
   - gạch `////` => đi về bên trái
   - gạch `\\\\` => đi về bên phải
   - Gạch `^^^^` => đi được cả 2 hướng
+
+- biển vẽ hình người đi lên upward bậc thang => "cầu vượt qua đường cho người đi bộ"
+- Biển vẽ hình người đi xuống downward bậc thang => "hầm chui qua đường cho người đi bộ"
+- **Không** chọn "cả hai biển" là sai
 
 ### Vạch Kẻ Đường
 
