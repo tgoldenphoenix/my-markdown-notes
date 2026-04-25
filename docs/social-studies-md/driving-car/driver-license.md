@@ -42,7 +42,7 @@ Nguời ngồi sau không đội mũ bảo hiểm: phạt **cả người lái v
 
 Phần của đường bộ được sử dụng [...] là **phần đường xe chạy**
 
-- Vạch kẻ đường **phân chia** làn đường.
+- Vạch kẻ đường là vạch chỉ sự **phân chia** làn đường (không chọn cả ba ý là sai).
 - Dải phân cách phân chia **phần đường xe chạy** [...]
 
 - Người **điều khiển giao thông** đường bộ => cảnh sát giao thông
@@ -68,7 +68,7 @@ Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khá
 
 máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn động mạch)
 
-- Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, nhiệt độ cao bất thường => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy (không chọn cả ba ý trên)
+- Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, **nhiệt độ cao bất thường** => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy (không chọn cả ba ý trên)
 - Nếu **xét thấy có khả năng dập tắt đám cháy** => chọn "cả hai ý trên": tắt khóa điện, hô hoán, gọi cảnh sát + sử dụng nước để dập lửa
 
 - Khởi hành xe số tự động có trang bị chìa khóa thông minh: đạp bàn đạp phanh chân hết cỡ (**hết hành trình**), vào số và nhả phanh đỗ (hand brake), kiểm tra số rồi mới lăn bánh.
@@ -76,7 +76,7 @@ máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn
 
 Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng phải kéo cần phanh tay về **phía sau** đồng thời bóp khóa hãm.
 
-- Khi xuống dốc dài, về số thấp (không về số 0, số N hay số cao), đạp ½ ly hợp (côn)
+- Khi giảm tốc độ xuống dốc dài, **về số thấp** (không về số 0, số N hay số cao), đạp ½ ly hợp (côn)
 
 tăng ga từ từ, giảm ga thật nhanh
 
@@ -86,10 +86,7 @@ Kính chắn gió ô tô => là loại kính **an toàn** (không chọn kính t
 
 Động cơ diesel không nổ => nhiên liệu lẫn tạp chất.
 
-- Niên hạn xe **ô tô khách** chở người (>8 chỗ): không quá 20 năm => chở người là chở bob ross
-- Niên hạn xe **ô tô tải**: không quá 25 năm => ô tô tải chở cây thập giá chúa jesus
-
-Hộp số xe ô tô => giúp xe lùi
+Hộp số xe ô tô => giúp xe chuyển động lùi
 
 `abs` => báo hiệu hệ thống chống bó cứng phanh bị lỗi
 
@@ -106,7 +103,7 @@ Xe **xuống dốc** phải nhường đường cho xe đang lên dốc.
 
 Phân loại đường bộ theo chức năng phục vụ: gồm cả đường bên & đường nội bộ.
 
-- Xe cơ giới, xe máy chuyên dùng phải đi trên làn đường **bên trái**.
+- Xe cơ giới, xe **máy chuyên dùng** phải đi trên làn đường **bên trái**.
 - Xe thô sơ đi làn đường bên phải trong cùng.
 - Di chuyển tốc độ thấp => đi về phía bên phải.
 
@@ -114,7 +111,7 @@ Thứ tự xuống phà: xe cơ giới, xe máy chuyên dùng xuống trước, 
 
 Đường sắt có tín hiệu/rào chắn đang hoạt động: người tham gia giao thông đường bộ phải dừng lại **bên phải** đường của mình, trước vạch dừng xe.
 
-Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu phải **nằm trong khoảng vạch** mức tối thiểu và tối đa được thể hiện trên que thăm
+Phương pháp kiểm tra mức dầu bôi trơn động cơ => mức dầu phải **nằm trong khoảng vạch mức** tối thiểu và tối đa được thể hiện trên que thăm
 
 Vượt xe là khi chiều đường chỉ có **1 làn đường**.
 
@@ -154,6 +151,8 @@ câu điểm liệt: được phép quay đầu xe ở phía trước hoặc ph�
 
 dây đai an toàn: cơ cấu hãm giữ chặt dây khi giật dây đột ngột => nếu chọn "mở ra khi giật dây" hoặc "cả hai ý trên" là sai
 
+Hệ thống lái => dùng để thay đồi **hướng chuyển động** (không chọn mô men là sai)
+
 ## Các hạng Bằng Lái & Độ Tuổi
 
 - Người đủ `16` tuổi đến dưới `18` tuổi chỉ được điều khiển **xe gắn máy** => `Arya Stark` little girl lái **xe gắn máy** only.
@@ -181,7 +180,8 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 
 15 hạng của Giấy phép lái xe:
 
-- Hạng `A1` cấp cho người lái xe mô tô hai bánh có dung tích xi lanh **đến 125 cm3** hoặc có công suất động cơ điện đến 11 kW;
+- Hạng `A1` cấp cho người lái xe mô tô **hai bánh** có dung tích xi lanh **đến 125 cm3** hoặc có công suất động cơ điện đến 11 kW;
+  - Hạng A1 **không** được lái mô tô ba bánh (B1 mới được lái)
 - Hạng `A` cấp cho người lái xe mô tô hai bánh có dung tích xi lanh **trên 125 cm3** hoặc có công suất động cơ điện trên 11 kW và các loại xe quy định cho giấy phép lái xe hạng A1;
 
 - Hạng `B1` cấp cho người lái xe **mô tô ba bánh** và các loại xe quy định cho giấy phép lái xe hạng A1;
@@ -206,7 +206,7 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 ## Cự Ly & Tốc Độ
 
 - Trong khu đông dân cư:
-- Xe gắn máy & xe máy chuyên dùng always `40 km/h` max (tất cả mọi con đường).
+- Xe **gắn máy & xe máy chuyên dùng** always `40 km/h` max (tất cả mọi con đường).
 - Tất cả các loại xe còn lại:
   - Đường đôi (có con lươn, đường một chiều): `60 km/h`
   - Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
@@ -243,6 +243,9 @@ Lấy max value trừ đi `20` or `25`
 - Dừng xe, đỗ xe cách lề đường, hè phố không quá `0,25` mét => hình dán jesus christ phía sau xe.
 - Dừng xe, đỗ xe trên đường hẹp cách xe khác `20m` (bob ross).
 
+- Niên hạn xe **ô tô khách** chở người (>8 chỗ): không quá 20 năm => chở người là chở bob ross
+- Niên hạn xe **ô tô tải**: không quá 25 năm => ô tô tải chở cây thập giá chúa jesus
+
 ## Biển Báo
 
 Có 5 nhóm biển báo: cấm, nguy hiểm, hiệu lệnh, chỉ dẫn, biển phụ
@@ -255,7 +258,9 @@ Có 5 nhóm biển báo: cấm, nguy hiểm, hiệu lệnh, chỉ dẫn, biển 
 
 - Đối với xe **ô tô**, nếu cấm xe nhỏ thì cũng sẽ cấm luôn xe lớn hơn.
   - Cấm ô tô thì sẽ cấm luôn cả xe tải.
+  - Cấm ô tô thì cấm cấm luôn mô tô ba bánh chở hàng
 - Xe **mô tô** thì chỉ cấm duy nhất loại xe được vẽ hình trên biển, các xe khác không bị cấm.
+  - cấm mô tô (vẽ hình người lái motor) thì cấm cả mô tô 3 bánh chở hàng
 
 - cấm mô tô (biển vẽ hình người lái mô tô) thì cấm luôn cả mô tô 3 bánh chở hạn.
 - cấm ô tô thì cấm luôn cả **mô tô 3 bánh** chở hàng.
@@ -330,6 +335,9 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 
 Biển `> 3,2 m <` => hạn chế **chiều ngang** của xe và hàng (không phải chiều dài của xe) => còn một biển giống vậy "hạn chế chiều cao"
 
+- biển phụ: `↑ 800 m ↑` => phạm vi tác dụng của biển
+- biển phụ: `800 m` => khoảng cách đến đối tượng báo hiệu
+
 ### Biển Nguy Hiểm
 
 - Đường đôi => ly nằm ngửa
@@ -364,8 +372,8 @@ Biển vẽ hình tia sét => chọn "có đường **dây điện** cắt ngang
 - đường có ổ gà, lồi lõm => two boobs => chick, gà mái => ổ gà
 - đường có gồ giảm tốc phía trước => chỉ có một chỗ lồi lên
 
- Biển báo **đoạn đường có nền yếu** vẽ dấu `!` và biểu tượng "đứt gãy địa chất"
- 
+Biển báo **đoạn đường có nền yếu** vẽ dấu `!` và biểu tượng "đứt gãy địa chất"
+
 ### Hiệu Lệnh & Chỉ Dẫn
 
 - Các biển **hình tròn** là biển hiệu lệnh thì bắt buộc phải theo (hiệu lệnh)
@@ -413,6 +421,11 @@ Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc đ
   - gạch `\\\\` => đi về bên phải
   - Gạch `^^^^` => đi được cả 2 hướng
 
+- Hướng tránh trên cao tốc:
+  - Tránh bên trái => dấu sắc ////
+  - Bên phải => dấu huyền `\\\\\`
+  - Cả hai bên => chữ V (^^^^^)
+
 - biển vẽ hình người đi lên upward bậc thang => "cầu vượt qua đường cho người đi bộ"
 - Biển vẽ hình người đi xuống downward bậc thang => "hầm chui qua đường cho người đi bộ"
 - **Không** chọn "cả hai biển" là sai
@@ -427,13 +440,6 @@ Thấy biển báo màu blue ghi chữ "CSGT & police" => phải giảm tốc đ
 - Hỏi vạch tim đường (phân chia hai chiều xe chạy **ngược chiều** nhau) => vạch vàng
 - Vạch hình chữ V (`> >   > >`) => khoảng cách
 - Vạch hình thoi => sắp đến chỗ người đi bộ qua đường
-
----
-
-- Hướng tránh trên cao tốc:
-  - Tránh bên trái => dấu sắc ////
-  - Bên phải => dấu huyền `\\\\\`
-  - Cả hai bên => chữ V (^^^^^)
 
 ## Sa hình
 
@@ -562,9 +568,6 @@ Xòng xuyến, thấy đầu xe buýt chạm cây cột chỉ tên đường là
 - **Sương mù đường xấu**, xe tải lấn làn vượt => vừa thấy đầu xe tải nhô ra là bấm
 - **Sương mù đường đẹp** => vừa thấy đầu xe con trắng lấn làn vượt là bấm
 - Sương mù xe khác có biển báo công trường thi công => nhìn bên phải, vừa thấy tới gần sát biển công trường là bấm
-
-- Em bé sang đường ban đêm (có biển báo em bé sang đường) => không nhìn thấy cửa màu đỏ sau cột biển báo là bấm
-- Trẻ em trên đường ban ngày => qua khuất không nhìn thấy hàng rào xanh thứ 2 là bấm
 
 ## Thi thực hành
 
