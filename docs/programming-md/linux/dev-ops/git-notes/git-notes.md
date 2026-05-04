@@ -84,8 +84,6 @@ Generate ssh key with your github email > add to ssh-agen > add to github
 
 ### Initializing a new repository
 
-anki
-
 `git init` (automatically create the `master or main` branch). Executing this command will create a new `.git` subdirectory in your current working directory.
 
 - The command `git clone <repo url>`
@@ -108,7 +106,7 @@ Git SSH URLs follow a template of: `git@HOSTNAME:USERNAME/REPONAME.git`. Host na
 
 ### git diff
 
-`git diff` so sánh sự khác nhau của  cùng một file nhưng ở các "stage" khác nhau trong git; `git diff` không dùng để so sánh 2 file khác nhau.  
+`git diff` so sánh sự khác nhau của cùng một file nhưng ở các "stage" khác nhau trong git; `git diff` không dùng để so sánh 2 file khác nhau.  
 `git diff` does **NOT** compare file A and file B (there are different tool for that). It compare the same file A in different stages: same file on different commits, staged file and the latest commit, same file but on different branch.
 
 Nếu `git status` không có file nào modified thì `git diff` không có output gì hết.
@@ -237,7 +235,9 @@ If you place a `^` (caret) **at the end** of a reference, Git resolves it to mea
 
 You can also specify a number after the `^` to identify which parent you want; for example, `d921970^2` means “the second parent of d921970.” This syntax is useful only for merge commits, which have more than one parent — the first parent of a merge commit is from the branch you were on when you merged (frequently master), while the second parent of a merge commit is from the branch that was merged (say, topic).
 
-The other main ancestry specification is the `~` (tilde). This also refers to the first parent, so `HEAD~` and `HEAD^` are equivalent. The difference becomes apparent when you specify a number. `HEAD~2` means “the first parent of the first parent,” or “the grandparent” — it traverses the first parents the number of times you specify.
+- The other main ancestry specification is the `~` (tilde). This also refers to the first parent, so `HEAD~` and `HEAD^` are equivalent. The difference becomes apparent when you specify a number:
+  - `HEAD~1`: is the parent of `HEAD`
+  - `HEAD~2` (or `HEAD~~`) means “the first parent of the first parent,” or “the grandparent” — it traverses the first parents the number of times you specify.
 
 Git use zero-based indexing.
 
@@ -334,7 +334,7 @@ The ending number doesn’t have to be a specific number. You can spec-ify it as
 
 ## Add & Commit
 
-`git add *` does not add deleted files. Chỉ nên dùng `git add .` or `git add -A`.
+`git add *` does not add deleted files. Chỉ nên dùng `git add .` or `git add -A` để "add all files".
 
 `git add` is also used to mark merge conflicts as resolved.
 
@@ -931,6 +931,8 @@ Git branch = pointer = references (stored in `.git/refs`)
 
 For instance, when you use the log command, how does Git know which commit it should start displaying results from? `HEAD` provides the answer.  
 When you create a new commit, its parent is indicated by where `HEAD` currently points to.
+
+anki
 
 When you change branches, HEAD is updated to point to the branch you’ve switched to.
 
