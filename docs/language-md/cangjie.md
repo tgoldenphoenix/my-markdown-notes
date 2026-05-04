@@ -104,8 +104,10 @@ Triple-unit characters
 - 張 (弓 // 尸一女)
   - 张 (弓心人)
 
-- 刀 (尸竹) vs. 刃 (尸竹戈)
+- 刀 (尸竹) vs. 刃 (尸竹戈) - blade, sword
   - 昭 (日 // 尸竹口)
+  - 認 (卜口 // 尸戈心)
+
 - 司 (尸一口) - company
 - 幻 (女戈 // 尸)
 - 成 (戈竹尸)
@@ -357,7 +359,7 @@ anki
   - 政 (一一 // 人大)
 - 匕 (山竹)
   - 此 (卜一 // 心) - two unit character: F+L // F2+L
-  - 些 (卜心 // 一一) - three unit character; take F-L of the first unit
+  - 些 (卜心 // 一 // 一) - triple unit character; take F-L of the first unit
 
 - 風 (竹弓 // 竹中戈) - wind
   - 虫 (中一戈)
@@ -440,6 +442,8 @@ anki
 - 其 (廿一一金)
 - 期 (廿金 月) - double unit characters, only take F+L of the first unit
 - 基 (廿金土) - double unit character, only take F+L of the first unit
+
+- 某 (廿一木) - wicker basket
 
 - 展 (尸廿女)
 
