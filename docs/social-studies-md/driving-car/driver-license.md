@@ -153,6 +153,8 @@ dây đai an toàn: cơ cấu hãm giữ chặt dây khi giật dây đột ng�
 
 Hệ thống lái => dùng để thay đồi **hướng chuyển động** (không chọn mô men là sai)
 
+Xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh => cả 3 ý trên
+
 ## Các hạng Bằng Lái & Độ Tuổi
 
 - Người đủ `16` tuổi đến dưới `18` tuổi chỉ được điều khiển **xe gắn máy** => `Arya Stark` little girl lái **xe gắn máy** only.

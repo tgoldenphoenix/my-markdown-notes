@@ -932,8 +932,6 @@ Git branch = pointer = references (stored in `.git/refs`)
 For instance, when you use the log command, how does Git know which commit it should start displaying results from? `HEAD` provides the answer.  
 When you create a new commit, its parent is indicated by where `HEAD` currently points to.
 
-anki
-
 When you change branches, HEAD is updated to point to the branch you’ve switched to.
 
 The normal state is when `HEAD` points to a branch.  
