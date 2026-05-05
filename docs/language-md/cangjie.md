@@ -41,6 +41,8 @@ Triple-unit characters
   - 空 (十金 // 一) double unit character
 - 西 (一金田) - west
   - 覀 (一中中田)
+- 深 (水 // 月金 // 木) - miniskirt
+
 - 賈 (一田 // 月山金) - double unit, merchant
   - 贾 (一田月人)
 - 要 (一田女)
@@ -140,6 +142,8 @@ Triple-unit characters
 - 秀 (竹木 // 弓竹尸) - excel
   - 透 (卜 // 竹木尸) - double unit
 - 乃 (弓竹尸) - fist
+  - 為 (戈大弓火)
+  - 刀 (尸竹)
 
 - 族 (卜尸 // 人人大) - banner
 
@@ -312,6 +316,7 @@ anki
 - 目 (月山) - eye
   - 眼 (月山 // 日女)
 - 直 (十月一一)
+- 具 (月一一金) - tool
 
 - 調 (卜口 // 月土口)
 
@@ -521,6 +526,7 @@ anki
 - 為 (戈大弓火)
 
 - 左 (大一) - left
+- 有 (大月) - possess
 - 隨 (弓中 // 卜 // 大月)
 
 - 又 (弓大)
