@@ -6,17 +6,17 @@ OAuth is a security protocol used to protect web APIs.
 
 The OAuth 2.0 `authorization framework` enables a third-party application to obtain limited access to an HTTP service, either on behalf of a resource owner by orchestrating an approval interaction between the resource owner and the HTTP service, or by allowing the third-party application to obtain access on its own behalf.
 
-as an _authorization framework_, OAuth is all about getting the right of access from one component of a system to another. In particular, in the OAuth world, a client application wants to gain access to a protected resource on behalf of a resource owner (usually an end user).
+As an _authorization framework_, OAuth is all about getting the right of access from one component of a system to another. In particular, in the OAuth world, a client application wants to gain access to a protected resource **on behalf** of a resource owner (usually an end user).
 
-- The _resource owner_ has access to an API and can delegate access to that API. The resource owner is usually a person and is generally assumed to have access to a web browser
-- The _protected resource_ is the component that the resource owner has access to. This can take many different forms, but for the most part it’s a web API of some kind. Even though the name “resource” makes it sound as though this is something to be downloaded, these APIs can allow read, write, and other operations just as well.
-- The _client_ is the piece of software that accesses the protected resource on behalf of the resource owner. If you’re a web developer, the name “client” might make you think this is the web browser, but that’s not how the term is used here. If you’re a business application developer, you might think of the “client” as the person who’s paying for your services, but that’s not what we’re talking about, either. In OAuth, the client is whatever software consumes the API that makes up the protected resource.
+- The `resource owner` has access to an API and can **delegate access** to that API. The resource owner is usually a person and is generally assumed to have access to a web browser.
+- The `protected resource` is the component that the resource owner has access to. This can take many different forms, but for the most part it’s a web API of some kind. Even though the name “resource” makes it sound as though this is something to be downloaded, these APIs can allow read, write, and other operations just as well.
+- The `client` is the piece of software that accesses the protected resource **on behalf** of the resource owner. If you’re a web developer, the name “client” might make you think this is the web browser, but that’s not how the term is used here. If you’re a business application developer, you might think of the “client” as the person who’s paying for your services, but that’s not what we’re talking about, either. In OAuth, the client is whatever software consumes the API that makes up the protected resource.
 
-OAuth 2.0 is a delegation protocol, a means of letting someone who controls a resource allow a software application to access that resource on their behalf without impersonating them.  
+OAuth 2.0 is a **delegation protocol**, a means of letting someone who controls a resource allow a software application to access that resource on their behalf **without impersonating** them.  
 The application requests authorization from the owner of the resource and receives _tokens_ that it can use to access the resource.  
 This all happens without the application needing to impersonate the person who controls the resource, since the token explicitly represents a delegated right of access.
 
-you can think of the OAuth token as a “valet key” for the web. the valet key provides additional security beyond simply handing over the regular key. The valet key of a car allows the owner of the car to give limited access to someone, the valet, without handing over full control in the form of the owner’s key. OAuth tokens can limit the client’s access to only the actions that the resource owner has delegated.
+You can think of the OAuth token as a “valet key” for the web. the valet key provides additional security beyond simply handing over the regular key. The valet key of a car allows the owner of the car to give limited access to someone, the valet, without handing over full control in the form of the owner’s key. OAuth tokens can limit the client’s access to only the actions that the resource owner has delegated.
 
 The server give a token to the client. The token explicitly represents a **delegated right of access** without the client application needing to impersonate the person who controls the resource.
 
@@ -276,7 +276,7 @@ The Authorization header is recommended whenever possible because of limitations
 
 The Authorization header provides the maximum flexibility and security of all three methods, but it has the downside of being more difficult for some clients to use. A robust client or server library will provide all three methods where appropriate, and in fact our demonstration protected resource will accept an access token in any of the three locations.
 
-### Refresh the access token
+### Refresh the Access Token
 
 How does an OAuth client know whether its access token is any good? The only real way to be sure is to use it and see what happens. If the token is expected to expire, the authorization server can give a hint as to the expected expiration by using the optional expires_in field of the token response. This is a value in seconds from the time of token issuance that the token is expected to no longer work. A well-behaved client will pay attention to this value and throw out any tokens that are past the expiration time.
 

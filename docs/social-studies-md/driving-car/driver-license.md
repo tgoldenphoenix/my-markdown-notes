@@ -50,6 +50,11 @@ Phần của đường bộ được sử dụng [...] là **phần đường xe
 
 Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm** => nhớ trẻ em không thể đứng ở ngoài chứ đừng nói trong xe.
 
+Lắp giám sát hành trình: chọn cả 2 ý
+
+- Xe đưa đón trẻ em mầm non, học sinh: Được ưu tiên phân luồng, điều tiết, bố trí nơi dừng/đỗ (chứ không được bố trí xe dẫn gì hết).
+- Xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh => cả 3 ý trên
+
 - Giao nhau **có vòng xuyến**, nhường xe đến từ bên **trái**.
 - Giao nhau **không** vòng xuyến, nhường xe **bên phải** (câu điểm liệt.)
 
@@ -68,7 +73,7 @@ Trước khi xe khách khởi hành: kiểm tra an toàn xe, hướng dẫn khá
 
 máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn động mạch)
 
-- Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, **nhiệt độ cao bất thường** => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy (không chọn cả ba ý trên)
+- Phát hiện xe có ngọn lửa, khói, dấu hiệu cháy, **nhiệt độ cao bất thường** => **bình tĩnh**, đưa xe sát vào lề đường, tắt khóa điện, thực hiện các bước chữa cháy (không chọn cả ba ý trên là sai.)
 - Nếu **xét thấy có khả năng dập tắt đám cháy** => chọn "cả hai ý trên": tắt khóa điện, hô hoán, gọi cảnh sát + sử dụng nước để dập lửa
 
 - Khởi hành xe số tự động có trang bị chìa khóa thông minh: đạp bàn đạp phanh chân hết cỡ (**hết hành trình**), vào số và nhả phanh đỗ (hand brake), kiểm tra số rồi mới lăn bánh.
@@ -76,7 +81,7 @@ máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn
 
 Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng phải kéo cần phanh tay về **phía sau** đồng thời bóp khóa hãm.
 
-- Khi giảm tốc độ xuống dốc dài, **về số thấp** (không về số 0, số N hay số cao), đạp ½ ly hợp (côn)
+- Khi giảm tốc độ xuống dốc dài: nhả bàn đạp ga, **về số thấp** (không về số 0, số N hay số cao), đạp ½ ly hợp (côn); đạp phanh chân với mức độ phù hợp (không đạp mạnh phanh chân).
 
 tăng ga từ từ, giảm ga thật nhanh
 
@@ -86,7 +91,7 @@ Kính chắn gió ô tô => là loại kính **an toàn** (không chọn kính t
 
 Động cơ diesel không nổ => nhiên liệu lẫn tạp chất.
 
-Hộp số xe ô tô => giúp xe chuyển động lùi
+Hộp số xe ô tô => giúp xe **chuyển động lùi**.
 
 `abs` => báo hiệu hệ thống chống bó cứng phanh bị lỗi
 
@@ -129,17 +134,13 @@ Xe sau xin vượt (không an toàn): Có tín hiệu rẽ trái báo chưa an t
 
 Xe ưu tiên (trừ xe tang) khi làm nhiệm vụ: Không hạn chế tốc độ, không phụ thuộc tín hiệu đèn giao thông, được đi ngược chiều trên làn đường dừng khẩn cấp cao tốc => cả 3 ý trên
 
-Lắp giám sát hành trình: chọn cả 2 ý
-
-Xe đưa đón trẻ em mầm non, học sinh: Được ưu tiên phân luồng, điều tiết, bố trí nơi dừng/đỗ (chứ không được bố trí xe dẫn gì hết).
-
 Có một câu hỏi "những hành vi nào dưới đây là thiếu văn hóa khi xảy ra ùn tắc?" => Chọn "Bấm còi liên tục thúc giục; đi trên vỉa hè"
 
 Có một câu rẽ phải: tín hiệu rẽ sớm, giảm tốc độ (chọn ý 2, không chọn ý 3 dài hơn là sai)
 
 Đi qua rãnh lớn cắt ngang mặt đường (số sàn): về số 1, từ từ và **KHÔNG** tăng số
 
-Điều chỉnh ghế (động cơ đã nổ): cần số ở N, P, hoặc số 0
+Điều chỉnh ghế của người lái (động cơ đã nổ): cần số ở N, P, hoặc số 0
 
 Cái hình thiết bị => dùng để kích (hay nâng) xe ô tô
 
@@ -151,9 +152,10 @@ câu điểm liệt: được phép quay đầu xe ở phía trước hoặc ph�
 
 dây đai an toàn: cơ cấu hãm giữ chặt dây khi giật dây đột ngột => nếu chọn "mở ra khi giật dây" hoặc "cả hai ý trên" là sai
 
-Hệ thống lái => dùng để thay đồi **hướng chuyển động** (không chọn mô men là sai)
+- Hệ thống lái => dùng để thay đồi **hướng chuyển động** (không chọn mô men là sai)
+- Hệ thống truyền lực => truyền mô men quay từ động cơ tới các bánh xe
 
-Xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh => cả 3 ý trên
+Người tham gia giao thông đường bộ bao gồm cả người đi bộ trên đường, người dẫn dắt vật nuôi trên đường => chọn cả hai ý
 
 ## Các hạng Bằng Lái & Độ Tuổi
 
@@ -166,6 +168,7 @@ Xe ô tô kinh doanh vận tải chở trẻ em mầm non, học sinh => cả 3 
   - Beric Dondarion lái xe trung chuyển 16 chỗ phương trang
 - Người đủ `27` tuổi trở lên được cấp giấy phép lái xe hạng `D, D1E, D2E, DE`.
   - Bill gate (`27`) là một thằng dâm Dê (hạng `D`) lái xe trên 29 chỗ chở bà nội Ngọc
+
 - Tuổi tối đa của người lái xe ô tô chở người (kể cả xe buýt) trên 29 chỗ (không kể chỗ của người lái xe), xe ô tô chở người giường nằm là đủ `57` (Queequeg) tuổi đối với nam, đủ `55` tuổi đối với nữ.
 
 Loại tất cả đáp án có số tuổi: 17, 23, 22
@@ -190,7 +193,7 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 - Hạng `B` cấp cho người lái xe ô tô chở người **đến 08 chỗ** (không kể chỗ của người lái xe); xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **đến 3.500 kg**; các loại xe ô tô quy định cho giấy phép lái xe hạng B kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg;
   - Hạng `BE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe **hạng B kéo rơ moóc** có khối lượng toàn bộ theo thiết kế trên **750 kg**;
 
-- Hạng `C1` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 3.500 kg đến 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe hạng B;
+- Hạng `C1` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế trên 3.500 kg **đến 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế đến 750 kg; các loại xe quy định cho giấy phép lái xe hạng B;
   - Hạng `C1E` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C1 kéo rơ moóc có khối lượng toàn bộ theo thiết kế trên 750 kg;
 - Hạng `C` cấp cho người lái xe ô tô tải và ô tô chuyên dùng có khối lượng toàn bộ theo thiết kế **trên 7.500 kg**; các loại xe ô tô tải quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **đến** 750 kg; các loại xe quy định cho giấy phép lái xe hạng B và hạng C1;
   - Hạng `CE` cấp cho người lái các loại xe ô tô quy định cho giấy phép lái xe hạng C kéo rơ moóc có khối lượng toàn bộ theo thiết kế **trên** 750 kg; xe ô tô đầu kéo kéo sơ mi rơ moóc;
@@ -238,8 +241,8 @@ Lấy max value trừ đi `20` or `25`
 
 - Khoảng cách an toàn tối thiểu:
   - 60 km/h = 35m => Clint east wood chở shinobu trên con ngựa
-  - 60 - 80 km/h = 55m => Edward elric chở hotarou xe trên xe hơi
-  - 80 - 100 km/h = 70m => aokiji flying on ice fast with Gon
+  - 60 - 80 km/h = 55m => Edward elric chở Hotarou xe trên xe hơi solving mystery case about the philosopher's stone
+  - 80 - 100 km/h = 70m => Aokiji flying on ice fast with Gon
   - 100-120 km/h = 100m => giữ khoảng cách tối đa 100 m là ok rồi
 
 - Dừng xe, đỗ xe cách lề đường, hè phố không quá `0,25` mét => hình dán jesus christ phía sau xe.
@@ -337,8 +340,8 @@ Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ 
 
 Biển `> 3,2 m <` => hạn chế **chiều ngang** của xe và hàng (không phải chiều dài của xe) => còn một biển giống vậy "hạn chế chiều cao"
 
-- biển phụ: `↑ 800 m ↑` => phạm vi tác dụng của biển
-- biển phụ: `800 m` => khoảng cách đến đối tượng báo hiệu
+- biển phụ: `↑ 800 m ↑` => phạm vi tác dụng của biển (hiệu lực của biển start now!)
+- biển phụ: `800 m` => khoảng cách thực tế từ nới đặt biển đến đối tượng báo hiệu (nơi cần thực hiện hiệu lệnh ghi trên biển báo)
 
 ### Biển Nguy Hiểm
 

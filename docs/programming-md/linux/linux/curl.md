@@ -1,4 +1,4 @@
-# `curl`
+# The Curl Command `curl`
 
 Curl stands for “Client for URLs”.
 
