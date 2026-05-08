@@ -164,8 +164,8 @@ This dynamic provides great convenience when we access a dictionary’s data bec
 Always use view objects to access a dict’s data because these view objects are dynamic; they will update when the dictionary’s data is updated.
 
 - `dictionary.get(keyname, value)`
-  * `keyname`: Required. The keyname of the item you want to return the value from
-  * `value`: Optional. A value to return if the specified key does not exist. 
+  - `keyname`: Required. The keyname of the item you want to return the value from
+  - `value`: Optional. A value to return if the specified key does not exist.
 
 ---
 
@@ -209,7 +209,7 @@ The `TypeError` exception is raised because we’re trying to use unhashable obj
 
 - `A hash function should be so computationally robust that it produces different hash values for different objects`. In rare cases, a hash function can produce the same hash value for different objects—a phenomenon termed `hash collision`, which must be handled according to a specified protocol.
 - `A hash function should be so consistent that the same objects always have the same hash values`. When you set a password in an application, the password is hashed by the hasher and stored in a database. When you try to log in again, the entered password string would be hashed and compared with the stored hash value. In these two cases, the same password should produce an identical hash value.
-- `For more complicated hashers, hashing is one-way traffic`. By design (such as using a random number), it’s almost impossible to reverse-calculate the raw data based on a hash value. This irreversibility is required where cybersecurity is concerned. Even if hackers get a password’s hash value, they can’t figure out the password from the hash value (at least, not easily). 
+- `For more complicated hashers, hashing is one-way traffic`. By design (such as using a random number), it’s almost impossible to reverse-calculate the raw data based on a hash value. This irreversibility is required where cybersecurity is concerned. Even if hackers get a password’s hash value, they can’t figure out the password from the hash value (at least, not easily).
 
 String & integer are `hashable`. `list`, dict, set are `unhashable`. The reason is simple: these unhashable data types are mutable. By design, the hash function generates a hash value based on the content of an object.
 
@@ -252,12 +252,12 @@ Python requires all the items in a set to be unique because under the hood, sets
 ## List & Tuple
 
 - Similarity:
-  * ordered items; objects are accessible through indexing
-  * Allow duplicate values
+  - ordered items; objects are accessible through indexing
+  - Allow duplicate values
 - `Tuple`:
-  * is **immutable**; cannot change, add or remove items after the tuple has been created; cannot reassign item
+  - is **immutable**; cannot change, add or remove items after the tuple has been created; cannot reassign item
 - `List`:
-  * is mutable; we can append new items to the end of a list, insert items into the middle, change the items, and remove items.
+  - is mutable; we can append new items to the end of a list, insert items into the middle, change the items, and remove items.
 
 - Tuples are written with square brackets `()`
 - Lists are written with square brackets `[]`
@@ -265,7 +265,7 @@ Python requires all the items in a set to be unique because under the hood, sets
 Trong Python, có một syntax gọi là `Tuple Unpacking` gần giống như object destructuring trong javascript.
 
 - List is slower than tuple, consumes more memory (due to overhead for change management).
-- Tuples are more memory-efficient than lists. When a list and a tuple hold the same data, the list has a larger size than the tuple. 
+- Tuples are more memory-efficient than lists. When a list and a tuple hold the same data, the list has a larger size than the tuple.
 
 ---
 
@@ -319,7 +319,7 @@ assert task_nt.title == 'Laundry'
 assert task_nt.desc == 'Wash clothes'
 ```
 
-The `namedtuple` is a factory function in the `collections` module. Because it’s a factory function, calling it returns a new class or a new instance object. In this case, we got the `Task` class. 
+The `namedtuple` is a factory function in the `collections` module. Because it’s a factory function, calling it returns a new class or a new instance object. In this case, we got the `Task` class.
 
 In the `namedtuple` function, we specified the class name and its attributes for the class. Notably, the data model’s attributes can be set as either a single string (with spaces or commas as separators) or a list object
 
@@ -387,16 +387,16 @@ assert middles0 == middles2 == player_scores[1:-1]
 assert highest0 == highest2 == player_scores[-1]
 ```
 
-A starred expression produces a `list` object of the captured items, regardless of the data type of the original sequence. We can observe this effect with a str object, as shown in the following code snippet. Don’t make the mistake of assuming that the variable b is a str object consisting of all the characters in the middle: 
+A starred expression produces a `list` object of the captured items, regardless of the data type of the original sequence. We can observe this effect with a str object, as shown in the following code snippet. Don’t make the mistake of assuming that the variable b is a str object consisting of all the characters in the middle:
 
 ```python
 a, *b, c = "abcdefg"
 assert b == ['b', 'c', 'd', 'e', 'f']
 ```
 
-`The number of captured items in the list object can be zero`. If all items are unpacked with the proper number of variables, leaving zero items to account for, the starred expression produces an empty list. Observe this effect: 
+`The number of captured items in the list object can be zero`. If all items are unpacked with the proper number of variables, leaving zero items to account for, the starred expression produces an empty list. Observe this effect:
 
-`One assignment can use only one starred expression.` Trying to use two starred expressions is a syntax error. The reason is simple: a starred expression is intended to capture all items that are not accounted for, so when two starred expressions are used, it’s impossible to determine which one should capture which items: 
+`One assignment can use only one starred expression.` Trying to use two starred expressions is a syntax error. The reason is simple: a starred expression is intended to capture all items that are not accounted for, so when two starred expressions are used, it’s impossible to determine which one should capture which items:
 
 ---
 
@@ -496,7 +496,7 @@ assert squares == [1, 4, 9, 16]
 
 list comprehension doesn’t look like literals, as it doesn’t list the items directly, but it doesn’t look like the constructor approach either, as it doesn’t call `list()`.
 
-The general syntax is: `[expression for item in iterable]`, in which the expression is a specific operation using each item of the iterable. 
+The general syntax is: `[expression for item in iterable]`, in which the expression is a specific operation using each item of the iterable.
 
 ```python
 from collections import namedtuple
@@ -693,9 +693,9 @@ multiply_numbers(b=6, 5) # SyntaxError
 For a typical function like `multiply_numbers`, we can set the parameters as either positional or keyword arguments. There are a few ways to call this function with two parameters.
 
 - Key points regarding the use of positional and keyword arguments:
-  * When you use `positional arguments`, the order of these arguments matters. The arguments will be matched with the original parameters in the function head.
-  * When you use `keyword arguments`, the order of these arguments doesn't matter. The arguments will be used according to the supplied keywords/identifiers.
-  * When you use **both** positional and keyword arguments, you have to place positional arguments **before** any keyword arguments. Otherwise, you’ll raise a `SyntaxError`. 
+  - When you use `positional arguments`, the order of these arguments matters. The arguments will be matched with the original parameters in the function head.
+  - When you use `keyword arguments`, the order of these arguments doesn't matter. The arguments will be used according to the supplied keywords/identifiers.
+  - When you use **both** positional and keyword arguments, you have to place positional arguments **before** any keyword arguments. Otherwise, you’ll raise a `SyntaxError`.
 
 ---
 
@@ -737,7 +737,7 @@ greet_user(name="Alice", age=30, city="New York")
 # Output: {'name': 'Alice', 'age': 30, 'city': 'New York'}
 ```
 
-We know that the variable number of positional arguments is packed as a `tuple` object. In a similar fashion, the variable number of keyword arguments is packed into a single object: a `dict`. 
+We know that the variable number of positional arguments is packed as a `tuple` object. In a similar fashion, the variable number of keyword arguments is packed into a single object: a `dict`.
 
 ```python
 def create_report(name, **grades):
@@ -758,7 +758,7 @@ got {'math': 100, 'phys': 98, 'bio': 95} in <class 'dict'>
 ***** Report End for John *****
 ```
 
-When you use `**kwargs` in a function, you should remember the syntax rule that `**kwargs` should be placed after all the other parameters. Related to this rule, positional arguments should be placed before all the keyword arguments. 
+When you use `**kwargs` in a function, you should remember the syntax rule that `**kwargs` should be placed after all the other parameters. Related to this rule, positional arguments should be placed before all the keyword arguments.
 
 In general, positional arguments should always precede keyword arguments. `*args` should be the last positional argument, and `**kwargs` should be the last keyword argument.
 
@@ -872,14 +872,13 @@ Every Python function returns a value either implicitly as `None` or as an expli
 
 ---
 
-
 While Python Decorators and Java Annotations look very similar (both use the `@` symbol above a function or method), they are fundamentally different in how they work.
 
 In short: Java Annotations are metadata (labels), while Python Decorators are active code (wrappers).
 
 ### Use generator functions as a memory-efficient data provider
 
-As a special kind of iterator, a `generator` is created from a generator function. Because a generator is an iterator, it can render its items one by one. A generator is special because it doesn’t store its items, and it retrieves and renders its items when needed. This characteristic means that it’s a memory-efficient iterator for data rendering. 
+As a special kind of iterator, a `generator` is created from a generator function. Because a generator is an iterator, it can render its items one by one. A generator is special because it doesn’t store its items, and it retrieves and renders its items when needed. This characteristic means that it’s a memory-efficient iterator for data rendering.
 
 ```python
 def perfect_squares(limit):
@@ -914,7 +913,7 @@ Curly braces are the characters for string interpolation in f-strings. Therefore
 ### Format Specifier
 
 f-strings allow us to set a `format specifier` (beginning with a colon) to apply additional formatting configurations to the expression in the curly braces.  
-As an optional component, the format specifier defines how the interpolated string of the expression should be formatted. 
+As an optional component, the format specifier defines how the interpolated string of the expression should be formatted.
 
 ---
 
@@ -1008,7 +1007,7 @@ The `__init__()` method is the most essential method that you almost always defi
 
 `self` refers to the instance objects in the method definitions.
 
-Python creates the instance object by calling `__new__` and sends it to `__init__` as the self argument. 
+Python creates the instance object by calling `__new__` and sends it to `__init__` as the self argument.
 
 The instance construction is a two-step process that calls `__new__` and `__init__`.
 
@@ -1055,7 +1054,7 @@ class Task:
 
 ### Defining class attributes outside the `__init__` method
 
-The initialization method should provide initialization for an instance object by defining its attributes on a per-instance basis. Notably, there can be shared attributes for all instance objects. In this case, you should not include them as instance attributes and should consider class attributes instead. 
+The initialization method should provide initialization for an instance object by defining its attributes on a per-instance basis. Notably, there can be shared attributes for all instance objects. In this case, you should not include them as instance attributes and should consider class attributes instead.
 
 - `Class attributes` are those attributes that belong to the class (as an object), and all the instance objects of the class share the attributes through the class (save memory).
 - `instance attribute`
@@ -1188,8 +1187,8 @@ No, Python does not have a `protected` keyword, nor does it have `private` or `p
 Python has no formal mechanism that restricts access to any attribute or method. In other words, everything in a class is public.
 
 - The convention in creating an access-control mechanism is to use underscores as the prefix for the attribute or method:
-  * A one-underscore prefix means protected
-  * and a double-underscore prefix means `private`
+  - A one-underscore prefix means protected
+  - and a double-underscore prefix means `private`
 - The same mechanism applies to creating protected and private attributes.
 
 However, `__init__` is obviously not a private method.
@@ -1236,7 +1235,7 @@ print(task.status)
 
 - The instance has a protected attribute `_status`.
 - We define an instance method `status`, which is decorated by the property decorator.
-- In the complete method, we update the `_status` attribute. 
+- In the complete method, we update the `_status` attribute.
 
 For encapsulation purposes, we don’t allow users to set the status attribute freely. To update a task’s status to completed, for example, they should call the complete method
 
