@@ -330,19 +330,18 @@ The keyword `import` khai báo chứ không cung cấp package. Vì package đã
 
 ## Access Modifiers (bổ từ quy định mức độ truy cập)
 
-We divide modifiers into two groups:
+- We divide modifiers into two groups:
+  1. **Access Modifiers** (bổ từ quy định mức độ truy cập) - controls the access level of classes, interfaces and its members.
+  2. **Non-Access Modifiers**: do not control access level, but provides other functionality. We have `final, abstract, static`.
 
-1. **Access Modifiers** (bổ từ quy định mức độ truy cập) - controls the access level of classes, interfaces and its members.
-2. **Non-Access Modifiers**: do not control access level, but provides other functionality. We have `final, abstract, static`.
-
-- There are two levels of [access control](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html):
+- There are two levels of access control:
   1. At the top level (classes, interfaces): `public`, or `package-private` (no explicit modifier, default).
   2. Class members (properties, methods): `public`, `protected`, `package-private` (default no explicit modifier), `private`.
 
 - Có 4 mức độ truy cập:
   1. `public`: visible to all classes everywhere; cả thế giới có thể nhìn thấy tôi.
   2. `protected`: the member can only be accessed within its own package (as with package-private) and, in addition, cho phép class con khác package kế thừa copy. Class khác package & không phải class con thì không access được.
-  3. `default` (no modifier or package-private): visible within its own package.
+  3. `default` (no modifier or `package-private`): visible within its own package.
   4. `private`: can only be accessed in **its own class**.
 - !!!Lưu ý: Có 4 mức độ nhưng chỉ có 3 bổ từ vì `default` thì không phải ghi gì cả. Classes thì chỉ có 1 bổ từ thôi.
 

@@ -43,6 +43,13 @@ In java, multiple Threads within the same program try to access a shared variabl
 
 This is one of the most surprising and dangerous facts about modern programming. Both your Compiler (like `GCC` or the Java JIT) and your `CPU hardware` can—and will—reorder your instructions to make them run faster. As long as the result is the same **for a single thread**, the compiler assumes it is safe to move code around. However, in Concurrency, this can break your program in ways that are nearly impossible to debug.
 
+## Multi processing in Java
+
+- Khi bạn chạy nhiều lệnh `java -jar BatchJob.jar --serverId=1` và `java -jar BatchJob.jar --serverId=2` cùng lúc:
+  - Hệ điều hành sẽ tạo ra 2 Process JVM riêng biệt.
+  - Không dùng chung bộ nhớ. Nếu Process 1 bị crash, Process 2 vẫn sống
+  - Cần Lock File: để ngăn hai process này dẫm chân lên nhau khi cùng ghi vào một file log hoặc database
+
 ## Concurrency vs Parallelism
 
 Concurrency (đồng thời) và `parallelism` (song song).
@@ -68,11 +75,11 @@ Local variables (The variables declared inside the body of the method) are never
 
 Java `threads` allow a block of code to be executed concurrently with the rest of the program.
 
-Each thread is associated with an instance of the class `Thread`. You simply instantiate Thread each time the application needs to initiate an asynchronous task.
+Each thread is associated with an instance of the class `Thread`. You simply instantiate `Thread` each time the application needs to initiate an asynchronous task.
 
-- An application that creates an instance of Thread must provide the code that will run in that thread. There are two ways to do this:
+- An application that creates an instance of `Thread` **must** provide the code that will run in that thread. There are two ways to do this:
   1. Provide a `Runnable` object. The Runnable interface defines a single method, run, meant to contain the code executed in the thread. The `Runnable` object is passed to the `Thread` constructor, as in the `HelloRunnable` example.
-  2. Subclass `Thread` (`extends`). The `Thread` class itself implements `Runnable`, though its run method does nothing. An application can subclass Thread, providing its own implementation of `run`, as in the `HelloThread` example.
+  2. Subclass `Thread` (by using the `extends` keyword). The `Thread` class itself implements `Runnable`, though its run method does nothing. An application can subclass Thread, providing its own implementation of `run()`, as in the `HelloThread` example.
 
 ```java
 // cách 1
