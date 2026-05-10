@@ -2,7 +2,7 @@
 
 ## Basics & Jargon
 
-Java has two, mostly separate concurrency APIs: the older API, which is usually called `block-structured concurrency` or `synchronization-based concurrency` or even “classic concurrency,” and the newer API, which is normally referred to by its Java package name, `java.util.concurrent`.
+Java has two, mostly separate concurrency APIs: the older API, which is usually called `block-structured concurrency` or `synchronization-based concurrency` or even `classic concurrency,` and the newer API, which is normally referred to by its Java package name, `java.util.concurrent`.
 
 The classic approach to concurrency was the only API available until Java 5. This is the language-level API that is built into the platform and depends upon the `synchronized` and `volatile` keywords.
 
@@ -15,22 +15,22 @@ The classic approach to concurrency was the only API available until Java 5. Thi
 
 `Concurrent software` are applications that can perform multiple tasks simultaneously.
 
-In concurrent programming, there are two basic units of execution: `processes` and `threads`. In the Java programming language, concurrent programming is mostly concerned with threads.
+In concurrent programming, there are two basic **units of execution**: `processes` and `threads`. In the Java programming language, concurrent programming is **mostly concerned with threads**.
 
-A process has a self-contained execution environment. A process generally has a complete, private set of basic run-time resources; in particular, each process has its own memory space.
+A process has a self-contained execution environment. A process generally has a complete, private set of basic run-time resources; in particular, each process has its own memory space. Normally 1 program = 1 process.
 
-Most implementations of the `Java virtual machine` run as **a single process**. Multiprocess applications are beyond the scope of this lesson.
+Most implementations of the `Java virtual machine` run as **a single process**. **Multi-process applications** are beyond the scope of this lesson.
 
 `Threads` are sometimes called lightweight processes. Both processes and threads provide an execution environment, but creating a new thread requires fewer resources than creating a new process.  
-Threads exist within a process — every process has at least one. Threads share the process's resources, including memory and open files. This makes for efficient, but potentially problematic, communication.
+Threads exist **within a process** — every process has at least one. Threads share the process's resources, including memory and open files. This makes for efficient, but potentially problematic, communication.
 
 The main thread has the ability to create additional threads.
 
+`multi-threading` happens within one application (process).
+
 ---
 
-race condition in java is at the operating level while race condition in sql is different
-
-The fundamental concept is the same (two things trying to change one thing at the same time)
+`race condition` in java is at the operating level while race condition in sql is different. But the fundamental concept is the same (two things trying to change one thing at the same time).
 
 In Java, you are managing Memory (RAM). In SQL, you are managing Data Persistence (Disk/Rows).
 
@@ -45,9 +45,9 @@ This is one of the most surprising and dangerous facts about modern programming.
 
 ## Concurrency vs Parallelism
 
-đồng thời và parallelism song song
+Concurrency (đồng thời) và `parallelism` (song song).
 
-Node.js is fundamentally different from C, C++, Java. While C, C++, and Java are `Multi-threaded`, Node.js is `Single-threaded` but Asynchronous.
+`Node.js` is fundamentally different from `C`, `C++`, Java. While C, C++, and Java which are all `Multi-threaded`, `Node.js` is `Single-threaded` but `Asynchronous`.
 
 The Event Loop: Instead of giving every user a new thread (which consumes RAM), Node uses one thread and an "Event Loop." When it hits an I/O task (like reading a database), it hands the task **to the OS** and moves to the next user.
 
@@ -143,16 +143,16 @@ Notice that main declares that it throws `InterruptedException`. This is an exce
 
 `Thread.sleep` causes the currently executing thread to sleep (temporarily cease execution) for the specified duration. The thread does not lose ownership of any monitors.
 
-It is important to note that neither `Thread.sleep` nor `Thread.yield` have any synchronization semantics. In particular, the compiler does not have to flush writes cached in registers out to shared memory before a call to Thread.sleep or Thread.yield, nor does the compiler have to reload values cached in registers after a call to Thread.sleep or Thread.yield. 
+It is important to note that neither `Thread.sleep` nor `Thread.yield` have any synchronization semantics. In particular, the compiler does not have to flush writes cached in registers out to shared memory before a call to Thread.sleep or Thread.yield, nor does the compiler have to reload values cached in registers after a call to Thread.sleep or Thread.yield.
 
 ---
 
 - sleep:
-  * The thread state moves from RUNNABLE to TIMED_WAITINGIt is guaranteed to stop for at least the time you specify (though it might be a few milliseconds late depending on system precision).
+  - The thread state moves from RUNNABLE to TIMED_WAITINGIt is guaranteed to stop for at least the time you specify (though it might be a few milliseconds late depending on system precision).
 - yield:
-  * The thread says, "I'm still ready to work, but if someone else of the same priority needs the CPU, they can have my spot."
-  * The thread remains `RUNNABLE`. It moves from the "Running" sub-state back to the "Ready" sub-state.
-  * It doesn't necessarily stop. If no other threads are waiting, the OS might give the CPU right back to the same thread immediately.
+  - The thread says, "I'm still ready to work, but if someone else of the same priority needs the CPU, they can have my spot."
+  - The thread remains `RUNNABLE`. It moves from the "Running" sub-state back to the "Ready" sub-state.
+  - It doesn't necessarily stop. If no other threads are waiting, the OS might give the CPU right back to the same thread immediately.
 
 ### Wait & Joins
 
@@ -161,11 +161,11 @@ Wait actions occur upon invocation of `wait()`, or the timed forms `wait(long mi
 A thread returns normally from a wait if it returns without throwing an `InterruptedException`.
 
 - `wait()`:
-  * wait for a signal (notify)
-  * Must be called inside a `synchronized` block.
+  - wait for a signal (notify)
+  - Must be called inside a `synchronized` block.
 - `sleep()`:
-  * Pauses for a fixed amount of time.
-  * Can be called anywhere
+  - Pauses for a fixed amount of time.
+  - Can be called anywhere
 
 The invocation of `wait` does not return until another thread has issued a notification that some special event may have occurred — though NOT necessarily the event this thread is waiting for:
 
@@ -184,14 +184,14 @@ causes the current thread to pause execution until t's thread terminates. Overlo
 Like `sleep`, `join` responds to an interrupt by exiting with an `InterruptedException`.
 
 - In this example, the `main` thread wait for both threads `A` & `B` to complete before `main` can continue its execution. `main` does so in a specific, sequential order.
-  * A and `B` are running at the same time (concurrently)
-  * `main` stop & wait for `A` to finish; `B` is still running together with `A`
-  * One `A` finishes, `main` moves to the next line, which instruct `main` to wait for `B`
-    * If `B` already finish while `main` was waiting for `tA`, this line returns immediately.
-    * If `B` is still working, `main` pauses again until `B` is done.
+  - A and `B` are running at the same time (concurrently)
+  - `main` stop & wait for `A` to finish; `B` is still running together with `A`
+  - One `A` finishes, `main` moves to the next line, which instruct `main` to wait for `B`
+    - If `B` already finish while `main` was waiting for `tA`, this line returns immediately.
+    - If `B` is still working, `main` pauses again until `B` is done.
 
 The caller of `java.lang.Thread.join()` (`main` in this case) Moves from RUNNABLE to `WAITING` while the callee threads' state (thread A & `B`) are not affected. It continues doing its work (in your case, the for loop transfers) in the `RUNNABLE` state.
- 
+
 ```java
 public static void main(String[] args) throws InterruptedException {
     tA.start();
@@ -238,20 +238,20 @@ In Java, the RUNNABLE state is a "wrapper" that covers two different sub-states 
 The word "Runnable" literally means "Capable of running, but currently waiting for its turn on the CPU."
 
 - Java doesn't distinguish between a thread that is currently using the CPU and a thread that is ready to use it but is waiting for the OS Scheduler.
-  * Running: The CPU is physically executing the thread's instructions (the Instruction Pointer is moving through your .text segment).
-  * Ready: The thread has everything it needs to run, but the OS has "preempted" it to give another thread a turn.
+  - Running: The CPU is physically executing the thread's instructions (the Instruction Pointer is moving through your .text segment).
+  - Ready: The thread has everything it needs to run, but the OS has "preempted" it to give another thread a turn.
 
 ---
 
 A `java.lang.Thread` object is just that: a Java object that lives in the heap and contains metadata about an operating system thread that either exists, used to exist, or will potentially exist in the future.
 
 - The states of the thread object in java corresponds to OS thread states on mainstream operating systems.
-  * `NEW`—the `Thread` object has been created, but the actual OS thread has not.
-  * `RUNNABLE`—The thread is available to run. The OS is responsible for scheduling it.
-  * `BLOCKED`—The thread is not running; it needs to acquire a lock or is in a system call.
-  * `WAITING`—The thread is not running; it has called `Object.wait()` or `Thread.join()`.
-  * `TIMED_WAITING`—The thread is not running; it has called `Thread.sleep()`.
-  * `TERMINATED`—The thread is not running; it has completed execution. 
+  - `NEW`—the `Thread` object has been created, but the actual OS thread has not.
+  - `RUNNABLE`—The thread is available to run. The OS is responsible for scheduling it.
+  - `BLOCKED`—The thread is not running; it needs to acquire a lock or is in a system call.
+  - `WAITING`—The thread is not running; it has called `Object.wait()` or `Thread.join()`.
+  - `TIMED_WAITING`—The thread is not running; it has called `Thread.sleep()`.
+  - `TERMINATED`—The thread is not running; it has completed execution.
 
 All threads start in the `NEW` state and finish in the `TERMINATED` state, whether the thread’s `run()` method exits normally or throws an exception.
 
@@ -265,24 +265,24 @@ Calling `start()` change the thread state from `new` -> `RUNNABLE`.
 The standard Thread API in Java breaks down into three groups of methods.
 
 - The first is a group of methods for reading metadata about the thread:
-  * `getId()` thread id; is fixed for the lifetime of the thread
-  * `getName()`
-  * `getState()`
-  * `getPriority()`
-  * `isAlive()`
-  * `isDaemon()`
-  * `isInterrupted()`
+  - `getId()` thread id; is fixed for the lifetime of the thread
+  - `getName()`
+  - `getState()`
+  - `getPriority()`
+  - `isAlive()`
+  - `isDaemon()`
+  - `isInterrupted()`
 
 - The second group of methods:
-  * `setDaemon()`
-  * `setName()`
-  * `setPriority()`
-  * `setUncaughtExceptionHandler()` 
+  - `setDaemon()`
+  - `setName()`
+  - `setPriority()`
+  - `setUncaughtExceptionHandler()`
 
 - Finally, the following set of thread control methods are used to start new threads and interact with other running threads:
-  * `start()`
-  * `interrupt()`
-  * `join()`
+  - `start()`
+  - `interrupt()`
+  - `join()`
 - Note that `Thread.sleep()` does not appear in this list, because it’s a static method that targets only the current thread.
 
 Some of the thread methods with timeouts (e.g., `Thread.join()` with a timeout parameter) may actually result in the thread being placed into `TIMED_WAITING` instead of `WAITING`.
@@ -365,10 +365,10 @@ By convention, any method that exits by throwing an `InterruptedException` clear
 interrupt a thread does not kill a thread. Instead, it sets a boolean flag (the "interrupt status") on the thread and wakes it up if it happens to be sleeping or waiting.
 
 - If the thread is in a state where it is blocked—specifically `Thread.sleep()`, `Object.wait()`, or `Thread.join()`—the JVM responds to the interrupt immediately.
-  * The thread is yanked out of the `TIMED_WAITING` or `WAITING` state.
-  * It moves back to `RUNNABLE`.
-  * An `InterruptedException` is thrown.
-  * Crucially: The interrupt flag is cleared (reset to `false`).
+  - The thread is yanked out of the `TIMED_WAITING` or `WAITING` state.
+  - It moves back to `RUNNABLE`.
+  - An `InterruptedException` is thrown.
+  - Crucially: The interrupt flag is cleared (reset to `false`).
 
 If the thread is actively working (e.g., doing a for loop) and you call interrupt(), nothing happens automatically. The thread will continue to run at full speed. It is the responsibility of the thread's code to check its own status. If the code never checks `Thread.currentThread().isInterrupted()`, the interrupt is completely ignored.
 
@@ -430,28 +430,28 @@ The JMM is described in section 17.4 of the Java Language Specification (JLS). T
 This is great from the point of view of language theorists and implementers of the Java spec (compiler and JVM makers), but it’s worse for application developers who need to understand the details of how their multithreaded code will execute.
 
 - the Synchronizes-With and Happens-Before relationships between blocks of code:
-  * `Happens-Before`—This relationship indicates that one block of code fully completes before the other can start.
-  * `Synchronizes-With`—An action will synchronize its view of an object with main memory before continuing.
+  - `Happens-Before`—This relationship indicates that one block of code fully completes before the other can start.
+  - `Synchronizes-With`—An action will synchronize its view of an object with main memory before continuing.
 
 - The JMM has these main rules:
-  * An unlock operation on a monitor `Synchronizes-With` later locks operations.
-  * A write to a volatile variable Synchronizes-With later reads from the variable.
-  * If an action A `Synchronizes-With` action `B`, then `A Happens-Before B`.
-  * If A comes before B in program order, within a thread, then A Happens-Before B.
+  - An unlock operation on a monitor `Synchronizes-With` later locks operations.
+  - A write to a volatile variable Synchronizes-With later reads from the variable.
+  - If an action A `Synchronizes-With` action `B`, then `A Happens-Before B`.
+  - If A comes before B in program order, within a thread, then A Happens-Before B.
 
 The general statement of the first two rules is that “releases happen before acquires.” In other words, the locks that a thread holds when writing are released before the locks can be acquired by other operations (including reads). For example, the rules guarantee that if one thread writes a value to a volatile variable, then any thread that later reads that variable will see the value that was written (assuming no other writes have taken place).
 
 - Additional rules, which are really about sensible behavior, follow:
-  * The completion of a constructor Happens-Before the finalizer for that object starts to run (an object has to be fully constructed before it can be finalized).
-  * An action that starts a thread Synchronizes-With the first action of the new thread.
-  * `Thread.join()` Synchronizes-With the last (and all other) actions in the thread being joined.
-  * If X Happens-Before Y and Y Happens-Before Z, then X Happens-Before Z (transitivity).
+  - The completion of a constructor Happens-Before the finalizer for that object starts to run (an object has to be fully constructed before it can be finalized).
+  - An action that starts a thread Synchronizes-With the first action of the new thread.
+  - `Thread.join()` Synchronizes-With the last (and all other) actions in the thread being joined.
+  - If X Happens-Before Y and Y Happens-Before Z, then X Happens-Before Z (transitivity).
 
-### Happens-before Order 
+### Happens-before Order
 
-Two actions can be ordered by a `happens-before relationship`. If one action happens-before another, then the first is visible to and ordered **before** the second. 
+Two actions can be ordered by a `happens-before relationship`. If one action happens-before another, then the first is visible to and ordered **before** the second.
 
-If we have two actions x and y, we write `hb(x, y)` to indicate that x happens-before y. 
+If we have two actions x and y, we write `hb(x, y)` to indicate that x happens-before y.
 
 - If x and y are actions of the same thread and x comes before y in `program order`, then `hb(x, y)`.
 
@@ -461,7 +461,7 @@ any write to a volatile field happens before every subsequent read of the same f
 
 synchronization can introduce `thread contention`, which occurs when two or more threads try to access the same resource simultaneously and cause the Java runtime to execute one or more threads more slowly, or even suspend their execution. Starvation and livelock are forms of thread contention.
 
-`Thread Interference` happens when two operations, running in different threads, but acting on the same data, interleave. 
+`Thread Interference` happens when two operations, running in different threads, but acting on the same data, interleave.
 
 `Memory consistency errors` occur when different threads have inconsistent views of what should be the same data. The causes of memory consistency errors are complex and beyond the scope of this tutorial. Fortunately, the programmer does not need a detailed understanding of these causes. All that is needed is a strategy for avoiding them.
 
@@ -481,9 +481,9 @@ Each object in Java is associated with a `monitor`, which a thread can `lock` or
 
 The `synchronized statement` computes a reference to an object; it then attempts to perform a lock action on that object's monitor and does not proceed further until the lock action has successfully completed. After the lock action has been performed, the body of the `synchronized` statement is executed. If execution of the body is ever completed, either normally or abruptly, an unlock action is automatically performed on that same monitor.
 
-- A `synchronized method` automatically performs a lock action when it is invoked; its body is not executed until the lock action has successfully completed. 
-  * If the method is an instance method, it locks the monitor associated with the instance for which it was invoked (that is, the object that will be known as `this` during execution of the body of the method).
-  * If the method is `static`, it locks the monitor associated with the `Class` object that represents the class in which the method is defined.
+- A `synchronized method` automatically performs a lock action when it is invoked; its body is not executed until the lock action has successfully completed.
+  - If the method is an instance method, it locks the monitor associated with the instance for which it was invoked (that is, the object that will be known as `this` during execution of the body of the method).
+  - If the method is `static`, it locks the monitor associated with the `Class` object that represents the class in which the method is defined.
 - If execution of the method's body is ever completed, either normally or abruptly, an unlock action is automatically performed on that same monitor.
 
 ### Intrinsic Locks and Synchronization
@@ -540,25 +540,25 @@ class Test {
 One way to achieve concurrent type safety is `fully synchronized objects`. If all of the following rules are obeyed, the class is known to be `thread-safe` and will also be `live`.
 
 - A fully synchronized class is a class that meets all of the following conditions:
-  * All fields are always initialized to a consistent state in every constructor.
-  * There are no public fields.
-  * Object instances are guaranteed to be consistent after returning from any nonprivate method (assuming the state was consistent when the method was called).
-  * All methods provably terminate in bounded time.
-  * All methods are `synchronized`.
-  * No method calls another instance’s methods while in an inconsistent state.
-  * No method calls any nonprivate method on the current instance while in an inconsistent state. 
+  - All fields are always initialized to a consistent state in every constructor.
+  - There are no public fields.
+  - Object instances are guaranteed to be consistent after returning from any nonprivate method (assuming the state was consistent when the method was called).
+  - All methods provably terminate in bounded time.
+  - All methods are `synchronized`.
+  - No method calls another instance’s methods while in an inconsistent state.
+  - No method calls any nonprivate method on the current instance while in an inconsistent state.
 
 This seems fantastic at first glance—the class is both safe and live. The problem comes with performance. Just because something is safe and live doesn’t mean it’s necessarily going to be very quick. You have to use `synchronized` to coordinate all the accesses (both get and put) to the balance, and that locking is ultimately going to slow you down. This is a central problem of this way of handling concurrency.
 
-In real, larger systems, this sort of manual verification would not be possible due to the amount of code. It’s too easy for bugs to creep into larger codebases that use this approach, which is another reason that the Java community began to look for more robust approaches. 
+In real, larger systems, this sort of manual verification would not be possible due to the amount of code. It’s too easy for bugs to creep into larger codebases that use this approach, which is another reason that the Java community began to look for more robust approaches.
 
 ## Memory Flush
 
 "flush" in conputer memory does not mean getting rid of the data (delete them). "flush" means to force data out of a temporary, fast storage area (like a cache or a buffer) and into its final, more permanent destination (like RAM or a Hard Drive).
 
 - When you flush a buffer or a cache:
-  * The Source is cleared: The temporary storage (cache/buffer) now has space for new data.
-  * The Destination is updated: The "real" storage (RAM/Disk) now contains the most recent version of the data.
+  - The Source is cleared: The temporary storage (cache/buffer) now has space for new data.
+  - The Destination is updated: The "real" storage (RAM/Disk) now contains the most recent version of the data.
 
 ## Block-structured concurrency (pre-Java 5)
 
@@ -589,7 +589,7 @@ A change to an object propagates between threads via the main memory.
 - Synchronization in an inner class is independent of the outer class (to see why this is so, remember how inner classes are implemented).
 - `synchronized` doesn’t form part of the `method signature`, so it can’t appear on a method declaration in an interface.
 - Unsynchronized methods don’t look at or care about the state of any locks, and they can progress while synchronized methods are running.
-- Java’s locks are `reentrant`—a thread holding a lock that encounters a synchronization point for the same lock (such as a `synchronized` method calling another `synchronized` method on the same object) will be allowed to continue. 
+- Java’s locks are `reentrant`—a thread holding a lock that encounters a synchronization point for the same lock (such as a `synchronized` method calling another `synchronized` method on the same object) will be allowed to continue.
 
 ---
 
@@ -606,8 +606,8 @@ A field may be declared `volatile`, in which case the Java Memory Model ensures 
 ---
 
 - Java has had the volatile keyword since the dawn of time (Java 1.0), and it’s used as a simple way to deal with concurrent handling of object fields, including primitives. The following rules govern a volatile field:
-  * The value seen by a thread is always reread from the main memory before use.
-  * Any value written by a thread is always flushed through to the main memory before the bytecode instruction completes. 
+  - The value seen by a thread is always reread from the main memory before use.
+  - Any value written by a thread is always flushed through to the main memory before the bytecode instruction completes.
 
 This is sometimes described as being “like a tiny little synchronized block” around the single operation, but this is misleading because volatile does not involve any locking. The action of `synchronized` is to use a mutual exclusion lock on an object to ensure that only one thread can execute a synchronized method on that object. Synchronized methods can contain many read and write operations on the object, and they will be executed as an indivisible unit (from the point of view of other threads) because the results of the method executing on the object are not seen until the method exits and the object is flushed back to main memory.
 
@@ -616,7 +616,7 @@ The key point about `volatile` is that it allows for only one operation on the m
 A volatile variable should be used to model a variable only where writes to the variable don’t depend on the current state (the read state) of the variable. This is a consequence of volatile guaranteeing only a single operation.  
 For example, the `++` and `--` operators are not safe to use on a `volatile`, because they are equivalent to `v = v + 1` or `v = v – 1`. The increment example is a classic example of a state-dependent update.
 
-For cases where the current state matters, you must always introduce a lock to be completely safe. So, `volatile` allows the programmer to write simplified code in some cases, but at the cost of the extra flushes on every access. Notice also that because the volatile mechanism doesn’t introduce any locks, you can’t deadlock using volatiles—only with synchronization. 
+For cases where the current state matters, you must always introduce a lock to be completely safe. So, `volatile` allows the programmer to write simplified code in some cases, but at the cost of the extra flushes on every access. Notice also that because the volatile mechanism doesn’t introduce any locks, you can’t deadlock using volatiles—only with synchronization.
 
 ---
 
@@ -631,8 +631,8 @@ To ensure that updates to variables propagate predictably to other threads, we s
 This way, we can communicate with runtime and processor to avoid reordering any instruction involving the volatile variable. Also, processors understand that they should immediately flush any updates to these variables.
 
 - For multithreaded applications, we need to ensure a couple of rules for consistent behaviour:
-  * Mutual Exclusion – only one thread executes a critical section at a time
-  * Visibility – changes made by one thread to the shared data are visible to other threads to maintain data consistency
+  - Mutual Exclusion – only one thread executes a critical section at a time
+  - Visibility – changes made by one thread to the shared data are visible to other threads to maintain data consistency
 
 The `synchronized` methods and blocks provide both of the above properties at the cost of application performance.
 

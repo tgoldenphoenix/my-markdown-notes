@@ -69,10 +69,10 @@ Khi biên dịch thì IDE chỉ quan tâm đến khai báo. Miễn là khai báo
 Còn trong chạy thật, khi run-time. Thì nó mới xét đến bản chất thật sự của class mà biến tham chiếu đang trỏ đến và nó **chỉ cho ép downcasting thật sự khi có quan hệ** `IS-A`. Có thể kiểu khai báo là `HocVien` nhưng bản chất pointer trỏ đến một object `SinhVien`. Khai báo là một chuyện, bản chất là chuyện khác.
 
 - `IS-A` (liên quan tới inheritance): con cháu IS-A cha, ông nội.
-  * `Dog` IS-A `Animal` but `Animal` not IS-A `Dog`
-  * `SinhVien` IS-A `HocVien`
+  - `Dog` IS-A `Animal` but `Animal` not IS-A `Dog`
+  - `SinhVien` IS-A `HocVien`
 - `HAS-A` (không liên quan tới inheritance): If Class A "has-a" Class B, it means Class A uses or contains an object of Class B as a part of its own structure or functionality.
-  * A `Car` class "has-a" `Engine` class. This means the Car class has an Engine object as one of its fields, and it utilizes the Engine's functionalities.
+  - A `Car` class "has-a" `Engine` class. This means the Car class has an Engine object as one of its fields, and it utilizes the Engine's functionalities.
 
 ```java
 class Animal {}
@@ -688,8 +688,8 @@ If a subclass constructor does not explicitly call a superclass constructor usin
 
  If the superclass only defines parameterized constructors and no default constructor, the subclass must explicitly call one of the superclass's constructors using super(arguments). This call must be the **very first statement** in the subclass constructor.
 
- When a subclass object is created, the constructors run from the top of the inheritance hierarchy down. The superclass constructor executes first, followed by the subclass constructor. 
- 
+ When a subclass object is created, the constructors run from the top of the inheritance hierarchy down. The superclass constructor executes first, followed by the subclass constructor.
+
 ## Exception & Error Handling
 
 Exception khác với Errors:
@@ -913,6 +913,16 @@ public enum Day {
 ```
 
 Enum có thể được truyền vào class constructor dưới dạng parameter.
+
+Enum is a special kind of class. Khi bạn viết `enum Color { RED, BLUE }`, trình biên dịch Java sẽ tự động chuyển đổi nó thành một class kế thừa từ lớp cơ sở `java.lang.Enum`.
+
+- Vì bản chất enum là class nên:
+  * có fields, methods, can implement interface
+- Những restriction của enum:
+  * cannot inherit class: Tất cả các enum đều ngầm định kế thừa `java.lang.Enum` và Java không cho phép đa kế thừa, nên bạn không thể cho enum kế thừa thêm bất kỳ class nào khác. Ngoài ra, enum mặc định là `final`, nghĩa là không class nào có thể kế thừa nó.
+
+Enum là `Static Final`. Chúng được hệ thống tự động khởi tạo duy nhất một lần khi được nạp vào bộ nhớ.  
+Mình không thể `new` một enum được.
 
 ## Annonation (`@`)
 
