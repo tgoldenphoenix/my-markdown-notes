@@ -69,7 +69,20 @@ It basically means you only worry about one thread in node.js (other thread is h
 
 While the object is always on the heap, the pointer (reference) to that object is often on the stack.
 
-Local variables (The variables declared inside the body of the method) are never shared between threads and are unaffected by the memory model.
+- Local variables (The variables declared inside the body of methods) are never shared between threads and are unaffected by the memory model.
+- Instance variable (defined inside class, không có `static`) is shared if multiple thread use the same object.
+- Static variables: all thread in the java app share the static variable
+
+- Thread stack store:
+  - local variables: int, short, long, float
+  - reference to object in the heap
+
+Object field (property)
+
+- When you create a new thread:
+  - Java tạo ra một instance của class `Thread` (hoặc con của nó như AbstractMultiMaster). Đối tượng này lưu trữ các thuộc tính như `name`, priority, threadStatus.
+  - Khi bạn gọi `.start()`, một luồng thực thi mới được sinh ra với Stack riêng của nó.
+  - Luồng thực thi đó luôn giữ một tham chiếu quay ngược lại đối tượng `Thread` trên Heap để biết nó tên là gì, trạng thái ra sao.
 
 ## The `Thread` Object
 
@@ -105,8 +118,7 @@ public class HelloThread extends Thread {
 }
 ```
 
-both examples invoke `Thread.start` in order to start the new thread.
-
+Note that both examples invoke `Thread.start` in order to start the new thread.  
 You don't call `.start()` on `main`. The JVM handles that for you automatically.
 
 Threads are represented by the `Thread` class. The only way for a user to create a thread is to create an object of this class; each thread is associated with such an object. A thread will start when the `start()` method is invoked on the corresponding `Thread` object.
@@ -125,8 +137,7 @@ The `SleepMessages` example uses sleep to print messages at four-second interval
 
 ```java
 public class SleepMessages {
-    public static void main(String args[])
-        throws InterruptedException { 
+    public static void main(String args[]) throws InterruptedException { 
         String importantInfo[] = {
             "Mares eat oats",
             "Does eat oats",
@@ -134,9 +145,7 @@ public class SleepMessages {
             "A kid will eat ivy too"
         };
 
-        for (int i = 0;
-             i < importantInfo.length;
-             i++) {
+        for (int i = 0; i < importantInfo.length; i++) {
             //Pause for 4 seconds
             Thread.sleep(4000);
             //Print a message
@@ -146,7 +155,7 @@ public class SleepMessages {
 }
 ```
 
-Notice that main declares that it throws `InterruptedException`. This is an exception that sleep throws when another thread interrupts the current thread while `sleep` is active. Since this application has not defined another thread to cause the interrupt, it doesn't bother to catch InterruptedException.
+Notice that main declares that it throws `InterruptedException`. This is an exception that `sleep` throws when another thread interrupts the current thread while `sleep` is active. Since this application has not defined another thread to cause the interrupt, it doesn't bother to catch `InterruptedException`.
 
 `Thread.sleep` causes the currently executing thread to sleep (temporarily cease execution) for the specified duration. The thread does not lose ownership of any monitors.
 

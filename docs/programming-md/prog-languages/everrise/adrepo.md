@@ -149,11 +149,6 @@ cpa, cpg???
 
 campaign type: Upgraded Smar+, Manual, Smart+
 
-- Tik tok ad has three levels:
-  - Campaign level
-  - Ad group level: quyết định Quảng cáo sẽ hiển thị ở đâu và cho ai. Một Chiến dịch có thể chứa nhiều Nhóm quảng cáo.
-  - ad / creative level: Video, hình ảnh, văn bản quảng cáo (caption), và nút kêu gọi hành động (CTA).
-
 - criteo: cty quảng cáo của france
 - AdEbis: Marketing consultant in Japan
 
@@ -172,7 +167,7 @@ redshift là data warehouse
 
 queue = yêu cầu tạo report data & master data cho quảng cáo
 
-- 1 agency (tài khoản đăng nhập) -> nhiều parent account
+- 1 agency (tài khoản đăng nhập) -> nhiều `parent account`.
 - 1 parent account -> only 1 platform & token correspond to that platform
 
 - Mỗi một tài khoảng quảng cáo cha (parent account) có 1 oauth id & token riêng của nó
@@ -187,9 +182,40 @@ queue = yêu cầu tạo report data & master data cho quảng cáo
   - `ad account ID`
 - They are different!
 
+### Tiktok
+
+- Tik tok ad has four levels để có thể lấy report data:
+  1. `Campaign level`
+  2. `Ad group` level: quyết định Quảng cáo sẽ hiển thị ở đâu và cho ai. Một Chiến dịch có thể chứa nhiều Nhóm quảng cáo.
+  3. `ad level`
+  4. `creative level`: Video, hình ảnh, văn bản quảng cáo (caption), và nút kêu gọi hành động (CTA).
+  
+- `Creative` là toàn bộ những gì người dùng thực sự nhìn thấy và nghe thấy trên màn hình điện thoại của họ: video, ad text, CTA button, landing page. `Creative` là một "gói" (package) bao gồm tất cả các yếu tố hiển thị với người dùng, chứ không phải chỉ là cái file video riêng lẻ.
+
+- Chế độ Thủ công (Standard Ad) truyền thống: 1 Ad = 1 Creative.
+  - Khi bạn tạo một Quảng cáo (Ad), bạn chọn một tổ hợp duy nhất (1 Video + 1 Text + 1 CTA).
+  - Nếu bạn muốn thử một Video khác hoặc một dòng Text khác, bạn phải tạo một Ad mới (`Ad ID` mới) nằm trong cùng một `Ad Group`.
+  - Như vậy, trong một Ad Group có thể có nhiều Ad, mỗi Ad mang một Creative khác nhau.
+
+- Chế độ Tự động (`Smart Creative`)
+  - Khi bật tính năng Smart Creative, bạn không tạo từng Ad riêng lẻ. Thay vào đó, bạn tải lên "nguyên liệu" (Assets): Tải lên 5 Video khác nhau, viết 5 dòng Text khác nhau, chọn vài nút CTA.
+  - Hệ thống TikTok sẽ tự động kết hợp ngẫu nhiên các thành phần này để tạo ra hàng chục biến thể Creative khác nhau (Ví dụ: Video 1 + Text 3, Video 2 + Text 1...).
+  - Tất cả các biến thể này thường nằm chung dưới 1 Ad ID duy nhất của chiến dịch thông minh. Hệ thống sẽ tự tìm ra "tổ hợp thắng cuộc" (Winning Combination) để phân phối nhiều nhất. => In this case, one ad id has many creative id.
+
+- Cấp độ `Ad Group`: Chắc chắn có nhiều Creative (thông qua việc tạo nhiều Ad).
+- Cấp độ `Ad`: Chỉ có nhiều Creative nếu dùng tính năng Smart Creative/ACO.
+
+`Advertiser access token` của tiktok does not expire.
+
+With the `auth_code` you receive after authorization by the advertiser, you can make a request to the following endpoint to get an `access_token` for subsequent API requests.
+
+The `auth_code` is valid for 1 hour and can be used only once. After the `auth_code` expires, you need to start over and perform the authorization steps again.
+
 ### Trivia
 
 Etl harbest dùng sbt (scala build tool) ko dùng maven ?
+
+Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (video gốc) có thể được dùng lại trong nhiều chiến dịch khác nhau.
 
 ## Resources
 
@@ -197,3 +223,6 @@ Etl harbest dùng sbt (scala build tool) ko dùng maven ?
 
 [Release Instruction](https://ever-rise.backlog.jp/alias/wiki/413979#loom-header-2)
 
+[tiktok marketing API](https://business-api.tiktok.com/portal/docs/marketing-api/v1.3)
+
+[Setup for Windows 10](https://ever-rise.backlog.jp/alias/wiki/559246#loom-header-14)

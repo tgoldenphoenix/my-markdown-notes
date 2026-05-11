@@ -181,14 +181,14 @@ Thread t = new Thread(() -> System.out.println("Hello world"));
 
 ## Lambdas Expressions
 
-- Java có: `lambdas` and `Anonymous Classes`
-- Javascript có khái niệm `anonymous function`
+- Java có: `lambdas` and `Anonymous Classes`.
+- Javascript có khái niệm `anonymous function`.
 - In Java, lambda có thể coi như là `anonymous function` methods without declared names, but which can also be passed as arguments to a method as you can with an anonymous class.
 - While JavaScript is a `functions-first` language where a function can exist on its own, Java is strictly object-oriented. This means a Java "anonymous function" must always be tied to a Functional Interface (an interface with exactly one method).
 
-Behavior parameterization could, prior to Java 8, be encoded using anonymous classes. `Behavior parameterization` ngắn gọn khi là có thể pass a method to another method mà không cần phải tạo object (hay anonymous class).
+`Behavior parameterization` could, prior to Java 8, be encoded using anonymous classes. `Behavior parameterization` ngắn gọn là khi mà có thể pass a method to another method mà không cần phải tạo object (hay anonymous class).
 
-The Streams API is built on the idea of passing code to parameterize the behavior of its operations.
+The `Streams API` is built on the idea of passing code to parameterize the behavior of its operations.
 
 Lambdas technically don’t let you do anything that you couldn’t do prior to Java 8. But you no longer have to write clumsy code using anonymous classes to benefit from behavior parameterization! Lambda expressions will encourage you to adopt the style of behavior parameterization
 
@@ -199,9 +199,9 @@ Từ interface `ApplePredicate` có thể có two classes implement: `AppleGreen
 - Mức độ verbose từ cao xuống thấp:
   - Classes
   - Anonymous class
-  - lambdas
+  - Lambdas
 
-A lambda expression can be understood as a concise representation of an anonymous function that can be passed around. It doesn’t have a name, but it has a list of parameters, a body, a return type, and also possibly a list of exceptions that can be thrown.
+A `lambda expression` can be understood as a concise representation of an anonymous function that can be passed around. It doesn’t have a name, but it has a list of parameters, a body, a return type, and also possibly a list of exceptions that can be thrown.
 
 A lambda expression can be passed as argument to a method or stored in a variable.
 
@@ -278,7 +278,7 @@ List<Apple> greenApples =
         filter(inventory, (Apple a) -> GREEN.equals(a.getColor()));
 ```
 
-- A `Funtional Interface` is an interface that specifies **exactly one abstract method**. And Lambda is a shortcut to define an implementation of a FI.
+- A `Funtional Interface` is an interface that specifies **exactly one abstract method**. And Lambda is a shortcut to define the implementation of a Funtional Interface.
 - FIs can contains other types of method (static method, default method).
 
 A functional interface có thể `extends` từ một `tagging interface`:
@@ -307,7 +307,7 @@ Only `Adder` is a functional interface.
 
  Lambda expressions let you provide the implementation of the abstract method of a functional interface directly inline and **treat the whole expression as an instance of a functional interface** (more technically speaking, an instance of a **concrete implementation** of the functional interface). You can achieve the same thing with an anonymous inner class, although it’s clumsier: you provide an implementation and instantiate it directly inline.
 
-The following code is valid because `Runnable` is a functional interface defining only one abstract method, `run`:
+The following code is valid because `Runnable` is a functional interface defining only one abstract method (`run()`):
 
 ```java
 // uses a lambda
@@ -325,6 +325,11 @@ process(r1); // Hellow World 1
 process(r2); // Hellow World 2
 process(() -> System.out.println("Hello World 3")); // Prints “Hello World 3” with a lambda passed directly
 ```
+
+- We cannot use `new` to create object from an interface like `new Runnable()`. Behind the scene, the compiler:
+  - Create an anonymous class that implement Runnable
+  - Insert your code into that class
+  - Create object from that class and return that object
 
 Lambda don't need access modifier, no return type, no method name
 
@@ -474,7 +479,7 @@ private boolean isValidName(String string) {
 filter(words, this::isValidName)
 ```
 
-### Constructor references
+### Constructor References
 
 You can create a reference to an existing constructor using its name and the keyword `new` as follows: `ClassName::new`. It works similarly to a reference to a static method.
 
@@ -563,7 +568,7 @@ The signature of the abstract method of a functional interface is called a `func
 
 Java 8 introduced several **pre-defined standard functional interfaces** in the `java.util.function` package to support lambda expressions and method references.
 
-Because a functional interface contains only one abstract method, you can omit the name of that method when you implement it. To do this, instead of using an anonymous class expression, you use a lambda expression
+Because a functional interface contains only one abstract method, you can omit the name of that method when you implement it. To do this, instead of using an `anonymous class expression`, you use a `lambda expression`.
 
 Remember, to use a lambda expression, you need to implement a functional interface. Hoặc dùng những cái có sẵn hoặc tự tạo custom functional interface.
 
