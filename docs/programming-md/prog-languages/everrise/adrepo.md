@@ -55,6 +55,19 @@ batch nằm trên ec2, rds (relational database) cũng là service trên aws
 - table names: `queue`, `dsp_advertiser`
 - Cả 2 phía etl & adrepo đều có table `queue` cái tên giống nhau.
 
+## ETL Batch
+
+This is a maven project and it has two parts: ag.war and adrepo_batch.jar. Vì vậy nên nó có 2 file `pom.xml`.
+
+`ag` là code cũ, chạy web, không cần quan tâm
+
+- If using profile. Please check resources in `src/main/resources/conf/${profile.resource.folder}`. Verify the following files:
+  - `config.properties`
+  - `config.dicon`: file cấu hình của Seasar2 Framework, dependency injection config => không quan tâm `ag` nên không quan tâm file này luôn
+  - `log4j.properties`: thư viện `Log4j`, quyết định cách mà `LOG_INFO` và LOG_ERROR (mà bạn đã hỏi) sẽ hoạt động.
+
+location jdk java 8: `C:\Users\anhao\.jdks\corretto-1.8.0_492`
+
 ## Code Flow
 
 tìm queue trong table -> xử lý queue, status 2 sucess, show log, upload lên s3
@@ -85,7 +98,7 @@ Nếu được phép push thì phải setting Private, không được để pub
 Tất cả thông tin về dự án (đặc biệt là thông tin tài khỏan, thông tin chứng thực,....) không được sử dụng cho mục đích cá nhân  
 Nếu có tạo Repository cho mục đích học tập cá nhân thì không sử dụng tên công ty, tên dự án của công ty, dù là đặc tên cho dự án, cho thư mục, tên file gì đó
 
-## Tạo Task
+## Tạo Task & báo cáo tiến độ
 
 - làm không được thì báo cáo là không làm được => không báo cáo láo
 - task thiếu thông tin, task làm ko được thì kiểm chứng => không làm
@@ -118,6 +131,14 @@ add child issues để chia nhỏ một task/batch lớn, một child ticket là
 - output task:
   - task điều tra: use bullets (gạch đầu dòng)
   - task code: pull request + screenshots, log file,
+
+- Tạo ticket con thì dẫn link đến ticket cha và tên theo format `{id cha} {title cha} / {titple con}`
+- Chỉ dẫn link ticket parent, không quan tâm cấp cao hơn (grand parent)
+
+- Các mốc thời gian báo cáo hằng ngày
+  - 08h30 sáng (sau khi họp sáng công ty, trước buổi họp vào lúc 09h00): công việc dự định thực hiện trong ngày, tiến độ hiện tại.
+  - 15h00 chiều (trước buổi họp vào lúc 15h30): tiến độ hiện tại.
+  - 17h00 chiều: tiến độ hiện tại.
 
 ## Batch Processing
 
@@ -226,3 +247,7 @@ Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (
 [tiktok marketing API](https://business-api.tiktok.com/portal/docs/marketing-api/v1.3)
 
 [Setup for Windows 10](https://ever-rise.backlog.jp/alias/wiki/559246#loom-header-14)
+
+[catchup outline](https://ever-rise.backlog.jp/alias/wiki/566675)
+
+[build project](https://ever-rise.backlog.jp/alias/wiki/559969)
