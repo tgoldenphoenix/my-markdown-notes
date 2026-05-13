@@ -140,6 +140,29 @@ add child issues để chia nhỏ một task/batch lớn, một child ticket là
   - 15h00 chiều (trước buổi họp vào lúc 15h30): tiến độ hiện tại.
   - 17h00 chiều: tiến độ hiện tại.
 
+## Build project
+
+- build no profile thì phải copy file `config.properties` ra bên ngoài
+- build có profile thì nó tự vào thư mục `dev` để lấy file `config`
+
+chỉnh đường dẫn data base trong file `config.properties`. Copy file `config.properties` ra ngoài.
+
+chỉnh bỏ dòng exclude entity
+
+- repo fujiyama có 2 databases schema
+  * etl adrepo chứa queue từ S3
+  * etl harbest : làm với web api
+
+chạy batch cần: file `config.property` & database
+
+đăng nhập vào S3 lấy key trong file `config.property`
+
+bảng `etl_adrepo.consts` phải có data
+
+## Passsword
+
+mysql: root:root or 123
+
 ## Batch Processing
 
 - Don't confuse batch processing vs stream processing.
@@ -238,6 +261,9 @@ Etl harbest dùng sbt (scala build tool) ko dùng maven ?
 
 Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (video gốc) có thể được dùng lại trong nhiều chiến dịch khác nhau.
 
+- tiktok có 3 loại: manual, smart plus, upgraded smart plus
+  - manual có 3 level: campaign, ad group, ad
+  - smart plus & upgraded smart plus cũng có 3 level tương tự
 ## Resources
 
 [Catchup Outline](https://ever-rise.backlog.jp/alias/wiki/566675)

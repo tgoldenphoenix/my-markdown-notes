@@ -33,6 +33,21 @@ plugins have `goal`
 
 `mvn` download dependencies and cache in a local repository. Different project share the same dependency => save disk space.
 
+- A `Build Lifecycle` is made up of a list of `build phases`. A build phase represents a stage in the lifecycle.
+  - `package` - take the compiled code and package it in its distributable format, such as a JAR.
+  - `install` - install the package into the local repository, for use as a dependency in other projects locally
+- These build phases are executed sequentially to complete the build lifecycle.
+
+There are three built-in `build lifecycles`: default, clean and site. The `default` lifecycle handles your project deployment, the `clean` lifecycle handles project cleaning, while the `site` lifecycle handles the creation of your project's web site.
+
+- Trong câu lệnh `mvn -Dmaven.test.skip=true`, thì:
+  - `-D` là ký hiệu báo cho Maven biết "Tôi sắp truyền một thuộc tính đây".
+  - `maven.test.skip` là tên thuộc tính (khóa).
+  - `true` là giá trị.
+- `-D` là prefix
+
+Nếu chạy `package` thì file build của bạn chỉ nằm trong thư mục `target` chứ chưa được đưa vào kho lưu trữ `.m2`.
+
 ## POM
 
 A **Project Object Model** (or POM)
