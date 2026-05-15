@@ -1,10 +1,10 @@
-# JUnit & Mockito testing
+# JUnit & Mockito Testing
 
 JUnit is a framework that enables and supports automated testing in Java.
 
 ## Terminologies
 
-A life cycle method is a method that is annotated with `@BeforeAll, @AfterAll, @BeforeEach`, or `@AfterEach`. 
+A lifecycle method is a method that is annotated with `@BeforeAll, @AfterAll, @BeforeEach`, or `@AfterEach`. 
 
 ## JUnit Basics
 

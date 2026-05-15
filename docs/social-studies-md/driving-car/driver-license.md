@@ -48,7 +48,7 @@ Phần của đường bộ được sử dụng [...] là **phần đường xe
 - Người **điều khiển giao thông** đường bộ => cảnh sát giao thông
 - Người điều khiển phương tiện tham gia giao thông
 
-Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm** => nhớ trẻ em không thể đứng ở ngoài chứ đừng nói trong xe.
+Thiết bị an toàn đảm bảo cho trẻ em ở tư thế **ngồi hoặc nằm** => nhớ trẻ em không thể đứng ở ngoài xe chứ đừng nói trong xe.
 
 Lắp giám sát hành trình: chọn cả 2 ý
 
@@ -77,13 +77,13 @@ máu phun thành tia (tai nạn GT): cầm máu **không** trực tiếp (chặn
 - Nếu **xét thấy có khả năng dập tắt đám cháy** => chọn "cả hai ý trên": tắt khóa điện, hô hoán, gọi cảnh sát + sử dụng nước để dập lửa
 
 - Khởi hành xe số tự động có trang bị chìa khóa thông minh: đạp bàn đạp phanh chân hết cỡ (**hết hành trình**), vào số và nhả phanh đỗ (hand brake), kiểm tra số rồi mới lăn bánh.
-- Khởi hành xe số sàn: đạp ly hợp (côn) hết hành trình12
+- Khởi hành xe số sàn: đạp ly hợp (côn) hết hành trình
 
 Khi nhả phanh đỗ (hand brake): bóp khóa hãm, đẩy cần phanh tay về trước; nếu khóa hãm kẹt cứng phải kéo cần phanh tay về **phía sau** đồng thời bóp khóa hãm.
 
 - Khi giảm tốc độ xuống dốc dài: nhả bàn đạp ga, **về số thấp** (không về số 0, số N hay số cao), đạp ½ ly hợp (côn); đạp phanh chân với mức độ phù hợp (không đạp mạnh phanh chân).
 
-tăng ga từ từ, giảm ga thật nhanh
+Tăng ga từ từ, giảm ga thật nhanh
 
 Bộ phận giảm thanh: bắt buộc
 

@@ -8,13 +8,7 @@
 
 ## Questions
 
-Module `co.everrise.ag` chứa gì?
-
-dao vs dto
-
-Tại sao: do thay đổi của tiktok gần đây, nhận thấy rằng data của AdEbis là chưa đủ
-
-Mỗi tài khoản parent account chỉ được phép một platform hay nhiều? Có bao nhiêu token?
+Account_id của `get report queue tiktok` là account gì?
 
 ## Basics
 
@@ -225,6 +219,8 @@ queue = yêu cầu tạo report data & master data cho quảng cáo
   - `Account ID`: Adrepo User ID
   - `ad account ID`
 - They are different!
+
+- server id: `2` cái server chạy cái batch
 
 ### Tiktok
 

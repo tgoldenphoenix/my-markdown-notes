@@ -1,14 +1,10 @@
 # HTTP, RESTful API notes
 
-json body có thể thay thế request param (`/anhao?param1=one&param2=two`) trong trường hợp param quá dài (lỗi `URI too long`)
+JSON body có thể thay thế request param (`/anhao?param1=one&param2=two`) trong trường hợp param quá dài (lỗi `URI too long`)
 
-`application/octet-stream` is a MIME type that identifies a file as a generic binary file of unknown type. It is the default for binary data that doesn't have a more specific MIME type and is often used for file uploads.
+## RESTful API Basics
 
-In JavaScript, a `Blob` (Binary Large Object) is an object that represents immutable, raw binary data. It's often used to handle file-like data in web applications, such as images, videos, or other binary content.
-
-## RESTful api Basics
-
-- `HTTP` is a communication protocol
+- `HTTP` is a stateless communication protocol.
 - `RESTful APIs` (Representational State Transfer) is an **architectural style** for designing APIs that often uses HTTP.
 
 The server does NOT store any information or context about previous requests from the client.  
@@ -16,8 +12,6 @@ Every interaction is independent, and the server treats each request as if it we
 
 - The server does not store session information. Không tốn bộ nhớ phía server.
 - Each request from the client **must** include all the necessary authentication tokens, query parameters, or data to complete the request.
-
-HTTP is also a stateless protocol
 
 ## HTTP Basics
 
@@ -29,15 +23,15 @@ There are web serve, video server, ad server (quảng cáo).
 
 Clients and servers communicate by exchanging **individual messages** (as opposed to a stream of data).
 
-It is an **application layer** protocol that is sent over **TCP**, or over a TLS-encrypted TCP connection.
+It is an **application layer** protocol that is sent over `TCP`, or over a TLS-encrypted TCP connection.
 
 HTTP is generally designed to be human-readable,
 
-HTTP is stateless, but NOT sessionless: While the core of HTTP itself is stateless, HTTP cookies allow the use of stateful sessions. Using header extensibility, HTTP Cookies are added to the workflow, allowing session creation on each HTTP request to share the same context, or the same state.
+HTTP is `stateless`, but NOT `sessionless`: While the core of HTTP itself is stateless, HTTP cookies allow the use of stateful sessions. Using header extensibility, HTTP Cookies are added to the workflow, allowing session creation on each HTTP request to share the same context, or the same state.
 
 ## `HTTP` vs `HTTPS`
 
-You might have observed that in the examples presented, I only use HTTP. In practice, however, your applications communicate only over HTTPS. For the examples we discuss in this book, the configurations related to Spring Security aren’t different, whether we use HTTP or HTTP.
+You might have observed that in the examples presented, I only use HTTP. In practice, however, your applications communicate only over `HTTPS`. For the examples we discuss in this book, the configurations related to Spring Security aren’t different, whether we use HTTP or HTTP.
 
 In any of these configuration scenarios, you need a certificate signed by a certification authority (CA). Using this certificate, the client that calls the endpoint knows whether the response comes from the authentication server and that nobody intercepted the com-munication. You can buy such a certificate if you need it. If you only need to configure HTTPS to test your application, you can generate a self-signed certificate using a tool such as OpenSSL (<https://www.openssl.org/>)
 
@@ -48,16 +42,17 @@ You can see HTTP messages in a browser's **Network tab** in the developer tools,
 There are two types of HTTP messages, requests and responses, each with its own format.
 
 - Request:
-  * The `start-line` (first line) contains, in order:
-    * An HTTP method: `GET, POST, PUT, DELETE`
-    * `Resource path` without the protocol (`http://`), domain name (`developer.mozilla.org`) or the TCP port (here, `80`). Example looks like `/images/2025/`, `/users`.
-    - `Version` of the HTTP protocol
+  - The `start-line` (first line) contains, in order:
+    - An HTTP method: `GET, POST, PUT, DELETE`
+    - `Resource path` without the protocol (`http://`), domain name (`developer.mozilla.org`) or the TCP port (here, `80`). Example looks like `/images/2025/`, `/users`.
+    - `Version` of the HTTP protocol.
   - Optional `headers block` for additional information for the servers: language, MIME types, allowed formats trả về. Thông tin dưới dạng key-value pairs.
-  - An **empty line** indicating the header of the message is complete.
+  - An **empty line** indicating the `header` of the message is completed.
   - A body which contain the resource sent. **Only** `PATCH, POST, and PUT` requests have a body. Example: JSON, data in multiple parts, a string of key-value pais.
+
 - Response:
   * The `start-line` (called a **status line** in responses) contains, in order:
-    * Protocol version
+    * Protocol version.
     * Status code: indicating if the request was successful or not, and why.
     * A **status message**: a non-authoritative short description of the status code.
   - A `headers block`, like those for requests. Example: format trả về
@@ -93,6 +88,8 @@ Example: `text/plain;charset=UTF-8`
 - The discrete types are:
   * `application`: Any kind of binary data that doesn't fall explicitly into one of the other types; either data that will be executed or interpreted in some way or binary data that requires a specific application or category of application to use. Generic binary data (or binary data whose true type is unknown) is application/octet-stream. Other common examples include application/pdf, application/pkcs8, and application/zip
   * `audio`: example `audio/mpeg, audio/vorbis`
+
+`application/octet-stream` is a MIME type that identifies a file as a generic binary file of unknown type. It is the default for binary data that doesn't have a more specific MIME type and is often used for file uploads.
 
 ## Request Headers & Body
 
@@ -141,7 +138,7 @@ params.append("username", "example");
 const response = await fetch(`https://example.org/login?${params}`);
 ```
 
-## Including credentials
+## Including Credentials
 
 - In the context of the Fetch API, a credential is an extra piece of data sent along with the request that the server may use to authenticate the user. All the following items are considered to be credentials:
   - HTTP cookies
@@ -262,6 +259,6 @@ A **Web cache**—also called a **proxy server**—is a network entity that sati
 
 ## Blob
 
-j
+In JavaScript, a `Blob` (Binary Large Object) is an object that represents immutable, raw binary data. It's often used to handle file-like data in web applications, such as images, videos, or other binary content.
 
 ## Axios

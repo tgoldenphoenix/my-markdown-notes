@@ -522,10 +522,10 @@ Git will look at the `index` when you run `git commit`.
 - "Changes not staged for commit" => working directory differrent from Index
 - "Changes to be committed" => HEAD & Index differ
 
-Step 1: **Move HEAD** (--soft, undid commits): The first thing reset will do is move what HEAD points to. This isn’t the same as changing HEAD itself (which is what `checkout` does); reset moves the branch that HEAD is pointing to. This means if HEAD is set to the `master` branch (i.e. you’re currently on the master branch), running `git reset 9e5e6a4` will start by making master point to 9e5e6a4.  
+Step 1: **Move HEAD** (`--soft`, undid commits): The first thing reset will do is move what `HEAD` points to. This isn’t the same as changing HEAD itself (which is what `checkout` does); reset moves the branch that `HEAD` is pointing to. This means if HEAD is set to the `master` branch (i.e. you’re currently on the `master` branch), running `git reset 9e5e6a4` will start by making `master` point to `9e5e6a4`.  
 No matter what form of reset with a commit you invoke, this is the first thing it will always try to do. With `reset --soft`, it will simply stop there.
 
-Step 2: Updating the Index (--mixed, default, unstage everything): The next thing reset will do is to update the index with the contents of whatever snapshot HEAD now points to.
+Step 2: Updating the Index (`--mixed`, default, unstage everything): The next thing reset will do is to update the index with the contents of whatever snapshot HEAD now points to.
 
 It still undid your last commit, but also unstaged everything. You rolled back to before you ran all your git add and git commit commands.
 
