@@ -10,6 +10,10 @@
 
 Account_id của `get report queue tiktok` là account gì?
 
+`TiktokRequestDto` là DTO nhưng lại chứa toàn là constant?
+
+queue_type 1, queue_type 3 là gì => coi trong class `batch/entity/etlAdrepo/AbstractGetReportQueue`
+
 ## Basics
 
 Có các actors: end user, adrepo, platform, etl, web api của everrise

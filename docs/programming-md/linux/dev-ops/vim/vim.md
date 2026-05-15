@@ -446,7 +446,7 @@ Khi đọc `help` của vim: To go back to where you came from press  `CTRL-o`  
 
 When the search reaches the end of the file it will continue at the start, unless the `wrapscan` option has been reset.
 
-In normal mode, move the cursor to any **word** (not character) > press `*` to search forwards for the next occurrence of that word, or press `#` to search backwards. Sau đó dùng `n` and `N`.
+In normal mode, move the cursor to any **word** (not character) then press `*` to search forwards for the next occurrence of that word, or press `#` to search backwards. Sau đó dùng `n` and `N`.
 
 ### Ignore Case
 
@@ -1134,9 +1134,13 @@ Vim stores its settings in the `~/.vimrc` configuration file. Neovim stores its 
 
 Vim assigns a function to almost every key on the keyboard. If we want to create our own custom mappings, which keys should we bind them to? Vim provides the `<Leader>` key as a namespace for our own user-defined commands.
 
-## Line wrapping
+## Line Wrapping
 
 A **hard wrap** inserts actual line breaks in the text at wrap points, with soft wrapping the actual text is still on the same line but looks like it's divided into several lines.
+
+## Other keymap
+
+intellij, show hover information `Shift K`
 
 ## The `:help` commands
 
