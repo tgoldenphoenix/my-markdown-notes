@@ -15,7 +15,9 @@ Double-unit characters: F+L // F2+L
 
 Triple-unit characters
 
-- Normally là: 1st, last // 1st, last // last (F+L // F+L // L)
+- Normally là:
+  - 1st, last // 1st, last // last (F+L // F+L // L)
+  - 1st // 1st, last // last (F // F+L // L)
 - We take the first + last radical of the last unit only when the **second unit** takes one radical => F+L // F // F+L
   - 實 (十 // 田十 // 金) => In this character, the 2nd unit takes two radicals (not one), so we only take the last radical of the third unit
   - 瑛 (一土 // 廿 // 中大)
@@ -116,9 +118,10 @@ Triple-unit characters
 - 張 (弓 // 尸一女)
   - 张 (弓心人)
 
-- 刀 (尸竹) vs. 刃 (尸竹戈) - blade, sword
+- 刀 (尸竹) vs. 刃 (尸竹戈) - blade, sword, dagger
   - 昭 (日 // 尸竹口)
   - 認 (卜口 // 尸戈心)
+- 力 (大尸) - power
 
 - 司 (尸一口) - company
 - 幻 (女戈 // 尸)
@@ -140,6 +143,8 @@ Triple-unit characters
 - 別/别 (口尸 // 中 // 弓) - separate
   - 另 (口大尸)
 - 力 (大尸) - power
+  - 甥 (竹一 // 田大尸)
+- 刀 (尸竹) vs. 刃 (尸竹戈) - blade, sword, dagger
 
 - 耳 (尸十) - ear
   - 聲 (土水 // 尸十) - double unit character
@@ -162,6 +167,7 @@ Triple-unit characters
 - 乃 (弓竹尸) - fist
   - 為 (戈大弓火)
   - 刀 (尸竹) - blade
+- 力 (大尸) - power
 
 - 族 (卜尸 // 人人大) - banner
 
@@ -204,6 +210,7 @@ anki
 - 又 (弓大)
 
 - 几 (竹弓) - wind
+  - 風 (竹弓 // 竹中戈) - wind
 - 凡 (竹弓戈)
 - 鳳 (竹弓 // 一日火) - phoenix
   - 鳥 (竹日卜火) - bird
@@ -249,6 +256,12 @@ anki
 - 角 (弓月土) - angle, bound up
 - 換/换 (手 // 弓月大)
 
+- 姨 (女 // 大弓)
+- 姊 (女 // 中難竹) - elder sister
+- 第 (廿 // 弓中竹)
+
+- 欠 (弓人) - lack
+- 欸 (戈大 // 弓人)
 
 #### Halberd, fiesta (戈)
 
@@ -305,6 +318,9 @@ anki
 
 - 化 (人心)
 - 混 (水 // 日心心)
+
+- 能 (戈月 // 心心) - ability
+  - 態 (戈心 // 心) - double unit
 
 - 勺 (心戈) - ladle
   - 的 (竹日 // 心戈)
@@ -380,13 +396,15 @@ anki
 
 - 再 (一土月) - again
 - 稱 (竹木 // 月土月)
-- 補 (中 // 戈十月)
-
 - 冓 (廿廿土月) - funnel
-- 講 (卜口 // 廿廿月)
+  - 講 (卜口 // 廿廿月)
+
+- 補 (中 // 戈十月)
 
 - 禺 (田中月戈) - cricket
 - 萬 (廿田中月)
+- 虫 (中一戈) - insect
+  - 蟠 (中戈 // 竹木 // 田) - triple unit
 
 - 然 (月大火) - flesh
   - 犬 (戈大)
@@ -414,6 +432,7 @@ anki
 - 事 (十中中弓) - rake
 - 肅 (中難)
 - 書 (中土日)
+- 爭 (月 // 尸木)
 
 - 灵 (尸一 // 火) - broom
   - 雪 (一月 // 尸一)
@@ -475,10 +494,14 @@ anki
 - 不 (一火) - negative
 - 礻 (戈弓火) - altar
 
-- 米 (火木)
+- 米 (火木) - rice
   - 氣 (人弓火木)
 - 評 (卜口 // 一火十)
 - 乎 (竹火木)
+
+- 釆 (竹火木) -
+  - 番 (竹木 // 田) - double unit, dice, dropping
+  - 蟠 (中戈 // 竹木 // 田) - triple unit
 
 - 光 (火一山) - ray
   - 辉 (火山 // 月 // 大手) - triple unit
@@ -520,7 +543,7 @@ anki
 - 乎 (竹火木)
 
 - 𢝙 (心 // 一火 // 廿)
-  - 皿 (月廿)
+  - 皿 (月廿) - dish
 
 - 無 (人廿火) - nothing
 
@@ -548,7 +571,7 @@ anki
 
 - 辛 (卜廿十) - spicy
   - 𨐌 (卜廿手)
-  - 薛 (廿 // 竹口 // 十)
+  - 薛 (廿 // 竹口 // 十) - triple unit
   - 新 (卜木 // 竹一中)
 - 幸 (土廿十) - happy
 
@@ -612,6 +635,7 @@ anki
   - 故 (十口 // 人大)
   - 做 (人 // 十口 // 大)
 - 文 (卜大) - literature
+- 矢 (人大) - dart
 
 - 求 (戈十水) - request
 - 彔 (女弓一水)
@@ -627,13 +651,15 @@ anki
 
 - 左 (大一) - left
 - 有 (大月) - possess
-- 隨 (弓中 // 卜 // 大月)
+- 隨 (弓中 // 卜 // 大月) - triple unit
 
 - 又 (弓大)
 - 故 (十口 // 人大)
 
 - 矢 (人大) - dart
+  - 欸 (戈大 // 弓人)
 - 天 (一大)
+- 攵 (人大) - taskmaster
 
 - 力 (大尸) - power
   - 边 (卜大尸)
@@ -676,6 +702,7 @@ anki
   - 黃 (廿一田金) - yellow
 - 廁 (戈 // 月金 // 弓) - triple unit
   - 則 (月金 // 中 // 弓) - triple unit
+- 府 (戈人木戈)
 
 #### Tree 木
 
@@ -760,6 +787,7 @@ anki
 
 - 下 (一卜) - below
 - 卞 (卜卜)
+- 上 (卜一) - above
 
 - 母 (田卜戈) - mom
 - 海 (水 // 人田卜)
@@ -767,6 +795,9 @@ anki
 - 足 (口卜人) - peg leg
   - ⻊ (口卜中一)
   - 跛 (口一 // 木竹水)
+
+- 悼 (心 // 卜日十)
+- 上 (卜一) - above
 
 ### Woman 女
 
@@ -779,7 +810,7 @@ anki
 - 食 (人戈日女) - food
   - 館 (人戈 // 十口口)
 
-- 衣 (卜竹女)
+- 衣 (卜竹女) - garment
 - 長 (尸一女) - long
 
 - 以 (女戈人)
@@ -814,6 +845,8 @@ anki
 - 表 (手一女)
 
 - 看 (竹手月山)
+
+- 夫 (手人) - father, husband
 
 - 我 (竹手戈)
   - 義 (廿土 // 竹手戈) - righteous, double unit
@@ -850,7 +883,7 @@ anki
 
 - 範 (竹 十十 山) - triple-unit character
 
-- 寶 (十一山金)
+- 寶 (十 // 一山 // 金) - triple unit
 
 - 崇 (山十一火)
 
@@ -860,8 +893,13 @@ anki
 
 - 典 (廿月金) - code, canon
 - 曲 (廿田) - bent
+- 豐 (山十 // 一 // 口廿) - triple unit
   - 豊 (廿田 // 一 // 口廿) - triple unit, bountiful
   - 體 (月月 // 廿田 // 廿) - triple unit
+
+- 皿 (月廿) - dish
+  - 豔 (山廿 // 土戈 // 廿) - triple unit
+  - 血 (竹月廿) - blood
 
 - 回 (田口)
 
@@ -895,8 +933,8 @@ anki
 - 夢 (廿 // 田中 // 弓) - dream
   - 梦 (木木 // 弓戈)
 - 還 (卜 // 田中女)
-- 褱 (卜 // 田中 // 女)
-  - 懷 (心 // 卜田女) - reminisce
+- 褱 (卜 // 田中 // 女) - triple unit
+  - 懷 (心 // 卜田女) - double unit, reminisce
 - 澤 (水 // 田 // 中十) - triple unit, espionage
 - 睪 (田中 // 土廿十) - double unit
 
@@ -940,7 +978,10 @@ anki
   - 覺 (竹月 // 月山山) - double unit
 - 鼠 (竹難女卜女)
 
-- 姊 (女 // 中難竹)
+- 姨 (女 // 大弓)
+- 姊 (女 // 中難竹) - elder sister
+- 第 (廿 // 弓中竹)
+
 - 齊 (卜難) - CSGT
   - 齋 (卜難火) - purification
 - 卍 (弓難)
