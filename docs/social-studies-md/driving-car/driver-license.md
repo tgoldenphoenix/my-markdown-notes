@@ -165,7 +165,7 @@ Người tham gia giao thông đường bộ bao gồm cả người đi bộ tr
 - Người đủ `21` tuổi trở lên được cấp giấy phép lái xe hạng `C, BE`.
   - Cercei (`21`) bú C*c (`C`) suguru geto (`7500`)
 - Người đủ `24` tuổi trở lên được cấp giấy phép lái xe hạng `D1, D2, C1E, CE`.
-  - Beric Dondarion lái xe trung chuyển 16 chỗ phương trang
+  - Beric Dondarion lái xe trung chuyển 16 chỗ phương trang
 - Người đủ `27` tuổi trở lên được cấp giấy phép lái xe hạng `D, D1E, D2E, DE`.
   - Bill gate (`27`) là một thằng dâm Dê (hạng `D`) lái xe trên 29 chỗ chở bà nội Ngọc
 
@@ -278,7 +278,7 @@ Có 5 nhóm biển báo: cấm, nguy hiểm, hiệu lệnh, chỉ dẫn, biển 
 
 xích lô, ly bia, con ngựa => ý cuối (nhiều khi là ý 4, không phải ý 3)
 
-Xe buýt là phương tiện công cộng, xe ưu tiên của nhà nước => không có biển nào cấm xe buýt. Chỉ có biển cấm ô tô chở khách
+Xe buýt là phương tiện công cộng, xe ưu tiên của nhà nước => không có biển nào cấm xe buýt. Chỉ có biển **cấm ô tô chở khách**.
 
 - Thấy 2 biển mô tô (2 bánh) và ô tô (4 bánh) đi chung => áp dụng mẹo cấm 1 - được 3
   - Câu hỏi có chữ cấm => chọn 1
@@ -313,6 +313,8 @@ Xe buýt là phương tiện công cộng, xe ưu tiên của nhà nước => kh
 
 - Một gạch `(\)` => cấm đỗ xe (đậu xe) cho phép dừng tạm thời
 - Hai gạch dấu `X` là cấm đỗ và cấm dừng
+- dừng xe: tạm thời
+- đỗ xe: không giới hạn thời gian
 
 - Biển `STOP` là biển duy nhất cấm luôn cả xe ưu tiên
   - Biển stop không phải đường cấm mà là phải dừng xe và nhường đường
@@ -320,12 +322,6 @@ Xe buýt là phương tiện công cộng, xe ưu tiên của nhà nước => kh
 - Xe ưu tiên gặp biển `(-)` "cấm đi ngược chiều" vẫn được phép đi bình thường.
 - Biển `()`, red border, white background, không vẽ hình là biển "đường cấm"
 - "Biển nào dưới đây các phương tiên không được phép đi vào" => chọn cả 2 biển "đường cấm" và "đường một chiều"
-
-- Thấy 3 biển hình tròn rỗng
-  - đáp án ghi con số biển 1, 2, 3 => ý 2
-  - đáp án ko ghi số => ý 1
-
-Phần biển báo cấm (biển báo màu đỏ) thấy đáp án chứa chữ **không được phép** => là chọn luôn
 
 - cấm tải trọng:
   - biển chỉ ghi số => hạn chế tải trọng **toàn bộ** xe
