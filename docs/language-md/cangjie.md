@@ -29,6 +29,7 @@ Triple-unit characters
 #### Human Leg, Animal Leg
 
 - 儿 (中山) - er, child
+- 先 (竹土竹山)
 
 - 兄 (口竹山) - teenager
 - 兌 (金口竹山) - devil
@@ -138,8 +139,8 @@ Triple-unit characters
 - 成 (戈竹尸)
 - 馬 (尸手尸火)
   - 马 (弓女尸一) horse
-- 方 (卜竹尸)
-- 分 (金 // 尸竹)
+- 方 (卜竹尸) - compass, direction
+- 分 (金 // 尸竹) - divide
 
 - 鳥 (竹日卜火) - single unit, bird
   - 鸟 (心卜尸一)
@@ -164,6 +165,7 @@ Triple-unit characters
 
 - 乍 (人尸) - saw
   - 作 (人 // 人尸)
+  - 怎 (人尸 // 心)
 - 面 (一田尸中)
 
 - 那 (尸手 // 弓中)
@@ -226,6 +228,7 @@ anki
 
 - 几 (竹弓) - wind
   - 風 (竹弓 // 竹中戈) - double unit, wind
+  - 没 (水 // 竹弓 // 水)
 - 凡 (竹弓戈)
 - 鳳 (竹弓 // 一日火) - phoenix
   - 鳥 (竹日卜火) - bird
@@ -334,6 +337,10 @@ anki
   - 黑 (田土 // 火) - double unit
 - 氏 (竹女心) - family name
 
+- 乇 (竹心) - lock of hair
+  - 托 (手 // 竹心)
+- 毛 (竹手山) - fur
+
 - 勿 (心竹竹) - knot
 - 物 (竹手 // 心竹竹)
 
@@ -403,6 +410,9 @@ anki
 - 帝 (卜月中月) - emperor
   - 啼 (口卜月月)
 - 制 (竹月 // 中 // 弓)
+
+- 帶 (大心 // 月中月) - sash
+  - 带 (廿十 // 月中月)
 
 - 㒼 (廿中月人) - both
 - 滿 (水 // 廿中月)
@@ -501,6 +511,8 @@ anki
 - 英 (廿 // 中月大) - england
   - 瑛 (一土 // 廿中大) - double unit
 
+- 电 (中田山)
+
 - 州 (戈中戈中)
 
 - 亞 (一中中一), 亜 (一中中一) - asia
@@ -517,7 +529,10 @@ anki
 
 ### Fire 火
 
-- 爾 (一火月大)
+- 爾 (一火月大) - thou
+  - 彌 (弓 // 一火月)
+  - 瀰 (水 // 弓 // 一月) - triple unit
+
 - 京 (卜口火)
 - 少 (火竹) vs. 小 (弓金) - few, small
   - 省 (火竹 // 月山)
@@ -787,6 +802,9 @@ anki
   - 被 (中 // 木竹水)
 
 - 來 (木人人)
+  - 来 (木廿)
+- 夾 (大人人)
+  - 夹 (大廿)
 
 - 決 (水木大)
 
@@ -832,11 +850,12 @@ anki
 
 - 外 (弓戈卜)
 
-- 雨 (一中月卜) - 卜 is two dấu phết
+- 雨 (一中月卜) - 卜 is two dấu phết, rain
   - 巾 (中月) - towel
 - 冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木 // 卜十) - winter
 - 图 (田 // 竹水卜) - map
   - 図 (田卜大)
+- 斗 (卜十) - big dipper
 
 - 实 (十卜大)
 - 實 (十田十金)
@@ -931,8 +950,9 @@ anki
 - 打 (手 // 一弓)
 - 浙 (水 // 手 // 竹中) - triple unit
 
-- 毛 (竹手山)
+- 毛 (竹手山) - fur
   - 毫 (卜口月山)
+- 乇 (竹心) - lock of hair
 
 - 丰 (手十) - bountiful, bushes
   - 邦 (手十 // 弓中)
@@ -1094,10 +1114,11 @@ anki
 
 === Others & Exceptions
 
-- 門 (日弓)
+- 門 (日弓) - gate
   - 開 (日弓 // 一廿)
-  - 门 (中戈尸)
-- 鬥 (中弓)
+- 门 (中戈尸)
+  - 阊 (中尸 // 日日)
+- 鬥 (中弓) - big dipper
 - 閨 (日弓 // 土土)
   - 闺 (中尸 // 土土)
 
@@ -1120,7 +1141,7 @@ anki
   - 集 (人土 // 木)
 
 - 亡 (卜女) - deceased
-  - 吂 (卜女口)
+  - 吂 (卜女 // 口)
 - 亡 on top of 口 (吂) is an exception.
 - 望 (卜月竹土) - double unit; F+L // F2+L
 - 荒 (廿 // 卜女 // 山) - triple unit
