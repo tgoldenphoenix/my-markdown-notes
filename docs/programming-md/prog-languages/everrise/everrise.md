@@ -150,6 +150,31 @@ SEO: <https://ever-rise.backlog.jp/alias/wiki/372411>
 
 Attendance - Equipment Management: <https://docs.google.com/spreadsheets/d/1yvuO-rSCk6Nkhr3GG8g3zJCsikVLkfhDJqV1yut34OI/edit?pli=1&gid=1753145395#gid=1753145395>
 
+## Wifi
+
+- VNPT là 4cTU1VW1ld
+- FPT là H8givTsbgg 2.4
+
+Với máy làm việc
+
+Hãy dụng mạng VNPT theo yêu cầu của sếp
+Có IP tĩnh:113.161.73.224
+Tạm thời chỉ có: 2 cái SSID wifi
+Y25mvWY1h2 (5 GHz)
+4cTU1VW1ld (2.4 GHz)
+Chưa kết nối với các modem nội bộ nên mọi người chưa dùng LAN ở PC được. Ai dùng PC chịu khó kiếm cái USB wifi và sử dụng tạm 4cTU1VW1ld (2.4 GHz)
+Tuy nhiên, đã bật lại DHCP server cho router wifi Linksys nên sẽ tránh được việc thỉnh thoảng mất kết nối 5 phút
+
+Với thiết bị cá nhân
+
+Hãy dùng mạng wifi FPT qua 2 SSID
+H8givTsbgg (5 GHz)
+H8givTsbgg 2.4 (2.5 GHz)
+Không có IP tĩnh
+
+1. Máy/công việc quan trọng cần thiết thì dùng mạng VNPT
+2. ĐT cá nhân, công việc không quan trong thì xài mạng FPT
+
 ## Xin nghỉ
 
 Trưa nay em có cuộc họp từ 12h-14h nên em xin phép dời thời gian nghỉ trưa sang 30 phút sau khi họp (14h-14h30) 🙇‍♀️

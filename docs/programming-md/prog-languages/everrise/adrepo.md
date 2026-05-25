@@ -14,6 +14,8 @@ Account_id của `get report queue tiktok` là account gì?
 
 queue_type 1, queue_type 3 là gì => coi trong class `batch/entity/etlAdrepo/AbstractGetReportQueue`
 
+google analytic for beginner?
+
 ## Basics
 
 Có các actors: end user, adrepo, platform, etl, web api của everrise
@@ -52,6 +54,8 @@ batch nằm trên ec2, rds (relational database) cũng là service trên aws
 
 - table names: `queue`, `dsp_advertiser`
 - Cả 2 phía etl & adrepo đều có table `queue` cái tên giống nhau.
+
+ETL chỉ cung cấp data as is returned from API. ETL không biến đổi dữ liệu. Khách hàng muốn biến đổi thì tự họ làm, ETL không làm.
 
 ## ETL Batch
 
@@ -170,6 +174,28 @@ mysql: root:root or 123
 Each time you start a batch job, a batch processor instance picks up the job and processes it.
 
 When a batch processor job begins, its batch processor instance is locked until the process is completed or terminated. A **lock file** (`<instanceName>.lock`)) is created in the $home folder. When the batch job is stopped or completed, the lock file is deleted. If the instance crashes, then the lock file remains in the $home folder, but it will not prevent the same batch instance from being started.
+
+## UTM parameters
+
+Marketers use TML to figure out: "Where did my user come from?", how did people found out about their website?
+
+The marketing team of the company adds utm params to the links leading to their website.
+
+- brand name of the traffic source: youtube, twitter, tiktok, facebook, instagram, etc
+- medium (traffic type):
+  - organic traffic: coming from a search engine (`google/organic`, `bing/organic`)
+  - referral: coming from another website (`facebook/referral`)
+  - none: "I'm not sure how they got here" (`(direct)/(none`))
+  - `cpc` or `ppc`
+- Campaign (purpose of the traffic)
+
+## Google Analytics
+
+`Paid Ads` nghĩa là bạn phải trả tiền để có được lượt hiển thị hoặc truy cập. Còn việc tính tiền thế nào có vài cách khác nhau.
+
+- CPC (Cost Per Click) - Tính tiền theo Lượt Nhấp: chỉ khi nào người dùng click vào link dẫn đến website/app của bạn thì bạn mới bị trừ tiền.
+- CPM (Cost Per Mille) - Tính tiền theo Lượt Hiển Thị: cứ quảng cáo đập vào mắt 1,000 người (không cần biết họ có click hay không), bạn sẽ phải trả một khoản tiền cố định.
+- CPA / oCPM (Cost Per Action / Conversion) - Tính tiền theo Lượt Chuyển Đổi: Bạn đặt mục tiêu là: "Tôi chỉ muốn trả tiền khi có người Mua hàng hoặc Tải app thành công".
 
 ## Terminologies
 
