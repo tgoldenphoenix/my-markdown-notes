@@ -177,6 +177,9 @@ Triple-unit characters
   - 爷 (金大 // 尸中) - chop seal
 - 刀 (尸竹)
 
+- 卬 (竹女 // 尸中) - double unit, stamp collection
+  - 迎 (卜 // 竹女 // 中) - triple unit
+
 - 秀 (竹木 // 弓竹尸) - excel
   - 透 (卜 // 竹木尸) - double unit
 - 乃 (弓竹尸) - fist
@@ -239,9 +242,15 @@ anki
 
 - 侯 (人弓一大) - marquis
 
-- 丁 (一弓)
+- 丁 (一弓) - spike, nail
 - 𡨸 (十弓十弓木)
 - 何 (人 一弓口)
+
+- 彳 (竹人)
+- 亍 (一一弓)
+- 行 (竹人 // 一一弓) - column, boulevard, queue
+  - 衡 (竹人 // 弓大 // 弓) - triple unit
+  - 蘅 (廿 // 竹人弓)
 
 - 可 (一弓口)
 - 才 (木竹) - genie
@@ -263,6 +272,10 @@ anki
   - 卻 (金口 // 尸中)
   - 俗 (人 // 金人口)
 
+- 㔾 (尸山) - fingerprint
+  - 苑 (廿 // 弓戈 // 山) - triple unit
+  - 鴛 (弓山 // 竹日火) - double unit
+
 - 殳 (竹弓水) - missile
 - 發 (弓人 // 弓 // 竹水) - triple unit
   - 癶 (弓戈卜人)
@@ -280,6 +293,7 @@ anki
 - 第 (廿 // 弓中竹)
 
 - 欠 (弓人) - lack
+  - 歡 (廿土 // 弓人) - pegasus
 - 欸 (戈大 // 弓人)
 
 #### Halberd, fiesta (戈)
@@ -304,6 +318,7 @@ anki
 - 或 (戈口一) - or
   - 國 (田戈口一)
   - 国 (田 // 一土戈)
+  - 惑 (戈一 // 心) - double unit
 - 彧 (戈大口一)
 
 - 戊 (戈竹) - parade
@@ -389,7 +404,7 @@ anki
 
 - Birdhouse
 - 受 (月月水) - claw
-- 愛 (月月心水) - love
+- 愛 (月月心水) - single unit, love
 - 隱 (弓中 // 月一心) - double unit, take F2+L of the second unit
 
 - 骨 (月月月) - skeleton
@@ -598,6 +613,7 @@ anki
   - 皿 (月廿) - dish
 
 - 無 (人廿火) - nothing
+  - 蕪 (廿 // 人廿火)
 
 - 其 (廿一一金)
 - 期 (廿金 月) - double unit characters, only take F+L of the first unit
@@ -643,6 +659,10 @@ anki
   - 爹 (金大 // 弓戈 // 弓) - triple unit
 - 爺 (金大 // 尸十 // 中) - triple unit
   - 爷 (金大 // 尸中)
+
+- 喜 (土口廿口) - single unit, joyful
+  - 嘻 (口 // 土口口) - double unit
+- 臺 (土口月土) - pedestal
 
 === One `一`
 
@@ -783,6 +803,9 @@ anki
   - 壽 (土弓一戈) - longevity
 - 才 (木竹)
 
+- 㝵 (日一 // 木戈)
+  - 得 (竹人 // 日一 // 戈) - triple unit
+
 - 乎 (竹火木)
 - 子 (弓木); - children
 
@@ -877,7 +900,7 @@ anki
 - 每 (人 // 田卜戈) - double unit, every
   - 毎 (人 // 田十)
   - 海 (水 // 人 // 田卜) - triple unit, sea
-- 敏 (人卜 // 人大) - double unit
+  - 敏 (人卜 // 人大) - double unit
 
 - 足 (口卜人) - peg leg
   - ⻊ (口卜中一)
@@ -1071,6 +1094,8 @@ anki
   - 聖 (尸口 // 竹土) - double unit
 - 玉 (一土戈) - jade
 - 宝 (十一土戈)
+
+- 在 (大中土)
 
 - 角 (弓月土) - angle
 
