@@ -6,9 +6,12 @@
 
 `co.everrise.batch.catalog.REPORT_TYPE` enum
 
+1 ad nhiều creative
+
 ## Questions
 
-Account_id của `get report queue tiktok` là account gì?
+Account_id của `get master queue` là account gì, khác gì oauth id?  
+etl agency id?
 
 `TiktokRequestDto` là DTO nhưng lại chứa toàn là constant?
 
@@ -55,7 +58,10 @@ batch nằm trên ec2, rds (relational database) cũng là service trên aws
 - table names: `queue`, `dsp_advertiser`
 - Cả 2 phía etl & adrepo đều có table `queue` cái tên giống nhau.
 
-ETL chỉ cung cấp data as is returned from API. ETL không biến đổi dữ liệu. Khách hàng muốn biến đổi thì tự họ làm, ETL không làm.
+ETL chỉ cung cấp data as is returned from API. ETL không biến đổi dữ liệu. Khách hàng muốn biến đổi thì tự họ làm, ETL không làm.  
+rule dự án: api trả về cái gì thì trả cho khách hàng cái đó, không xào nấu thêm phức tạp
+
+dùng junit 4 (cuốn sách bản cũ second edition)
 
 ## ETL Batch
 
@@ -69,6 +75,11 @@ This is a maven project and it has two parts: ag.war and adrepo_batch.jar. Vì v
   - `log4j.properties`: thư viện `Log4j`, quyết định cách mà `LOG_INFO` và LOG_ERROR (mà bạn đã hỏi) sẽ hoạt động.
 
 location jdk java 8: `C:\Users\anhao\.jdks\corretto-1.8.0_492`
+
+- Khi lấy data có 3 thông tin cần quan tâm:
+  1. đối tượng: oauth id, advertiser id
+  2. data type (master data or report data or ad list)
+  3. token chứng thực
 
 ## Code Flow
 
@@ -142,7 +153,7 @@ add child issues để chia nhỏ một task/batch lớn, một child ticket là
   - 15h00 chiều (trước buổi họp vào lúc 15h30): tiến độ hiện tại.
   - 17h00 chiều: tiến độ hiện tại.
 
-## Build project
+## Build & Setup the Project
 
 - build no profile thì phải copy file `config.properties` ra bên ngoài
 - build có profile thì nó tự vào thư mục `dev` để lấy file `config`
@@ -161,6 +172,13 @@ chạy batch cần: file `config.property` & database
 
 bảng `etl_adrepo.consts` phải có data
 
+```
+mvn install -Dmaven.test.skip=true
+mvn -f pom\_batch.xml install
+```
+
+lấy not process queue từ trong table thì `dsp_type` phải đúng
+
 ## Passsword
 
 mysql: root:root or 123
@@ -174,6 +192,9 @@ mysql: root:root or 123
 Each time you start a batch job, a batch processor instance picks up the job and processes it.
 
 When a batch processor job begins, its batch processor instance is locked until the process is completed or terminated. A **lock file** (`<instanceName>.lock`)) is created in the $home folder. When the batch job is stopped or completed, the lock file is deleted. If the instance crashes, then the lock file remains in the $home folder, but it will not prevent the same batch instance from being started.
+
+- lock file được tạo dựa trên name của batch nên mỗi thời điểm chỉ có duy nhất một batch tên `BatchGetMasterTiktok` chạy được thôi.
+- nếu lock file exit thì batch không chạy, batch chạy xong thì delete lock file
 
 ## UTM parameters
 
@@ -222,7 +243,20 @@ campaign type: Upgraded Smar+, Manual, Smart+
 
 master data = metadata
 
-`dspType` là tên của các platform (twitter, facebook)
+- `dspType` là tên của các platform (twitter, facebook)
+- `advertiser id`
+- `oauth id` 
+
+- Có 3 loại batch chính trong project:
+  1. get advertiser list (get ad account, get advertiser master): đối tượng là `oauth id`
+  2. get master data: đối tượng là advertiser id
+  3. get report data: đối tượng là advertiser id
+
+- Có 2 level:
+  1. Oauth id (tài khoản quản lý): dùng đăng nhập vào platform, có token chứng thực của platform đó, oauth id không chạy quảng cáo; chỉ oauth id mới có token, advertiser id không có token, dùng token của oauth id
+  2. advertiser id: 1 queue lấy cho 1 advertiser id, là đối tượng chạy quảng cáo
+
+1 user có thể tạo nhiều oauth id để chạy quảng cáo trên nhiều platform
 
 - Có hai loại báo cáo: `master data` & `report data`
 - Mỗi một format báo cáo là một loại `report_type`
