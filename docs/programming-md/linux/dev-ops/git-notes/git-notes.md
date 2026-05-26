@@ -1338,6 +1338,14 @@ khi `rebase -i` thì order ngược lại với `git log`
 `git checkout feature; git rebase -i HEAD~3` => begins an interactive rebase of only the last 3 commits  
 Git use zero-based indexing, so `HEAD~1` the last commit & `HEAD~0` is where you are standing on.
 
+```
+git stash -u
+* rebase as you wish
+git rebase -i HEAD~3
+
+git stash pop
+```
+
 Make lots of small commits and tidy them up later using interactive rebase. Use `git push origin --force-with-lease`.
 
 Normally when I'm rewriting history I use git rebase -i in combination with git reset HEAD~. This lets me squash commits together, pause to split them apart, reorder them, or remove them entirely. This is used to modify your pull request to make it easier to review.
@@ -1357,7 +1365,7 @@ Breaking One Commit into multiple commits
 - `edit` = use, but stop for amending
 - `squash` = use, but meld into previous commit (the above listed)
 - `fixup` = like `squash` but keep only the previous commit's log message
-  * The difference between squash and fixup, is that `squash` let's you edit the resulting commit log message; fixup, on the other hand, defaults to using the previous commit's log message.
+  * The difference between squash and fixup, is that `squash` let's you edit the resulting commit log message; `fixup`, on the other hand, defaults to using the previous commit's log message.
 - `drop` = remove commit
 
 nếu có `edit` thì sau khi edit, run `git rebase --continue`
