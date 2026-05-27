@@ -344,6 +344,18 @@ anki
 - 我 (竹手戈)
   - 哦 (口 // 竹手戈)
 
+- 韭 (中尸一一) - leek
+- 㦰 (人人戈)
+- 韱 (人戈 // 中尸一) - double unit, anime convention
+- 籤 (竹 // 人戈 // 一) - triple unit
+
+- 𢦏 (十戈) - Thanksgiving
+  - 裁 (十戈 // 卜竹女)
+
+- 戠 (卜日戈) - kazoo
+  - 識 (卜口 // 卜戈 // 日) - triple unit
+  - 織 (女火 // 卜戈 // 日) - triple unit
+
 #### Heart 心
 
 - 代 (人 // 戈心) - substitute, age, era
@@ -1194,8 +1206,8 @@ anki
 - 黑 (田土 // 火) - double unit
 
 - 戠 (卜日戈) - kazoo
-- 識 (卜口 // 卜戈 // 日) - triple unit
-- 織 (女火 // 卜戈 // 日) - triple unit
+  - 識 (卜口 // 卜戈 // 日) - triple unit
+  - 織 (女火 // 卜戈 // 日) - triple unit
 
 - 靈 (一月口口人)
 - 巫 (一人人)
