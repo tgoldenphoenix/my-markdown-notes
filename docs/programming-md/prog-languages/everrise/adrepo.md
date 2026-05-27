@@ -177,6 +177,16 @@ mvn install -Dmaven.test.skip=true
 mvn -f pom\_batch.xml install
 ```
 
+Thêm vào `pom.xml`
+
+```
+<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.15</version>
+</dependency>
+```
+
 lấy not process queue từ trong table thì `dsp_type` phải đúng
 
 ## Passsword

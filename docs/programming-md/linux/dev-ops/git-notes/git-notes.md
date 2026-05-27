@@ -1193,7 +1193,7 @@ To ever-rise.git.backlog.jp:/VN_PRO/backlog-wiki-page-kankopi-button.git
  + 0dc60b2...b685f99 HEAD -> VN_PRO-785-const-var-first (forced update)
 ```
 
-### Rebase vs merge
+### Rebase vs Merge
 
 - When rebase `A` on-to `main` => `main` will **NOT** move. Only `HEAD->A` move (on to the tip of `main`).
 - When merge `A` in-to `main` => `HEAD->main` will move forward pointing to the newly created **merge commit**. `A` will **NOT** move.
