@@ -4,6 +4,11 @@ The concept of closure is mentioned in JavaScript, Python, Lua
 
 first-class citizen, first class function
 
+## Terminogolies
+
+- Serialization (Object $\rightarrow$ JSON)
+- Deserialization (JSON $\rightarrow$ Object)
+
 ## Programming Paradidigms
 
 The main categories include imperative, declarative, object-oriented, and functional. Within these, there are sub-paradigms like procedural, logic, and event-driven programming

@@ -13,6 +13,8 @@ Every interaction is independent, and the server treats each request as if it we
 - The server does not store session information. Không tốn bộ nhớ phía server.
 - Each request from the client **must** include all the necessary authentication tokens, query parameters, or data to complete the request.
 
+rest khác restful???
+
 ## HTTP Basics
 
 HTTP is a protocol for fetching resources such as HTML documents, images, videos. It is the foundation of any data exchange on the Web and it is a client-server protocol.
@@ -194,6 +196,13 @@ The server should include an entity containing an explanation of the error situa
 
 - `500 Internal Server Error`: A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.
 - `505 HTTP Version Not Supported`: The requested HTTP protocol version is not supported by the server.
+
+- các status quan trọng trong adrepo:
+  - 200
+  - 400
+  - 401
+  - 403
+  - 500
 
 ## Caching
 

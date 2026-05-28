@@ -1541,6 +1541,18 @@ The git stash command and git stash push command are functionally equivalent in 
   - `git stash push --keep-index`: To stash only the modified tracked files, leaving the staged changes in the index.
   - In essence, git stash push provides the same core functionality as a bare git stash but with the added flexibility of specifying options to control the stashing behavior and provide more descriptive messages. For simple stashing of current changes, either command will achieve the same result.
 
+```
+git stash -u -m "pom & gitignore"
+# rebase
+git stash pop
+```
+
+When you run a simple git stash pop, Git automatically looks at index 0 (written as `stash@{0}`). This represents your most recent stash.
+
+## Quản lý nhánh Adrepo
+
+nhánh con merge vào nhánh cha, sau khi xong hết nhánh con thì mới merge nhánh cha vào develop. Không merge từng nhánh con của 1 task lớn vào develop one by one
+
 ## git-filter-repo
 
 This is for rewriting an entire repository history.
