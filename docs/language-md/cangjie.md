@@ -47,6 +47,11 @@ Triple-unit characters
   - 员 (口 // 月人)
   - 圓 (田 // 口 // 月金) - triple unit
 
+- 頁 (一月山金) - page, head
+- 页 (一月人)
+  - 颗 (田木 // 一月人)
+- 貢 (一月山金)
+
 - 金 is 儿 in compound
 - 穴 (十金) - animal leg
   - 空 (十金 // 一) double unit character
@@ -202,7 +207,7 @@ Triple-unit characters
 - 臤 (尸中 // 水)
   - 堅 (尸水 // 土) - double unit
 
-- 眉 (日竹 // 月山) - divided flag
+- 眉 (日竹 // 月山) - divided flag, eyebrow
 
 ### 弓, 戈, 心, 竹
 
@@ -410,7 +415,7 @@ anki
 
 - 宓 (十心竹)
 
-- 眉 (日竹 // 月山)
+- 眉 (日竹 // 月山) - divided flag, eyebrow
 
 ### Moon 月
 
@@ -605,6 +610,12 @@ anki
 
 - 平 (一火十) - water lily
   - 評 (卜口 // 一火十)
+
+- 果 (田木) - fruit, confectionary
+  - 顆 (田木 // 一月金)
+- 巢 (女女 // 田木) - stream
+- 巣 (火 // 田木) - owl
+  - 単 (火田十)
 
 ### 廿, 一
 
@@ -993,7 +1004,9 @@ anki
 
 - 韋 (木一 // 口手) - locket
   - 韦 (手尸)
-- 年 (人手) - year
+- 年 (人手) - year, monocle
+
+- 牙 (一女木竹) - tusk
 
 - 表 (手一女)
 
@@ -1180,6 +1193,7 @@ anki
   - 開 (日弓 // 一廿)
 - 门 (中戈尸)
   - 阊 (中尸 // 日日)
+  - 间 (中尸 // 日)
 - 鬥 (中弓) - big dipper
 - 閨 (日弓 // 土土)
   - 闺 (中尸 // 土土)
