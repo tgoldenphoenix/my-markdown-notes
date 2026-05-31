@@ -81,6 +81,8 @@ location jdk java 8: `C:\Users\anhao\.jdks\corretto-1.8.0_492`
   2. data type (master data or report data or ad list)
   3. token chứng thực
 
+lấy report data trả về csv, không phải json => nên không thể dùng jackson để mapping report data sang dto được mà phải làm cách cực nhọc hơn
+
 ## Code Flow
 
 tìm queue trong table -> xử lý queue, status 2 sucess, show log, upload lên s3
@@ -163,8 +165,8 @@ chỉnh đường dẫn data base trong file `config.properties`. Copy file `con
 chỉnh bỏ dòng exclude entity
 
 - repo fujiyama có 2 databases schema
-  * etl adrepo chứa queue từ S3
-  * etl harbest : làm với web api
+  - etl adrepo chứa queue từ S3
+  - etl harbest : làm với web api
 
 chạy batch cần: file `config.property` & database
 
@@ -172,18 +174,40 @@ chạy batch cần: file `config.property` & database
 
 bảng `etl_adrepo.consts` phải có data
 
-```
+```bash
 mvn install -Dmaven.test.skip=true
 mvn -f pom\_batch.xml install
 ```
 
 Thêm vào `pom.xml`
 
-```
+```xml
+<plugin>
+  <artifactId>maven-war-plugin</artifactId>
+  <version>3.2.0</version>
+  <configuration>
+    <warSourceExcludes>WEB-INF/classes/**/.,WEB-INF/lib/*.jar</warSourceExcludes>
+    <attachClasses>true</attachClasses>
+    <classesClassifier>classes</classesClassifier>
+  </configuration>
+</plugin>
+
 <dependency>
     <groupId>commons-codec</groupId>
     <artifactId>commons-codec</artifactId>
     <version>1.15</version>
+</dependency>
+```
+
+Thêm vào `pom_batch.xml`
+
+```xml
+<dependency>
+  <groupId>jp.co.everrise</groupId>
+  <artifactId>ag</artifactId>
+  <version>3.01.03</version>
+  <classifier>classes</classifier>  <!-- Thêm dòng này -->
+  <type>jar</type>                   <!-- Đổi từ war sang jar -->
 </dependency>
 ```
 
@@ -255,7 +279,7 @@ master data = metadata
 
 - `dspType` là tên của các platform (twitter, facebook)
 - `advertiser id`
-- `oauth id` 
+- `oauth id`
 
 - Có 3 loại batch chính trong project:
   1. get advertiser list (get ad account, get advertiser master): đối tượng là `oauth id`
@@ -334,6 +358,7 @@ Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (
 - tiktok có 3 loại: manual, smart plus, upgraded smart plus
   - manual có 3 level: campaign, ad group, ad
   - smart plus & upgraded smart plus cũng có 3 level tương tự
+
 ## Resources
 
 [Catchup Outline](https://ever-rise.backlog.jp/alias/wiki/566675)
@@ -347,3 +372,4 @@ Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (
 [catchup outline](https://ever-rise.backlog.jp/alias/wiki/566675)
 
 [build project](https://ever-rise.backlog.jp/alias/wiki/559969)
+
