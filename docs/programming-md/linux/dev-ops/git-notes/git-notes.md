@@ -911,7 +911,7 @@ $ git commit -m "the commit message for all of them"
 
 Khi rever nên chọn commit hash là cái mà sẽ được merge into main, nếu chọn cái merge commit, do nó có 2 parents nên nó sẽ bắt mình thêm option nhứt đầu.
 
-## Git branching
+## Git Branching
 
 A Git repository is a collection of **objects** and **references**:
 
@@ -1335,8 +1335,7 @@ pick 5c67e61 Message for commit #3
 **NOTE**: In git log the most recent commit is on top. However, in interactive rebasing view, the most recent commit is on bottom (reverse order).  
 khi `rebase -i` thì order ngược lại với `git log`
 
-`git checkout feature; git rebase -i HEAD~3` => begins an interactive rebase of only the last 3 commits  
-Git use zero-based indexing, so `HEAD~1` the last commit & `HEAD~0` is where you are standing on.
+`git checkout feature; git rebase -i HEAD~3` => begins an interactive rebase of only the last 3 commits (including your current commit)
 
 ```
 git stash -u

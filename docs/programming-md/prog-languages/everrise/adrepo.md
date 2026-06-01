@@ -106,7 +106,7 @@ Giờ Nhật Bản (`JST` - Japan Standard Time) nhanh hơn giờ Việt Nam (`I
 
 Database dùng MySQL
 
-Sợ 2 bạn quên nên nhắc lại 1 lần cho chắc nha
+Sợ 2 bạn quên nên nhắc lại 1 lần cho chắc nha  
 Với source code của công ty  
 Không push lên Respository cá nhân (Github, Bitbucket,....)  
 Nếu được phép push thì phải setting Private, không được để public  
@@ -282,15 +282,15 @@ master data = metadata
 - `oauth id`
 
 - Có 3 loại batch chính trong project:
-  1. get advertiser list (get ad account, get advertiser master): đối tượng là `oauth id`
+  1. get advertiser list (get ad account, get advertiser master): đối tượng là `oauth id`, cho từng platform
   2. get master data: đối tượng là advertiser id
   3. get report data: đối tượng là advertiser id
 
 - Có 2 level:
-  1. Oauth id (tài khoản quản lý): dùng đăng nhập vào platform, có token chứng thực của platform đó, oauth id không chạy quảng cáo; chỉ oauth id mới có token, advertiser id không có token, dùng token của oauth id
-  2. advertiser id: 1 queue lấy cho 1 advertiser id, là đối tượng chạy quảng cáo
+  1. Oauth id (tài khoản quản lý, tài khoản cha, `m_input_platform_auth`): dùng đăng nhập vào platform, có token chứng thực của platform đó, oauth id không chạy quảng cáo; chỉ oauth id mới có token, advertiser id không có token, dùng token của oauth id
+  2. advertiser id (`ad account`): 1 queue lấy cho 1 advertiser id, là đối tượng chạy quảng cáo
 
-1 user có thể tạo nhiều oauth id để chạy quảng cáo trên nhiều platform
+1 user (user của adrepo) có thể tạo nhiều oauth id (tài khoản cha) để chạy quảng cáo trên nhiều platform
 
 - Có hai loại báo cáo: `master data` & `report data`
 - Mỗi một format báo cáo là một loại `report_type`
@@ -306,8 +306,8 @@ queue = yêu cầu tạo report data & master data cho quảng cáo
 - 1 agency (tài khoản đăng nhập) -> nhiều `parent account`.
 - 1 parent account -> only 1 platform & token correspond to that platform
 
-- Mỗi một tài khoảng quảng cáo cha (parent account) có 1 oauth id & token riêng của nó
-- parent account (tài khoản quản lý cha) = `m input platform oauth` = `dsp_account`
+- Mỗi một tài khoảng quảng cáo cha (`parent_account`) có 1 oauth id & token riêng của nó
+- parent account (tài khoản quản lý cha) = `m_input_platform_oauth` = `dsp_account`
 - oauth id = tài khoản parent
 - Tài khoản cha không tạo quảng cáo
 

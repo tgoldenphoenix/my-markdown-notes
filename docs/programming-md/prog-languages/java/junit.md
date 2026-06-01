@@ -112,6 +112,13 @@ There are two strategies for providing fake objects: stubbing and using mock obj
 
 k
 
+## Rules
+
+Junit 4
+
+Note that if you’re using JUnit 5, rules have been replaced by the Extension model.
+
+
 ## Class, Suite & Runner
 
 Test class (or TestCase or test case)—A class that contains one or more tests represented by methods annotated with `@Test`. Use a test class to group together tests that exercise common behaviors. In the remainder of this book, when we mention a **test**, we mean a method annotated with `@Test`; when we mention a **test case (or test class)**, we mean a class that holds these test methods—a set of tests. There’s usually a one-to-one mapping between a production class and a test class.
