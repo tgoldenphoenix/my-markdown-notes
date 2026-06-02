@@ -13,11 +13,22 @@
 Account_id của `get master queue` là account gì, khác gì oauth id?  
 etl agency id?
 
-`TiktokRequestDto` là DTO nhưng lại chứa toàn là constant?
-
 queue_type 1, queue_type 3 là gì => coi trong class `batch/entity/etlAdrepo/AbstractGetReportQueue`
 
-google analytic for beginner?
+get_master_queue => cột `type` là gì?
+
+### Task điều tra
+
+ETL-PRD-PROCESS => `PRD` là production?
+
+Tại sao có 2 EC2 chạy batch: process, selenium (imobile)?
+
+table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết queue nào đã được update để mà cập nhật cho phía adrepo (S3)
+
+`etl_harbest.m_agency` của harbest chứa gì => agency = account khách hàng của adrepo
+
+- `etl_harbest.m_input_platform`
+- `m_input_platform_auth`
 
 ## Basics
 
@@ -61,7 +72,7 @@ batch nằm trên ec2, rds (relational database) cũng là service trên aws
 ETL chỉ cung cấp data as is returned from API. ETL không biến đổi dữ liệu. Khách hàng muốn biến đổi thì tự họ làm, ETL không làm.  
 rule dự án: api trả về cái gì thì trả cho khách hàng cái đó, không xào nấu thêm phức tạp
 
-dùng junit 4 (cuốn sách bản cũ second edition)
+Có 2 bên: Adrepo và ETL. ETL chính là bên cty của mình. ETL bao gồm web API & Batch
 
 ## ETL Batch
 
@@ -82,6 +93,10 @@ location jdk java 8: `C:\Users\anhao\.jdks\corretto-1.8.0_492`
   3. token chứng thực
 
 lấy report data trả về csv, không phải json => nên không thể dùng jackson để mapping report data sang dto được mà phải làm cách cực nhọc hơn
+
+## Database RDS
+
+`input_adrepo_last_exported_update_time`
 
 ## Code Flow
 
@@ -212,6 +227,10 @@ Thêm vào `pom_batch.xml`
 ```
 
 lấy not process queue từ trong table thì `dsp_type` phải đúng
+
+### Spec & Versions
+
+dùng junit 4 (cuốn sách bản cũ second edition)
 
 ## Passsword & config
 
