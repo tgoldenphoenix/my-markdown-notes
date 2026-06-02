@@ -213,7 +213,7 @@ Thêm vào `pom_batch.xml`
 
 lấy not process queue từ trong table thì `dsp_type` phải đúng
 
-## Passsword
+## Passsword & config
 
 mysql: root:root or 123
 
