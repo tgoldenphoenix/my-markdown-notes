@@ -17,6 +17,8 @@ queue_type 1, queue_type 3 là gì => coi trong class `batch/entity/etlAdrepo/Ab
 
 get_master_queue => cột `type` là gì?
 
+note lại các queue status
+
 ### Task điều tra
 
 ETL-PRD-PROCESS => `PRD` là production?
@@ -377,6 +379,60 @@ Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (
 - tiktok có 3 loại: manual, smart plus, upgraded smart plus
   - manual có 3 level: campaign, ad group, ad
   - smart plus & upgraded smart plus cũng có 3 level tương tự
+
+## Batch
+
+### `ERROR_TYPE`
+
+error type của của queue
+
+- `0`, NORMALLY_RESULT, không tìm thấy auth token trong table
+- `1`, ERROR_CANNOT_HANDLE, An error requiring further investigation on the ETL side; not call API and not use S3 yet
+  - nói chính xác hơn là những lỗi liên quan tới logic xử lý nội bộ, setting thiếu...không liên quan đến việc call API
+  - vậy nếu error type = 1 thì có thể kết luận 90% là chưa call api, lỗi nằm trước phần call api
+- `2`, ACCOUNT_INFO_ERROR, authentication fail (đã call API)
+- `3`, DOWNLOAD_TIMEOUT, This is usually a problem on the platform side and will resolve itself over time.
+  - Retry 3-4 lần vẫn không thành công thì throw lỗi này
+- `4`, DOWNLOAD_UNKNOWN_ERROR, An API error with an unknown cause. In principle, it will resolve itself over time. Đã call API (chứng thực thành công), lỗi, không cần retry vì chắc chắc vẫn sẽ fail
+- `5`, GENERATE_TSV_ERROR, If an error occurs during the process of writing data acquired from the platform to a TSV file for S3 upload
+
+error type = `null` nghĩa là queue chưa được chạy, chứ nếu đã chạy thì không thể là `null` được
+
+[error detail type](https://docs.google.com/spreadsheets/d/11HpIRsqNgSZkRr6mDMRQ8scQSDx76pSoyKUa4kdzQZ4/edit?gid=440079028#gid=440079028)
+
+### Queue status
+
+- 0, not_processed
+- 1, downloading
+- 2, downloaded
+- 7, download_error
+
+### Queue type
+
+Coi enum trong code
+
+### Batch Export queue
+
+Batch export queue (status) cho phía adrepo có input là một dsp_type
+
+Vào `input_adrepo_last_exported_update_time` tìm last update time của dsp_type đó (master 1 dòng, report 1 dòng). Ở đây gọi là $A_1, A_2$.
+
+Vào table queue_master và queue_report của platform tương ứng, lấy tất cả queue có updated time $\geq A_1, \geq A_2$
+
+column `queue_id` trong table `input_adrepo_last_exported_update_time` là id của queue có update time gần nhất trong table get_queue & get_report. Mục đích của column này là để có thể sử dụng điều kiện $\geq$ ở bước trên nhưng không sợ lấy duplicate queue
+
+sử dụng time trong `update_micro_time` có micro-second, time trong `updated_at` chỉ chính xác tới second sẽ sinh ra nhiều queue có thời gian giống nhau tới từng giây.
+
+- `input_etl` phía adrepo xuất cho mình
+- `input_adrepo` phía mình xuất cho adrepo
+- Trong mỗi directory kể trên lại chia ra làm 3 sub-directories:
+  - unprocessed: queue phía etl chưa attempt to import into their tables
+  - completed: import into table của etl thành công
+  - failured: cannot import into table của etl (ko import được vào table thì sẽ không bàn tới chuyện queue status thành công hay thất bại)
+
+### Other batches
+
+BatchInitializationGetReportQueueError
 
 ## Resources
 
