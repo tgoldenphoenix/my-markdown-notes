@@ -1014,6 +1014,15 @@ Khi switch branch phải có clean working state (no un-commited changes). Trư�
 `git branch --move master main` Rename your local master branch into main. To let others see the new main branch, you need to push it to the remote. This makes the renamed branch available on the remote: `git push --set-upstream origin main`
 `git push origin --delete master` delete the master branch on remote
 
+set upstream
+
+```bash
+git branch --set-upstream-to=origin/feature/7608 feature/7608\
+git pull \<remote> \<branch>
+
+git push -u origin HEAD
+```
+
 ### prune
 
 `git prune` is a low-level Git command for performing garbage collection by deleting "unreachable" or "orphaned" objects (commits, blobs, etc.) from the local repository's object database. These are objects that are no longer referenced by any branch, tag, or other reference, helping to free up disk space and improve performance

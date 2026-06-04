@@ -26,6 +26,12 @@ table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết 
 - `etl_harbest.m_input_platform`
 - `m_input_platform_auth`
 
+---
+
+gradle dùng để làm gì
+
+table m_api_token
+
 ## Project ETL Basics
 
 Có các actors: end user, adrepo, platform, etl, web api của everrise
@@ -191,7 +197,7 @@ add child issues để chia nhỏ một task/batch lớn, một child ticket là
 
 ## Build & Setup the Project
 
-### Batch
+### Setup Batch
 
 Database dùng MySQL
 
@@ -257,7 +263,7 @@ dùng junit 4 (cuốn sách bản cũ second edition)
 
 ### Setup Web API
 
-kkk
+`sbt run`
 
 ### Passsword & config
 
@@ -300,6 +306,8 @@ Hay nói miệng là "import danh sách queue".
 
 2 batch get data (report & master) chạy xong -> đẩy data lên S3 của adrepo, update table `queue` của mình. Sau đó batch export của mình update queue table lên S3 cho adrepo cập nhật. Mục đích là keep the two queue tables của hai bên đồng nhất với nhau.
 
+`m_input_platform` => m là master
+
 ### `ERROR_TYPE`
 
 error type của của queue
@@ -315,6 +323,8 @@ error type của của queue
 - `5`, GENERATE_TSV_ERROR, If an error occurs during the process of writing data acquired from the platform to a TSV file for S3 upload
 
 error type = `null` nghĩa là queue chưa được chạy, chứ nếu đã chạy thì không thể là `null` được
+
+api trả về bad request (request sai format) thì không cần retry => sẽ không gặp lỗi timeout
 
 [error detail type](https://docs.google.com/spreadsheets/d/11HpIRsqNgSZkRr6mDMRQ8scQSDx76pSoyKUa4kdzQZ4/edit?gid=440079028#gid=440079028)
 
