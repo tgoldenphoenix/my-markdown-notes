@@ -2,11 +2,7 @@
 
 ## Current Notes
 
-`co.everrise.batch.tiktok.BatchGetMasterTiktok`
-
-`co.everrise.batch.catalog.REPORT_TYPE` enum
-
-1 ad nhiều creative
+kkk
 
 ## Questions
 
@@ -16,8 +12,6 @@ etl agency id?
 queue_type 1, queue_type 3 là gì => coi trong class `batch/entity/etlAdrepo/AbstractGetReportQueue`
 
 get_master_queue => cột `type` là gì?
-
-note lại các queue status
 
 ### Task điều tra
 
@@ -32,7 +26,7 @@ table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết 
 - `etl_harbest.m_input_platform`
 - `m_input_platform_auth`
 
-## Basics
+## Project ETL Basics
 
 Có các actors: end user, adrepo, platform, etl, web api của everrise
 
@@ -75,205 +69,6 @@ ETL chỉ cung cấp data as is returned from API. ETL không biến đổi dữ
 rule dự án: api trả về cái gì thì trả cho khách hàng cái đó, không xào nấu thêm phức tạp
 
 Có 2 bên: Adrepo và ETL. ETL chính là bên cty của mình. ETL bao gồm web API & Batch
-
-## ETL Batch
-
-This is a maven project and it has two parts: ag.war and adrepo_batch.jar. Vì vậy nên nó có 2 file `pom.xml`.
-
-`ag` là code cũ, chạy web, không cần quan tâm
-
-- If using profile. Please check resources in `src/main/resources/conf/${profile.resource.folder}`. Verify the following files:
-  - `config.properties`
-  - `config.dicon`: file cấu hình của Seasar2 Framework, dependency injection config => không quan tâm `ag` nên không quan tâm file này luôn
-  - `log4j.properties`: thư viện `Log4j`, quyết định cách mà `LOG_INFO` và LOG_ERROR (mà bạn đã hỏi) sẽ hoạt động.
-
-location jdk java 8: `C:\Users\anhao\.jdks\corretto-1.8.0_492`
-
-- Khi lấy data có 3 thông tin cần quan tâm:
-  1. đối tượng: oauth id, advertiser id
-  2. data type (master data or report data or ad list)
-  3. token chứng thực
-
-lấy report data trả về csv, không phải json => nên không thể dùng jackson để mapping report data sang dto được mà phải làm cách cực nhọc hơn
-
-## Database RDS
-
-`input_adrepo_last_exported_update_time`
-
-## Code Flow
-
-tìm queue trong table -> xử lý queue, status 2 sucess, show log, upload lên s3
-
-adrepo call web api của everrise, everrise lấy token ủy quyền. Adrepo không lưu token của khách hàng.
-
-- S3 của adrepo được dùng để communicate với ETL (queue, data trả về)
-- S3 của etl only used for back up, logs
-
-- adrepo tạo queue -> batch export (của adrepo) đổ lên S3
-- ETL lên S3 kiểm tra, batch import (của adrepo) vào table queue (của adrepo)
-- cả 2 bên adrepo & everrise đều có batch import và export của riêng mình
-
-Hay nói miệng là "import danh sách queue".
-
-2 batch get data (report & master) chạy xong -> đẩy data lên S3 của adrepo, update table `queue` của mình. Sau đó batch export của mình update queue table lên S3 cho adrepo cập nhật. Mục đích là keep the two queue tables của hai bên đồng nhất với nhau.
-
-## Facts
-
-Giờ Nhật Bản (`JST` - Japan Standard Time) nhanh hơn giờ Việt Nam (`ICT` - Indochina Time) đúng 2 tiếng. Khi ở Việt Nam là 10:00 sáng, thì tại Nhật Bản đã là 12:00 trưa.
-
-Database dùng MySQL
-
-Sợ 2 bạn quên nên nhắc lại 1 lần cho chắc nha  
-Với source code của công ty  
-Không push lên Respository cá nhân (Github, Bitbucket,....)  
-Nếu được phép push thì phải setting Private, không được để public  
-Tất cả thông tin về dự án (đặc biệt là thông tin tài khỏan, thông tin chứng thực,....) không được sử dụng cho mục đích cá nhân  
-Nếu có tạo Repository cho mục đích học tập cá nhân thì không sử dụng tên công ty, tên dự án của công ty, dù là đặc tên cho dự án, cho thư mục, tên file gì đó
-
-## Tạo Task & báo cáo tiến độ
-
-- làm không được thì báo cáo là không làm được => không báo cáo láo
-- task thiếu thông tin, task làm ko được thì kiểm chứng => không làm
-- chứng minh task này fraud, không cắm đầu làm task bị fraud
-- đọc task ko hiểu thì confirm lại clear task rồi mới làm
-
-- Title:
-  - batch or webAPI?
-  - Platform?
-  - Report data or master data?
-  - mục đích củ task (short, concise)
-
-Goal
-
-- Type:
-  - feature: add new feature mới
-  - refactor: chỉnh sửa code cũ nhưng không thay đổi output của code
-  - task
-
-- Không để trống description
-  - current problem
-  - expected solution
-
-`end date` cập nhật theo tiến độ thực hiện nhưng mỗi lần edit date thì phải báo người quản lý, tránh bị động.
-
-viết báo cáo & báo cáo tiến độ => very important
-
-add child issues để chia nhỏ một task/batch lớn, một child ticket làm một chức năng => smaller pull requests are better than a big big PR
-
-- output task:
-  - task điều tra: use bullets (gạch đầu dòng)
-  - task code: pull request + screenshots, log file,
-
-- Tạo ticket con thì dẫn link đến ticket cha và tên theo format `{id cha} {title cha} / {titple con}`
-- Chỉ dẫn link ticket parent, không quan tâm cấp cao hơn (grand parent)
-
-- Các mốc thời gian báo cáo hằng ngày
-  - 08h30 sáng (sau khi họp sáng công ty, trước buổi họp vào lúc 09h00): công việc dự định thực hiện trong ngày, tiến độ hiện tại.
-  - 15h00 chiều (trước buổi họp vào lúc 15h30): tiến độ hiện tại.
-  - 17h00 chiều: tiến độ hiện tại.
-
-## Build & Setup the Project
-
-- build no profile thì phải copy file `config.properties` ra bên ngoài
-- build có profile thì nó tự vào thư mục `dev` để lấy file `config`
-
-chỉnh đường dẫn data base trong file `config.properties`. Copy file `config.properties` ra ngoài.
-
-chỉnh bỏ dòng exclude entity
-
-- repo fujiyama có 2 databases schema
-  - etl adrepo chứa queue từ S3
-  - etl harbest : làm với web api
-
-chạy batch cần: file `config.property` & database
-
-đăng nhập vào S3 lấy key trong file `config.property`
-
-bảng `etl_adrepo.consts` phải có data
-
-```bash
-mvn install -Dmaven.test.skip=true
-mvn -f pom\_batch.xml install
-```
-
-Thêm vào `pom.xml`
-
-```xml
-<plugin>
-  <artifactId>maven-war-plugin</artifactId>
-  <version>3.2.0</version>
-  <configuration>
-    <warSourceExcludes>WEB-INF/classes/**/.,WEB-INF/lib/*.jar</warSourceExcludes>
-    <attachClasses>true</attachClasses>
-    <classesClassifier>classes</classesClassifier>
-  </configuration>
-</plugin>
-
-<dependency>
-    <groupId>commons-codec</groupId>
-    <artifactId>commons-codec</artifactId>
-    <version>1.15</version>
-</dependency>
-```
-
-Thêm vào `pom_batch.xml`
-
-```xml
-<dependency>
-  <groupId>jp.co.everrise</groupId>
-  <artifactId>ag</artifactId>
-  <version>3.01.03</version>
-  <classifier>classes</classifier>  <!-- Thêm dòng này -->
-  <type>jar</type>                   <!-- Đổi từ war sang jar -->
-</dependency>
-```
-
-lấy not process queue từ trong table thì `dsp_type` phải đúng
-
-### Spec & Versions
-
-dùng junit 4 (cuốn sách bản cũ second edition)
-
-## Passsword & config
-
-mysql: root:root or 123
-
-## Batch Processing
-
-- Don't confuse batch processing vs stream processing.
-  - Batch processing wait for data to accumulate. Tới một mốc thời gian thì xử lý một lượt.
-  - Stream thì one by one, vừa có cái mới là xử lý ngay lập tức, không chờ.
-
-Each time you start a batch job, a batch processor instance picks up the job and processes it.
-
-When a batch processor job begins, its batch processor instance is locked until the process is completed or terminated. A **lock file** (`<instanceName>.lock`)) is created in the $home folder. When the batch job is stopped or completed, the lock file is deleted. If the instance crashes, then the lock file remains in the $home folder, but it will not prevent the same batch instance from being started.
-
-- lock file được tạo dựa trên name của batch nên mỗi thời điểm chỉ có duy nhất một batch tên `BatchGetMasterTiktok` chạy được thôi.
-- nếu lock file exit thì batch không chạy, batch chạy xong thì delete lock file
-
-## UTM parameters
-
-Marketers use TML to figure out: "Where did my user come from?", how did people found out about their website?
-
-The marketing team of the company adds utm params to the links leading to their website.
-
-- brand name of the traffic source: youtube, twitter, tiktok, facebook, instagram, etc
-- medium (traffic type):
-  - organic traffic: coming from a search engine (`google/organic`, `bing/organic`)
-  - referral: coming from another website (`facebook/referral`)
-  - none: "I'm not sure how they got here" (`(direct)/(none`))
-  - `cpc` or `ppc`
-- Campaign (purpose of the traffic)
-
-## Google Analytics
-
-`Paid Ads` nghĩa là bạn phải trả tiền để có được lượt hiển thị hoặc truy cập. Còn việc tính tiền thế nào có vài cách khác nhau.
-
-- CPC (Cost Per Click) - Tính tiền theo Lượt Nhấp: chỉ khi nào người dùng click vào link dẫn đến website/app của bạn thì bạn mới bị trừ tiền.
-- CPM (Cost Per Mille) - Tính tiền theo Lượt Hiển Thị: cứ quảng cáo đập vào mắt 1,000 người (không cần biết họ có click hay không), bạn sẽ phải trả một khoản tiền cố định.
-- CPA / oCPM (Cost Per Action / Conversion) - Tính tiền theo Lượt Chuyển Đổi: Bạn đặt mục tiêu là: "Tôi chỉ muốn trả tiền khi có người Mua hàng hoặc Tải app thành công".
-
-## Terminologies
 
 PF: platform
 
@@ -341,46 +136,169 @@ queue = yêu cầu tạo report data & master data cho quảng cáo
 
 - server id: `2` cái server chạy cái batch
 
-### Tiktok
+## Facts
 
-- Tik tok ad has four levels để có thể lấy report data:
-  1. `Campaign level`
-  2. `Ad group` level: quyết định Quảng cáo sẽ hiển thị ở đâu và cho ai. Một Chiến dịch có thể chứa nhiều Nhóm quảng cáo.
-  3. `ad level`
-  4. `creative level`: Video, hình ảnh, văn bản quảng cáo (caption), và nút kêu gọi hành động (CTA).
-  
-- `Creative` là toàn bộ những gì người dùng thực sự nhìn thấy và nghe thấy trên màn hình điện thoại của họ: video, ad text, CTA button, landing page. `Creative` là một "gói" (package) bao gồm tất cả các yếu tố hiển thị với người dùng, chứ không phải chỉ là cái file video riêng lẻ.
+Giờ Nhật Bản (`JST` - Japan Standard Time) nhanh hơn giờ Việt Nam (`ICT` - Indochina Time) đúng 2 tiếng. Khi ở Việt Nam là 10:00 sáng, thì tại Nhật Bản đã là 12:00 trưa.
 
-- Chế độ Thủ công (Standard Ad) truyền thống: 1 Ad = 1 Creative.
-  - Khi bạn tạo một Quảng cáo (Ad), bạn chọn một tổ hợp duy nhất (1 Video + 1 Text + 1 CTA).
-  - Nếu bạn muốn thử một Video khác hoặc một dòng Text khác, bạn phải tạo một Ad mới (`Ad ID` mới) nằm trong cùng một `Ad Group`.
-  - Như vậy, trong một Ad Group có thể có nhiều Ad, mỗi Ad mang một Creative khác nhau.
+Sợ 2 bạn quên nên nhắc lại 1 lần cho chắc nha  
+Với source code của công ty  
+Không push lên Respository cá nhân (Github, Bitbucket,....)  
+Nếu được phép push thì phải setting Private, không được để public  
+Tất cả thông tin về dự án (đặc biệt là thông tin tài khỏan, thông tin chứng thực,....) không được sử dụng cho mục đích cá nhân  
+Nếu có tạo Repository cho mục đích học tập cá nhân thì không sử dụng tên công ty, tên dự án của công ty, dù là đặc tên cho dự án, cho thư mục, tên file gì đó
 
-- Chế độ Tự động (`Smart Creative`)
-  - Khi bật tính năng Smart Creative, bạn không tạo từng Ad riêng lẻ. Thay vào đó, bạn tải lên "nguyên liệu" (Assets): Tải lên 5 Video khác nhau, viết 5 dòng Text khác nhau, chọn vài nút CTA.
-  - Hệ thống TikTok sẽ tự động kết hợp ngẫu nhiên các thành phần này để tạo ra hàng chục biến thể Creative khác nhau (Ví dụ: Video 1 + Text 3, Video 2 + Text 1...).
-  - Tất cả các biến thể này thường nằm chung dưới 1 Ad ID duy nhất của chiến dịch thông minh. Hệ thống sẽ tự tìm ra "tổ hợp thắng cuộc" (Winning Combination) để phân phối nhiều nhất. => In this case, one ad id has many creative id.
+## Tạo Task & báo cáo tiến độ
 
-- Cấp độ `Ad Group`: Chắc chắn có nhiều Creative (thông qua việc tạo nhiều Ad).
-- Cấp độ `Ad`: Chỉ có nhiều Creative nếu dùng tính năng Smart Creative/ACO.
+- làm không được thì báo cáo là không làm được => không báo cáo láo
+- task thiếu thông tin, task làm ko được thì kiểm chứng => không làm
+- chứng minh task này fraud, không cắm đầu làm task bị fraud
+- đọc task ko hiểu thì confirm lại clear task rồi mới làm
 
-`Advertiser access token` của tiktok does not expire.
+- Title:
+  - batch or webAPI?
+  - Platform?
+  - Report data or master data?
+  - mục đích củ task (short, concise)
 
-With the `auth_code` you receive after authorization by the advertiser, you can make a request to the following endpoint to get an `access_token` for subsequent API requests.
+Goal
 
-The `auth_code` is valid for 1 hour and can be used only once. After the `auth_code` expires, you need to start over and perform the authorization steps again.
+- Type:
+  - feature: add new feature mới
+  - refactor: chỉnh sửa code cũ nhưng không thay đổi output của code
+  - task
 
-### Trivia
+- Không để trống description
+  - current problem
+  - expected solution
 
-Etl harbest dùng sbt (scala build tool) ko dùng maven ?
+`end date` cập nhật theo tiến độ thực hiện nhưng mỗi lần edit date thì phải báo người quản lý, tránh bị động.
 
-Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (video gốc) có thể được dùng lại trong nhiều chiến dịch khác nhau.
+viết báo cáo & báo cáo tiến độ => very important
 
-- tiktok có 3 loại: manual, smart plus, upgraded smart plus
-  - manual có 3 level: campaign, ad group, ad
-  - smart plus & upgraded smart plus cũng có 3 level tương tự
+add child issues để chia nhỏ một task/batch lớn, một child ticket làm một chức năng => smaller pull requests are better than a big big PR
 
-## Batch
+- output task:
+  - task điều tra: use bullets (gạch đầu dòng)
+  - task code: pull request + screenshots, log file,
+
+- Tạo ticket con thì dẫn link đến ticket cha và tên theo format `{id cha} {title cha} / {titple con}`
+- Chỉ dẫn link ticket parent, không quan tâm cấp cao hơn (grand parent)
+
+- Các mốc thời gian báo cáo hằng ngày
+  - 08h30 sáng (sau khi họp sáng công ty, trước buổi họp vào lúc 09h00): công việc dự định thực hiện trong ngày, tiến độ hiện tại.
+  - 15h00 chiều (trước buổi họp vào lúc 15h30): tiến độ hiện tại.
+  - 17h00 chiều: tiến độ hiện tại.
+
+## Build & Setup the Project
+
+### Batch
+
+Database dùng MySQL
+
+- build no profile thì phải copy file `config.properties` ra bên ngoài
+- build có profile thì nó tự vào thư mục `dev` để lấy file `config`
+
+chỉnh đường dẫn data base trong file `config.properties`. Copy file `config.properties` ra ngoài.
+
+chỉnh bỏ dòng exclude entity
+
+- repo fujiyama có 2 databases schema
+  - etl adrepo chứa queue từ S3
+  - etl harbest : làm với web api
+
+chạy batch cần: file `config.property` & database
+
+đăng nhập vào S3 lấy key trong file `config.property`
+
+bảng `etl_adrepo.consts` phải có data
+
+```bash
+mvn install -Dmaven.test.skip=true
+mvn -f pom\_batch.xml install
+```
+
+Thêm vào `pom.xml`
+
+```xml
+<plugin>
+  <artifactId>maven-war-plugin</artifactId>
+  <version>3.2.0</version>
+  <configuration>
+    <warSourceExcludes>WEB-INF/classes/**/.,WEB-INF/lib/*.jar</warSourceExcludes>
+    <attachClasses>true</attachClasses>
+    <classesClassifier>classes</classesClassifier>
+  </configuration>
+</plugin>
+
+<dependency>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
+    <version>1.15</version>
+</dependency>
+```
+
+Thêm vào `pom_batch.xml`
+
+```xml
+<dependency>
+  <groupId>jp.co.everrise</groupId>
+  <artifactId>ag</artifactId>
+  <version>3.01.03</version>
+  <classifier>classes</classifier>  <!-- Thêm dòng này -->
+  <type>jar</type>                   <!-- Đổi từ war sang jar -->
+</dependency>
+```
+
+lấy not process queue từ trong table thì `dsp_type` phải đúng
+
+Spec & Versions:
+
+dùng junit 4 (cuốn sách bản cũ second edition)
+
+### Setup Web API
+
+kkk
+
+### Passsword & config
+
+mysql: root:root or 123
+
+## ETL Batch
+
+### Batch Basics
+
+This is a maven project and it has two parts: ag.war and adrepo_batch.jar. Vì vậy nên nó có 2 file `pom.xml`.
+
+`ag` là code cũ, chạy web, không cần quan tâm
+
+- If using profile. Please check resources in `src/main/resources/conf/${profile.resource.folder}`. Verify the following files:
+  - `config.properties`
+  - `config.dicon`: file cấu hình của Seasar2 Framework, dependency injection config => không quan tâm `ag` nên không quan tâm file này luôn
+  - `log4j.properties`: thư viện `Log4j`, quyết định cách mà `LOG_INFO` và LOG_ERROR (mà bạn đã hỏi) sẽ hoạt động.
+
+location jdk java 8: `C:\Users\anhao\.jdks\corretto-1.8.0_492`
+
+- Khi lấy data có 3 thông tin cần quan tâm:
+  1. đối tượng: oauth id, advertiser id
+  2. data type (master data or report data or ad list)
+  3. token chứng thực
+
+lấy report data trả về csv, không phải json => nên không thể dùng jackson để mapping report data sang dto được mà phải làm cách cực nhọc hơn
+
+tìm queue trong table -> xử lý queue, status 2 sucess, show log, upload lên s3
+
+adrepo call web api của everrise, everrise lấy token ủy quyền. Adrepo không lưu token của khách hàng.
+
+- S3 của adrepo được dùng để communicate với ETL (queue, data trả về)
+- S3 của etl only used for back up, logs
+
+- adrepo tạo queue -> batch export (của adrepo) đổ lên S3
+- ETL lên S3 kiểm tra, batch import (của adrepo) vào table queue (của adrepo)
+- cả 2 bên adrepo & everrise đều có batch import và export của riêng mình
+
+Hay nói miệng là "import danh sách queue".
+
+2 batch get data (report & master) chạy xong -> đẩy data lên S3 của adrepo, update table `queue` của mình. Sau đó batch export của mình update queue table lên S3 cho adrepo cập nhật. Mục đích là keep the two queue tables của hai bên đồng nhất với nhau.
 
 ### `ERROR_TYPE`
 
@@ -434,6 +352,86 @@ sử dụng time trong `update_micro_time` có micro-second, time trong `updated
 
 BatchInitializationGetReportQueueError
 
+### Batch Processing
+
+- Don't confuse batch processing vs stream processing.
+  - Batch processing wait for data to accumulate. Tới một mốc thời gian thì xử lý một lượt.
+  - Stream thì one by one, vừa có cái mới là xử lý ngay lập tức, không chờ.
+
+Each time you start a batch job, a batch processor instance picks up the job and processes it.
+
+When a batch processor job begins, its batch processor instance is locked until the process is completed or terminated. A **lock file** (`<instanceName>.lock`)) is created in the $home folder. When the batch job is stopped or completed, the lock file is deleted. If the instance crashes, then the lock file remains in the $home folder, but it will not prevent the same batch instance from being started.
+
+- lock file được tạo dựa trên name của batch nên mỗi thời điểm chỉ có duy nhất một batch tên `BatchGetMasterTiktok` chạy được thôi.
+- nếu lock file exit thì batch không chạy, batch chạy xong thì delete lock file
+
+## ETL Web API
+
+kkk
+
+## Others
+
+### UTM parameters
+
+Marketers use TML to figure out: "Where did my user come from?", how did people found out about their website?
+
+The marketing team of the company adds utm params to the links leading to their website.
+
+- brand name of the traffic source: youtube, twitter, tiktok, facebook, instagram, etc
+- medium (traffic type):
+  - organic traffic: coming from a search engine (`google/organic`, `bing/organic`)
+  - referral: coming from another website (`facebook/referral`)
+  - none: "I'm not sure how they got here" (`(direct)/(none`))
+  - `cpc` or `ppc`
+- Campaign (purpose of the traffic)
+
+### Google Analytics
+
+`Paid Ads` nghĩa là bạn phải trả tiền để có được lượt hiển thị hoặc truy cập. Còn việc tính tiền thế nào có vài cách khác nhau.
+
+- CPC (Cost Per Click) - Tính tiền theo Lượt Nhấp: chỉ khi nào người dùng click vào link dẫn đến website/app của bạn thì bạn mới bị trừ tiền.
+- CPM (Cost Per Mille) - Tính tiền theo Lượt Hiển Thị: cứ quảng cáo đập vào mắt 1,000 người (không cần biết họ có click hay không), bạn sẽ phải trả một khoản tiền cố định.
+- CPA / oCPM (Cost Per Action / Conversion) - Tính tiền theo Lượt Chuyển Đổi: Bạn đặt mục tiêu là: "Tôi chỉ muốn trả tiền khi có người Mua hàng hoặc Tải app thành công".
+
+### Tiktok
+
+- Tik tok ad has four levels để có thể lấy report data:
+  1. `Campaign level`
+  2. `Ad group` level: quyết định Quảng cáo sẽ hiển thị ở đâu và cho ai. Một Chiến dịch có thể chứa nhiều Nhóm quảng cáo.
+  3. `ad level`
+  4. `creative level`: Video, hình ảnh, văn bản quảng cáo (caption), và nút kêu gọi hành động (CTA).
+  
+- `Creative` là toàn bộ những gì người dùng thực sự nhìn thấy và nghe thấy trên màn hình điện thoại của họ: video, ad text, CTA button, landing page. `Creative` là một "gói" (package) bao gồm tất cả các yếu tố hiển thị với người dùng, chứ không phải chỉ là cái file video riêng lẻ.
+
+- Chế độ Thủ công (Standard Ad) truyền thống: 1 Ad = 1 Creative.
+  - Khi bạn tạo một Quảng cáo (Ad), bạn chọn một tổ hợp duy nhất (1 Video + 1 Text + 1 CTA).
+  - Nếu bạn muốn thử một Video khác hoặc một dòng Text khác, bạn phải tạo một Ad mới (`Ad ID` mới) nằm trong cùng một `Ad Group`.
+  - Như vậy, trong một Ad Group có thể có nhiều Ad, mỗi Ad mang một Creative khác nhau.
+
+- Chế độ Tự động (`Smart Creative`)
+  - Khi bật tính năng Smart Creative, bạn không tạo từng Ad riêng lẻ. Thay vào đó, bạn tải lên "nguyên liệu" (Assets): Tải lên 5 Video khác nhau, viết 5 dòng Text khác nhau, chọn vài nút CTA.
+  - Hệ thống TikTok sẽ tự động kết hợp ngẫu nhiên các thành phần này để tạo ra hàng chục biến thể Creative khác nhau (Ví dụ: Video 1 + Text 3, Video 2 + Text 1...).
+  - Tất cả các biến thể này thường nằm chung dưới 1 Ad ID duy nhất của chiến dịch thông minh. Hệ thống sẽ tự tìm ra "tổ hợp thắng cuộc" (Winning Combination) để phân phối nhiều nhất. => In this case, one ad id has many creative id.
+
+- Cấp độ `Ad Group`: Chắc chắn có nhiều Creative (thông qua việc tạo nhiều Ad).
+- Cấp độ `Ad`: Chỉ có nhiều Creative nếu dùng tính năng Smart Creative/ACO.
+
+`Advertiser access token` của tiktok does not expire.
+
+With the `auth_code` you receive after authorization by the advertiser, you can make a request to the following endpoint to get an `access_token` for subsequent API requests.
+
+The `auth_code` is valid for 1 hour and can be used only once. After the `auth_code` expires, you need to start over and perform the authorization steps again.
+
+### Trivia
+
+Etl harbest dùng sbt (scala build tool) ko dùng maven ?
+
+Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (video gốc) có thể được dùng lại trong nhiều chiến dịch khác nhau.
+
+- tiktok có 3 loại: manual, smart plus, upgraded smart plus
+  - manual có 3 level: campaign, ad group, ad
+  - smart plus & upgraded smart plus cũng có 3 level tương tự
+
 ## Resources
 
 [Catchup Outline](https://ever-rise.backlog.jp/alias/wiki/566675)
@@ -447,4 +445,3 @@ BatchInitializationGetReportQueueError
 [catchup outline](https://ever-rise.backlog.jp/alias/wiki/566675)
 
 [build project](https://ever-rise.backlog.jp/alias/wiki/559969)
-
