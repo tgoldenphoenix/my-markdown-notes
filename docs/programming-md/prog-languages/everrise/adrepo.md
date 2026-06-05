@@ -30,7 +30,11 @@ table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết 
 
 gradle dùng để làm gì
 
-table m_api_token
+- table m_api_token
+  - token_key vs. token_secret?
+
+- Lấy danh sách agency `/mAgencies/`
+  - API token trong header là của ai?
 
 ## Project ETL Basics
 
@@ -377,7 +381,7 @@ When a batch processor job begins, its batch processor instance is locked until 
 
 ## ETL Web API
 
-kkk
+Play framework uses `Google Guice` as its default dependency injection (DI) framework.
 
 ## Others
 
