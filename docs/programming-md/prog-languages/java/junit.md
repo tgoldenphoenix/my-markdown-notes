@@ -4,7 +4,7 @@ JUnit is a framework that enables and supports automated testing in Java.
 
 ## Terminologies
 
-A lifecycle method is a method that is annotated with `@BeforeAll, @AfterAll, @BeforeEach`, or `@AfterEach`. 
+A lifecycle method is a method that is annotated with `@BeforeAll, @AfterAll, @BeforeEach`, or `@AfterEach`.
 
 ## JUnit Basics
 
@@ -58,9 +58,9 @@ By using runners and rules, you can extend the monolithic architecture of JUnit 
 JUnit 5 breaks the single JUnit 4 jar file into several smaller files.
 
 - The JUnit 5 architecture contains three modules (figure 3.7):
-  * JUnit Platform serves as a foundation for launching testing frameworks on the Java virtual machine (JVM). It also provides an API to launch tests from the console, IDEs, and build tools.
-  * `JUnit Jupiter` combines the new programming and extension model for writing tests and extensions in JUnit 5. The name comes from the fifth planet of our solar system, which is also the largest.
-  * `JUnit Vintage` is a test engine for running JUnit 3- and JUnit 4-based tests on the platform, ensuring backward compatibility.
+  - JUnit Platform serves as a foundation for launching testing frameworks on the Java virtual machine (JVM). It also provides an API to launch tests from the console, IDEs, and build tools.
+  - `JUnit Jupiter` combines the new programming and extension model for writing tests and extensions in JUnit 5. The name comes from the fifth planet of our solar system, which is also the largest.
+  - `JUnit Vintage` is a test engine for running JUnit 3- and JUnit 4-based tests on the platform, ensuring backward compatibility.
 
 `JUnit Jupiter` provides the test engine.
 
@@ -69,6 +69,16 @@ JUnit 5 breaks the single JUnit 4 jar file into several smaller files.
 **Parameterized Tests**: run a test many times with different sets of parameters.
 
 `@CsvSource({ “1, One”, “2, Two” })`: Supplies multiple test cases in CSV format.
+
+## Annotations
+
+`@BeforeEach` Denotes that the annotated method should be executed before each `@Test`
+
+Setup object thì dùng `private`, thêm `final` nếu cần.
+
+## Assertions
+
+Kỹ thuật `import static` trong java.
 
 ## Mockito
 
@@ -106,7 +116,7 @@ You call `verify()` **after** you call `.embarkOnQuest()`
 There are two strategies for providing fake objects: stubbing and using mock objects.
 
 - When you write `stubs`, you provide a predetermined behavior right from the beginning. The stubbed code is written outside the test, and it will always have a fixed behavior, no matter how many times or where you use the stub; its methods will usually return hardcoded values. The pattern of testing with a stub this: initialize stub > execute test > verify assertions.
-- A mock object does not have a predetermined behavior. When running a test, you are setting the expectations on the mock before effectively using it. You can run different tests, and you can reinitialize a mock and set different expectations on it. The pattern of testing with a mock object this: initialize mock > set expectations > execute test > verify assertions. 
+- A mock object does not have a predetermined behavior. When running a test, you are setting the expectations on the mock before effectively using it. You can run different tests, and you can reinitialize a mock and set different expectations on it. The pattern of testing with a mock object this: initialize mock > set expectations > execute test > verify assertions.
 
 ## Temporary directory/file
 
@@ -117,7 +127,6 @@ k
 Junit 4
 
 Note that if you’re using JUnit 5, rules have been replaced by the Extension model.
-
 
 ## Class, Suite & Runner
 
@@ -137,8 +146,8 @@ There are situations that may require you to set up your test to run in a specia
 An assert method is silent when its proposition succeeds but throws an exception if the proposition fails.
 
 - `assertEqual(double expected, double actual, double delta)`
-  * Nếu compare `integer` thì pass `delta = 0`. Most often, the delta parameter can be zero, and we can safely ignore it. It comes into play with calculations that aren’t always precise, which includes many floating-point calculations. The delta provides a range factor. If the actual value is within the range expected - delta and expected + delta, the test will pass. You may find it use-ful when doing mathematical computations with rounding or truncating errors or when asserting a condition about the modification date of a file, because the precision of these dates depends on the operating system.
-  * If the actual value isn’t equal to the expected value, JUnit throws an unchecked exception, which causes the test to fail.
+  - Nếu compare `integer` thì pass `delta = 0`. Most often, the delta parameter can be zero, and we can safely ignore it. It comes into play with calculations that aren’t always precise, which includes many floating-point calculations. The delta provides a range factor. If the actual value is within the range expected - delta and expected + delta, the test will pass. You may find it use-ful when doing mathematical computations with rounding or truncating errors or when asserting a condition about the modification date of a file, because the precision of these dates depends on the operating system.
+  - If the actual value isn’t equal to the expected value, JUnit throws an unchecked exception, which causes the test to fail.
 
 The requirements to create a test method are that it must be annotated with @Test, be public, take no arguments, and return void.
 
@@ -153,3 +162,4 @@ It’s a best practice to provide an error message for all your assert method ca
 - `assertSame("message", A, B)`: Asserts that the A and B objects are the same object. Whereas the previous assert method checks to see that A and B have the same value (using the equals method), the assertSame method checks to see if the A and B objects are one and the same object (using the `==` operator).
 - `assertTrue("message", A)`: Asserts that the A condition is true
 - `assertNotNull("message", A)`: Asserts that the A object isn’t null.
+
