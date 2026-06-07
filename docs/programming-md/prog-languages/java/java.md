@@ -698,9 +698,10 @@ Exception khác với Errors:
   - Example: `OutOfMemoryError`, `StackOverflowError (tràn ngăn xếp)`, `VirtualMachineError`, `FileNotFoundException`
 
 - `Exception`: cũng có dừng có khi không. Khi chúng ta có biện pháp bảo vệ (bảo hộ) thì ct ko dừng. Example: `NullPointerException`, `IOException`, `ArrayIndexOutOfBoundsException`, divide by 0, lỗi kết nối mạng.
+
 - Có 2 loại exception:
-  1. `Checked Exceptions` (compile time Exceptions): bắt buộc phải `try-catch` or declared in the method signature using throws nếu không IDE sẽ báo lỗi ngay lập tức. VD: đội mũ bảo hiểm, `FileNotFoundException`
-  2. `Unchecked Exceptions` (Runtime Exceptions, con cháu của Class `RuntimeException`): không bắt buộc try-catch mà IDE vẫn sẽ không báo lỗi. VD: mặc áo mưa, `NullPointerException`, `ArrayIndexOutOfBoundsException`, `NumberFormatException`
+  1. `Checked Exceptions` (`compile-time Exceptions`): bắt buộc phải `try-catch` or declared in the method signature using throws nếu không IDE sẽ báo lỗi ngay lập tức. VD: đội mũ bảo hiểm, `FileNotFoundException`
+  2. `Unchecked Exceptions` (`Runtime Exceptions`, con cháu của Class `RuntimeException`): không bắt buộc try-catch mà IDE vẫn sẽ không báo lỗi. VD: mặc áo mưa, `NullPointerException`, `ArrayIndexOutOfBoundsException`, `NumberFormatException`
 
 - Cơ chế bảo hộ exception chính là `try-catch`
 - Về mặt kỹ thuật thì Java cho phép mình dùng try-catch để bắt cả Error giống như bắt Exception, vì cả hai đều kế thừa từ lớp `Throwable`. Nhưng trong thực tế, việc catch Error thường không được khuyến khích ạ.
@@ -841,6 +842,14 @@ In this example, the resources declared in the `try-with-resources` statement ar
 ### Common Exceptions
 
 `IOException` (Input/Output Exception) is a checked exception that signals that an I/O operation—such as reading from a file, receiving data over a network, or accessing a hard drive—has failed or been interrupted.
+
+### Exceptions vs. Errors
+
+Error and Exception are both subclasses of the `Throwable` class. Furthermore, only instances of Throwable and its subclasses can be thrown by the Java Virtual Machine or caught in a catch clause.
+
+Further, errors are regarded as `unchecked exceptions`, and applications should NOT try to catch and handle them. Moreover, errors happen at run time and cannot be recovered.
+
+Exceptions are abnormal conditions that applications might want to catch and handle. Exceptions can be recovered using a try-catch block and can happen at both run time and compile time.
 
 ## Generic
 

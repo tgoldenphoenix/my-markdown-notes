@@ -161,6 +161,12 @@ Triple-unit characters
 - 灵 (尸一 // 火)
   - 𠴌 (口 // 尸一火)
 
+- 求 (戈十水) - request
+- 彔 (女弓一水) - broom
+  - 录 (弓一一水)
+- 祿 (戈火 // 女弓水)
+  - 禄 (戈火 // 弓一水)
+
 - 長 (尸一女) - long, mane
   - 长 (心人)
 - 張 (弓 // 尸一女)
@@ -170,7 +176,10 @@ Triple-unit characters
   - 昭 (日 // 尸竹口)
   - 認 (卜口 // 尸戈心)
   - 留 (竹竹 // 田) - letter openner
+
 - 力 (大尸) - power
+- 加 (大尸 // 口)
+  - 賀 (大口 // 月山金) - double unit
 
 - 司 (尸一口) - company
 - 幻 (女戈 // 尸)
@@ -541,7 +550,7 @@ anki
 - 且 (月一) - book shelf
 - 目 (月山) - eye
   - 眼 (月山 // 日女)
-  - 自 (竹月山) - oneself
+  - 自 (竹月山) - oneself, nose, nostrils
   - 首 (廿竹月山) - neck, head
 - 直 (十月一一)
 - 具 (月一一金) - tool
@@ -684,6 +693,14 @@ anki
 - 不 (一火) - negative
 - 礻 (戈弓火) - altar
   - 禪 (戈火 // 口口 // 十) - triple unit
+
+- 求 (戈十水) - request
+- 彔 (女弓一水) - broom
+  - 录 (弓一一水)
+- 祿 (戈火 // 女弓水)
+  - 禄 (戈火 // 弓一水)
+- 緑 (女火 // 弓一水)
+- 灵 (尸一 // 火) - broom
 
 - 米 (火木) - rice
   - 氣 (人弓 // 火木) - double unit
@@ -875,10 +892,13 @@ anki
 - 矢 (人大) - dart
 
 - 求 (戈十水) - request
-- 彔 (女弓一水)
+- 彔 (女弓一水) - broom
   - 录 (弓一一水)
 - 祿 (戈火 // 女弓水)
   - 禄 (戈火 // 弓一水)
+- 綠 (女火 // 女弓水)
+  - 緑 (女火 // 弓一水)
+  - 绿 (女一 // 弓一水)
 - 灵 (尸一 // 火) - broom
 
 - 礻 (戈弓火) - altar
@@ -965,7 +985,7 @@ anki
 - 府 (戈人木戈)
 - 廟 (戈 // 十十 // 月) - triple unit
 
-#### Tree 木
+#### Tree, wood 木
 
 - 寸 (木戈) - glue
   - 村 (木 // 木戈)
@@ -976,6 +996,8 @@ anki
   - 诗 (戈女 // 土木戈) - poem
 
 - 才 (木竹)
+- 牙 (一女木竹) - tusk
+  - 呀 (口 // 一女竹)
 
 - 㝵 (日一 // 木戈)
   - 得 (竹人 // 日一 // 戈) - triple unit
@@ -998,7 +1020,7 @@ anki
 - 皮 (木竹水) - pelt
   - 被 (中 // 木竹水)
 
-- 來 (木人人) - come, arrive
+- 來 (木人人) - come, arrive, laiii
   - 来 (木廿)
 - 夾 (大人人) - scissors
   - 夹 (大廿)
@@ -1119,7 +1141,10 @@ anki
 - 糹 = 糸 = 女戈火 - thread
   - 總 (女火 // 竹田 // 心) - triple unit character, only take F+L of the first unit 糹
   - 紅 (女火 // 一)
-  - 細
+  - 細 (女火 // 田)
+- 綠 (女火 // 女弓水)
+  - 緑 (女火 // 弓一水)
+  - 绿 (女一 // 弓一水)
 - 幻 (女戈 // 尸) - cocoon
 
 - 亥 (卜女竹人) - acorn

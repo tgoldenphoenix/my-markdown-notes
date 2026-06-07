@@ -80,6 +80,10 @@ Setup object thì dùng `private`, thêm `final` nếu cần.
 
 Kỹ thuật `import static` trong java.
 
+The `fail()` method does not return an exception. Instead, it throws an `AssertionError`.  
+In Java, `AssertionError` is not an `Exception`. Instead, it is a subclass of `Error`. Both Error and Exception are completely separate branches under the top-level `Throwable` class.  
+Because `AssertionError` is an Error and not an Exception, the catch (Exception e) block will NOT catch it.
+
 ## Mockito
 
 Mockito is a mocking framework used to create "mock" objects or "test doubles." These mocks simulate the behavior of real dependencies (e.g., other classes, external services, databases) that your code under test interacts with. Mockito allows you to define how these mock objects should behave when their methods are called, enabling you to isolate the specific unit of code being tested and control its environment. This is crucial for achieving true unit testing, where you test a single component in isolation without relying on its complex or external dependencies.

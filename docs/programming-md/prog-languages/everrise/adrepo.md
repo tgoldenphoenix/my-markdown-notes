@@ -314,17 +314,17 @@ Hay nói miệng là "import danh sách queue".
 
 ### `ERROR_TYPE`
 
-error type của của queue
+error type của của queue, report_error_type
 
-- `0`, NORMALLY_RESULT, không tìm thấy auth token trong table
-- `1`, ERROR_CANNOT_HANDLE, An error requiring further investigation on the ETL side; not call API and not use S3 yet
+- `0`, `NORMALLY_RESULT`, không tìm thấy auth token trong table
+- `1`, `ERROR_CANNOT_HANDLE`, An error requiring further investigation on the ETL side; not call API and not use S3 yet
   - nói chính xác hơn là những lỗi liên quan tới logic xử lý nội bộ, setting thiếu...không liên quan đến việc call API
   - vậy nếu error type = 1 thì có thể kết luận 90% là chưa call api, lỗi nằm trước phần call api
-- `2`, ACCOUNT_INFO_ERROR, authentication fail (đã call API)
-- `3`, DOWNLOAD_TIMEOUT, This is usually a problem on the platform side and will resolve itself over time.
+- `2`, `ACCOUNT_INFO_ERROR`, authentication fail (đã call API)
+- `3`, `DOWNLOAD_TIMEOUT`, This is usually a problem on the platform side and will resolve itself over time.
   - Retry 3-4 lần vẫn không thành công thì throw lỗi này
-- `4`, DOWNLOAD_UNKNOWN_ERROR, An API error with an unknown cause. In principle, it will resolve itself over time. Đã call API (chứng thực thành công), lỗi, không cần retry vì chắc chắc vẫn sẽ fail
-- `5`, GENERATE_TSV_ERROR, If an error occurs during the process of writing data acquired from the platform to a TSV file for S3 upload
+- `4`, `DOWNLOAD_UNKNOWN_ERROR`, An API error with an unknown cause. In principle, it will resolve itself over time. Đã call API (chứng thực thành công), lỗi, không cần retry vì chắc chắc vẫn sẽ fail
+- `5`, `GENERATE_TSV_ERROR`, If an error occurs during the process of writing data acquired from the platform to a TSV file for S3 upload
 
 error type = `null` nghĩa là queue chưa được chạy, chứ nếu đã chạy thì không thể là `null` được
 
