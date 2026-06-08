@@ -314,17 +314,17 @@ Hay nói miệng là "import danh sách queue".
 
 ### `ERROR_TYPE`
 
-error type của của queue, report_error_type
+error type của của queue
 
-- `0`, `NORMALLY_RESULT`, không tìm thấy auth token trong table
-- `1`, `ERROR_CANNOT_HANDLE`, An error requiring further investigation on the ETL side; not call API and not use S3 yet
+- `0`, NORMALLY_RESULT, không tìm thấy auth token trong table
+- `1`, ERROR_CANNOT_HANDLE, An error requiring further investigation on the ETL side; not call API and not use S3 yet
   - nói chính xác hơn là những lỗi liên quan tới logic xử lý nội bộ, setting thiếu...không liên quan đến việc call API
   - vậy nếu error type = 1 thì có thể kết luận 90% là chưa call api, lỗi nằm trước phần call api
-- `2`, `ACCOUNT_INFO_ERROR`, authentication fail (đã call API)
-- `3`, `DOWNLOAD_TIMEOUT`, This is usually a problem on the platform side and will resolve itself over time.
+- `2`, ACCOUNT_INFO_ERROR, authentication fail (đã call API)
+- `3`, DOWNLOAD_TIMEOUT, This is usually a problem on the platform side and will resolve itself over time.
   - Retry 3-4 lần vẫn không thành công thì throw lỗi này
-- `4`, `DOWNLOAD_UNKNOWN_ERROR`, An API error with an unknown cause. In principle, it will resolve itself over time. Đã call API (chứng thực thành công), lỗi, không cần retry vì chắc chắc vẫn sẽ fail
-- `5`, `GENERATE_TSV_ERROR`, If an error occurs during the process of writing data acquired from the platform to a TSV file for S3 upload
+- `4`, DOWNLOAD_UNKNOWN_ERROR, An API error with an unknown cause. In principle, it will resolve itself over time. Đã call API (chứng thực thành công), lỗi, không cần retry vì chắc chắc vẫn sẽ fail
+- `5`, GENERATE_TSV_ERROR, If an error occurs during the process of writing data acquired from the platform to a TSV file for S3 upload
 
 error type = `null` nghĩa là queue chưa được chạy, chứ nếu đã chạy thì không thể là `null` được
 
@@ -332,16 +332,31 @@ api trả về bad request (request sai format) thì không cần retry => sẽ 
 
 [error detail type](https://docs.google.com/spreadsheets/d/11HpIRsqNgSZkRr6mDMRQ8scQSDx76pSoyKUa4kdzQZ4/edit?gid=440079028#gid=440079028)
 
-### Queue status
+### Queue Status, Type
 
-- 0, not_processed
-- 1, downloading
-- 2, downloaded
-- 7, download_error
+- Queue Status:
+- 0, `NOT_PROCESS`
+- 1, `DOWNLOADING`
+- 2, `DOWNLOADED`
+- 3, `INSERT_SCHEDULED`
+- 4, `INSERTING`
+- 5, `INSERTED`
+- 8, `DOWNLOAD_ERROR`
+- 9, `INSERT_ERROR`
+- 10, `VALIDATION_ERROR`
 
-### Queue type
+- Queue type:
+- `CREATED_BY_MANUALLY`, (0)
+- `CREATED_BY_SCREEN`, (1)
+- `CREATED_FOR_YESTERDAY`, (2)
+- `CREATED_FOR_40_DAYS_AGO`, (3)
+- `CREATED_FOR_SYNC_ETL_AND_ADEBIS`, (4)
+- `CREATED_FOR_EXTERNAL_SYSTEM_TRANSFER`, (5)
 
-Coi enum trong code
+- Condition Mode:
+- `ALL` (0)
+- `INCLUDE` (1)
+- `EXCLUDE` (2)
 
 ### Batch Export queue
 
@@ -383,7 +398,9 @@ When a batch processor job begins, its batch processor instance is locked until 
 
 Play framework uses `Google Guice` as its default dependency injection (DI) framework.
 
-## Others
+## Others Terms
+
+app id: id của phía ETL adrepo (bên mình) khi làm việc với platform để xin token
 
 ### UTM parameters
 

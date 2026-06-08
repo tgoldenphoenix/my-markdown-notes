@@ -414,7 +414,7 @@ We can also use `surround.vim` to change existing delimiters. For example, we co
 
 ## Search in File & Substitution
 
-Search is a form of Command Line mode. Depending on how we entered Command Line mode, we can browse our Ex Command or search history with the `<Down>` and `<Up>` keys.
+When searching is a form of Command Line mode. Depending on how we entered Command Line mode, we can browse our Ex Command or search history with the `<Down>` and `<Up>` keys.
 
 - You can scan for **character** within the **current line** with `f{char}` or `t{char}` (both are considered motions).
 - `f` position the cursor on top of the specified character whereas `t` takes you **till** (right before) the first letter of the match. So:
@@ -497,7 +497,7 @@ Type   `:%s/old/new/gc`    to find every occurrence in the whole file, with a pr
 
 ## Registers
 
-Vim’s registers are simply containers that hold text. They can be used in the manner of a clipboard for cutting, copying, and pasting text, or they can be used to record a macro by saving a sequence of keystrokes.
+Vim’s `registers` are simply containers that hold text. They can be used in the manner of a clipboard for cutting, copying, and pasting text, or they can be used to record a macro by saving a sequence of keystrokes.
 
 Register are named after the CPU register in assembly.
 
@@ -533,7 +533,7 @@ To paste the text from register a ten times, do `10"ap`
 
 ---
 
-The Named Registers (`"a-"z`)
+The Named Registers (`"a -> "z`)
 
 We can specify which register we want to use by prefixing the command with `"{register}`. If we don’t specify a register, then Vim will use the unnamed register.
 
@@ -555,7 +555,7 @@ When we address a named register with a lowercase letter, it overwrites the spec
 
 The unnamed register `""`
 
-If we don’t specify which register we want to interact with, then Vim will use the unnamed register, which is addressed by the `"` symbol (see `:h quote_quote`).  
+If we don’t specify which register we want to interact with, then Vim will default to using the `unnamed register`, which is addressed by the `"` symbol (see `:h quote_quote`).  
 To address this register explicitly, we have to use two double quote marks: for example, `""p`, which is effectively equivalent to `p` by itself.
 
 In LazyVim, by default, the registers named `*` and `+` are always identical to the default (unnamed) register, and represent the contents of the system clipboard.
@@ -578,7 +578,7 @@ As the name suggests, the yank register is set only when we use the `y{motion}` 
 
 The Black Hole Register `"_`
 
-You might be wondering what Vim’s equivalent is for really deleting text—that is, how can you remove text from the document and not copy it into any registers? Vim’s answer is a special register called the black hole, from which nothing returns. The **black hole register** is addressed by the `_` symbol (see `:h quote_`), so `"_d{motion}` performs a true deletion (instead of "cut").
+You might be wondering what Vim’s equivalent is for really deleting text—that is, how can you remove text from the document and not copy it into any registers? Vim’s answer is a special register called the `black hole`, from which nothing returns. The `black hole register` is addressed by the underscore (`_`) symbol (see `:h quote_`), so `"_d{motion}` performs a true deletion (instead of "cut").
 
 This can be useful if we want to delete text without overwriting the contents of the unnamed register (or the system clipboard in lazy neovim).
 
@@ -612,7 +612,7 @@ More Registers
 
 Vim provides a handful of registers whose values are set implicitly. These are known collectively as the read-only registers
 
-- `"%` stores the name of the currently editing file. It is always relative to the current working directory of the editor (usually the folder you were in when you started Neovim). The only time I ever want to access this register is to copy the filename to the system clipboard with :let @+ = @% so I can paste it into a GUI app or my terminal.
+- `"%` stores the name of the currently editing file. It is always relative to the current working directory of the editor (usually the folder you were in when you started Neovim). The only time I ever want to access this register is to copy the filename to the system clipboard with `:let @+ = @%` so I can paste it into a GUI app or my terminal.
 - `"#` Name of the alternate file
 - `".` Last inserted text. So if you type the command `ifoo<Escape>` somewhere in the document and move somewhere else in the document and type ".p, it will insert the word “foo” at the new cursor position.
 - `":` Last Ex command

@@ -249,13 +249,13 @@ System.out.println(a == b);
 
 ## Arrays & The Collections Framework
 
-The **Java Collections Framework** provides a set of **interfaces** (like `List`, `Set`, and `Map`) and a set of classes (the most common are `ArrayList`, `HashSet`, `HashMap`) that implement those interfaces.  
-All of these are part of the `java.util package`
+The `Java Collections Framework` provides a set of **interfaces** (like `List`, `Set`, and `Map`) and a set of classes (the most common are `ArrayList`, `HashSet`, `HashMap`) that implement those interfaces.  
+All of these are part of the `java.util` package
 
 - `java.util.Collection<E>` The root interface in the collection hierarchy
 - `java.util.Collections` a class consists exclusively of static methods that operate on or return collections.
 
----
+### List
 
 - `List` - an interface (not a class) that defines certain behavior. It cannot be instantiated on its own.
 - `ArrayList` - a concrete class that implements the `List` interface.
@@ -287,12 +287,13 @@ arr = new int[5];
 - The `ArrayList` itself holds an array of references (or pointers) to the objects it contains. This array of references is stored in a single, contiguous block of memory. This contiguity is what allows for efficient random access by index.
 - In comparision to `LinkedList<>` không có contiguous block.
 
----
+### Map & Set
 
 - `Map` (ánh xạ) là một loại collection dạng key-value  
 - Ánh xạ ví dụ `y = 2x`, với mỗi x chỉ cho ra một giá trị y.
 
-A `HashMap` can store duplicate values, but it cannot store duplicate keys.
+A `HashMap` can store duplicate values, but it cannot store duplicate keys.  
+`HashMap` uses `.put(), .get(), .remove()` methods. If the same key is added more than once with `.put()`, the **latest** value will overwrite the previous one, because keys in a `HashMap` must be unique.
 
 ---
 
@@ -872,9 +873,45 @@ You can narrow down the `<T>` that user can pass into your generics by using `<T
 NOTE: Nếu implement interface vẫn dùng `extends` chứ không dùng `implements` nha.
 You can also multiple bounds.
 
-In addition to having generic classes, you can also have have generic methods. They can take arguments of different types.
+In addition to having `generic classes`, you can also have have `generic methods`. They can take arguments of different types.  
+You can use generics at both the class level and the method level in Java.
 
-[Java extends vs implements](https://stackoverflow.com/questions/10839131/implements-vs-extends-when-to-use-whats-the-difference)
+To make a method generic, you place the type parameter `<T>` immediately before the method's return type.
+
+```java
+// T can be anything: a String, a User model, or an EtlJob
+public class ApiResponse<T> {
+    private T data;
+    private int statusCode;
+
+    public ApiResponse(T data, int statusCode) {
+        this.data = data;
+        this.statusCode = statusCode;
+    }
+
+    public T getData() {
+        return this.data;
+    }
+}
+
+
+public class EtlUtils {
+    // This class is NOT generic, but this specific method IS:
+    public static <T> void printArrayDetails(T[] array) {
+        for (T element : array) {
+            System.out.println("Processing item: " + element);
+        }
+    }
+}
+```
+
+```java
+public Map<String, Integer> createQueueNumberMapByAuth(List<T> queueList) {}
+```
+
+This is not a "generic method". It is a standard method that uses a class-level generic type parameter. Because `T` is already defined by the class, the method simply uses the existing `T`. It does not introduce its own generic type.
+
+---
 
 ```java
 interface Predicate<T> {
