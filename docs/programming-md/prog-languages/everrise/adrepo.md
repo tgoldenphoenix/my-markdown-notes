@@ -21,8 +21,6 @@ Tại sao có 2 EC2 chạy batch: process, selenium (imobile)?
 
 table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết queue nào đã được update để mà cập nhật cho phía adrepo (S3)
 
-`etl_harbest.m_agency` của harbest chứa gì => agency = account khách hàng của adrepo
-
 - `etl_harbest.m_input_platform`
 - `m_input_platform_auth`
 
@@ -377,6 +375,10 @@ sử dụng time trong `update_micro_time` có micro-second, time trong `updated
   - completed: import into table của etl thành công
   - failured: cannot import into table của etl (ko import được vào table thì sẽ không bàn tới chuyện queue status thành công hay thất bại)
 
+### Batch GetAdvertiserList
+
+đối tượng: agency_id list (account khách hàng của adrepo)
+
 ### Other batches
 
 BatchInitializationGetReportQueueError
@@ -401,6 +403,8 @@ Play framework uses `Google Guice` as its default dependency injection (DI) fram
 ## Others Terms
 
 app id: id của phía ETL adrepo (bên mình) khi làm việc với platform để xin token
+
+`etl_harbest.m_agency` của harbest chứa gì => agency = account khách hàng của adrepo
 
 ### UTM parameters
 

@@ -283,7 +283,7 @@ A paragraph is defined as all the content between two empty lines, and that is a
   * `n%`    Go to n% in file
 
 - `<Ctrl-o>` to jump back-ward; Go to the place you jumped from. Giống như khi đọc `:h`. Use `<Ctrl-]>` to jump to link.
-- `^-i` to jump forward in jump history
+- `Ctrl-i` to jump forward in jump history
 - Neovim keeps a history of all your jumps, so you can jump between several locations (perhaps to look up documentation or the call signature for a function) and always find a way back.
 
 Type `CTRL-g` to show your location in the file and the file status.

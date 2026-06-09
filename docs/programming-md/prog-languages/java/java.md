@@ -993,6 +993,12 @@ When you program for the Java platform, you write source code in `.java` files a
 
 At runtime, the JVM reads and interprets .class files and executes the program's instructions on the native hardware platform for which the JVM was written. The JVM interprets the bytecode just as a CPU would interpret assembly-language instructions. The difference is that the JVM is a piece of software written specifically for a particular platform. The JVM is the heart of the Java language's "write-once, run-anywhere" principle. Your code can run on any chipset for which a suitable JVM implementation is available. JVMs are available for major platforms like Linux and Windows, and subsets of the Java language have been implemented in JVMs for mobile phones and hobbyist chips.
 
+## Java Command Line
+
+`java -cp <paths-to-code> com.yourcompany.MainClass`
+
+the `-cp` flag stands for `Classpath`.
+
 ## FAQs
 
 [Cách viết javadoc cho methods](https://stackoverflow.com/questions/11763803/how-to-document-my-method-in-java-like-java-docs); [shorkey cho java doc trong netbean](https://stackoverflow.com/questions/2280261/adding-java-docs-to-a-program-in-netbeans)
