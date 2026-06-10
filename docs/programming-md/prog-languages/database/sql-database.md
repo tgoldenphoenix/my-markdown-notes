@@ -85,8 +85,10 @@ Cú pháp của lệnh `SELECT` có 6 chữ (và bổ sung thêm 1 `JOIN`). Ngo�
 4. `GROUP BY`
 5. `HAVING`
 6. `ORDER BY`
+7. `TOP`, `LIMIT`, `OFFSET`, `FETCH FIRST`
 
-Mnemonic: So Few Junior Workers Go Home On-time
+Mnemonic: So Few Junior Workers Go Home On-time  
+This is the order of execution.
 
 ### WHERE
 
@@ -289,6 +291,18 @@ Group by QueQuan, GioiTinh
 Vì mỗi nhóm chỉ được trả về 1 dòng kết quả. Mà mỗi nhóm có rất nhiều SV, mỗi SV có `HoTenSV` khác nhau không biết lấy cái nào để trả về.  
 Còn trong một nhóm thì đương nhiên `QueQuan` phải trùng nhau nên có thể Select được.
 
+---
+
+`ORDER BY` If two rows have the exact same value in the column, and you don’t specify a second column to break the tie, the resulting order of those two rows is non-deterministic (unpredictable).
+
+### LIMIT
+
+```sql
+-- Select the first 3 records of the Customers table
+SELECT * FROM Customers
+LIMIT 3;
+```
+
 ## JOIN table
 
 `JOIN` nối các **dòng** của bảng này với các dòng của bảng kia. Kết quả trả về là những dòng mới (chứa trong bảng tạm) **chứa đầu đủ các cột** của 2 bảng tham gia.
@@ -360,7 +374,7 @@ INNER JOIN Customers USING (CustomerID);
 
 ## Set Operations
 
-`UNION, UNION ALL, INTERSECT và EXCEPT` là các phép quan hệ operators that allows you to combine the result sets of two or more SELECT statements into a single result set. `JOIN` only has one `SELECT`.
+`UNION, UNION ALL, INTERSECT và EXCEPT` là các phép quan hệ operators that allows you to combine the result sets of two or more `SELECT` statements into a single result set. `JOIN` only has one `SELECT`.
 
 Các phép quan hệ:
 
@@ -369,15 +383,15 @@ Các phép quan hệ:
 - `EXCEPT`: trừ (hiệu)
 - `UNION ALL`: Hợp lấy hết không thương tiếc kể cả những dòng trùng lặp (military conscription)
 
-The UNION and UNION ALL operators may order the rows in the final result set in an unspecified order. For example, it may place rows from the second result set before/after the row from the first result set. To sort rows in the final result set, you specify the `ORDER BY` clause after the second query.
+The `UNION` and `UNION ALL` operators may order the rows in the final result set in an unspecified order. For example, it may place rows from the second result set before/after the row from the first result set. To sort rows in the final result set, you specify the `ORDER BY` clause after the second query.
 
 Dùng những phép này khi đọc đề bài thấy chẳng liên quan gì với nhau.
 
 - Find old men who buy fish **and** old women who smoke & drink coffee
 - employee who had sell bột giặt OMO **và** chưa bao giờ đi công viên
 
-- Liet kê những SV đã từng thi môn toán **hoặc** có quê Quảng Nam
-- Liet ke nhung SV da từng thi môn toán **và** những SV co que o quang nam
+- Liệt kê những SV đã từng thi môn toán **hoặc** có quê Quảng Nam
+- Liệt ke nhung SV da từng thi môn toán **và** những SV co que o quang nam
 
 ```sql
 (Select MaSV

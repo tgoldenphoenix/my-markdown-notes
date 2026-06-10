@@ -69,7 +69,7 @@ In contrast, `integration tests` and `acceptance tests` examine how various comp
 
 Here’s a generic description of a typical unit test from our perspective: “Confirm that the method accepts the expected range of input and that the method returns the expected value for each input.”
 
-## The testing pyramid
+## The Testing Pyramid
 
 k
 
