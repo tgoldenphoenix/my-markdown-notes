@@ -282,7 +282,8 @@ A paragraph is defined as all the content between two empty lines, and that is a
   * `{number}G` Go to line number, use `<Ctrl-o>` to jump backward. You can also use the ex-command `:<line number>` which do the same thing. For example: `:1206`
   * `n%`    Go to n% in file
 
-- `<Ctrl-o>` to jump back-ward; Go to the place you jumped from. Giống như khi đọc `:h`. Use `<Ctrl-]>` to jump to link.
+- Khi đọc `:h` documentation. Use `<Ctrl-]>` to jump to link. It is equal to `gd`, go to definition
+- `<Ctrl-o>` to jump back-ward; Go to the place you jumped from
 - `Ctrl-i` to jump forward in jump history
 - Neovim keeps a history of all your jumps, so you can jump between several locations (perhaps to look up documentation or the call signature for a function) and always find a way back.
 

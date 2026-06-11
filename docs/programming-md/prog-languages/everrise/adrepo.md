@@ -274,6 +274,8 @@ dùng junit 4 (cuốn sách bản cũ second edition)
 
 `sbt run`
 
+`sbt -jvm-debug 9999 run`
+
 ### Passsword & config
 
 mysql: root:root or 123
@@ -407,6 +409,12 @@ When a batch processor job begins, its batch processor instance is locked until 
 
 Play framework uses `Google Guice` as its default dependency injection (DI) framework.
 
+- Khi request gởi tới, `Guice` will `new` a controller object & inject all dependencies mà controller object cần. Sau đó `Guice` hands over the controller object for the Play Framework. 
+- Before executing the controller's logic, Play looks at the `.index()` method and sees the `@Security.Authenticated(LoginAuthenticator.class)` annotation sitting right above it.
+  - Instead of calling `.index()` immediately, Play pauses the request and calls the `LoginAuthenticator` first.
+- If the authenticator fails (for example, if the tokens are missing or invalid), it blocks the request and immediately returns an `error.unauthorized` response. In this scenario, Play never calls `.index()`.
+- If the authenticator succeeds, then Play finally triggers the `.index()` method to bind the form data, query the database, and return the `MAgency` list.
+
 ## Others Terms
 
 app id: id của phía ETL adrepo (bên mình) khi làm việc với platform để xin token
@@ -463,6 +471,10 @@ The marketing team of the company adds utm params to the links leading to their 
 With the `auth_code` you receive after authorization by the advertiser, you can make a request to the following endpoint to get an `access_token` for subsequent API requests.
 
 The `auth_code` is valid for 1 hour and can be used only once. After the `auth_code` expires, you need to start over and perform the authorization steps again.
+
+`Upgraded Smart+`: một campaign
+
+An `ad` is the smallest advertising unit and is the content presented to the target audience.
 
 ### Trivia
 

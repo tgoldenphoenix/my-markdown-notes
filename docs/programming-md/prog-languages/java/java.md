@@ -852,31 +852,29 @@ Further, errors are regarded as `unchecked exceptions`, and applications should 
 
 Exceptions are abnormal conditions that applications might want to catch and handle. Exceptions can be recovered using a try-catch block and can happen at both run time and compile time.
 
-## Generic
+## Generic Class
+
+A `generic class` is defined with the following format:
+
+```java
+public class name<T1, T2, ..., Tn> { /* ... */ }
+```
+
+The `type parameter` section, delimited by angle brackets (`<>`), follows the class name. It specifies the `type parameters` (also called type variables) `T1, T2`, ..., and `Tn`.  
+`<T>` is short for `<Type>`
 
 Generic means `generic classes`. Using Generics, it is possible to create classes that work with different data types (generic classes). An entity such as class, interface, or method that operates on a parameterized type is a **generic entity**.  
-Generic còn gọi là `parameterized types`.  
+Generic còn gọi là `parameterized types`.
 
 A type variable can be any non-primitive type you specify: any class type, any interface type, any array type, or even another type variable. Khi pass vô generics phải là reference type or wrapper classes like `Interger` không được pass primitive type (`int`).
 
-`<T>` is short for `<Type>`
+Generic sẽ khiến code **type-safe** (giống như null-safe). Mình biết chắc là trong `ArrayList<>` chỉ có một loại duy nhất, không có những thứ khác có thể potentially cause error or exceptions.
 
-Generic thường gặp trong `ArrayList<>`
+### Generic Methods
 
- A generic class is defined with the following format:
+In addition to having `generic class`, you can also have have `generic method`. They can take arguments of different types. So, you can use generics at both the class level and the method level in Java.
 
-`class name<T1, T2, ..., Tn> { /* ... */ }`
-
-Generic sẽ khiến code **type-safe** (giống như null-safe). Mình biết chắc là trong ArrayList chỉ có một loại duy nhất, không có những thứ khác có thể potentially cause error or exceptions.
-
-You can narrow down the `<T>` that user can pass into your generics by using `<T extends ClassName>`. This is known as **bounded generic**.
-NOTE: Nếu implement interface vẫn dùng `extends` chứ không dùng `implements` nha.
-You can also multiple bounds.
-
-In addition to having `generic classes`, you can also have have `generic methods`. They can take arguments of different types.  
-You can use generics at both the class level and the method level in Java.
-
-To make a method generic, you place the type parameter `<T>` immediately before the method's return type.
+To make a method generic, you place the type parameter `<T>` immediately **before the method's return type**.
 
 ```java
 // T can be anything: a String, a User model, or an EtlJob
@@ -925,7 +923,14 @@ Interfaces do not have arguments. The `Predicate<T>` means "this is a generic In
 
 ### Wildcards
 
-In generic code, the question mark (`?`), called the wildcard, represents an unknown type.
+In generic code, the question mark (`?`), called the `wildcard`, represents an unknown type.
+
+### Bounded Generic
+
+You can narrow down the `<T>` that user can pass into your generics by using `<T extends ClassName>`. This is known as `bounded generic`.
+
+NOTE: Nếu implement interface vẫn dùng `extends` chứ không dùng `implements` nha.
+You can also multiple bounds.
 
 Upper Bounded Wildcards
 
@@ -974,6 +979,10 @@ Mình không thể `new` một enum được.
 Annotations are meta-data. Annotation is proccessed by compiler or at run-time.
 
 `@Test` annotation dùng để khi build nó biết đây là test methods.
+
+## `java.lang.Class`
+
+`java.lang.Object` is a `public class`. Class `Object` is the root of the class hierarchy. Every class has `Object` as a superclass. All objects, including arrays, implement the methods of this class.
 
 ## The build process, Maven && Gradle
 

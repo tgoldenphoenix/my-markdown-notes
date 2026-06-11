@@ -1,4 +1,4 @@
-# Git & github Notes
+# Git Notes
 
 Check if Git is installed locally: `git --version`
 
@@ -962,6 +962,8 @@ Switch to an existing branch `git checkout <branch name>`. This effectively move
 
 `git checkout -b [<new-branch>] [<start-point>]`
 
+We can check out a commit the same way we’d check out branches. Remember, branches are just names for commits.
+
 Delete branch: `git branch -d <branch name>`. You delete branch after merging successfully.
 
 Delete all branch except `main`: `git branch | grep -v "main" | xargs git branch -D`  
@@ -1569,15 +1571,13 @@ This is for rewriting an entire repository history.
 
 `master` was the default branch name for Git repositories until GitHub changed the default to `main` in October 2020.
 
-We can check out a commit the same way we’d check out branches. Remember, branches are just names for commits.
-
 The refs for local branches are stored in the `./.git/refs/heads/`. Remote branch refs live in the `./.git/refs/remotes/` directory.
 
-**Remote references** are references (pointers) in your remote repositories (not in your local repo), including branches, tags, and so on.  
+`Remote references` are references (pointers) in your remote repositories (not in your local repo), including branches, tags, and so on.  
 You can get a full list of remote references explicitly with `git ls-remote <remote>`, or `git remote show <remote>` for remote branches as well as more information  
 `git remote -v` show remote repos names and their URLs và loại truy cập (fetch hoặc push)
 
-**Remote tracking branches** are local branch pointers to the state of remote branches. They’re **local** references that you **can’t move**; Git moves them for you whenever you do any network communication. Example `origin/master` show you what the `master` branch on your `origin` remote repo looked like as of the last time you communicated with it. Một ví dụ nữa là `teamone/master` for another remote repo.
+`Remote tracking branches` are local branch pointers to the state of remote branches. They’re **local** references that you **can’t move**; Git moves them for you whenever you do any network communication. Example `origin/master` show you what the `master` branch on your `origin` remote repo looked like as of the last time you communicated with it. Một ví dụ nữa là `teamone/master` for another remote repo.
 
 - remote tracking branches like `origin/master` only move (update themselves) when you run `git fetch <remote>`
 - local branch like `master` move when you commit locally
@@ -1696,7 +1696,14 @@ Two of the easiest ways to access a remote repo are via the HTTP and the SSH pro
 
 But, it’s generally not possible to push commits to an HTTP address (you wouldn’t want to allow anonymous pushes anyways). For read-write access, you should use SSH instead:
 
-### Tracking branches
+```bash
+# -v for verbose
+git remote -v
+origin  git@bitbucket.org:ERVDavid/fujiyama_www-batch_fork_practice.git (fetch)
+origin  git@bitbucket.org:ERVDavid/fujiyama_www-batch_fork_practice.git (push)
+```
+
+### Tracking Branches
 
 It’s important to note that when you do a fetch that brings down new remote-tracking branches, you don’t automatically have local, editable copies of them. In other words, in this case, you don’t have a new `serverfix` branch — you have only an `origin/serverfix` pointer that you can’t modify.
 To merge this work into your current working branch, you can run `git merge origin/serverfix`. If you want your own serverfix branch that you can work on, you can base it off your remote-tracking branch:
@@ -1758,7 +1765,9 @@ Now, you can use erin instead of the full repository any time you need to push o
 
 ### Fetch & Pull
 
-You make your changes in the working area (working directory) -> add them to the staging area -> commit to the local repo -> then push to remote repo. Trước khi push thì mình muốn pull changes made by colleagues on remote về để khi push lên là fresh.
+```bash
+git fetch origin
+```
 
 The `git fetch` command downloads commits, files, and refs from a remote repository into your local repo. Fetching is what you do when you want to see what everybody else has been working on. It lets you see how the central history has progressed, but it doesn’t force you to actually merge the changes into your repository. Git isolates fetched content from existing local content; it has absolutely no effect on your local development work. Fetched content has to be **explicitly checked out** using the git checkout command.  
 After checking out the fetch, you can `merge` it into your `main`.
@@ -1954,7 +1963,7 @@ A [codespace](https://docs.github.com/en/codespaces/overview) is a development e
 
 [stack overflow](https://stackoverflow.com/questions/23611669/how-to-find-the-created-date-of-a-repository-project-on-github) How to find the created date of a repository project on GitHub? using github api
 
-## Other techniques
+## Other Techniques
 
 Nhánh `development` sẽ được merge vào nhánh `release`
 
@@ -1981,6 +1990,10 @@ Hooks are scripts that are executed automatically in certain conditions.
 Nếu tải file `.zip` về window, extract rồi copy-paste qua WSL thì sẽ bị lỗi zone identifiner
 
 phải clone trực tiếp từ WSL, không có copy qua lại
+
+## Other Terminologies
+
+working area = working directory. You can `add` changes to the `staging area` then `commit` to your local repo, then push to remote repo
 
 ## Further readings
 

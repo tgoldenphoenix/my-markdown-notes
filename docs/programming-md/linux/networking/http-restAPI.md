@@ -166,29 +166,29 @@ Responses are grouped into five classes: informational responses, successful res
 
 An informational response indicates that the request was received and understood and is being processed. It alerts the client to wait for a final response.
 
----
+### 2xx
 
 `2xx success` indicates that the action requested by the client was received, understood, and accepted.
 
 - `200 OK`: Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request, the response will contain an entity describing or containing the result of the action.
 - `201 Created` The request has been fulfilled, resulting in the creation of a new resource.
 
----
+### 3xx
 
 A `3xx redirection` status indicates that the client must take additional action, generally URL redirection, to complete the request.
 
 `301 Moved Permanently`: Requested object has been permanently moved; the new URL is specified in `Location:` header of the response message. The client software will automatically retrieve the new URL.
 
----
+### 4xx
 
-A `4xx client error` status code is for situations in which an error seems to have been caused by the client. The server should include an entity containing an explanation of the error situation. 
+A `4xx client error` status code is for situations in which an error seems to have been caused **by the client** (the one sending the request). The server should include an entity containing an explanation of the error situation. 
 
 - `400 Bad Request`: This is a generic error code indicating that the request could not be understood by the server. The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).
 - `401 Unauthorized`: The HTTP `401` Unauthorized status code is a bit ambiguous. Usually, it’s used to represent a **failed authentication** rather than an authorization. Developers employ it in the design of the application for cases such as missing or incor-rect credentials. For a failed authorization, we’d probably use the 403 Forbidden status. Generally, an HTTP 403 means that the server identified the caller of the request, but they don’t have the needed privileges for the call that they are trying to make.
 - `403 Forbidden`: The request was valid, but the server refuses action. This may be due to the user not having permission to a resource or needing an account of some sort, or attempting a prohibited action (e.g. creating a duplicate record where only one is allowed)
 - `404 Not Found`: The requested document does not exist on this server.
 
----
+### 5xx
 
 `5xx server error`: indicates that the server is aware that it has encountered an error or is otherwise incapable of performing the request.
 
