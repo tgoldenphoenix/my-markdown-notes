@@ -462,11 +462,14 @@ In java, con trỏ = biến tham chiếu (reference variable). Ví dụ con tr�
 Static variables & methods giúp ta tiết kiệm bộ nhớ ram vì **không phải tạo object** để gọi và có thể dùng chung.  
 `static` Attributes and methods belongs to the class, rather than an object
 
+A static method does not belong to any individual instance (object) of a class—it belongs to the class itself. Because of this architecture, the JVM sets up, links, and makes static methods fully available for execution long before your code ever calls `new` to create an object of that class.
+
 - **Static context** có nghĩa là Static chỉ chơi với 2 cái:
   1. Static chỉ chơi với static
   2. Static có thể chơi với cái chắc chắn có tồn tại: nếu anh ko phải static thì tôi vẫn chơi với anh nếu như anh chắc chắn tồn tại (bằng cách tạo object rồi gọi biến & hàm).
 
-Tức là trong static method (như `main()` chẳng hạn), muốn gọi variables & method trong 1 class thì: (1) phải là static variable/method. Còn nếu không thì phải (2) tạo object và gọi thông qua object vừa tạo.  
+Tức là trong static method (như `main()` chẳng hạn), muốn gọi variables & method trong 1 class thì: (1) phải là static variable/method. Còn nếu không thì phải (2) tạo object và gọi thông qua object vừa tạo.
+
 Lý do có static context là gì liên quan tới memory management inside RAM. Khi chạy project thì java load all static methods & varibles bỏ vào một vùng đặc biệt trên RAM. Việc này được làm trước khi chạy hàm `main()`. Static context giúp ta tránh gọi `null` dẫn tới lỗi.
 
 **WARNING**: Tuyệt đối KHÔNG tạo static method to connect to database (variable thì được). Cause errors that cannot be fixed. Trong `main()` cứ tạo đối tượng rồi gọi kết nối DB.
@@ -953,16 +956,7 @@ To write the method that works on lists of `Integer` and the supertypes of `Inte
 
 You should use enum types any time you need to represent a **fixed set of constants**. That includes natural enum types such as the planets in our solar system and data sets where you know all possible values at compile time—for example, the choices on a menu, command line flags, and so on.
 
-The constructor for an enum type must be package-private or private access. It automatically creates the constants that are defined at the beginning of the enum body. You cannot invoke an enum constructor yourself.
-
-```java
-public enum Day {
-    SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
-    THURSDAY, FRIDAY, SATURDAY 
-}
-```
-
-Enum có thể được truyền vào class constructor dưới dạng parameter.
+[This reading](https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html) mô tả syntax của ENUM khá đầy đủ.
 
 Enum is a special kind of class. Khi bạn viết `enum Color { RED, BLUE }`, trình biên dịch Java sẽ tự động chuyển đổi nó thành một class kế thừa từ lớp cơ sở `java.lang.Enum`.
 
@@ -974,6 +968,59 @@ Enum is a special kind of class. Khi bạn viết `enum Color { RED, BLUE }`, tr
 Enum là `Static Final`. Chúng được hệ thống tự động khởi tạo duy nhất một lần khi được nạp vào bộ nhớ.  
 Mình không thể `new` một enum được.
 
+An `enum type` is a special data type that enables for a variable to be a set of predefined constants. The variable must be equal to one of the values that have been predefined for it. Common examples include compass directions (values of NORTH, SOUTH, EAST, and WEST) and the days of the week.  
+Because they are constants, the names of an enum type's fields are in uppercase letters.
+
+In the Java programming language, you define an `enum type` by using the `enum` keyword. For example, you would specify a days-of-the-week enum type as:
+
+```java
+public enum Day {
+    SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
+    THURSDAY, FRIDAY, SATURDAY 
+}
+
+public class EnumTest {
+    Day day;
+    
+    public EnumTest(Day day) {
+        this.day = day;
+    }
+    
+    public void tellItLikeItIs() {
+        switch (day) {
+            case MONDAY:
+                System.out.println("Mondays are bad.");
+                break;
+                    
+            case FRIDAY:
+                System.out.println("Fridays are better.");
+                break;
+                         
+            case SATURDAY: case SUNDAY:
+                System.out.println("Weekends are best.");
+                break;
+                        
+            default:
+                System.out.println("Midweek days are so-so.");
+                break;
+        }
+    }
+    
+    public static void main(String[] args) {
+        EnumTest firstDay = new EnumTest(Day.MONDAY);
+        firstDay.tellItLikeItIs();
+        EnumTest thirdDay = new EnumTest(Day.WEDNESDAY);
+        thirdDay.tellItLikeItIs();
+        EnumTest fifthDay = new EnumTest(Day.FRIDAY);
+        fifthDay.tellItLikeItIs();
+        EnumTest sixthDay = new EnumTest(Day.SATURDAY);
+        sixthDay.tellItLikeItIs();
+        EnumTest seventhDay = new EnumTest(Day.SUNDAY);
+        seventhDay.tellItLikeItIs();
+    }
+}
+```
+
 ## Annonation (`@`)
 
 Annotations are meta-data. Annotation is proccessed by compiler or at run-time.
@@ -983,6 +1030,20 @@ Annotations are meta-data. Annotation is proccessed by compiler or at run-time.
 ## `java.lang.Class`
 
 `java.lang.Object` is a `public class`. Class `Object` is the root of the class hierarchy. Every class has `Object` as a superclass. All objects, including arrays, implement the methods of this class.
+
+This [reading](https://stackoverflow.com/questions/2160788/what-is-a-class-literal-in-java) explain the concept of `class literal` in java `ClassCha.class`, the `.class` part.
+
+In Java, you cannot call the `.class` literal on an object instance (a variable). You can only call `.class` directly on a Class Name (a data type).
+
+If you have an active object variable running in your code and you want to inspect its type at runtime, you must call the `.getClass()` method (which Java inherits from the root `Object` class).
+
+```java
+String name = "David";
+Class<?> result = name.getClass(); // Valid!
+
+Class<String> result = String.class;   // Valid!
+Class<Integer> result2 = int.class;    // Valid! (Works on primitives too)
+```
 
 ## The build process, Maven && Gradle
 

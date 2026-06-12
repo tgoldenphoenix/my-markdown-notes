@@ -388,9 +388,13 @@ sử dụng time trong `update_micro_time` có micro-second, time trong `updated
 
 đối tượng: agency_id list (account khách hàng của adrepo)
 
-### Other batches
+### Other Batches
 
 BatchInitializationGetReportQueueError
+
+Class `AbstractBatchMaster` không liên quan đến việc lấy master. It contains logic to parse command-line arguments passed into the batches. It is inherited by batch get master data & batch get advertiser list.
+
+Class `AbstractBatch` contains the Logger objects and the methods to print logs.
 
 ### Batch Processing
 
@@ -414,6 +418,42 @@ Play framework uses `Google Guice` as its default dependency injection (DI) fram
   - Instead of calling `.index()` immediately, Play pauses the request and calls the `LoginAuthenticator` first.
 - If the authenticator fails (for example, if the tokens are missing or invalid), it blocks the request and immediately returns an `error.unauthorized` response. In this scenario, Play never calls `.index()`.
 - If the authenticator succeeds, then Play finally triggers the `.index()` method to bind the form data, query the database, and return the `MAgency` list.
+
+## Log4j
+
+Apache Log4j version `1.2`; [documentation](https://logging.apache.org/log4j/1.x/)
+
+In Log4j, a `category` (also commonly referred to as a "logger") is essentially the named channel or routing rule that your Java code uses to send messages.
+
+When you write `log4j.category.<Name> = <LEVEL>, <AppenderAlias>`, you are defining three things:
+
+1. The Name: The string your Java code uses to find this rule (e.g., "AdwordInfoLogger" or `org.seasar`)
+2. The Level: The minimum severity of messages this channel will accept (e.g., `INFO`, `ERROR`, `DEBUG`)
+3. The Appender Alias: A short, custom label linking this category to a specific destination (e.g., `ADIA` or `C`)
+
+An appender defines the physical destination where the log messages will actually be written, as well as how they should be formatted. In your configuration, appenders are defined using `log4j.appender.<AppenderAlias> = <AppenderClass>`.
+
+```txt
+# 1. THE CATEGORY: Creates a channel named "AdwordInfoLogger", accepts "INFO" level messages and above, and routes them to an appender nicknamed "ADIA".
+log4j.category.AdwordInfoLogger=INFO,ADIA
+
+# 2. THE APPENDER TYPE: Defines "ADIA" as a file writer that rolls over daily.
+log4j.appender.ADIA=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.ADIA.encoding=UTF-8
+log4j.appender.ADIA.DatePattern='.'yyyy-MM-dd
+log4j.appender.ADIA.Append=true
+
+# 3. THE APPENDER DESTINATION: Tells "ADIA" exactly where to save the file on your server.
+log4j.appender.ADIA.File=/opt/ag/logs/adword/adword-info.log
+
+# 4. THE APPENDER FORMATTING: Defines the specific layout pattern (Date, Thread, Message) for the text inside the file.
+log4j.appender.ADIA.layout=org.apache.log4j.PatternLayout
+log4j.appender.ADIA.layout.ConversionPattern=%-5p %d [%t] %m%n
+```
+
+In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBUG`.
+
+Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
 
 ## Others Terms
 
