@@ -135,7 +135,7 @@ Triple-unit characters
 - 豪 (卜口月人)
 - 豕 (一尸竹人) - sow, pig
 - 象 (弓日心人) - one unit character, take F3+L, elephant
-  - 像 (人 弓日人)
+  - 像 (人 // 弓日人)
 - 飞 (弓人) - fly
 - 衤 (戈弓中人) - cloak
 - 长 (心人)
@@ -166,7 +166,8 @@ Triple-unit characters
   - 際 (弓中 // 月人 // 火) - triple unit
 
 - 豋 (月人 // 一口廿)
-- 登
+- 登 (弓人 // 一口廿) - ascend
+  - 燈 (火 // 弓人 // 廿) - triple unit
 
 ### Corpse, flag 尸
 
@@ -203,14 +204,17 @@ Triple-unit characters
 - 司 (尸一口) - company
 - 幻 (女戈 // 尸)
 - 成 (戈竹尸)
-- 馬 (尸手尸火)
-  - 马 (弓女尸一) horse
 - 方 (卜竹尸) - compass, direction
   - 房 (竹尸 // 卜竹尸)
   - 芳 (廿 // 卜竹尸)
   - 於 (卜尸 // 人卜)
 - 万 (一尸) - ten thousand
 - 分 (金 // 尸竹) - divide
+
+- 馬 (尸手尸火) - horse
+  - 马 (弓女尸一)
+- 敬 (廿口 // 人大) - double unit
+  - 驚 (廿大 // 尸手火) - double unit
 
 - 鳥 (竹日卜火) - single unit, bird
   - 鸟 (心卜尸一)
@@ -840,7 +844,7 @@ anki
 
 - 展 (尸廿女)
 
-- 开 (一廿)
+- 开 (一廿) - two hands
 - 形 (一廿 // 竹竹竹) - double unit
   - 彡 (竹竹竹) - shape
   - 开 (一廿) - open
@@ -984,6 +988,7 @@ anki
 
 - 矢 (人大) - dart
   - 欸 (戈大 // 弓人)
+  - 知 (人大 // 口)
 - 天 (一大)
 - 攵 (人大) - taskmaster
 
@@ -1029,10 +1034,11 @@ anki
 - 厭 (一 // 日月 // 大) - triple unit
   - 壓 (一大土) - double unit
 - 辰 (一一一女) - sign of the dragon
+- 歷 (一 // 竹木 // 一)
 
 - 右 (大口) => by one's side là 大; right
 - 石 (一口) - stone
-- sick bed: 病 (大 // 一人月)
+  - 破 (一口 // 木竹水)
 
 - 戈 = cave
 - 度 (戈廿水) - cavern
@@ -1044,11 +1050,14 @@ anki
 - 廟 (戈 // 十十 // 月) - triple unit
 - 膺 (戈 // 人土 // 月)
 
+- sick bed: 病 (大 // 一人月)
+
 #### Tree, wood 木
 
 - 寸 (木戈) - glue
   - 村 (木 // 木戈)
   - 壽 (土弓一戈) - longevity
+  - 守 (十 // 木戈)
 - 寺 (土木戈) - Buddhist temple, pagoda
   - 待 (竹人 // 土 // 木戈) - triple unit
   - 時 (日 // 土 // 木戈) - triple unit
@@ -1447,14 +1456,15 @@ anki
 - 齊 (卜難) - CSGT
   - 齋 (卜難火) - purification
 - 卍 (弓難)
-- 身 (竹難竹)
+- 身 (竹難竹) - body
 - 兼 (廿難金)
 - 黽 (口難山)
 
 - 龜 (弓難山) - tortoise
   - 龝 (竹木 // 弓難山) - autumn
 
-- 鹿 (戈難心)
+- 鹿 (戈難心) - deer
+  - 塵 (戈心土)
 - 廌 (戈難火)
 - 慶 (戈難水)
 
