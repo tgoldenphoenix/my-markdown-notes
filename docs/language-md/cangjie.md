@@ -30,6 +30,8 @@ Triple-unit characters
 
 - 儿 (中山) - er, child
 - 先 (竹土竹山) - before
+  - 贊 (竹山 // 月山金)
+- 旡 (一女大山) - waitress
 
 - 兄 (口竹山) - teenager
 - 兌 (金口竹山) - devil
@@ -42,6 +44,10 @@ Triple-unit characters
   - 親 (卜木 // 月山山) - double unit
 - 见 (月竹山)
   - 现 (一土 // 月竹山)
+- 冠 (月 // 一山 // 戈)
+
+- 竟 (卜廿 // 日竹山) - mirror
+- 境 (土 // 卜廿 // 山) - triple unit
 
 - 貝 (月山金) - shell
   - 贝 (月人)
@@ -69,6 +75,8 @@ Triple-unit characters
   - 乔 (竹大中中) - angel
 - 嬌 (女 // 竹大月)
   - 娇 (女 // 竹大中)
+- 介 (人中中) - introduce
+  - 界 (田人中中) - world
 
 - 賈 (一田 // 月山金) - double unit, merchant
   - 贾 (一田月人)
@@ -83,6 +91,7 @@ Triple-unit characters
 - 无 (一大山) - nothing
 - 旡 (一女大山) - Waitress
   - 既 (日戈 // 一女山)
+  - 贊 (竹山 // 月山金)
 - 尤 (戈大山) frankenpooch
 - 冘 (中月山) - sinking, sink
   - 枕 (木 // 中月山)
@@ -92,7 +101,7 @@ Triple-unit characters
 
 #### Gold, metal 金
 
-- 分 (金 // 尸竹) - divide
+- 分 (金 // 尸竹) - divide, parts
 - 公 (金戈) - public
 
 - 丫 (金中)
@@ -116,7 +125,7 @@ Triple-unit characters
 - 今 (人戈弓) - clock
 - 令 (人戈弓戈) - order
 
-#### Human, person 人
+#### Human, Person 人
 
 - 仁 (人一一)
 
@@ -153,6 +162,12 @@ Triple-unit characters
 - 眾 (田中 // 人人人) - mass
 - 聚 (尸水 // 人人人)
 
+- 祭 (月人 // 一一火) - offer sacrifice
+  - 際 (弓中 // 月人 // 火) - triple unit
+
+- 豋 (月人 // 一口廿)
+- 登
+
 ### Corpse, flag 尸
 
 - snake
@@ -177,10 +192,13 @@ Triple-unit characters
   - 昭 (日 // 尸竹口)
   - 認 (卜口 // 尸戈心)
   - 留 (竹竹 // 田) - letter openner
+  - 分 (金 // 尸竹) - divide, parts
 
 - 力 (大尸) - power
 - 加 (大尸 // 口)
   - 賀 (大口 // 月山金) - double unit
+- 劦 (大尸 // 大尸 // 尸) - triple unit
+  - 協 (十 // 大尸 // 尸)
 
 - 司 (尸一口) - company
 - 幻 (女戈 // 尸)
@@ -189,7 +207,9 @@ Triple-unit characters
   - 马 (弓女尸一) horse
 - 方 (卜竹尸) - compass, direction
   - 房 (竹尸 // 卜竹尸)
-- 万 (一尸)
+  - 芳 (廿 // 卜竹尸)
+  - 於 (卜尸 // 人卜)
+- 万 (一尸) - ten thousand
 - 分 (金 // 尸竹) - divide
 
 - 鳥 (竹日卜火) - single unit, bird
@@ -227,6 +247,7 @@ Triple-unit characters
 - 卩 (尸中) - postage stamp
   - 即 (日戈 // 尸中)
   - 命 (人 // 一 // 口中) - triple unit
+  - 服 (月 // 尸中水) - apparel
 - 爺 (金大 // 尸十 // 中) - triple unit
   - 爷 (金大 // 尸中) - chop seal
 - 刀 (尸竹)
@@ -402,7 +423,7 @@ anki
   - 充 (卜戈竹山) - allot
 
 - 或 (戈口一) - or
-  - 國 (田戈口一)
+  - 國 (田戈口一) - country
   - 国 (田 // 一土戈)
   - 惑 (戈一 // 心) - double unit
 - 彧 (戈大口一)
@@ -414,12 +435,15 @@ anki
   - 城 (土 // 戈竹尸) - castle
 - 裁 (十戈 // 卜竹女)
 
+- 戈
+  - 伐 (人戈) - fell
+
 - 弋 (戈心) - arrow
   - 代 (人戈心) - substitute, age, era
   - 膩 (月 // 戈心 // 金) - triple unit
-- 伐 (人戈) - fell
 - 武 (一心 // 卜中一) - double unit, quiver
   - 賦 (月金 // 一心 // 一) - triple unit
+- 民 (口女心)
 
 - 淺 (水 // 戈戈) - float
   - 浅 (水戈十)
@@ -450,11 +474,21 @@ anki
 
 #### Heart 心
 
+- 戈 - halberd
+  - 伐 (人戈) - fell
+
+- 弋 (戈心) - arrow
 - 代 (人 // 戈心) - substitute, age, era
-  - Halberd 戈
   - 黛 (人心 // 田土火)
-  - 黑 (田土 // 火) - double unit
+    - 黑 (田土 // 火) - double unit
+  - 膩 (月 // 戈心 // 金) - triple unit
 - 氏 (竹女心) - family name
+  - 民 (口女心)
+- 武 (一心 // 卜中一) - double unit, quiver
+  - 賦 (月金 // 一心 // 一) - triple unit
+
+- 世 (心廿)
+- 也 (心木)
 
 - 乇 (竹心) - lock of hair
   - 托 (手 // 竹心)
@@ -485,9 +519,6 @@ anki
   - 抱 (手 // 心口山)
 - 負 (弓月山金) - defeat
   - 负 (弓月人)
-
-- 世 (心廿)
-- 也 (心木)
 
 - 钅 (人一心) - metal, gold
 - 钟 (人心 // 中)
@@ -555,14 +586,18 @@ anki
   - 自 (竹月山) - oneself, nose, nostrils
   - 首 (廿竹月山) - neck, head
 - 直 (十月一一)
+  - 值 (人 // 十月一)
 - 具 (月一一金) - tool
 - 真 (十月一金) - true
 
+- 敻 (弓月 // 月山 // 水 or 弓月月山大) - triple unit
+  - 瓊 (一土 // 弓月 // 水) - triple unit
+
 - 調 (卜口 // 月土口)
 
-- 再 (一土月) - again
-  - 冉 (土月)
-- 稱 (竹木 // 月土月)
+- 冉 (土月)
+  - 再 (一土月) - again
+  - 稱 (竹木 // 月土月)
 - 冓 (廿廿土月) - funnel
   - 講 (卜口 // 廿廿月)
 
@@ -604,6 +639,8 @@ anki
 
 - 鬲 (一口月中) - camera
   - 融 (一月 // 中一戈)
+- 南 (十月廿十) - south
+- 羊 (廿手)
 
 - 册 (月月一)
 
@@ -623,6 +660,8 @@ anki
 
 - 尹 (尸大) - mop
 - 君 (尸大口) - old boy
+  - 群 (尸口 // 廿手)
+  - 羊 (廿手) - sheep
 
 - 婁 (中中女) - sniper
   - 樓 (木 // 中中女)
@@ -679,6 +718,8 @@ anki
 - 亦 (卜中弓金) - apple
 - 州 (戈中戈中)
 - 兆 (中一山人) - turtle shell
+
+- 而 (一月中中) - comb
 
 ### Fire 火
 
@@ -744,6 +785,8 @@ anki
 
 - 求 (戈十水) - request
 
+- 尚 (火月口)
+
 ### 廿, 一
 
 #### Twenty 廿 (nhập)
@@ -773,8 +816,11 @@ anki
 
 - 乎 (竹火木)
 
-- 𢝙 (心 // 一火 // 廿)
-  - 皿 (月廿) - dish
+- 皿 (月廿) - dish
+- 盃 (一火 // 月廿)
+  - 𢝙 (心 // 一火 // 廿)
+- 豔 (山廿 // 土戈 // 廿) - triple unit
+- 血 (竹月廿) - blood
 
 - 無 (人廿火) - nothing
   - 蕪 (廿 // 人廿火)
@@ -815,7 +861,8 @@ anki
   - 𨐌 (卜廿手)
   - 薛 (廿 // 竹口 // 十) - triple unit
   - 新 (卜木 // 竹一中)
-- 幸 (土廿十) - happy
+- 幸 (土廿十) - happy, happiness
+- 南 (十月廿十) - south
 
 - 虛 (卜心 // 廿一) - cactus
 - 關 (日弓 // 女戈 // 廿) - triple unit
@@ -952,6 +999,7 @@ anki
 - 犭 (大尸竹) or (大弓竹) - pack of wild dogs
   - 狼 (大竹 // 戈日女)
   - 狂 (大竹 // 一土)
+  - 獲 (大竹 // 廿人水)
 
 #### Drag, Cliff, Cave, Sick Bed
 
@@ -994,6 +1042,7 @@ anki
   - 則 (月金 // 中 // 弓) - triple unit
 - 府 (戈人木戈)
 - 廟 (戈 // 十十 // 月) - triple unit
+- 膺 (戈 // 人土 // 月)
 
 #### Tree, wood 木
 
@@ -1014,6 +1063,8 @@ anki
 
 - 乎 (竹火木)
 - 子 (弓木); - children
+- 于 (一木) - potato
+- 干 (一十) - dry
 
 - 寺 (土木戈) - Buddhist temple, pagoda
   - 特 (竹手 // 土 木戈)
@@ -1073,6 +1124,9 @@ anki
   - 甫 (戈十月)
 - 稱 (竹木 // 月土月)
 
+- 華 (廿 // 一廿十) - splendor
+  - 譁 (卜口 // 廿一十)
+
 ### Fortune/divine Telling 卜
 
 - 通 (卜 // 弓戈月) - road
@@ -1096,6 +1150,7 @@ anki
   - 図 (田卜大)
 - 斗 (卜十) - big dipper
 - 头 (卜大) - bust
+- 於 (卜尸 // 人卜)
 
 - 实 (十卜大)
 - 實 (十田十金)
@@ -1214,6 +1269,8 @@ anki
   - 峰 (山 // 竹水 // 十) - triple unit
   - 逢 (卜 // 竹水 // 十)
 
+- 羊 (廿手) - sheep
+
 - 寿 (手大木戈) - longevity
   - 壽 (土弓一戈) - longevity
 - 差 (廿手一) - wool
@@ -1310,7 +1367,12 @@ anki
 - 柬 (木田火)
   - 闌 (日弓 // 木田火) - orchid
   - 攔 (手 // 日弓 // 田) - triple unit
+
 - 母 (田卜戈) - mom
+- 每 (人 // 田卜戈) - double unit, every
+  - 毎 (人 // 田十)
+  - 海 (水 // 人 // 田卜) - triple unit, sea
+  - 敏 (人卜 // 人大) - double unit
 
 - 覽 (尸田 // 月山山) - double unit
 - 览 (中戈 // 月竹山)
@@ -1340,6 +1402,9 @@ anki
 
 - 單 (口口田十) - simple
 - 禪 (戈火 // 口口十)
+
+- 品 (口口口)
+  - 操 (手 // 口口 // 木) - triple unit
 
 ### Ground 土
 
@@ -1401,6 +1466,7 @@ anki
 
 - 門 (日弓) - gate
   - 開 (日弓 // 一廿)
+  - 簡 (竹 // 日弓日)
 - 门 (中戈尸)
   - 阊 (中尸 // 日日)
   - 间 (中尸 // 日)
@@ -1426,9 +1492,11 @@ anki
 - 隹 (人土) - turkey
   - 應 (戈 // 人土 // 心) - triple unit
   - 集 (人土 // 木)
+  - 唯 (口 // 人土)
 
 - 隻 (人土水) - vessel
   - 護 (卜口 // 廿人水)
+  - 獲 (大竹 // 廿人水)
 - 雙 (人土水)
 
 - 亡 (卜女) - deceased

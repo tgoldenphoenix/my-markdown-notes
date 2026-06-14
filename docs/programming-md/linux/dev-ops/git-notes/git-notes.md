@@ -15,6 +15,8 @@ How to read git synopsis: [stack overflow](https://stackoverflow.com/questions/6
 
 Git is a **distributed** version control system (DVCS). In comparison with a **centralized** VCS.
 
+working area = working directory. You can `add` changes to the `staging area` then `commit` to your local repo, then push to remote repo
+
 ## Git Config
 
 Show git config: `git config --list`  
@@ -22,8 +24,8 @@ You can view all of your settings and where they are coming from using:: `git co
 The global gitconfig file on Macbook is at: `/opt/homebrew/etc/gitconfig`
 
 - Mới tải Git về thì run these commands:
-  * `git config --global user.name "tgoldenphoenix"`
-  * `git config --global user.email johndoe@example.com`
+  - `git config --global user.name "tgoldenphoenix"`
+  - `git config --global user.email johndoe@example.com`
 - Sau đó generate & add SSH key on local machine & on Github. Phải có cả authentication key & signing key (cùng một key nhưng tạo 2 chức năng).
 
 To set `main` as the default branch name do: `git config --global init.defaultBranch main`  
@@ -385,7 +387,7 @@ You can google `gitignore generator` for templates for different kind of project
 
 ## Undoing Things
 
-### Amend & force push
+### Amend & Force Push
 
 Remember, anything that is committed in Git can almost always be recovered. Even commits that were on branches that were deleted or commits that were overwritten with an --amend commit can be recovered (see Data Recovery for data recovery). However, anything you lose that was never committed is likely never to be seen again.
 
@@ -1025,7 +1027,7 @@ git pull \<remote> \<branch>
 git push -u origin HEAD
 ```
 
-### prune
+### Prune
 
 `git prune` is a low-level Git command for performing garbage collection by deleting "unreachable" or "orphaned" objects (commits, blobs, etc.) from the local repository's object database. These are objects that are no longer referenced by any branch, tag, or other reference, helping to free up disk space and improve performance
 
@@ -1069,15 +1071,16 @@ c18e493 VN_PRO-780 [Kankopi Button] Refactor method handleClick() cho nút Copy
 4302b66 Dịch Readme sang tiếng Nhật
 ```
 
-### Merging branches
+## Merge
 
 Khi muốn bring changes from one branch (`main`) to your personal branch cũng gọi là merge.
 
 Có các trường hợp merge như sau:
 
 1. **Fast-forward merge**: create a branch and work on it để nếu có gì hỏng thì return back to `main`. Git just move the branch pointer forward no new commit (snapshot) created. Khi merge will have no conflict.
-2. **Three-way merge**: using the two snapshots pointed to by the branch tips and the common ancestor of the two. Sẽ có conflict nếu 2 branches tips changed the same file. The changes do not necessarily need to the on the same line. It only need to be on the same file, to create merge conflict. Git creates a new commit (snapshot) called **merge commit**. This merge commit points to two parent while normal commit only has one parent.
-3. Rebase
+2. **Three-way merge**: using the two snapshots pointed to by the branch tips and the common ancestor of the two.
+  Git creates a new commit (snapshot) called `merge commit`. This merge commit points to two parent while normal commit only has one parent. Three-way merge always create a new commit.
+  Sẽ có conflict nếu 2 branches tips changed the same file AND the same line.
 
 Nếu có merge conflict thì git không tạo merge commit mà pause để user resolve the conflict. If you want to see which files are unmerged at any point after a merge conflict, you can run `git status`. Git auto add **conflict-resolution markers** to the files that have conflicts, so you can open them manually and resolve those conflicts.
 
@@ -1106,15 +1109,42 @@ How to read conflict marker:
 
 Any code that is preceded by “<<<<<<<” is the code in your current branch, and any code suffixed with “>>>>>>>” is from the other branch.
 
-### Rebase
+### Merge --squash
 
-In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.  
-Very often you will want to bring changes from `main` to your personal branch. Merge `main` into our personal branch allows you to see the latest update. Khi đó thường dùng rebase thay vì merge.
+Squashed commits take the history of one branch and compress— or “squash”—it into one commit on top of another branch.
+
+Git takes all the history of one branch and compresses it into one commit in the other branch.
+
+Example: You have two commits in your `contact` branch. You can squash these two commits back into the `master` branch as one commit.
+
+```bash
+$ git checkout master
+Switched to branch "master"
+
+$ git merge --squash contact
+Updating 217a88e..2f30ccd
+Fast forward
+Squash commit -- not updating HEAD
+contact.html | 19 +++++++++++++++++++
+1 files changed, 19 insertions(+), 0 deletions(-)
+create mode 100644 contact.html
+```
+
+The `--squash` option tells `git merge` to take all the commits from the other branch and squash them into one commit.  
+Now both of your commits from contact have been applied to your working tree and are staged for a commit, but they have not been committed.
+
+All that’s left now is for you to commit the change like any other commit: `git commit -m "message"`.
+
+## Rebase
+
+In Git, there are two main ways to integrate changes from one branch into another: the merge and the rebase.
 
 rebase can also be used as a clean up tool (clean up commits)
 
-`git rabase` chỉ có conflict khi sửa cùng một dòng. Sửa cùng một file nhưng khác dòng rabase không có conflict.  
+`git rabase` chỉ có conflict khi sửa cùng một dòng. Sửa cùng một file nhưng khác dòng rabase sẽ không có conflict.  
 Sau khi rebase xong kể cả không có conflict vẫn phải check lại code.
+
+Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue`
 
 With the rebase command, you can take all the changes that were committed on one branch and re-apply them on a different branch.
 
@@ -1127,7 +1157,17 @@ git rebase master
 
 In comparison to merge thì checkout qua `master` rồi merge `feature` into `master` (checkout to the final branch).
 
-Khi rebase nếu có conflict thì cũng resolve giống như merge bình thường. Nhớ phải làm đúng như nó kêu. Phải resolve conflict manually, rồi `add` rồi run `git rebase --continue`
+- If you stand on `master` and rebase `master` onto `feature` branch => master will move.
+- If you stand on `feature` and rebase onto `master` => master will NOT move, only `feature` will move.
+
+```bash
+# standing on feature
+git checkout master
+git pull
+git checkout feature
+git rebase master
+# crete pull request
+```
 
 git rebase `their vs --our`: `our` thực chất là `main` chứ không phải nhánh của mình => dễ bị nhầm
 
@@ -1204,7 +1244,7 @@ To ever-rise.git.backlog.jp:/VN_PRO/backlog-wiki-page-kankopi-button.git
  + 0dc60b2...b685f99 HEAD -> VN_PRO-785-const-var-first (forced update)
 ```
 
-### Rebase vs Merge
+### Rebase vs. Merge
 
 - When rebase `A` on-to `main` => `main` will **NOT** move. Only `HEAD->A` move (on to the tip of `main`).
 - When merge `A` in-to `main` => `HEAD->main` will move forward pointing to the newly created **merge commit**. `A` will **NOT** move.
@@ -1322,9 +1362,11 @@ Không được thay đổi `main` mà không có review.
 
 ### Interactive Rebasing
 
-Interactive rebasing gives you the opportunity to alter commits as they are moved to the new branch. This is even more powerful than an automated rebase, since it offers complete control over the branch’s commit history. Typically, this is used to clean up a messy history before merging a feature branch into main. You can do editing, deleting, and squashing.
+Interactive rebasing gives you the opportunity to alter commits as they are moved to the new branch.  
+This is even more powerful than an automated rebase, since it offers complete control over the branch’s commit history.  
+Typically, this is used to clean up a messy history before merging a feature branch into main. You can do editing, deleting, and squashing.
 
-To tell Git where to start the interactive rebase, use the SHA-1 or index of the commit that immediately precedes the commit you want to modify.
+To tell Git where to start the interactive rebase, use the `SHA-1` or index of the commit that immediately precedes the commit you want to modify.
 
 Interactive rebasing will create new SHA-1’s therefore it is best to use interactive rebasing on commits you have not pushed to a remote branch.
 
@@ -1348,7 +1390,7 @@ khi `rebase -i` thì order ngược lại với `git log`
 
 `git checkout feature; git rebase -i HEAD~3` => begins an interactive rebase of only the last 3 commits (including your current commit)
 
-```
+```bash
 git stash -u
 * rebase as you wish
 git rebase -i HEAD~3
@@ -1375,7 +1417,7 @@ Breaking One Commit into multiple commits
 - `edit` = use, but stop for amending
 - `squash` = use, but meld into previous commit (the above listed)
 - `fixup` = like `squash` but keep only the previous commit's log message
-  * The difference between squash and fixup, is that `squash` let's you edit the resulting commit log message; `fixup`, on the other hand, defaults to using the previous commit's log message.
+  - The difference between squash and fixup, is that `squash` let's you edit the resulting commit log message; `fixup`, on the other hand, defaults to using the previous commit's log message.
 - `drop` = remove commit
 
 nếu có `edit` thì sau khi edit, run `git rebase --continue`
@@ -1465,35 +1507,14 @@ The auto-generated comments inside the `git-rebase-todo` file:
 
 As with all operations related to rewriting history... Unless you know exactly what you're doing and have good communication within your team – only rewrite commits that have not yet been published remotely!
 
----
-
-Squashing Commits
-
-Squashed commits take the history of one branch and compress— or “squash”—it into one commit on top of another branch.
-
-Git takes all the history of one branch and compresses it into one commit in the other branch.
-
-Example: You have two commits in your `contact` branch. You can squash these two commits back into the `master` branch as one commit.
+### Squashing Commits
 
 ```bash
-$ git checkout master
-Switched to branch "master"
-
-$ git merge --squash contact
-Updating 217a88e..2f30ccd
-Fast forward
-Squash commit -- not updating HEAD
-contact.html | 19 +++++++++++++++++++
-1 files changed, 19 insertions(+), 0 deletions(-)
-create mode 100644 contact.html
+# last 3 commits including the latest (the one pointed to by the branch ref)
+git rebase -i HEAD~3
 ```
 
-The `--squash` option tells `git merge` to take all the commits from the other branch and squash them into one commit.  
-Now both of your commits from contact have been applied to your work-ing tree and are staged for a commit, but they have not been committed.
-
-All that’s left now is for you to commit the change like any other commit: `git commit -m "message"`.
-
-### Cherry pick
+## Cherry Pick
 
 cherry-pick: pick any commit by its reference & appended to the current working HEAD
 
@@ -1523,7 +1544,7 @@ By default, a new commit is created with the changes from that cherry-picked com
 This is OK in most cases, but what if the code you need is in several commits?  
 To cherry-pick multiple commits, give git cherry-pick the `-n` parameter. That tells Git to do the merge but stop before creating a commit.
 
-### Stash
+## Stash
 
 Why you need stash:
 
@@ -1551,7 +1572,7 @@ The git stash command and git stash push command are functionally equivalent in 
   - `git stash push --keep-index`: To stash only the modified tracked files, leaving the staged changes in the index.
   - In essence, git stash push provides the same core functionality as a bare git stash but with the added flexibility of specifying options to control the stashing behavior and provide more descriptive messages. For simple stashing of current changes, either command will achieve the same result.
 
-```
+```bash
 git stash -u -m "pom & gitignore"
 # rebase
 git stash pop
@@ -1990,10 +2011,6 @@ Hooks are scripts that are executed automatically in certain conditions.
 Nếu tải file `.zip` về window, extract rồi copy-paste qua WSL thì sẽ bị lỗi zone identifiner
 
 phải clone trực tiếp từ WSL, không có copy qua lại
-
-## Other Terminologies
-
-working area = working directory. You can `add` changes to the `staging area` then `commit` to your local repo, then push to remote repo
 
 ## Further readings
 
