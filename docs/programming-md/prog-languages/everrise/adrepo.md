@@ -276,6 +276,10 @@ dùng junit 4 (cuốn sách bản cũ second edition)
 
 `sbt -jvm-debug 9999 run`
 
+- Playframwork 2.6.9
+  - [play framwork doc](https://www.playframework.com/documentation/2.5.8/JavaForms) (2.1.x or 2.6)
+- Velocity version 1.7; Apache Velocity Template Language (VTL)
+
 ### Passsword & config
 
 mysql: root:root or 123
@@ -409,6 +413,14 @@ When a batch processor job begins, its batch processor instance is locked until 
 - lock file được tạo dựa trên name của batch nên mỗi thời điểm chỉ có duy nhất một batch tên `BatchGetMasterTiktok` chạy được thôi.
 - nếu lock file exit thì batch không chạy, batch chạy xong thì delete lock file
 
+### Entity
+
+`AbstractEntity` contains fields: `deleted`, `createdBy`, `createdAt`, `updateBy`
+
+Inside entity classes, we can have ENUM classes.
+
+`GetMasterQueue` contain no fields, only ENUM and methods. The fields is inside `AbstractGetMasterQueue`
+
 ## ETL Web API
 
 Play framework uses `Google Guice` as its default dependency injection (DI) framework.
@@ -418,6 +430,26 @@ Play framework uses `Google Guice` as its default dependency injection (DI) fram
   - Instead of calling `.index()` immediately, Play pauses the request and calls the `LoginAuthenticator` first.
 - If the authenticator fails (for example, if the tokens are missing or invalid), it blocks the request and immediately returns an `error.unauthorized` response. In this scenario, Play never calls `.index()`.
 - If the authenticator succeeds, then Play finally triggers the `.index()` method to bind the form data, query the database, and return the `MAgency` list.
+
+### Controller & Form
+
+`Forms` are responsible for capturing, filtering, and validating raw data coming from HTTP requests (the "outside world") before it touches your core application logic.
+
+Forms contain specific validation logic to ensure user input is safe and correct. 
+
+You use form `Factory.form` to manually command the play framework to map HTTP data to a Java object.
+
+### Velocity Template Engine
+
+The `BaseController` uses the Apache Velocity engine (specifically the `base.vm` template) to format and generate the foundational JSON structure for all of your API responses.
+
+Template engines like Apache Velocity are most commonly known for generating dynamic HTML for web pages. However, fundamentally, a template engine is just a text-generation tool. It merges dynamic data into a static blueprint to output plain text—which means it can just as easily generate XML, SQL, or, in the case of your API, JSON.
+
+`base.vm` acts as the global, foundational wrapper for every single response your API sends back to the client (who sent request).
+
+### Ebeam
+
+kkk
 
 ## Log4j
 
@@ -526,6 +558,18 @@ Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (
   - manual có 3 level: campaign, ad group, ad
   - smart plus & upgraded smart plus cũng có 3 level tương tự
 
+## Other Rules
+
+Dù hiện tại nhiều IDE vẫn hiểu (vẫn render được) khi sử dụng tag `<code>` nhưng theo a mới tìm hiểu thì từ giờ chúng ta sẽ chuyển sang format chuẩn sau đây.
+
+Khi trong Javadoc có các ký tự : `<, >, &` thì nên bọc bằng `{@code ...}`  
+Ví dụ: `@return {@code List<Object>}`
+
+Ở một số thư viện/ngôn ngữ lớn còn 1 style khác là escape HTML  
+ví dụ: `@return <code>List&lt;Object&gt;</code>`
+
+nhưng kiểu này a thấy khó nhớ => không xài
+
 ## Resources
 
 [Catchup Outline](https://ever-rise.backlog.jp/alias/wiki/566675)
@@ -539,3 +583,5 @@ Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (
 [catchup outline](https://ever-rise.backlog.jp/alias/wiki/566675)
 
 [build project](https://ever-rise.backlog.jp/alias/wiki/559969)
+
+enctypted token tiktok: `DtxDD2ml1zIpmf3vNYy3b+DRWMdp0TVE7cUBT7nfPdDDplajKjyHNSLkYhQWWXxt`

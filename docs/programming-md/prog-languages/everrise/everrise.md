@@ -1,5 +1,7 @@
 # Everrise
 
+betonamu 24, 25
+
 ## Quy trình làm việc
 
 Quy trình nhận và thực hiện task: <https://ever-rise.backlog.jp/alias/wiki/411677>

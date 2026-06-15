@@ -695,20 +695,53 @@ If a subclass constructor does not explicitly call a superclass constructor usin
 
 ## Exception & Error Handling
 
+### Exceptions vs. Errors
+
+Error and Exception are both subclasses of the `Throwable` class. Furthermore, only instances of Throwable and its subclasses can be thrown by the Java Virtual Machine or caught in a catch clause.
+
+Further, errors are regarded as `unchecked exceptions`, and applications should NOT try to catch and handle them. Moreover, errors happen at run time and cannot be recovered.
+
+Exceptions are abnormal conditions that applications might want to catch and handle. Exceptions can be recovered using a try-catch block and can happen at both run time and compile time.
+
 Exception khác với Errors:
 
 - `Error`: nếu ct gặp lỗi thì dừng ct luôn; severe problems often related to the Java Virtual Machine (JVM) or system resources, that a reasonable application should not attempt to catch or recover from.
   - Typically, errors indicate issues beyond the program's control and necessitate changes to the system environment or application architecture rather than in-code handling.
   - Example: `OutOfMemoryError`, `StackOverflowError (tràn ngăn xếp)`, `VirtualMachineError`, `FileNotFoundException`
-
-- `Exception`: cũng có dừng có khi không. Khi chúng ta có biện pháp bảo vệ (bảo hộ) thì ct ko dừng. Example: `NullPointerException`, `IOException`, `ArrayIndexOutOfBoundsException`, divide by 0, lỗi kết nối mạng.
+- `Exception`: cũng có dừng có khi không. Khi chúng ta có biện pháp bảo vệ (bảo hộ) thì ct ko dừng. Example: `NullPointerException`, `IOException`, `ArrayIndexOutOfBoundsException`, `divide by 0`, `lỗi kết nối mạng`.
 
 - Có 2 loại exception:
-  1. `Checked Exceptions` (`compile-time Exceptions`): bắt buộc phải `try-catch` or declared in the method signature using throws nếu không IDE sẽ báo lỗi ngay lập tức. VD: đội mũ bảo hiểm, `FileNotFoundException`
-  2. `Unchecked Exceptions` (`Runtime Exceptions`, con cháu của Class `RuntimeException`): không bắt buộc try-catch mà IDE vẫn sẽ không báo lỗi. VD: mặc áo mưa, `NullPointerException`, `ArrayIndexOutOfBoundsException`, `NumberFormatException`
+  1. `Checked Exceptions` (`compile-time Exceptions`): bắt buộc phải `try-catch` or declared in the method signature using throws nếu không IDE sẽ báo lỗi ngay lập tức. VD: `đội mũ bảo hiểm`, `FileNotFoundException`
+  2. `Unchecked Exceptions` (`Runtime Exceptions`, con cháu của Class `RuntimeException`): không bắt buộc try-catch mà IDE vẫn sẽ không báo lỗi. VD: `mặc áo mưa`, `NullPointerException`, `ArrayIndexOutOfBoundsException`, `NumberFormatException`
+
+`RuntimeException extends Exception`
+
+Most applications shouldn't throw runtime exceptions or subclass `RuntimeException`.
+
+### How to Throw Exceptions
+
+- The `throw` statement is used in code execution: `throw new Exception();`
+- The keyword `throws` is used in a `method signature`.
+
+`java.lang.Exception extends java.lang.Throwable`
+
+`Throwable` has two direct Subclasses: `Error`, `Exception`.
+
+The `throw` statement requires a single argument: a `throwable object`. Throwable objects are instances of any subclass of the `Throwable` class.
+
+- Method throw `checked exception` if not handle trong method đó thì bắt buộc phải viết `throws` vào method signature.
+- Nếu throw unchecked exception thì không cần sửa method signature
+
+Class không có `throws` exception, chỉ có method `throws` exception.
+
+#### Custom Exceptions
+
+kkk
+
+### The syntax of `try-catch`
 
 - Cơ chế bảo hộ exception chính là `try-catch`
-- Về mặt kỹ thuật thì Java cho phép mình dùng try-catch để bắt cả Error giống như bắt Exception, vì cả hai đều kế thừa từ lớp `Throwable`. Nhưng trong thực tế, việc catch Error thường không được khuyến khích ạ.
+- Về mặt kỹ thuật thì Java cho phép mình dùng try-catch để bắt cả Error giống như bắt Exception, vì cả hai đều kế thừa từ lớp `Throwable`. Nhưng trong thực tế, việc catch Error thường **không được khuyến khích** ạ.
 
 Nếu exception trong `if() {}` hay trong `try{}` thì những đoạn code nằm sau exception sẽ không được chạy.
 
@@ -737,6 +770,45 @@ Thật ra cứ để code ra ngoài `try catch` thì nó cũng chạy y chang `f
   - close files đang mở
 
 In the try-block, after an exception is thrown the rest of the code in the try block after that exception will NOT be executed.
+
+#### The try-with-resources Statement
+
+The `try-with-resources` statement is a try statement that declares one or more resources. A resource is an object that must be closed after the program is finished with it. The try-with-resources statement ensures that each resource is closed at the end of the statement.
+
+`try([resource]) {execution}`
+
+The following example reads the first line from a file. It uses an instance of `FileReader` and `BufferedReader` to read data from the file. FileReader and BufferedReader are resources that must be closed after the program is finished with it:
+
+```java
+static String readFirstLineFromFile(String path) throws IOException {
+     try (FileReader fr = new FileReader(path);
+          BufferedReader br = new BufferedReader(fr)) {
+         return br.readLine();
+     }
+ }
+```
+
+In this example, the resources declared in the `try-with-resources` statement are a `FileReader` and a `BufferedReader`. The declaration statements of these resources appear within parentheses immediately after the `try` keyword.
+
+#### What if you don't catch it?
+
+Each request is usually processed in its own thread (from a thread pool). The main application thread that started the server is unaffected by individual request failures.
+
+Khi một request throw error thì other requests still continue normally because they are on different threads.
+
+Nếu một thread bị free hoàn toàn (Example with an infinite loop `while (true) {}`). That one request thread is stuck forever. It doesn’t freeze the whole server, but it can eventually **exhaust the thread pool** if many such requests pile up.
+
+If a runtime exception occurs **during application startup**, Spring may fail to start → the whole API won’t run. This is the closest analogy to “freezing” in JavaScript, but it happens at startup, not at runtime per request.
+
+- JavaScript in the browser: single event loop → one uncaught error can block rendering if it hogs the thread.
+- Spring (Java): multithreaded request handling → one request crashing does not block other requests or the server, unless it causes resource exhaustion (all threads stuck).
+
+So in Spring Boot:
+
+- Errors block only the current request thread, not the whole server.
+- Unless you misuse threads (e.g. infinite loops, deadlocks), the API keeps serving other clients.
+
+### 5 Tình huống của Exceptions
 
 5 tình huống sử dụng exeption từ câu chuyện giữa 2 người bạn thân học chung 1 lớp. Sáng sáng 2 thằng chở nhau đi học.
 
@@ -801,59 +873,9 @@ public static void omEo() throws NullPointerException { // Khai bao tôi có kha
 }
 ```
 
----
-
-- `throw` is used in code execution
-- `throws` is used in a `method signature`.
-
-### What if you don't catch it?
-
-Each request is usually processed in its own thread (from a thread pool). The main application thread that started the server is unaffected by individual request failures.
-
-Khi một request throw error thì other requests still continue normally because they are on different threads.
-
-Nếu một thread bị free hoàn toàn (Example with an infinite loop `while (true) {}`). That one request thread is stuck forever. It doesn’t freeze the whole server, but it can eventually **exhaust the thread pool** if many such requests pile up.
-
-If a runtime exception occurs **during application startup**, Spring may fail to start → the whole API won’t run. This is the closest analogy to “freezing” in JavaScript, but it happens at startup, not at runtime per request.
-
-- JavaScript in the browser: single event loop → one uncaught error can block rendering if it hogs the thread.
-- Spring (Java): multithreaded request handling → one request crashing does not block other requests or the server, unless it causes resource exhaustion (all threads stuck).
-
-So in Spring Boot:
-
-- Errors block only the current request thread, not the whole server.
-- Unless you misuse threads (e.g. infinite loops, deadlocks), the API keeps serving other clients.
-
-### The try-with-resources Statement
-
-The `try-with-resources` statement is a try statement that declares one or more resources. A resource is an object that must be closed after the program is finished with it. The try-with-resources statement ensures that each resource is closed at the end of the statement.
-
-`try([resource]) {execution}`
-
-The following example reads the first line from a file. It uses an instance of `FileReader` and `BufferedReader` to read data from the file. FileReader and BufferedReader are resources that must be closed after the program is finished with it:
-
-```java
-static String readFirstLineFromFile(String path) throws IOException {
-     try (FileReader fr = new FileReader(path);
-          BufferedReader br = new BufferedReader(fr)) {
-         return br.readLine();
-     }
- }
-```
-
-In this example, the resources declared in the `try-with-resources` statement are a `FileReader` and a `BufferedReader`. The declaration statements of these resources appear within parentheses immediately after the `try` keyword.
-
 ### Common Exceptions
 
 `IOException` (Input/Output Exception) is a checked exception that signals that an I/O operation—such as reading from a file, receiving data over a network, or accessing a hard drive—has failed or been interrupted.
-
-### Exceptions vs. Errors
-
-Error and Exception are both subclasses of the `Throwable` class. Furthermore, only instances of Throwable and its subclasses can be thrown by the Java Virtual Machine or caught in a catch clause.
-
-Further, errors are regarded as `unchecked exceptions`, and applications should NOT try to catch and handle them. Moreover, errors happen at run time and cannot be recovered.
-
-Exceptions are abnormal conditions that applications might want to catch and handle. Exceptions can be recovered using a try-catch block and can happen at both run time and compile time.
 
 ## Generic Class
 
