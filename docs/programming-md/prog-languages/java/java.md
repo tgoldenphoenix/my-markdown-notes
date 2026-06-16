@@ -1049,24 +1049,6 @@ Annotations are meta-data. Annotation is proccessed by compiler or at run-time.
 
 `@Test` annotation dùng để khi build nó biết đây là test methods.
 
-## `java.lang.Class`
-
-`java.lang.Object` is a `public class`. Class `Object` is the root of the class hierarchy. Every class has `Object` as a superclass. All objects, including arrays, implement the methods of this class.
-
-This [reading](https://stackoverflow.com/questions/2160788/what-is-a-class-literal-in-java) explain the concept of `class literal` in java `ClassCha.class`, the `.class` part.
-
-In Java, you cannot call the `.class` literal on an object instance (a variable). You can only call `.class` directly on a Class Name (a data type).
-
-If you have an active object variable running in your code and you want to inspect its type at runtime, you must call the `.getClass()` method (which Java inherits from the root `Object` class).
-
-```java
-String name = "David";
-Class<?> result = name.getClass(); // Valid!
-
-Class<String> result = String.class;   // Valid!
-Class<Integer> result2 = int.class;    // Valid! (Works on primitives too)
-```
-
 ## The build process, Maven && Gradle
 
 [Java Build Overview: javac, Ant, Maven, Gradle, with demonstration](https://www.youtube.com/watch?v=E6dn3vRTBC8) Video ông này giải thích build process của Java rất hay. Ổng có compare file structure của 1 project build with maven và 1 project build bằng Intelliji build.

@@ -439,6 +439,17 @@ Forms contain specific validation logic to ensure user input is safe and correct
 
 You use form `Factory.form` to manually command the play framework to map HTTP data to a Java object.
 
+Form Validation
+
+### Authenticator
+
+When a request hits a protected controller, the Play Framework automatically calls `getUsername(ctx)` and looks for a very specific response:
+
+- Success (True): If the method returns any valid String, the framework considers the user authenticated and allows the controller logic to proceed. For example, in your `BaseLoginAuthenticator`, if the user passes the `checkRole` test, it returns `loginUserId.toString()`. In the parent `BaseAuthenticator`, it simply returns `""`.
+- Failure (False): If the method returns `null` (because the user ID is missing or the role check fails), the framework considers the authentication failed.
+
+if `getUsername` returns `null`, the Play Framework intercepts that `null` and automatically triggers `onUnauthorized(ctx)`. This method then returns your standard `401 Unauthorized` JSON response (`BaseController.unauthorized("error.unauthorized")`) and completely halts the request.
+
 ### Velocity Template Engine
 
 The `BaseController` uses the Apache Velocity engine (specifically the `base.vm` template) to format and generate the foundational JSON structure for all of your API responses.

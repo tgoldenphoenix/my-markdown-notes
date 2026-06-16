@@ -798,13 +798,13 @@ The `Optional<T>` class includes methods to explicitly deal with the case where 
 
 ## The Streams API
 
-A `stream` is a sequence of data items that are conceptually produced one at a time. A program might read items from an input stream one by one and similarly write items to an output stream.
+A `stream` is a sequence of data items that are conceptually produced **one at a time** (in comparison to `batch processing`). A program might read items from an input stream one by one and similarly write items to an output stream.
 
-The Streams API provides a different way to process data in comparison to the Collections API.  
+The `Streams API` provides a different way to process data **in comparison** to the `Collections API`.  
 Using a collection, you’re managing the iteration process **yourself**. You need to iterate through the elements one by one using a for-each loop processing them in turn. We call this way of iterating over data `external iteration`.  
 In contrast, using the Streams API, you don’t need to think in terms of loops. The data processing happens internally inside the library. We call this idea `internal iteration`.
 
-Collections is mostly about storing and accessing data with specific time/space complexities, whereas Streams is mostly about **describing computations on data** (such as `filter`, `sorted`, `map`). Collections are about data; streams are about computations.
+Collections is mostly about **storing and accessing data** with specific time/space complexities, whereas Streams is mostly about **describing computations on data** (such as `filter`, `sorted`, `map`). Collections are about data; streams are about computations.
 
 The Streams API also allows and encourages the elements within a stream to be processed in parallel.
 
@@ -896,14 +896,18 @@ using an internal iteration, the processing of items could be transparently done
 
 ### Stream Operations
 
-**Stream operations** are divided into `intermediate operations` (those returns `Stream<T>`) and `terminal operations` (return a result of definite type). Intermediate operations allow chaining.  
-Operations on streams don’t change the source.
-
-Stream operations that can be connected are called intermediate operations, and operations that close a stream are called terminal operations.
+- **Stream operations** are divided into `intermediate operations` (those returns `Stream<T>`) and `terminal operations` (return a result of definite type).
+  - Intermediate operations allow chaining.
+  - Operations on streams don’t change the source.
+- Stream operations that can be connected are called `intermediate operations`, and operations that close a stream are called terminal operations.
 
 Terminal operations produce a result from a stream pipeline. A result is any non-stream value such as a `List`, an `Integer`, or even `void`. For example, in the following pipeline, `forEach` is a terminal operation that returns `void` and applies a lambda to each dish in the source. Passing `System.out.println` to `forEach` asks it to print every `Dish` in the stream created from `menu`:
 
 `menu.stream().forEach(System.out::println);`
+
+- `.filter()`
+- Keep `true`: If the condition inside the filter evaluates to true, the item is allowed to stay in the pipeline and passes to the next step.
+- Remove `false`: If the condition evaluates to false, the item is immediately discarded, and it does not continue any further down the chain.
 
 ### Parallelism Processing, Exploiting Multicore computers
 
@@ -949,6 +953,48 @@ Parallelism in Java and no shared mutable state
 
  First, the library handles partitioning—breaking down a big stream into several smaller streams to be processed in parallel for you.  
  Second, this parallelism almost for free from streams, works only if the methods passed to library methods like filter don’t interact (for example, by having mutable shared objects). But it turns out that this restriction feels natural to a coder (see, by way of example, our `Apple::isGreenApple` example). Although the primary meaning of functional in functional programming means “using functions as first-class values,” it often has a secondary nuance of “no interaction during execution between components.”
+
+---
+
+`.parallel()` IS Multi-Threading
+
+When you convert a standard sequential stream into a parallel stream, Java stops using your single application thread and hands the workload over to a built-in framework called the `ForkJoinPool`. This pool automatically allocates a team of worker threads (usually matching the number of logical cores on your computer's CPU). If you have an array of 1,000 items and 4 CPU cores, the ForkJoinPool will split that array into 4 chunks of 250 items, and assign one chunk to each thread.
+
+- In a sequential stream, "one by one" means Thread A processes item 1, then item 2, then item 3, in a strict linear pipeline.
+- In a parallel stream, "one by one" still happens, but it happens **independently inside isolated sandbox lanes**.
+
+- Before any threads start processing, Java uses an object called a `Spliterator` (Split-Iterator) to cleanly slice your data source into completely separate memory segments.
+- Because the data is sliced up upfront, **Thread 1 only looks at Items 1–250, while Thread 2 only looks at Items 251–500.** Because Thread 1 and Thread 2 never touch or look at the same data slots, they are completely oblivious to each other. They do not need to "sync" or wait for each other because **there is no shared state.** Each thread processes its own mini-list "one by one" at its maximum possible hardware speed.
+
+Parallel streams work flawlessly without synchronization **only** if your stream operations are **stateless and side-effect-free**.
+
+The moment you break this rule and force multiple threads to write to a single shared variable outside the stream, your code will face catastrophic data corruption or screech to a halt due to thread synchronization overhead.
+
+### Batch Processing
+
+Batching has nothing to do with whether you use one CPU core or a thousand CPU cores. Batching means you are intentionally delaying execution until a collection of data reaches a specific size boundary or time boundary.
+
+Instead of making 1,000 individual database insert calls (Streaming), you save those 1,000 records in memory, open a single database connection at midnight, and write them all in one single transaction block (Batching).
+
+## Reflection
+
+`java.lang.Class`
+
+`java.lang.Object` is a `public class`. Class `Object` is the root of the class hierarchy. Every class has `Object` as a superclass. All objects, including arrays, implement the methods of this class.
+
+This [reading](https://stackoverflow.com/questions/2160788/what-is-a-class-literal-in-java) explain the concept of `class literal` in java `ClassCha.class`, the `.class` part.
+
+In Java, you cannot call the `.class` literal on an object instance (a variable). You can only call `.class` directly on a Class Name (a data type).
+
+If you have an active object variable running in your code and you want to inspect its type at runtime, you must call the `.getClass()` method (which Java inherits from the root `Object` class).
+
+```java
+String name = "David";
+Class<?> result = name.getClass(); // Valid!
+
+Class<String> result = String.class;   // Valid!
+Class<Integer> result2 = int.class;    // Valid! (Works on primitives too)
+```
 
 ## Default Methods and Java modules
 
