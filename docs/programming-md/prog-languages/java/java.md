@@ -873,6 +873,35 @@ public static void omEo() throws NullPointerException { // Khai bao tôi có kha
 }
 ```
 
+### Stack Trace
+
+The execution order runs from the bottom to the top. The easiest way to think about a stack trace is like a stack of pancakes: the kitchen prepares the bottom pancake first, and the very last thing added is the topping on the very top.
+
+To trace the historical timeline of what your application was doing before it crashed, you must read the stack trace from the bottom line up to the top line.
+
+```txt
+Caused by: java.io.FileNotFoundException: \tmp\version (The system cannot find the path specified)
+        at java.io.FileInputStream.open0(Native Method)
+        at java.io.FileInputStream.open(FileInputStream.java:195)
+        at java.io.FileInputStream.<init>(FileInputStream.java:138)
+        at java.io.FileInputStream.<init>(FileInputStream.java:93)
+        at java.io.FileReader.<init>(FileReader.java:58)
+        at utils.FileUtil.readFile(FileUtil.java:38)
+        at controllers.IndexController.index(IndexController.java:34)
+        at router.Routes$$anonfun$routes$1.$anonfun$applyOrElse$2(Routes.scala:475)
+        at play.core.routing.HandlerInvokerFactory$$anon$3.resultCall(HandlerInvoker.scala:134)
+        at play.core.routing.HandlerInvokerFactory$$anon$3.resultCall(HandlerInvoker.scala:133)
+
+[8] CRASH HAPPENS HERE! ->  at java.io.FileInputStream.open0(Native Method)
+[7] Line 195           ->  at java.io.FileInputStream.open(FileInputStream.java:195)
+[6] Line 138           ->  at java.io.FileInputStream.<init>(FileInputStream.java:138)
+[5] Line 93            ->  at java.io.FileInputStream.<init>(FileInputStream.java:93)
+[4] Line 58            ->  at java.io.FileReader.<init>(FileReader.java:58)
+[3] Your Code (Line 38) ->  at utils.FileUtil.readFile(FileUtil.java:38)
+[2] Your Code (Line 34) ->  at controllers.IndexController.index(IndexController.java:34)
+[1] THE START          ->  at router.Routes$$anonfun... (Routes.scala:475)
+```
+
 ### Common Exceptions
 
 `IOException` (Input/Output Exception) is a checked exception that signals that an I/O operation—such as reading from a file, receiving data over a network, or accessing a hard drive—has failed or been interrupted.

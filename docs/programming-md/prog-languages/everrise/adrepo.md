@@ -431,6 +431,8 @@ Play framework uses `Google Guice` as its default dependency injection (DI) fram
 - If the authenticator fails (for example, if the tokens are missing or invalid), it blocks the request and immediately returns an `error.unauthorized` response. In this scenario, Play never calls `.index()`.
 - If the authenticator succeeds, then Play finally triggers the `.index()` method to bind the form data, query the database, and return the `MAgency` list.
 
+Hàm ''generateBaseJson()'' dùng ''base.vm''
+
 ### Controller & Form
 
 `Forms` are responsible for capturing, filtering, and validating raw data coming from HTTP requests (the "outside world") before it touches your core application logic.
@@ -558,6 +560,9 @@ The `auth_code` is valid for 1 hour and can be used only once. After the `auth_c
 `Upgraded Smart+`: một campaign
 
 An `ad` is the smallest advertising unit and is the content presented to the target audience.
+
+- `app_id`: An Application identifier used when making API calls. To get app_id, follow the instructions in Get Started - Create a developer app.
+- `secret`: Each application has a unique secret key. The `app_id` and `secret` are obtained together when your application has been approved.
 
 ### Trivia
 
