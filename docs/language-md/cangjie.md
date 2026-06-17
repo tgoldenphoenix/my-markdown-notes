@@ -81,6 +81,7 @@ Triple-unit characters
 - 賈 (一田 // 月山金) - double unit, merchant
   - 贾 (一田月人)
 - 要 (一田女)
+- 覆 (一田 // 竹人 // 水) - triple unit
 - 甄 (一土 // 一女弓)
 
 - 四 (田金)
@@ -593,6 +594,7 @@ anki
   - 值 (人 // 十月一)
 - 具 (月一一金) - tool
 - 真 (十月一金) - true
+  - 顛 (十金 // 一月金)
 
 - 敻 (弓月 // 月山 // 水 or 弓月月山大) - triple unit
   - 瓊 (一土 // 弓月 // 水) - triple unit
@@ -1014,10 +1016,8 @@ anki
 - 𠂆 (竹竹)
 - 爬 (竹人 // 日山)
 - 爪 (竹中人)
-
-- 戶 (竹尸) - drag
+- 戶 (竹尸)
   - 房 (竹尸 // 卜竹尸)
-
 - 氏 (竹女心) - family name
 
 - 旅 (卜尸 // 人竹女) - group of people
