@@ -528,7 +528,17 @@ The marketing team of the company adds utm params to the links leading to their 
 - CPM (Cost Per Mille) - Tính tiền theo Lượt Hiển Thị: cứ quảng cáo đập vào mắt 1,000 người (không cần biết họ có click hay không), bạn sẽ phải trả một khoản tiền cố định.
 - CPA / oCPM (Cost Per Action / Conversion) - Tính tiền theo Lượt Chuyển Đổi: Bạn đặt mục tiêu là: "Tôi chỉ muốn trả tiền khi có người Mua hàng hoặc Tải app thành công".
 
-### Tiktok
+### Trivia
+
+Etl harbest dùng sbt (scala build tool) ko dùng maven ?
+
+Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (video gốc) có thể được dùng lại trong nhiều chiến dịch khác nhau.
+
+- tiktok có 3 loại: manual, smart plus, upgraded smart plus
+  - manual có 3 level: campaign, ad group, ad
+  - smart plus & upgraded smart plus cũng có 3 level tương tự
+
+## Tiktok
 
 - Tik tok ad has four levels để có thể lấy report data:
   1. `Campaign level`
@@ -564,15 +574,21 @@ An `ad` is the smallest advertising unit and is the content presented to the tar
 - `app_id`: An Application identifier used when making API calls. To get app_id, follow the instructions in Get Started - Create a developer app.
 - `secret`: Each application has a unique secret key. The `app_id` and `secret` are obtained together when your application has been approved.
 
-### Trivia
+### Report
 
-Etl harbest dùng sbt (scala build tool) ko dùng maven ?
+You can run a report in synchronous mode or asynchronous mode.
 
-Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (video gốc) có thể được dùng lại trong nhiều chiến dịch khác nhau.
+With synchronous mode, you make an API request and the data will be returned in the response almost **instantly**. In `asynchronous mode`, you make an API request to create a task for getting the data. You need to wait some time for the task to complete. When the task is completed, you make **another API request** to download the data.
 
-- tiktok có 3 loại: manual, smart plus, upgraded smart plus
-  - manual có 3 level: campaign, ad group, ad
-  - smart plus & upgraded smart plus cũng có 3 level tương tự
+### TikTok Ads Manager
+
+`business-api.tiktok.com` (The Developer Engine)
+- What it is: The technical entry point (API) for software engineers and systems.
+- The Goal: Automating tasks programmatically by writing code to talk directly to TikTok’s servers. 
+
+`ads.tiktok.com` (The Visual UI, `TikTok Ads Manager`)
+- It is the user interface designed for browser use.
+- The Goal: Creating and tracking ad campaigns manually by clicking buttons, uploading media via forms, and reading visual charts.
 
 ## Other Rules
 
