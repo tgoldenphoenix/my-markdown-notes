@@ -415,6 +415,7 @@ anki
 
 - 專 (十戈 // 木戈) - double unit, specialty
   - 團 (田 // 十戈 // 戈) - triple unit
+  - 傳 (人 // 十戈 // 戈) - triple unit
 - 专 (手弓戈) - corncob pipe
 
 - Wall, elbow (*)
@@ -425,7 +426,8 @@ anki
 
 - 㐬 (卜戈竹中山)
 - 流 (水 // 卜戈山) - infant Moses
-  - 充 (卜戈竹山) - allot
+- 充 (卜戈竹山) - allot
+  - 統 (女火 // 卜戈山)
 
 - 或 (戈口一) - or
   - 國 (田戈口一) - country
