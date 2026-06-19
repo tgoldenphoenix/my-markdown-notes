@@ -538,6 +538,10 @@ Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (
   - manual có 3 level: campaign, ad group, ad
   - smart plus & upgraded smart plus cũng có 3 level tương tự
 
+### Advertising
+
+k
+
 ## Tiktok
 
 - Tik tok ad has four levels để có thể lấy report data:
@@ -589,6 +593,10 @@ With synchronous mode, you make an API request and the data will be returned in 
 `ads.tiktok.com` (The Visual UI, `TikTok Ads Manager`)
 - It is the user interface designed for browser use.
 - The Goal: Creating and tracking ad campaigns manually by clicking buttons, uploading media via forms, and reading visual charts.
+
+### Resources
+
+[Tiktok ads manager doc](https://ads.tiktok.com/help/article/tiktok-ads-structure?lang=en)
 
 ## Other Rules
 
