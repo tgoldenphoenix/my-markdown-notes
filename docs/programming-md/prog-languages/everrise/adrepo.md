@@ -425,7 +425,7 @@ Inside entity classes, we can have ENUM classes.
 
 Play framework uses `Google Guice` as its default dependency injection (DI) framework.
 
-- Khi request gởi tới, `Guice` will `new` a controller object & inject all dependencies mà controller object cần. Sau đó `Guice` hands over the controller object for the Play Framework. 
+- Khi request gởi tới, `Guice` will `new` a controller object & inject all dependencies mà controller object cần. Sau đó `Guice` hands over the controller object for the Play Framework.
 - Before executing the controller's logic, Play looks at the `.index()` method and sees the `@Security.Authenticated(LoginAuthenticator.class)` annotation sitting right above it.
   - Instead of calling `.index()` immediately, Play pauses the request and calls the `LoginAuthenticator` first.
 - If the authenticator fails (for example, if the tokens are missing or invalid), it blocks the request and immediately returns an `error.unauthorized` response. In this scenario, Play never calls `.index()`.
@@ -437,7 +437,7 @@ Hàm ''generateBaseJson()'' dùng ''base.vm''
 
 `Forms` are responsible for capturing, filtering, and validating raw data coming from HTTP requests (the "outside world") before it touches your core application logic.
 
-Forms contain specific validation logic to ensure user input is safe and correct. 
+Forms contain specific validation logic to ensure user input is safe and correct.
 
 You use form `Factory.form` to manually command the play framework to map HTTP data to a Java object.
 
@@ -587,14 +587,18 @@ With synchronous mode, you make an API request and the data will be returned in 
 ### TikTok Ads Manager
 
 `business-api.tiktok.com` (The Developer Engine)
+
 - What it is: The technical entry point (API) for software engineers and systems.
-- The Goal: Automating tasks programmatically by writing code to talk directly to TikTok’s servers. 
+- The Goal: Automating tasks programmatically by writing code to talk directly to TikTok’s servers.
 
 `ads.tiktok.com` (The Visual UI, `TikTok Ads Manager`)
+
 - It is the user interface designed for browser use.
 - The Goal: Creating and tracking ad campaigns manually by clicking buttons, uploading media via forms, and reading visual charts.
 
-### Resources
+---
+
+Resources
 
 [Tiktok ads manager doc](https://ads.tiktok.com/help/article/tiktok-ads-structure?lang=en)
 
@@ -625,3 +629,4 @@ nhưng kiểu này a thấy khó nhớ => không xài
 [build project](https://ever-rise.backlog.jp/alias/wiki/559969)
 
 enctypted token tiktok: `DtxDD2ml1zIpmf3vNYy3b+DRWMdp0TVE7cUBT7nfPdDDplajKjyHNSLkYhQWWXxt`
+
