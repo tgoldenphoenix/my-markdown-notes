@@ -581,4 +581,20 @@ Xòng xuyến, thấy đầu xe buýt chạm cây cột chỉ tên đường là
 
 ---
 
-kk
+Ghép first go forward more, đừng sợ cán lề
+
+Ghép second reverse just close to the line, NOT on the line. Nếu nhìn kiếng bên phải thấy sắp cán vạch thì trả THẲNG LÁI, không trả xéo
+
+Dừng khẩn cấp có thể vừa qua khỏi đèn đỏ là nó kêu liền luôn
+
+Dừng xe người đi bộ để ý đừng nhầm cái vạch mờ mờ (có 2 vạch)
+
+Uphill wait until close to the line, press the clutch pedal, do NOT use the brake petal  
+Chết máy đề lại thì phải press the clutch pedal
+
+Các bài thi dừng ngay vạch thì chỉ brake nhẹ và khi gần chạm vạch, trước khi tới vạch thì press the clutch pedal  
+Không brake quá mức xe dừng hẳn sẽ mất điểm
+
+Chopsticks (đôi đũa) canh middle of vô lăng ngay vạch màu trắng
+
+Tăng tốc 20 km/h press the clutch pedal BEFORE going through the line. Khi nghe tiếng kêu "ping" thì chuyển số liền

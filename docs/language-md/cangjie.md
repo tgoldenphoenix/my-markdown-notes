@@ -212,6 +212,7 @@ Triple-unit characters
   - 房 (竹尸 // 卜竹尸)
   - 芳 (廿 // 卜竹尸)
   - 於 (卜尸 // 人卜)
+  - 族 (卜尸 // 人人大) - banner
 - 万 (一尸) - ten thousand
 - 分 (金 // 尸竹) - divide
 
@@ -442,6 +443,7 @@ Triple-unit characters
   - 國 (田戈口一) - country
   - 国 (田 // 一土戈)
   - 惑 (戈一 // 心) - double unit
+  - 域 (土 // 戈口一)
 - 彧 (戈大口一)
 
 - 戊 (戈竹) - parade
@@ -816,6 +818,10 @@ Triple-unit characters
 
 - 尚 (火月口)
 
+- 銷 (金 // 火月) - candle
+- 鎖 (金 // 火月金)
+- 鋇 (金 // 月山金)
+
 ### 廿, 一
 
 #### Twenty 廿 (nhập)
@@ -1021,6 +1027,7 @@ Triple-unit characters
 - 矢 (人大) - dart
   - 欸 (戈大 // 弓人)
   - 知 (人大 // 口)
+  - 族 (卜尸 // 人人大) - banner
 - 天 (一大)
 - 攵 (人大) - taskmaster
 
@@ -1272,6 +1279,7 @@ Triple-unit characters
 - 兆 (中一山人) - turtle shell
 - 爿 (女中一) - bunk bed
   - 將 (女一 // 月 // 木戈) - triple unit
+  - 壯 (女一 // 土)
 - 片 (中中一中) - one sided
 
 - 丂 (一女尸) - snare
