@@ -21,9 +21,9 @@ Java 8 provides two concise techniques to pass code to methods: method reference
 
 ## Functional Programming in Java
 
-Two core ideas from functional programming that are now part of Java: using methods and lambdas as first-class values, and the idea that calls to functions or methods can be efficiently and safely executed in parallel in the absence of mutable shared state. Both of these ideas are exploited by the new Streams API we described earlier.
+Two core ideas from `functional programming` that are now part of Java: using methods and lambdas as first-class values, and the idea that calls to functions or methods can be efficiently and safely executed in parallel in the absence of mutable shared state. Both of these ideas are exploited by the new Streams API we described earlier.
 
-To pass behavior to stream methods, you must provide behavior that is safe to execute concurrently on different pieces of the input. Typically this means writing code that doesn’t access shared mutable data to do its job. Sometimes these are referred to as `pure functions` or side-effect-free functions or stateless functions
+To pass behavior to stream methods, you must provide behavior that is safe to execute concurrently on different pieces of the input. Typically this means writing code that doesn’t access shared mutable data to do its job. Sometimes these are referred to as `pure functions` or side-effect-free functions or stateless functions.
 
 The previous parallelism arises only by assuming that multiple copies of your piece of code can work independently. If there’s a shared variable or object, which is written to, then things no longer work. What if two processes want to modify the shared variable at the same time?
 
@@ -40,7 +40,7 @@ The idea is that calls to functions or methods can be efficiently and safely exe
 
 This pattern is historically verbose in Java. Lambda expressions in Java 8 onward tackle the problem of verbosity.
 
-It is used to tell a `Thread` to execute a block of code or even perform GUI event handling
+It is used to tell a `Thread` to execute a block of code or even perform GUI event handling.
 
 Nếu dùng normal value like `String`, `Int`, `boolean` (`value parameterization`) để parameterize method thì không có gì đáng để bàn rồi.
 
@@ -86,7 +86,7 @@ behavior parameterization is great because it enables you to separate the logic 
 
 ### abstracting over `List` type
 
-There’s one more step that you can do in your journey toward abstraction. At the moment, the filterApples method works only for Apple. But you can also abstract on the List type to go beyond the problem domain you’re thinking of, as shown:
+There’s one more step that you can do in your journey toward abstraction. At the moment, the `filterApples` method works only for `Apple`. But you can also abstract on the `List` type to go beyond the problem domain you’re thinking of, as shown:
 
 ```java
 public interface Predicate<T> {
@@ -112,7 +112,7 @@ List<Integer> evenNumbers =
   filter(numbers, (Integer i) -> i % 2 == 0);
 ```
 
-### Real-world examples
+### Real-world Examples
 
 Many methods in the Java API can be parameterized with different behaviors. These methods are often used together with anonymous classes. We show four examples, which should solidify the idea of passing code for you: sorting with a `Comparator`, executing a block of code with `Runnable`, returning a result from a task using `Callable`, and GUI event handling.
 
@@ -179,6 +179,40 @@ But since Java 8 you can use a lambda expression, so the call to Thread would lo
 Thread t = new Thread(() -> System.out.println("Hello world"));
 ```
 
+## Nested Classes
+
+```java
+class OuterClass {
+    ...
+    class InnerClass {
+        ...
+    }
+    static class StaticNestedClass {
+        ...
+    }
+}
+```
+
+Terminology: Nested classes are divided into two categories: non-static and static. Non-static nested classes are called `inner classes`. Nested classes that are declared `static` are called `static nested classes`.
+
+### Local Classes
+
+Local classes are classes that are defined in a `block`, which is a group of zero or more statements between balanced braces. You typically find local classes defined in the body of a method.
+
+### Anonymous Classes
+
+Java has mechanisms called `anonymous classes`, which let you declare and instantiate a class at the same time. They enable you to improve your code one step further by making it a little more concise. But they’re not entirely satisfactory.
+
+Anonymous classes are like the `local classes` (a named class defined in a block - could be class or interface) that you’re already familiar with in Java. But anonymous classes don’t have a name. They allow you to declare and instantiate a class at the same time. In short, they allow you to create ad hoc implementations.
+
+But anonymous classes are still NOT good enough. First, they tend to be bulky because they take a lot of space. Second, many programmers find them confusing to use.
+
+Verbosity in general is bad; it discourages the use of a language feature because it takes a long time to write and maintain verbose code, and it’s not pleasant to read! Good code should be easy to comprehend at a glance.
+
+Using anonymous class, you still have to create an object and explicitly implement a method to define a new behavior (for example, the method `test` for `Predicate` or the method `handle` for `EventHandler`).
+
+To achieve behaviour parameterization, from verbose to concise: name class > anonymous class > lambda
+
 ## Lambdas Expressions
 
 - Java có: `lambdas` and `Anonymous Classes`.
@@ -198,7 +232,7 @@ Từ interface `ApplePredicate` có thể có two classes implement: `AppleGreen
 
 - Mức độ verbose từ cao xuống thấp:
   - Classes
-  - Anonymous class
+  - Anonymous Class
   - Lambdas
 
 A `lambda expression` can be understood as a concise representation of an anonymous function that can be passed around. It doesn’t have a name, but it has a list of parameters, a body, a return type, and also possibly a list of exceptions that can be thrown.
@@ -361,20 +395,6 @@ public Callable<String> fetch() {
 ```
 
 This example is valid because the return type of the method `fetch` is `Callable<String>`. `Callable<String>` defines a method with the signature `() -> String` when `T` is replaced with `String`. Because the lambda `() -> "Tricky example ;-)"` has the signature `() -> String`, the lambda can be used in this context.
-
-### Anonymous Classes
-
-Java has mechanisms called `anonymous classes`, which let you declare and instantiate a class at the same time. They enable you to improve your code one step further by making it a little more concise. But they’re not entirely satisfactory.
-
-Anonymous classes are like the `local classes` (a named class defined in a block - could be class or interface) that you’re already familiar with in Java. But anonymous classes don’t have a name. They allow you to declare and instantiate a class at the same time. In short, they allow you to create ad hoc implementations.
-
-But anonymous classes are still not good enough. First, they tend to be bulky because they take a lot of space. Second, many programmers find them confusing to use.
-
-Verbosity in general is bad; it discourages the use of a language feature because it takes a long time to write and maintain verbose code, and it’s not pleasant to read! Good code should be easy to comprehend at a glance.
-
-Using anonymous class, you still have to create an object and explicitly implement a method to define a new behavior (for example, the method `test` for `Predicate` or the method `handle` for `EventHandler`).
-
-To achieve behaviour parameterization, from verbose to concise: name class > anonymous class > lambda
 
 ### Type checking, type inference, and restrictions
 
@@ -789,12 +809,86 @@ Function<BufferedReader, String> f =
   };
 ```
 
-## `Optional<T>`
+## Optional
+
+`java.util.Optional<T>` class
 
 Common functional languages (SML, OCaml, Haskell) also provide further constructs to help programmers. One of these is avoiding `null` by explicit use of more descriptive data types.
 
 Java 8 introduced the `Optional<T>` class that, if used consistently, can help you avoid `null-pointer exceptions`. It’s a container object that may or may not contain a value.  
 The `Optional<T>` class includes methods to explicitly deal with the case where a value is absent, and as a result you can avoid null-pointer exceptions. It uses the type system to allow you to indicate when a variable is anticipated to potentially have a missing value.
+
+You can view `Optional` as a single-value container that either contains a value or doesn't (it is then said to be "empty")
+
+### Best Practices
+
+If your method searches for something (like a user in a database) and there is a legitimate chance it might not find it, do not return `null`. Return an `Optional` wrapper instead.  
+But It should only be used as a return type for methods that clearly need to say: "Hey, I might not find what you are looking for." Don't return optional from every method.
+
+When calling methods that you do not write yourself, always be aware of it returning `null`. Assume any third-party method you didn't write is a hidden landmine that might return `null` (Defensive Programming).
+
+An `Optional` acts like a clear warning sign. The caller cannot directly access the `User` object. They are forced by the API design to acknowledge the possibility of it being empty by using methods like `.isPresent()`, `.map()`, or `.orElseFallback()`:
+
+```java
+// Better Design: The signature explicitly warns the caller that the value might be missing
+public Optional<User> findUserById(String id) {
+    if (!database.contains(id)) {
+        return Optional.empty(); // Returns an empty wrapper instead of raw null
+    }
+    return Optional.of(database.get(id));
+}
+
+// The caller's side: Forced to handle the empty state safely
+findUserById("123")
+    .ifPresentOrElse(
+        user -> System.out.println("Hello " + user.getName()),
+        () -> System.out.println("User not found!")
+    );
+```
+
+If your method returns a collection (like a `List`, `Set`, or `Map`), never, ever return `null`. If there is no data to return, return an **empty collection**. An empty collection is a fully instantiated object, meaning the caller can run a `for-each` loop over it without crashing, even if it loops zero times.
+
+- Bad: `return null;`
+- Good: `return Collections.emptyList();` or `return new ArrayList<>();`
+
+When a method returns an `Optional<T>`, you can't just write your code naturally. You are forced to stop, think, and decide how to unwrap the container. This make developer think more (trade-off). But the code will not crash in production with a nullpointer exception
+
+### Why `null` is a mistake
+
+[read](https://www.oracle.com/technical-resources/articles/java/java8-optional.html)
+
+`String version = computer.getSoundcard().getUSB().getVersion();`
+
+This code looks pretty reasonable. However, many computers (for example, the Raspberry Pi) don't actually ship with a sound card. So what is the result of `getSoundcard()`?
+
+A common (bad) practice is to return the `null` reference to indicate the absence of a sound card. Unfortunately, this means the call to `getUSB()` will try to return the USB port of a null reference, which will result in a `NullPointerException` at **runtime** and stop your program from running further. Imagine if your program was running on a customer's machine; what would your customer say if the program suddenly failed?
+
+### `NullPointerException`
+
+A `NullPointerException` (NPE) xảy ra khi cố tình truy cập tới phương thức hoặc thuộc tính của một đối tượng thông qua một biến con trỏ (reference variable) mà biến con trỏ đó hiện tại là `null`.  
+NullPointerException chỉ có thể xảy ra ở những dòng có dấu `.` để gọi biến hoặc hàm.
+
+- In Java nếu declare primitive variables mà không initialize value thì sẽ có default value chứ không phải `null` (Java không có `undefined` như Javascript).
+  - Với number (int, double) default là 0
+  - char: `\u0000` (the null character)
+  - Boolean default value sẽ là `false`.
+  - Primitive không được phép `null` in Java.
+
+Còn declare object like `SinhVien sv;` mà không initialize sẽ default `sv=null`.  
+Vì String không phải là một kiểu primitive trong Java nên `String a;` thì `a=null` by default.
+
+`SinhVien sv1 = new SinhVien();` => sv1 là một biến tham chiếu trỏ đến một đối tượng của class `SinhVien` chứ sv1 KHÔNG phải là đối tượng.
+
+The `java.lang.IndexOutOfBoundsException` is a runtime exception in Java that indicates an attempt to access an element at an invalid index within a data structure like an array, a list (e.g., ArrayList), or a string. This exception is thrown when the provided index is either negative or exceeds the valid range of indices for that particular structure.
+
+`if ("Hello".equals(a)){}` nếu cần so sánh string phải làm như vầy để không có lỗi NullPointerException. Viết `a.equals("Hello")` là không đúng.  
+`.equal()` nếu dùng so sánh string thì nó chỉ so sánh giá trị (content). Nếu dùng `==` check string thì nó so sánh tham chiếu.
+
+### How Javascript handle `null`
+
+JavaScript does not have a built-in `Optional` class wrapper like Java, but it has something even better: Native syntactic operators built directly into the language syntax.
+
+Because JavaScript is dynamically typed, the creators realized that adding an explicit wrapper object like `Optional` would introduce unnecessary memory overhead and boilerplate code. Instead, modern JavaScript (ES2020+) handles null and undefined safety using two highly elegant operators: Optional Chaining (`?.`) and the Nullish Coalescing Operator (`??`).
 
 ## The Streams API
 
@@ -975,6 +1069,12 @@ The moment you break this rule and force multiple threads to write to a single s
 Batching has nothing to do with whether you use one CPU core or a thousand CPU cores. Batching means you are intentionally delaying execution until a collection of data reaches a specific size boundary or time boundary.
 
 Instead of making 1,000 individual database insert calls (Streaming), you save those 1,000 records in memory, open a single database connection at midnight, and write them all in one single transaction block (Batching).
+
+### Collector
+
+`java.util.stream.Collector<T,A,R>` is the Core Interface
+
+Class `Collectors` is the `Static Utility Factory`. It acts as a factory setup full of pre-written static methods. Instead of implementing the interface, the static methods inside Collectors return instances that implement Collector.
 
 ## Reflection
 

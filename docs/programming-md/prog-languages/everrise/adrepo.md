@@ -280,6 +280,12 @@ dùng junit 4 (cuốn sách bản cũ second edition)
   - [play framwork doc](https://www.playframework.com/documentation/2.5.8/JavaForms) (2.1.x or 2.6)
 - Velocity version 1.7; Apache Velocity Template Language (VTL)
 
+- window command promt, power shell will run the `sbt.bat` before the `sbt` in your path environment. It checks your current directory (.) first before looking anywhere else.
+- Muốn force chạy `sbt` trong path, không chạy `sbt.bat` thì phải làm vài chiêu trò => poor design
+
+- git bash, unix environment will run `sbt` inside your path. The current directory is completely ignored by default when resolving commands. This is a fundamental security feature designed to prevent malicious scripts from hijacking standard commands (like creating a fake `ls` script in a folder).
+- Use `./sbt` to force use the local
+
 ### Passsword & config
 
 mysql: root:root or 123
@@ -445,12 +451,14 @@ Form Validation
 
 ### Authenticator
 
-When a request hits a protected controller, the Play Framework automatically calls `getUsername(ctx)` and looks for a very specific response:
+When a request hits a protected controller, the Play Framework automatically calls `BaseLoginAuthenticator.getUsername(Http.Context)` and looks for a very specific response:
 
-- Success (True): If the method returns any valid String, the framework considers the user authenticated and allows the controller logic to proceed. For example, in your `BaseLoginAuthenticator`, if the user passes the `checkRole` test, it returns `loginUserId.toString()`. In the parent `BaseAuthenticator`, it simply returns `""`.
+- Success (True): If the method returns any valid `String loginUserId`, the framework considers the user authenticated and allows the controller logic to proceed.
+  - This `loginUserId` string is not used anywhere in the controller body. It is only for the authentication steps.
+  - Việc lấy thông tin user đăng nhập được thực hiện với service trong controller. Lấy ra từ `Http.Context.current()`.
 - Failure (False): If the method returns `null` (because the user ID is missing or the role check fails), the framework considers the authentication failed.
 
-if `getUsername` returns `null`, the Play Framework intercepts that `null` and automatically triggers `onUnauthorized(ctx)`. This method then returns your standard `401 Unauthorized` JSON response (`BaseController.unauthorized("error.unauthorized")`) and completely halts the request.
+if `getUsername` returns `null`, the Play Framework intercepts that `null` and automatically triggers `BaseAuthenticator.onUnauthorized(Http.Context)`. This method then returns your standard `401 Unauthorized` JSON response and completely halts the request.
 
 ### Velocity Template Engine
 

@@ -235,9 +235,9 @@ The `--stat` shows some abbreviated stats for each commit.
 
 If you place a `^` (caret) **at the end** of a reference, Git resolves it to mean the parent of that commit. Example: `HEAD^`.
 
-You can also specify a number after the `^` to identify which parent you want; for example, `d921970^2` means “the second parent of d921970.” This syntax is useful only for merge commits, which have more than one parent — the first parent of a merge commit is from the branch you were on when you merged (frequently master), while the second parent of a merge commit is from the branch that was merged (say, topic).
+You can also specify a number after the `^` to identify which parent you want; for example, `d921970^2` means “the second parent of `d921970`.” This syntax is useful only for merge commits, which have more than one parent — the first parent of a merge commit is from the branch you were on when you merged (frequently master), while the second parent of a merge commit is from the branch that was merged (say, `topic`).
 
-- The other main ancestry specification is the `~` (tilde). This also refers to the first parent, so `HEAD~` and `HEAD^` are equivalent. The difference becomes apparent when you specify a number:
+- The other main `ancestry specification` is the `~` (tilde). This also refers to the first parent, so `HEAD~`, `HEAD~1`, `HEAD^` and `HEAD^1` are **equivalent**. The difference becomes apparent when you specify a number:
   - `HEAD~1`: is the parent of `HEAD`
   - `HEAD~2` (or `HEAD~~`) means “the first parent of the first parent,” or “the grandparent” — it traverses the first parents the number of times you specify.
 
@@ -397,6 +397,13 @@ Remember, anything that is committed in Git can almost always be recovered. Even
 - You end up with a single commit — the second commit replaces the results of the first.
 - Whenever you are doing amend Git will basically rewrite the entire commit and generates a **new hash** for it. This is very important to understand.
 
+```bash
+git add .
+# do not change the commit message
+git commit --amend --no-edit
+```
+
+
 `git push -f` force push (`--force`); used after `commit -amend` to overwrite the old commit on the remote repo.
 
 `--force` overwrites a remote branch with your local branch.
@@ -511,9 +518,9 @@ Our amended commit is now pushed to Github (notice the hash `8edb82c` is matchin
 
 Think of Git as content manager of three different trees (collection of files not the Tree Data Structure). Git will compare between these three trees & log information to the user.
 
-1. HEAD: Last commit's snapshot, next parent
-2. Index: proposed next commit's snapshot (the "staging area")
-3. **Working Directory (or Working tree)**: the "sandbox" where you can try changes out before committing them to your staging area (index) and then to history
+1. `HEAD`: Last commit's snapshot, next parent
+2. `Index`: proposed next commit's snapshot (the "staging area")
+3. `Working Directory` (or Working tree): the "sandbox" where you can try changes out before committing them to your staging area (index) and then to history
 
 - Your "repository" is not a tree, it is the commit history stored inside the `.git/` directory:
   - You have your **local repository** and...
@@ -524,19 +531,27 @@ Git will look at the `index` when you run `git commit`.
 - "Changes not staged for commit" => working directory differrent from Index
 - "Changes to be committed" => HEAD & Index differ
 
-Step 1: **Move HEAD** (`--soft`, undid commits): The first thing reset will do is move what `HEAD` points to. This isn’t the same as changing HEAD itself (which is what `checkout` does); reset moves the branch that `HEAD` is pointing to. This means if HEAD is set to the `master` branch (i.e. you’re currently on the `master` branch), running `git reset 9e5e6a4` will start by making `master` point to `9e5e6a4`.  
+Step 1: Move `HEAD` (`--soft`, undid commits): The first thing reset will do is move the branch that `HEAD` is pointing to. This isn’t the same as changing `HEAD` itself (which is what `checkout` does). This means if `HEAD` is set to the `master` branch (i.e. you’re currently on the `master` branch), running `git reset 9e5e6a4` will start by making `master` point to `9e5e6a4`.  
 No matter what form of reset with a commit you invoke, this is the first thing it will always try to do. With `reset --soft`, it will simply stop there.
 
-Step 2: Updating the Index (`--mixed`, default, unstage everything): The next thing reset will do is to update the index with the contents of whatever snapshot HEAD now points to.
+`git checkout` only move `HEAD`, it does not move the branch
 
-It still undid your last commit, but also unstaged everything. You rolled back to before you ran all your git add and git commit commands.
+You erase commits (because the branch move), but the code inside those removed commits are preserved as staged changes. The codes are preserved inside your `Index`.
 
-- **Step 3**: Updating the Working Directory (`--hard`):
-  - The third thing that reset will do is to make the working directory **look like the index**. If you use the `--hard` option, it will continue to this stage.
+Step 2: Updating the `Index` (`--mixed`, default, unstage everything): The next thing reset will do is to update the `Index` with the contents of whatever snapshot `HEAD` now points to.  
+It still undid your last commit, but also unstaged everything. You rolled back to before you ran all your `git add` and `git commit` commands.
+
+You erase commits (because the branch move), but the code inside those removed commits are preserved as unstaged changes. The codes are preserved inside your `Working Directory`.
+
+- Step 3: Updating the `Working Directory` (`--hard`):
+  - The third thing that `reset` will do is to make the working directory **look like the index**. If you use the `--hard` option, it will continue to this stage.
   - You undid your last commit, the git add and git commit commands, and **all the work you did in your working directory**.
-  - This flag (--hard) is the only way to make the reset command dangerous, and one of the very few cases where Git will actually destroy data. Any other invocation of reset can be pretty easily undone, but the --hard option cannot, since it forcibly overwrites files in the working directory
+  - This flag (`--hard`) is the only way to make the reset command dangerous, and one of the very few cases where Git will actually destroy data. Any other invocation of reset can be pretty easily undone, but the --hard option cannot, since it forcibly overwrites files in the working directory
 
-`git reset --hard HEAD^` remove the last commit.
+With both `--soft` and `--mixed`, your actual code is 100% preserved. But `--hard` will delete the code.
+
+- `git reset --hard HEAD^` remove the last commit.
+- `git reset HEAD^` is the same `git reset HEAD~` => undo your single most recent commit (moving you back by exactly 1 step).
 
 - The basics:
   - `--soft` update where a branch point to, undid commits.
@@ -1360,7 +1375,7 @@ $ git log --all --decorate --oneline --graph
 
 Không được thay đổi `main` mà không có review.
 
-### Interactive Rebasing
+## Interactive Rebasing
 
 Interactive rebasing gives you the opportunity to alter commits as they are moved to the new branch.  
 This is even more powerful than an automated rebase, since it offers complete control over the branch’s commit history.  
@@ -1385,10 +1400,16 @@ pick 9480b3d Message for commit #2
 pick 5c67e61 Message for commit #3
 ```
 
-**NOTE**: In git log the most recent commit is on top. However, in interactive rebasing view, the most recent commit is on bottom (reverse order).  
-khi `rebase -i` thì order ngược lại với `git log`
+**NOTE**: In git log the most recent commit is on top. However, in interactive rebasing view, the most recent commit is at the bottom => Nhớ là khi `rebase -i` thì order sẽ ngược lại với `git log`
 
-`git checkout feature; git rebase -i HEAD~3` => begins an interactive rebase of only the last 3 commits (including your current commit)
+```bash
+git checkout feature
+# begins an interactive rebase of only the last 3 commits (including your current commit, HEAD)
+git rebase -i HEAD~3
+# rebase last 2 commits (including current HEAD)
+git rebase -i HEAD~2
+# It does not matter if you take more than needed
+``` 
 
 ```bash
 git stash -u
@@ -1400,25 +1421,22 @@ git stash pop
 
 Make lots of small commits and tidy them up later using interactive rebase. Use `git push origin --force-with-lease`.
 
-Normally when I'm rewriting history I use git rebase -i in combination with git reset HEAD~. This lets me squash commits together, pause to split them apart, reorder them, or remove them entirely. This is used to modify your pull request to make it easier to review.
-
-[read & note khi có thời gian](https://hackernoon.com/beginners-guide-to-interactive-rebasing-346a3f9c3a6d)
-
-Đọc thêm về cách "squash" commit bằng interactive rebase
-
-re-order commit => run `rebase -i` > change the order of the commits lines
-
-squashing commits => `rebase -` > change `pick` into `squash`
-
-Breaking One Commit into multiple commits
-
 - `pick` = use commit as is
 - `reword` = use, but edit the commit message
 - `edit` = use, but stop for amending
-- `squash` = use, but meld into previous commit (the above listed)
-- `fixup` = like `squash` but keep only the previous commit's log message
-  - The difference between squash and fixup, is that `squash` let's you edit the resulting commit log message; `fixup`, on the other hand, defaults to using the previous commit's log message.
 - `drop` = remove commit
+
+---
+
+```bash
+# change pick -> reword, do not change the commit message yet
+:wq
+# git will now open a new vim window for you to change the commit message that you want to reword
+```
+
+Muốn re-order commits thì không cần edit the word `pick`. You just need to change the order of the lines
+
+---
 
 nếu có `edit` thì sau khi edit, run `git rebase --continue`
 
@@ -1507,12 +1525,30 @@ The auto-generated comments inside the `git-rebase-todo` file:
 
 As with all operations related to rewriting history... Unless you know exactly what you're doing and have good communication within your team – only rewrite commits that have not yet been published remotely!
 
-### Squashing Commits
+### Squashing, Splitting & Editting Commits
 
 ```bash
 # last 3 commits including the latest (the one pointed to by the branch ref)
 git rebase -i HEAD~3
 ```
+
+**NOTE**: In git log the most recent commit is on top. However, in interactive rebasing view, the most recent commit is at the bottom => Nhớ là khi `rebase -i` thì order sẽ ngược lại với `git log`
+
+- `squash` = use, but meld into previous commit (the above listed)
+- `fixup` = like `squash` but keep only the previous commit's log message
+  - The difference between squash and fixup, is that `squash` let's you edit the resulting commit log message; `fixup`, on the other hand, defaults to using the previous commit's log message.
+  - A `fixup` commit line will meld into the previous one (the one right above it) & the `fixup` commit's log message will be discard
+
+---
+
+Breaking One Commit into multiple commits (split)
+
+The commit line you want to split, you change `pick` -> `edit`, then save `:wp`.
+
+- Git will stop at the commit marked as `edit`, now you can:
+  - `git commit --amend` to "edit" the commit
+  - `git reset HEAD^` => reset & unstage the last commit (which is the one you marked as `edit`). Make two (or more) new commits (split the `edit` commit into multiple smaller commits)
+- Then you can `git rebase --continue` to apply the changes
 
 ## Cherry Pick
 

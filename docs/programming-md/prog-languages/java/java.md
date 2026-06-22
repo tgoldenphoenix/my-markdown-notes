@@ -164,27 +164,6 @@ Trong C không có tự dọn rác, developer phải tự dọn.
 
 Coi lại trong SQL cũng có `null` và rỗng khác nhau.
 
-### NullPointerException
-
-A **NullPointerException** (NPE) xảy ra khi cố tình truy cập tới phương thức hoặc thuộc tính của một đối tượng thông qua một biến con trỏ (reference variable) mà biến con trỏ đó hiện tại là `null`.  
-NullPointerException chỉ có thể xảy ra ở những dòng có dấu `.` để gọi biến hoặc hàm.
-
-- In Java nếu declare primitive variables mà không initialize value thì sẽ có default value chứ không phải `null` (Java không có `undefined` như Javascript).
-  - Với number (int, double) default là 0
-  - char: `\u0000` (the null character)
-  - Boolean default value sẽ là `false`.
-  - Primitive không được phép `null` in Java.
-
-Còn declare object like `SinhVien sv;` mà không initialize sẽ default `sv=null`.  
-Vì String không phải là một kiểu primitive trong Java nên `String a;` thì `a=null` by default.
-
-`SinhVien sv1 = new SinhVien();` => sv1 là một biến tham chiếu trỏ đến một đối tượng của class `SinhVien` chứ sv1 KHÔNG phải là đối tượng.
-
-The `java.lang.IndexOutOfBoundsException` is a runtime exception in Java that indicates an attempt to access an element at an invalid index within a data structure like an array, a list (e.g., ArrayList), or a string. This exception is thrown when the provided index is either negative or exceeds the valid range of indices for that particular structure.
-
-`if ("Hello".equals(a)){}` nếu cần so sánh string phải làm như vầy để không có lỗi NullPointerException. Viết `a.equals("Hello")` là không đúng.  
-`.equal()` nếu dùng so sánh string thì nó chỉ so sánh giá trị (content). Nếu dùng `==` check string thì nó so sánh tham chiếu.
-
 ## String, StringBuilder & `StringBuffer`
 
 Trong java, string không phải primitive. Nó là object được tạo từ class `String`.
@@ -494,7 +473,7 @@ The `main()` method is the starting point of your program. Vì sao hàm `main()`
 - Keyword `abstract`:
   - Không đi được với biến.
   - Abstract method: phương thức trừu tượng, chỉ có khai báo tên hàm, kiểu trả về, argument list; không có body
-  - Abstract class: class có chứa 0 hoặc nhiều abstract methods
+  - Abstract class: class có chứa **0 hoặc nhiều** abstract methods
 
 - `final` cannot go together with `abstract` vì về bản chất:
   - `final`: hứa ko thay đổi, ko có con nữa, ko ai thay thế nữa
@@ -1095,6 +1074,10 @@ what is the `anhao/.m2` do in maven => [stack overflow](https://stackoverflow.co
 When you program for the Java platform, you write source code in `.java` files and then compile them intp bytecode (`.class` files). Bytecode is run on a JVM. In adding this level of abstraction, the Java compiler differs from other language compilers, which write out assembly-language instructions suitable for the CPU chipset the program will run on.
 
 At runtime, the JVM reads and interprets .class files and executes the program's instructions on the native hardware platform for which the JVM was written. The JVM interprets the bytecode just as a CPU would interpret assembly-language instructions. The difference is that the JVM is a piece of software written specifically for a particular platform. The JVM is the heart of the Java language's "write-once, run-anywhere" principle. Your code can run on any chipset for which a suitable JVM implementation is available. JVMs are available for major platforms like Linux and Windows, and subsets of the Java language have been implemented in JVMs for mobile phones and hobbyist chips.
+
+## Trivia
+
+`Varargs`
 
 ## Java Command Line
 
