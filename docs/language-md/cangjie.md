@@ -1478,6 +1478,10 @@ Triple-unit characters
 
 - 街 (竹人 // 土土 // 弓) - boulevard
 
+- 圭 (土土) - ivy
+- 桂 (木 // 土土)
+- 珪 (一土 // 土土)
+
 ### Others, 難, and Exceptions
 
 === 難
