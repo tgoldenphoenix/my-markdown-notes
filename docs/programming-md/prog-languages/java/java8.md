@@ -203,6 +203,12 @@ Local classes are classes that are defined in a `block`, which is a group of zer
 
 Java has mechanisms called `anonymous classes`, which let you declare and instantiate a class at the same time. They enable you to improve your code one step further by making it a little more concise. But they’re not entirely satisfactory.
 
+While local classes are `class declarations`, `anonymous classes` are `expressions`, which means that you define the class in another expression. 
+
+With anonymous class, you can `new` an interface to `implement` or a class to `extend`. When you implement an interface, there is no constructor, so you use an empty pair of parentheses `()`.
+
+---
+
 Anonymous classes are like the `local classes` (a named class defined in a block - could be class or interface) that you’re already familiar with in Java. But anonymous classes don’t have a name. They allow you to declare and instantiate a class at the same time. In short, they allow you to create ad hoc implementations.
 
 But anonymous classes are still NOT good enough. First, they tend to be bulky because they take a lot of space. Second, many programmers find them confusing to use.
@@ -213,12 +219,29 @@ Using anonymous class, you still have to create an object and explicitly impleme
 
 To achieve behaviour parameterization, from verbose to concise: name class > anonymous class > lambda
 
-## Lambdas Expressions
+### Anonymous Method
 
-- Java có: `lambdas` and `Anonymous Classes`.
-- Javascript có khái niệm `anonymous function`.
-- In Java, lambda có thể coi như là `anonymous function` methods without declared names, but which can also be passed as arguments to a method as you can with an anonymous class.
+- Java ONLY has: `lambdas expressions` and `Anonymous Classes`.
+- Javascript có khái niệm `Anonymous Function` (or method). Java không có khái niệm này.
+
+- In Java, lambda có thể coi như là `anonymous function`, methods without declared names but which can also be passed as arguments to a method as you can with an anonymous class.
 - While JavaScript is a `functions-first` language where a function can exist on its own, Java is strictly object-oriented. This means a Java "anonymous function" must always be tied to a Functional Interface (an interface with exactly one method).
+
+During compilation, the Java compiler looks at a lambda and says: "A function? We don't do those here. I need to turn this into an object." It maps your `lambda expression` with a `Functional Interface` (an interface with exactly one abstract method). The compiler generates an implementation of that interface on the fly, instantiates it on the heap, and passes around the `object reference`.
+
+- In Javascript, Functions are objects themselves, can exist standalone without a class blueprint.
+  - You are passing a direct pointer to an executable block of code.
+- In Java, methods cannot exist outside a class or interface box.
+  - You actually pass around a reference to an object that happens to contain exactly one executable method.
+
+When you write an anonymous function in JavaScript, you are creating a raw, free-floating function block that can be passed around independently:
+
+```javascript
+// JavaScript: A true anonymous method passed directly
+const myFunc = (a, b) => a + b;
+```
+
+## Lambdas Expressions
 
 `Behavior parameterization` could, prior to Java 8, be encoded using anonymous classes. `Behavior parameterization` ngắn gọn là khi mà có thể pass a method to another method mà không cần phải tạo object (hay anonymous class).
 
@@ -305,7 +328,7 @@ five examples of valid lambda expressions in Java 8.
 
 ### Where and how to use lambdas
 
-You can use a lambda expression in the context of a `functional interface`. You can pass a lambda as argument to a method that expects an object of the type of a functional interface.
+You can use a lambda expression in the context of a `functional interface`. You can pass a lambda as argument to a method that expects an `object` **of the type** of a `functional interface`.
 
 ```java
 List<Apple> greenApples =
@@ -339,7 +362,9 @@ Only `Adder` is a functional interface.
 
 ---
 
- Lambda expressions let you provide the implementation of the abstract method of a functional interface directly inline and **treat the whole expression as an instance of a functional interface** (more technically speaking, an instance of a **concrete implementation** of the functional interface). You can achieve the same thing with an anonymous inner class, although it’s clumsier: you provide an implementation and instantiate it directly inline.
+When a method's input argument requires a functional interface. It means you need to create a class, `inplement` that functional interface & pass in the reference of an object instantiated from that class. However, you can do this more quickly using a `lambda expression` or an `anonymous class`.
+
+ Lambda expressions let you provide the implementation of the abstract method of a functional interface directly inline and **treat the whole expression as an instance of a functional interface** (more technically speaking, an instance of a **concrete implementation** of the functional interface). You can achieve the same thing with an `anonymous class`, although it’s clumsier.
 
 The following code is valid because `Runnable` is a functional interface defining only one abstract method (`run()`):
 
@@ -413,7 +438,7 @@ inventory.sort((a1, a2) -> a1.getWeight().compareTo(a2.getWeight()));
 
 ### Method References
 
-Method Reference (giá trị tham chiếu tới hàm): The double colon operator (`::`))
+Method Reference (giá trị tham chiếu tới hàm): The double colon operator (`::`)
 
 When we are using a method reference – the target reference is placed before the delimiter :: and the name of the method is provided after it.  
 `Computer::getAge;` => a method reference to the method getAge defined in the `Computer` class
@@ -454,7 +479,7 @@ Programs using these concepts are said to be written in `functional-programming 
 
 ---
 
-You use lambda expressions to create anonymous methods. Sometimes, however, a lambda expression does nothing but call an existing method. In those cases, it's often clearer to refer to the existing method by name. Method references enable you to do this; they are compact, easy-to-read lambda expressions for methods that already have a name.
+You use lambda expressions to create `anonymous methods`. Sometimes, however, a lambda expression does nothing but **call an existing method**. In those cases, it's often clearer to refer to the existing method by name. `Method references` enable you to do this; they are compact, easy-to-read `lambda expressions` for **methods that already have a name**.
 
 ```java
 Arrays.sort(rosterAsArray,
@@ -484,19 +509,55 @@ This method reference is shorthand for the lambda expression `(Apple apple) -> a
 ---
 
 - There are three main kinds of method references:
-  1. A method reference to a static method (for example, the method `parseInt` of `Integer`, written `Integer::parseInt`)
-  2. A method reference to an instance method of an arbitrary type (for example, the method length of a String, written `String::length`)
-  3. A method reference to an **instance method of an existing object or expression** (for example, suppose you have a local variable `expensiveTransaction` that holds an object of type `Transaction`, which supports an instance method `getValue`; you can write `expensiveTransaction::getValue`)
 
-- `(String s) -> s.toUpperCase()` = `String::toUpperCase`
-- `() -> expensiveTransaction.getValue()` = `expensiveTransaction::getValue`
+1. Reference to a `static` method (for example, the method `parseInt()` of `Integer`, written `Integer::parseInt`)
 
 ```java
+// syntax: ContainingClass::staticMethodName
+
+// examples
+Person::compareByAge
+MethodReferencesExamples::appendStrings
+Integer::parseInt
+```
+
+2. Reference to an `instance method` of a **particular object**
+
+```java
+// syntax: containingObject::instanceMethodName
+
+// examples
+myComparisonProvider::compareByName
+myApp::appendStrings2
+```
+
+3. Reference to an `instance method` of an **arbitrary object of a particular type.**
+
+for example, suppose you have a local variable `expensiveTransaction` that holds an object of type `Transaction`, which supports an instance method `getValue`; you can write `expensiveTransaction::getValue`)
+
+```java
+// syntax: ContainingType::methodName
+
+// examples
+String::compareToIgnoreCase
+String::concat
+(String s) -> s.toUpperCase()` = `String::toUpperCase
+() -> expensiveTransaction.getValue()` = `expensiveTransaction::getValue
+
 private boolean isValidName(String string) {
     return Character.isUpperCase(string.charAt(0));
 }
 // Predicate<String>
 filter(words, this::isValidName)
+```
+
+4. Reference to a `constructor`
+
+```java
+// syntax: ClassName::new
+
+// examples
+HashSet::new
 ```
 
 ### Constructor References
@@ -783,9 +844,9 @@ In general, the appropriate primitive type precedes the names of functional inte
 
 ### What about exceptions?
 
-You have two options if you need the body of a lambda expression to throw an exception: define your own functional interface that declares the checked exception, or wrap the lambda body with a try/catch block.
+You have two options if you need the body of a lambda expression to throw an exception: define your own functional interface that declares the checked exception, or wrap the lambda body with a `try/catch` block.
 
-Decalre a new functional interface Buffered-Reader-Processor that explicitly declared an IOException:
+Decalre a new functional interface `BufferedReaderProcessor` that explicitly declared an `IOException`:
 
 ```java
 @FunctionalInterface
