@@ -151,6 +151,8 @@ queue = yêu cầu tạo report data & master data cho quảng cáo
 
 - server id: `2` cái server chạy cái batch
 
+Mình đang lấy dữ liệu report theo Asynchronous (tiktok, twitter)
+
 ## Facts
 
 Giờ Nhật Bản (`JST` - Japan Standard Time) nhanh hơn giờ Việt Nam (`ICT` - Indochina Time) đúng 2 tiếng. Khi ở Việt Nam là 10:00 sáng, thì tại Nhật Bản đã là 12:00 trưa.
@@ -609,6 +611,41 @@ With synchronous mode, you make an API request and the data will be returned in 
 Resources
 
 [Tiktok ads manager doc](https://ads.tiktok.com/help/article/tiktok-ads-structure?lang=en)
+
+## Twitter
+
+asynchronous report tạo `job`
+
+The `synchronous` endpoint supports **short time ranges** and is ideal for real-time campaign optimizations. The asynchronous endpoints support much longer time ranges and are, thus, intended for fetching much more data, ideal for generating reporting or historical backfills.
+
+- `User Account` (identified by `user_id` & `@username`)
+  - This is a regular X account user for posting, normal usage. One or more X users can have access to an Ads Account.
+  - To create an Ads Account, you use your regular X User Account. User account own ads_account
+  - One X user can manage multiple `ads_accounts`.
+  - The `OAuth Access Token` belongs to a specific `@username` (the X user who authorized the app). That token can access an `ads_account` if that `@username` has permission on the Ads Account.
+
+- `Ads Account` (identified by `account_id` e.g. `18ce54d4x5t`)
+  - This is the top-level advertising account. It holds campaigns, line items, funding instruments, creatives, audiences, etc. Most API endpoints use `:account_id` in the URL (e.g., `/stats/accounts/:account_id`).
+  - An Ads Account can only be created by one X user account (your `@username`). That creator becomes the initial `Account Administrator`.
+  - However, after creation, the Ads Account is not limited to just that one user. The owner (or any Account Administrator) can grant access to multiple other X user accounts (`@usernames`) with different permission level (e.g., Account Administrator, Ad Manager, Campaign Analyst, etc.) => One `ads_account` can be managed by multiple `@username`
+
+- `Developer account` (identified by the same `user_id` & `@username`)
+  - Your account on the X Developer Platform
+  - Only used to create Apps & get API keys (Consumer Key etc.)
+  - You need a regular X account to create a Developer Account.
+
+- `User token level Rate Limits`: for OAuth access token; One token accessing many accounts shares quota
+  - One token = one set of user-level quotas.
+  - This is the default/fallback limit.
+  - One token can have access to one or more `ad_accounts` because one `@username` can have access to multiple Ads Accounts.
+  - An `OAuth User Access Token` is Granted by the User Account (`@username`) To the Developer App
+  - The token can only access Ads Accounts that your `@username` has permission to.
+- `ads_account level Rate Limits`
+  - A subset of endpoints are enabled to use ad account level rate limiting.
+
+Developers should utilize the `ad_account level rate limit` when it is returned in response headers and only utilize user level limit when the ad account limit is NOT found.
+
+In the X Ads API, `entity` refers to the type of object you want to fetch data for (especially in analytics/stats endpoints). An entity is any object in the Ads hierarchy that can have performance metrics associated with it.
 
 ## Other Rules
 

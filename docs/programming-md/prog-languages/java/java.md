@@ -954,7 +954,38 @@ Interfaces do not have arguments. The `Predicate<T>` means "this is a generic In
 
 `?` is the **wildcard generic**. It means: “Some type, but I don’t know (or care) exactly which one.”
 
-### Wildcards
+### Type Parameters Naming Conventions
+
+By convention, type parameter names are single, uppercase letters.
+
+The most commonly used type parameter names are:
+
+* `E` - Element (used extensively by the Java Collections Framework)
+* `K` - Key
+* `N` - Number
+* `T` - Type
+* `V` - Value
+* `S`,`U`,`V` etc. - 2nd, 3rd, 4th types
+
+Type parameters can contain as many characters as you want.
+
+```java
+// The method transferElements copies elements from one collection to another
+// In this method signature, `SOURCE` and `DEST` are Type Parameters.
+public static <T, SOURCE extends Collection<T>, DEST extends Collection<T>>
+DEST transferElements(
+        SOURCE sourceCollection,
+        Supplier<DEST> collectionFactory) {
+
+    DEST result = collectionFactory.get();
+    for (T t : sourceCollection) {
+        result.add(t);
+    }
+    return result;
+}
+```
+
+Wildcards
 
 In generic code, the question mark (`?`), called the `wildcard`, represents an unknown type.
 
