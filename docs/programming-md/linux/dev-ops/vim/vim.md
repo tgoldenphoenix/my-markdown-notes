@@ -627,7 +627,7 @@ We can get away with using the unnamed register for both the yank and put operat
 
 ## Macros
 
-We’ve already learned about the dot command, which is useful for repeating small changes. But when we want to repeat anything more substantial, we should reach for Vim’s macros.
+We’ve already learned about `the dot command`, which is useful for repeating small changes. But when we want to repeat anything more substantial, we should reach for Vim’s macros.
 
 The `q` key functions both as the “record” button and the “stop” button. To begin recording our keystrokes, we type `q{register}`, giving the address of the register where we want to save the macro.  
 We can tell that we’ve done it right if the word “recording” appears in the status line.  
@@ -656,9 +656,9 @@ The beauty of this technique is that we can be unscrupulous about how many times
 
 ---
 
-The Dot Formula can be an efficient editing strategy for a small number of repeats, but it can’t be executed with a count. Overcome this limitation by recording a cheap one-off macro and playing it back with a count
+The `Dot Formula` can be an efficient editing strategy for a **small number of repeats**, but it **can’t be executed with a count**. Overcome this limitation by recording a cheap one-off macro and playing it back with a count
 
-- `qq;.q` record the marcro `;.` into the `q` register. Now we can execute the macro with a count: `11@q`. This executes `;.` eleven times.
+- `qq;.q` => record the marcro `;.` into the `q` register. Now we can execute the macro with a count: `11@q`. This executes `;.` eleven times.
 - The `;` command repeats the `f+` search. When our cursor is positioned after the last `+` character on the line, the `;` motion fails and the macro aborts.
 - Nếu dùng `11;.` thì nó sẽ là `11;` rồi `.` one single time
 
@@ -847,9 +847,9 @@ From insert mode: `<C-k>{char1}{char2}`
 Each time we move our cursor in Visual mode, we change the bounds of the selection.
 
 - Visual Mode in Vim has three sub-modes:
-  1. In `character-wise` Visual mode (`v`), we can select anything from a single character up to a range of characters within a line or spanning multiple lines. This is suitable for working at the level of individual words or phrases.
-  2. If we want to operate on entire lines, we can use `line-wise` Visual mode (`V` uppercase) instead.
-  3. Finally, `block-wise` Visual mode (`<C-v>`) allows us to work with columnar regions of the document.
+  1. In `character-wise visual mode` (`v`), we can select anything from a single character up to a range of characters within a line or spanning multiple lines. This is suitable for working at the level of individual words or phrases.
+  2. If we want to operate on entire lines, we can use `line-wise visual mode` (`V` uppercase) instead.
+  3. Finally, `block-wise visual mode` (`<C-v>`) allows us to work with columnar regions of the document.
 - We can switch between the different flavors of Visual mode in the same way that we enable them from Normal mode. If we’re in character-wise Visual mode, we can switch to the line-wise variant by pressing `V`, or to block-wise Visual mode with `<C-v>`.
 
 Visual mode > select > `r` will replace all the characters with the same character.
