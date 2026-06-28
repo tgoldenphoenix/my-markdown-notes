@@ -289,6 +289,7 @@ Triple-unit characters
 - 叚 (口尸 // 尸水) - nerd
 
 - 户 (戈尸)
+- 居 (尸 // 十口)
 
 - 匾 (尸竹尸月) - cardboard box
 - 匵 (尸土田金) - single unit
@@ -962,6 +963,7 @@ Triple-unit characters
 - 元 (一一山) vs. 克 (十口竹山) - origin
   - 頑 (一山 // 一月金)
   - 远 (卜 // 一一山)
+  - 院 (弓中 // 十 // 一山) - triple unit
 - 光 (火一山) - ray
 
 ### 水, 大, 木
@@ -988,6 +990,7 @@ Triple-unit characters
 - 釵 (金 // 水戈)
 - 叉 (水戈)
 - 各 (竹水口) - to each his own
+  - 落 (廿 // 水 // 竹口) - triple unit
 - 格 (木 // 竹水口)
 
 - 攵 (人大) - taskmaster
@@ -1105,7 +1108,7 @@ Triple-unit characters
 #### Tree, wood 木
 
 - 寸 (木戈) - glue
-  - 村 (木 // 木戈)
+  - 村 (木 // 木戈) - village
   - 壽 (土弓一戈) - longevity
   - 守 (十 // 木戈)
 - 寺 (土木戈) - Buddhist temple, pagoda
@@ -1160,6 +1163,9 @@ Triple-unit characters
 - 立 (卜廿) - stand up, vase
 
 - 乐 (竹女木)
+
+- 禾 (竹木) - wheat
+  - 香 (竹 // 木日)
 
 ### Ten 十
 
