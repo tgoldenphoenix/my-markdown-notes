@@ -645,7 +645,74 @@ The `synchronous` endpoint supports **short time ranges** and is ideal for real-
 
 Developers should utilize the `ad_account level rate limit` when it is returned in response headers and only utilize user level limit when the ad account limit is NOT found.
 
-In the X Ads API, `entity` refers to the type of object you want to fetch data for (especially in analytics/stats endpoints). An entity is any object in the Ads hierarchy that can have performance metrics associated with it.
+- In the X Ads API, `entity` refers to the type of object you want to fetch data for (especially in analytics/stats endpoints). An entity is any object in the Ads hierarchy that can have performance metrics associated with it.
+- `Ads Account`: Top-level container,Your business account
+- `Campaign`: High-level goal + overall budget
+- `Line Item` (Ad Group): Targeting + Bidding + Budget
+  - You can have many Line Items inside one Campaign (different targeting, bids, creatives).
+  - X recommends pulling stats (metrics) at the Line Item level (`entity=LINE_ITEM`) because it's the most granular and useful level.
+- `Promoted Tweet`: The actual ad creative,Specific Tweet being promoted
+- `PROMOTED_ACCOUNT`
+
+- Yes, an active entity (e.g. a Line Item, Promoted Tweet, Campaign, etc.) can have multiple placements.
+- Khi get active entities nó return placement, khi tạo job lấy metric thì mình add parameter placement mình muốn
+
+- `&placement=ALL` => returns impressions for this entity from ALL placements
+- `&placement=ALL_ON_TWITTER` => returns only impressions from inside X
+
+- For most analytics/stats endpoints → You can request up to 20 entity_ids per request.
+- `PROMOTED_TWEET` is one of the most commonly batched entities.
+- Instead of requesting 100 Promoted Tweets in one call (which would fail), you process them in groups of 20.
+- Example: If you have 87 Promoted Tweets, you will make 5 jobs (4 jobs of 20 + 1 job of 7).
+
+---
+
+```json
+{
+      "data_type": "stats",
+      "time_series_length": 24,
+      "data": [
+        {
+          "id": "dvcz7",
+          "id_data": [
+            {
+              "segment": null,
+              "metrics": {
+                "impressions": [
+                  0,0,2792,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+                ],
+                "engagements": [
+                  0,0,60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+                ],
+                "video_total_views": [
+                  0,0,1326,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "request": {}
+    }
+```
+
+The length of the array depends on the `granularity` you requested and the time range (`start_time` to `end_time`).
+
+- The first number in the array = the first hour after your `start_time`.
+- Each next number = the next hour.
+
+Example (if you requested `start_time=2026-03-05T00:00:00Z` and `granularity=HOUR`):
+
+- Index 0 → 2026-03-05 00:00 ~ 01:00 → 0 impressions
+- Index 1 → 2026-03-05 01:00 ~ 02:00 → 0 impressions
+- Index 2 → 2026-03-05 02:00 ~ 03:00 → 2792 impressions
+- ... and so on.
+
+- If you want daily totals → use `granularity=DAY`
+- If you want overall total → use `granularity=TOTAL` (returns a single number instead of array)
+- You can sum the array yourself to get the total: 2792 in this case.
+
+---
 
 ## Other Rules
 
