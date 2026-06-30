@@ -153,9 +153,9 @@ Many regex systems (including Perl’s) support an `x` option that ignores liter
 
 ## Repetition with `*` & `+`
 
-The **repetition quantifiers** or operators (`* + ?`) can be used with any character or special metacharacters, for example `a+` (one or more a's), `[abc]+` (one or more of any a, b, or c character) and `.*` (zero or more of any character).
+The `repetition quantifiers` or operators (`* + ?`) can be used with any character or special metacharacters, for example `a+` (one or more a's), `[abc]+` (one or more of any a, b, or c character) and `.*` (zero or more of any character).
 
-`+` allows **onece** or more matches of the preceding element => Cộng **một**.
+`+` allows **one** or more matches of the preceding element => Cộng **một**.
 
 Sometimes, you need to match a single character (or group of characters) that appears **ONE or more** times in a row. This means it occurs at least once, and may be repeated => use the `+` symbol.
 
@@ -576,6 +576,64 @@ The section [Looking Inside The Regex Engine](https://www.regular-expressions.in
 ## How a Regex Engine Works Internally
 
 f
+
+## Dealing with Japanese with Negated set
+
+```json
+"data":[
+      {
+         "name":"semeyez",
+         "business_name":"EYEZ,INC.\t\t\t",
+         "timezone":"Asia\/Tokyo",
+         "timezone_switch_at":"2016-05-14T15:00:00Z",
+         "country_code":"JP",
+         "id":"18ce54bjjag",
+         "created_at":"2016-05-16T01:37:23Z",
+         "updated_at":"2026-06-25T01:00:39Z",
+         "industry_type":"AGENCY",
+         "business_id":"a5",
+         "approval_status":"ACCEPTED",
+         "deleted":false
+      },
+      {
+         "name":"sem_eyez - EYEZ,INC.",
+         "business_name":"EYEZ,INC.\t\t\t",
+         "timezone":"Asia\/Tokyo",
+         "timezone_switch_at":"2013-05-21T15:00:00Z",
+         "country_code":null,
+         "id":"18ce54jo9k0",
+         "created_at":"2017-08-08T02:31:15Z",
+         "updated_at":"2026-06-25T01:00:39Z",
+         "industry_type":null,
+         "business_id":"a5",
+         "approval_status":"ACCEPTED",
+         "deleted":false
+      },
+```
+
+`/"name":"[^""]*?\\t[^""]*?"/gm`
+
+`\w` không match japanese, ngoài ra japanese còn chứa các ký tự khác như （大阪）(khác với normal parentheses), 【公式】「古代ＤＮＡ－日本人のきた道－」 => cách tốt nhất là dùng negated set `[^""]`
+
+`\t` (matching a literal tab) is different from `\\t` (match `\t`)
+
+Switching from positive matching (`\w`) to a negated character set (like `[^...]`) is a total game-changer, especially when dealing with international languages like Japanese, Chinese, or Korean.
+
+Instead of trying to define what a character is (which fails across different languages and alphabets), a negated character set defines what a character is NOT. Since a space or a quotation mark looks the same whether it's next to English or Japanese, it acts as a universal boundary.
+
+The "Stay Inside the String" pattern: `[^"]` or `[^']` match anything that is not a quotation mark. This is the gold standard for scraping text inside attributes or JSON values. It guarantees your regex engine won't accidentally spill out over the closing quote and eat the rest of your file.  
+Example: `"[^"]*"` matches a complete double-quoted string perfectly, regardless of the language inside.
+
+The "Stay on the Current Line" pattern: `[^\n]` or `[^\r\n]` match any character except a newline or carriage return. By default, the wildcard dot (.) in many engines can accidentally match newlines if flags are turned on. Using `[^\n]*` forces your regex to strictly process data within a single, individual line.
+
+The "Universal Word / Token" pattern: `[^[:space:]]` (Vim) or `[^\s]` (VS Code) match any character that is **not** a space, tab, or newline. This is your direct, bulletproof replacement for `\w`. Because a "space" is universal across all human languages, matching "anything that isn't a space" will perfectly capture Japanese words, English words, numbers, and symbols uniformly.  
+Example (Tab between Japanese words): `[^\s]+\t[^\s]+`
+
+The "HTML / XML Tag Confiner" pattern: `[^>]` match any character that is not a closing angle bracket. If you are parsing or cleaning up HTML/XML tags, using `.*` inside a bracket can accidentally match across multiple tags. Using `[^>]*` confines the engine to the current tag structure.  
+Example: `<div[^>]*>` matches the opening `div` tag along with all of its internal classes and attributes, stopping exactly at the end of that specific tag.
+
+The "CSV / Separated Values" pattern: `[^,]` (for CSV) or `[^\t]` (for TSV) match any character except a comma or a tab. Perfect for parsing data columns without pulling in a heavy CSV parsing library.  
+Example: `([^,]*),([^,]*)` captures the first two columns of a comma-separated file cleanly.
 
 ## Free-Spacing & Comments
 
