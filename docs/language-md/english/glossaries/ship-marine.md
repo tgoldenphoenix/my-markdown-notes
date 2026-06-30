@@ -2,7 +2,10 @@
 
 spy-glass: a small handheld telescope.
 
-## Directional terms
+## Directional Terms
+
+- A point of sail is a sailing craft's direction of travel under sail in relation to the true wind direction over the surface.
+- beam reach: at 90° off the wind
 
 fore: the front of the ship
 
@@ -94,7 +97,7 @@ Tiller: a horizontal bar used like a lever for steering a boat
 
 A [helmsman](https://en.wikipedia.org/wiki/Helmsman) or **helm** (sometimes driver or steersman) is a person who steers a ship, sailboat, submarine, other type of maritime vessel, airship, or spacecraft. The rank and seniority of the helmsman may vary: on small vessels such as fishing vessels and yachts, the functions of the helmsman are combined with that of the skipper; on larger vessels, there is a separate officer of the watch who is responsible for the safe navigation of the ship and gives orders to the helmsman, who physically steers the ship in accordance with those orders.
 
-A [rudder](https://en.wikipedia.org/wiki/Rudder) (đuôi lái) is a primary control surface used to steer a ship, boat, submarine, hovercraft, airship, or other vehicle that moves through a fluid medium (usually air or water).
+A `rudder` (đuôi lái) is a primary control surface used to steer a ship, boat, submarine, hovercraft, airship, or other vehicle that moves through a fluid medium (usually air or water).
 
 A [propeller](https://en.wikipedia.org/wiki/Propeller) (colloquially often called a screw if on a ship or an airscrew if on an aircraft) is a device with a rotating hub and radiating blades that are set at a pitch to form a helical spiral which, when rotated, exerts linear thrust upon a working fluid such as water or air.
 
@@ -242,15 +245,16 @@ A [harpoon](https://en.wikipedia.org/wiki/Harpoon) is a long, spear-like project
 
 [Lubber's hole](http://www.powermobydick.com/Moby064.html): a hole in the platform at the top of a mast, used by inexperienced sailors to climb up onto the platform. Experienced sailors would climb over the outside edge of the platform
 
-### Type of ships
+### Type of Ships
 
-A [barque](https://en.wikipedia.org/wiki/Barque), barc, or bark is a type of sailing vessel with three or more masts of which the fore mast, mainmast, and any additional masts are rigged square, and only the aftmost mast (mizzen in three-masted barques) is rigged fore and aft.
+A `barque`, barc, or bark is a type of sailing vessel with three or more masts of which the fore mast, mainmast, and any additional masts are rigged square, and only the aftmost mast (mizzen in three-masted barques) is rigged fore and aft.
 
-A [sailing ship](https://en.wikipedia.org/wiki/Sailing_ship) (thuyền buồm) is a sea-going vessel that uses sails mounted on masts to harness the power of wind and propel the vessel.
+A `sailing ship` (thuyền buồm) is a sea-going vessel that uses `sails` mounted on `masts` to harness the power of wind and propel the vessel.
 
-[craft](https://www.oxfordlearnersdictionaries.com/definition/english/craft_1?q=craft): (formal) a boat or ship
+- craft: (formal) a boat or ship
+  - sailing craft
 
-A [full-rigged ship](https://en.wikipedia.org/wiki/Full-rigged_ship) or fully rigged ship is a sailing vessel with a sail plan of three or more masts, all of them square-rigged. Such a vessel is said to have a ship rig or be ship-rigged, with each mast stepped in three segments: lower, top, and topgallant.
+A `full-rigged ship` or fully rigged ship is a sailing vessel with a sail plan of three or more masts, all of them square-rigged. Such a vessel is said to have a ship rig or be ship-rigged, with each mast stepped in three segments: lower, top, and topgallant.
 
 A [junk](https://en.wikipedia.org/wiki/Junk_%28ship%29) (Chinese: 船; pinyin: chuán) is a type of Chinese sailing ship characterized by a central rudder, an overhanging flat transom, watertight bulkheads, and a flat-bottomed design.
 

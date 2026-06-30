@@ -403,7 +403,6 @@ git add .
 git commit --amend --no-edit
 ```
 
-
 `git push -f` force push (`--force`); used after `commit -amend` to overwrite the old commit on the remote repo.
 
 `--force` overwrites a remote branch with your local branch.
@@ -1409,7 +1408,7 @@ git rebase -i HEAD~3
 # rebase last 2 commits (including current HEAD)
 git rebase -i HEAD~2
 # It does not matter if you take more than needed
-``` 
+```
 
 ```bash
 git stash -u

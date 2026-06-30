@@ -126,9 +126,12 @@ Triple-unit characters
   - 輸 (十十 // 人 // 一弓) - triple-unit character
 - 前 (廿 // 月 // 中弓) - triple unit
 
+---
+
 - 倉 (人 // 戈 // 日口) - triple unit
 
 - 今 (人戈弓) - clock
+  - 念 (人 // 戈 // 弓心) - triple unit
 - 令 (人 // 戈 // 弓戈) - order
 
 #### Human, Person 人
@@ -224,8 +227,9 @@ Triple-unit characters
 
 - 馬 (尸手尸火) - horse
   - 马 (弓女尸一)
-- 敬 (廿口 // 人大) - double unit
+- 敬 (廿口 // 人大) - double unit, awe, revere
   - 驚 (廿大 // 尸手火) - double unit
+  - 警 (廿大 // 卜一口) - double unit
 
 - 鳥 (竹日卜火) - single unit, bird
   - 鸟 (心卜尸一)
@@ -383,7 +387,7 @@ Triple-unit characters
 
 - 阝 (弓中) - pinnacle
 - 都 (十日 // 弓中)
-  - 者 (十大日)
+  - 者 (十大日) - doll
 
 - 卩 (尸中) - postage stamp
   - 節 (竹 // 日戈 // 中) - triple unit
@@ -600,6 +604,9 @@ Triple-unit characters
 - 雨 (一中月卜) - 卜 is two dấu phết, rain
   - 露 (一月 // 口一 // 口) - triple unit
   - 雪 (一月 // 尸一) - snow
+- 雲 (一月 // 一一戈)
+  - 云 (一一戈) - rising cloud
+
 - 兩 (一中月人)
 - 市 (卜中月) - market
 
@@ -625,11 +632,17 @@ Triple-unit characters
   - 眼 (月山 // 日女)
   - 自 (竹月山) - oneself, nose, nostrils
   - 首 (廿竹月山) - neck, head
-- 直 (十月一一)
+
+- 直 (十月一一) - straightaway, straight
   - 值 (人 // 十月一)
+
 - 具 (月一一金) - tool
+
 - 真 (十月一金) - true
   - 顛 (十金 // 一月金)
+- 眞 (心 // 月山 // 金) - triple unit
+  - 滇 (水 // 十月金)
+
 - 其 (廿一一金) - rook, bushel basket
 
 - 敻 (弓月 // 月山 // 水 or 弓月月山大) - triple unit
@@ -1023,7 +1036,7 @@ Triple-unit characters
 #### Big, large 大
 
 - 老 (十大心) - old man
-- 者 (十大日)
+- 者 (十大日) - doll
 - 更 (一中田大) - grow late
   - 便 (人 // 一中大) - convenience
 
@@ -1209,6 +1222,7 @@ Triple-unit characters
 - 進 (卜 // 人土)
   - 隹 (人土)
 - 边 (卜 // 大尸)
+- 迤 (卜 // 人 // 心木) - triple unit
 
 - 廴 (弓弓大) - stretch
   - 建 (弓大 // 中手)
@@ -1369,6 +1383,7 @@ Triple-unit characters
   - 甥 (竹一 // 田大尸)
 - 青 (手一月) - blue, telescope
   - 晴 (日 // 手一月)
+  - 清 (水 // 手一月)
 - 積 (竹木 // 手一 // 金) - triple unit
   - 情 (心 // 手一月)
 
@@ -1429,6 +1444,9 @@ Triple-unit characters
 - 圖 (田口卜田) - map
   - 图 (田 // 竹水卜) - map
   - 図 (田卜大)
+
+- 因 (田大)
+- 囚 (田人)
 
 - 實 (十 // 田十 // 金) - triple unit
 
@@ -1563,6 +1581,7 @@ Triple-unit characters
 - 門 (日弓) - gate
   - 開 (日弓 // 一廿)
   - 簡 (竹 // 日弓日)
+  - 覵 (日月 // 月山山)
 - 门 (中戈尸)
   - 阊 (中尸 // 日日)
   - 间 (中尸 // 日)
