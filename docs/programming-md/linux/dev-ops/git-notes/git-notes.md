@@ -1411,6 +1411,7 @@ git rebase -i HEAD~2
 ```
 
 ```bash
+# stash both your tracked changes and your new, untracked files simultaneously.
 git stash -u
 * rebase as you wish
 git rebase -i HEAD~3

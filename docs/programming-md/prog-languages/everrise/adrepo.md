@@ -1,6 +1,6 @@
 # Adrepo Notes
 
-## Current Notes
+## Current Task
 
 kkk
 
@@ -32,8 +32,6 @@ table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết 
 - `m_input_platform_auth`
 
 ---
-
-gradle dùng để làm gì
 
 - table m_api_token
   - token_key vs. token_secret?
