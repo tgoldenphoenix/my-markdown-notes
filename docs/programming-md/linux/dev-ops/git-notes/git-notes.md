@@ -513,7 +513,7 @@ $ git log --oneline
 
 Our amended commit is now pushed to Github (notice the hash `8edb82c` is matching).
 
-### Reset
+### git reset
 
 Think of Git as content manager of three different trees (collection of files not the Tree Data Structure). Git will compare between these three trees & log information to the user.
 
@@ -758,7 +758,7 @@ $ git log --all --decorate --oneline --graph -8
 
 sau đó có thể pull `main` về, rebase  rồi push lại lên `origin`.
 
-### Demo reset repo về commit đầu tiên
+#### Demo reset repo về commit đầu tiên
 
 Chạy các câu lệnh sau
 
@@ -823,11 +823,15 @@ Repository trên backlog hiện tại chỉ còn duy nhất một  commit. Tất
 
 Repo sau khi hiện tại là empty không chứa file nào cả.
 
-### Git revert
+### git revert
 
 `git revert` takes a specified commit, invert its changes and appends a new commit with the resulting inverse content. The specified commits are **NOT** removed from history. `HEAD` sẽ nhảy lên cái inverse commit mới tạo ra.
 
 `git revert` undo only one specified commit each time it is run.
+
+- If you use `git reset` on code that your team has **already pulled down**, you will break the repository repository-wide for everyone, so:
+  - `git reset` is for Private History (Rewriting history)
+  - `git revert` is for Public History (Moving Forward Safely)
 
 `git revert HEAD` revert the last commit.
 
@@ -893,7 +897,7 @@ Amending a commit should be done only when you are working with the last commit.
 
 Normally Git commits the reversal immediately, but you can add the -n parameter to tell Git not to commit. This is useful when you need to revert multiple commits. Just run multiple git revert commands with the -n parameter, and Git stages all the changes and waits for you to commit them.
 
-You must provide it with a commit name so it knows what to revert. For example, if you wanted to revert the commit 540ecb7 and HEAD, use the following. Always revert backward—the most recent first. That makes sure you don’t have any unnecessary conflicts to work through when reverting multiple commits.
+You must provide it with a commit name so it knows what to revert. For example, if you wanted to revert the commit `540ecb7` and `HEAD`, use the following. Always revert backward—the most recent first. That makes sure you don’t have any unnecessary conflicts to work through when reverting multiple commits.
 
 ```bash
 prompt> git revert -n HEAD
@@ -1579,6 +1583,19 @@ By default, a new commit is created with the changes from that cherry-picked com
 
 This is OK in most cases, but what if the code you need is in several commits?  
 To cherry-pick multiple commits, give git cherry-pick the `-n` parameter. That tells Git to do the merge but stop before creating a commit.
+
+You can pick any individual commit from any branch. It does not matter if that commit is buried 10 levels deep or surrounded by other changes you don't want.
+
+```bash
+git cherry-pick <commit-hash>
+```
+
+Git doesn't look at the commits before or after it. It looks only at the specific diff (the exact lines added or removed) introduced by that single commit, computes those changes, and applies them directly to your current working branch.
+
+You cannot insert a cherry-picked commit between two existing commits. By design, Git is an append-only commit ledger. A standard git cherry-pick will always place the new commit at the very tip (the `HEAD`) of your current receiving branch.  
+However, if you must insert it between two existing commits, you can easily achieve this by combining a cherry-pick with an Interactive Rebase.
+
+`git cherry-pick` always **appends** the commit to the branch your HEAD is currently pointing to (your active working branch).
 
 ## Stash
 

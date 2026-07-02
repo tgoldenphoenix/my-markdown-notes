@@ -222,6 +222,7 @@ Triple-unit characters
   - 芳 (廿 // 卜竹尸)
   - 於 (卜尸 // 人卜)
   - 族 (卜尸 // 人人大) - banner
+  - 邊 (卜 // //  竹山 // 尸)
 - 万 (一尸) - ten thousand
 - 分 (金 // 尸竹) - divide
 
@@ -465,6 +466,8 @@ Triple-unit characters
 - 彧 (戈大口一)
 
 - 戊 (戈竹) - parade
+  - 戉 (戈女)
+  - 越 (土人 // 戈女) - surpass, việt
 - 咸 (戈竹一口) - march
   - 感 (戈口 // 心) - double unit
 - 成 (戈竹尸) - turn into
@@ -574,9 +577,11 @@ Triple-unit characters
 - 管 (竹十口口)
 - 話 (卜口 // 竹十口)
 
+- 彡 (竹竹竹) - shape
 - 形 (一廿 // 竹竹竹) - double unit
-  - 彡 (竹竹竹) - shape
   - 开 (一廿) - open
+- 影 (日火 // 竹竹竹)
+  - 景 (日 // 卜口火)
 
 - 宓 (十心竹)
 
@@ -747,9 +752,10 @@ Triple-unit characters
 
 - 中 = cloak (衤)
 - 衤 (戈弓中人) - cloak
-- 複 (中 // 人日水) - double unit, cloak
-  - 复 (人日竹水)
 - 褔 (中一口田)
+
+- 复 (人 // 日 // 竹水) - Double back
+  - 複 (中 // 人日水) - double unit, cloak
 
 - 礻 (戈弓火) - altar
 - 衣 (卜竹女)
@@ -788,9 +794,11 @@ Triple-unit characters
   - 瀰 (水 // 弓 // 一月) - triple unit
 
 - 京 (卜口火)
-- 少 (火竹) vs. 小 (弓金) - few, small
-  - 省 (火竹 // 月山)
+
+- 小 (弓金) - small
   - 孙 (弓木 // 火)
+- 少 (火竹) - few
+  - 省 (火竹 // 月山)
 
 - 尔 (弓火) - thou
   - 称 (竹木 // 弓火)
@@ -1155,6 +1163,7 @@ Triple-unit characters
   - 侍 (人 // 土木戈)
 
 - 也 (心木) - scorpion
+  - 地 (土 // 心木)
 - 世 (心廿) - generation
 - 弋 (戈心) - arrow
 - 右 (大口) => by one's side là 大; right
@@ -1308,8 +1317,10 @@ Triple-unit characters
 - 亥 (卜女竹人) - acorn
   - 刻 (卜人 // 中 // 弓)
 
-- 系 (竹女戈火) - lineage
+- 系 (竹女戈火) - lineage, DNA
   - 係 (人 // 竹女火) - double unit
+- 縣 (月火 // 竹女火)
+  - 县 (月一戈)
 
 - 甄 (一土 // 一女弓) - double unit
   - 瓦 (一女弓戈) - tile
@@ -1498,6 +1509,9 @@ Triple-unit characters
 - 睪 (田中 // 土廿十) - double unit
 - 眾 (田中 // 人人人)
 - 環 (一土 // 田中 // 女)
+
+- 畺 (一田一一)
+  - 疆 (弓土 // 一田一)
 
 ### Mouth 口
 

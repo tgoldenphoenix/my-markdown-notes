@@ -57,7 +57,7 @@ A [marlinspike](https://en.wikipedia.org/wiki/Marlinspike) (/ˈmɑːrlɪnspaɪk/
 
 [caulk](https://www.oxfordlearnersdictionaries.com/definition/english/caulk?q=caulk): to fill the holes in something, especially a ship, with a substance that keeps out water
 
-A [porthole](https://en.wikipedia.org/wiki/Porthole), sometimes called bull's-eye window or bull's-eye,[1] is a generally circular window used on the hull of ships to admit light and air. Though the term is of maritime origin, it is also used to describe round windows on armored vehicles, aircraft, automobiles (the Ford Thunderbird a notable example) and even spacecraft.\
+A [porthole](https://en.wikipedia.org/wiki/Porthole), sometimes called bull's-eye window or bull's-eye, is a generally circular window used on the hull of ships to admit light and air. Though the term is of maritime origin, it is also used to describe round windows on armored vehicles, aircraft, automobiles (the Ford Thunderbird a notable example) and even spacecraft.\
 **Scuttle** or sidescuttle, a synonym for a porthole, a circular window in a ship.
 
 [oar](https://www.oxfordlearnersdictionaries.com/definition/english/oar?q=oar): mái chèo xuồng; a long pole with a flat part at one end that is used for rowing a boat\
@@ -182,15 +182,15 @@ In some boats and ships, a [transom](https://en.wikipedia.org/wiki/Transom_(naut
 
 ## Rigging
 
-[Mast-head](http://www.powermobydick.com/Moby031.html): the three [men standing watch](http://ocw.mit.edu/ans7870/21l/21l.705/f03/studymaterials/melvilleimages/image4.html) at the top of the ship's three masts. Typically, each member of a watch would take a two-hour shift on the mast-head.  
+`Mast-head`: the three [men standing watch](http://ocw.mit.edu/ans7870/21l/21l.705/f03/studymaterials/melvilleimages/image4.html) at the top of the ship's three masts. Typically, each member of a watch would take a two-hour shift on the mast-head.  
 [Mast-head](http://www.powermobydick.com/Moby035.html): a duty assignment to spend at the top of the mast, watching for whales and perils
 
-A sailing vessel's [rig](https://en.wikipedia.org/wiki/Rig_(sailing)) is its arrangement of masts, sails and rigging. Examples include a schooner rig, cutter rig, junk rig, etc. A rig may be broadly categorized as "fore-and-aft", "square", or a combination of both.  
-**Rigging** comprises the system of ropes, cables and chains, which support and control a sailing ship or sail boat's masts and sails.
+A sailing vessel's `rig` is its arrangement of masts and sails. Examples include a schooner rig, cutter rig, junk rig, etc. A rig may be broadly categorized as "fore-and-aft", "square", or a combination of both.  
+`Rigging` comprises the system of ropes, cables and chains, which support and control a sailing ship or sail boat's masts and sails.
 
-[Standing rigging](https://en.wikipedia.org/wiki/Standing_rigging) comprises the fixed lines, wires, or rods, which support each mast or bowsprit on a sailing vessel and reinforce those spars against wind loads transferred from the sails. This term is used in contrast to running rigging, which represents the moveable elements of rigging which adjust the position and shape of the sails.
+`Standing rigging` comprises the fixed lines, wires, or rods, which support each mast or bowsprit on a sailing vessel and reinforce those spars against wind loads transferred from the sails. This term is used in contrast to running rigging, which represents the moveable elements of rigging which adjust the position and shape of the sails.
 
-[Shrouds](https://en.wikipedia.org/wiki/Shroud_(sailing)): sets of ropes that run from a ship's masts down to its sides, to hold the masts in place
+`Shrouds`: sets of ropes that run from a ship's masts down to its sides, to hold the masts in place
 
 [mizzen](https://www.oxfordlearnersdictionaries.com/definition/english/mizzen?q=mizzen): (specialist) the mast of a ship that is behind the main mast
 [mizzen shrouds](http://www.powermobydick.com/Moby034.html): the ropes connecting the third mast (from the front) to the ship's sides.
@@ -221,7 +221,7 @@ The masts of traditional sailing ships were not single spars, but were construct
 
 A [fore-and-aft rig](https://en.wikipedia.org/wiki/Fore-and-aft_rig) is a sailing vessel rig with sails set mainly along the line of the keel, rather than perpendicular to it as on a square rigged vessel.
 
-[Square rig](https://en.wikipedia.org/wiki/Square_rig) is a generic type of sail and rigging arrangement in which the primary driving sails are carried on horizontal spars which are perpendicular, or square, to the keel of the vessel and to the masts. These spars are called **yards** and their tips, outside the lifts, are called the **yardarms**. A ship mainly rigged so is called a square-rigger.
+`Square rig` is a generic type of sail and rigging arrangement in which the primary driving sails are carried on horizontal spars which are perpendicular, or square, to the keel of the vessel and to the masts. These spars are called **yards** and their tips, outside the lifts, are called the **yardarms**. A ship mainly rigged so is called a square-rigger.
 
 [Back the main-yard](http://www.powermobydick.com/Moby022.html): to arrange the horizontal pole (yard) at the top of the mainsail so that the sail catches the wind from the front. This is done to slow or stop the ship
 
@@ -254,9 +254,9 @@ A `sailing ship` (thuyền buồm) is a sea-going vessel that uses `sails` mount
 - craft: (formal) a boat or ship
   - sailing craft
 
-A `full-rigged ship` or fully rigged ship is a sailing vessel with a sail plan of three or more masts, all of them square-rigged. Such a vessel is said to have a ship rig or be ship-rigged, with each mast stepped in three segments: lower, top, and topgallant.
+A `full-rigged ship` or `fully rigged ship` is a sailing vessel with a sail plan of **three or more masts**, all of them square-rigged. Such a vessel is said to have a ship rig or be ship-rigged, with each mast stepped in three segments: lower, top, and topgallant.
 
-A [junk](https://en.wikipedia.org/wiki/Junk_%28ship%29) (Chinese: 船; pinyin: chuán) is a type of Chinese sailing ship characterized by a central rudder, an overhanging flat transom, watertight bulkheads, and a flat-bottomed design.
+A `junk` (Chinese: 船; pinyin: chuán) is a type of Chinese sailing ship characterized by a central rudder, an overhanging flat transom, watertight bulkheads, and a flat-bottomed design.
 
 [Barque](https://en.wikipedia.org/wiki/Barque): a sailing vessel with three or more masts that has square sails on all but the rearmost mast, and fore-and-aft sails on that one
 
