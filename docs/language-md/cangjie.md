@@ -179,6 +179,9 @@ Triple-unit characters
 - 登 (弓人 // 一口廿) - ascend
   - 燈 (火 // 弓人 // 廿) - triple unit
 
+- 卒 (卜 // 人人 // 十)
+- 雜 (卜木 // 人土)
+
 ### Corpse, flag 尸
 
 - snake
@@ -317,7 +320,7 @@ Triple-unit characters
 
 #### Bow 弓
 
-- 歹 (一弓戈) - evening
+- 歹 (一弓戈) - malicious, bones
   - 殃 (一弓 // 中月大)
   - 列 (一弓 // 中 // 弓)
 
@@ -679,7 +682,7 @@ Triple-unit characters
 - 厭 (一 // 日月 // 大) - triple unit
 
 - 夕 (弓戈) - evening
-- 歹 (一弓戈)
+- 歹 (一弓戈) - malicious, bones
 - 外 (弓戈卜)
 - 多 (弓戈弓戈)
   - 夠 (弓弓 // 心口)
@@ -847,7 +850,11 @@ Triple-unit characters
 - 巣 (火 // 田木) - owl
   - 単 (火田十)
 
-- 学 (火月 // 弓木)
+- 学 (火月 // 弓木) - School House
+  - 學 (竹月 // 弓木) - double unit, study
+- 瑩 (火火 // 月 // 一戈) - triple unit, HOT HOUSE
+- 劳 (廿 // 月 // 大尸) - GREEN HOUSE
+- 寬 (十 // 廿 // 月戈) - triple unit
 
 - 叔 (卜火水) - double unit, uncle
   - 寂 (十 // 卜火水)
@@ -1309,6 +1316,7 @@ Triple-unit characters
   - 總 (女火 // 竹田 // 心) - triple unit character, only take F+L of the first unit 糹
   - 紅 (女火 // 一)
   - 細 (女火 // 田)
+- 變 (女火 // 人大)
 - 綠 (女火 // 女弓水)
   - 緑 (女火 // 弓一水)
   - 绿 (女一 // 弓一水)
@@ -1353,6 +1361,8 @@ Triple-unit characters
 - 表 (手一女)
 
 - 看 (竹手 // 月山)
+- 着 (廿手 // 月山) - wool
+- 差 (廿手一)
 
 - 夫 (手人) - father, husband
 
@@ -1527,6 +1537,9 @@ Triple-unit characters
 
 - 品 (口口口)
   - 操 (手 // 口口 // 木) - triple unit
+
+- 古 (十口) - ancient
+- 固 (田十口)
 
 ### Ground 土
 
