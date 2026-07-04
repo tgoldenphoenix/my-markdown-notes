@@ -527,10 +527,13 @@ Triple-unit characters
   - 黛 (人心 // 田土火)
     - 黑 (田土 // 火) - double unit
   - 膩 (月 // 戈心 // 金) - triple unit
-- 氏 (竹女心) - family name
-  - 民 (口女心)
 - 武 (一心 // 卜中一) - double unit, quiver
   - 賦 (月金 // 一心 // 一) - triple unit
+
+- 氏 (竹女心) - family name
+  - 民 (口女心)
+- 氐 (竹心 // 一) - double unit, Business card
+  - 低 (人 // 竹心 // 一) - triple unit
 
 - 世 (心廿)
 - 也 (心木)
@@ -623,7 +626,7 @@ Triple-unit characters
   - 佩 (人 // 竹弓 // 月) - triple unit
 - 帝 (卜月中月) - emperor
   - 啼 (口卜月月)
-- 制 (竹月 // 中 // 弓)
+- 制 (竹月 // 中 // 弓) - system
 
 - 帶 (大心 // 月中月) - sash
   - 带 (廿十 // 月中月)
@@ -634,6 +637,9 @@ Triple-unit characters
 
 - 內 (人月) - inside
 - 肉 (人月人) - meat
+
+- 离 (卜 // 山大 // 月) - oddjob, detach
+  - 璃 (一土 // 卜 // 山月) - triple unit
 
 - 且 (月一) - book shelf
 - 目 (月山) - eye
@@ -790,6 +796,9 @@ Triple-unit characters
 
 - 而 (一月中中) - comb
 
+- 漢 (水 // 廿中人) - scarecrow
+- 嘆 (口 // 廿中人)
+
 ### Fire 火
 
 - 爾 (一火月大) - thou
@@ -856,8 +865,10 @@ Triple-unit characters
 - 劳 (廿 // 月 // 大尸) - GREEN HOUSE
 - 寬 (十 // 廿 // 月戈) - triple unit
 
-- 叔 (卜火水) - double unit, uncle
-  - 寂 (十 // 卜火水)
+- 叔 (卜火 // 水) - double unit, uncle
+  - 寂 (十 // 卜火 // 水)
+- 上 (卜一) - above
+- 卡 (卜一卜)
 
 - 求 (戈十水) - request
 
@@ -972,6 +983,7 @@ Triple-unit characters
 
 - 莫 (廿日大) - graveyard
   - 模 (木 // 廿日大)
+  - 寞 (十 // 廿日大)
 
 #### One `一`
 
@@ -1064,6 +1076,10 @@ Triple-unit characters
 - 隨 (弓中 // 卜 // 大月) - triple unit
   - 髓 (月月 // 卜 // 大月)
 - 若 (廿大口)
+
+- 友 (大水) - friend
+  - 拔 (手 // 戈大大)
+- 反 (竹水) - anti, against
 
 - 九 (大弓) - nine
 - 丸 (大弓戈) - bottle of pills
@@ -1251,12 +1267,15 @@ Triple-unit characters
 
 - 雨 (一中月卜) - 卜 is two dấu phết, rain
   - 巾 (中月) - towel
-- 冰 (戈一水) vs. 冬 (竹水卜) & 科 (竹木 // 卜十) - winter
+- 冰 (戈一水) vs. 科 (竹木 // 卜十)
 - 图 (田 // 竹水卜) - map
   - 図 (田卜大)
 - 斗 (卜十) - big dipper
 - 头 (卜大) - bust
 - 於 (卜尸 // 人卜)
+
+- 冬 (竹水卜) - winter
+  - 終 (女火 // 竹水卜)
 
 - 实 (十卜大)
 - 實 (十田十金)
@@ -1265,6 +1284,7 @@ Triple-unit characters
   - 趣 (土人 // 尸十 // 水) - triple unit
   - 起 (土人 // 尸山)
   - 超 (土人 // 尸竹 // 口) - triple unit
+- 足 (口卜人) - peg leg
 
 - 是 (日 // 一卜人) - double unit
 - 𤴓 (一卜人)
@@ -1361,8 +1381,9 @@ Triple-unit characters
 - 表 (手一女)
 
 - 看 (竹手 // 月山)
-- 着 (廿手 // 月山) - wool
-- 差 (廿手一)
+- ⺶ (廿手) - wool
+  - 着 (廿手 // 月山)
+  - 差 (廿手 // 一)
 
 - 夫 (手人) - father, husband
 
@@ -1422,6 +1443,7 @@ Triple-unit characters
 - 牛 (竹手) - cow
   - 特 (竹手 // 土 // 木戈) - triple unit
   - 牡 (竹手 // 土)
+- 制 (竹月 // 中 // 弓) - system
 
 - 告 (竹土 // 口) - revelation, declare
   - 造 (卜 // 竹土口)
@@ -1539,7 +1561,8 @@ Triple-unit characters
   - 操 (手 // 口口 // 木) - triple unit
 
 - 古 (十口) - ancient
-- 固 (田十口)
+  - 固 (田十口)
+  - 苦 (廿 // 十口)
 
 ### Ground 土
 
