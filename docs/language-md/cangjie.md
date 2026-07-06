@@ -140,7 +140,11 @@ Triple-unit characters
 
 - 仁 (人一一)
 
-- 從 (竹人 // 人人 // 人) - triple unit
+- 從 (竹人 // 人人 // 人) - triple unit, accompany
+- 緃 (女火 // 人人 // 人)
+  - 縱 (女火 // 竹人 // 人) - vertical
+- 然 (月大 // 火) - double unit, flesh
+
 - 德 (竹人 // 十田心)
 
 - 豪 (卜口月人)
@@ -683,6 +687,7 @@ Triple-unit characters
   - 稱 (竹木 // 月土月)
 - 冓 (廿廿土月) - funnel
   - 講 (卜口 // 廿廿月)
+- 角 (弓月土) - angle
 
 - 寒 (十 // 廿金 // 卜) - triple unit, celery
 - 襄 (卜口口女) - Grass skirt
@@ -723,8 +728,8 @@ Triple-unit characters
 - 同 (月一口) - same
   - 洞 (水 // 月一口) - cave
 
-- 典 (廿月金) - code, canon
-- 曲 (廿田) - bent, bend
+- 典 (廿月金) - code, canon, điến
+- 曲 (廿田) - bent, bend, khúc
   - 體 (月月 // 廿田 // 廿) - triple unit, body
 
 - 運 (卜 // 月 // 十十) - triple unit
@@ -926,7 +931,8 @@ Triple-unit characters
 - 百 (一日) - hundred
 
 - 業 (廿金廿木) - profession
-- 並 (廿廿金)
+  - 业 (難廿金)
+- 並 (廿廿金) - row
 - 對 (廿土 // 木戈)
 
 - 关 (廿大)
@@ -964,6 +970,8 @@ Triple-unit characters
 - 形 (一廿 // 竹竹竹) - double unit
   - 彡 (竹竹竹) - shape
   - 开 (一廿) - open
+- 刑 (一廿 // 中弓)
+  - 型 (一弓 // 土) - double unit
 
 - 井 (廿廿) - well
   - 进 (卜 // 廿廿)
@@ -1075,11 +1083,16 @@ Triple-unit characters
   - 落 (廿 // 水 // 竹口) - triple unit
 - 格 (木 // 竹水 // 口)
 
+- 雙 (人土水)
+  - 双 (難水水)
+
 - 攵 (人大) - taskmaster
   - 故 (十口 // 人大)
   - 做 (人 // 十口 // 大)
-- 文 (卜大) - literature
 - 矢 (人大) - dart
+
+- 文 (卜大) - literature
+  - 这 (卜 // 卜大)
 
 - 求 (戈十水) - request
 - 彔 (女弓一水) - broom
@@ -1125,6 +1138,9 @@ Triple-unit characters
 
 - 又 (弓大) - crotch, again
 - 故 (十口 // 人大)
+
+- 文 (卜大) - literature
+  - 这 (卜 // 卜大)
 
 - 矢 (人大) - dart
   - 欸 (戈大 // 弓人)
@@ -1283,6 +1299,13 @@ Triple-unit characters
 - 華 (廿 // 一廿十) - splendor
   - 譁 (卜口 // 廿一十)
 
+- 末 (木十) - extremity, mạt
+  - 抹 (手 // 木十)
+- 未 (十木) - not yet, vị
+  - 妹 (女 // 十木)
+- 朱 (竹十木) - vermilion, chu
+  - 姝 (女 // 竹十木)
+
 ### Fortune/divine Telling 卜
 
 - 通 (卜 // 弓戈月) - road
@@ -1387,6 +1410,7 @@ Triple-unit characters
 
 - 系 (竹女戈火) - lineage, DNA
   - 係 (人 // 竹女火) - double unit
+  - 孫 (弓木 // 竹女火)
 - 縣 (月火 // 竹女火)
   - 县 (月一戈)
 
@@ -1418,7 +1442,7 @@ Triple-unit characters
 
 - 牙 (一女木竹) - tusk
 
-- 表 (手一女)
+- 表 (手一女) - surface, express
 
 - 看 (竹手 // 月山)
 - ⺶ (廿手) - wool
@@ -1463,6 +1487,7 @@ Triple-unit characters
 - 生 (竹手一) - life, cell
   - 隆 (弓中 // 竹水 // 一) - triple unit
   - 甥 (竹一 // 田大尸)
+  - 性 (心 // 竹手一)
 - 青 (手一月) - blue, telescope
   - 晴 (日 // 手一月)
   - 清 (水 // 手一月)
@@ -1577,12 +1602,13 @@ Triple-unit characters
 - 夢 (廿 // 田中 // 弓) - dream
   - 梦 (木木 // 弓戈)
 - 還 (卜 // 田中女)
-- 褱 (卜 // 田中 // 女) - triple unit
-  - 懷 (心 // 卜田女) - double unit, reminisce
 - 澤 (水 // 田中 // 十) - triple unit, espionage
 - 睪 (田中 // 土廿十) - double unit
 - 眾 (田中 // 人人人)
 - 環 (一土 // 田中 // 女)
+
+- 褱 (卜 // 田中 // 女) - triple unit, Darth vader
+  - 懷 (心 // 卜田女) - double unit, reminisce
 
 - 畺 (一田一一)
   - 疆 (弓土 // 一田一)
@@ -1705,6 +1731,7 @@ Triple-unit characters
   - 護 (卜口 // 廿人水)
   - 獲 (大竹 // 廿人水)
 - 雙 (人土水)
+  - 双 (難水水)
 
 - 亡 (卜女) - deceased
   - 吂 (卜女 // 口)
