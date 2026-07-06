@@ -13,3 +13,7 @@ The regex `[0-9]` matches single-digit numbers 0 to 9. `[1-9][0-9]` matches doub
 As an example, we will try to build a regular expression that can match any floating point number. Our regex should also match integers and floating point numbers where the integer part is not given.
 
 When creating a regular expression, it is more important to consider what it should not match, than what it should.
+
+## So sánh field tiktok
+
+VS Code: `,(?!\[\s0])` => replace with `\n`
