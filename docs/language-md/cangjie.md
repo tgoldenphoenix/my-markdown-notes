@@ -191,6 +191,10 @@ Triple-unit characters
 - 卒 (卜 // 人人 // 十)
 - 雜 (卜木 // 人土)
 
+- 冰 (戈一 // 水) - ice
+- 冷 (戈一 // 人 // 戈戈) - triple unit, cold
+- 弱 (弓一 // 弓戈一)
+
 ### Corpse, flag 尸
 
 - snake
@@ -263,7 +267,7 @@ Triple-unit characters
 
 - 耳 (尸十) - ear
   - 聲 (土水 // 尸十) - double unit character
-  - 聰 (尸十 // 竹田心)
+  - 聰 (尸十 // 竹田 // 心) - triple unit
 - 最 (日尸十水)
 - 敢 (一十 // 人大) or (弓十 // 人大) - daring
 
@@ -337,7 +341,7 @@ Triple-unit characters
 
 - 通 (卜 // 弓戈月) - chop seal; double unit, take F2+L of second unit
   - 甬 (弓戈月手) - pogo stick
-- 色 (弓日山)
+- 色 (弓日山) - color
 
 - 子 (弓木); - children
   - 好 (女 // 弓木)
@@ -377,6 +381,7 @@ Triple-unit characters
 - 侯 (人弓一大) - marquis
 
 - 丁 (一弓) - spike, nail
+  - 頂 (一弓 // 一月金)
 - 𡨸 (十弓十弓木)
 - 何 (人 一弓口) - what
 
@@ -611,6 +616,10 @@ Triple-unit characters
 
 - 眉 (日竹 // 月山) - divided flag, eyebrow
 
+### Sun 日
+
+- 明 (日月)
+
 ### Moon 月
 
 - 卜 = hat
@@ -622,6 +631,9 @@ Triple-unit characters
 - 愛 (月月心水) - single unit, love
 - 隱 (弓中 // 月一心) - double unit, take F2+L of the second unit
   - 隐 (弓中 // 弓尸心)
+
+- 豸 (月尸竹竹) - skunk
+  - 貌 (月竹 // 竹日山)
 
 - 骨 (月月月) - skeleton
   - 體 (月月 // 廿田 // 廿) - triple unit, body
@@ -655,6 +667,8 @@ Triple-unit characters
 
 - 內 (人月) - inside
 - 肉 (人月人) - meat
+- 丙 (一人月)
+  - sick bed: 病 (大 // 一人月)
 
 - 离 (卜 // 山大 // 月) - oddjob, detach
   - 璃 (一土 // 卜 // 山月) - triple unit
@@ -701,6 +715,7 @@ Triple-unit characters
   - 万 (一尸)
 - 虫 (中一戈) - insect
   - 蟠 (中戈 // 竹木 // 田) - triple unit
+  - 風 (竹弓 // 竹中戈) - double unit, wind
 
 - 然 (月大 // 火) - double unit, flesh
   - 犬 (戈大)
@@ -744,6 +759,7 @@ Triple-unit characters
 ### Middle 中
 
 - 事 (十中中弓) - rake
+- 捷 (手 // 十中人)
 - 肅 (中難)
 - 爭 (月 // 尸木)
 
@@ -1040,8 +1056,6 @@ Triple-unit characters
   - 㐱 (人 // 竹竹竹)
 - 兆 (中一山人) - turtle shell
 
-- 白 (竹日)
-
 - 場 (土 // 日 // 一竹) - triple unit
 - 勿 (心竹竹)
 
@@ -1056,6 +1070,18 @@ Triple-unit characters
   - 院 (弓中 // 十 // 一山) - triple unit
 - 光 (火一山) - ray
 
+- 頁 (一月山金) - page
+  - 頭 (一廿 // 一月金)
+  - 豆 (一口廿) - table, bean
+- 首 (廿竹月山) - neck, head
+  - 道 (卜 // 廿竹山) - double unit, road
+- 百 (一日) - hundred
+- 白 (竹日)
+
+- 冰 (戈一 // 水) - ice
+- 冷 (戈一 // 人 // 戈戈) - triple unit, cold
+- 弱 (弓一 // 弓戈一)
+
 ### 水, 大, 木
 
 #### Water 水
@@ -1067,6 +1093,7 @@ Triple-unit characters
 
 - 冰 (戈一 // 水) - ice
 - 冷 (戈一 // 人 // 戈戈) - triple unit, cold
+- 弱 (弓一 // 弓戈一)
 
 - 法 (水 // 土戈)
 
@@ -1207,6 +1234,9 @@ Triple-unit characters
 - 膺 (戈 // 人土 // 月)
 
 - sick bed: 病 (大 // 一人月)
+- 丙 (一人月)
+- 內 (人月) - inside
+- 肉 (人月人) - meat
 
 #### Tree, wood 木
 
@@ -1273,6 +1303,8 @@ Triple-unit characters
 
 - 禾 (竹木) - wheat
   - 香 (竹 // 木日)
+- 秋 (竹木 // 火)
+  - 愁 (竹火 // 心) - double unit
 
 ### Ten 十
 
@@ -1531,6 +1563,8 @@ Triple-unit characters
 - 巳 (口山) - sign of the snake
 - 巴 (日山) - mosaic
   - 吧 (口 // 日山)
+- 色 (弓日山) - color
+  - 絕 (女火 // 尸竹 // 山) - triple unit
 
 - 屰 (廿山) - mountain goat
   - 塑 (廿月 // 土)
@@ -1612,6 +1646,9 @@ Triple-unit characters
 
 - 畺 (一田一一)
   - 疆 (弓土 // 一田一)
+
+- 悤 (竹田 // 心) - Microchip vaccine 5G
+  - 聰 (尸十 // 竹田 // 心) - triple unit
 
 ### Mouth 口
 

@@ -6,10 +6,12 @@ Numpy = numerical Python
 
 `ndarray` = n-dimensional array
 
+These arrays are homogeneous, meaning they contain elements of the same data type, which allows for optimized storage and computation.
+
 ## Basics
 
 - NumPy arrays have a **fixed size** at creation, unlike Python lists (which can grow dynamically). Changing the size of an ndarray will create a new array and delete the original.
-- The elements in a NumPy array are all required to be of the same data type, and thus will be the same size in memory. 
+- The elements in a NumPy array are all required to be of the same data type, and thus will be the same size in memory.
 
 ## Axes
 
@@ -39,10 +41,10 @@ Khi print 3D array thì nó print last axis (Oz) top to bottom
 ## `ndarray`
 
 - attributes of an `ndarray` object:
-  * `ndarray.ndim`: the number of axes (dimensions) of the array.
-  * `ndarray.shape`: the dimensions of the array. This is a tuple of integers indicating the size of the array in each dimension. For a matrix with n rows and m columns, `shape` will be `(n,m)` or `(row, column)`. The length of the `shape` tuple is therefore the number of axes, ndim.
-  * `ndarray.size`: the total number of elements of the array. This is equal to the product of the elements of `shape`.
-  * `ndarray.dtype`: an object describing the type of the elements in the array. One can create or specify dtype’s using standard Python types. Additionally NumPy provides types of its own. numpy.int32, numpy.int16, and numpy.float64 are some examples.
+  - `ndarray.ndim`: the number of axes (dimensions) of the array.
+  - `ndarray.shape`: the dimensions of the array. This is a tuple of integers indicating the size of the array in each dimension. For a matrix with n rows and m columns, `shape` will be `(n,m)` or `(row, column)`. The length of the `shape` tuple is therefore the number of axes, ndim.
+  - `ndarray.size`: the total number of elements of the array. This is equal to the product of the elements of `shape`.
+  - `ndarray.dtype`: an object describing the type of the elements in the array. One can create or specify dtype’s using standard Python types. Additionally NumPy provides types of its own. numpy.int32, numpy.int16, and numpy.float64 are some examples.
 
 ```python
 # 3 rows, 5 columns
@@ -56,3 +58,4 @@ array([[ 0,  1,  2,  3,  4],
 ---
 
 `.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)` or `.reshape(number of row, number of column, height)`
+

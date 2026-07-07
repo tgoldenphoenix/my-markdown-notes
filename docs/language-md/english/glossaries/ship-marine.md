@@ -192,12 +192,12 @@ A sailing vessel's `rig` is its arrangement of masts and sails. Examples include
 
 `Shrouds`: sets of ropes that run from a ship's masts down to its sides, to hold the masts in place
 
-[mizzen](https://www.oxfordlearnersdictionaries.com/definition/english/mizzen?q=mizzen): (specialist) the mast of a ship that is behind the main mast
-[mizzen shrouds](http://www.powermobydick.com/Moby034.html): the ropes connecting the third mast (from the front) to the ship's sides.
+`mizzen`: (specialist) the mast of a ship that is behind the main mast
+`mizzen shrouds`: the ropes connecting the third mast (from the front) to the ship's sides.
 
-mizzenmast: The largest and, perhaps, most important mast. It is the third mast or the mast aft of a mainmast on a ship having three or more masts.
+`mizzenmast`: The largest and, perhaps, most important mast. It is the third mast or the mast aft of a mainmast on a ship having three or more masts.
 
-[Brace](http://www.powermobydick.com/Moby034.html): a rope used to rotate a square sail on its mast, to change the sail's position relative to the wind
+`Brace`: a rope used to rotate a square sail on its mast, to change the sail's position relative to the wind
 
 [cordage](https://www.google.com/search?client=firefox-b-d&q=cordage): cords or ropes, especially in a ship's rigging.
 

@@ -14,6 +14,7 @@ AI includes components beyond just machine learning, such as natural language pr
 - Machine Learning (ML): This is a specialized circle inside AI. Instead of a human writing every single rule (if-then statements), the machine uses statistical models to learn patterns from data and make predictions.
 - Deep Learning (DL): A smaller circle inside ML that uses Neural Networks (like a digital brain) to handle massive, complex data like photos and speech
 
-## Machine Learning vs Deep Learning
+## Types of Machine Learning
 
-k
+Machine learning algorithms learn from data to make predictions or decisions. These algorithms are broadly categorized into supervised, unsupervised, and reinforcement learning.
+
