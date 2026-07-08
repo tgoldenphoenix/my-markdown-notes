@@ -37,6 +37,10 @@ A best practice among Python developers is to use a project-specific virtual env
 
 ## `uv` Commands
 
+`uv python list`
+
+`uv python install 3.10`
+
 `pip` install packages
 
 `venv` (or virtual env) for creating virtual environment

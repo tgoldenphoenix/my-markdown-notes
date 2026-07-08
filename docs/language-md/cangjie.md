@@ -62,6 +62,7 @@ Triple-unit characters
 - 貢 (一月山金)
 
 - 金 is 儿 in compound
+  - 儿 (中山) - er, child
 - 穴 (十金) - animal leg
   - 空 (十金 // 一) double unit character
 
@@ -227,6 +228,7 @@ Triple-unit characters
   - 长 (心人)
 - 張 (弓 // 尸一女)
   - 张 (弓心人)
+- 辰 (一一一女) - sign of the dragon
 
 - 刀 (尸竹) vs. 刃 (尸竹戈) - blade, sword, dagger
   - 昭 (日 // 尸竹口)
@@ -344,6 +346,8 @@ Triple-unit characters
 - 倉 (人 // 戈 // 日口) - triple unit, godown
   - 創 (人口 // 中 // 弓) - triple unit
 
+- 屓 (尸 // 月山金)
+
 ### 弓, 戈, 心, 竹
 
 #### Bow 弓
@@ -358,6 +362,7 @@ Triple-unit characters
 
 - 子 (弓木); - children
   - 好 (女 // 弓木)
+  - 字 (十 // 弓木)
 - 了 (弓弓) - completed
   - 辽 (卜 // 弓弓)
 - 享 (卜口弓木) - receive
@@ -499,11 +504,30 @@ Triple-unit characters
 - 戊 (戈竹) - parade
   - 戉 (戈女)
   - 越 (土人 // 戈女) - surpass, việt
-- 咸 (戈竹一口) - march
-  - 感 (戈口 // 心) - double unit
 - 成 (戈竹尸) - turn into
   - 城 (土 // 戈竹尸) - castle
+- 戚 (戈竹 // 卜一火) - double unit
+  - 蹙 (戈火 // 口卜人) - double unit
+  - 尗 (卜一火)
+
+- 咸 (戈竹 // 一口) - march
+  - 感 (戈口 // 心) - double unit
+- 鹹 (卜田 // 戈竹 // 口) - triple unit
+  - 鹵 (卜田戈戈) - Rock salt
+
 - 裁 (十戈 // 卜竹女)
+- 幾 (女戈 // 竹戈)
+- 𢦏 (十戈) - Thanksgiving
+  - 裁 (十戈 // 卜竹女)
+  - 戴 (十戈 // 田廿金) - double unit
+- 韭 (中尸一一) - leek
+- 㦰 (人人戈)
+- 韱 (人戈 // 中尸一) - double unit, anime convention
+- 籤 (竹 // 人戈 // 一) - triple unit
+
+- 戠 (卜日戈) - kazoo
+  - 識 (卜口 // 卜戈 // 日) - triple unit
+  - 織 (女火 // 卜戈 // 日) - triple unit
 
 - 戈
   - 伐 (人戈) - fell
@@ -524,19 +548,6 @@ Triple-unit characters
 
 - 我 (竹手戈)
   - 哦 (口 // 竹手戈)
-
-- 幾 (女戈 // 竹戈)
-- 𢦏 (十戈) - Thanksgiving
-  - 裁 (十戈 // 卜竹女)
-  - 戴 (十戈 // 田廿金) - double unit
-- 韭 (中尸一一) - leek
-- 㦰 (人人戈)
-- 韱 (人戈 // 中尸一) - double unit, anime convention
-- 籤 (竹 // 人戈 // 一) - triple unit
-
-- 戠 (卜日戈) - kazoo
-  - 識 (卜口 // 卜戈 // 日) - triple unit
-  - 織 (女火 // 卜戈 // 日) - triple unit
 
 - 九 (大弓) - nine
   - 丸 (大弓戈) - bottle of pills
@@ -646,6 +657,7 @@ Triple-unit characters
 
 - 豸 (月尸竹竹) - skunk
   - 貌 (月竹 // 竹日山)
+- 稱 (竹木 // 月土月)
 
 - 骨 (月月月) - skeleton
   - 體 (月月 // 廿田 // 廿) - triple unit, body
@@ -714,6 +726,7 @@ Triple-unit characters
 - 冓 (廿廿土月) - funnel
   - 講 (卜口 // 廿廿月)
 - 角 (弓月土) - angle
+  - 嘴 (口 // 卜心 // 月) - triple unit
 
 - 寒 (十 // 廿金 // 卜) - triple unit, celery
 - 襄 (卜口口女) - Grass skirt
@@ -859,6 +872,8 @@ Triple-unit characters
 - 州 (戈中戈中) - châu
 - 巢 (女女 // 田木) - stream
 
+- 儿 (中山) - er, child
+
 ### Fire 火
 
 - 爾 (一火月大) - thou
@@ -931,6 +946,7 @@ Triple-unit characters
   - 寂 (十 // 卜火 // 水)
 - 上 (卜一) - above
 - 卡 (卜一卜)
+- 尗 (卜一火)
 
 - 求 (戈十水) - request
 
@@ -1431,8 +1447,13 @@ Triple-unit characters
 
 - 衣 (卜竹女) - garment
   - 表 (手一女)
-- 長 (尸一女) - long
 - 良 (戈日女)
+- 辰 (一一一女) - sign of the dragon
+
+- 長 (尸一女) - long, mane
+  - 长 (心人)
+- 張 (弓 // 尸一女)
+  - 张 (弓 // 心人)
 
 - 以 (女戈人)
 - 糹 = 糸 = 女戈火 - thread
@@ -1556,6 +1577,7 @@ Triple-unit characters
 - 牛 (竹手) - cow
   - 特 (竹手 // 土 // 木戈) - triple unit
   - 牡 (竹手 // 土)
+  - 件 (人 // 竹手)
 - 制 (竹月 // 中 // 弓) - system
 
 - 告 (竹土 // 口) - revelation, declare
@@ -1668,6 +1690,9 @@ Triple-unit characters
 - 悤 (竹田 // 心) - Microchip vaccine 5G
   - 聰 (尸十 // 竹田 // 心) - triple unit
 
+- 卑 (竹竹十) - lowly
+  - 顰 (卜金 // 竹竹十) - double unit
+
 ### Mouth 口
 
 - 営 (火月 // 口竹口)
@@ -1715,6 +1740,7 @@ Triple-unit characters
 
 - 臼 (竹難) - mortar
 - 兒 (竹難竹山) - single unit
+  - 儿 (中山) - er, child
 - 寫 (十 // 竹難火)
 - 與 (竹難卜金) - single unit, F3+L
 - 興 (竹難月金)
