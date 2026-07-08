@@ -73,6 +73,8 @@ Triple-unit characters
 - 酉 (一金田一) - whisky
   - 酌 (一田 // 心戈)
   - 酒 (水 // 一金田)
+- 酋 (廿金田一) - chieftain
+  - 尊 (廿田 // 木戈) - double unit
 
 - 喬 (竹大 // 口 // 月口)
   - 乔 (竹大中中) - angel
@@ -87,7 +89,7 @@ Triple-unit characters
 - 覆 (一田 // 竹人 // 水) - triple unit
 - 甄 (一土 // 一女弓)
 
-- 四 (田金)
+- 四 (田金) - number four
 - 陸 (弓中 // 土金土)
 
 - 尤 (戈大山) - Frankenpooch
@@ -115,6 +117,12 @@ Triple-unit characters
 - 曾 (金 // 田 // 日) - increase
   - 僧 (人 // 金田日) - monk
 
+- 谷 (金人口) - valley
+  - 卻 (金口 // 尸中)
+  - 俗 (人 // 金人口)
+  - 容 (十 // 金人口)
+- 沿 (水金口) - gully
+
 #### Meeting
 
 - 會 (人 // 一 // 田日) - triple-unit character (only take the F+L of the 3rd unit)
@@ -134,7 +142,9 @@ Triple-unit characters
 
 - 今 (人戈弓) - clock
   - 念 (人 // 戈 // 弓心) - triple unit
+  - 仱 (人 // 人 // 戈弓)
 - 令 (人 // 戈 // 弓戈) - order
+  - 伶 (人 // 人 // 戈戈) - triple unit
 
 #### Human, Person 人
 
@@ -154,6 +164,9 @@ Triple-unit characters
 - 飞 (弓人) - fly
 - 衤 (戈弓中人) - cloak
 - 长 (心人)
+
+- 豸 (月尸竹竹) - skunk
+  - 貌 (月竹 // 竹日山)
 
 - 久 (弓人)
   - 𥹰 (火女 // 弓人)
@@ -369,6 +382,7 @@ Triple-unit characters
 - 鳳 (竹弓 // 一日火) - phoenix
   - 鳥 (竹日卜火) - bird
   - 凤 (竹弓水)
+
 - 飞 (弓人)
   - 飛 (弓人 // 竹廿人) - fly
 - 气 (人一弓) - air
@@ -412,9 +426,7 @@ Triple-unit characters
 - 卩 (尸中) - postage stamp
   - 節 (竹 // 日戈 // 中) - triple unit
   - 即 (日戈 // 尸中)
-- 谷 (金人口) - valley
   - 卻 (金口 // 尸中)
-  - 俗 (人 // 金人口)
 
 - 㔾 (尸山) - fingerprint
   - 苑 (廿 // 弓戈 // 山) - triple unit
@@ -452,7 +464,7 @@ Triple-unit characters
 #### Halberd, fiesta (戈)
 
 - 公 (金戈)
-- 強 (弓 // 戈中戈)
+- 強 (弓 // 戈 // 中戈) - triple unit
   - 虫 (中一戈) - insect
 - 轉 (十十 // 十戈 // 戈) - triple unit
 - 虽 (口中一戈) - although
@@ -1209,6 +1221,7 @@ Triple-unit characters
   - 所 (竹尸 // 竹一中)
   - 芹 (廿 // 竹一中)
   - 新 (卜木 // 竹一中)
+  - 質 (竹中 // 月山金) - double unit
 - 后 (竹一口) - queen
 
 - 一 = 厂 (Cliff)
@@ -1466,6 +1479,9 @@ Triple-unit characters
 - 丂 (一女尸) - snare
   - 號 (口尸 // 卜心山) - snare
 
+- 牙 (一女木竹) - tusk
+  - 呀 (口 // 一女竹)
+
 ### Hand 手
 
 - 韋 (木一 // 口手) - locket
@@ -1568,6 +1584,8 @@ Triple-unit characters
 
 - 屰 (廿山) - mountain goat
   - 塑 (廿月 // 土)
+
+- 齒 (卜一 // 山 // 人人) - shovel
 
 ### Rice Field 田
 
@@ -1758,6 +1776,7 @@ Triple-unit characters
   - 虍 (tiger radical) (卜心)
 - 處 (卜心 // 竹水弓)
 - 號 (口尸 // 卜心山) - snare
+- 戲 (卜廿 // 戈) - double unit
 
 - 隹 (人土) - turkey
   - 應 (戈 // 人土 // 心) - triple unit
