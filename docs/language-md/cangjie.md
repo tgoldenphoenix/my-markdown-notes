@@ -118,11 +118,13 @@ Triple-unit characters
 
 - 曾 (金 // 田 // 日) - increase
   - 僧 (人 // 金田日) - monk
+  - 贈 (月金 // 金田日)
 
 - 谷 (金人口) - valley
   - 卻 (金口 // 尸中)
   - 俗 (人 // 金人口)
-  - 容 (十 // 金人口)
+- 容 (十 // 金人口)
+  - 蓉 (廿 // 十 // 金口)
 - 沿 (水金口) - gully
 
 #### Meeting
@@ -214,10 +216,16 @@ Triple-unit characters
 
 ### Corpse, flag 尸
 
-- snake
-- 己 (尸山) vs. 已 (尸山) same
+- 己 (尸山) - snake
   - 巳 (口山) - sign of the snake
   - 記 (卜口 // 尸山)
+  - 妃 (女 // 尸山)
+- 已 (尸山)
+- 㔾 (尸山) - fingerprint
+  - 苑 (廿 // 弓戈 // 山) - triple unit
+  - 鴛 (弓山 // 竹日火) - double unit
+- 卩 (尸中) - postage stamp
+
 - 灵 (尸一 // 火)
   - 𠴌 (口 // 尸一火)
 
@@ -238,6 +246,8 @@ Triple-unit characters
   - 認 (卜口 // 尸戈 // 心) - triple unit
   - 留 (竹竹 // 田) - letter openner
   - 分 (金 // 尸竹) - divide, parts
+- 召 (尸竹 // 口) - seduce
+  - 紹 (女火 // 尸竹 // 口)
 
 - 創 (人口 // 中弓) - saber
 - 前 (廿 // 月 // 中弓) - triple unit
@@ -256,6 +266,7 @@ Triple-unit characters
   - 芳 (廿 // 卜竹尸)
   - 於 (卜尸 // 人卜)
   - 族 (卜尸 // 人人大) - banner
+  - 旅 (卜尸 // 人竹女) - group of people
   - 邊 (卜 // //  竹山 // 尸)
 - 万 (一尸) - ten thousand
 - 分 (金 // 尸竹) - divide
@@ -286,6 +297,7 @@ Triple-unit characters
 - 耳 (尸十) - ear
   - 聲 (土水 // 尸十) - double unit character
   - 聰 (尸十 // 竹田 // 心) - triple unit
+  - 取 (尸十 // 水)
 - 最 (日尸十水)
 - 敢 (一十 // 人大) or (弓十 // 人大) - daring
 
@@ -412,6 +424,7 @@ Triple-unit characters
 - 行 (竹人 // 一一弓) - column, boulevard, queue
   - 衡 (竹人 // 弓大 // 弓) - triple unit
   - 蘅 (廿 // 竹人 // 弓) - triple unit
+  - 得 (竹人 // 日一 // 戈) - triple unit
 
 - 可 (一弓口)
   - 啊 (口 // 弓中 // 口) - triple unit
@@ -420,6 +433,7 @@ Triple-unit characters
 - 才 (木竹) - genie
   - 团 (田木竹)
   - 閉 (日弓 // 木竹)
+  - 在 (大中土) - genie
 - 之 (戈弓人) - chiii
 - 勿 (心竹竹)
 
@@ -441,6 +455,7 @@ Triple-unit characters
   - 鴛 (弓山 // 竹日火) - double unit
 
 - 殳 (竹弓水) - missile
+  - 段 (竹十 // 竹弓水)
 - 發 (弓人 // 弓 // 竹水) - triple unit
   - 癶 (弓戈卜人)
 - 沒 (水 // 弓水)
@@ -451,6 +466,10 @@ Triple-unit characters
 
 - 角 (弓月土) - angle, bound up
 - 換/换 (手 // 弓月大)
+
+- 魚 (弓田火) - fish
+- 鱼 (弓田一)
+  - 渔 (水 // 弓田一)
 
 - 姨 (女 // 大弓)
 - 姊 (女 // 中難竹) - elder sister
@@ -524,10 +543,11 @@ Triple-unit characters
 - 𢦏 (十戈) - Thanksgiving
   - 裁 (十戈 // 卜竹女)
   - 戴 (十戈 // 田廿金) - double unit
+
 - 韭 (中尸一一) - leek
 - 㦰 (人人戈)
 - 韱 (人戈 // 中尸一) - double unit, anime convention
-- 籤 (竹 // 人戈 // 一) - triple unit
+  - 籤 (竹 // 人戈 // 一) - triple unit
 
 - 戠 (卜日戈) - kazoo
   - 識 (卜口 // 卜戈 // 日) - triple unit
@@ -654,10 +674,11 @@ Triple-unit characters
 - 十 = house (roof)
 
 - Birdhouse
-- 受 (月月水) - claw
+- 受 (月月水) - claw, vulture
 - 愛 (月月心水) - single unit, love
 - 隱 (弓中 // 月一心) - double unit, take F2+L of the second unit
   - 隐 (弓中 // 弓尸心)
+- 学 (火月 // 弓木) - School House
 
 - 豸 (月尸竹竹) - skunk
   - 貌 (月竹 // 竹日山)
@@ -706,6 +727,7 @@ Triple-unit characters
   - 眼 (月山 // 日女)
   - 自 (竹月山) - oneself, nose, nostrils
   - 首 (廿竹月山) - neck, head
+- 相 (木 // 月山)
 
 - 直 (十月一一) - straightaway, straight
   - 值 (人 // 十月一)
@@ -878,6 +900,7 @@ Triple-unit characters
   - 圳 (土 // 中中中)
 - 州 (戈中戈中) - châu
 - 巢 (女女 // 田木) - stream
+- 片 (中中一中) - one sided, F3+L
 
 - 儿 (中山) - er, child
 
@@ -947,8 +970,10 @@ Triple-unit characters
   - 學 (竹月 // 弓木) - double unit, study
 - 瑩 (火火 // 月 // 一戈) - triple unit, HOT HOUSE
   - 榮 (火火 // 月 // 木) - triple unit
+  - 栄 (火月 // 木) - vulture
 - 劳 (廿 // 月 // 大尸) - GREEN HOUSE
 - 寬 (十 // 廿 // 月戈) - triple unit
+- 受 (月月水) - claw, vulture
 
 - 叔 (卜火 // 水) - double unit, uncle
   - 寂 (十 // 卜火 // 水)
@@ -1063,7 +1088,7 @@ Triple-unit characters
   - 义 (戈大)
   - 議 (卜口 // 廿土 // 戈) - triple unit
 - 父 (金大) - father, dad
-  - 交 (卜金大) - mingle
+  - 交 (卜 // 金大) - mingle
   - 爹 (金大 // 弓戈 // 弓) - triple unit
 - 爺 (金大 // 尸十 // 中) - triple unit
   - 爷 (金大 // 尸中)
@@ -1195,6 +1220,7 @@ Triple-unit characters
 - 隨 (弓中 // 卜 // 大月) - triple unit
   - 髓 (月月 // 卜 // 大月)
 - 若 (廿大口)
+- 在 (大中土) - genie
 
 - 友 (大水) - friend
   - 拔 (手 // 戈大大)
@@ -1248,8 +1274,8 @@ Triple-unit characters
   - 房 (竹尸 // 卜竹尸)
 - 氏 (竹女心) - family name
 
-- 旅 (卜尸 // 人竹女) - group of people
-- 脈 (月 // 竹竹女) - zombie
+- 旅 (卜尸 // 人 // 竹女) - triple unit, group of people
+- 脈 (月 // 竹 // 竹女) - zombie
 
 - 斤 (竹一中) - axe, drag
   - 所 (竹尸 // 竹一中)
@@ -1264,6 +1290,7 @@ Triple-unit characters
   - 壓 (一大土) - double unit
 - 辰 (一一一女) - sign of the dragon
 - 歷 (一 // 竹木 // 一)
+- 压 (一 // 土戈)
 
 - 右 (大口) => by one's side là 大; right
 - 石 (一口) - stone
@@ -1473,6 +1500,7 @@ Triple-unit characters
   - 表 (手一女)
 - 良 (戈日女)
 - 辰 (一一一女) - sign of the dragon
+- 旅 (卜尸 // 人 // 竹女) - triple unit, group of people
 
 - 長 (尸一女) - long, mane
   - 长 (心人)
@@ -1522,10 +1550,11 @@ Triple-unit characters
 - 爿 (女中一) - bunk bed
   - 將 (女一 // 月 // 木戈) - triple unit
   - 壯 (女一 // 土)
-- 片 (中中一中) - one sided
+- 片 (中中一中) - one sided, F3+L
 
 - 丂 (一女尸) - snare
-  - 號 (口尸 // 卜心山) - snare
+- 号 (口一女尸)
+  - 號 (口尸 // 卜心山)
 
 - 牙 (一女木竹) - tusk
   - 呀 (口 // 一女竹)
@@ -1542,8 +1571,6 @@ Triple-unit characters
 - 牙 (一女木竹) - tusk
 
 - 表 (手一女) - surface, express
-
-- 夫 (手人) - father, husband
 
 - 我 (竹手戈)
 - 義 (廿土 // 竹手戈) - righteous, double unit
@@ -1573,6 +1600,9 @@ Triple-unit characters
 - 龹 (火手) - quarter
   - 眷 (火手 // 月山)
   - 拳 (火手 // 手)
+
+- 夫 (手人) - father, husband
+  - 芙 (廿 // 手人)
 
 - 羊 (廿手) - sheep
 - ⺶ (廿手) - wool
@@ -1682,6 +1712,7 @@ Triple-unit characters
 
 - 重 (竹十田土) - heavy
   - 懂 (心 // 廿 // 竹土)
+  - 種 (竹木 // 竹十土)
 
 - 黑 (田土 // 火) - double unit, black
   - 點 (田火 // 卜口) - double unit
@@ -1732,10 +1763,11 @@ Triple-unit characters
 ### Mouth 口
 
 - 営 (火月 // 口竹口)
-  - 呂 (口竹口)
+  - 呂 (口竹口) - spine
 - 宫 (十口口)
   - 宮 (十 // 口竹口)
 - 官 (十 // 口中口)
+  - 館 (人戈 // 十 // 口口) - triple unit
 - 追 (卜 // 竹口口)
 
 - 單 (口口田十) - simple
@@ -1751,7 +1783,7 @@ Triple-unit characters
 ### Ground 土
 
 - 主 (卜土) - whole
-  - 住 (人卜土)
+  - 住 (人 // 卜土)
 
 - 王 (一土) - king
   - 聖 (尸口 // 竹土) - double unit
@@ -1760,6 +1792,7 @@ Triple-unit characters
   - 寶 (十 // 一山 // 金) - triple unit
 
 - 在 (大中土)
+- 左 (大一) - left, by one's side
 
 - 角 (弓月土) - angle
 
@@ -1811,6 +1844,7 @@ Triple-unit characters
 - 淵 (水 // 中難中) - abyss
   - 渊 (水中火中)
 - 肅 (中難)
+  - 瀟 (水 // 廿中難)
 
 === Others & Exceptions
 
@@ -1821,6 +1855,7 @@ Triple-unit characters
 - 门 (中戈尸)
   - 阊 (中尸 // 日日)
   - 间 (中尸 // 日)
+  - 们 (人 // 中戈尸)
 - 鬥 (中弓) - big dipper
 - 閨 (日弓 // 土土)
   - 闺 (中尸 // 土土)
