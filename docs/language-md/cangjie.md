@@ -179,6 +179,8 @@ Triple-unit characters
 
 - 入 (人竹) vs. 八 (竹人) - enter, eight
 - 人 (人)
+- 夫 (手人) - father, husband
+  - 芙 (廿 // 手人)
 
 - 之 (戈弓人) - chiii
 
@@ -355,6 +357,9 @@ Triple-unit characters
   - 奩 (大 // 尸口口)
   - 区 (尸大)
 
+- 亡 (卜女) - deceased
+  - 吂 (卜女 // 口)
+
 - 眉 (日竹 // 月山) - divided flag, eyebrow
 - 聲 (土水 // 尸十) - double unit character
   - 声 (土 // 日竹)
@@ -383,9 +388,10 @@ Triple-unit characters
 - 享 (卜口弓木) - receive
   - 惇 (心 // 卜口木)
 
-- 乃 (弓竹-尸) - fist
-- 及 (弓竹-水) - outstretched hands
+- 乃 (弓竹尸) - fist
+- 及 (弓竹水) - outstretched hands
   - 仍 (人 // 弓竹尸)
+  - 級 (女火 // 弓竹水)
 
 - 永 (戈弓水) - eternity
 - 又 (弓大) - again, crotch
@@ -520,7 +526,7 @@ Triple-unit characters
 - 或 (戈口一) - or
   - 國 (田戈口一) - country
   - 国 (田 // 一土戈)
-  - 惑 (戈一 // 心) - double unit
+  - 惑 (戈一 // 心) - double unit, (nghi) hoặc
   - 域 (土 // 戈口一)
 - 彧 (戈大口一)
 
@@ -533,8 +539,8 @@ Triple-unit characters
   - 蹙 (戈火 // 口卜人) - double unit
   - 尗 (卜一火)
 
-- 咸 (戈竹 // 一口) - march
-  - 感 (戈口 // 心) - double unit
+- 咸 (戈竹 // 一口) - march, hàm
+  - 感 (戈口 // 心) - double unit, cảm
 - 鹹 (卜田 // 戈竹 // 口) - triple unit
   - 鹵 (卜田戈戈) - Rock salt
 
@@ -723,6 +729,7 @@ Triple-unit characters
   - 璃 (一土 // 卜 // 山月) - triple unit
 
 - 且 (月一) - book shelf
+  - 姐 (女 // 月一)
 - 目 (月山) - eye
   - 眼 (月山 // 日女)
   - 自 (竹月山) - oneself, nose, nostrils
@@ -732,6 +739,7 @@ Triple-unit characters
 - 直 (十月一一) - straightaway, straight
   - 值 (人 // 十月一)
   - 置 (田中 // 十月一)
+  - 植 (木 // 十月一)
 
 - 具 (月一一金) - tool
 
@@ -1366,8 +1374,9 @@ Triple-unit characters
 - 東 (木田) - east
   - 陳 (弓中 // 木田 ) - trần
 - 柬 (木田火)
-  - 闌 (日弓 // 木田火) - orchid
+- 闌 (日弓 // 木田火) - orchid
   - 攔 (手 // 日弓 // 田) - triple unit
+  - 蘭 (廿 // 日弓田)
 - 母 (田卜戈) - mom
 
 - 速 (卜木中)
@@ -1603,6 +1612,7 @@ Triple-unit characters
 
 - 夫 (手人) - father, husband
   - 芙 (廿 // 手人)
+- 未 (十木) - not yet, vị
 
 - 羊 (廿手) - sheep
 - ⺶ (廿手) - wool
@@ -1636,6 +1646,7 @@ Triple-unit characters
   - 特 (竹手 // 土 // 木戈) - triple unit
   - 牡 (竹手 // 土)
   - 件 (人 // 竹手)
+  - 物 (竹手 // 心竹竹)
 - 制 (竹月 // 中 // 弓) - system
 
 - 告 (竹土 // 口) - revelation, declare
@@ -1726,10 +1737,12 @@ Triple-unit characters
   - 攔 (手 // 日弓 // 田) - triple unit
 
 - 母 (田卜戈) - mom
+- 毋 (田十)
 - 每 (人 // 田卜戈) - double unit, every
   - 毎 (人 // 田十)
   - 海 (水 // 人 // 田卜) - triple unit, sea
   - 敏 (人卜 // 人大) - double unit
+  - 梅 (木 // 人 // 田卜)
 
 - 覽 (尸田 // 月山山) - double unit
 - 览 (中戈 // 月竹山)
@@ -1780,7 +1793,7 @@ Triple-unit characters
   - 固 (田十口)
   - 苦 (廿 // 十口)
 
-### Ground 土
+### Ground, soil 土
 
 - 主 (卜土) - whole
   - 住 (人 // 卜土)
@@ -1802,6 +1815,9 @@ Triple-unit characters
   - 桂 (木 // 土土)
   - 封 (土土 // 木戈)
   - 珪 (一土 // 土土)
+
+- 吉 (土口) - lucky
+  - 結 (女火 // 土口)
 
 ### Others, 難, and Exceptions
 
