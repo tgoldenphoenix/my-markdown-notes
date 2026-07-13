@@ -266,12 +266,16 @@ Triple-unit characters
 - 方 (卜竹尸) - compass, direction
   - 房 (竹尸 // 卜竹尸)
   - 芳 (廿 // 卜竹尸)
-  - 於 (卜尸 // 人卜)
-  - 族 (卜尸 // 人人大) - banner
-  - 旅 (卜尸 // 人竹女) - group of people
   - 邊 (卜 // //  竹山 // 尸)
 - 万 (一尸) - ten thousand
 - 分 (金 // 尸竹) - divide
+
+- banner
+- 於 (卜尸 // 人 // 卜)
+- 族 (卜尸 // 人 // 人大)
+- 旅 (卜尸 // 人 // 竹女) - group of people
+- 游 (水 // 卜尸 // 木) - triple unit
+  - 斿 (卜尸 // 人 // 弓木) - triple unit
 
 - 馬 (尸手尸火) - horse
   - 马 (弓女尸一)
@@ -762,6 +766,7 @@ Triple-unit characters
   - 講 (卜口 // 廿廿月)
 - 角 (弓月土) - angle
   - 嘴 (口 // 卜心 // 月) - triple unit
+  - 解 (弓月 // 尸竹 // 手) - triple unit
 
 - 寒 (十 // 廿金 // 卜) - triple unit, celery
 - 襄 (卜口口女) - Grass skirt
@@ -1797,6 +1802,7 @@ Triple-unit characters
 
 - 主 (卜土) - whole
   - 住 (人 // 卜土)
+  - 註 (卜口 // 卜土)
 
 - 王 (一土) - king
   - 聖 (尸口 // 竹土) - double unit
