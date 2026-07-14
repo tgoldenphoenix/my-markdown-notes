@@ -686,6 +686,16 @@ I can even add a line break)hao
 
 The pattern above match `anhao`, the comment inside `(?#)` is ignored.
 
+## `ripgrep`
+
+find all lines have a word that contains `fast` followed by some number of other letters?
+
+```bash
+$ rg 'fast\w+' README.md
+75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
+119:### Is it really faster than everything else?
+```
+
 ## References
 
 [regexLearn.com](https://regexlearn.com/learn)

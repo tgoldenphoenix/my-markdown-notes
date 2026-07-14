@@ -286,6 +286,31 @@ dùng junit 4 (cuốn sách bản cũ second edition)
 - git bash, unix environment will run `sbt` inside your path. The current directory is completely ignored by default when resolving commands. This is a fundamental security feature designed to prevent malicious scripts from hijacking standard commands (like creating a fake `ls` script in a folder).
 - Use `./sbt` to force use the local
 
+Sửa trong `conf/application.conf`
+
+```text
+## JDBC Datasource
+db {
+  # You can declare as many datasources as you want.
+  # By convention, the default datasource is named `default`
+  default {
+    driver = com.mysql.jdbc.Driver
+    url = "jdbc:mysql://localhost:3306/etl_harbest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false"
+    # url = "jdbc:mysql://adrepo-etl-dev.cmc5p7xnpwhi.ap-northeast-1.rds.amazonaws.com/etl_harbest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false"
+    # (staging) url = "jdbc:mysql://adrepo-etl-staging.cmc5p7xnpwhi.ap-northeast-1.rds.amazonaws.com/etl_harbest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false"
+    # (production) url = "jdbc:mysql://adrepo-etl.cmc5p7xnpwhi.ap-northeast-1.rds.amazonaws.com/etl_harbest?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false"
+    username = "root"
+    password = "root"
+    # username = "adrepo"
+    # password = "YN5kmZWDw2kQas59Jp"
+    # (production) password = "4y5NKV79QUz3D1UnLN"
+    logSql = true
+    autocommit = true
+  }
+}
+
+```
+
 ### Passsword & config
 
 mysql: root:root or 123
