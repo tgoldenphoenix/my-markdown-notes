@@ -37,14 +37,6 @@ A best practice among Python developers is to use a project-specific virtual env
 
 ## `uv` Commands
 
-`uv python list`
-
-`uv python install 3.10`
-
-`pip` install packages
-
-`venv` (or virtual env) for creating virtual environment
-
 The old way of managing a python project.
 
 ```bash
@@ -69,10 +61,15 @@ Now using `uv`:
 
 ```bash
 $ uv init new_app
+# or
+uv init
 $ cd new_app
 
 # Install packages
 $ uv add flask requests
+
+# install OK but stored inside `.venv`, no change to the `pyproject.toml`
+uv pip install numpy
 
 # not `python3 main.py`
 $ uv run main.py
@@ -80,19 +77,27 @@ $ uv run main.py
 
 `uv` automatically create a virtual environment when we install package
 
-`uv tree` show the dependency tree
+uv supports managing Python projects, which define their dependencies in a `pyproject.toml` file.  
+In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store package information in `pyproject.toml & .lock` file, deleting `venv` will not cause any damage.
 
-In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store package information in `pyproject.toml & .lock` file, deleting venv will not cause any damage.
+---
+
+Other commands:
+
+```bash
+uv python list
+
+uv python install 3.10
+
+# show the dependency tree
+uv tree
+```
+
+`pip` install packages
+
+`venv` (or virtual env) for creating virtual environment
 
 `uv sync` create the `venv` using the `.lock` file.
-
----
-
-`uv pip install numpy` => install OK but stored inside `.venv`, no change to the `pyproject.toml`
-
----
-
-`uv run main.py`
 
 ## Python Command-Line Programs
 
