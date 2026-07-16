@@ -1961,6 +1961,18 @@ Tạo branch > commit > push > đã tạo pull request > cần phải sửa pull
 
 If you want to create a new branch for your pull request and do not have write permissions to the repository, you can fork the repository first.
 
+## worktree
+
+The problem that `git worktree` solves: clone multiple copies of the same repo onto your machine. Or copy the repo.
+
+`git worktree add ../project-hotfix -b branch-name` => Create new directory `../project-hotfix`. In that directory, create & checkout a new branch `branch-name`.
+
+The new directory created by `git worktree` will not have directories like `node_modules` (you must `npm install` again). This is like you just clone the repo from scratch.
+
+By default, Git will NOT allow you to have two different worktrees directories checked out to the exact same branch at the same time. Git is smart, it is aware of all the other worktree directories and prevent you from checking out the same branch.
+
+`git worktree list` => show directories and their branch
+
 ## Tagging
 
 A **tag** is like a branch[^1] that doesn’t change. Unlike branches, tags, after being created, have no further history of commits.

@@ -92,17 +92,32 @@ Again, “character” really means “Unicode code point”. `\p{L}` matches a 
 
 ICU, Perl, Ruby, JavaScript, and the JGsoft applications allow you to spell out the full category names, such as \p{Letter} or `\p{Lowercase_Letter}`.
 
-PCRE and .NET are case sensitive for the category letters. `\p{Zs}` will match any kind of space character, while \p{zs} will throw an error. It’s best to stick with the capitalization required by the case sensitive flavors. It is how the category letters are defined in Unicode. It will make your regular expressions work with all Unicode regex engines.
+PCRE and .NET are case sensitive for the category letters. `\p{Zs}` will match any kind of space character, while `\p{zs}` will throw an error. It’s best to stick with the capitalization required by the case sensitive flavors. It is how the category letters are defined in Unicode. It will make your regular expressions work with all Unicode regex engines.
 
 ## Non-Printable Characters
 
-- `\t` match a tab character (ASCII 0x09)
-- `\r` for carriage return (0x0D)
-- `\n` for line feed (0x0A)
+- `\t` match a tab character
+- `\r` match one carriage return; `\n` for line feed
+  - Windows text files use `\r\n` to terminate lines, while UNIX text files use `\n`. Some flavors use `\R` to match a single line break and treat `\r\n` as an indivisible pair.
+- `\s`match: space, tab `\t`, newline `\n`, carriage return \r, or form feed `\f`
+  - Typing out a literal space bar ` ` will matches only a standard space character, ignoring tabs and newlines.
+- `\v` matches any vertical whitespace character. That includes the vertical tab, form feed, and all line break characters.
 
-Remember that Windows text files use `\r\n` to terminate lines, while UNIX text files use `\n`. Some flavors use \R to match a single line break and treat \r\n as an indivisible pair.
+---
 
-`\v` matches any vertical whitespace character. That includes the vertical tab, form feed, and all line break characters.
+Remove empty lines
+
+Remove ALL empty lines (Including those with spaces/tabs)
+
+- Find: `^\s*\r?\n`
+- Replace: (Leave completely empty)
+  - The `\s*` will group multiple consecutive empty lines into one single match.
+  - `\r?\n` matches the line break (works on both Mac/Linux and Windows).
+
+Remove ONLY completely blank lines (Zero characters)
+
+- Find: `^\r?\n`
+- Replace: (Leave completely empty)
 
 ## The dot `.` Any Character
 
@@ -113,7 +128,7 @@ The dot matches a single character, without caring what that character is. The o
 This exception exists mostly because of historic reasons. The first tools that used regular expressions were line-based. They would read a file line by line, and apply the regular expression separately to each line. The effect is that with these tools, the string could never contain line breaks, so the dot could never match them.  
 Modern tools and languages can apply regular expressions to very large strings or even entire files. Except for VBScript, all regex flavors discussed here have an option to make the dot match all characters, including line breaks. Older implementations of JavaScript don’t have the option either. It was formally added in the ECMAScript 2018 specification.
 
-In JavaScript (for compatibility with older browsers) and VBScript you can use a character class such as `[\s\S]` to match any character. This character matches a character that is either a whitespace character (including line break characters), or a character that is not a whitespace character. Since all characters are either whitespace or non-whitespace, this character class matches any character. Do not use alternation like (\s|\S) which is slow. And certainly don’t use (.|\s) which can lead to catastrophic backtracking as spaces and tabs can be matched by both . and \s.
+In JavaScript (for compatibility with older browsers) and VBScript you can use a character class such as `[\s\S]` to match any character. This character matches a character that is either a whitespace character (including line break characters), or a character that is not a whitespace character. Since all characters are either whitespace or non-whitespace, this character class matches any character. Do not use alternation like (`\s|\S`) which is slow. And certainly don’t use (.|\s) which can lead to catastrophic backtracking as spaces and tabs can be matched by both . and \s.
 
 The escaped character `\.` matches a single literal dot character.
 
@@ -151,11 +166,11 @@ But we can use the **multi-line flag** `//m` to handle each line separately. In 
 
 Many regex systems (including Perl’s) support an `x` option that ignores literal whitespace in the pattern and enables comments, allowing the pattern to be spaced out and split over multiple lines.
 
-## Repetition with `*` & `+`
+## Repetition with `*` and `+`
 
 The `repetition quantifiers` or operators (`* + ?`) can be used with any character or special metacharacters, for example `a+` (one or more a's), `[abc]+` (one or more of any a, b, or c character) and `.*` (zero or more of any character).
 
-`+` allows **one** or more matches of the preceding element => Cộng **một**.
+`+` allows **one or more** matches of the preceding element => Cộng **một**.
 
 Sometimes, you need to match a single character (or group of characters) that appears **ONE or more** times in a row. This means it occurs at least once, and may be repeated => use the `+` symbol.
 
@@ -163,7 +178,7 @@ Remember, the character or pattern has to be present consecutively. That is, th
 
 ---
 
-`*` allows zero, one, or many matches of the preceding element (zero or more).
+`*` allows zero, one, or many matches of the preceding element (**zero or more**).
 
 Distinguish:
 
@@ -356,7 +371,7 @@ Character class intersection is supported by Java, ICU, JGsoft V2, and by Ruby 1
 
 ## Capture Groups `()`
 
-By placing part of a regular expression inside round brackets or parentheses, you can group that part of the regular expression together. This allows you to apply a quantifier to the entire group or to restrict alternation to part of the regex.
+By placing part of a regular expression inside round brackets or parentheses `()`, you can group that part of the regular expression together. This allows you to apply a quantifier to the entire group or to restrict alternation to part of the regex.
 
 Only parentheses can be used for grouping. Square brackets define a character class. Curly braces are used by a quantifier with specific limits.
 
@@ -368,14 +383,17 @@ We can group an expression and use these groups to reference or enforce some rul
 - `(){}` capture groups with min-max
 - `([AEae]l[- ])?` two character sets inside capture group and an optional `?` quantifier
 
-### Reuse patterns using Capture Groups
+### Reusing Patterns with Capture Groups
 
-When a match succeeds, every set of parentheses becomes a “capture group” that records the actual text that it matched.
+- When a match succeeds, every **set of parentheses** becomes a `capture group` that records the actual text that it matched.
+  - Group number one (`$1`) will contain all the text inside the first `()` in the pattern.
+  - Group zero (`$0`) always contains the entire regex match.
 
-Group number one is the first `()` in the pattern.  
-Group zero always contains the entire regex match.
+- `price: \$(\d+)` matches the string `price: $45` with:
+  - `$0` (Entire Match): `price: $45`
+  - `$1` (First Capture Group): `45` (only the part inside the parenthesis `\d+`)
 
-Since parentheses can nest, how do you know which match is which? Easy—the matches arrive in the same order as the opening parentheses. There are as many captures as there are opening parentheses, regardless of the role (or lack of role) that each parenthesized group played in the actual matching. When a parenthe-sized group is not used (e.g., `Mu(')?ammar` when matched against “Muammar”), its corresponding capture is empty.
+Since parentheses can nest, how do you know which match is which? Easy—the matches arrive in the same order as the opening parentheses. There are as many captures as there are opening parentheses, regardless of the role (or lack of role) that each parenthesized group played in the actual matching. When a parenthe-sized group is not used (e.g., `Mu(')?ammar` when matched against `Muammar`), its corresponding capture is empty.
 
 If a group is matched more than once, only the contents of the last match are returned. For example, with the pattern `(I am the (walrus|egg man)\. ?){1,2}` matching the text "I am the egg man. I am the walrus." There are two results, one for each set of parentheses:
 
@@ -510,10 +528,10 @@ Anchors do not match any characters. They match a position before, after, or bet
 
 In an earlier challenge, you used the caret character `^` inside a character set `[]` to create a negated character set in the form `[^thingsThatWillNotBeMatched]`. But **outside** of a character set, the caret is used to search for patterns at the **beginning of strings**.
 
-- The caret `^` matches the position before the first character in the string. Applying `^a` to `abc` matches a. ^b does not match abc at all, because the b cannot be matched right after the start of the string, matched by ^
-- `$` matches right after the last character in the string. c$ matches c in abc, while a$ does not match at all. (Trong `vim`, the motion `$` also jump to the end of current line).
+- The caret `^` matches **the position before the first character** in the string. Applying `^a` to `abcaaa` matches the first `a`. `^b` does not match `abc` at all, because the `b` cannot be matched right after the start of the string (matched by `^`).
+- `$` matches the position right after the last character in the string. `c$` matches the last `c` in `accbbc`, while `a$` does not match at all. (Trong `vim`, the motion `$` also jump to the end of current line).
 
-If the multiline flag (`m`) is enabled, `^` will match the beginning of each line instead of the whole string. Dùng khi có 1 big string là 1 paragraph contains multiple lines. Nếu không có (m) flag thì `^` chỉ match the beginning of the first line.
+If the multiline flag (`m`) is enabled, `^` will match the beginning of **each line instead of the whole string** => Dùng khi input là one "big string" containing multiple lines. Nếu không có (`m`) flag thì `^` chỉ match the beginning of the first line.
 
 A regex that consists solely of an anchor can only find **zero-length matches**.
 
@@ -531,7 +549,7 @@ If the multiline flag (m) is enabled, `$` will match the end of a line instead o
 
 `/^http[^s].*/` => match "<http://httpstatus.io/>"; "http" at the beginning
 
-In `^\d{5}$`, The `^` and $ match the beginning and end of the search text but do not actually correspond to characters in the text; they are **zero-width assertions.** These char-acters ensure that only texts consisting of exactly five digits match the regular expression—the regex will not match five digits within a larger string. The \d es-cape matches a digit, and the quantifier {5} says that there must be exactly five digit matches.
+In `^\d{5}$`, The `^` and $ match the beginning and end of the search text but do not actually correspond to characters in the text; they are **zero-width assertions.** These char-acters ensure that only texts consisting of exactly five digits match the regular expression—the regex will not match five digits within a larger string. The \d es-cape matches a digit, and the quantifier `{5}` says that there must be exactly five digit matches.
 
 ---
 
@@ -572,10 +590,6 @@ The anchor `\b` matches at a word boundary. A word boundary is a position betwee
 ---
 
 The section [Looking Inside The Regex Engine](https://www.regular-expressions.info/wordboundaries.html) for word boundary is helpful to read!
-
-## How a Regex Engine Works Internally
-
-f
 
 ## Dealing with Japanese with Negated set
 

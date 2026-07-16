@@ -210,6 +210,13 @@ add child issues để chia nhỏ một task/batch lớn, một child ticket là
 
 Database dùng MySQL
 
+khi chạy script sql để tạo database & insert data trong `DBeaver` thì phải right-click -> `execute script`
+
+When you highlight multiple queries in DBeaver and hit Ctrl + Enter (which is "Execute SQL Statement"), DBeaver behaves in a very specific way: It ignores the highlighted boundaries and tries to merge both of your separate `INSERT` statements into one single, massive query before sending it to MySQL. MySQL then sees two `INSERT INTO` headers in a single query and throws the syntax error `1064`.  
+To run both highlighted statements together successfully, you must use DBeaver's Script Execution system instead of the "Statement" execution.
+
+---
+
 - build no profile thì phải copy file `config.properties` ra bên ngoài
 - build có profile thì nó tự vào thư mục `dev` để lấy file `config`
 
@@ -272,9 +279,11 @@ dùng junit 4 (cuốn sách bản cũ second edition)
 
 ### Setup Web API
 
-`sbt run`
-
-`sbt -jvm-debug 9999 run`
+```bash
+sbt run
+# or
+sbt -jvm-debug 9999 run
+```
 
 - Playframwork 2.6.9
   - [play framwork doc](https://www.playframework.com/documentation/2.5.8/JavaForms) (2.1.x or 2.6)
@@ -302,7 +311,7 @@ db {
     username = "root"
     password = "root"
     # username = "adrepo"
-    # password = "YN5kmZWDw2kQas59Jp"
+    # password = "password"
     # (production) password = "4y5NKV79QUz3D1UnLN"
     logSql = true
     autocommit = true
