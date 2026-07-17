@@ -38,6 +38,13 @@ Triple-unit characters
 - 蟹 (弓手 // 中一戈) - double unit
 - 巽 (口山 // 廿金) - double unit
   - 撰 (手 // 口山 // 金) - triple unit
+- 操 (手 // 口口 // 木) - triple unit
+  - 藻 (廿 // 水 // 口木) - triple unit
+- 堅 (尸水 // 土) - double unit
+  - 賢 (尸水 // 月山金)A - double unit
+- 雚 (廿 // 口口 // 土) - pegasus
+  - 觀 (廿土 // 月山山)
+  - 歡 (廿土 // 弓人)
 
 - One element top; two elements bottom:
 - 露 (一月 // 口一 // 口) - triple unit
@@ -128,11 +135,11 @@ Triple-unit characters
 
 - 尤 (戈大山) - Frankenpooch
   - 就 (卜火 // 戈大山)
+  - 弋 (戈心) - arrow
 - 无 (一大山) - nothing
 - 旡 (一女大山) - Waitress
   - 既 (日戈 // 一女山)
   - 贊 (竹山 // 月山金)
-- 尤 (戈大山) frankenpooch
 - 冘 (中月山) - sinking, sink
   - 枕 (木 // 中月山)
 - 元 (一一山)
@@ -184,6 +191,8 @@ Triple-unit characters
 - 令 (人 // 戈 // 弓戈) - order
   - 伶 (人 // 人 // 戈戈) - triple unit
 
+- 陰 (弓中 // 人 // 戈戈) - triple unit
+
 #### Human, Person 人
 
 - 仁 (人一一)
@@ -193,7 +202,7 @@ Triple-unit characters
   - 縱 (女火 // 竹人 // 人) - vertical
 - 然 (月大 // 火) - double unit, flesh
 
-- 德 (竹人 // 十田心)
+- 德 (竹人 // 十田 // 心) - triple unit
 
 - 豕 (一尸竹人) - sow, pig
   - 豪 (卜 // 口 // 月人) - triple unit
@@ -264,6 +273,7 @@ Triple-unit characters
 
 - 巽 (口山 // 廿金) - double unit
   - 撰 (手 // 口山 // 金) - triple unit
+  - 選 (卜 // 口山 // 金)
 
 - 灵 (尸一 // 火)
   - 𠴌 (口 // 尸一火)
@@ -297,8 +307,10 @@ Triple-unit characters
 - 劦 (大尸 // 大尸 // 尸) - triple unit
   - 協 (十 // 大尸 // 尸)
 
-- 司 (尸一口) - company
+- 司 (尸一口) - company, clothes hanger
+  - 嗣 (口月 // 尸一口)
 - 幻 (女戈 // 尸)
+
 - 成 (戈竹尸)
 - 方 (卜竹尸) - compass, direction
   - 房 (竹尸 // 卜竹尸)
@@ -393,13 +405,16 @@ Triple-unit characters
 
 - 匾 (尸竹尸月) - cardboard box
 - 匵 (尸土田金) - single unit
-- 臣 (尸中尸中) - retainer, slave
-  - 巨 (尸尸) - gigantic
-- 臤 (尸中 // 水)
-  - 堅 (尸水 // 土) - double unit
 - 區 (尸口口口) - ward, region
   - 奩 (大 // 尸口口)
   - 区 (尸大)
+
+- 臣 (尸中尸中) - retainer, slave
+  - 巨 (尸尸) - gigantic
+  - 片 (中中一中) - one sided, F3+L
+- 臤 (尸中 // 水)
+  - 堅 (尸水 // 土) - double unit
+  - 賢 (尸水 // 月山金)A - double unit
 
 - 亡 (卜女) - deceased
   - 吂 (卜女 // 口)
@@ -419,6 +434,7 @@ Triple-unit characters
 - 歹 (一弓戈) - malicious, bones
   - 殃 (一弓 // 中月大)
   - 列 (一弓 // 中 // 弓)
+  - 殘 (一弓 // 戈戈)
 
 - chop seal
 - 通 (卜 // 弓戈月) - chop seal; double unit, take F2+L of second unit
@@ -569,7 +585,7 @@ Triple-unit characters
 - 至 (一戈土) - climax
   - 到 (一土 //  中 //  弓) Triple unit character
   - 侄 (人 // 一戈土)
-  - 臺 (土口月土)
+  - 臺 (土 // 口 // 月土) - pedestal
 - 云 (一一戈) - rising cloud
 - 能 (戈月 // 心心) - ability
 
@@ -628,6 +644,7 @@ Triple-unit characters
 
 - 淺 (水 // 戈戈) - float
   - 浅 (水 // 戈十)
+  - 殘 (一弓 // 戈戈)
 
 - 求 (戈十水) - request
 
@@ -756,6 +773,11 @@ Triple-unit characters
   - 貌 (月竹 // 竹日山)
 - 稱 (竹木 // 月土月)
 
+- 爰 (月一大水) - migrating ducks
+  - 緩 (女火 // 月一水)
+
+- 亂 (月月 // 山)
+
 - 骨 (月月月) - skeleton
   - 體 (月月 // 廿田 // 廿) - triple unit, body
   - 髓 (月月 // 卜 // 大月)
@@ -883,10 +905,14 @@ Triple-unit characters
 
 - 運 (卜 // 月 // 十十) - triple unit
 
-- 鬲 (一口月中) - camera
+- 鬲 (一 // 口 // 月中) - triple unit, camera
   - 融 (一月 // 中一戈)
 - 南 (十月廿十) - south
 - 羊 (廿手)
+- 辛 (卜廿十) - spicy, spice
+- 幸 (土廿十) - happy, happiness
+- 壴 (土 // 口廿) - drum
+  - 喜 (土 // 口廿 // 口) - single unit, joyful
 
 - 册 (月月一)
 
@@ -902,6 +928,7 @@ Triple-unit characters
   - 茟 (廿 // 中手)
 - 書 (中土日) - book
   - 畫 (中土田一) - a drawing
+- 书 (戈木尸)
 
 - 灵 (尸一 // 火) - broom
   - 雪 (一月 // 尸一)
@@ -1118,6 +1145,7 @@ Triple-unit characters
 - 盃 (一火 // 月廿)
   - 𢝙 (心 // 一火 // 廿)
 - 血 (竹月廿) - blood
+- 蓋 (廿 // 土戈 // 廿) - triple unit
 
 - 無 (人廿火) - nothing
   - 蕪 (廿 // 人廿火)
@@ -1169,6 +1197,8 @@ Triple-unit characters
   - 𨐌 (卜廿手)
   - 薛 (廿 // 竹口 // 十) - triple unit
   - 新 (卜木 // 竹一中)
+  - 宰 (十 // 卜廿十)
+  - 親 (卜木 // 月山山) - double unit
 - 幸 (土廿十) - happy, happiness
 - 南 (十月廿十) - south
 
@@ -1187,9 +1217,10 @@ Triple-unit characters
 - 爺 (金大 // 尸十 // 中) - triple unit
   - 爷 (金大 // 尸中)
 
-- 喜 (土口廿口) - single unit, joyful
+- 壴 (土 // 口廿) - drum
+- 喜 (土 // 口廿 // 口) - single unit, joyful
   - 嘻 (口 // 土口口) - double unit
-- 臺 (土口月土) - pedestal
+- 臺 (土 // 口 // 月土) - pedestal
 
 - 華 (廿 // 一廿十) - splendor
   - 譁 (卜口 // 廿一十)
@@ -1419,6 +1450,8 @@ Triple-unit characters
 
 - sick bed: 病 (大 // 一人月)
   - 疼 (大 // 竹水卜)
+  - 痰 (大 // 火火)
+  - 疾 (大 // 人大)
 - 丙 (一人月)
 
 #### Tree, wood 木
@@ -1464,7 +1497,12 @@ Triple-unit characters
 - 皮 (木竹水) - pelt
   - 被 (中 // 木竹水)
 
-- 決 (水木大)
+- 夬 (木大) - Guillotine
+  - 決 (水 // 木大)
+  - 快 (心 // 木大)
+
+- 书 (戈木尸)
+  - 書 (中土日) - book
 
 - 來 (木人人) - come, arrive, laiii
   - 来 (木廿)
@@ -1479,7 +1517,8 @@ Triple-unit characters
   - 蘭 (廿 // 日弓田)
 - 母 (田卜戈) - mom
 
-- 速 (卜木中)
+- 束 (木中) - bundle
+  - 速 (卜 // 木中)
 
 - 親 (卜木 // 月山山) - double unit
 - 立 (卜廿) - stand up, vase
@@ -1569,7 +1608,7 @@ Triple-unit characters
 - 足 (口卜人) - peg leg
 
 - 是 (日 // 一卜人) - double unit
-- 𤴓 (一卜人)
+- 𤴓 (一卜人) - mending
 - 正 (一卜中一) - correct
 - 從 (竹人 // 人人 // 人) - triple unit
 
@@ -1620,6 +1659,9 @@ Triple-unit characters
 - 張 (弓 // 尸一女)
   - 张 (弓 // 心人)
 
+- 袁 (土 // 口竹女) - double unit, yuan
+  - 園 (田 // 土 // 口女) - triple unit
+
 - 以 (女戈人)
 - 糹 = 糸 = 女戈火 - thread
   - 總 (女火 // 竹田 // 心) - triple unit character, only take F+L of the first unit 糹
@@ -1666,6 +1708,8 @@ Triple-unit characters
   - 壯 (女一 // 土)
 - 片 (中中一中) - one sided, F3+L
   - 版 (中中 // 竹水)
+- 臣 (尸中尸中) - retainer, slave
+  - 巨 (尸尸) - gigantic
 
 - 丂 (一女尸) - snare
 - 号 (口一女尸)
@@ -1678,6 +1722,9 @@ Triple-unit characters
   - 經 (女火 // 一 // 女一) - triple unit
 - 圣 (水土) - spool
   - 怪 (心 // 水土)
+
+- 衷 (卜 // 中 // 竹女) - triple unit
+- 衰 (卜 // 田一 // 女) - triple unit
 
 ### Hand 手
 
@@ -1859,6 +1906,7 @@ Triple-unit characters
 - 曼 (日 // 田中 // 水) - triple unit, mandala
   - 漫 (水 // 日 // 田水) - triple unit
   - 慢 (心 // 日 // 田水)
+
 - 鬟 (尸竹 // 田中 // 女)
 - 夢 (廿 // 田中 // 弓) - dream
   - 梦 (木木 // 弓戈)
@@ -1868,6 +1916,7 @@ Triple-unit characters
 - 眾 (田中 // 人人人)
 - 環 (一土 // 田中 // 女)
 - 置 (田中 // 十月一)
+- 德 (竹人 // 十田 // 心) - triple unit
 
 - 褱 (卜 // 田中 // 女) - triple unit, Darth vader
   - 懷 (心 // 卜田女) - double unit, reminisce
@@ -1896,6 +1945,7 @@ Triple-unit characters
 
 - 品 (口口口)
   - 操 (手 // 口口 // 木) - triple unit
+  - 藻 (廿 // 水 // 口木) - triple unit
 
 - 古 (十口) - ancient
   - 固 (田十口)
@@ -1937,8 +1987,12 @@ Triple-unit characters
 - 臼 (竹難) - mortar
 - 兒 (竹難竹山) - single unit
   - 儿 (中山) - er, child
-- 寫 (十 // 竹難火)
+
 - 與 (竹難卜金) - single unit, F3+L
+  - 与 (卜尸一)
+- 寫 (十 // 竹難火)
+  - 写 (月 // 卜尸一)
+
 - 興 (竹難月金)
 - 學 (竹月 // 弓木) - double unit, study
   - 𦥯 (竹難大月)
@@ -2014,6 +2068,10 @@ Triple-unit characters
   - 獲 (大竹 // 廿人水)
 - 雙 (人土水)
   - 双 (難水水)
+
+- 雚 (廿 // 口口 // 土) - pegasus
+  - 觀 (廿土 // 月山山)
+  - 歡 (廿土 // 弓人)
 
 - 亡 (卜女) - deceased
   - 吂 (卜女 // 口)
