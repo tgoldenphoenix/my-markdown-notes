@@ -320,6 +320,17 @@ db {
 
 ```
 
+### Setup test Web API
+
+Read this wiki <https://ever-rise.backlog.jp/alias/wiki/557867>
+
+add to `conf/AwsCredentials.properties`
+
+```txt
+accessKey=hoge
+secretKey=fuga
+```
+
 ### Passsword & config
 
 mysql: root:root or 123

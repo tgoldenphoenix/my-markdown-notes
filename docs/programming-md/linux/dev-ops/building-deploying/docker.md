@@ -2,22 +2,28 @@
 
 ## Terminologies
 
-Container vs Virtual Machines
+Container vs. Virtual Machines
 
 - Virtual Machines (VMs):
-  * Hardware virtualization
-  * `Hypervisor` is a software, firmware, or hardware that creates and manages virtual machines by pooling and allocating resources from a single physical machine to multiple guest operating systems. CPU, RAM, storage, network, cards
-- Container (docker):
-  - Operating-System-level virtualization
+  - Hardware virtualization: creates fake CPUs, fake RAM, and a fake hard drive. You have to install a complete operating system (Guest OS) inside every single VM.
+  - If you take an Ubuntu VM file created on Windows, you can open it on a Mac or Linux machine running VirtualBox/VMware.
+- `Container` (docker):
+  - Uses Operating-System-level virtualization (containerization). A container doesn't carry its own kernel - it directly uses the host computer's operating system kernel.
+  - A Docker image is locked to an OS kernel. A Linux Docker container requires a Linux kernel to execute system calls (like managing memory or opening files). It cannot run on a Windows kernel natively.
   - Process isolation
+
+- "Wait, then how do I run Linux containers on my Windows laptop using Docker Desktop?"
+- Docker Desktop on Windows secretly runs a tiny, lightweight Linux Virtual Machine in the background (using WSL 2 or Hyper-V). When you run a Linux container on Windows, it isn't actually running on the Windows kernel—it is running inside that hidden Linux VM!
 
 image = container package
 
+`Hypervisor` is a software, firmware, or hardware that creates and manages virtual machines by pooling and allocating resources from a single physical machine to multiple guest operating systems. CPU, RAM, storage, network, cards
+  
 Docker and Kubernetes provides **horizontal scaling**.
 
-- Vertical scaling involves increasing the resources of a single server instance.
+- `Vertical scaling` involves increasing the resources of a single server instance.
   * Adding more power to one machine.
-- Horizontal scaling involves distributing the workload across multiple, often identical, lower-powered servers or instances.
+- `Horizontal scaling` involves distributing the workload across multiple, often identical, lower-powered servers or instances.
   * Adding more machines to the cluster.
 - AWS EC2 (Elastic Compute Cloud) fully offers both kinds of scaling: vertical scaling (scaling up) and horizontal scaling (scaling out).
  
@@ -31,7 +37,7 @@ Build app vào docker, run locally, sau đó deploy lên aws.
 
 Khi dùng docker, app không bị phụ thuộc vào host machine. Nó chạy local host cũng giống như chạy trên cloud. Không có chuyện "chạy trên máy này nhưng không chạy trên máy kia."
 
-The `Dockerfile` is a text file containing instructions for building **docker image** from your source code. Từ image file tạo ra containers.
+The `Dockerfile` is a text file containing instructions for building `docker image` from your source code. Từ image file tạo ra containers.
 
 `compose.yaml` is for defining and running multi-container Docker applications.
 
@@ -79,13 +85,13 @@ k
 
 The main goal is to build, package & run an app from source code with only Docker installed; no need to install `node 24.12.0 LTX`, `mvn`, `npm`, `jdk21`, nothing; only need to install Docker (and source code).
 
-- Java applications are compiled, so the source code gets copied into the build stage, which generates a JAR file. The JAR file is the compiled app, and it gets copied into the final application image, but the source code is not. It’s the same with .NET, where the compiled artifacts are Dynamic Link Libraries (DLLs).  
-- Node.js is different—it uses JavaScript, which is an **interpreted language**, so there’s no compilation step. Dockerized Node.js apps need the Node.js runtime and the source code in the application image.
-- With a web application written in Go. Go is a modern, cross-platform language that compiles to **native binaries**. That means you can compile your apps to run on any platform (Windows, Linux, Intel, or Arm), and the compiled output is the complete application. You don’t need a separate runtime installed, like you do with Java, .NET, Node.js, or Python, and that makes for extremely small Docker images.
+- `Java` applications are compiled, so the source code gets copied into the build stage, which generates a JAR file. The JAR file is the compiled app, and it gets copied into the final application image, but the source code is NOT. It’s the same with `.NET`, where the compiled artifacts are Dynamic Link Libraries (DLLs).  
+- `Node.js` is different—it uses JavaScript, which is an **interpreted language**, so there’s no compilation step. Dockerized Node.js apps need the Node.js runtime and the source code in the application image.
+- With a web application written in `Go`. Go is a modern, cross-platform language that compiles to **native binaries**. That means you can compile your apps to run on any platform (Windows, Linux, Intel, or Arm), and the compiled output is the complete application. You don’t need a separate runtime installed, like you do with Java, .NET, Node.js, or Python, and that makes for extremely small Docker images.
 
 - `docker image build -t image-name .`
-  * the `-t` (tag) option is for naming the resulting image
-  * `.` is the **building context**; here it is specified as the current directory
+  - the `-t` (tag) option is for naming the resulting `image`.
+  - `.` is the **building context**; here it is specified as the current directory
 
 ## multi-stage `Dockerfiles`
 
