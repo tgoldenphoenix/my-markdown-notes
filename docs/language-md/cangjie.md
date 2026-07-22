@@ -358,7 +358,7 @@ Triple-unit characters
 - 方 (卜竹尸) - compass, direction
   - 房 (竹尸 // 卜竹尸)
   - 芳 (廿 // 卜竹尸)
-  - 邊 (卜 // //  竹山 // 尸)
+  - 邊 (卜 // 竹山 // 尸)
 - 万 (一尸) - ten thousand
 - 分 (金 // 尸竹) - divide
 - 別/别 (口尸 // 中 // 弓) - separate
@@ -635,7 +635,7 @@ Triple-unit characters
 
 - 公 (金戈)
 - 強 (弓 // 戈 // 中戈) - triple unit
-  - 虫 (中一戈) - insect
+  - 虫 (中一戈)
 - 轉 (十十 // 十戈 // 戈) - triple unit
 - 虽 (口中一戈) - although
   - 雖 (口戈 // 人土)
@@ -680,8 +680,8 @@ Triple-unit characters
   - 蹙 (戈火 // 口卜人) - double unit
   - 尗 (卜一火)
 
-- 戌 (戈竹一)
-- 咸 (戈竹 // 一口) - march, hàm
+- 戌 (戈竹一) - march
+- 咸 (戈竹 // 一口) - hàm
   - 感 (戈口 // 心) - double unit, cảm
 - 鹹 (卜田 // 戈竹 // 口) - triple unit
   - 鹵 (卜田戈戈) - Rock salt
@@ -843,6 +843,7 @@ Triple-unit characters
 - 十 = house (roof)
 
 - 爭 (月 // 尸木) - claw, vulture
+- 稱 (竹木 // 月土月)
 
 - 受 (月月水) - Birdhouse
 - 愛 (月月心水) - single unit, love
@@ -958,6 +959,7 @@ Triple-unit characters
 - 虫 (中一戈) - insect
   - 蟠 (中戈 // 竹木 // 田) - triple unit
   - 風 (竹弓 // 竹中戈) - double unit, wind
+  - 䖝 (竹中一戈)
   - 蟹 (弓手 // 中一戈) - double unit
   - 閩 (日弓 // 中一戈)
 - 蜀 (田中 // 心 // 中戈) - triple unit
@@ -966,10 +968,9 @@ Triple-unit characters
 - 然 (月大 // 火) - double unit, flesh
   - 犬 (戈大)
 - 厭 (一 // 日月 // 大) - triple unit
-
 - 將 (女一 // 月 // 木戈) - triple unit
-- 望 (卜月竹土) - double unit; F+L // F2+L
-
+- 望 (卜月 // 竹土) - double unit; F+L // F2+L
+- 遙 (卜 // 月 // 人山) - triple unit
 - 祭 (月人 // 一一火)
 - 登 (弓人 // 一口廿)
 
@@ -1013,6 +1014,8 @@ Triple-unit characters
 - 事 (十中中弓) - rake
 - 捷 (手 // 十中人)
 - 肅 (中難)
+- 庚 (戈 // 中人)
+
 - 爭 (月 // 尸木)
 
 - 聿 (中手) - brush
@@ -1101,6 +1104,7 @@ Triple-unit characters
 
 - 漢 (水 // 廿中人) - scarecrow
 - 嘆 (口 // 廿中人)
+- 難 (廿人 // 人土) - double unit, difficult
 - 革 (廿中十) - leather
 
 - 川 (中中中) - stream, flood
@@ -1189,7 +1193,7 @@ Triple-unit characters
   - 栄 (火月 // 木) - vulture
 - 劳 (廿 // 月 // 大尸) - GREEN HOUSE
 - 寬 (十 // 廿 // 月戈) - triple unit
-- 受 (月月水) - claw, vulture
+- 受 (月月水)
 
 - 叔 (卜火 // 水) - double unit, uncle
   - 寂 (十 // 卜火 // 水)
@@ -1290,6 +1294,7 @@ Triple-unit characters
 - 立 (卜廿) - stand up, vase
   - 接 (手 // 卜廿 // 女)
   - 親 (卜木 // 月山山) - double unit
+  - 泣 (水 // 卜廿)
 - 帝 (卜月中月)
 
 - 啇 (卜金月口) - F3+L, antique vase
@@ -1616,6 +1621,9 @@ Triple-unit characters
   - 岸 (山 // 一 // 一十) - triple unit
 - 士 (十一) - samurai
 
+- 千 (竹十) - thousand
+- 重 (竹十田土)
+
 - 寺 (土木戈) - Buddhist temple, pagoda
   - 特 (竹手 // 土 木戈)
   - 時 (日 // 土木戈)
@@ -1664,7 +1672,7 @@ Triple-unit characters
   - 速 (卜 // 木中)
 
 - 親 (卜木 // 月山山) - double unit
-- 立 (卜廿) - stand up, vase
+- 立 (卜廿)
 
 - 乐 (竹女木)
 
@@ -1797,6 +1805,7 @@ Triple-unit characters
 
 - 衣 (卜竹女) - garment
   - 表 (手一女)
+  - 依 (人 // 卜竹女)
 - 良 (戈日女)
 - 辰 (一一一女) - sign of the dragon
 - 旅 (卜尸 // 人 // 竹女) - triple unit, group of people
@@ -1942,9 +1951,9 @@ Triple-unit characters
   - 甥 (竹一 // 田大尸)
   - 性 (心 // 竹手一)
   - 姓 (女 // 竹手一)
-- 青 (手一月) - blue, telescope
-  - 晴 (日 // 手一月)
-  - 清 (水 // 手一月)
+- 青 (手一 // 月) - blue, telescope
+  - 晴 (日 // 手一 // 月)
+  - 清 (水 // 手一 // 月)
 - 積 (竹木 // 手一 // 金) - triple unit
   - 情 (心 // 手一月)
 
@@ -1969,6 +1978,12 @@ Triple-unit characters
   - 牧 (竹手 // 人大)
 - 制 (竹月 // 中 // 弓) - system
   - 製 (竹弓 // 卜竹女) - double unit
+
+- 午 (人十) - noon
+- 缶 (人十山) - tin can
+- 寶 (十 // 一山 // 金) - triple unit
+- 䍃 (月 // 人十山) - Condor
+  - 遙 (卜 // 月 // 人山) - triple unit
 
 - 告 (竹土 // 口) - revelation, declare
   - 造 (卜 // 竹土口)
@@ -2054,6 +2069,7 @@ Triple-unit characters
 - 重 (竹十田土) - heavy
   - 懂 (心 // 廿 // 竹土)
   - 種 (竹木 // 竹十土)
+- 千 (竹十)
 
 - 黑 (田土 // 火) - double unit, black
   - 點 (田火 // 卜口) - double unit
@@ -2206,7 +2222,8 @@ Triple-unit characters
 - 弗 (中中弓) - dollar
   - 拂 (手 // 中中弓) - Buddha
 - 第 (廿 // 弓中竹)
-  - 弟 (金 // 弓中竹)
+- 弟 (金 // 弓中竹)
+  - 涕 (水 // 金弓竹)
 
 - 齊 (卜難) - CSGT
   - 齋 (卜難火) - purification
@@ -2278,7 +2295,7 @@ Triple-unit characters
 - 亡 (卜女) - deceased
   - 吂 (卜女 // 口)
 - 亡 on top of 口 (吂) is an exception.
-- 望 (卜月竹土) - double unit; F+L // F2+L
+- 望 (卜月 // 竹土) - double unit; F+L // F2+L
 - 荒 (廿 // 卜女 // 山) - triple unit
 
 - 气 (人一弓)
