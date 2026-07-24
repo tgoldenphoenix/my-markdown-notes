@@ -389,13 +389,13 @@ You can google `gitignore generator` for templates for different kind of project
 
 ### Amend & Force Push
 
-Remember, anything that is committed in Git can almost always be recovered. Even commits that were on branches that were deleted or commits that were overwritten with an --amend commit can be recovered (see Data Recovery for data recovery). However, anything you lose that was never committed is likely never to be seen again.
+Remember, anything that is committed in Git can almost always be recovered. Even commits that were on branches that were deleted or commits that were overwritten with an `--amend` commit can be recovered (see Data Recovery for data recovery). However, anything you lose that was never committed is likely never to be seen again.
 
 `git commit --amend` replace (amend) the latest commit without creating an entirely new commit in the history. This command will open the editor with the latest commit message. You can then change the commit message and push it.
 
 - You can change commit message, add & change staged files
 - You end up with a single commit — the second commit replaces the results of the first.
-- Whenever you are doing amend Git will basically rewrite the entire commit and generates a **new hash** for it. This is very important to understand.
+- Whenever you are doing `amend` Git will basically rewrite the commit and generates a **new hash** for it. This is very important to understand.
 
 ```bash
 git add .
@@ -409,81 +409,27 @@ git commit --amend --no-edit
 
 `--force-with-lease` is a safer option that will not overwrite any work on the remote branch if more commits were added to the remote branch (by another team-member or coworker or what have you). It ensures you do not overwrite someone elses work by force pushing.
 
-It is always advisable to use amend when you haven’t pushed the changes to remote or if you are pretty confident that no other developers have started using those changes or no others have pushed any new changes to the current branch.
-
-In the case you’ve pushed the commit to GitHub, there is a big difference if there are multiple people working on the same branch or if you are the only person working on the branch.
-
-Let’s say that there are three people working on the branch main. If you commit your code to main and then someone else uses your code, you should not amend your commit. The only way to ensure that no one else uses your code prior to making an amend to your commit is to not amend your public commit.
-
-However, if you’re the only person working on your branch, then it is safe to amend your commit.
-
+It is always advisable to use `amend` when you haven’t pushed the changes to remote or if you are pretty confident that no other developers have started using those changes or no others have pushed any new changes to the current branch.  
+In the case you’ve pushed the commit to GitHub, there is a big difference if there are multiple people working on the same branch or if you are the only person working on the branch.  
+Let’s say that there are three people working on the branch main. If you commit your code to main and then someone else uses your code, you should not amend your commit. The only way to ensure that no one else uses your code prior to making an amend to your commit is to not amend your public commit.  
+However, if you’re the only person working on your branch, then it is safe to amend your commit.  
 Problems start occurring when the commit is already pushed to GitHub but I want to edit it.
-
-`git restore <file>` to discard changes in modified files and revert them back to the latest commit snapshot version (un-modified a file). :bangbang: You will lose all your local changes to that file (`git checkout` is an old version of this).  
-You can check with the checkout command that how files look like but you can only restore the file to the last commit only. You cannot go further.
-
-`git restore --staged <file>` to unstage file (`git reset` is an old version of this). Or `git rm --cache <file>` to unstage
 
 Step 01: First, add some content in README.md. After that, add, commit & push to remote repo.
 
 ```bash
-$ git status
-On branch main
-Your branch is up to date with 'origin/main'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   README.md
-
-no changes added to commit (use "git add" and/or "git commit -a")
-
-$ git commit -am "I will change this commit later"
-[main 19c419e] I will change this commit later
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-$ git push origin main
-Enumerating objects: 5, done.
-Counting objects: 100% (5/5), done.
-Delta compression using up to 12 threads
-Compressing objects: 100% (3/3), done.
-Writing objects: 100% (3/3), 372 bytes | 372.00 KiB/s, done.
-Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
-remote: Resolving deltas: 100% (1/1), completed with 1 local object.
-To github.com:anhaoerv/demo-git.git
-   f52c25b..19c419e  main -> main
+git commit -am "I will change this commit later"
+git push origin main
 ```
 
 Step 02: Let's edit the content inside `README.md`, run `git add` then `git commit --amend`.
 
 ```bash
-$ git status
-On branch main
-Your branch is up to date with 'origin/main'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-        modified:   README.md
-
-no changes added to commit (use "git add" and/or "git commit -a")
-
-$ git add .
-
-$ git commit --amend
+git add .
+git commit --amend
 ```
 
-Git will open `vim` to let you edit the commit message. After saving, we have overwitten the last commit with new content.
-
-```bash
-[main 8edb82c] I will change this commit later (already changed). OK!
- Date: Thu Oct 9 08:46:45 2025 +0700
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-$ git log --oneline
-8edb82c (HEAD -> main) I will change this commit later (already changed). OK!
-```
-
+Git will open `vim` to let you edit the commit message. After saving, we have overwitten the last commit with new content.  
 But now, when we push to `origin`, we get rejected. We need to do a force push.
 
 ```bash
@@ -506,12 +452,16 @@ Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 To github.com:anhaoerv/demo-git.git
  + 19c419e...8edb82c main -> main (forced update)
-
-$ git log --oneline
-8edb82c (HEAD -> main, origin/main, origin/HEAD) I will change this commit later (already changed). OK!
 ```
 
 Our amended commit is now pushed to Github (notice the hash `8edb82c` is matching).
+
+### git restore
+
+`git restore <file>` to discard changes in modified files and revert them back to the latest commit snapshot version (un-modified a file). :bangbang: You will lose all your local changes to that file (`git checkout` is an old version of this).  
+You can check with the checkout command that how files look like but you can only restore the file to the last commit only. You cannot go further.
+
+`git restore --staged <file>` to unstage file (`git reset` is an old version of this). Or `git rm --cache <file>` to unstage
 
 ### git reset
 

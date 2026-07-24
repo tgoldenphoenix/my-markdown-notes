@@ -100,19 +100,20 @@ PCRE and .NET are case sensitive for the category letters. `\p{Zs}` will match a
 - `\r` match one carriage return; `\n` for line feed
   - Windows text files use `\r\n` to terminate lines, while UNIX text files use `\n`. Some flavors use `\R` to match a single line break and treat `\r\n` as an indivisible pair.
 - `\s`match: space, tab `\t`, newline `\n`, carriage return \r, or form feed `\f`
-  - Typing out a literal space bar ` ` will matches only a standard space character, ignoring tabs and newlines.
+  - Typing out a literal space bar `␣` will matches only a standard space character, ignoring tabs and newlines.
 - `\v` matches any vertical whitespace character. That includes the vertical tab, form feed, and all line break characters.
 
 ---
 
-Remove empty lines
+ Remove empty lines
 
 Remove ALL empty lines (Including those with spaces/tabs)
 
-- Find: `^\s*\r?\n`
-- Replace: (Leave completely empty)
+- Find: `^\s*\r?\n` => Replace: (Leave completely empty)
   - The `\s*` will group multiple consecutive empty lines into one single match.
-  - `\r?\n` matches the line break (works on both Mac/Linux and Windows).
+  - `\r?\n` matches the line break (works on both Mac/Linux and Windows). If your flavor supports the shorthand `\v` to match any line break character, then use it.
+- or `^\s*$\n?`
+  - `$` is the end of line
 
 Remove ONLY completely blank lines (Zero characters)
 
@@ -142,16 +143,6 @@ Let’s illustrate this with a simple example. Say we want to match a date in mm
 `\d\d[- /.]\d\d[- /.]\d\d` is a better solution. This regex allows a dash, space, dot and forward slash as date separators. Remember that the dot is not a metacharacter inside a character class, so we do not need to escape it with a backslash.
 
 This regex is still far from perfect. It matches 99/99/99 as a valid date. `[01]\d[- /.][0-3]\d[- /.]\d\d` is a step ahead, though it still matches 19/39/99. How perfect you want your regex to be depends on what you want to do with it. If you are validating user input, it has to be perfect. If you are parsing data files from a known source that generates its files in the same way every time, our last attempt is probably more than sufficient to parse the data without errors. You can find a better regex to match dates in the example section.
-
----
-
-A negated character class is often more appropriate than the dot. The tutorial section that explains the repeat operators star and plus covers this in more detail. But the warning is important enough to mention it here as well. Again let’s illustrate with an example.
-
-Suppose you want to match a double-quoted string. Sounds easy. We can have any number of any character between the double quotes, so ".*" seems to do the trick just fine. The dot matches any character, and the star allows the dot to be repeated any number of times, including zero. If you test this regex on `Put a "string" between double quotes`, it matches "string" just fine. Now go ahead and test it on `Houston, we have a problem with "string one" and "string two". Please respond.`
-
-Ouch. The regex matches "string one" and "string two". Definitely not what we intended. The reason for this is that the star is greedy.
-
-In the date-matching example, we improved our regex by replacing the dot with a character class. Here, we do the same with a negated character class. Our original definition of a double-quoted string was faulty. We do not want any number of any character between the quotes. We want any number of characters that are not double quotes or newlines between the quotes. So the proper regex is `"[^"\r\n]*"`. If your flavor supports the shorthand `\v` to match any line break character, then `"[^"\v]*"` is an even better solution.
 
 ## Flags
 
@@ -368,6 +359,73 @@ The character class `[a-z-[aeiuo]]` matches a single letter that is not a vowel.
 ### Character Class Intersection
 
 Character class intersection is supported by Java, ICU, JGsoft V2, and by Ruby 1.9 and later. It makes it easy to match any single character that must be present in two sets of characters. The syntax for this is `[class&&[intersect]]`. You can use the full character class syntax within the intersected character class.
+
+## Negated character class
+
+A `negated character class` is often **more appropriate** than the dot. Let’s illustrate with an example.
+
+Suppose you want to match a double-quoted string. Sounds easy. We can have any number of any character between the double quotes, so `".*"` seems to do the trick just fine. The dot matches any character, and the star allows the dot to be repeated any number of times, including zero. If you test this regex on `Put a "string" between double quotes`, it matches `"string"` just fine. Now go ahead and test it on `Houston, we have a problem with "string one" and "string two". Please respond.`  
+Ouch. The regex matches `"string one" and "string two"`. Definitely not what we intended. The reason for this is that the star `*` is **greedy**.
+
+In the date-matching example, we improved our regex by replacing the dot with a character class. Here, we do the same with a negated character class. **Our original definition of a double-quoted string was faulty**. We do not want any number of any character between the quotes. We want any number of characters that are NOT double quotes OR newlines between the quotes. So the proper regex is `"[^"\r\n]*"`. If your flavor supports the shorthand `\v` to match any line break character, then `"[^"\v]*"` is an even better solution.
+
+### Dealing with Japanese with Negated set
+
+```json
+"data":[
+      {
+         "name":"semeyez",
+         "business_name":"EYEZ,INC.\t\t\t",
+         "timezone":"Asia\/Tokyo",
+         "timezone_switch_at":"2016-05-14T15:00:00Z",
+         "country_code":"JP",
+         "id":"18ce54bjjag",
+         "created_at":"2016-05-16T01:37:23Z",
+         "updated_at":"2026-06-25T01:00:39Z",
+         "industry_type":"AGENCY",
+         "business_id":"a5",
+         "approval_status":"ACCEPTED",
+         "deleted":false
+      },
+      {
+         "name":"sem_eyez - EYEZ,INC.",
+         "business_name":"EYEZ,INC.\t\t\t",
+         "timezone":"Asia\/Tokyo",
+         "timezone_switch_at":"2013-05-21T15:00:00Z",
+         "country_code":null,
+         "id":"18ce54jo9k0",
+         "created_at":"2017-08-08T02:31:15Z",
+         "updated_at":"2026-06-25T01:00:39Z",
+         "industry_type":null,
+         "business_id":"a5",
+         "approval_status":"ACCEPTED",
+         "deleted":false
+      },
+```
+
+`/"name":"[^""]*?\\t[^""]*?"/gm`
+
+`\w` không match japanese, ngoài ra japanese còn chứa các ký tự khác như （大阪）(khác với normal parentheses), 【公式】「古代ＤＮＡ－日本人のきた道－」 => cách tốt nhất là dùng negated set `[^""]`
+
+`\t` (matching a literal tab) is different from `\\t` (match `\t`)
+
+Switching from positive matching (`\w`) to a negated character set (like `[^...]`) is a total game-changer, especially when dealing with international languages like Japanese, Chinese, or Korean.
+
+Instead of trying to define what a character is (which fails across different languages and alphabets), a negated character set defines what a character is NOT. Since a space or a quotation mark looks the same whether it's next to English or Japanese, it acts as a universal boundary.
+
+The "Stay Inside the String" pattern: `[^"]` or `[^']` match anything that is not a quotation mark. This is the gold standard for scraping text inside attributes or JSON values. It guarantees your regex engine won't accidentally spill out over the closing quote and eat the rest of your file.  
+Example: `"[^"]*"` matches a complete double-quoted string perfectly, regardless of the language inside.
+
+The "Stay on the Current Line" pattern: `[^\n]` or `[^\r\n]` match any character except a newline or carriage return. By default, the wildcard dot (.) in many engines can accidentally match newlines if flags are turned on. Using `[^\n]*` forces your regex to strictly process data within a single, individual line.
+
+The "Universal Word / Token" pattern: `[^[:space:]]` (Vim) or `[^\s]` (VS Code) match any character that is **not** a space, tab, or newline. This is your direct, bulletproof replacement for `\w`. Because a "space" is universal across all human languages, matching "anything that isn't a space" will perfectly capture Japanese words, English words, numbers, and symbols uniformly.  
+Example (Tab between Japanese words): `[^\s]+\t[^\s]+`
+
+The "HTML / XML Tag Confiner" pattern: `[^>]` match any character that is not a closing angle bracket. If you are parsing or cleaning up HTML/XML tags, using `.*` inside a bracket can accidentally match across multiple tags. Using `[^>]*` confines the engine to the current tag structure.  
+Example: `<div[^>]*>` matches the opening `div` tag along with all of its internal classes and attributes, stopping exactly at the end of that specific tag.
+
+The "CSV / Separated Values" pattern: `[^,]` (for CSV) or `[^\t]` (for TSV) match any character except a comma or a tab. Perfect for parsing data columns without pulling in a heavy CSV parsing library.  
+Example: `([^,]*),([^,]*)` captures the first two columns of a comma-separated file cleanly.
 
 ## Capture Groups `()`
 
@@ -591,64 +649,6 @@ The anchor `\b` matches at a word boundary. A word boundary is a position betwee
 
 The section [Looking Inside The Regex Engine](https://www.regular-expressions.info/wordboundaries.html) for word boundary is helpful to read!
 
-## Dealing with Japanese with Negated set
-
-```json
-"data":[
-      {
-         "name":"semeyez",
-         "business_name":"EYEZ,INC.\t\t\t",
-         "timezone":"Asia\/Tokyo",
-         "timezone_switch_at":"2016-05-14T15:00:00Z",
-         "country_code":"JP",
-         "id":"18ce54bjjag",
-         "created_at":"2016-05-16T01:37:23Z",
-         "updated_at":"2026-06-25T01:00:39Z",
-         "industry_type":"AGENCY",
-         "business_id":"a5",
-         "approval_status":"ACCEPTED",
-         "deleted":false
-      },
-      {
-         "name":"sem_eyez - EYEZ,INC.",
-         "business_name":"EYEZ,INC.\t\t\t",
-         "timezone":"Asia\/Tokyo",
-         "timezone_switch_at":"2013-05-21T15:00:00Z",
-         "country_code":null,
-         "id":"18ce54jo9k0",
-         "created_at":"2017-08-08T02:31:15Z",
-         "updated_at":"2026-06-25T01:00:39Z",
-         "industry_type":null,
-         "business_id":"a5",
-         "approval_status":"ACCEPTED",
-         "deleted":false
-      },
-```
-
-`/"name":"[^""]*?\\t[^""]*?"/gm`
-
-`\w` không match japanese, ngoài ra japanese còn chứa các ký tự khác như （大阪）(khác với normal parentheses), 【公式】「古代ＤＮＡ－日本人のきた道－」 => cách tốt nhất là dùng negated set `[^""]`
-
-`\t` (matching a literal tab) is different from `\\t` (match `\t`)
-
-Switching from positive matching (`\w`) to a negated character set (like `[^...]`) is a total game-changer, especially when dealing with international languages like Japanese, Chinese, or Korean.
-
-Instead of trying to define what a character is (which fails across different languages and alphabets), a negated character set defines what a character is NOT. Since a space or a quotation mark looks the same whether it's next to English or Japanese, it acts as a universal boundary.
-
-The "Stay Inside the String" pattern: `[^"]` or `[^']` match anything that is not a quotation mark. This is the gold standard for scraping text inside attributes or JSON values. It guarantees your regex engine won't accidentally spill out over the closing quote and eat the rest of your file.  
-Example: `"[^"]*"` matches a complete double-quoted string perfectly, regardless of the language inside.
-
-The "Stay on the Current Line" pattern: `[^\n]` or `[^\r\n]` match any character except a newline or carriage return. By default, the wildcard dot (.) in many engines can accidentally match newlines if flags are turned on. Using `[^\n]*` forces your regex to strictly process data within a single, individual line.
-
-The "Universal Word / Token" pattern: `[^[:space:]]` (Vim) or `[^\s]` (VS Code) match any character that is **not** a space, tab, or newline. This is your direct, bulletproof replacement for `\w`. Because a "space" is universal across all human languages, matching "anything that isn't a space" will perfectly capture Japanese words, English words, numbers, and symbols uniformly.  
-Example (Tab between Japanese words): `[^\s]+\t[^\s]+`
-
-The "HTML / XML Tag Confiner" pattern: `[^>]` match any character that is not a closing angle bracket. If you are parsing or cleaning up HTML/XML tags, using `.*` inside a bracket can accidentally match across multiple tags. Using `[^>]*` confines the engine to the current tag structure.  
-Example: `<div[^>]*>` matches the opening `div` tag along with all of its internal classes and attributes, stopping exactly at the end of that specific tag.
-
-The "CSV / Separated Values" pattern: `[^,]` (for CSV) or `[^\t]` (for TSV) match any character except a comma or a tab. Perfect for parsing data columns without pulling in a heavy CSV parsing library.  
-Example: `([^,]*),([^,]*)` captures the first two columns of a comma-separated file cleanly.
-
 ## Free-Spacing & Comments
 
 Many application have an option that may be labeled “free-spacing” or “ignore whitespace” or “comments” that makes the regular expression engine ignore unescaped spaces and line breaks and that makes the # character start a comment that runs until the end of the line. This allows you to use whitespace to format your regular expression in a way that makes it easier for humans to read and thus makes it easier to maintain.
@@ -702,7 +702,7 @@ The pattern above match `anhao`, the comment inside `(?#)` is ignored.
 
 ## `ripgrep`
 
-find all lines have a word that contains `fast` followed by some number of other letters?
+find all lines have a word that contains `fast` followed by some number of other letters?
 
 ```bash
 $ rg 'fast\w+' README.md

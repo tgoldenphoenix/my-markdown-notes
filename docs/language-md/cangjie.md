@@ -50,6 +50,7 @@ Triple-unit characters
 - 歷 (一 // 竹木 // 一) - triple unit
 - 寶 (十 // 一山 // 金) - triple unit
 - 然 (月大 // 火) - double unit
+- 關 (日弓 // 女戈 // 廿) - triple unit
 
 - One element top; two elements bottom:
 - 露 (一月 // 口一 // 口) - triple unit
@@ -70,6 +71,7 @@ Triple-unit characters
 - 態 (戈心 // 心) - double unit
 - 假 (人 // 口尸 // 水)
   - 霞 (一月 // 口尸 // 水) - triple unit
+- 覵 (日月 // 月山山)
 
 ## Notable Character Codes
 
@@ -125,6 +127,7 @@ Triple-unit characters
 
 - 西 (一金田) - west
   - 覀 (一中中田)
+  - 曲 (廿田)
 - 酉 (一金田一) - whisky
   - 酌 (一田 // 心戈)
   - 酒 (水 // 一金田)
@@ -199,8 +202,8 @@ Triple-unit characters
 
 #### Meeting
 
-- 會 (人 // 一 // 田日) - triple-unit character (only take the F+L of the 3rd unit)
-  - 会 (人 // 一 // 一戈) - triple-unit, meeting, elbow
+- 會 (人 // 一 // 田日) - triple-unit (only take the F+L of the 3rd unit)
+  - 会 (人 // 一 // 一戈) - triple-unit, meeting
 - 侖 (人一月廿) - academic conference
   - 輪 (十十 // 人一 // 月) - triple unit
   - 崙 (山 // 人 // 一月) - triple unit
@@ -421,7 +424,7 @@ Triple-unit characters
 - 那 (尸手 // 弓中) - Alcatraz
   - 哪 (口 // 尸手 // 中) - triple unit
 
-- 阝 (弓中) - pinnacle
+- 阝 (弓中)
 - 卩 (尸中) - postage stamp
   - 即 (日戈 // 尸中)
   - 命 (人 // 一 // 口中) - triple unit
@@ -446,7 +449,8 @@ Triple-unit characters
 
 - 族 (卜尸 // 人人大) - banner
 
-- 扁 (竹尸月廿) - comic book
+- 扁 (竹尸 // 月廿) - comic book
+  - 偏 (人 // 竹尸 // 月) - triple unit
 - 侖 (人一月廿) - academic conference
   - 輪 (十十 // 人一 // 月) - triple unit
   - 轮 (大手 // 人心)
@@ -492,8 +496,9 @@ Triple-unit characters
   - 吂 (卜女 // 口)
 
 - 眉 (日竹 // 月山) - divided flag, eyebrow
-  - 屓 (尸 // 月山金)
-  - 色 (弓日山) - color
+  - 湄 (水 // 日竹 // 山)
+- 屓 (尸 // 月山金)
+- 色 (弓日山) - color
 - 聲 (土水 // 尸十) - double unit character
   - 声 (土 // 日竹)
 - 倉 (人 // 戈 // 日口) - triple unit, godown
@@ -538,7 +543,7 @@ Triple-unit characters
   - 級 (女火 // 弓竹水)
 
 - 永 (戈弓水) - eternity
-- 又 (弓大) - again, crotch
+- 又 (弓大)
 
 - 為 (戈大弓火)
 
@@ -576,8 +581,9 @@ Triple-unit characters
   - 蘅 (廿 // 竹人 // 弓) - triple unit
   - 得 (竹人 // 日一 // 戈) - triple unit
 
-- 可 (一弓口)
+- 可 (一弓口) - cannn
   - 啊 (口 // 弓中 // 口) - triple unit
+  - 河 (水 // 一弓口)
 - 奇 (大 // 一弓口) - strange
   - 寄 (十 // 大 // 一口) - triple unit - triple unit
 
@@ -593,6 +599,8 @@ Triple-unit characters
 - 夕 (弓戈) - evening
 
 - 阝 (弓中) - pinnacle
+- 阜 (竹口 // 十) - double unit, Pinnacle
+  - 埠 (土 // 竹口 // 十) - triple unit
 - 都 (十日 // 弓中)
   - 者 (十大日) - doll
 
@@ -618,7 +626,7 @@ Triple-unit characters
 - 予 (弓戈弓弓) - beforehand
 - 矛 (弓戈弓竹) - halberd
 
-- 角 (弓月土) - angle, bound up
+- 角 (弓月土) - bound up
 - 換/换 (手 // 弓月大)
 
 - 魚 (弓田火) - fish
@@ -646,12 +654,21 @@ Triple-unit characters
 
 #### Halberd, fiesta (戈)
 
+- 厶 (女戈) - elbow
 - 公 (金戈)
 - 強 (弓 // 戈 // 中戈) - triple unit
   - 虫 (中一戈)
 - 轉 (十十 // 十戈 // 戈) - triple unit
 - 虽 (口中一戈) - although
   - 雖 (口戈 // 人土)
+
+- Wall
+- 至 (一戈土) - climax
+  - 到 (一土 //  中 //  弓) Triple unit character
+  - 侄 (人 // 一戈土)
+  - 臺 (土 // 口 // 月土) - pedestal
+- 云 (一一戈) - rising cloud
+- 能 (戈月 // 心心) - ability
 
 - 惠 (十戈 // 心) - favor, double unit
   - 穗 (竹木 // 十戈 // 心) - triple unit
@@ -661,14 +678,6 @@ Triple-unit characters
   - 傳 (人 // 十戈 // 戈) - triple unit
 - 专 (手弓戈) - corncob pipe
 
-- Wall, elbow (*)
-- 至 (一戈土) - climax
-  - 到 (一土 //  中 //  弓) Triple unit character
-  - 侄 (人 // 一戈土)
-  - 臺 (土 // 口 // 月土) - pedestal
-- 云 (一一戈) - rising cloud
-- 能 (戈月 // 心心) - ability
-
 - 㐬 (卜戈竹中山)
 - 流 (水 // 卜戈山) - infant Moses
 - 充 (卜戈竹山) - allot
@@ -677,7 +686,7 @@ Triple-unit characters
 - 台 (戈口)
   - 治 (水 // 戈口)
 
-- 或 (戈口一) - or
+- 或 (戈口一) - orrr
   - 國 (田 // 戈口一) - country
   - 国 (田 // 一土戈)
   - 惑 (戈一 // 心) - double unit, (nghi) hoặc
@@ -740,7 +749,7 @@ Triple-unit characters
   - 紈 (女火 // 大弓戈)
 - 力 (大尸) - power
 
-- 坴 (土金土) - Mushroom Kingdom
+- 坴 (土金 // 土) - Mushroom Kingdom
   - 陸 (弓中 // 土金 // 土)
 - 埶 (土土 // 大弓戈) - double unit, Mario
 - 熱 (土戈 // 火) - double unit
@@ -768,6 +777,7 @@ Triple-unit characters
 
 - 世 (心廿)
 - 也 (心木)
+- 长 (心人)
 - 五 (一木一) - five
 - 九 (大弓)
 - 丸 (大弓戈)
@@ -839,7 +849,7 @@ Triple-unit characters
 
 - 宓 (十心竹)
 
-- 眉 (日竹 // 月山) - divided flag, eyebrow
+- 眉 (日竹 // 月山)
 
 ### Sun 日
 
@@ -856,7 +866,7 @@ Triple-unit characters
 - 十 = house (roof)
 
 - 爭 (月 // 尸木) - claw, vulture
-- 稱 (竹木 // 月土月)
+- 稱 (竹木 // 月 // 土月)
 
 - 受 (月月水) - Birdhouse
 - 愛 (月月 // 心 // 水) - triple unit, love
@@ -866,7 +876,7 @@ Triple-unit characters
 
 - 豸 (月尸竹竹) - skunk
   - 貌 (月竹 // 竹日山)
-- 稱 (竹木 // 月土月)
+- 稱 (竹木 // 月 // 土月)
 
 - 爰 (月一大水) - migrating ducks
   - 緩 (女火 // 月一水)
@@ -917,6 +927,7 @@ Triple-unit characters
 
 - 且 (月一) - book shelf
   - 姐 (女 // 月一)
+  - 組 (女火 // 月一)
 - 目 (月山) - eye
   - 眼 (月山 // 日女)
   - 首 (廿竹月山) - neck, head
@@ -938,7 +949,7 @@ Triple-unit characters
   - 滇 (水 // 十月金)
 
 - add one (一)
-- 且 (月一) - book shelf
+- 且 (月一)
 - 直 (十月一一) - straightaway, straight
 - 具 (月一一金) - tool
 - 真 (十月一金) - true, F3 + L
@@ -950,7 +961,7 @@ Triple-unit characters
 
 - 冉 (土月)
   - 再 (一土月) - again
-  - 稱 (竹木 // 月土月)
+  - 稱 (竹木 // 月 // 土月)
 - 冓 (廿廿土月) - funnel
   - 講 (卜口 // 廿廿月)
 
@@ -1095,7 +1106,7 @@ Triple-unit characters
 - 央 (中月大) - center
 - 英 (廿 // 中月大) - england
   - 瑛 (一土 // 廿中大) - double unit
-- 春 (手大 // 日) - spring, bonsai
+- 春 (手大 // 日)
 - 夫 (手人) - father, husband
 
 - 亞 (一中中一), 亜 (一中中一) - asia, F3+L
@@ -1277,7 +1288,7 @@ Triple-unit characters
   - 期 (廿金 月) - double unit characters, only take F+L of the first unit
   - 基 (廿金土) - double unit character, only take F+L of the first unit
 - 某 (廿一木) - wicker basket
-- 且 (月一) - book shelf
+- 且 (月一)
 
 - 㒼 (廿中月人) - both
   - 滿 (水 // 廿中月)
@@ -1331,6 +1342,9 @@ Triple-unit characters
   - 親 (卜木 // 月山山) - double unit
 - 幸 (土廿十) - happy, happiness
   - 達 (卜 // 土廿手)
+- 睪 (田中 // 土廿十) - testicle
+  - 譯 (卜口 // 田中 // 十)
+  - 睾 (竹田 // 土廿十)
 - 南 (十月廿十) - south
 
 - 虛 (卜心 // 廿一) - cactus
@@ -1463,7 +1477,7 @@ Triple-unit characters
 - 攵 (人大) - taskmaster
   - 故 (十口 // 人大)
   - 做 (人 // 十口 // 大)
-- 矢 (人大) - dart
+- 矢 (人大)
 
 - 文 (卜大) - literature
   - 这 (卜 // 卜大)
@@ -1515,7 +1529,7 @@ Triple-unit characters
   - 藝 (廿 // 土戈 // 戈) - triple unit
   - 云 (一一戈) - rising cloud
 
-- 又 (弓大) - crotch, again
+- 又 (弓大) - again, crotch
 - 故 (十口 // 人大)
 
 - 文 (卜大) - literature
@@ -1523,8 +1537,9 @@ Triple-unit characters
 
 - 矢 (人大) - dart
   - 欸 (戈大 // 弓人)
-  - 知 (人大 // 口)
   - 族 (卜尸 // 人人大) - banner
+- 知 (人大 // 口)
+  - 椥 (木 // 人大 // 口)
 - 攵 (人大) - taskmaster
 
 - 天 (一大) - heaven
@@ -1555,7 +1570,7 @@ Triple-unit characters
 - 丈 (十大) - trượnggg
 
 - 央 (中月大) - center
-- 春 (手大 // 日) - spring, bonsai
+- 春 (手大 // 日)
 - 夫 (手人) - father, husband
 
 #### Drag, Cliff, Cave, Sick Bed
@@ -1568,6 +1583,7 @@ Triple-unit characters
 - 爪 (竹中人)
 - 戶 (竹尸)
   - 房 (竹尸 // 卜竹尸)
+  - 扁 (竹尸 // 月廿)
 - 氏 (竹女心) - family name
 
 - 旅 (卜尸 // 人 // 竹女) - triple unit, group of people
@@ -1678,6 +1694,7 @@ Triple-unit characters
   - 来 (木廿)
 - 夾 (大人人) - scissors
   - 夹 (大廿)
+  - 陝 (弓中 // 大人人)
 - 爽 (大大大大)
 
 - 東 (木田) - east
@@ -1857,10 +1874,12 @@ Triple-unit characters
   - 幻 (女戈 // 尸)
   - 幼 (女戈 // 大尸)
   - 後 (竹人 // 女戈 // 水) - triple unit
+  - 關 (日弓 // 女戈 // 廿) - triple unit
 
 - 亦 (卜中弓金) - apple
-  - 變 (女火 // 人大)
   - 变 (卜金 // 水)
+- 變 (女火 // 人大)
+  - 𤅶 (水 // 女火 // 大) - nôm
 - 樂 (女戈 // 木) - sparkler
   - 楽 (戈人 // 木)
 
@@ -1911,6 +1930,8 @@ Triple-unit characters
 - 衷 (卜 // 中 // 竹女) - triple unit
 - 衰 (卜 // 田一 // 女) - triple unit
 
+- 戉 (戈女)
+
 ### Hand 手
 
 - monocle, sunglasses
@@ -1954,6 +1975,7 @@ Triple-unit characters
   - 壽 (土弓一戈) - longevity
 
 - 春 (手大 // 日) - spring, bonsai
+  - 秦 (手大 // 竹木)
 - 奉 (手大 // 手)
   - 捧 (手 // 手大手)
 - 龹 (火手) - quarter
@@ -1984,7 +2006,7 @@ Triple-unit characters
   - 情 (心 // 手一月)
 
 - 用 (月手) - utilize
-- 角 (弓月土) - angle
+- 角 (弓月土)
 - 甬 (弓戈月手) - pogo stick
   - 通 (卜 // 弓戈月) - chop seal; double unit, take F2+L of second unit
 
@@ -2074,7 +2096,7 @@ Triple-unit characters
 
 - 實 (十 // 田十 // 金) - triple unit
 
-- 西 (一金田) - west
+- 西 (一金田)
   - 覀 (一中中田)
   - 曲 (廿田) - bent, bend
 - 賈 (一田 // 月山金) - double unit, merchant
@@ -2204,7 +2226,7 @@ Triple-unit characters
 - 在 (大中土)
 - 左 (大一) - left, by one's side
 
-- 角 (弓月土) - angle
+- 角 (弓月土)
 
 - 街 (竹人 // 土土 // 弓) - boulevard
 
@@ -2282,7 +2304,7 @@ Triple-unit characters
 
 - 門 (日弓) - gate
   - 開 (日弓 // 一廿)
-  - 簡 (竹 // 日弓日)
+  - 簡 (竹 // 日弓 // 日)
   - 覵 (日月 // 月山山)
 - 门 (中戈尸)
   - 阊 (中尸 // 日日)
