@@ -739,24 +739,44 @@ You can open it with `<Space>gs`. I use it a lot for switching between files re
 
 ## Nvim Key mapping
 
-`n` Normal mode map. Defined using ':nmap' or ':nnoremap'.
-`i` Insert mode map. Defined using ':imap' or ':inoremap'.
+`n` Normal mode map. Defined using `:nmap` or `:nnoremap`.
+`i` Insert mode map. Defined using `:imap` or `:inoremap`.
 `v` Visual and select mode map. Defined using ':vmap' or ':vnoremap'.
-`x` Visual mode map. Defined using ':xmap' or ':xnoremap'.
+`x` Visual mode map. Defined using `:xmap` or `:xnoremap`.
 `s` Select mode map. Defined using ':smap' or ':snoremap'.
 `c`  Command-line mode map. Defined using ':cmap' or ':cnoremap'.
 `o`  Operator-pending mode map. Defined using ':omap' or ':onoremap'.
 
-<Space>  Normal, Visual and operator pending mode map. Defined using
-         ':map' or ':noremap'.
-!  Insert and command-line mode map. Defined using 'map!' or
-   'noremap!'.
+`<Space>`  Normal, Visual and operator pending mode map. Defined using `:map` or `:noremap`.
+`!`  Insert and command-line mode map. Defined using `map!` or `noremap!`.
 
-always use `noremap` or its relatives (e.g. vnoremap) unless you have an explicit reason not to (e.g. when working with <Plug> or <SID> mappings, which are meant to be remapped
+always use `noremap` or its relatives (e.g. `vnoremap`) unless you have an explicit reason not to (e.g. when working with `<Plug>` or `<SID>` mappings, which are meant to be remapped
 
 ## Installing Neovim on Windows
 
 k
+
+## Annotation Processing
+
+To enable annotation processing in IntelliJ IDEA, open your IDE settings and check the Enable annotation processing box located under the `Compiler` menu.
+
+Downloading the Lombok plugin and enabling Annotation Processing actually solve two completely different problems.
+
+- The plugin is there purely to make IntelliJ's code editor happy while you are typing:
+  - It stops IntelliJ from putting red squiggly lines under getters like user.getName() when @Data is on the class.
+  - It enables autocompletion for generated methods.
+  - It allows navigation (e.g., Ctrl+Click) to auto-generated constructors or methods.
+- However, the plugin does not actually compile your Java code.
+
+Lombok works during compilation by hooking into the `Java Annotation Processing API` (`javax.annotation.processing`).
+
+When you hit Build or Run inside IntelliJ:
+
+- IntelliJ invokes `javac` (the Java compiler).
+- The compiler reads annotations like `@Getter`, `@Setter`, or `@Builder`.
+- Lombok's annotation processor modifies the `Abstract Syntax Tree` (AST) in memory to inject actual Java bytecode for getters, setters, and constructors into your `.class` files.
+
+Because running annotation processors during compilation adds extra build time and overhead, IntelliJ disables annotation processing by default for all projects.
 
 ## Vim is not an IDE
 

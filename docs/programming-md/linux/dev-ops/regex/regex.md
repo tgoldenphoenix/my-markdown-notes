@@ -528,7 +528,7 @@ The best option is probably to express the fact that we only want to match compl
 
 ## Lookaround
 
-Lookaround is a special kind of group. The tokens inside the group are matched normally, but then the regex engine makes the group give up its match and keeps only the result. Lookaround matches a position, just like anchors. It does not expand the regex match.
+`Lookaround` is a special kind of group. The tokens inside the group are matched normally, but then the regex engine makes the group give up its match and keeps only the result. Lookaround **matches a position**, just like anchors. It does not expand the regex match.
 
 If we want the phrase we're writing to come before or after another phrase, we need to "lookaround". There are four types of lookaround.
 
@@ -543,11 +543,18 @@ Phần lookaround không được select. Nó chỉ dùng như điều kiện.
 
 Placed after the pattern that you want to match.
 
-`/\d+(?=PM)/g` => match digit that have "PM" after them like "3PM"
+`/\d+(?=PM)/g` => match digit that have `PM` after them like `3PM`.
 
-`q(?=u)` matches the q in question, but not in Iraq or iraqi. This is positive lookahead. The u is not part of the overall regex match. The lookahead matches at each position in the string before a u.
+`q(?=u)` matches the `q` in `question`, but not in `Iraq` or `iraqi`. This is positive lookahead. The u is not part of the overall regex match. The lookahead matches at each position in the string before a u.
 
-Positive & Negative Lookbehind: ``(?<=) (?<!)`
+- `^.*?(?=java)` replaces with empty string => Remove anything before the word `java`.
+    - `^` matches the start of line
+    - `.*?` Matches any characters non-greedily (stops at the first match).
+    - `(?=java)` A positive lookahead that checks for the word `java` without including java in what gets replaced/deleted.
+
+---
+
+Positive & Negative Lookbehind: `(?<=)` and `(?<!)`
 
 Thêm dấu `<` vào Lookahead, placed before the pattern that you want to match.
 
@@ -559,16 +566,6 @@ Lookaheads are patterns that tell JavaScript to look-ahead in your string to che
 
 - A **positive lookahead** will look to make sure the element in the search pattern is there, but won't actually match it. A positive lookahead is used as (?=...) where the ... is the required part that is not matched.
 - On the other hand, a **negative lookahead** will look to make sure the element in the search pattern is not there. A negative lookahead is used as (?!...) where the ... is the pattern that you do not want to be there. The rest of the pattern is returned if the negative lookahead part is not present.
-
-Lookaheads are a bit confusing but some examples will help.
-
-For example, we want to select the hour value in the text. Therefore, to select only the numerical values that have PM after them, we need to write the positive look-ahead expression (?=) after our expression. Include PM after the = sign inside the parentheses.
-
-For example, we want to select numbers other than the hour value in the text. Therefore, we need to write the negative look-ahead (?!) expression after our expression to select only the numerical values that do not have PM after them. Include PM after the ! sign inside the parentheses.
-
-A more practical use of lookaheads is to check two or more patterns in one string. Here is a (naively) simple password checker that looks for between 3 and 6 characters and at least one number:
-
-Use lookaheads in the pwRegex to match passwords that are greater than 5 characters long, and have two consecutive digits.
 
 ### Lookbehind
 

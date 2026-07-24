@@ -788,21 +788,14 @@ Repo sau khi hiện tại là empty không chứa file nào cả.
 Let's demo on the terminal. First, add 3 commits.
 
 ```bash
-$ echo "add feature revert 01" >> README.md
-$ git commit -am "add feature revert 01"
-[main e4e4f47] add feature revert 01
- 1 file changed, 1 insertion(+)
+echo "add feature revert 01" >> README.md
+git commit -am "add feature revert 01"
 
-$ echo "\nadd feature revert 02" >> README.md
-$ git commit -am "add feature revert 02"
-[main b2dd9a8] add feature revert 02
- 1 file changed, 1 insertion(+)
+echo "\nadd feature revert 02" >> README.md
+git commit -am "add feature revert 02"
 
-$ echo "\nadd feature revert 03" >> README.md
-$ git commit -am "add feature revert 03"
-warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
-[main 178ebd6] add feature revert 03
- 1 file changed, 1 insertion(+)
+echo "\nadd feature revert 03" >> README.md
+git commit -am "add feature revert 03"
 ```
 
 The content of `README.md` is now as following.

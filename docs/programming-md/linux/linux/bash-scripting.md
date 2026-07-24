@@ -328,11 +328,11 @@ fi
 
 The `-n` in the echo command suppresses the usual newline, but you could also have used printf here. We cover the if statement’s syntax shortly, but its effect should be obvious here. The `-n` in the if statement evaluates to true if its string argument is not null.
 
-## Command-line arguments and functions
+## Command-line arguments and Functions
 
-Command-line arguments to a script become variables whose names are num-bers. `$1` is the first command-line argument, `$2` is the second, and so on. $0 is the name by which the script was invoked. That could be something strange such as `../bin/example.sh`, so it’s not a fixed value.
+Command-line arguments to a script become variables whose names are numbers. `$1` is the first command-line argument, `$2` is the second, and so on. `$0` is the name by which the script was invoked. That could be something strange such as `../bin/example.sh`, so it’s not a fixed value.
 
-The variable `$#` contains the number of command-line arguments that were sup-plied, and the variable `$*` contains all the arguments at once. Neither of these vari-ables includes or counts $0.
+The variable `$#` contains **the number** of command-line arguments that were supplied, and the variable `$*` contains all the arguments at once. Neither of these variables includes or counts `$0`.
 
 Không có khai báo bao nhiêu argument & types. Cứ dùng mấy cái ở trên để check.
 
@@ -356,9 +356,9 @@ Like many shells, bash has an `alias` mechanism that can reproduce this limited 
 ## Output Redirection, Streams & Pipes
 
 - Every process has at least three standard communication channels (streams) available to it:
-  - `0: STDIN` (said standard input or standard in)
-  - `1: STDOUT` (said standard output or standard out) for all non-error text, the normal output
-  - `2: STDERR` (said standard error or standard err.) is just for error information
+  - `0: STDIN` (`standard input` or standard in)
+  - `1: STDOUT` (`standard output` or standard out) for all non-error text, the normal output
+  - `2: STDERR` (`standard error` or standard err.) is just for error information
 - The kernel sets up these channels on the process’s behalf, so the process itself doesn’t necessarily know where they lead. They might connect to a terminal win-dow, a file, a network connection, or a channel belonging to another process, to name a few possibilities.
 - Most commands accept their input from STDIN and write their output to STD-OUT. They write error messages to STDERR. This convention lets you string commands together like building blocks to create composite pipelines.
 
@@ -384,25 +384,15 @@ cp --preserve --recursive /etc/* /spare/backup \
 
 For the converse effect—multiple commands combined onto one line—you can use a semicolon (`;`) as a statement separator.
 
-## `tee`
+### `tee`
 
 > copy input to two places
 
-split off a stream so that its output can be simultaneously sent to a file and stdout. Named after the T-splitter in plumping.
-
-Debug why a complicated shell pipe ins't working. Dùng để tạo `.log` files for debugging shell pipes.
-
-The device `/dev/tty` is a synonym for the current terminal. For example,
-
-```bash
-find / -name core | tee /dev/tty | wc -l
-```
-
-prints both the pathnames of files named core and a count of the number of core files that were found.
+Split off a stream so that its output can be simultaneously sent to a file and `stdout`. Named after the T-splitter in plumping.
 
 ## Variables
 
-Do not put spaces around the `=` symbol or the shell will mistake your variable name for a command name.
+Do not put white spaces around the `=` symbol or the shell will mistake your variable name for a command name.
 
 ```bash
 $ etcdir='/etc'
@@ -410,18 +400,11 @@ $ echo $etcdir
 /etc
 ```
 
-You can surround variable with curly braces `{}`:
-
-```bash
-$ echo "Saved ${rev}th version of mdadm.conf." 
-Saved 8th version of mdadm.conf.
-```
-
-Local variables are all lowercase & snake_case (case sensitive).
+Local variables are all `lowercase` & `snake_case` (case sensitive).
 
 Some environment variables, such as `PWD` for the current working directory, are maintained automatically by the shell.
 
-The shell treats strings enclosed in single and double quotes similarly, except that **double-quoted** strings are subject to globbing (the expansion of filename-match-ing metacharacters such as `*` and ?) and variable expansion. For example:
+The shell treats strings enclosed in single and double quotes similarly, except that **double-quoted** strings are subject to globbing (the expansion of filename-matching metacharacters such as `*` and ?) and variable expansion. For example:
 
 ```bash
 $ mylang="Pennsylvania Dutch" 
@@ -438,9 +421,133 @@ $ echo "There are `wc -l /etc/passwd` lines in the passwd file."
 There are 28 lines in the passwd file.
 ```
 
+---
+
+Braces ($var vs. `${var}`)
+
+In most cases, `$var` and `${var}` are the same:
+
+```bash
+var=foo
+echo $var
+# foo
+echo ${var}
+# foo
+```
+
+The braces are only needed to resolve ambiguity in expressions:
+
+```bash
+var=foo
+echo $varbar
+# Prints nothing because there is no variable 'varbar'
+echo ${var}bar
+# foobar
+```
+
+---
+
+Quotes (`$var` vs. `"$var"` vs. `"${var}"`)
+
+When you add double quotes around a variable, you tell the shell to treat it as a single word, even if it contains whitespaces:
+
+```bash
+var="foo bar"
+for i in "$var"; do # Expands to 'for i in "foo bar"; do...'
+    echo $i         #   so only runs the loop once
+done
+# foo bar
+```
+
+Contrast that behavior with the following:
+
+```bash
+var="foo bar"
+for i in $var; do # Expands to 'for i in foo bar; do...'
+    echo $i       #   so runs the loop twice, once for each argument
+done
+# foo
+# bar
+```
+
+As with `$var` vs. `${var}`, the braces are only needed for disambiguation, for example:
+
+```bash
+var="foo bar"
+for i in "$varbar"; do # Expands to 'for i in ""; do...' since there is no
+    echo $i            #   variable named 'varbar', so loop runs once and
+done                   #   prints nothing (actually "")
+
+var="foo bar"
+for i in "${var}bar"; do # Expands to 'for i in "foo barbar"; do...'
+    echo $i              #   so runs the loop once
+done
+# foo barbar
+```
+
+---
+
+Arrays (`$var` vs. `$var[@]` vs. `${var[@]}`)
+
+> Referencing an array variable without a subscript is equivalent to referencing the array with a subscript of 0.
+
+In other words, if you don't supply an index with `[]`, you get the first element of the array:
+
+```bash
+foo=(a b c)
+echo $foo
+# a
+```
+
+Which is exactly the same as
+
+```bash
+foo=(a b c)
+echo ${foo}
+# a
+```
+
+To get all the elements of an array, you need to use `@`as the index, e.g. ${foo[@]}. The braces are required with arrays because without them, the shell would expand the $foo part first, giving the first element of the array followed by a literal `[@]`:
+
+```bash
+foo=(a b c)
+echo ${foo[@]}
+# a b c
+echo $foo[@]
+# a[@]
+```
+
 ### Variable Scope
 
 Variables are global within a script, but functions can create their own lo cal vari-ables with a `local` declaration.
+
+## Array
+
+```bash
+index_array=(1 2 3 4 5 6)
+echo ${index_array[0]}
+# 1
+```
+
+```bash
+index_array=(1 2 3 4 5 6 7 8 9 0)
+
+for i in ${index_array[@]}
+do
+        echo $i
+done
+# Print
+1
+2
+3
+4
+5
+6
+7
+8
+9
+0
+```
 
 ## Alias
 
@@ -523,7 +630,7 @@ The `||` sequence (sometimes known as a double pipe) can be read as though it’
 
 `[[ ... ]]` is the preferred, modern, and safer way to perform conditional tests in Bash (compared to the older single brackets `[ ... ]`).
 
-## Loops
+### Loops
 
 Có `for...in` loop.
 
@@ -578,6 +685,13 @@ Use `#!/usr/bin/bash` on Linux, use `#!/bin/bash` on MacOS. Use `which bash` to 
 `printenv` and `env` là 1 command giống nhau. Thường dùng để: (1) print all shell environment variables and (2) in the shebang line.
 
 [The Difference Between #!/usr/bin/bash and #!/usr/bin/env bash](https://www.baeldung.com/linux/bash-shebang-lines)
+
+Instead of looking for bash in one exact absolute path, the `#!/usr/bin/env bash` command tells your terminal to use the env utility. This utility automatically searches your environment's `$PATH` variables to find the correct `bash` executable, no matter where it is installed on the machine
+
+## Options
+
+`set -e` is an option in Bash/Shell scripting that tells the shell to exit immediately if any command fails (returns a non-zero exit code).  
+By default, Bash is permissive: if a command fails in the middle of a script, Bash prints the error, ignores it, and moves on to execute the next line anyway. set -e turns off that default behavior.
 
 ## Environment Variables & Viewing Machine specs
 
