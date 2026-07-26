@@ -25,14 +25,14 @@ The text names that correspond to UIDs and GIDs are defined only for the conveni
 The defining characteristic of the root account is its user id `UID` is `0`. The `root` group id is also `0`.
 
 - Examples of restricted operations are:
-  * Changing the root directory of a process with `chroot`
-  * Creating device files
-  * Setting the system clock
-  * Raising resource usage limits and process priorities
-  * Setting the system’s hostname
-  * Configuring network interfaces
-  * Opening privileged network ports (those numbered below `1,024`)
-  * Shutting down the system
+  - Changing the root directory of a process with `chroot`
+  - Creating device files
+  - Setting the system clock
+  - Raising resource usage limits and process priorities
+  - Setting the system’s hostname
+  - Configuring network interfaces
+  - Opening privileged network ports (those numbered below `1,024`)
+  - Shutting down the system
 
 The home directory of `root` is `/root`.
 
@@ -53,8 +53,7 @@ As with a `su` to `root`, you will be prompted for the password for username. Th
 
 `su - kimphuong`
 
-As `root` user, however, after you type the `su` command to become another user, you don’t need a pass-word to continue. If you type that command as a regular user, you must type the new 
-user’s password.
+As `root` user, however, after you type the `su` command to become another user, you don’t need a pass-word to continue. If you type that command as a regular user, you must type the new user’s password.
 
 ## `sudo`: limited `su`
 
@@ -62,7 +61,7 @@ user’s password.
 
 Dùng `sudo` không cần phải biết root password. Chỉ cần biết password của bản thân mình.
 
-`sudo` takes as its argument a command line to be executed as root (or as another restricted user). 
+`sudo` takes as its argument a command line to be executed as root (or as another restricted user).
 
 `sudo` consults the file `/etc/sudoers`, which lists the people who are authorized to use `sudo` and the commands they are allowed to run on each host.  
 If the proposed command is permitted, sudo prompts for the **user’s own password** and executes the command.
@@ -72,7 +71,7 @@ Using `su`, all you know is that someone with the root password logged in.
 
 By default, the user created during the initial Linux installation will have sudo powers.
 
-When illustrating command-line examples throughout this book, I use a command prompt of $ for commands that don’t require administrator privileges and, instead of `$ sudo`, I use `#` for those commands that do. Thus a sudo command will look like this: `# nano /etc/group`
+When illustrating command-line examples throughout this book, I use a command prompt of $ for commands that don’t require administrator privileges and, instead of `$ sudo`, I use`#` for those commands that do. Thus a sudo command will look like this: `# nano /etc/group`
 
 ---
 
@@ -163,9 +162,10 @@ ACL (Access Control List) is used in both Linux and networking because it is a u
 The reason the name is the same is that the goal is identical: to have a list of rules that the system checks in order to decide whether to allow or deny access to a resource.
 
 - Linux (Filesystem) ACL
-  * Resource: A specific file or folder.
-  * Purpose: Granular Permissions (Who can touch this file?).
+  - Resource: A specific file or folder.
+  - Purpose: Granular Permissions (Who can touch this file?).
 
 - Networking (Firewall/Router) ACL
-  * Resource: A network interface or an entire subnet.
-  * Purpose: Traffic Filtering (What data is allowed on this wire?).
+  - Resource: A network interface or an entire subnet.
+  - Purpose: Traffic Filtering (What data is allowed on this wire?).
+

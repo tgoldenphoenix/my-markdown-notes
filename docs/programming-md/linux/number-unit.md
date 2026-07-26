@@ -10,9 +10,9 @@
 - `0b0110` = binary
 
 - In `C` programming language (and Java, Python, C++):
-  * The prefix `0x` signify that the number is hexadecimal literal. Example: `0xFF = 255`.
-  * `0` is the prefix for Octal. Example: `077 = 63`.
-  
+  - The prefix `0x` signify that the number is hexadecimal literal. Example: `0xFF = 255`.
+  - `0` is the prefix for Octal. Example: `077 = 63`.
+
 ## Decimal
 
 Use this online [Base Converter](https://www.rapidtables.com/convert/number/base-converter.html)
@@ -96,14 +96,14 @@ k
 ### BIN -> HEX
 
 - `1011 0111`
-  * The first thing is you separate the binary in group of four, here we have two groups of four.
-  * Convert to decimal: `1011 0111 = 11 & 7`
-  * `11 & 7 = 0xB7`
+  - The first thing is you separate the binary in group of four, here we have two groups of four.
+  - Convert to decimal: `1011 0111 = 11 & 7`
+  - `11 & 7 = 0xB7`
 
 - $1101.1011.0010.1111_2$
-  * Split the number into four-bit groups: 1101, 1011, 0010, 1111
-  * Convert each four-bit group into decimal: 13, 11, 2, 15.
-  * Convert each decimal number into hexadecimal: D, B, 2, F. 
+  - Split the number into four-bit groups: 1101, 1011, 0010, 1111
+  - Convert each four-bit group into decimal: 13, 11, 2, 15.
+  - Convert each decimal number into hexadecimal: D, B, 2, F.
 
 Memorizing the decimal values of hexadecimal A–F is very helpful: 0d10 = 0xA, 0d11 = 0xB, 0d12 = 0xC, 0d13 = 0xD, 0d14 = 0xE, 0d15 = 0xF.
 
@@ -111,15 +111,19 @@ Memorizing the decimal values of hexadecimal A–F is very helpful: 0d10 = 0xA, 
 
 Octal is base-8. Digits used: `0, 1, 2, 3, 4, 5, 6, 7`
 
-One octal digit represents exactly three binary digits (`7 = 111`, 7 = 4+2+1). This is because `2^3 = 8`.
+One octal digit represents exactly three binary digits ($7 = 111$, $7 = 4+2+1$). This is because `2^3 = 8`.
 
-Example: The number 37 means (3 × 8) + (7 × 1) = 31 in decimal.
+- For example, in file permission:
+- 3 octal digits represent $3 \times 3 = 9$ bits
+- 4 octal digits represent $4 \times 3 = 12$ bits
+
+Example: The number 37 means $(3 × 8) + (7 × 1) = 31$ in decimal.
 
 `0 1 2 3 4 5 6 7 10 11 12 13 14 15 16 17 20, ...`
 
 ### Octet
 
-In networking, an **octet** is a unit of size means "a group of 8 bits" (one byte). It is `0-255` in decimal & `00000000-11111111` in binary.
+In networking, an `octet` is a unit of size means "a group of 8 bits" (one byte). It is `0-255` in decimal, `00000000-11111111` in binary.
 
 We use the word "octet" instead of "byte" because, historically, a "byte" could mean different sizes (like 6 or 7 bits) depending on the computer architecture. "Octet" is unambiguous.
 
@@ -239,8 +243,8 @@ Logical operators are AND `&&`, OR `||`, and NOT `!`.
 One byte can store 8 boolean value.
 
 - The bitwise `AND`:
-  * If both bits are 1, the resulting bit is 1.
-  * If either bit is 0 (or both are 0), the resulting bit is 0.
+  - If both bits are 1, the resulting bit is 1.
+  - If either bit is 0 (or both are 0), the resulting bit is 0.
 
 The Truth Table for `AND`
 

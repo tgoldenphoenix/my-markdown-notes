@@ -289,6 +289,17 @@ promt, PowerLevel 10k
 
 Zoom in/out of terminal: `C +` or `C -`. Also work in terminal applications like NeoVim
 
+---
+
+Kitty
+
+`sudo apt install kitty`
+
+- In the terminal:
+  - Zoom In : `Ctrl + Shift + +`
+  - Zoom Out: `Ctrl + -`
+  - Zoom 100%: `Ctrl+0`
+
 ## Nerd font
 
 font are stored in `/Users/anhao/Library/Fonts`

@@ -1,22 +1,14 @@
 # Bash Scripting
 
-Bash, zsh
+## Intro
 
 > If you figure out how to do something with the command ONCE, you can then do it thousands of times automatically.
 
-A shell can best be compared with a way of talking to the computer, a language.
-
 Khi xài linux phải biết save command, scripts for later use. Or you can save your `history` and re-factor it into a bash script.
-
-Run `source ~/.zshrc` or `source ~/.bashrc` manually.
 
 `sh` or Bourne Shell: the original shell still used on UNIX systems and in UNIX related environments. This is the basic shell, a small program with few features. When in POSIX-compatible mode, **bash** will emulate this shell.
 
-Your default shell is set in the `/etc/passwd` file
-
 To switch from one shell to another, just enter the name of the new shell in the active terminal. The system finds the directory where the name occurs using the `PATH` settings, and since a shell is an executable file (program), the current shell activates it and it gets executed. A new prompt is usually shown, because each shell has its typical appearance
-
-If you don't know which shell you are using, either check the line for your account in `/etc/passwd` or type the command `echo $SHELL`
 
 In the shell prompt `jake@pine $`, `jake` is user name, `pine` is the computer name.
 
@@ -34,6 +26,22 @@ You can switch between virtual consoles by holding the Ctrl and Alt keys and pre
 
 ---
 
+To try a different shell, simply type the name of that shell (examples include `ksh`, `tcsh`, csh, sh, dash, and others, assuming that they are installed). You can try a few commands in that shell and type `exit` when you are finished to return to the bash shell.
+
+## Configs, Running Scripts
+
+> How to make things run
+
+Run `source ~/.zshrc` or `source ~/.bashrc` manually.
+
+Use `sudo chmod +x myscript.sh` to set permission for `.sh` files
+
+`./myscript.zh` to run the script
+
+---
+
+Your default shell is set in the `/etc/passwd` file. If you don't know which shell you are using, either check the line for your account in `/etc/passwd` or type the command `echo $SHELL`
+
 To find out what is your default login shell, enter the following commands:
 
 ```bash
@@ -42,8 +50,6 @@ chris   pts/0        2019-10-21 22:45 (:0.0)
 $ grep chris /etc/passwd
 chris:x:13597:13597:Chris Negus:/home/chris:/bin/bash
 ```
-
-To try a different shell, simply type the name of that shell (examples include `ksh`, `tcsh`, csh, sh, dash, and others, assuming that they are installed). You can try a few commands in that shell and type `exit` when you are finished to return to the bash shell.
 
 ## zsh - The Z shell
 
@@ -73,15 +79,6 @@ The `compinit` command, which initializes Zsh's programmable completion system, 
 
 By default, zcompdump files are typically found in your home directory (e.g., `~/.zcompdump-<hostname>-<zsh-version>`). However, their location can be customized using the compinit -d <dumpfile> option or by setting the `ZSH_COMPDUMP` environment variable.
 
-## Terminal Emulator (Kitty)
-
-`sudo apt install kitty`
-
-- In the terminal:
-  - Zoom In : `Ctrl + Shift + +`
-  - Zoom Out: `Ctrl + -`
-  - Zoom 100%: `Ctrl+0`
-
 ## Scripting ideas
 
 Name images file.
@@ -97,10 +94,6 @@ Name images file.
 On Mac, to set bash as the default interactive shell instead of zsh type `chsh -s /bin/bash` then re-open your terminal. To turn back using zsh type `chsh -s /bin/zsh`
 
 `which bash` will tell you where is bash on your computer. You can just type `/bin/bash` while using zsh to switch to bash (only work in current shell session)
-
-Use `sudo chmod +x myscript.sh` to set permission for .sh files
-
-`./myscript.zh` to run the script
 
 Other shell: zsh, Xonsh, fish
 
@@ -138,12 +131,12 @@ If you wish, you can give your bash scripts a `.sh` suffix to remind you what th
 Save your scripts inside `~/bin` or `/usr/local/bin` & make the files executable.
 
 - Quy trình viết bash scripts:
-  * Develop the script (or script component) as a pipeline, one step at a time, entirely on the command line. Không viết bash script trong text editor giống như viết code python.
-  * Send output to standard output and check to be sure it looks right (using `echo`).
-  * At each step, use the shell’s command history to recall pipelines and the shell’s editing features to tweak them.
-  * Until the output looks right, you haven’t actually done anything, so there’s nothing to undo if the command is incorrect.
-  * Once the output is correct, execute the actual commands and verify that they worked as you intended.
-  * Use `fc` to capture your work, then clean it up and save it.
+  - Develop the script (or script component) as a pipeline, one step at a time, entirely on the command line. Không viết bash script trong text editor giống như viết code python.
+  - Send output to standard output and check to be sure it looks right (using `echo`).
+  - At each step, use the shell’s command history to recall pipelines and the shell’s editing features to tweak them.
+  - Until the output looks right, you haven’t actually done anything, so there’s nothing to undo if the command is incorrect.
+  - Once the output is correct, execute the actual commands and verify that they worked as you intended.
+  - Use `fc` to capture your work, then clean it up and save it.
 
 bash’s built-in command `fc` is a lot like `<Control-P>`, but instead of returning the last command to the command line, it transfers the com-mand to your editor of choice.
 
@@ -168,10 +161,10 @@ You should be aware that the value of the arguments that get passed to a given p
 We should note that while globbing might look similar to regular expressions, they’re fundamentally different. While the patterns seem similar, globbing doesn’t use regular expressions.
 
 - We use shell-style globbing characters for pattern matching:
-  * A star (`*`) matches zero or more characters.
-  * A question mark (`?`) matches any single character. You can use `?` for multiple times for matching multiple characters.
-  * A tilde or “twiddle” (`~`) means the home directory of the current user
-  * `~user` means the home directory of user.
+  - A star (`*`) matches zero or more characters.
+  - A question mark (`?`) matches any single character. You can use `?` for multiple times for matching multiple characters.
+  - A tilde or “twiddle” (`~`) means the home directory of the current user
+  - `~user` means the home directory of user.
 
 For example, we might refer to the startup script directories `/etc/rc0.d`, `/etc/rc1.d`, and so on with the shorthand pattern `/etc/rc*.d`.
 
@@ -208,7 +201,7 @@ To move only files with names partially matching a particular sequence, try this
 
 `$ mv file* /some/other/directory/`
 
-This command moves all files whose names begin with the letters file, but leaves everything else untouched. If you had files named file1, file2...file15 and wanted to move only those between file1 and file9, you’d use the question mark (`?`) instead of the asterisk: 
+This command moves all files whose names begin with the letters file, but leaves everything else untouched. If you had files named file1, file2...file15 and wanted to move only those between file1 and file9, you’d use the question mark (`?`) instead of the asterisk:
 
 `$ mv file? /some/other/directory/`
 
@@ -244,7 +237,7 @@ Hello world
 Use double quote `""` to prevent Bash from splitting the variable's value into multiple words if it already contains spaces.
 
 ## Command Separators
- 
+
 You can also put more than one statement on a line by separating the statements with semicolons `;` (command separator, Sequential List).  
 The return status (exit code) of the command preceding the semicolon is **ignored**, and the next command always runs.
 
@@ -253,7 +246,7 @@ The return status (exit code) of the command preceding the semicolon is **ignore
 
 `ls -l ; pwd ; date`
 
-```
+```bash
 ❯ cd /nonexistent_dir ; echo "I still run"
 zoxide: no match found
 I still run
@@ -267,13 +260,13 @@ I still run
 ---
 
 - As on the command line, you can break a single logical line onto multiple physical lines by escaping the newline with a backslash (`\`). Make sure there are no characters (including a space) after the backslash. That’s guaranteed to cause you grief.
-  * Trong `LaTeX` thì `\` là syntax của commands.
+  - Trong `LaTeX` thì `\` là syntax của commands.
 
 ## Shell Expansion
 
 Command Substitution
 
-With command substitution, you can have the output of a command interpreted by the 
+With command substitution, you can have the output of a command interpreted by the
 shell instead of by the command itself. In this way, you can have the standard output of a command become an argument for another command. The two forms of command substitution are `$(command)` and `command` (backticks, not single quotes).
 
 `$ vi $(find /home | grep xyzzy)`
@@ -282,8 +275,8 @@ shell instead of by the command itself. In this way, you can have the standard o
 
 Expanding arithmetic expressions
 
-Sometimes, you want to pass arithmetic results to a command. There are two forms that 
-you can use to expand an arithmetic expression and pass it to the shell: `$[expression]` 
+Sometimes, you want to pass arithmetic results to a command. There are two forms that
+you can use to expand an arithmetic expression and pass it to the shell: `$[expression]`
 or `$(expression)`. The following is an example:
 
 ```bash
@@ -349,7 +342,7 @@ function ssh {
 /usr/bin/ssh -p 7988 $*
 ```
 
-in your `~/.bash_profile`to make sure ssh is always run with the option `-p 7988`. 
+in your `~/.bash_profile`to make sure ssh is always run with the option `-p 7988`.
 
 Like many shells, bash has an `alias` mechanism that can reproduce this limited example even more concisely, but functions are more general and more powerful. Forget aliases and use functions.
 
@@ -392,7 +385,9 @@ Split off a stream so that its output can be simultaneously sent to a file and `
 
 ## Variables
 
-Do not put white spaces around the `=` symbol or the shell will mistake your variable name for a command name.
+There are no data types. A variable in Bash can contain numbers as well as characters.
+
+Do not put white spaces before and after the `=` symbol or the shell will mistake your variable name for a command name.
 
 ```bash
 $ etcdir='/etc'
@@ -403,6 +398,60 @@ $ echo $etcdir
 Local variables are all `lowercase` & `snake_case` (case sensitive).
 
 Some environment variables, such as `PWD` for the current working directory, are maintained automatically by the shell.
+
+### Double Quoting variables
+
+You should **always wrap variable references in double quotes** (`"$name"`). This is one of the most important habits to develop in Bash scripting. Without quotes, Bash will perform **word splitting** and **globbing** on the variable's value, which leads to bugs and even security vulnerabilities.
+
+```bash
+filename="my file.txt"
+
+# Wrong - Bash splits this into two words: "my" and "file.txt"
+touch $filename    # Creates two files: "my" and "file.txt"
+
+# Correct - the quotes preserve the value as a single argument
+touch "$filename"  # Creates one file: "my file.txt"
+```
+
+Without quotes, if a variable contains spaces, wildcards (`*`, `?`), or other special characters, Bash will interpret them rather than treating the value as a single string. This can cause scripts to break or behave unpredictably.
+
+Notice: Rule of thumb: Always use double quotes around variables: `"$name"`, not `$name`. The only common exception is inside `[[ ]]` test brackets, where word splitting does not occur, but even there quoting is a good habit.
+
+---
+
+When you add double quotes around a variable, you tell the shell to treat it as a single word, even if it contains whitespaces:
+
+```bash
+var="foo bar"
+for i in "$var"; do # Expands to 'for i in "foo bar"; do...'
+  echo $i         #   so only runs the loop once
+done
+# foo bar
+
+# Contrast that behavior with the following:
+for i in $var; do # Expands to 'for i in foo bar; do...'
+  echo $i       #   so runs the loop twice, once for each argument
+done
+# foo
+# bar
+```
+
+As with `$var` vs. `${var}`, the braces are only needed for disambiguation, for example:
+
+```bash
+var="foo bar"
+for i in "$varbar"; do # Expands to 'for i in ""; do...' since there is no
+    echo $i            #   variable named 'varbar', so loop runs once and
+done                   #   prints nothing (actually "")
+
+var="foo bar"
+for i in "${var}bar"; do # Expands to 'for i in "foo barbar"; do...'
+    echo $i              #   so runs the loop once
+done
+# foo barbar
+```
+
+### Single Quote
 
 The shell treats strings enclosed in single and double quotes similarly, except that **double-quoted** strings are subject to globbing (the expansion of filename-matching metacharacters such as `*` and ?) and variable expansion. For example:
 
@@ -421,9 +470,25 @@ $ echo "There are `wc -l /etc/passwd` lines in the passwd file."
 There are 28 lines in the passwd file.
 ```
 
+### Curly Braces
+
+You can also wrap the variable name in curly braces: `${name}`. This is **required** when the variable name is followed by characters that could be interpreted as part of the name:
+
+```bash
+greeting="Hello"
+
+# Without braces, Bash looks for a variable called $greetings (not $greeting)
+echo "$greetings world"   # Prints: " world" (empty - no such variable)
+
+# With braces, Bash knows the variable name is just "greeting"
+echo "${greeting}s world" # Prints: "Hellos world"
+```
+
+Curly braces are also required for arrays (`${array[0]}`), string slicing (`${name:0:3}`), and default values (`${name:-default}`). For simple cases like `echo "$name"`, the braces are optional, so both `"$name"` and `"${name}"` work.
+
 ---
 
-Braces ($var vs. `${var}`)
+Braces (`$var` vs. `${var}`)
 
 In most cases, `$var` and `${var}` are the same:
 
@@ -443,46 +508,6 @@ echo $varbar
 # Prints nothing because there is no variable 'varbar'
 echo ${var}bar
 # foobar
-```
-
----
-
-Quotes (`$var` vs. `"$var"` vs. `"${var}"`)
-
-When you add double quotes around a variable, you tell the shell to treat it as a single word, even if it contains whitespaces:
-
-```bash
-var="foo bar"
-for i in "$var"; do # Expands to 'for i in "foo bar"; do...'
-    echo $i         #   so only runs the loop once
-done
-# foo bar
-```
-
-Contrast that behavior with the following:
-
-```bash
-var="foo bar"
-for i in $var; do # Expands to 'for i in foo bar; do...'
-    echo $i       #   so runs the loop twice, once for each argument
-done
-# foo
-# bar
-```
-
-As with `$var` vs. `${var}`, the braces are only needed for disambiguation, for example:
-
-```bash
-var="foo bar"
-for i in "$varbar"; do # Expands to 'for i in ""; do...' since there is no
-    echo $i            #   variable named 'varbar', so loop runs once and
-done                   #   prints nothing (actually "")
-
-var="foo bar"
-for i in "${var}bar"; do # Expands to 'for i in "foo barbar"; do...'
-    echo $i              #   so runs the loop once
-done
-# foo barbar
 ```
 
 ---
@@ -620,9 +645,9 @@ Ngoài `elif` thì `bash` còn có `case` giống như switch-case.
 
 ---
 
-Changes the directory to `/var/backups/`. If no such directory exists, it exits the script and issues an exit status code of 0, which signifies the command was successful: 
+Changes the directory to `/var/backups/`. If no such directory exists, it exits the script and issues an exit status code of 0, which signifies the command was successful:
 
-`cd /var/backups || exit 0` 
+`cd /var/backups || exit 0`
 
 The `||` sequence (sometimes known as a double pipe) can be read as though it’s the word _or_. So this line means: either change directory to /var/backups/ or exit the script. If everything goes according to plan, subsequent script operations will take place in the /var/backups/ directory.
 
@@ -642,7 +667,7 @@ for (( i=0 ; i < $CPU_COUNT ; i++ )); do
 done
 ```
 
-Any whitespace-separated list of things, including the contents of a vari-able, works as a target of `for…in`. 
+Any whitespace-separated list of things, including the contents of a vari-able, works as a target of `for…in`.
 
 Câu lệnh này nếu không có `;` thì không được.
 
@@ -670,13 +695,13 @@ k
 
 ### Scheduling irregular backups with anacron
 
-Those cron-based tools all work well for computers (like production servers) that are likely to be left running all the time. But what about executing important jobs on, say, your laptop, which is often turned off? It’s all very nice telling cron (or cron.daily and so forth) to back up your files at 5:21 on a Monday morning, but how likely is it that you’ll remember to get up to boot your laptop in time? Exactly—not likely at all. It’s time to talk about anacron. 
+Those cron-based tools all work well for computers (like production servers) that are likely to be left running all the time. But what about executing important jobs on, say, your laptop, which is often turned off? It’s all very nice telling cron (or cron.daily and so forth) to back up your files at 5:21 on a Monday morning, but how likely is it that you’ll remember to get up to boot your laptop in time? Exactly—not likely at all. It’s time to talk about anacron.
 
 The one cron file we haven’t yet discussed is `/etc/anacrontab`, which is where you schedule operations to run at a set time after each system boot.
 
-### Scheduling regular backups with systemd timers 
+### Scheduling regular backups with systemd timers
 
-systemd timers come with some significant advantages, including deeper integration with other system services (including logs) and the ability to execute commands based on changes to system state (for instance, someone connecting a USB device), rather than just set times. 
+systemd timers come with some significant advantages, including deeper integration with other system services (including logs) and the ability to execute commands based on changes to system state (for instance, someone connecting a USB device), rather than just set times.
 
 ## The Shebang
 
@@ -684,9 +709,17 @@ Use `#!/usr/bin/bash` on Linux, use `#!/bin/bash` on MacOS. Use `which bash` to 
 
 `printenv` and `env` là 1 command giống nhau. Thường dùng để: (1) print all shell environment variables and (2) in the shebang line.
 
-[The Difference Between #!/usr/bin/bash and #!/usr/bin/env bash](https://www.baeldung.com/linux/bash-shebang-lines)
-
 Instead of looking for bash in one exact absolute path, the `#!/usr/bin/env bash` command tells your terminal to use the env utility. This utility automatically searches your environment's `$PATH` variables to find the correct `bash` executable, no matter where it is installed on the machine
+
+The reason `#!/usr/bin/env bash` still works on Windows comes down to how `Git Bash` / MINGW64 creates a virtual Linux-like environment.
+
+When you install Git Bash on Windows (usually at `C:\Program Files\Git`). Inside that installation directory, Git Bash sets up a fake Unix file structure:
+
+- `C:\Program Files\Git\bin\bash.exe`
+- `C:\Program Files\Git\usr\bin\env.exe`
+- `C:\Program Files\Git\usr\bin\bash.exe`
+
+When you launch Git Bash and run your script, Git Bash sets `C:\Program Files\Git\` as the virtual root (`/`).
 
 ## Options
 

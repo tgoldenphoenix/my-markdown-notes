@@ -21,7 +21,7 @@ Mockito provides methods to create mock objects, configure their behavior (what 
 Test functions always return `void`.
 
 - BDD: Behaviour-driven development
-- AAA: Arrange Act Assert
+- AAA: Arrange - Act - Assert
 
 Instead of a Runner, JUnit 5 is built on the `JUnit Platform`, which uses **Test Engines** to discover and execute tests.
 
@@ -88,11 +88,11 @@ Because `AssertionError` is an Error and not an Exception, the catch (Exception 
 
 Mockito is a mocking framework used to create "mock" objects or "test doubles." These mocks simulate the behavior of real dependencies (e.g., other classes, external services, databases) that your code under test interacts with. Mockito allows you to define how these mock objects should behave when their methods are called, enabling you to isolate the specific unit of code being tested and control its environment. This is crucial for achieving true unit testing, where you test a single component in isolation without relying on its complex or external dependencies.
 
-Mockito creates mock objects that mimic real dependencies. These objects can return predefined responses and track method calls.
+Mockito creates `mock objects` that mimic real dependencies. These objects can return predefined responses and track method calls.
 
 By replacing dependencies with mock objects, we can prevent tests from depending on databases, APIs, or external systems. This ensures tests run in isolation, making them faster and more reliable.
 
-**Stubbing** lets you define method responses for mock objects, ensuring predictable behavior in tests regardless of external factors. This allows precise control over test conditions and expected outcomes.
+`Stubbing` lets you define method responses for mock objects, ensuring predictable behavior in tests regardless of external factors. This allows precise control over test conditions and expected outcomes.
 
 **Test-Driven Development (TDD)** is a software development approach where tests are written before the actual code.
 
@@ -115,12 +115,48 @@ public class BraveKnightTest {
 
 You call `verify()` **after** you call `.embarkOnQuest()`
 
-## Stub
+---
 
-There are two strategies for providing fake objects: stubbing and using mock objects.
+you can mock concrete classes and interfaces
 
-- When you write `stubs`, you provide a predetermined behavior right from the beginning. The stubbed code is written outside the test, and it will always have a fixed behavior, no matter how many times or where you use the stub; its methods will usually return hardcoded values. The pattern of testing with a stub this: initialize stub > execute test > verify assertions.
-- A mock object does not have a predetermined behavior. When running a test, you are setting the expectations on the mock before effectively using it. You can run different tests, and you can reinitialize a mock and set different expectations on it. The pattern of testing with a mock object this: initialize mock > set expectations > execute test > verify assertions.
+### Stub
+
+A `mock object` does not have a predetermined behavior. When running a test, you are setting the expectations on the mock before effectively using it. You can run different tests, and you can reinitialize a mock and set different expectations on it. The pattern of testing with a mock object this: initialize mock > set expectations > execute test > verify assertions.
+
+When you `stubs` a method call, you provide a predetermined behavior right from the beginning. The stubbed code is written outside the test, and it will always have a fixed behavior, no matter how many times or where you use the stub; its methods will usually return hardcoded values. The pattern of testing with a stub this: initialize stub > execute test > verify assertions.
+
+You create a mock object > you stub its methods with the syntax: `when({mock object call one of its methods}).thenReturn({the value that you want});`
+
+### Why mocking?
+
+Say you need to test `PokemonService.createPokemon()` which in turn call `PokemonRepository.save()`.
+
+- You mock `PokemonRepository` but do not stub its `.save()` method: Mockito's default behavior for any unstubbed method that returns an object is to return `null`.
+- You run an Integration Test without mocks. If you don't mock `pokemonRepository` and instead inject a real repository instance.
+  - It executes real SQL: Spring/Hibernate will actually attempt to run an `INSERT` statement into your database.
+  - If no database is running: The test will crash with a connection error.
+  - If a database is running: It will insert into your actual database, causing test pollution (garbage test data in your DB).
+
+The goal of a Unit Test for `PokemonService` is to test only the service's logic (e.g., mapping, validation, transformations)—not whether the repository work or not.
+
+By mocking pokemonRepository:
+
+- The test runs in milliseconds without needing a database connection.
+- You isolate the test so that if `pokemonRepository` breaks, your PokemonService unit test doesn't fail for the wrong reason.
+
+### What do I need to mock?
+
+Do not mock types you don’t own: third-party libraries, framework classes, or external APIs—such as `HttpClient`, `AWS S3 Client`, `JDBC Connection`.
+
+When you mock your own `PokemonRepository` you control both the mock and the implementation.
+
+### Spy
+
+`spy()` creates partial mocking, real methods are invoked but still can be verified and stubbed
+
+## API Mock
+
+Integration Test with an API stub (like WireMock)
 
 ## Temporary directory/file
 

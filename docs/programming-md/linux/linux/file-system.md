@@ -46,7 +46,7 @@ preserves `My excellent file.txt` as a single argument to less. You can also esc
 ## Working with Files & Directories
 
 - `rm` to remove files
-- `rmdir` to remove empty directories. It can only remove empty directories. 
+- `rmdir` to remove empty directories. It can only remove empty directories.
 
 `rm -r directory-name` remove directory
 
@@ -98,7 +98,7 @@ rename directory `mv Oldfolder Newfolder`
 
 `$ mv file2 newdir` moves `file2` to `newdir` directory
 
-You can copy, move, or delete directories using the same commands as for files, adding the -r flag where necessary. Remember that you might be moving more than just the directory you see: any existing layers of unseen nested levels will also be dragged along for the ride. 
+You can copy, move, or delete directories using the same commands as for files, adding the -r flag where necessary. Remember that you might be moving more than just the directory you see: any existing layers of unseen nested levels will also be dragged along for the ride.
 
 ---
 
@@ -150,7 +150,7 @@ head & tail
 
 `head` can also print out the first few character instead of the first few lines.
 
-`tail` does the opposite of `head`. 
+`tail` does the opposite of `head`.
 
 The tail command has a handy feature to continuously show the last n lines of a file that changes all the time. This `-f` option is often used by system administrators to check on log files.
 
@@ -199,7 +199,7 @@ Originally, `sda` probably stood for SCSI Device A, but I find that thinking of 
 
 Don’t happen to know your drive designation? No problem. Knowing that Linux organizes attached storage as block devices, you can move to the /sys/block/ directory and list its contents. Among the contents will be a directory called sda/. (Remember that sda stands for Storage Drive A.) That’s the first drive used by your system on boot:
 
-```
+```bash
 $ cd /sys/block
 $ ls
 loop0  loop1  loop2 sda  sr0
@@ -209,7 +209,7 @@ A loop device is a pseudo device that allows a file to be used as though it’s 
 
 Change to the sda/ directory and run ls. Among its contents, you’ll probably see files with names like sda1, sda2, and sda5. Each of these represents one of the partitions created by Linux to better organize the data on your drive:
 
-```
+```bash
 $ cd sda
 $ ls
 alignment_offset  discard_alignment  holders    range      sda3       trace
@@ -247,8 +247,8 @@ On modern unix systems, almost all system-wide configuration files are under /et
 ---
 
 - `/sbin` and `/bin` for important utilities, administrative commands
-  * `/bin`: Core operating system commands; user binary files
-  * `/sbin`: Commands needed for minimal system operability; system binary files
+  - `/bin`: Core operating system commands; user binary files
+  - `/sbin`: Commands needed for minimal system operability; system binary files
 
 `/boot` Kernel and files needed to load the kernel.
 
@@ -320,13 +320,13 @@ Scripts saved to the `/etc/cron.daily/` directory will be executed each day.
 `/etc/systemd`: Contains files associated with the systemd facility, for managing the boot process and system services. In particular, when you run systemctl com-mands to enable and disable services, files that make that happen are stored in sub-directories of the `/etc/systemd` system directory.
 
 - The following are some interesting configuration files in `/etc`:
-  * `bashrc`: Sets system-wide defaults for bash shell users. (This may be called `bash.bashrc` on some Linux distributions.)
-  * `crontab`: Sets times for running automated tasks and variables associated with the cron facility (such as the SHELL and PATH associated with cron).
-  * `fstab`: Identifies the devices for common storage media (hard disk, DVD, CD-ROM, and so on) and locations where they are mounted in the Linux system. This is used by the mount command to choose which filesystems to mount when the system first boots.
-  * `mtab`: Contains a list of filesystems that are currently mounted.
-  * `group`: Identifies group names and group IDs (GIDs) that are defined on the system.
-  * `gshadow`: Contains shadow passwords for groups.
- 
+  - `bashrc`: Sets system-wide defaults for bash shell users. (This may be called `bash.bashrc` on some Linux distributions.)
+  - `crontab`: Sets times for running automated tasks and variables associated with the cron facility (such as the SHELL and PATH associated with cron).
+  - `fstab`: Identifies the devices for common storage media (hard disk, DVD, CD-ROM, and so on) and locations where they are mounted in the Linux system. This is used by the mount command to choose which filesystems to mount when the system first boots.
+  - `mtab`: Contains a list of filesystems that are currently mounted.
+  - `group`: Identifies group names and group IDs (GIDs) that are defined on the system.
+  - `gshadow`: Contains shadow passwords for groups.
+
 ## File Types
 
 Most filesystem implementations define seven types of files. Even when developers add something new and wonderful to the file tree (such as the process infor-mation under /proc), it must still be made to look like one of these seven types.
@@ -429,11 +429,15 @@ It is a common mistake to think that the first argument to `ln -s` is interprete
 
 ## File Modes (Permissions)
 
-Under the traditional UNIX and Linux filesystem model, every file has a set of **nine standard permission bits** that control who can read, write, and execute the contents of the file. Together with **three other bits** (Special Permission Bits, `suid`, `sgui`, `sticky bit`) that primarily affect the operation of executable programs, these bits constitute the **file’s mode**.
+Under the traditional UNIX and Linux filesystem model, every file has a set of **nine standard permission bits** that control who can read, write, and execute the contents of the file. Together with **three other bits** (aka Special Permission Bits), `suid`, `sgui`, `sticky bit`), that primarily affect the operation of executable programs, these bits constitute the `file’s mode`.
 
-The **twelve mode bits** are stored together with **four bits of file-type information**. The four file-type bits are set when the file is first created and cannot be changed, but the file’s owner and the superuser can modify the twelve mode bits with the `chmod` (change mode) command. Use `ls -l` (or `ls -ld` for a directory) to inspect the values of these bits.
+The twelve bits of file mode are stored together with another **four bits** of `file-type` information. The four file-type bits are set when the file is first created and **cannot be changed**, but the file’s owner and the superuser can modify the twelve mode bits with the `chmod` (change mode) command. Use `ls -l` (or `ls -ld` for a directory) to inspect the values of these bits.
 
-`ls -l` show file mode + file type
+---
+
+`ls -l` show both file mode + file type
+
+When you run `ls -la`, Linux converts 16 bits stored inside the file's inode (4-bit File Type and 12-bit File Mode) into the 10-character string at the far left of your screen (e.g., `-rwxr-xr-x` or `drwxrwxrwt`).
 
 ---
 
@@ -441,15 +445,17 @@ The permission bits
 
 **Nine permission bits** determine what operations may be performed on a file and by whom. Traditional UNIX does not allow permissions to be set per-user (al-though all systems now support access control lists of one sort or another). Instead, three sets of permissions define access for the owner of the file, the group owners of the file, and everyone else (in that order). Each set has three bits: a read bit, a write bit, and an execute bit.
 
-`r` là yes, cho phép read, `-` là no không cho phép => nên mới gọi là "bit"
+`r` là `yes`, cho phép read, `-` là `no` không cho phép => nên mới gọi là "bit"
 
 Each user fits into only one of the three permission sets. The permissions used are those that are most specific. For example, the owner of a file always has access determined by the owner permission bits and never the group permission bits.
 
 On a regular file, the read bit allows the file to be opened and read. The write bit allows the contents of the file to be modified or truncated; however, the ability to delete or rename (or delete and then recreate!) the file is controlled by the permis-sions on its parent directory because that is where the name-to-dataspace map-ping is actually stored.
 
-The execute bit allows the file to be executed. Two types of executable files exist: binaries, which the CPU runs directly, and scripts, which must be interpreted by a shell or some other program.
+- The execute bit allows the file to be executed. Two types of executable files exist:
+  - binaries, which the CPU runs directly
+  - and scripts, which must be interpreted by a shell or some other program.
 
-For a directory, the execute bit (often called the “search” or “scan” bit in this context) allows the directory to be entered or passed through while a pathname is evaluated, but not to have its contents listed. The combination of read and execute bits allows the contents of the directory to be listed. The combination of write and execute bits allows files to be created, deleted, and renamed within the directory.
+For a **directory**, the execute bit (often called the “search” or “scan” bit in this context) allows the directory to be entered or passed through while a **pathname** is evaluated, but not to have its contents listed. The combination of read and execute bits allows the contents of the directory to be listed. The combination of write and execute bits allows files to be created, deleted, and renamed within the directory.
 
 A variety of extensions such as access control lists complicate or override the traditional nine-bit permission model. If you’re having trouble explaining the system’s observed behavior, check to see whether one of these factors might be interfering.
 
@@ -473,13 +479,13 @@ Therefore, a common permission setting like rwxr-xr-x (owner has full permission
 
 ---
 
-The setuid and setgid bits
+The `setuid` and `setgid` bits
 
 The bits with octal values 4000 and 2000 are the setuid and setgid bits. When set on executable files, these bits allow programs to access files and processes that would otherwise be off-limits to the user that runs them.
 
 ---
 
-the sticky bit
+the `sticky bit`
 
 The bit with octal value 1000 is called the sticky bit. It was of historical impor-tance as a modifier for executable files on early UNIX systems. However, that meaning of the sticky bit is now obsolete and modern systems silently ignore it.
 
@@ -499,7 +505,7 @@ What’s a group?
 
 You can think of a group much the same way you might think of a regular user account: the things that both can and cannot do or access are defined by file permissions. The difference is that no one can log in to a Linux system as a group. Then why create groups, and what purpose do they serve? Here’s the scoop.
 
-Groups are a powerful and super-efficient way to organize resources. Here’s a simple example. Consider a company with a few dozen employees who need some kind of server access, but not necessarily to the same resources. You can create a couple of groups called dev and IT, for example. When users are initially given their accounts, all the developers would be added to the dev group, and all the sysadmins would be added to IT group. Now, let’s say that a system configuration file comes into use: rather than tediously adding file permissions for each of the 10 or 15 admins or so, you can give only the IT group access. All the IT group members will automatically be added, and all the developers will remain excluded. 
+Groups are a powerful and super-efficient way to organize resources. Here’s a simple example. Consider a company with a few dozen employees who need some kind of server access, but not necessarily to the same resources. You can create a couple of groups called dev and IT, for example. When users are initially given their accounts, all the developers would be added to the dev group, and all the sysadmins would be added to IT group. Now, let’s say that a system configuration file comes into use: rather than tediously adding file permissions for each of the 10 or 15 admins or so, you can give only the IT group access. All the IT group members will automatically be added, and all the developers will remain excluded.
 
 Every system user along with many applications will automatically be given their own groups. That explains why files you create will normally be owned by `yourname` and be part of the `yourname` group.
 
@@ -527,8 +533,8 @@ Commonly noted as **SGID**, this special permission has a couple of functions:
 The following two uses of options for the ls command are the same:
 
 ```bash
-$ ls -l -a -t
-$ ls -lat
+ls -l -a -t
+ls -lat
 ```
 
 - `-a` show hidden dot files
@@ -630,20 +636,19 @@ Some other ls options that are important to know are `-a` to show all entries in
 Only the owner of the file and the `superuser` can change its permissions.
 
 - There are two main ways of assigning permissions:
-  * Symbolic method (mask, mnemonic)
-  * Numeric method (octal)
+  - Symbolic method (mask, mnemonic)
+  - Numeric method (octal)
 
 The octal syntax is generally more convenient for administrators, but it can only be used to specify an absolute value for the permission bits. The mnemonic syntax can modify some bits while leaving others alone.
 
 The first argument to `chmod` is a specification of the permissions to be assigned, and the second and subsequent arguments are names of files on which permissions should be changed.  
 In the octal case, the first octal digit of the specification is for the owner, the second is for the group, and the third is for everyone else.
 
----
+### The Symbolic (mnemonic) method
 
-- TheSymbolic (mnemonic) method:
-  * `u g o a` (user, group, other, all)
-  * `+ - =` (add, remove, set exact)
-  * `r w x` (read, write, execute)
+- `u g o a` (user, group, other, all)
+- `+ - =` (add, remove, set exact)
+- `r w x` (read, write, execute)
 
 The hard part about using the mnemonic syntax is remembering whether o stands for “owner” or “other”; “other” is correct. Just remember u and g by anal-ogy to UID and GID; only one possibility is left.
 
@@ -651,16 +656,14 @@ Example:
 
 - `chmod ug+rw test.txt` add the read and write permissions to a file named `test.txt` for user and group
 
-This example removes the ability of others (o) to read the file and adds write permissions for the group (g). 
+This example removes the ability of others (o) to read the file and adds write permissions for the group (g).
 
 ```bash
 sudo chmod o-r /bin/zcat
 sudo chmod g+w /bin/zcat
 ```
 
----
-
-The numeric (octal) syntax
+### The numeric (octal) syntax
 
 This is the best way to learn and practice permissions.
 
@@ -673,7 +676,7 @@ For a directory (file thì tương tự):
 - `2` = write `w` permission; means able to create file into that dir such as `touch`. Because $2^1=2$
 - `1` = execute-`x` means being able to `cd` into that directory.
 
-A user with all three permissions is described by the number 7 ($4+2+1=7$). Read and write permissions, but not execute, is `6`; read and execute but not write is 5, and no permissions at all is `0`. 
+A user with all three permissions is described by the number 7 ($4+2+1=7$). Read and write permissions, but not execute, is `6`; read and execute but not write is 5, and no permissions at all is `0`.
 
 Example:
 
@@ -702,7 +705,7 @@ Every object within a Linux file system is represented by a unique collection of
 
 To display inode information of a file, use `stat`:
 
-```
+```bash
 $ stat myfile
   File: 'myfile'
   Size: 0             Blocks: 0          IO Block: 4096   regular empty file
@@ -712,7 +715,7 @@ Access: (0664/-rw-rw-r--)  Uid: ( 1000/  ubuntu)
 Access: 2017-06-09 13:21:00.191819194 +0000
 Modify: 2017-06-09 13:21:00.191819194 +0000
 Change: 2017-06-09 13:21:00.191819194 +0000
- Birth: -
+Birth: -
 ```
 
 It’s important to be aware that when you move, copy, or delete a file or directory, all you’re really doing is editing its inode attributes, not its inode ID.
@@ -729,8 +732,8 @@ By dividing the hard disk in partitions, data can be grouped and separated. When
 A simple example: a user creates a script, a program or a web application that starts filling up the disk. If the disk contains only one big partition, the entire system will stop functioning if the disk is full. If the user stores the data on a separate partition, then only that (data) partition will be affected, while the system partitions and possible other data partitions keep functioning.
 
 - There are two kinds of major partitions on a Linux system:
-  * `data partition`: normal Linux system data, including the root partition containing all the data to start up and run the system; and
-  * `swap partition`: expansion of the computer's physical memory, extra memory on hard disk.
+  - `data partition`: normal Linux system data, including the root partition containing all the data to start up and run the system; and
+  - `swap partition`: expansion of the computer's physical memory, extra memory on hard disk.
 
 Most systems contain a `root partition`, one or more data partitions and one or more swap partitions. Systems in mixed environments may contain partitions for other system data, such as a partition with a `FAT` or `VFAT` file system for MS Windows data.
 
@@ -758,9 +761,9 @@ Everything is put together on one large partition, swap space twice the amount o
 On a server, system data tends to be separate from user data. Programs that offer services are kept in a different place than the data handled by this service.
 
 - In `sda1`, `sda2`, `sdb`:
-  * `sd` = storage device
-  * `a b c`: Device Identifier
-  * `1 2 3`: Partition Number
+  - `sd` = storage device
+  - `a b c`: Device Identifier
+  - `1 2 3`: Partition Number
 - `/dev/sda`: Represents the first storage device detected by the operating system. Nó sẽ có `sda1` & `sda2`.
 - `/dev/sdb`: Represents the second storage device detected.
 
@@ -845,9 +848,9 @@ In computing, `tar` is a computer software utility for collecting many files int
 The name is derived from **tape archive**, as it was originally developed to write data to sequential I/O devices with no file system of their own, such as devices that use **magnetic tape**.
 
 - To successfully create your archive, there are three things that will have to happen:
-  * Find and identify the files you want to include.
-  * Identify the location on a storage drive that you want your archive to use.
-  * Add your files to an archive, and save it to its storage location.
+  - Find and identify the files you want to include.
+  - Identify the location on a storage drive that you want your archive to use.
+  - Add your files to an archive, and save it to its storage location.
 
 Want to knock off all three steps in one go? Use `tar`.
 
@@ -878,19 +881,19 @@ To extract the archive, run the tar command against the name of the archive, but
 
 ---
 
-You won’t always want to include all the files within a directory tree in your archive. Suppose you’ve produced some videos, but the originals are currently kept in directories along with all kinds of graphic, audio, and text files (containing your notes). The only files you need to back up are the final video clips using the .mp4 filename extension. Here’s how to do that: 
+You won’t always want to include all the files within a directory tree in your archive. Suppose you’ve produced some videos, but the originals are currently kept in directories along with all kinds of graphic, audio, and text files (containing your notes). The only files you need to back up are the final video clips using the .mp4 filename extension. Here’s how to do that:
 
 `$ tar cvf archivename.tar *.mp4`
 
-That’s excellent. But those video files are enormous. Wouldn’t it be nice to make that archive a bit smaller using compression? Say no more! Just run the previous command with the `z` (zip) argument. That will tell the `gzip` program to compress the archive. If you want to follow convention, you can also add a `.gz` extension in addition to the `.tar` that’s already there. Remember: clarity. Here’s how that would play out: 
+That’s excellent. But those video files are enormous. Wouldn’t it be nice to make that archive a bit smaller using compression? Say no more! Just run the previous command with the `z` (zip) argument. That will tell the `gzip` program to compress the archive. If you want to follow convention, you can also add a `.gz` extension in addition to the `.tar` that’s already there. Remember: clarity. Here’s how that would play out:
 
 `$ tar czvf archivename.tar.gz *.mp4`
 
-You may notice that the `.tar.gz` file isn’t all that much smaller than the .tar file, perhaps 10% or so. What’s with that? Well, the `.mp4` file format is itself compressed, so there’s a lot less room for gzip to do its stuff. 
+You may notice that the `.tar.gz` file isn’t all that much smaller than the .tar file, perhaps 10% or so. What’s with that? Well, the `.mp4` file format is itself compressed, so there’s a lot less room for gzip to do its stuff.
 
 ---
 
-As tar is fully aware of its Linux environment, you can use it to select files and directories that live outside your current working directory. This example adds all the .mp4 files in the `/home/myuser/Videos/` directory: 
+As tar is fully aware of its Linux environment, you can use it to select files and directories that live outside your current working directory. This example adds all the .mp4 files in the `/home/myuser/Videos/` directory:
 
 `$ tar czvf archivename.tar.gz /home/myuser/Videos/*.mp4`
 
@@ -898,11 +901,11 @@ As tar is fully aware of its Linux environment, you can use it to select files a
 
 Because archive files can get big, it might sometimes make sense to break them down into multiple smaller files, transfer them to their new home, and then re-create the original file at the other end. The split tool is made for this purpose.
 
-In this example, `-b` tells Linux to split the `archivename.tar.gz` file into 1 GB-sized parts; archivename is any name you’d like to give the file. The operation then names each of the parts—`archivename.tar.gz.partaa`, `archivename.tar.gz.partab`, `archivename .tar.gz.partac`, and so on: 
+In this example, `-b` tells Linux to split the `archivename.tar.gz` file into 1 GB-sized parts; archivename is any name you’d like to give the file. The operation then names each of the parts—`archivename.tar.gz.partaa`, `archivename.tar.gz.partab`, `archivename .tar.gz.partac`, and so on:
 
 `$ split -b 1G archivename.tar.gz "archivename.tar.gz.part"`
 
-On the other side, you re-create the archive by reading each of the parts in sequence (`cat archivename.tar.gz.part*`), then redirect the output to a new file called `archivename.tar.gz`: 
+On the other side, you re-create the archive by reading each of the parts in sequence (`cat archivename.tar.gz.part*`), then redirect the output to a new file called `archivename.tar.gz`:
 
 `$ cat archivename.tar.gz.part* > archivename.tar.gz`
 
@@ -919,13 +922,13 @@ $ tar czvf - importantstuff/ | ssh username@10.0.3.141 \
   "cat > /home/username/myfiles.tar.gz"
 ```
 
-Let me explain that example. Rather than entering the archive name right after the command arguments (the way you’ve done until now), I used a dash (`czvf -`). The dash **outputs data to standard output**. It lets you push the archive filename details back to the end of the command and tells tar to expect the source content for the archive instead. I then piped (|) the unnamed, compressed archive to an ssh login on a remote server where I was asked for my password. The command enclosed in quotation marks then executed cat against the archive data stream, which wrote the stream contents to a file called `myfiles.tar.gz` in my home directory on the remote host. 
+Let me explain that example. Rather than entering the archive name right after the command arguments (the way you’ve done until now), I used a dash (`czvf -`). The dash **outputs data to standard output**. It lets you push the archive filename details back to the end of the command and tells tar to expect the source content for the archive instead. I then piped (|) the unnamed, compressed archive to an ssh login on a remote server where I was asked for my password. The command enclosed in quotation marks then executed cat against the archive data stream, which wrote the stream contents to a file called `myfiles.tar.gz` in my home directory on the remote host.
 
 One advantage of generating archives this way is that you avoid the overhead of a middle step. There’s no need to even temporarily save a copy of the archive on the local machine. Imagine backing up an installation that fills 110 GB of its 128 GB of available space. Where would the archive go?
 
 ### Aggregating files with `find`
 
-The `find` command searches through a file system looking for objects that match rules you provide. The search outputs the names and locations of the files it discovers to what’s called standard output (`stdout`), which normally prints to the screen. But that output can just as easily be redirected to another command like tar, which would then copy those files to an archive. 
+The `find` command searches through a file system looking for objects that match rules you provide. The search outputs the names and locations of the files it discovers to what’s called standard output (`stdout`), which normally prints to the screen. But that output can just as easily be redirected to another command like tar, which would then copy those files to an archive.
 
 Here’s the story. Your server is hosting a website that provides lots of .mp4 video files. The files are spread across many directories within the `/var/www/html/` tree, so identifying them individually would be a pain. Here’s a single command that will search the /var/www/html/ hierarchy for files with names that include the file extension .mp4. When a file is found, `tar` will be executed with the argument `-r` to append (as opposed to overwrite) the video file to a file called videos.tar:
 
@@ -938,11 +941,11 @@ The `-iname` flag returns both upper- and lowercase results; -name, on the other
 
 The `{}` characters tell the find command to apply the tar command to each file it finds.
 
-In this case, it’s a good idea to run find as sudo. Because you’re looking for files in system directories, it’s possible that some of them have restrictive permissions that could prevent find from reading and, thus, reporting them. 
+In this case, it’s a good idea to run find as sudo. Because you’re looking for files in system directories, it’s possible that some of them have restrictive permissions that could prevent find from reading and, thus, reporting them.
 
 ---
 
-And, because we’re talking about find, I should also tell you about a similar tool called `locate` that will often be your first choice when you’re in a big hurry. By default, locate searches the entire system for files matching the string that you specify. In this case, locate will look for files whose names end with the string video.mp4 (even if they have any kind of prefix): 
+And, because we’re talking about find, I should also tell you about a similar tool called `locate` that will often be your first choice when you’re in a big hurry. By default, locate searches the entire system for files matching the string that you specify. In this case, locate will look for files whose names end with the string video.mp4 (even if they have any kind of prefix):
 
 `$ locate *video.mp4`
 
@@ -1009,7 +1012,7 @@ case is a reserved word
 
 ---
 
-If a command is not in your PATH variable, you can use the `locate` command to try to 
+If a command is not in your PATH variable, you can use the `locate` command to try to
 find it. Using locate, you can search any part of the system that is accessible to you. (Some files are only accessible to the root user.) For example, if you wanted to find the loca-tion of the chage command, you could enter the following:
 
 ```bash
@@ -1034,7 +1037,7 @@ Notice that locate not only found the chage command, it also found the lchage co
 `whereis aws`
 
 - `which`:
-  * f
+  - f
 - `whereis`
 
 ## `dd`
@@ -1049,7 +1052,7 @@ As always with `dd`, pause and think very carefully before pressing that Enter k
 
 ---
 
-Now that you’ve been suitably warned, we’ll start with something straightforward. Suppose you want to create an exact image of an entire disk of data that’s been designated as /dev/sda. You’ve plugged in an empty drive (ideally having the same capacity as your `/dev/sdb` system). The syntax is simple: `if=` defines the source drive, and `of=` defines the file or location where you want your data saved: 
+Now that you’ve been suitably warned, we’ll start with something straightforward. Suppose you want to create an exact image of an entire disk of data that’s been designated as /dev/sda. You’ve plugged in an empty drive (ideally having the same capacity as your `/dev/sdb` system). The syntax is simple: `if=` defines the source drive, and `of=` defines the file or location where you want your data saved:
 
 `sudo dd if=/dev/sda of=/dev/sdb`
 
