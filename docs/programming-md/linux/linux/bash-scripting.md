@@ -329,6 +329,8 @@ The variable `$#` contains **the number** of command-line arguments that were su
 
 Không có khai báo bao nhiêu argument & types. Cứ dùng mấy cái ở trên để check.
 
+`$@` reads all inputs.
+
 ### Exit codes
 
 `echo $?` the exit code of the previous command. 0 means succesful, other than 0 (nonzero) is failure.

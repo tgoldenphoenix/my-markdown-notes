@@ -119,14 +119,6 @@ You call `verify()` **after** you call `.embarkOnQuest()`
 
 you can mock concrete classes and interfaces
 
-### Stub
-
-A `mock object` does not have a predetermined behavior. When running a test, you are setting the expectations on the mock before effectively using it. You can run different tests, and you can reinitialize a mock and set different expectations on it. The pattern of testing with a mock object this: initialize mock > set expectations > execute test > verify assertions.
-
-When you `stubs` a method call, you provide a predetermined behavior right from the beginning. The stubbed code is written outside the test, and it will always have a fixed behavior, no matter how many times or where you use the stub; its methods will usually return hardcoded values. The pattern of testing with a stub this: initialize stub > execute test > verify assertions.
-
-You create a mock object > you stub its methods with the syntax: `when({mock object call one of its methods}).thenReturn({the value that you want});`
-
 ### Why mocking?
 
 Say you need to test `PokemonService.createPokemon()` which in turn call `PokemonRepository.save()`.
@@ -149,6 +141,108 @@ By mocking pokemonRepository:
 Do not mock types you don’t own: third-party libraries, framework classes, or external APIs—such as `HttpClient`, `AWS S3 Client`, `JDBC Connection`.
 
 When you mock your own `PokemonRepository` you control both the mock and the implementation.
+
+### Verifing Behaviour
+
+Once created, a mock will remember all interactions. Then you can selectively verify whatever interactions you are interested in.
+
+```java
+ //mock creation
+ List mockedList = mock(List.class);
+
+ //using mock object
+ mockedList.add("one");
+ mockedList.clear();
+
+ //verification
+ verify(mockedList).add("one");
+ verify(mockedList).clear();
+```
+
+---
+
+Verifying exact number of invocations / at least x / never
+
+```java
+ //using mock
+ mockedList.add("once");
+
+ mockedList.add("twice");
+ mockedList.add("twice");
+
+ mockedList.add("three times");
+ mockedList.add("three times");
+ mockedList.add("three times");
+
+ //following two verifications work exactly the same - times(1) is used by default
+ verify(mockedList).add("once");
+ verify(mockedList, times(1)).add("once");
+
+ //exact number of invocations verification
+ verify(mockedList, times(2)).add("twice");
+ verify(mockedList, times(3)).add("three times");
+
+ //verification using never(). never() is an alias to times(0)
+ verify(mockedList, never()).add("never happened");
+
+ //verification using atLeast()/atMost()
+ verify(mockedList, atMostOnce()).add("once");
+ verify(mockedList, atLeastOnce()).add("three times");
+ verify(mockedList, atLeast(2)).add("three times");
+ verify(mockedList, atMost(5)).add("three times");
+```
+
+`times(1)` is the default. Therefore using times(1) explicitly can be omitted.
+
+### Stub
+
+A `mock object` does not have a predetermined behavior. When running a test, you are setting the expectations on the mock before effectively using it. You can run different tests, and you can reinitialize a mock and set different expectations on it. The pattern of testing with a mock object this: initialize mock > set expectations > execute test > verify assertions.
+
+When you `stubs` a method call, you provide a predetermined behavior right from the beginning. The stubbed code is written outside the test, and it will always have a fixed behavior, no matter how many times or where you use the stub; its methods will usually return hardcoded values. The pattern of testing with a stub this: initialize stub > execute test > verify assertions.
+
+You create a mock object > you stub its methods with the syntax: `when({mock object call one of its methods}).thenReturn({the value that you want});`
+
+---
+
+```java
+//You can mock concrete classes, not just interfaces
+LinkedList mockedList = mock(LinkedList.class);
+
+//stubbing
+when(mockedList.get(0)).thenReturn("first");
+when(mockedList.get(1)).thenThrow(new RuntimeException());
+
+//following prints "first"
+System.out.println(mockedList.get(0));
+
+//following throws runtime exception
+System.out.println(mockedList.get(1));
+
+//following prints "null" because get(999) was not stubbed
+System.out.println(mockedList.get(999));
+```
+
+- Once stubbed, the method will always return a stubbed value, regardless of how many times it is called.
+- By default, for all methods that return a value, a mock will return either `null`, a primitive/primitive wrapper value, or an empty collection, as appropriate. For example 0 for an int/Integer and false for a boolean/Boolean.
+
+### Argument matchers
+
+```java
+//stubbing using built-in anyInt() argument matcher
+when(mockedList.get(anyInt())).thenReturn("element");
+
+//stubbing using custom matcher (let's say isValid() returns your own matcher implementation):
+when(mockedList.contains(argThat(isValid()))).thenReturn(true);
+
+//following prints "element"
+System.out.println(mockedList.get(999));
+
+//you can also verify using an argument matcher
+verify(mockedList).get(anyInt());
+
+//argument matchers can also be written as Java 8 Lambdas
+verify(mockedList).add(argThat(someString -> someString.length() > 5));
+```
 
 ### Spy
 

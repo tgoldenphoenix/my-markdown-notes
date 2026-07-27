@@ -475,7 +475,7 @@ Example:
 - `---` (no permissions) = 0 + 0 + 0 = 0
 -
 
-Therefore, a common permission setting like rwxr-xr-x (owner has full permissions, group and others have read and execute) would be represented as 755 in octal notation.
+Therefore, a common permission setting like `rwxr-xr-x` (owner has full permissions, group and others have read and execute) would be represented as 755 in octal notation.
 
 ---
 
@@ -676,7 +676,10 @@ For a directory (file thì tương tự):
 - `2` = write `w` permission; means able to create file into that dir such as `touch`. Because $2^1=2$
 - `1` = execute-`x` means being able to `cd` into that directory.
 
-A user with all three permissions is described by the number 7 ($4+2+1=7$). Read and write permissions, but not execute, is `6`; read and execute but not write is 5, and no permissions at all is `0`.
+- A user with all three permissions is described by the number 7 ($4+2+1=7$).
+- Read and write permissions, but not execute, is `6`
+- Read and execute but not write is 5
+- No permissions at all is `0`.
 
 Example:
 
