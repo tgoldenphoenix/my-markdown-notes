@@ -73,6 +73,10 @@ Here’s a generic description of a typical unit test from our perspective: “C
 
 k
 
+## Test data
+
+Các giá trị số thì nên >127 (để có thể phát hiện các dòng code compare giá trị số sai, tham khảo
+
 ## Class Diagram
 
 k

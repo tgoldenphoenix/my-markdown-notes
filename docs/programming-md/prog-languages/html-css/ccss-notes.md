@@ -1,13 +1,13 @@
-# CSS notes
+# CSS Notes
 
-## Basics CSS syntax
+## Basics CSS Syntax
 
-CSS **declaration** format: `property-name: value;`.
+CSS **declaration** format: `property-name: value;`
 
 A CSS **rule set** contains one or more selectors and one or more declarations.  
 Declaration ends with `;`, rule set do NOT ends with `;`.
 
-## The Box model
+## The Box Model
 
 Everything in CSS is a box. CSS box model refers to: content, padding, border, margin và tất cả những properties relate tới 4 ông này.
 
@@ -22,7 +22,7 @@ The `outline:` property is not part of the box model. The difference between it 
 outline sẽ nằm bao bên ngoài border.  
 `outline-offset:` property cũng hay được dùng, có thể set negative value.
 
-## Centerinng a div
+## Centering a div
 
 Center `<div>` with auto margin:
 
@@ -130,7 +130,26 @@ The other property in common (both grid & flexbox) is `gap` (used in the contain
 
 You can center elements both horizontally & vertically with flexbox. It also works for multiple children.
 
-## Grid layout
+---
+
+Block elements có `width: auto;` and will fill up 100% width of its container. Flex items have their "ideal width" which means "as small as it can get to (all text in one single line, no wrapping) while keeping everything on one line" giống với khi set block elements to have `width: max-content;`.
+
+When set `display: flex;` thì `gap: 0;`;  `flex: 0 1 auto` so there is no grow, flex items width là flexbox's "ideal width".
+
+When set `flex-basis: auto; (default)` the flex items' widths are flexbox's "ideal width". There is no line-wrapping for the content.
+
+Set `flex: 1;` changes two values: `flex-grow: 0 -> 1;` (flex items now grows evenly) and `flex-basis: auto -> 0%;` (making even columns). `flex-shrink: 1;` remains unchanged.
+`flex-basis: 0` is like the `width: min-content`
+
+`flex-basis: 300px;` sets all flex items' initial width to 300px
+
+There are three ways to create even columns in flexbox:
+
+1. `flex: 1;`
+2. `width: 100%;`
+3. `flex-basis: 100%;`
+
+## Grid Layout
 
 Khi apply display: grid; lên 1 container element. Cái container element đó now gọi là “grid container” và tất cả element trong cái grid container gọi là “grid items”. Sau đó mình sẽ dùng properties liên quan tới grid layout theo ý mình muốn.
 
@@ -200,10 +219,10 @@ The **specificity** is not a decimal number but a triad that consists of three c
 - B: class-like specificity: class selectors, pseudo-class (`:hover`), attribute selector
 - C: element-like specificity: element (HTMl type/tag selector), pseudo-element (`::before, ::after`)
 
-## Selectors, combinators
+## Selectors, Combinators
 
-The CSS **Universal Selector** or wildcard selector `*` selects all elements. You typically only see this for what is called a **CSS reset**.  
-A universal selector (*) adds no specificity.
+The CSS `Universal Selector` or wildcard selector `*` selects all elements. You typically only see this for what is called a **CSS reset**.  
+A universal selector (`*`) adds no specificity.
 
 The three **simple selectors**: type selectors (HTML tags, element selector), id and class selectors.
 
@@ -213,33 +232,35 @@ Class selectors are ideal because they are slightly more specific than element s
 **Chaining selectors** is a general term refers to many different way of chaining selectors: compound selector, empty space, selector group, etc...  
 When a complex or compound selector is used, each part of that selector adds up to the specificity.
 
-A CSS **selector group** or **selector list** is a comma-separated list of selectors. It selects all the matching nodes. Note: tránh nhầm lẫn với **descendant combinator** which use empty spaces.  
+A CSS `selector group` or **selector list** is a comma-separated list of selectors. It selects all the matching nodes. Note: tránh nhầm lẫn với **descendant combinator** which use empty spaces.  
 For example you can group multiple selectors with commas `h1, h2`. But if you forgot the comma như `h1 h2` thì nó sẽ tìm `<h2>` là children của `<h1>` để apply rules.
 
-- A [compound selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors/Selector_structure#compound_selector) is a sequence of simple selectors that are not separated by any combinator (not even the empty space). It targets a single element that **simultaneously** matches all the conditions specified by the simple selectors within the compound selector:
+- A `compound selector` is a sequence of simple selectors that are NOT separated by any combinator (not even the empty space). It targets a single element that **simultaneously** matches all the conditions specified by the simple selectors within the compound selector:
   * `p.highlight`: Selects any `<p>` element that **also** has the class `highlight`. This will not select a `<span>` element with the class highlight, nor will it select a `<p>` element without that class.`
   * `div#main-content`: Selects a `<div>` element that also has the ID of `main-content`.
   * `.button.primary`: Selects any element that possesses **both** the class `button` and the class `primary`.
   * `input[type="email"]`: Selects an `<input>` element with `type="email"`.
   * `a:hover`: Selects an `<a>` element when the user's mouse cursor is hovering over it.
 
-A **complex selector** is a sequence of one or more simple and/or compound selectors that are separated by combinators, including the white space descendant combinator.
+A `complex selector` is a sequence of one or more simple and/or compound selectors that are separated by combinators, including the white space descendant combinator.
 
 Specificity can over-write the “cascade” rule in CSS (top->bottom like a waterfall). Class selectors are more specific than element selector and therefore will over-write element selectors no matter where they are in the top-bottom order.  
 [Specificity calculator](https://specificity.keegan.st/) của cisco
 
-**Attribute selectors** (select elements based on an attribute or attribute value); use square brackets `[]`
+`Attribute selectors` (select elements based on an attribute or attribute value); use square brackets `[]`
 
 The key difference between `tr[class="total"]` and `tr.total` is that the first will select tr elements where the only class is `total`. The second will select tr elements where the class includes total.
 
 ### Combinators
 
-There are four different combinators in CSS: the empty space-" ", `>`, `+`, `~`.
+There are four different combinators in CSS: the empty space " ", `>`, `+`, `~`.
 
-The [descendant combinator](https://developer.mozilla.org/en-US/docs/Web/CSS/Descendant_combinator) (a single space bar character) — combines two selectors such that elements matched by the second selector are selected if they have an ancestor (parent, parent's parent, parent's parent's parent, etc.) element matching the first selector. Selectors that utilize a descendant combinator are called descendant selectors.  
+The `descendant combinator` (a single space bar character) — combines two selectors such that elements matched by the second selector are selected if they have an ancestor (parent, parent's parent, parent's parent's parent, etc.) element matching the first selector. Selectors that utilize a descendant combinator are called descendant selectors.  
 So something like `.ancestor .child {}` would select an element with the class child if it has an ancestor with the class ancestor. Another way to think of it is child will only be selected if it is nested inside of ancestor, _no matter how deep_.
 
 There’s really no limit to how many combinators you can add to a rule, so `.one .two .three .four` would be totally valid. This would just select an element that has a class of four if it has an ancestor with a class of three, and if that ancestor has its own ancestor with a class of two, and so on. You generally want to avoid trying to select elements that need this level of nesting, though, as it can get pretty confusing and long, and it can cause issues when it comes to specificity.
+
+---
 
 A (direct) **child combinator** `>` is really just an offshoot of the descendant combinator, only it is more specific than the descendant combinator because **it only selects direct children of an element**, rather than any descendant.
 

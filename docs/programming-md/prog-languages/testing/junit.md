@@ -1,4 +1,4 @@
-# JUnit & Mockito Testing
+# JUnit Java Testing
 
 JUnit is a framework that enables and supports automated testing in Java.
 
@@ -247,6 +247,8 @@ verify(mockedList).add(argThat(someString -> someString.length() > 5));
 ### Spy
 
 `spy()` creates partial mocking, real methods are invoked but still can be verified and stubbed
+
+A spy is a partial mock in other mocking frameworks (part of the object will be mocked and part will use real method invocations).
 
 ## API Mock
 
