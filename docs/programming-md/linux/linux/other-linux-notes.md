@@ -116,12 +116,6 @@ vào `F:\sources\` (`F:\` là tên của bootable USB) > tìm file tên `install
 
 open `Cmd` as admin > type `dism /Get-WimInfo /WimFile:F:\sources\install.wim`
 
-## WSL
-
-tải nerd font về, extract ra > vào setting windows cài > vào terminal emulator > chọn font vừa cài
-
-An **MSI (Microsoft Software Installer)** file is a package that contains all the necessary information and instructions for installing, maintaining, and removing software on Windows systems
-
 ## References
 
 [phoenixnap blog](https://phoenixnap.com/kb/) cũng có nhiều bài viết hay

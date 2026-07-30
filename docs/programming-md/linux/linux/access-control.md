@@ -36,11 +36,23 @@ The defining characteristic of the root account is its user id `UID` is `0`. The
 
 The home directory of `root` is `/root`.
 
-## `su` substitute user identity
+## `su`: substitute user identity
 
-If invoked without arguments, `su` prompts for the root password and then starts up a `root shell`. Root privileges remain in effect until you terminate the shell by typing `<Control-D>` or the `exit` command.
+If invoked without arguments, `su` prompts for the root account's password and then starts up a `root shell`. Root privileges remain in effect until you terminate the shell by typing `<Control-D>` or the `exit` command.
 
 If you become the root user by just typing `su`, rather than `su -`, you don’t change directories or the environment of the current login session. Dẫn đến có thể không chạy được một số commands.
+
+- Both commands switch you to the `root` user (or another user if specified), but they handle the target user's environment differently:
+- `su`:
+  - Shell type: `Non-login shell`, you gain root privileges.
+  - Current Directory (`pwd`): Stays in your current folder.
+  - Environment (`$PATH`, `$HOME`): Keeps your original user's environment variables. This means if you try to run system commands located in `/sbin` or `/usr/sbin` (like `fdisk`, `iptables`, or `ip`), your shell might say "command not found" because root's system paths aren't added to your user's `$PATH`.
+- `su -` (or su -l, su --login)
+  - Shell type: Full login shell. The hyphen (`-`) tells `su` to launch a `login shell` as if root had logged in directly from a terminal.
+  - Current Directory (`pwd`): Automatically changes your directory to root's home directory (`/root`).
+  - Environment (`$PATH`, `$HOME`): Clears old environment; loads root's complete environment. Runs root's `/etc/profile`, `.bash_profile`, `.bashrc`, etc. Giving you immediate access to all administrative commands.
+
+Notice how your prompt changes from a `$` (standard user) to a `#` (root user). Anything you type from this point forward runs with full administrative privileges without needing `sudo` in front of every command.
 
 `su` doesn’t record the commands executed as root, but it does create a log entry that states **who** became root and when.
 

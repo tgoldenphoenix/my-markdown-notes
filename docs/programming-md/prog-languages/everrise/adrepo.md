@@ -335,6 +335,24 @@ secretKey=fuga
 
 mysql: root:root or 123
 
+### AWS Deployment
+
+Chỉ có thể truy cập EC2 release từ ip của con forwarding. Có 2 con EC2 forwarding
+
+```bash
+1. ETL-STG-PROCESS
+// Firstly, connect to forwarding server
+ssh -i ~/.ssh/adrepo-test20200330.pem ec2-user@52.192.196.227
+// At forwarding server, connect to ETL-STG-PROCESS
+ssh -i ~/.ssh/etl-dev-process.pem ec2-user@54.249.169.232
+
+// connect to RDS database
+2. // Firstly, connect to forwarding server
+ssh -i ~/.ssh/adrepo-test20200330.pem ec2-user@52.192.196.227
+// At forwarding server, connect to RDS adrepo-etl-staging
+mysql -hadrepo-etl-dev.cmcxxxxxxxxx.ap-northeast-1.rds.amazonaws.com -uadrepo -pYN5kmZWDwxxxxxxxxx
+```
+
 ## ETL Batch
 
 ### Batch Basics

@@ -1,5 +1,9 @@
 # WSL Notes
 
+tải nerd font về, extract ra > vào setting windows cài > vào terminal emulator > chọn font vừa cài
+
+An **MSI (Microsoft Software Installer)** file is a package that contains all the necessary information and instructions for installing, maintaining, and removing software on Windows systems
+
 ## Access the Windows file system through WSL
 
 ```bash

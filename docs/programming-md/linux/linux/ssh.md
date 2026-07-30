@@ -6,7 +6,7 @@ Muốn connect SSH thì firewall phải allow SSH traffic.
   - SSH Client (Local Machine): Initiates the connection (e.g., you type `ssh user@remote-ip`).
   - SSH Server (Remote Host): Listens passively on a specific port, waiting to accept the incoming connection.
 
-## The importance of encryption
+## The importance of Encryption
 
 In the beginning, there was `Telnet` for login connections over a network at any rate. The Telnet protocol was fast and reliable and, in an innocent world made up of smaller and simpler networks, perfectly serviceable. Back then, the fact that Telnet sessions sent their data packets without encryption wasn’t a big deal.
 
@@ -367,6 +367,20 @@ Host dev-server
 Then connect using: `ssh dev-server`
 
 This is useful if you manage multiple SSH keys and nonstandard ports.
+
+### SSH on Windows
+
+Modern versions of Windows 10 and 11 come with the Microsoft Win32 OpenSSH client pre-installed as a built-in optional feature.
+
+Its default location is: `C:\Windows\System32\OpenSSH\ssh.exe`
+
+Since `C:\Windows\System32\OpenSSH` is included in the default Windows `PATH` environment variable, you can call `ssh` directly from PowerShell or Command Prompt from any directory.
+
+Git Bash actually ships with its own separate built-in version of OpenSSH located inside the Git installation folder: `C:\Program Files\Git\usr\bin\ssh.exe`
+
+Because Git Bash prioritizes its internal `/usr/bin/` binaries over Windows system paths, typing `ssh` inside Git Bash will, by default, run Git Bash's own SSH client, not the Windows System32 one.
+
+###
 
 ## Signature algorithms
 
