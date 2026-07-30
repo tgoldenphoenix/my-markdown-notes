@@ -38,7 +38,7 @@ The Options field is optional (and variable in size), so the length of the IPv4 
 
 ---
 
-The next two fields are `Differentiated Services Code Point (DSCP)`, which is 6 bits in length, and `Explicit Congestion Notification (ECN)`, which is 2 bits in length. This byte of the IPv4 header used to be called the `Type of Service` field and still is sometimes, but DSCP + ECN is the current definition. 
+The next two fields are `Differentiated Services Code Point (DSCP)`, which is 6 bits in length, and `Explicit Congestion Notification (ECN)`, which is 2 bits in length. This byte of the IPv4 header used to be called the `Type of Service` field and still is sometimes, but DSCP + ECN is the current definition.
 
 These fields are used for `Quality of Service (QoS)`, which is a network feature used to prioritize specific types of network traffic over other types.
 
@@ -57,22 +57,21 @@ Loops should not occur in a properly configured network, but mistakes can happen
 Routers are not used to connect many end hosts within a LAN. Instead, they are placed at the edge of a LAN and used to enable communications between LANs and external networks, such as the internet.
 
 You might be wondering, “If that’s a router, what is the wireless router that connects my home network to the internet?” A **wireless router** (also known as a Wi-Fi router or home router) is not just a router; it’s a multifunctional network device that combines the roles of multiple different network devices.  
-These devices typically fill the roles of a router, switch, wireless access point (to provide Wi-Fi connectivity), and firewall all in one device. They are perfect for a small office/home office (SOHO) network with only a few users. However, in enterprise networks, it’s simply not feasible for a single device to fulfill all necessary roles. 
+These devices typically fill the roles of a router, switch, wireless access point (to provide Wi-Fi connectivity), and firewall all in one device. They are perfect for a small office/home office (SOHO) network with only a few users. However, in enterprise networks, it’s simply not feasible for a single device to fulfill all necessary roles.
 
 ## IPv4
 
 - Domain name must be read from right -> left.
 - IP address should be read from left -> right (giống số decimal bình thường mình cũng đọc như vậy, hàng thousands -> hundreds -> tens).
 
-The version of TCP/IP that has been in widespread use for three decades is protocol revision 4, aka IPv4. It uses four-byte IP addresses. A modernized version, IPv6, expands the IP address space to 16 bytes and incorporates several other lessons learned from the use of IPv4.
+The version of TCP/IP that has been in widespread use for three decades is protocol revision 4, aka `IPv4`. It uses **four-byte** IP addresses. A modernized version, `IPv6`, expands the IP address space to **16 bytes** and incorporates several other lessons learned from the use of IPv4.  
+The development of `IPv6` was to a large extent motivated by the concern that we are running out of 4-byte IPv4 address space.
 
-The development of IPv6 was to a large extent motivated by the concern that we are running out of 4-byte IPv4 address space.
-
-**Dotted-Decimal notation** (`xxx.xxx.xxx.xxx`). It's a `32-bit = 4 groups x 8 bits`. Each group is a decimal number that can range from `0-255` (corresponding to one byte, 8 bits, 2 hex digit).
+**Dotted-Decimal notation** (`xxx.xxx.xxx.xxx`). It's a `32-bit = 4 groups x 8 bits`. Each group is a **decimal** number that can range from `0-255` (corresponding to one byte, 8 bits, 2 hex digit).
 
 Example: `192.168.1.10`
 
-An IP address is **hierarchical** because as we scan the address from left to right, we obtain more and more specific information about where the host is located in the Internet (that is, within which network, in the network of networks).
+An IP address is **hierarchical** because as we scan the address from **left to right**, we obtain more and more specific information about where the host is located in the Internet (that is, within which network, in the network of networks).
 
 Is there a global authority that has ultimate responsibility for managing the IP address space and allocating address blocks to ISPs and other organizations?  
 Indeed there is! IP addresses are managed under the authority of the **Internet Corporation for Assigned Names and Numbers** (ICANN).
@@ -102,8 +101,8 @@ In `223.1.1.0/24`, the `/24` is the subnet mask. It indicates that the leftmost 
 The `10.0.0.x` is a `/24` network contains 256 ip addresses from `.0` to `.255`
 
 - Một `10.0.0/24` network can be divided into two equal `/25` networks.
-  * `.0` tới `.127`
-  * `.127 -> .255`
+  - `.0` tới `.127`
+  - `.127 -> .255`
 
 Classless Inter-Domain Routing (CIDR) notation show the size of a subnet.
 
@@ -124,9 +123,9 @@ The network portion of an IPv4 address is often called the `prefix` or `network 
 
 Instead of indicating the prefix length with /X, another common method is to use a `netmask` (subnet mask)—another string of 32 bits that is paired with an IP address to indicate which bits of the IP address are the network portion and which are the host portion.
 
-A bit in the netmask that is set to 1 means the bit in the same position of the IP address is part of the network portion; a bit in the netmask that is set to 0 means the bit in the same position of the IP address is part of the host portion. 
+A bit in the netmask that is set to 1 means the bit in the same position of the IP address is part of the network portion; a bit in the netmask that is set to 0 means the bit in the same position of the IP address is part of the host portion.
 
-Like IPv4 addresses, netmasks are usually written in dotted decimal notation. 
+Like IPv4 addresses, netmasks are usually written in dotted decimal notation.
 
 For example, an IPv4 address (`172.16.20.21`) with a netmask (`255.255.0.0`). The first 16 bits of the netmask are 1, meaning the first 16 bits of the IPv4 address are the network portion. This is equivalent to `172.16.20.21/16`
 
@@ -138,7 +137,7 @@ A netmask is always a series of 1s followed by a series of 0s; this is because I
 
 ---
 
-The 192.168.1.0/24 address range allows for a single subnet with a /24 prefix length, including all addresses from 192.168.1.0 through 192.168.1.255. Dividing the /24 address block in half gives two /25 subnets, each containing 128 addresses. Or it can be divided into four /26 subnets, each containing 64 addresses. 
+The 192.168.1.0/24 address range allows for a single subnet with a /24 prefix length, including all addresses from 192.168.1.0 through 192.168.1.255. Dividing the /24 address block in half gives two /25 subnets, each containing 128 addresses. Or it can be divided into four /26 subnets, each containing 64 addresses.
 
 For each bit by which you extend the prefix length, the number of possible subnets doubles, but the number of addresses in each subnet halves.
 
@@ -176,9 +175,9 @@ The `first usable address` of a network is the first IP address that can be assi
 
 `192.168.100.1` is the first usable address of the 192.168.100.0/24 network. It is the first address after the network address.
 
-The first usable address of a network is often assigned to that network’s router. 
+The first usable address of a network is often assigned to that network’s router.
 
-The `last usable address` of a network is the last IP address that can be assigned to a host; it’s the last IP address before the broadcast address. This address is also simple to find—subtract 1 from the broadcast address (change the least significant bit to 0). 
+The `last usable address` of a network is the last IP address that can be assigned to a host; it’s the last IP address before the broadcast address. This address is also simple to find—subtract 1 from the broadcast address (change the least significant bit to 0).
 
 192.168.100.254 is the last usable address of the 192.168.100.0/24 network. It is the last address before the broadcast address.
 
@@ -391,13 +390,13 @@ A host’s default gateway is configured as an IP address, not a MAC address. To
 
 Unlike switches, which can build their MAC address table automatically without any configuration, a router’s routing table will be empty by default—it will not be able to forward packets.
 
-A route to more than one destination IP address is called a network route; it’s a route to a network, rather than a route to a single destination IP address. A `connected route` is an example of a network route. 
+A route to more than one destination IP address is called a network route; it’s a route to a network, rather than a route to a single destination IP address. A `connected route` is an example of a network route.
 
 A connected route is a route to the network an interface is connected to.
 
 A `local route` tells the router that packets destined for the IP address specified in the route are for the router itself; it should continue to de-encapsulate the message and examine its contents. In this case, the router does not forward the packet; it just receives the packet for itself. The local route is necessary to distinguish the router’s own IP address from other IP addresses in the connected network. If R1 only had a connected route to `192.168.1.0/24` but no local route, it would forward packets destined for `192.168.1.1` out of its G0/0 interface, rather than receiving the packets for itself.
 
-A route to a single destination IP address (with a /32 prefix length) is called a `host route`; it’s a route to a single host. A local route is an example of a host route. This is in contrast to a network route, which we covered earlier; a network route is any route with a prefix length shorter than /32. 
+A route to a single destination IP address (with a /32 prefix length) is called a `host route`; it’s a route to a single host. A local route is an example of a host route. This is in contrast to a network route, which we covered earlier; a network route is any route with a prefix length shorter than /32.
 
 Be aware of this major difference between Layer 3 forwarding done by routers and Layer 2 forwarding done by switches: when a router looks up a packet’s destination IP address in its routing table, it looks for the `most specific matching route`. On the other hand, when a switch looks up a frame’s destination MAC address in its MAC address table, it looks for an **exact match**; partial matches don’t count.
 

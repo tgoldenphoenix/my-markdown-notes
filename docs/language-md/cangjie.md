@@ -57,15 +57,18 @@ Triple-unit characters
   - 躁 (口一 // 口 // 口木)
 - 桑 (水 // 水水 // 木) - triple unit, mulberry
   - 顙 (水木 // 一月金)
+- 輩 (中卜 // 十田十) - double unit
+  - 罪 (田中 // 中一 // 卜) - triple unit
 
 - One element top; two elements bottom:
 - 露 (一月 // 口一 // 口) - triple unit
 - 覆 (一田 // 竹人 // 水) - triple unit
 - 發 (弓人 // 弓 // 竹水) - triple unit
 - 爺 (金大 // 尸十 // 中) - triple unit
-- 鄰 (火手 // 弓中) - double unit
-- 輩 (中卜 // 十田十) - double unit
-  - 罪 (田中 // 中一 // 卜) - triple unit
+- 舛 (弓戈 // 手)
+- 粦 (火木 // 弓戈 // 手)
+  - 鄰 (火手 // 弓中) - double unit
+  - 憐 (心 // 火木 // 手 )
 
 - 殺 (大金 // 竹弓 // 水) - triple unit
 - 疑 (心大 // 弓戈人) - double unit
@@ -306,8 +309,8 @@ Triple-unit characters
   - 示 (一一火)
 - 豋 (月人 // 一口廿)
 
-- 癶 (弓戈卜人) - A tipi or tepee
-- 登 (弓人 // 一口廿) - ascend
+- 癶 (弓戈 // 卜人) - A tipi or tepee
+- 登 (弓人 // 一 // 口廿) - ascend
   - 燈 (火 // 弓人 // 廿) - triple unit
 - 豆 (一口廿)
 
@@ -327,8 +330,9 @@ Triple-unit characters
   - 巳 (口山) - sign of the snake
   - 記 (卜口 // 尸山)
   - 妃 (女 // 尸山)
+  - 改 (尸山 // 人大)
 - 已 (尸山)
-- 卩 (尸中) - postage stamp
+- 卩 (尸中)
 - 弓
 
 - 㔾 (尸山) - fingerprint
@@ -403,9 +407,9 @@ Triple-unit characters
   - 另 (口大尸)
 - 刀 (尸竹) vs. 刃 (尸竹戈)
 
-- 司 (尸一口) - company, clothes hanger
-  - 嗣 (口月 // 尸一口)
-  - 詞 (卜口 // 尸一口)
+- 司 (尸 // 一 // 口) - company, clothes hanger
+  - 嗣 (口月 // 尸 // 一口)
+  - 詞 (卜口 // 尸 // 一口)
 - 幻 (女戈 // 尸)
 
 - 成 (戈竹尸) - turn into
@@ -420,6 +424,7 @@ Triple-unit characters
 
 - 旁 (卜月 // 卜竹尸) - side
   - 螃 (中戈 // 卜月 // 尸) - triple unit
+  - 傍 (人 // 卜月 // 尸)
 
 - banner
 - 於 (卜尸 // 人 // 卜)
@@ -513,6 +518,7 @@ Triple-unit characters
 - 凶 (山大) - villain, shovel
 
 - 臣 (尸中尸中) - retainer, slave
+  - 臥 (尸中 // 人)
   - 巨 (尸尸) - gigantic
   - 片 (中中一中) - one sided, F3+L
   - 熙 (尸山 // 火) - double unit
@@ -608,8 +614,6 @@ Triple-unit characters
 - 亢 (卜 // 竹弓) - whirlwind
   - 抗 (手 // 卜竹弓)
   - 骯 (月月 // 卜竹弓)
-
-- 侯 (人弓一大) - marquis
 
 - 丁 (一弓) - spike, nail
   - 頂 (一弓 // 一月金)
@@ -829,7 +833,7 @@ Triple-unit characters
 - 世 (心廿)
 - 也 (心木)
 - 长 (心人)
-- 五 (一木一) - five
+- 五 (一木一)
 - 九 (大弓)
 - 丸 (大弓戈)
 - 帶 (大心 // 月中月)
@@ -900,7 +904,7 @@ Triple-unit characters
 - 形 (一廿 // 竹竹竹) - double unit
   - 开 (一廿) - open
 - 影 (日火 // 竹竹竹)
-  - 景 (日 // 卜口火)
+  - 景 (日 // 卜 // 口火)
 - 修 (人 // 中 // 人竹)
 - 㐱 (人 // 竹竹竹)
   - 參 (戈 // 戈戈 // 竹)
@@ -1076,7 +1080,8 @@ Triple-unit characters
   - 䖝 (竹中一戈)
   - 蟹 (弓手 // 中一戈) - double unit
   - 閩 (日弓 // 中一戈)
-- 蜀 (田中 // 心 // 中戈) - triple unit
+- 蜀 (田中 // 心 // 中戈) - triple unit, Shu Han
+  - 獨 (大竹 // 田中 // 戈)
 - 屬 (尸 // 水 // 田戈) - triple unit
   - 属 (尸 // 竹中月)
 
@@ -1238,6 +1243,7 @@ Triple-unit characters
 - 州 (戈中戈中) - châu, F3+L
   - 洲 (水 // 戈中中) - double unit
 - 巢 (女女 // 田木) - stream
+  - 緇 (女火 // 女女 // 田)
 - 片 (中中一中) - one sided, F3+L
 
 - 儿 (中山) - er, child
@@ -1385,6 +1391,7 @@ Triple-unit characters
 - 業 (廿金廿木) - profession
   - 业 (難廿金)
 - 並 (廿廿金) - row
+  - 普 (廿金 // 日)
 - 對 (廿土 // 木戈)
 
 - 关 (廿大)
@@ -1417,8 +1424,12 @@ Triple-unit characters
 - 其 (廿一一金) - rook, bushel basket, F3+L
   - 期 (廿金 // 月) - double unit characters, only take F+L of the first unit
   - 基 (廿金 // 土) - double unit character, only take F+L of the first unit
-- 某 (廿一木) - wicker basket
+- 甘 (廿一)
+  - 某 (廿一木) - wicker basket
 - 且 (月一)
+
+- 甚 (廿一一女)
+  - 勘 (廿女 // 大尸)
 
 - 㒼 (廿中月人)
 - 昔 (廿日) - salad
@@ -1539,7 +1550,7 @@ Triple-unit characters
   - 远 (卜 // 一一山)
   - 院 (弓中 // 十 // 一山) - triple unit
 - 光 (火一山) - ray
-- 爿 (女中一) - bunk bed
+- 爿 (女中一)
 
 - 丂 (一女尸)
 - 号 (口一女尸)
@@ -1734,10 +1745,12 @@ Triple-unit characters
 - 反 (竹水) - anti, against
 - 篇 (竹竹尸月)
 - 爬 (竹人 // 日山)
-- 戶 (竹尸)
+- 氏 (竹女心)
+
+- 戶 (竹尸) - door
   - 房 (竹尸 // 卜竹尸)
   - 扁 (竹尸 // 月廿)
-- 氏 (竹女心)
+  - 户 (戈尸)
 
 - 爪 (竹中人) - clawww, vulture
 - 瓜 (竹女戈人) - melon
@@ -1844,6 +1857,11 @@ Triple-unit characters
 - 皮 (木竹水) - pelt
   - 被 (中 // 木竹水)
   - 破 (一口 // 木竹水)
+
+- ユ (重木) - key
+  - 侯 (人弓一大) - marquis
+- 韋 (木一 // 口手)
+- 五 (一木一)
 
 - 夬 (木大) - Guillotine
   - 決 (水 // 木大)
@@ -2084,6 +2102,9 @@ Triple-unit characters
 - 爿 (女中一) - bunk bed
   - 將 (女一 // 月 // 木戈) - triple unit
   - 壯 (女一 // 土)
+  - 妝 (女一 // 女)
+  - 石 (一口)
+  - 鼎 (月山 // 女一 // 中)
 - 片 (中中一中) - one sided, F3+L
   - 版 (中中 // 竹水)
 - 臣 (尸中尸中)
@@ -2113,7 +2134,10 @@ Triple-unit characters
 
 - monocle, sunglasses
 - 舛 (弓戈 // 手) - pole dancer, evening...sunglasses
+- 粦 (火木 // 弓戈 // 手)
   - 鄰 (火手 // 弓中) - double unit
+  - 憐 (心 // 火木 // 手 )
+
 - 夅 (竹水 // 手) - walking leg...monocle
   - 降 (弓中 // 竹水 // 手) - triple unit
 - 年 (人手) - year, monocle
@@ -2239,7 +2263,7 @@ Triple-unit characters
 
 - 乙 (弓山) - fish hook
 
-- 巳 (口山) - sign of the snake
+- 巳 (口山)
 - 巴 (日山) - mosaic
   - 吧 (口 // 日山)
 - 色 (弓日山) - color
@@ -2257,6 +2281,7 @@ Triple-unit characters
 - 屯 (心山) - barracks
   - 纯 (女一 // 心山)
   - 純 (女火 // 心山)
+  - 頓 (心山 // 一月金)
 - 屰 (廿山) - mountain goat
   - 塑 (廿月 // 土)
 
@@ -2492,10 +2517,12 @@ Triple-unit characters
 - 廌 (戈難火)
 - 慶 (戈難水)
 
+- 鼎 (月山 // 女一 // 中)
 - 淵 (水 // 中難中) - abyss
   - 渊 (水中火中)
 - 肅 (中難)
   - 瀟 (水 // 廿中難)
+  - 繡 (女火 // 中難)
 
 === Others & Exceptions
 

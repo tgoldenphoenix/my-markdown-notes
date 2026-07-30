@@ -3,8 +3,8 @@
 Muốn connect SSH thì firewall phải allow SSH traffic.
 
 - Inbound SSH connectivity
-  * SSH Client (Local Machine): Initiates the connection (e.g., you type `ssh user@remote-ip`).
-  * SSH Server (Remote Host): Listens passively on a specific port, waiting to accept the incoming connection.
+  - SSH Client (Local Machine): Initiates the connection (e.g., you type `ssh user@remote-ip`).
+  - SSH Server (Remote Host): Listens passively on a specific port, waiting to accept the incoming connection.
 
 ## The importance of encryption
 
@@ -19,7 +19,7 @@ In the beginning, there was `Telnet` for login connections over a network at any
  A private/public key pair to encrypt and decrypt the contents of a plain-text message.
 
  When you log in to a remote server, you’re doing nothing more than causing data packets containing session information to be sent back and forth between two computers. The trick of secure communications is to quickly encrypt each of those packages before it’s transmitted, and then, just as quickly, decrypt them at the other end. The SSH network protocol does this so quickly and so invisibly, in fact, that someone already used to connecting through Telnet sessions won’t see any difference.
- 
+
 ## What is SSH
 
 The SSH (Secure Shell) is a protocol originally developed by Tatu Ylonen in 1995 in response to a hacking incident in the Finnish university network.
@@ -40,7 +40,7 @@ For two computers to be connected over SSH, each host must have SSH installed. S
 
 To verify whether you have both the command and the server installed, the easiest method is to look for the relevant configuration files
 
-```
+```bash
 $ file /etc/ssh/ssh_config
 /etc/ssh/ssh_config: ASCII text
 ```
@@ -49,7 +49,7 @@ Should this return a `No such file or directory` error, then you don't have the 
 
 Do a similar check for the SSH service (note the `d` in the filename):
 
-```
+```bash
 $ file /etc/ssh/sshd_config
 /etc/ssh/sshd_config: ASCII text
 ```
@@ -66,13 +66,13 @@ On Ubuntu, you can start the ssh server by typing: `sudo systemctl start ssh` or
 
 ## OpenSSH
 
-When you log in to a remote computer, your local PC is acting as a client of the remote server, so you’d use the openssh-client package. The operating system (OS) on the remote server you’re logging in to, however, is acting as a host for the shell session, so it must be running the openssh-server package. 
+When you log in to a remote computer, your local PC is acting as a client of the remote server, so you’d use the openssh-client package. The operating system (OS) on the remote server you’re logging in to, however, is acting as a host for the shell session, so it must be running the openssh-server package.
 
 You can run `dpkg -s openssh-client` or `dpkg -s openssh-server` to confirm that you’ve got the right package on your machine. Because they’re built to host remote shell sessions, Linux containers will always have the full suite installed by default.
 
 Use `systemctl status` to find out whether SSH is running on your machine.
 
-```
+```bash
 $ systemctl status ssh
 ? ssh.service - OpenBSD Secure Shell server
    Loaded: loaded (/lib/systemd/system/ssh.service;
@@ -126,11 +126,11 @@ Dùng Window Git bash cũng có thể `ssh` được.
 
 Now that you've installed and enabled SSH on the remote computer, you can try logging in with a password as a test. To access the remote computer, you must have a user account and a password.
 
-Your remote user doesn't have to be the same as your local user. You can log in as any user on the remote machine as long as you have that user's password. For instance, I'm `sethkenlon` on my work computer, but I'm `seth` on my personal computer. If I'm on my personal computer (making it my current local machine) and I want to SSH into my work computer, I can do that by identifying myself as `sethkenlon` and using my work password.
+Your remote user doesn't have to be the same as your local user. You can log in as any user on the remote machine as long as you have that user's password. For instance, I'm `sethkenlon` on my work computer, but I'm `seth` on my personal computer. If I'm on my personal computer (making it my current local machine) and I want to SSH into my work computer, I can do that by identifying myself as `sethkenlon` and using my work password.
 
-To SSH into the remote computer, you must know its internet protocol (IP) address or its resolvable hostname. To find the remote machine's IP address, use the `ip` command (on the remote computer):
+To SSH into the remote computer, you must know its internet protocol (IP) address or its resolvable hostname. To find the remote machine's IP address, use the `ip` command (on the remote computer):
 
-```
+```bash
 $ ip addr show | grep "inet "
 inet 127.0.0.1/8 scope host lo
 inet 10.1.1.5/27 brd 10.1.1.31 [...]
@@ -142,7 +142,7 @@ The address `127.0.0.1` is a special one and is, in fact, the address of `localh
 
 If you can ping the remote machine by its IP address or its hostname, and have a login account on it, then you can SSH into it:
 
-```
+```bash
 $ ping -c1 10.1.1.5
 PING 10.1.1.5 (10.1.1.5) 56(84) bytes of data.
 64 bytes from 10.1.1.5: icmp_seq=1 ttl=64 time=4.66 ms
@@ -152,7 +152,7 @@ PING 10.1.1.5 (10.1.1.5) 56(84) bytes of data.
 
 That's a success. Now use SSH to log in:
 
-```
+```bash
 $ whoami
 seth
 $ ssh sethkenlon@10.1.1.5
@@ -183,13 +183,13 @@ While it is helpful to be able to log in to a remote system using passwords, it 
 Functionally SSH keys resemble passwords.
 
 - Key-based authentication works by creating a pair of keys: a private key and a public key.
-  * The private key is located on the client’s machine and is secured and kept secret.
-  * The public key can be given to anyone or placed on any server you wish to access.
+  - The private key is located on the client’s machine and is secured and kept secret.
+  - The public key can be given to anyone or placed on any server you wish to access.
 
 You create a special key pair and then copy the public half of the pair to the remote host, which is the computer where you eventually want to log in.
 
 Ideally, you should create what is called a **passphrase** and use it to authenticate yourself locally before using your key pair. Especially if you share your computer with others. If you do opt to add a passphrase, you’ll be prompted to enter it each time you use the key  
-A passphrase, like a password, is a secret text string that you’ve chosen. But a passphrase will often also include spaces and consist of a sequence of real words. A password like `3Kjsi&*cn@PO` is pretty good, but a passphrase like `fully tired cares mound` might be even better because of its length and the fact that it’s relatively easy to remember. 
+A passphrase, like a password, is a secret text string that you’ve chosen. But a passphrase will often also include spaces and consist of a sequence of real words. A password like `3Kjsi&*cn@PO` is pretty good, but a passphrase like `fully tired cares mound` might be even better because of its length and the fact that it’s relatively easy to remember.
 
 - **Authorized keys** are public keys that grant access. They are analogous to locks that the corresponding private key can open.
 - **Identity keys** are private keys that an SSH client uses to authenticate itself when logging into an SSH server. They are analogous to physical keys that can open one or more locks.
@@ -223,7 +223,7 @@ Your keys will be created at `~/.ssh/id_rsa.pub` and `~/.ssh/id_rsa`. `id_rsa` i
 
 Look at the permissions of the files: `ls -l`
 
-```
+```bash
 Output
 -rw-r--r-- 1 demo demo  807 Sep  9 22:15 authorized_keys
 -rw------- 1 demo demo 1679 Sep  9 23:13 id_rsa
@@ -244,7 +244,7 @@ This will start an SSH session. After you enter your password, it will copy your
 
 The `-t` option stands for type and ensures that the encryption used for the key is higher than the default. The `-f` option stands for file and sets the key's file name and location. You'll be prompted to create a password for your SSH key. You should create a password for the key. This means you'll have to enter a password when using the key, but that password remains **local** and isn't transmitted across the network. After running this command, you're left with an SSH private key called `lan` and an SSH public key called `lan.pub`.
 
-### Copying the public key over a network 
+### Copying the public key over a network
 
 To get the public key over to your remote machine, use the `ssh-copy-id`. For this to work, you must verify that you have SSH access to the remote machine. If you can't log into the remote host with a password, you can't set up passwordless login either:
 
@@ -252,9 +252,9 @@ To get the public key over to your remote machine, use the `ssh-copy-id`. For th
 
 During this process, you'll be prompted for your login password on the remote host.
 
-Upon success, try logging in again, but this time using the `-i` option to point the SSH command to the appropriate key (`lan`, in this example):
+Upon success, try logging in again, but this time using the `-i` (identity file) option to point the SSH command to the appropriate key (`lan`, in this example):
 
-```
+```bash
 $ ssh -i ~/.ssh/lan sethkenlon@10.1.1.5
 bash$ whoami
 sethkenlon
@@ -266,71 +266,71 @@ Repeat this process for all computers on your network, and you'll be able to wan
 
 Save it and restart the SSH server (or just reboot):
 
-```
+```bash
 $ sudo systemctl restart sshd && echo "OK"
 OK
 $
 ```
 
-Once created, you can move the public key to the file `.ssh/authorized_keys` on the host computer. That way the OpenSSH software running on the host will be able to verify the authenticity of a cryptographic message created by the private key on the client. Once the message is verified, the SSH session will be allowed to begin. 
+Once created, you can move the public key to the file `.ssh/authorized_keys` on the host computer. That way the OpenSSH software running on the host will be able to verify the authenticity of a cryptographic message created by the private key on the client. Once the message is verified, the SSH session will be allowed to begin.
 
-The first thing you’ll need to do is figure out which user account on the host you’ll be logging in to. In my case, it’ll be the account called `ubuntu`. The key needs to be copied to a directory called `.ssh/`, which is beneath `/home/ubuntu/`. In case it’s not there already, you should create it now using `mkdir`. 
+The first thing you’ll need to do is figure out which user account on the host you’ll be logging in to. In my case, it’ll be the account called `ubuntu`. The key needs to be copied to a directory called `.ssh/`, which is beneath `/home/ubuntu/`. In case it’s not there already, you should create it now using `mkdir`.
 
 First, though, I’ll introduce you to a cool shortcut: to run a single command, you don’t need to actually open a full SSH session on a remote host. Instead, you can append your command to the regular ssh syntax like this:
 
-```
+```bash
 ubuntu@base:~$ ssh ubuntu@10.0.3.142 mkdir -p .ssh
 ubuntu@10.0.3.142's password:
 ```
 
-This single, multi-line command will use cat to read all the text in the `id_rsa.pub` file and store it in memory. It will then pipe that text via an SSH logon on the remote host computer. Finally, it reads the text once again, this time on the host computer, and appends it to a file called authorized_keys. If the file doesn’t yet exist, `>>` (the append tool) creates it. If a file with that name already exists, the text will be added to any content in the file. 
+This single, multi-line command will use cat to read all the text in the `id_rsa.pub` file and store it in memory. It will then pipe that text via an SSH logon on the remote host computer. Finally, it reads the text once again, this time on the host computer, and appends it to a file called authorized_keys. If the file doesn’t yet exist, `>>` (the append tool) creates it. If a file with that name already exists, the text will be added to any content in the file.
 
-```
+```bash
 ubuntu@base:~$ cat .ssh/id_rsa.pub \
  | ssh ubuntu@10.0.3.142 \
 "cat >> .ssh/authorized_keys"
 ubuntu@10.0.3.142's password:
 ```
 
-### Working with multiple encryption keys 
+### Working with multiple encryption keys
 
-To tell OpenSSH which key you’re after, you add the -i flag, followed by the full name and location of the private key file: 
+To tell OpenSSH which key you’re after, you add the -i flag, followed by the full name and location of the private key file:
 
 `ssh -i .ssh/mykey.pem ubuntu@10.0.3.142`
 
 Notice the `.pem` file extension in that example? That means the key is saved with a format that’s commonly used to access all kinds of VMs, including Amazon EC2 instances.
 
-## Safely copying files with `scp` 
+## Safely copying files with `scp`
 
 Add an "s" for "secure" before `cp`.
 
 Assuming that you knew there was already a .ssh/ directory on the remote host you worked with earlier, here’s how you could have transferred the public key (`id_rsa.pub`) to the remote host, renaming it `authorized_keys`:
 
-```
+```bash
 ubuntu@base:~$ scp .ssh/id_rsa.pub \
   ubuntu@10.0.3.142:/home/ubuntu/.ssh/authorized_keys
 # Overwrites the current contents of the remote authorized\_keys file
 ```
 
-If there already was an `authorized_keys` file in that directory, this operation would overwrite it, destroying any existing contents. And, you can only copy or save files if the user accounts you’re using have appropriate permissions. Therefore, don’t try saving a file to, say, the /etc/ directory on a remote machine if your user doesn’t have root privileges. Before you ask, logging in to an SSH session as the root user is generally a big security no-no. 
+If there already was an `authorized_keys` file in that directory, this operation would overwrite it, destroying any existing contents. And, you can only copy or save files if the user accounts you’re using have appropriate permissions. Therefore, don’t try saving a file to, say, the /etc/ directory on a remote machine if your user doesn’t have root privileges. Before you ask, logging in to an SSH session as the root user is generally a big security no-no.
 
-You can, by the way, copy remote files to your local machine. This example copies a file from an AWS EC2 instance (represented by a fictitious IP address) to the specified local directory  relative to the current work directory: 
+You can, by the way, copy remote files to your local machine. This example copies a file from an AWS EC2 instance (represented by a fictitious IP address) to the specified local directory  relative to the current work directory:
 
-```
+```bash
 $ scp -i mykey.pem mylogin@54.7.61.201:/home/mylogin/backup-file.tar.gz \
   ./backups/january/
 
 ```
 
-I should mention that there’s a third (and official) way to safely copy your key over to a remote host—the purpose-built program called ssh-copy-id: 
+I should mention that there’s a third (and official) way to safely copy your key over to a remote host—the purpose-built program called ssh-copy-id:
 
 `$ ssh-copy-id -i .ssh/id_rsa.pub ubuntu@10.0.3.142` Automatically copies the public key to the appropriate location on the remote host.
 
-## Using remote graphic programs over SSH connections 
+## Using remote graphic programs over SSH connections
 
-The nice thing about SSH sessions is that, unburdened by layers of GUI stuff, they’re fast and efficient. But that can be a problem if the program you need to run on the remote host is of the graphic persuasion. 
+The nice thing about SSH sessions is that, unburdened by layers of GUI stuff, they’re fast and efficient. But that can be a problem if the program you need to run on the remote host is of the graphic persuasion.
 
-Suppose you’re trying to support a user in a remote location who’s reporting trouble with a piece of desktop software like LibreOffice. If you feel that being able to launch and run the program could help diagnose and solve the problem, then it can be done using a graphic session (with the Linux X window manager) over SSH. 
+Suppose you’re trying to support a user in a remote location who’s reporting trouble with a piece of desktop software like LibreOffice. If you feel that being able to launch and run the program could help diagnose and solve the problem, then it can be done using a graphic session (with the Linux X window manager) over SSH.
 
 ## Configuring SSH
 
@@ -346,7 +346,7 @@ Back up the current version of this file before editing: `sudo cp /etc/ssh/sshd_
 
 The host key declarations specify where to look for global host keys.
 
-```
+```bash
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_dsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
@@ -356,7 +356,7 @@ HostKey /etc/ssh/ssh_host_ecdsa_key
 
 To simplify access to multiple servers, create or edit `~/.ssh/config`:
 
-```
+```bash
 Host dev-server
     HostName 192.168.1.10
     User devuser
@@ -372,7 +372,7 @@ This is useful if you manage multiple SSH keys and nonstandard ports.
 
 The **RSA (Rivest-Shamir-Adleman) cryptosystem** is a family of public-key cryptosystems, one of the oldest widely used for secure data transmission.
 
-OpenSSH also supports the `ECDSA` and `ED25519` signature algorithms. You’ll find some rather obscure technical differences between the default RSA and both ECDSA and ED25519, which have the advantage of being based on elliptic curves. But all are considered reasonably secure. One thing to keep in mind with ECDSA and ED25519 is that they might not yet be fully supported with some older implementations. 
+OpenSSH also supports the `ECDSA` and `ED25519` signature algorithms. You’ll find some rather obscure technical differences between the default RSA and both ECDSA and ED25519, which have the advantage of being based on elliptic curves. But all are considered reasonably secure. One thing to keep in mind with ECDSA and ED25519 is that they might not yet be fully supported with some older implementations.
 
 You should no longer assume that `DSA` is supported by all implementations of OpenSSH. Due to suspicions surrounding its origins, DSA is widely avoided in any case.
 

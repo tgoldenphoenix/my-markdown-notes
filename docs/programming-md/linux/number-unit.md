@@ -17,7 +17,7 @@
 
 Use this online [Base Converter](https://www.rapidtables.com/convert/number/base-converter.html)
 
-Decimal is called "base-10" because it uses ten digits (0–9).
+Decimal is called **base-10** because it uses ten digits (0–9).
 
 Example: The number 253 means (2 × 100) + (5 × 10) + (3 × 1). Each position is a power of 10
 
@@ -162,7 +162,8 @@ Because more digits are available, hexadecimal can express large values in fewer
 
 Hexadecimal is a a very compact way to represent binary data. It's commonly used for colors (e.g., `#FF0000` for red), memory addresses, and **MAC addresses**.
 
-- One "hex" digit = four binary digits because `2^4 = 16`. Example: `F = 1111 = 15`, 15 = 8 + 4 + 2 + 1)
+- One "hex" digit = four binary digits because `2^4 = 16`. Example: `F = 1111 = 15`, $15 = 8 + 4 + 2 + 1$)
+  - One hex digit can represents 16 different combinations of 4 bit ranging from: `0000` to `1111` or `0` to `16`
 - 2 hex digit = 8 bits (1 byte, an octet): `FF = 11111111 = 255`
 
 Example: The number `F3` means (15 × 16) + (3 × 1) = 243 in decimal
