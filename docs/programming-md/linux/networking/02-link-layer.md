@@ -155,7 +155,7 @@ MAC addresses learned by a switch in this manner are known as `dynamic` MAC addr
 This is in contrast to `static` MAC addresses, which are manually (statically) configured, although that is quite rare.  
 A switch will remove a dynamic MAC address from its MAC address table after 5 minutes of inactivity (if it doesn’t receive a frame from that MAC address for 5 minutes); this is called `MAC aging`.
 
-### Frame flooding and forwarding
+### Frame Flooding and forwarding
 
 A `frame` addressed to a single destination host is called a `unicast` frame. If the switch already has an entry for the frame’s destination MAC address in its MAC address table, it is called a `known unicast frame`.
 
@@ -195,6 +195,13 @@ ARP can be thought of as the bridge between Layers 2 and 3 of the TCP/IP model. 
 ## Switched Local Area Networks
 
 A router has an IP address for each of its interfaces. For each router interface there is also an `ARP module` (in the router) and an adapter. Because the router in Figure 6.19 has two interfaces, it has two IP addresses, two ARP modules, and two adapters.
+
+## modem
+
+Modem VNPT làm 2 level
+
+- Modem/ONT Level (Layer 1/2): Converts the optical fiber light signal from VNPT into digital Ethernet frames.
+- Router Level (Layer 3): Handles NAT, WAN IP assignment, and routing traffic between VNPT and your internal Yamaha router.
 
 ## MAC Address
 
