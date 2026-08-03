@@ -99,7 +99,7 @@ PCRE and .NET are case sensitive for the category letters. `\p{Zs}` will match a
 - `\t` match a tab character
 - `\r` match one carriage return; `\n` for line feed
   - Windows text files use `\r\n` to terminate lines, while UNIX text files use `\n`. Some flavors use `\R` to match a single line break and treat `\r\n` as an indivisible pair.
-- `\s`match: space, tab `\t`, newline `\n`, carriage return \r, or form feed `\f`
+- `\s`match: space, tab `\t`, newline `\n`, carriage return `\r`, or form feed `\f`
   - Typing out a literal space bar `␣` will matches only a standard space character, ignoring tabs and newlines.
 - `\v` matches any vertical whitespace character. That includes the vertical tab, form feed, and all line break characters.
 
@@ -706,6 +706,10 @@ $ rg 'fast\w+' README.md
 75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
 119:### Is it really faster than everything else?
 ```
+
+## adrepo
+
+k
 
 ## References
 

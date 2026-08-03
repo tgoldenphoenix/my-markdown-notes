@@ -353,6 +353,8 @@ ssh -i ~/.ssh/adrepo-test20200330.pem ec2-user@52.192.196.227
 mysql -hadrepo-etl-dev.cmcxxxxxxxxx.ap-northeast-1.rds.amazonaws.com -uadrepo -pYN5kmZWDwxxxxxxxxx
 ```
 
+có 2 cái forwarding
+
 ## ETL Batch
 
 ### Batch Basics
@@ -501,6 +503,15 @@ Play framework uses `Google Guice` as its default dependency injection (DI) fram
 - If the authenticator succeeds, then Play finally triggers the `.index()` method to bind the form data, query the database, and return the `MAgency` list.
 
 Hàm ''generateBaseJson()'' dùng ''base.vm''
+
+---
+
+- web api chỉ có 2 chức năng chính:
+  1. đăng ký POST (và edit `PUT`) thông tin chứng thực cho tài khoảng cha
+  2. lấy danh sách ad account của tài khoảng cha
+
+- batch cũng có chạy mỗi ngày lấy danh sách ad account của tài khoản cha cập nhật lên s3 giống y chang bên web api
+- chủ yếu để cập nhật danh sách ad account luôn mới nhất
 
 ### Controller & Form
 
@@ -673,6 +684,44 @@ Resources
 
 [Tiktok ads manager doc](https://ads.tiktok.com/help/article/tiktok-ads-structure?lang=en)
 
+### Check field
+
+Requests gởi tới API của tiktok để tạo task download report:
+
+```json
+{code}
+=============  3501 =============
+POST /open_api/v1.3/report/task/create/?data_level=AUCTION_AD&dimensions=["stat_time_day", "ad_id_v2"]&start_date=2026-06-24&end_date=2026-06-24&output_format=CSV_DOWNLOAD&advertiser_id=7126757427202080769&report_type=BASIC HTTP/1.1
+Host: business-api.tiktok.com
+Access-Token: dfa540f
+Content-Type: application/json
+Content-Length: 1918
+{
+"metrics": ["campaign_id","campaign_name","adgroup_id","adgroup_name","ad_name","spend","cpc","cpm","impressions","clicks","ctr","reach","cost_per_1000_reached","frequency","conversion","cost_per_conversion","conversion_rate","real_time_conversion","real_time_cost_per_conversion","real_time_conversion_rate","video_play_actions","video_watched_2s","video_watched_6s","video_views_p100","video_views_p75","video_views_p50","video_views_p25","average_video_play","average_video_play_per_user","follows","likes","comments","shares","profile_visits","profile_visits_rate","clicks_on_music_disc","real_time_app_install","app_install","registration","purchase","app_event_add_to_cart","checkout","view_content","next_day_open","add_payment_info","add_to_wishlist","launch_app","complete_tutorial","create_group","join_group","create_gamerole","spend_credits","achieve_level","unlock_achievement","sales_lead","in_app_ad_click","in_app_ad_impr","loan_apply","loan_credit","loan_disbursement","login","ratings","search","start_trial","subscribe","vta_conversion","cost_per_vta_app_install","vta_app_install","vta_registration","cost_per_vta_registration","vta_purchase","cost_per_vta_purchase","cta_conversion","cost_per_cta_app_install","cta_app_install","cta_registration","cost_per_cta_registration","cta_purchase","cost_per_cta_purchase","complete_payment_roas","complete_payment","page_browse_view","button_click","online_consult","user_registration","product_details_page_browse","web_event_add_to_cart","on_web_order","initiate_checkout","add_billing","page_event_search","form","download_start","on_web_add_to_wishlist","on_web_subscribe","onsite_shopping_roas","onsite_shopping","onsite_initiate_checkout_count","onsite_on_web_detail","onsite_add_to_wishlist","onsite_add_billing","onsite_on_web_cart","onsite_form","onsite_download_start","ix_page_view_count","ix_button_click_count","ix_product_click_count"]
+}
+
+=============  3502 =============
+POST /open_api/v1.3/report/task/create/?data_level=AUCTION_AD&dimensions=["stat_time_day", "ad_id_v2", "gender", "age"]&start_date=2026-06-24&end_date=2026-06-24&output_format=CSV_DOWNLOAD&advertiser_id=7126757427202080769&report_type=AUDIENCE HTTP/1.1
+Host: business-api.tiktok.com
+Access-Token: dfa540f1
+Content-Type: application/json
+Content-Length: 271
+{
+"metrics": ["campaign_id","campaign_name","adgroup_id","adgroup_name","ad_name","spend","cpc","cpm","impressions","clicks","ctr","conversion","cost_per_conversion","conversion_rate","real_time_conversion","real_time_cost_per_conversion","real_time_conversion_rate"]
+}
+
+=============  3503 =============
+POST /open_api/v1.3/report/task/create/?data_level=AUCTION_AD&dimensions=["stat_time_day", "ad_id_v2", "platform"]&start_date=2026-06-24&end_date=2026-06-24&output_format=CSV_DOWNLOAD&advertiser_id=7126757427202080769&report_type=AUDIENCE HTTP/1.1
+Host: business-api.tiktok.com
+Access-Token: dfa540f1370
+Content-Type: application/json
+Content-Length: 271
+{
+"metrics": ["campaign_id","campaign_name","adgroup_id","adgroup_name","ad_name","spend","cpc","cpm","impressions","clicks","ctr","conversion","cost_per_conversion","conversion_rate","real_time_conversion","real_time_cost_per_conversion","real_time_conversion_rate"]
+}
+```
+
+```
 ## Twitter
 
 asynchronous report tạo `job`
