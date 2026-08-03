@@ -11,7 +11,7 @@ A message traveling through a switch does NOT count as a hop. Chỉ có jump fro
 
 The Data Link Layer achieves this hop-to-hop delivery by using media access control (MAC) addresses, a kind of network address assigned to each port of a device. At each hop, the message is sent to the MAC address of the next hop.
 
-The destination IP address of a message remains the same throughout the journey, whereas the destination MAC address is different at each hop. 
+The destination IP address of a message remains the same throughout the journey, whereas the destination MAC address is different at each hop.
 
 ---
 
@@ -22,8 +22,8 @@ Physical switch có physical ports (interfaces) để cắm cables vô. Khác v�
 ---
 
 - `wifi en0`: the network interface name
-  * `en` means it uses **Ethernet framing**. Wi-Fi (802.11) traffic is typically encapsulated within an Ethernet frame format for higher-level network protocols (like TCP/IP).
- 
+  - `en` means it uses **Ethernet framing**. Wi-Fi (802.11) traffic is typically encapsulated within an Ethernet frame format for higher-level network protocols (like TCP/IP).
+
 The Network Interface Card (NIC), also known as a Network Adapter, Network Card, or Network Interface Controller, is the physical hardware component that connects a computer or other device to a computer network.
 
 ---
@@ -62,15 +62,15 @@ The role of a switch is to connect devices within a `LAN`. For example, all of t
 
 Note that the role of a switch is not to provide connectivity between LANs or to external networks. For example, you would not connect a switch directly to the internet. For that, we need another type of device.
 
-The role of a switch is to provide many ports for end hosts to connect to the LAN. In reality, there could be 40+ end hosts connected to each switch. 
+The role of a switch is to provide many ports for end hosts to connect to the LAN. In reality, there could be 40+ end hosts connected to each switch.
 
 ## Units of data Transmission
 
 - The following are some common units of measuring bits:
-  * 1 kilobit (kb) = 1,000 (thousand) bits
-  * 1 megabit (Mb) = 1,000,000 (million) bits (1,000 kilobits)
-  * 1 gigabit (Gb) = 1,000,000,000 (billion) bits (1,000 megabits)
-  * 1 terabit (Tb) = 1,000,000,000,000 (trillion) bits (1,000 gigabits)
+  - 1 kilobit (kb) = 1,000 (thousand) bits
+  - 1 megabit (Mb) = 1,000,000 (million) bits (1,000 kilobits)
+  - 1 gigabit (Gb) = 1,000,000,000 (billion) bits (1,000 megabits)
+  - 1 terabit (Tb) = 1,000,000,000,000 (trillion) bits (1,000 gigabits)
 
 There is some confusion over whether 1 kilobit is 1,000 bits or 1,024 bits, 1 megabit is 1,000 kilobits or 1,024 kilobits, etc. The definitions listed previously are correct, and they are the terms you should know for the CCNA. The 1,024 values are a result of the binary (base-2) number system; 210 is equal to 1,024. The correct terms for the base-2 values are
 
@@ -116,7 +116,7 @@ When connecting two devices with fiber-optic cables, it’s important to connect
 
 ---
 
-All types of fiber-optic cabling can carry a signal farther than copper cabling, but even within the category of fiber-optic cabling, the maximum supported length can vary greatly. 
+All types of fiber-optic cabling can carry a signal farther than copper cabling, but even within the category of fiber-optic cabling, the maximum supported length can vary greatly.
 
 ## The Ethernet header and trailer
 
@@ -126,16 +126,16 @@ An Ethernet frame = E. header (14 bytes) + layer 3 diagram + E. trailer (4 bytes
 
 The `Preamble` and `Start Frame Delimiter (SFD)` are sent with each frame but are not considered part of an Ethernet frame. The reason is that they are purely a function of Layer 1, the Physical Layer. They do not contain information that influences what the receiving device decides to do with the frame (a `frame` being a layer 2 concept).
 
-The `Preamble` and `SFD` are sent with each Ethernet frame to allow the receiving device to synchronize its `receiver clock` and prepare to receive the incoming frame. This `clock` has nothing to do with the date and time but rather with how the receiving device interprets the incoming electrical signals—the receiving device needs to determine the precise length of 1 bit. 
+The `Preamble` and `SFD` are sent with each Ethernet frame to allow the receiving device to synchronize its `receiver clock` and prepare to receive the incoming frame. This `clock` has nothing to do with the date and time but rather with how the receiving device interprets the incoming electrical signals—the receiving device needs to determine the precise length of 1 bit.
 
 ---
 
 The Type/Length field (inside E. header) is a 2-byte field that can be used either to indicate the type of the encapsulated datagram (e.g., an IP version 4 packet or an IP version 6 packet) or to indicate the length of the encapsulated packet (in bytes).  
-These days, in almost all cases, this field is used to indicate the type of the encapsulated packet: instead of this field indicating length, the end of the frame is indicated by a special signal after the frame. 
+These days, in almost all cases, this field is used to indicate the type of the encapsulated packet: instead of this field indicating length, the end of the frame is indicated by a special signal after the frame.
 
 ---
 
-The `Frame Check Sequence (FCS)` is the only field of the Ethernet trailer. It is 4 bytes in length and is used to detect corrupted data in the frame. Before a device sends a frame, it uses an algorithm to calculate a `checksum`, a small block of data that is appended to the end of the frame as the FCS field. 
+The `Frame Check Sequence (FCS)` is the only field of the Ethernet trailer. It is 4 bytes in length and is used to detect corrupted data in the frame. Before a device sends a frame, it uses an algorithm to calculate a `checksum`, a small block of data that is appended to the end of the frame as the FCS field.
 
 Then, when the frame’s destination host receives the frame, it calculates its own checksum for the frame (with the same algorithm) and compares it to the one calculated by the sender. If the two checksums are the same, the receiver can safely assume that the data has not been corrupted in transit. However, if the checksums calculated by the sender and receiver are different, the receiver will discard the frame—the data has been corrupted in transit (perhaps because of electromagnetic interference).
 
@@ -164,12 +164,12 @@ An `unknown unicast frame` is a frame addressed to a single destination host, bu
 To `flood` a frame is to send it out of all ports, except the port the frame was received on. Switches take this action on receiving an `unknown unicast frame`.
 
 - Remember what action a switch takes for each kind of unicast frame:
-  * Known unicast frame (forward)—The switch will send the frame out of the port specified by the MAC address’s entry in the MAC address table.
-  * Unknown unicast frame (flood)—The switch will send the frame out of all ports except the one it was received on.
+  - Known unicast frame (forward)—The switch will send the frame out of the port specified by the MAC address’s entry in the MAC address table.
+  - Unknown unicast frame (flood)—The switch will send the frame out of all ports except the one it was received on.
 
 ---
 
-A switch is `transparent` to its connected hosts; PC1 and PC3 address their messages directly to each other, not to SW1 or SW2, exactly as they would if they were directly connected with a single cable. This is why a message passing through a switch is not considered a hop. Also, switches do not modify the frames they switch in any way; they simply forward or flood them as appropriate. 
+A switch is `transparent` to its connected hosts; PC1 and PC3 address their messages directly to each other, not to SW1 or SW2, exactly as they would if they were directly connected with a single cable. This is why a message passing through a switch is not considered a hop. Also, switches do not modify the frames they switch in any way; they simply forward or flood them as appropriate.
 
 ---
 
@@ -184,7 +184,7 @@ ARP allows a host to learn the MAC address of another host in the LAN.
 - The ARP request message is `broadcast`.
 - The ARP reply is a unicast frame sent to the MAC address of the host that sent the ARP request.
 
-A `broadcast frame` is a frame addressed to the `broadcast MAC address: ffff.ffff.ffff`. A switch will flood broadcast frames, like unknown unicast frames. Broadcast frames are used by hosts to send messages to all other hosts in the LAN. 
+A `broadcast frame` is a frame addressed to the `broadcast MAC address: ffff.ffff.ffff`. A switch will flood broadcast frames, like unknown unicast frames. Broadcast frames are used by hosts to send messages to all other hosts in the LAN.
 
 If an ARP request is broadcast (addressed to all other hosts in the LAN), how does the sender specify which host’s MAC address it wants to learn? It does so by specifying the **IP address** of the host it wants to know the MAC address of.
 
@@ -210,9 +210,9 @@ MAC Address: Uses Hexadecimal (Base-16).
 Ethernet & Wi-Fi both use MAC address.
 
 - A MAC address (e.g., `00:1A:2B:3C:4D:5E`):
-  * `48-bit = 8 bits x 6 bytes`
-  * 6 group, each group is two hex digit representing 8 bits
-  * 12 hex digits
+  - `48-bit = 8 bits x 6 bytes`
+  - 6 group, each group is two hex digit representing 8 bits
+  - 12 hex digits
 
 We use hexadecimal (digits 0-9 and A-F) because it's a very compact and readable way to represent the underlying binary values.
 
@@ -227,4 +227,3 @@ An adapter’s MAC address has a flat structure (as opposed to a hierarchical st
 ---
 
 To ensure that MAC addresses remain globally unique, the first half of each MAC address (the first 3 bytes) is an `organizationally unique identifier (OUI)` assigned to the manufacturer by the IEEE. Then, the manufacturer is free to use the second half to assign unique MAC addresses to each device they manufacture.
-

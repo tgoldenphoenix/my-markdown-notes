@@ -10,13 +10,15 @@ từ những năm 1940, nhiều gia đình vì muốn lánh chiến tranh Trung 
 
 Người Hoa ở Sài Gòn chủ yếu gồm 5 nhóm, đó là: Quảng Đông, Tiều, Phúc Kiến, Hải Nam, Hẹ. Các nhóm này gắn với tên địa phương nơi họ xuất phát từ Trung Quốc di cư đến Việt Nam. Giữa các nhóm có sự khác nhau về phong tục, tiếng nói, văn hóa…
 
-[Triều Châu](https://vi.wikipedia.org/wiki/Tri%E1%BB%81u_Ch%C3%A2u) là một địa cấp thị ở tỉnh Quảng Đông, Trung Quốc. 
+[Triều Châu](https://vi.wikipedia.org/wiki/Tri%E1%BB%81u_Ch%C3%A2u) là một địa cấp thị ở tỉnh Quảng Đông, Trung Quốc.
 
-Bà Đào Diệu Bình, 73 tuổi là thế hệ thứ 3 trong gia tộc họ Đào ở khu Chợ Lớn. Đây là một gia tộc lớn và giàu có với hãng nước ngọt Phương Toàn ở thế kỷ trước. Năm 1971, ca sĩ Đặng Lê Quân sang Chợ Lớn biểu diễn. Bà Diệu Bình đã chụp hình để nữ ca sĩ ký tên lên, giữ làm kỷ niệm. 
+Bà Đào Diệu Bình, 73 tuổi là thế hệ thứ 3 trong gia tộc họ Đào ở khu Chợ Lớn. Đây là một gia tộc lớn và giàu có với hãng nước ngọt Phương Toàn ở thế kỷ trước. Năm 1971, ca sĩ Đặng Lê Quân sang Chợ Lớn biểu diễn. Bà Diệu Bình đã chụp hình để nữ ca sĩ ký tên lên, giữ làm kỷ niệm.
 
-# cờ tướng
+## Cờ Tướng
 
-# Đền thờ, chùa
+k
+
+## Đền thờ, chùa
 
 **Thiền viện Quảng Đức** 294 Đ. Nam Kỳ Khởi Nghĩa, Phường 8, Quận 3, Thành phố Hồ Chí Minh, Vietnam\
 轉常輪法 \[Pháp Luân Thường Chuyển]\
@@ -24,7 +26,7 @@ Bà Đào Diệu Bình, 73 tuổi là thế hệ thứ 3 trong gia tộc họ Đ
  輝增日佛 \[phật nhật tăng huy]
 
 **miếu ông bổn:**\
-安民泰國 \[quốc thái dân an] 
+安民泰國 \[quốc thái dân an]
 
 **Đền vua Hùng**: [hoành phi câu đối](http://sondonglapthach.blogspot.com/2014/07/oc-hoanh-phi-cau-oi-cong-en-hung-vuong_2.html)
 
@@ -32,12 +34,28 @@ Bà Đào Diệu Bình, 73 tuổi là thế hệ thứ 3 trong gia tộc họ Đ
 宮行: Hành cung
 
 **Chùa bà mỏ cày**\
-請  神 恭 	[thỉnh thần cung]
-農	[nông]
-大	[đại]
-位 帝 安	[vị đế an]
+請  神 恭  [thỉnh thần cung]
+農 [nông]
+大 [đại]
+位 帝 安 [vị đế an]
 
-## Bàn thờ thần tài
+---
+
+堂善積 \[tích thiện đường]
+
+長山西就
+
+大安堂藥房 \[Đại An Đường dược phòng] nhà thuốc trên đường Hải Thượng Lãn Ông
+
+### Phủ tây hồ
+
+k
+
+### Chùa bà Thiên hậu Q5
+
+華夏蠻貊岡(罔)不率俾XXX水徯我后后来其蘇
+
+### Bàn thờ thần tài
 
 聚寶堂 "Tụ Bảo Đường"
 
@@ -46,12 +64,3 @@ ngũ phương: Đông, Tây, Nam, Bắc và Trung Tâm
 
 前後地主財神 "Tiền hậu địa Chủ Tài thần"
 
-## Phủ tây hồ
-
-# Other places
-
-堂善積 \[tích thiện đường]
-
-長山西就
-
-大安堂藥房 \[Đại An Đường dược phòng] nhà thuốc trên đường Hải Thượng Lãn Ông

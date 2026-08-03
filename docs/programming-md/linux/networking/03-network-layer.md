@@ -1,6 +1,6 @@
 # 03-Network Layer
 
-Or Internet Layer cũng đúng
+Or `Internet Layer` cũng đúng
 
 ## The Basics & Terminologies
 
@@ -9,11 +9,11 @@ Or Internet Layer cũng đúng
 
 Unlike the transport and application layers, there is a piece of the network layer in each and every host and router in the network. Because of this, network-layer protocols are among the most challenging (and therefore among the most interesting!) in the protocol stack.
 
-A network-layer packet is called a `datagram`. Đừng nhầm với UDP (User Datagram Protocol) là một layer 4 (transport layer) protocol.  
+A network-layer packet is called a `datagram`. Đừng nhầm với UDP (`User Datagram Protocol`) là một layer 4 (transport layer) protocol.  
 Đôi khi nó cũng được gọi là `packet`.
 
 - Chia Network Layer ra:
-  - data plane role of each router
+  - Data plane role of each router
   - (network) Control plane role
 
 - **Forwarding**: refers to the router-local action of transferring a packet from an input link interface to the appropriate output link interface.
@@ -96,15 +96,17 @@ A subnet (or IP network or simply a network).
 
 To determine the subnets, detach each interface from its host or router, creating islands of isolated networks, with interfaces terminating the end points of the isolated networks. Each of these isolated networks is called a subnet
 
-In `223.1.1.0/24`, the `/24` is the subnet mask. It indicates that the leftmost 24 bits of the 32-bit quantity define the subnet address.
+`Classless Inter-Domain Routing` (`CIDR`) notation show the size of a subnet. In CIDR notation (the `/` suffix), the number (such as `/24`) tells you how many bits are FIXED (the `network portion`), not how many bits are variable.
 
-The `10.0.0.x` is a `/24` network contains 256 ip addresses from `.0` to `.255`
+In `223.1.1.0/24`, the `/24` is the subnet mask. It indicates that the **leftmost** 24 bits (first 3 bytes) of the 32-bit quantity define the subnet address.  
+
+- The `10.0.0.x` is a `/24` network contains 256 ip addresses from `.0` to `.255`
+  - The `/24` means the first 24 bits are FIXED (the Network ID).
+  - The remaining $32 - 24 = 8$ bits are VARIABLE (the Host ID).
 
 - Một `10.0.0/24` network can be divided into two equal `/25` networks.
   - `.0` tới `.127`
   - `.127 -> .255`
-
-Classless Inter-Domain Routing (CIDR) notation show the size of a subnet.
 
 Convert between CIDR notation and Subnet Mask
 
@@ -121,13 +123,13 @@ The network portion of an IPv4 address is often called the `prefix` or `network 
 
 ---
 
-Instead of indicating the prefix length with /X, another common method is to use a `netmask` (subnet mask)—another string of 32 bits that is paired with an IP address to indicate which bits of the IP address are the network portion and which are the host portion.
+Instead of indicating the prefix length with `/X`, another common method is to use a `netmask` (subnet mask)—another string of 32 bits that is paired with an IP address to indicate which bits of the IP address are the `network portion` and which are the `host portion`.
 
-A bit in the netmask that is set to 1 means the bit in the same position of the IP address is part of the network portion; a bit in the netmask that is set to 0 means the bit in the same position of the IP address is part of the host portion.
+A bit in the netmask that is set to `1` means the bit in the same position of the IP address is part of the `network portion`; a bit in the netmask that is set to `0` means the bit in the same position of the IP address is part of the host portion.
 
 Like IPv4 addresses, netmasks are usually written in dotted decimal notation.
 
-For example, an IPv4 address (`172.16.20.21`) with a netmask (`255.255.0.0`). The first 16 bits of the netmask are 1, meaning the first 16 bits of the IPv4 address are the network portion. This is equivalent to `172.16.20.21/16`
+For example, an IPv4 address (`172.16.20.21`) with a netmask (`255.255.0.0`). The first 16 bits of the netmask are `1` (`255 = 1111 1111`), meaning the first 16 bits of the IPv4 address are the `network portion`. This is equivalent to `172.16.20.21/16`
 
 - Prefix length: `/8` = netmask: `255.0.0.0`
 - Prefix length: `/16` = netmask: `255.255.0.0`
@@ -137,7 +139,7 @@ A netmask is always a series of 1s followed by a series of 0s; this is because I
 
 ---
 
-The 192.168.1.0/24 address range allows for a single subnet with a /24 prefix length, including all addresses from 192.168.1.0 through 192.168.1.255. Dividing the /24 address block in half gives two /25 subnets, each containing 128 addresses. Or it can be divided into four /26 subnets, each containing 64 addresses.
+The `192.168.1.0/24` address range allows for a single subnet with a `/24` prefix length, including all addresses from `192.168.1.0` through `192.168.1.255`. Dividing the `/24` address block in half gives **two** `/25` subnets, each containing `128` addresses. Or it can be divided into **four** `/26` subnets, each containing 64 addresses.
 
 For each bit by which you extend the prefix length, the number of possible subnets doubles, but the number of addresses in each subnet halves.
 
@@ -145,7 +147,7 @@ For each bit by which you extend the prefix length, the number of possible subne
 
 The `network address` is the first address of any network, and it is used to identify the network; it cannot be assigned to a host. An IPv4 address is a network address if all bits of its host portion are set to 0.
 
-`192.168.100.0` is a network address, as indicated by the host portion of 00000000. This address is used to identify the `192.168.100.0/24` network as a whole and cannot be assigned to a host. `192.168.100.100` is a host address in the 192.168.100.0/24 network.
+`192.168.100.0` is a network address, as indicated by the host portion of `0000 0000`. This address is used to identify the `192.168.100.0/24` network as a whole and cannot be assigned to a host. `192.168.100.100` is a host address in the `192.168.100.0/24` network.
 
 ---
 
@@ -193,23 +195,25 @@ k
 
 End hosts like PCs usually receive their IP addresses automatically using Dynamic Host Configuration Protocol (DHCP). However, the IP addresses of network infrastructure devices like routers are usually manually configured.
 
-## Network Address Translation (NAT)
+## IPv6 and NAT
 
-The NAT-enabled router does not look like a router to the outside world. Instead the NAT router behaves to the outside world as a single device with a single IP address.
+Network Address Translation (NAT)
+
+The `NAT-enabled router` does not look like a router to the outside world. Instead the NAT router behaves to the outside world as **a single device** with a single IP address.
 
 It uses a **NAT translation table** at the NAT router, and to include port numbers as well as IP addresses in the table entries.
 
 NAT router use **abitrarily-assigned** port numbers to map to multiple host inside its network.
 
-## IPv6 and NAT
+---
 
-Yes, understanding NAT (Network Address Translation) is critically important to learn IPv6, even though IPv6 was designed specifically to eliminate the need for NAT.
+Understanding NAT (`Network Address Translation`) is critically important to learn IPv6, even though IPv6 was designed specifically to **eliminate** the need for NAT.
 
 You need to understand the problem that NAT solved for IPv4 in order to appreciate the solution that IPv6 offers.
 
 NAT was created as a workaround for the global shortage of IPv4 addresses.
 
-- IPv4 Problem: Only 4.3 billion addresses. NAT lets a hundred devices share one public address (like one phone number for a whole apartment building).
+- IPv4 Problem: Only 4.3 billion addresses. NAT lets a hundred devices **share one public address** (like one phone number for a whole apartment building).
 - IPv6 Solution: IPv6 has a nearly infinite number of addresses. Because every single device (your phone, your laptop, your smart fridge) can have its own unique, public IP address, the complexity and overhead of NAT are removed entirely.
 
 ---
@@ -295,10 +299,10 @@ RFC 1918 defines three blocks of addresses, corresponding to the original Class 
 
 ---
 
-The address space `10.0.0.0/8` is the largest of the three portions of the IP address space that is reserved in [RFC 1918] for a private network or a realm with private addresses, such as the home network.  
+The address space `10.0.0.0/8` is the largest of the three portions of the IP address space that is reserved in `RFC 1918` for a private network or a realm with private addresses, such as the home network.  
 A realm with private addresses refers to a network whose addresses only have meaning to devices within that network.
 
-The 10.0.0.0/8 range is meant to be used exclusively within Local Area Networks (LANs). Since this range is so large, it is typically used by big organizations, universities, or data centers that require a huge, non-conflicting block of internal addresses.
+The `10.0.0.0/8` range is meant to be used exclusively within Local Area Networks (LANs). Since this range is so large, it is typically used by big organizations, universities, or data centers that require a huge, non-conflicting block of internal addresses.
 
 - Example: A large corporation might assign all of its U.S. offices a 10.x.x.x address block.
 - Cloud Computing: Cloud platforms (like AWS and GCP) heavily use the 10.x.x.x range when customers create VPCs (Virtual Private Clouds).
@@ -306,6 +310,20 @@ The 10.0.0.0/8 range is meant to be used exclusively within Local Area Networks 
 IP addresses starting with `10.` are blocked by routers on the public internet.
 
 If your private IP address is `10.1.2.3`, a router on the internet will not forward a packet destined for that address. This provides a basic layer of security because it means devices on the public internet cannot directly initiate contact with a device in your private network unless you specifically allow it via a router or firewall (NAT).
+
+---
+
+You actually can use whatever IP address range you want inside your own private network—even `8.8.8.8` or `1.1.1.1`.
+
+- When your computer tries to connect to an IP address, it asks a simple question: Is the destination IP inside my local subnet?
+  - If YES: Send the packet directly over the local network (LAN) using MAC addresses.
+  - If NO: Send the packet to your router (Default Gateway) to go out to the Internet.
+
+- If you decide to configure your home network to use `8.8.8.8` as your local IP range:
+  - Your laptop receives the IP 8.8.8.5.
+  - You try to open Google DNS at `8.8.8.8` on your desktop computerr.
+  - Your laptop checks its routing table, sees that `8.8.8.8` is on its local LAN, and tries to send the packet locally.
+  - The request never goes to the router or the internet. Google DNS becomes completely unreachable for you because your computer thinks Google's server is sitting in your living room!
 
 ### Diagnostics and Loopback
 
@@ -362,11 +380,11 @@ Câu trả lời ngắn gọn: IP đã chiến thắng. Internet hiện đại, 
 
 ## Routing Algorithms
 
-Dijkstra's Algorithm là thuộc phạm vi toán học, field discrete math, graph theory.
+`Dijkstra's Algorithm` là thuộc phạm vi toán học, field discrete math, graph theory.
 
-Routing algorithm sử dụng algorithms trong math add on top mấy khái niệm không có trong toán (router, node trong toán, link cost, etc). Ví dụ Dijkstra’s least-cost path algorithm là một mathematical algorithm không liên quan gì tới router networking. Nhưng nó được dùng làm nền tảng cho Link-State routing algorithm.
+Routing algorithm sử dụng math algorithms & add on top mấy khái niệm không có trong toán (router, node trong toán, link cost, etc). Ví dụ `Dijkstra’s least-cost path algorithm` là một mathematical algorithm không liên quan gì tới router networking. Nhưng nó được dùng làm nền tảng cho `Link-State routing algorithm`.
 
-Routing Algorithms with global state information are often referred to as **link-state (LS) algorithms**. The LS algorithm trình bày trong sách này là the **Dijkstra’s algorithm** trong toán học. A closely related algorithm is **Prim’s algorithm**.
+Routing Algorithms with global state information are often referred to as `link-state (LS) algorithms`. The LS algorithm trình bày trong sách này là the **Dijkstra’s algorithm** trong toán học. A closely related algorithm is **Prim’s algorithm**.
 
 The decentralized routing algorithm we’ll study is called a **distance-vector (DV) algorithm**.
 
@@ -374,15 +392,15 @@ Link-state
 
 ---
 
-Nếu host PC sent datagram to another host PC in the same LAN, không cần router, nó send trực tiếp đến MAC address tương ứng với destination IP address.
+Nếu một host PC sent datagram to another host PC in the **same LAN**, không cần router, nó send trực tiếp đến MAC address tương ứng với destination IP address. Using ARP (`Address Resolution Protocol`).
 
 On the other hand, if an end host like a PC wants to send a packet to a destination outside of its local network, it must send the packet to its `default gateway`—the router that provides connectivity to other networks.  
 In this case, the host just send the datagram to the MAC address of its default gateway's interface and let the router handle the rest of the journey.
 
-The default gateway’s IP address is usually the first usable address of the network. For example, in the `192.168.1.0/24` network, it’s 192.168.1.1, and in the 192.168.2.0/24 network, it’s 192.168.2.1. That doesn’t have to be the case, but it’s common practice.  
+The default gateway’s IP address is usually the first usable address of the network. For example, in the `192.168.1.0/24` network, it’s `192.168.1.1`, and in the `192.168.2.0/24` network, it’s `192.168.2.1`. That doesn’t have to be the case, but it’s common practice.  
 The IP addresses of the PCs, on the other hand, are arbitrary.
 
-How does PC1 know what its default gateway is? An end host can learn the IP address of its default gateway in a couple of ways. One way is manual configuration, in which an admin manually specifies the default gateway on each device. However, this is very rare for user devices like PCs; they usually use the second method—Dynamic Host Configuration Protocol (DHCP)—to automatically learn information like their default gateway’s IP address, as well as their own IP address
+How does PC1 know what its default gateway is? An end host can learn the IP address of its default gateway in a couple of ways. One way is manual configuration, in which an admin manually specifies the default gateway on each device. However, this is very rare for user devices like PCs; they usually use the second method—`Dynamic Host Configuration Protocol` (DHCP)—to automatically learn information like their default gateway’s IP address, as well as their own IP address
 
 A host’s default gateway is configured as an IP address, not a MAC address. To learn the default gateway’s MAC address, the host must send an `ARP request` to the default gateway’s IP address.
 
