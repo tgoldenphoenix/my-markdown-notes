@@ -39,7 +39,7 @@ table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết 
 - Lấy danh sách agency `/mAgencies/`
   - API token trong header là của ai?
 
-## Project ETL Basics
+## Project Specification, Thiết kế
 
 Có các actors: end user, adrepo, platform, etl, web api của everrise
 
@@ -150,6 +150,14 @@ queue = yêu cầu tạo report data & master data cho quảng cáo
 - server id: `2` cái server chạy cái batch
 
 Mình đang lấy dữ liệu report theo Asynchronous (tiktok, twitter)
+
+---
+
+app id: id của phía ETL adrepo (bên mình) khi làm việc với platform để xin token
+
+`etl_harbest.m_agency` của harbest chứa gì => agency = account khách hàng của adrepo
+
+Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (video gốc) có thể được dùng lại trong nhiều chiến dịch khác nhau.
 
 ## Facts
 
@@ -465,7 +473,7 @@ sử dụng time trong `update_micro_time` có micro-second, time trong `updated
 
 ### Other Batches
 
-BatchInitializationGetReportQueueError
+`BatchInitializationGetReportQueueError`
 
 Class `AbstractBatchMaster` không liên quan đến việc lấy master. It contains logic to parse command-line arguments passed into the batches. It is inherited by batch get master data & batch get advertiser list.
 
@@ -542,7 +550,7 @@ Template engines like Apache Velocity are most commonly known for generating dyn
 
 `base.vm` acts as the global, foundational wrapper for every single response your API sends back to the client (who sent request).
 
-### Ebeam
+### Ebean ORM
 
 kkk
 
@@ -582,11 +590,13 @@ In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBU
 
 Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
 
-## Others Terms
+## Common Terms
 
-app id: id của phía ETL adrepo (bên mình) khi làm việc với platform để xin token
+`Paid Ads` nghĩa là bạn phải trả tiền để có được lượt hiển thị hoặc truy cập. Còn việc tính tiền thế nào có vài cách khác nhau.
 
-`etl_harbest.m_agency` của harbest chứa gì => agency = account khách hàng của adrepo
+- CPC (Cost Per Click) - Tính tiền theo Lượt Nhấp: chỉ khi nào người dùng click vào link dẫn đến website/app của bạn thì bạn mới bị trừ tiền.
+- CPM (Cost Per Mille) - Tính tiền theo Lượt Hiển Thị: cứ quảng cáo đập vào mắt 1,000 người (không cần biết họ có click hay không), bạn sẽ phải trả một khoản tiền cố định.
+- CPA / oCPM (Cost Per Action / Conversion) - Tính tiền theo Lượt Chuyển Đổi: Bạn đặt mục tiêu là: "Tôi chỉ muốn trả tiền khi có người Mua hàng hoặc Tải app thành công".
 
 ### UTM parameters
 
@@ -601,28 +611,6 @@ The marketing team of the company adds utm params to the links leading to their 
   - none: "I'm not sure how they got here" (`(direct)/(none`))
   - `cpc` or `ppc`
 - Campaign (purpose of the traffic)
-
-### Google Analytics
-
-`Paid Ads` nghĩa là bạn phải trả tiền để có được lượt hiển thị hoặc truy cập. Còn việc tính tiền thế nào có vài cách khác nhau.
-
-- CPC (Cost Per Click) - Tính tiền theo Lượt Nhấp: chỉ khi nào người dùng click vào link dẫn đến website/app của bạn thì bạn mới bị trừ tiền.
-- CPM (Cost Per Mille) - Tính tiền theo Lượt Hiển Thị: cứ quảng cáo đập vào mắt 1,000 người (không cần biết họ có click hay không), bạn sẽ phải trả một khoản tiền cố định.
-- CPA / oCPM (Cost Per Action / Conversion) - Tính tiền theo Lượt Chuyển Đổi: Bạn đặt mục tiêu là: "Tôi chỉ muốn trả tiền khi có người Mua hàng hoặc Tải app thành công".
-
-### Trivia
-
-Etl harbest dùng sbt (scala build tool) ko dùng maven ?
-
-Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (video gốc) có thể được dùng lại trong nhiều chiến dịch khác nhau.
-
-- tiktok có 3 loại: manual, smart plus, upgraded smart plus
-  - manual có 3 level: campaign, ad group, ad
-  - smart plus & upgraded smart plus cũng có 3 level tương tự
-
-### Advertising
-
-k
 
 ## Tiktok
 
@@ -660,31 +648,13 @@ An `ad` is the smallest advertising unit and is the content presented to the tar
 - `app_id`: An Application identifier used when making API calls. To get app_id, follow the instructions in Get Started - Create a developer app.
 - `secret`: Each application has a unique secret key. The `app_id` and `secret` are obtained together when your application has been approved.
 
-### Report
+### Async Report
 
-You can run a report in synchronous mode or asynchronous mode.
+You can run a report in `synchronous mode` or `asynchronous mode` (mình dùng async).
 
 With synchronous mode, you make an API request and the data will be returned in the response almost **instantly**. In `asynchronous mode`, you make an API request to create a task for getting the data. You need to wait some time for the task to complete. When the task is completed, you make **another API request** to download the data.
 
-### TikTok Ads Manager
-
-`business-api.tiktok.com` (The Developer Engine)
-
-- What it is: The technical entry point (API) for software engineers and systems.
-- The Goal: Automating tasks programmatically by writing code to talk directly to TikTok’s servers.
-
-`ads.tiktok.com` (The Visual UI, `TikTok Ads Manager`)
-
-- It is the user interface designed for browser use.
-- The Goal: Creating and tracking ad campaigns manually by clicking buttons, uploading media via forms, and reading visual charts.
-
----
-
-Resources
-
-[Tiktok ads manager doc](https://ads.tiktok.com/help/article/tiktok-ads-structure?lang=en)
-
-### Check field
+### Task Check field
 
 Requests gởi tới API của tiktok để tạo task download report:
 
@@ -721,7 +691,38 @@ Content-Length: 271
 }
 ```
 
-```
+### Tiktok Terms
+
+- tiktok có 3 loại: manual, smart plus, upgraded smart plus
+  - manual có 3 level: campaign, ad group, ad
+  - smart plus & upgraded smart plus cũng có 3 level tương tự
+
+---
+
+Sub-Platforms
+
+`TikTok for Business` is a global platform that provides products and solutions to help brands of all sizes drive business impact. Don't confuse with `Tiktok API for Business Developer`.
+
+`TikTok Business Center` is a one-stop business hub that enables organizations to centralize assets management, permission allocation, also allows advertisers to manage multiple TikTok ad accounts among multiple users in a safe, efficient way.
+
+- `tiktok for business developer` (`business-api.tiktok.com`, the Developer Engine):
+  - What it is: The technical entry point (API) for software engineers and systems.
+  - The Goal: Automating tasks programmatically by writing code to talk directly to TikTok’s servers.
+
+- `ads.tiktok.com` (The Visual UI, `TikTok Ads Manager`)
+  - It is the user interface designed for browser use.
+  - The Goal: Creating and tracking ad campaigns manually by clicking buttons, uploading media via forms, and reading visual charts.
+  - TikTok Ads Manager is an ad platform where advertisers can create and manage TikTok ad campaigns and ad creatives, view and analyze ad performance reports.
+  - Ngoài ra, tiktok còn có các UI khác như: TikTok Business Center (`business.tiktok.com`), TikTok Shop Seller Center (`seller.tiktok.com`)
+
+Almost everything you do with the `TikTok API for Business Developer` can be done manually using TikTok's Graphical User Interfaces (GUIs).  
+The TikTok API for Business isn't a separate, secret advertising system. Instead, it is just a "programmatic bridge" that allows developers to write code to click buttons, upload files, and pull reports automatically rather than doing it by hand inside TikTok's web dashboards.
+
+- TikTok API for Business is separated into the following APIs:
+  - Marketing API: Interact with `TikTok Ads Manager` functionality at scale, allowing developers to programmatically query data, create and manage ads, and perform a wide variety of other tasks.
+
+---
+
 ## Twitter
 
 asynchronous report tạo `job`
@@ -822,9 +823,11 @@ Example (if you requested `start_time=2026-03-05T00:00:00Z` and `granularity=HOU
 - If you want overall total → use `granularity=TOTAL` (returns a single number instead of array)
 - You can sum the array yourself to get the total: 2792 in this case.
 
----
+## Other Platforms
 
-## Other Rules
+k
+
+## Other Project Rules
 
 Dù hiện tại nhiều IDE vẫn hiểu (vẫn render được) khi sử dụng tag `<code>` nhưng theo a mới tìm hiểu thì từ giờ chúng ta sẽ chuyển sang format chuẩn sau đây.
 
