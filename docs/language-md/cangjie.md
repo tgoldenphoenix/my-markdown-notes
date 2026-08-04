@@ -101,7 +101,7 @@ Triple-unit characters
 
 #### Human Leg, Animal Leg
 
-- 儿 (中山) - er, child
+- 儿 (中山)
 - 先 (竹土竹山) - before
   - 贊 (竹山 // 月山金)
 - 旡 (一女大山) - waitress
@@ -137,7 +137,7 @@ Triple-unit characters
 - 貢 (一月山金)
 
 - 金 is 儿 in compound
-  - 儿 (中山) - er, child
+  - 儿 (中山)
 - 穴 (十金) - animal leg, hole
   - 空 (十金 // 一) double unit character
   - 穿 (十金 // 一女竹) - double unit
@@ -459,6 +459,7 @@ Triple-unit characters
   - 鳳 (竹弓 // 一日火) - phoenix
 - 鸟 (心卜尸一)
   - 鹃 (口月 // 心卜一)
+  - 鸭 (田中 // 心卜一)
 - 烏 (竹口卜火) - crow
   - 乌 (心女尸一)
 
@@ -1136,7 +1137,6 @@ Triple-unit characters
   - 葬 (廿 // 一心 // 廿) - interment
   - 髒 (月月 // 廿 // 一廿)
 
-
 - 同 (月一口) - same
   - 洞 (水 // 月一口) - cave
 
@@ -1279,7 +1279,7 @@ Triple-unit characters
   - 緇 (女火 // 女女 // 田)
 - 片 (中中一中) - one sided, F3+L
 
-- 儿 (中山) - er, child
+- 儿 (中山)
 
 - 师 (中 // 中 // 一月) - triple unit
 
@@ -1940,6 +1940,7 @@ Triple-unit characters
 - 束 (木中) - bundle
   - 速 (卜 // 木中)
   - 辣 (卜十 // 木中)
+  - 嫩 (女 // 木中 // 大)
 
 - 親 (卜木 // 月山山) - double unit
 - 立 (卜廿)
@@ -2008,6 +2009,7 @@ Triple-unit characters
   - 建 (弓大 // 中手)
 - 廷 (弓大 // 竹土)
   - 庭 (戈 // 弓大 // 土) - triple unit
+  - 挺 (手 // 弓大 // 土)
 - 延 (弓大 // 竹卜一) - prolong
 - 誕 (卜口 // 弓大 // 一) - triple unit, nativity
   - 诞 (戈女 // 弓大 // 女) - triple unit
@@ -2085,6 +2087,7 @@ Triple-unit characters
   - 喰 (口 // 戈人女)
   - 飲 (人戈 // 弓人)
 - 饮 (弓女 // 弓人)
+  - 饭 (弓女 // 竹水)
 
 - 衣 (卜竹女) - garment
   - 表 (手一女)
