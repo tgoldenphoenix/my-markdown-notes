@@ -345,6 +345,21 @@ mysql: root:root or 123
 
 ### AWS Deployment
 
+- `/opt/ag/ag_batch/` chứa file `.jar` chạy batch, chứa `config.properties`, chứa file lock, chứa các file config khác như email
+- build file jar copy lên `~` của `ec2-user`.  Rồi từ đó chạy `/home/ec2-user/deploy_batch.sh` copy file jar qua bên `/opt/ag/ag_batch/`
+
+```bash
+[ec2-user@ip-172-31-22-123 ag_batch]$ pwd
+/opt/ag/ag_batch
+[ec2-user@ip-172-31-22-123 ag_batch]$ ls
+adrepo_batch.jar                                         alert_master_queue_state_receiver.txt  file_download    report_data
+alert_import_daily_unique_advertiser_list_mail_to.txt    alert_report_queue_state_receiver.txt  file_upload      tmp
+alert_import_daily_unique_advertiser_list_mail_to.txt~   backup_cron                            process_watcher
+alert_import_queue_to_adrepo_etl_rds_failed_mail_to.txt  config.properties                      report
+```
+
+---
+
 Chỉ có thể truy cập EC2 release từ ip của con forwarding. Có 2 con EC2 forwarding
 
 ```bash
@@ -402,7 +417,9 @@ Hay nói miệng là "import danh sách queue".
 
 `m_input_platform` => m là master
 
-### `ERROR_TYPE`
+### Constants
+
+`ERROR_TYPE`
 
 error type của của queue lấy report data
 
@@ -422,7 +439,9 @@ api trả về bad request (request sai format) thì không cần retry => sẽ 
 
 [error detail type](https://docs.google.com/spreadsheets/d/11HpIRsqNgSZkRr6mDMRQ8scQSDx76pSoyKUa4kdzQZ4/edit?gid=440079028#gid=440079028)
 
-### Queue Status, Type
+---
+
+Queue Status, Type
 
 - Queue Status:
 - 0, `NOT_PROCESS`
@@ -448,7 +467,24 @@ api trả về bad request (request sai format) thì không cần retry => sẽ 
 - `INCLUDE` (1)
 - `EXCLUDE` (2)
 
-### Batch Export queue
+---
+
+- File `catalog/DSP_TYPE.java`
+- Column `m_input_platform_auth.input_platform_id` thì xem trong `catalog/M_INPUT_PLATFORM.java`
+
+### Batch GetMaster
+
+`BatchGetMasterFreakOut`
+
+upload lên S3 tại `adrepo-development/master/{agency id}/{etl input platform auth id}/{master type}/csg.gz`
+
+### Batch DownloadReport
+
+`BatchDownloadReportTwitterAPI`
+
+upload lên S3 tại `adrepo-development/report_data/{agency id}/{report type id}/csg.gz`
+
+### Batch Export Import Queue
 
 Batch export queue (status) cho phía adrepo có input là một dsp_type
 
@@ -467,9 +503,36 @@ sử dụng time trong `update_micro_time` có micro-second, time trong `updated
   - completed: import into table của etl thành công
   - failured: cannot import into table của etl (ko import được vào table thì sẽ không bàn tới chuyện queue status thành công hay thất bại)
 
+- Khi test `BatchExportEtlMasterQueueToAdrepo`
+- Copy một dòng trong `get_master_queue` vào `input_adrepo_last_exported_update_time`
+- Sau đó vào edit cái row vừa copy trong table `get_master_queue.update_micro_time` tăng thời gian lên
+- Upload file lên s3 `adrepo-development/etl_fetch_data_queue`
+
+---
+
+`BatchImportAdrepoMasterQueueToEtl`
+
+import từ `adrepo-development/etl`
+
+[file design](https://docs.google.com/spreadsheets/d/1rtNHZ6TDrQqjUVwkYF7y5VLVKWIY4B4_2GIS-Hr8QSU/edit?gid=765059006#gid=765059006)
+
 ### Batch GetAdvertiserList
 
 đối tượng: agency_id list (account khách hàng của adrepo)
+
+`BatchGetAdvertiserListFreakOut`
+
+- for each agency => lấy `mInputPlatformAuths` theo agency id & dsp_type
+- for each `mInputPlatformAuths` => get advertiser list
+- export file to S3 `adrepo-development/master/harbest/{agency_id}/{input_platform_id}/advertiser/`
+
+Trong `.run()` của batch chính có export status lên S3 `adrepo-development/master/get_advertiser_master_status/Freakout/` (vậy batch này update lên 2 chỗ trên S3)
+
+```java
+            batchGetAdvertiserListFreakOut.exportStartedStateFileToS3();
+            batchGetAdvertiserListFreakOut.run();
+            batchGetAdvertiserListFreakOut.exportCompletedStateFileToS3();
+```
 
 ### Other Batches
 
@@ -478,6 +541,12 @@ sử dụng time trong `update_micro_time` có micro-second, time trong `updated
 Class `AbstractBatchMaster` không liên quan đến việc lấy master. It contains logic to parse command-line arguments passed into the batches. It is inherited by batch get master data & batch get advertiser list.
 
 Class `AbstractBatch` contains the Logger objects and the methods to print logs.
+
+`BatchRemoveTemporaryFile` cho chạy start & finish
+
+`BatchBackupEtlRds` chạy sau cùng vì sẽ reset database
+
+`BatchAlertGetReportQueueState`, `BatchAlertGetMasterQueueState` => gởi email trong file `/opt/ag/ag_batch/alert_report_queue_state_receiver.txt`
 
 ### Batch Processing
 
