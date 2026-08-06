@@ -1571,8 +1571,9 @@ Triple-unit characters
   - 爷 (金大 // 尸中)
 
 - 壴 (土 // 口廿) - drum
-- 喜 (土 // 口廿 // 口) - single unit, joyful
-  - 嘻 (口 // 土 // 口口) - double unit
+- 喜 (土 // 口廿 // 口) - triple unit, joyful
+  - 嘻 (口 // 土 // 口口) - triple unit
+  - 禧 (戈火 // 土 // 口口)
 - 臺 (土 // 口 // 月土) - pedestal
 - 善 (廿土廿口)
 
