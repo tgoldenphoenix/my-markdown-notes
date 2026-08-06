@@ -279,6 +279,8 @@ Thêm vào `pom_batch.xml`
 </dependency>
 ```
 
+hoặc phải bấm nút sync project trong tool intelliJ
+
 lấy not process queue từ trong table thì `dsp_type` phải đúng
 
 Spec & Versions:

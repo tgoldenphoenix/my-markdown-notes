@@ -267,4 +267,10 @@ Common DNS Record Types and What They Do:
 
 In a DNS zone file, the `@` symbol is a shortcut representing the domain name that the zone file is authoritative for, often called the "current origin". When you see an "@" in a DNS record, it signifies that the record applies to the root of the domain itself, rather than a specific subdomain like `www.` or "mail"
 
+### Cannot connect to Bitbucket
+
+Lâu lâu sẽ gặp lỗi không connect được tới bitbucket. Trong trường hợp này (máy laptop window), vào sửa DNS server thành của google.
+
+Both Google (8.8.8.8 / 8.8.4.4) and Cloudflare (1.1.1.1 / 1.0.0.1) host 100% free public DNS servers. Anyone in the world can configure these IP addresses on their computer, router, or phone without paying or creating an account.
+
 ## Peer-to-Peer File Distribution

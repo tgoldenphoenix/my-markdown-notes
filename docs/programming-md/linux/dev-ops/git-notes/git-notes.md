@@ -1540,6 +1540,20 @@ However, if you must insert it between two existing commits, you can easily achi
 
 `git cherry-pick` always **appends** the commit to the branch your HEAD is currently pointing to (your active working branch).
 
+---
+
+A cherry-picked commit will almost always have a completely different commit hash.
+
+Even if the code changes, commit message, and original author remain identical, Git calculates a commit hash (SHA-1 or SHA-256) based on several pieces of metadata that change during a cherry-pick:
+
+What Changes (Causing a New Hash)
+
+Parent Commit: A commit hash is cryptographically linked to its parent commit. When you cherry-pick a commit onto a new branch, its parent becomes the current tip of that branch instead of the original parent.
+
+Committer Date & Time: The committer timestamp updates to the exact moment you executed the git cherry-pick command.
+
+Committer Identity: While the Author field remains the original creator of the commit, the Committer field updates to you (the person executing the cherry-pick).
+
 ## Stash
 
 Why you need stash:
@@ -1578,7 +1592,17 @@ When you run a simple git stash pop, Git automatically looks at index 0 (written
 
 ## Quản lý nhánh Adrepo
 
-nhánh con merge vào nhánh cha, sau khi xong hết nhánh con thì mới merge nhánh cha vào develop. Không merge từng nhánh con của 1 task lớn vào develop one by one
+Nhánh con merge vào nhánh cha, sau khi xong hết nhánh con thì mới merge nhánh cha vào develop. Không merge từng nhánh con của 1 task lớn vào develop one by one
+
+- `merged in develop` => đứng release, merge develop vô
+- `merged in feature` => đứng develop, merge feature vô
+- `merge in release` => đứng master, merge release vô
+
+- feature branch off from develop, làm xong đứng develop merge feature vô
+- checkout qua release, merge develop vô release, test
+- test xong checkout qua master, merge release vô master
+- hotfix, bugfix branch off from master, xong rồi merge vô master & develop
+- tất cả đều dùng three-way merge
 
 ## git-filter-repo
 
