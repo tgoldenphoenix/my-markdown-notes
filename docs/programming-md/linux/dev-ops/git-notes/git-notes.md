@@ -97,6 +97,30 @@ Generate ssh key with your github email > add to ssh-agen > add to github
 
 Git SSH URLs follow a template of: `git@HOSTNAME:USERNAME/REPONAME.git`. Host name là Github or bitbucket
 
+### Lỗi connect bitbucket
+
+```bash
+anhao@Anonimous MINGW64 ~/Desktop/document/fujiyama_www-batch_fork (master)
+$ git pull
+Connection reset by 13.200.41.134 port 22
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+anhao@Anonimous MINGW64 ~/Desktop/document/fujiyama_www-batch_fork (master)
+$ git remote -v
+origin  git@bitbucket.org:everrise-repository/fujiyama_www-batch_fork.git (fetch)
+origin  git@bitbucket.org:everrise-repository/fujiyama_www-batch_fork.git (push)
+
+anhao@Anonimous MINGW64 ~/Desktop/document/fujiyama_www-batch_fork (master)
+$ git remote set-url origin https://haopham2@bitbucket.org/everrise-repository/fujiyama_www-batch_fork.git
+
+anhao@Anonimous MINGW64 ~/Desktop/document/fujiyama_www-batch_fork (master)
+$ git pull
+Updating 0d1c5425d..96a339b9a
+```
+
 ## Viewing state: git diff, status & log
 
 - There are 2 _states_ of files:
@@ -230,6 +254,17 @@ The `--stat` shows some abbreviated stats for each commit.
 `--author`, `--grep` filter options (useful)
 
 `-S` takes a string and shows only those commits that changed the number of occurrences of that string
+
+---
+
+`release` is 13 commits behind `master`.
+
+```bash
+git fetch origin
+git log origin/release..origin/master --oneline
+```
+
+This command displays a list of commits that exist on the remote master branch (origin/master) but are missing from the remote release branch (origin/release).
 
 ### Ancestry References
 
@@ -1604,6 +1639,42 @@ Nhánh con merge vào nhánh cha, sau khi xong hết nhánh con thì mới merge
 - hotfix, bugfix branch off from master, xong rồi merge vô master & develop
 - tất cả đều dùng three-way merge
 
+- Sau khi merge `release` vào `master` thì master có thêm 01 merge commit mà release không có. Nên sau mỗi lần merge release vào master thì release sẽ "behind master" 01 commit.
+  - Merge Conflicts on Future Hotfixes: If someone pushes a `hotfix` directly to master, and release never gets updated with master's changes, your next release PR will collide with master and create painful code conflicts.
+  - Confusing Diff Logs: Developers looking at PRs will see 10–20 "behind" commits on every release, making it hard to tell if release is just missing merge markers or actually missing production code.
+
+Best Practices to Manage This
+
+If your team prefers keeping a persistent release branch instead of deleting and recreating it per release, use one of these two standard approaches:
+
+Option A: Sync master Back into release (Recommended)  
+Right after completing a release PR (release $\rightarrow$ master), pull master back into release:
+
+```bash
+git checkout release
+git pull origin release
+git merge origin/master
+git push origin release
+```
+
+Result: release now includes master's merge commit. The "behind" count drops to 0, keeping both branches fully synchronized.
+
+Option B: Reset release to master Before the Next Release Cycle  
+When starting a new release cycle, force-reset the release branch so it starts fresh from master:
+
+```bash
+git checkout release
+git reset --hard origin/master
+git push origin release --force
+
+# Or equivalently
+git checkout master
+git branch -D release
+git checkout -b release origin/master
+```
+
+Result: Wipes out old release history on the release branch and aligns it 1:1 with production master.
+
 ## git-filter-repo
 
 This is for rewriting an entire repository history.
@@ -1923,6 +1994,17 @@ Lên Github, chọn `Compare & pull request` hoặc tạo pull request manually.
 If the pull request has merge conflicts, you can check out the pull request locally and merge it using the command line.
 
 Tạo branch > commit > push > đã tạo pull request > cần phải sửa pull request, có conflict. Sau đó phải `push -f`
+
+---
+
+A Pull Request (or Merge Request in GitLab) is not a native Git command—it is a workflow feature provided by platforms like Bitbucket, GitHub, and GitLab.
+
+When you create a PR, the platform performs three main tasks:
+
+Access & Review Control: It isolates proposed changes so team members can comment on lines of code, request modifications, run automated CI/CD checks (unit tests, builds), and approve code before it touches the target branch.
+
+- Diff Calculation: It constantly calculates the diff between the source branch (release) and the target branch (master).
+- Execution Engine: When you click the "Merge" button, the platform runs standard Git commands under the hood to combine the two branches according to the strategy you selected (Merge Commit, Squash, or Rebase).
 
 ### Creating a pull request from a fork
 

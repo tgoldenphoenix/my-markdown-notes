@@ -8,17 +8,17 @@ It is above network layer & below Application Layer.
 
 To simplify terminology, we refer to the transport-layer packet as a **segment**.
 Của network layer là `datagram`, nhưng đừng nhầm với User Datagram Protocol (UDP).  
-We believe that it is less confusing to refer to both TCP and UDP packets as segments, and reserve the term datagram for the network-layer packet.
+We believe that it is less confusing to refer to both TCP and UDP packets as `segments`, and reserve the term `datagram` for the network-layer packet.
 
 Recall that the transport layer lies just above the network layer in the protocol stack. Whereas a transport-layer protocol provides logical communication **between processes** running on different hosts, a network-layer protocol provides logical-communication between hosts. This distinction is subtle but important.
 
-Transport-layer protocols are implemented in the end systems, NOT in the network routers.
+Transport-layer protocols are implemented in the **end systems**, NOT in the network routers.
 
 You must know the destination IP address for both UDP and TCP. TCP guarantee your packet arrive whereas UDC do not guarantee anything.
 
-Layers 2 and 3 work together to deliver a message from the source host across a network to the destination host. You might think that’s the end of the story because the message has reached its destination, but it’s actually not all the way there. It’s not enough for the data to reach the correct destination host; we need a way to address data to a specific application process on the destination host (e.g., a service running on a server). That is the role of Layer 4, the Transport Layer.
+Layers 2 and 3 work together to deliver a message from the source host across a network to the destination host. You might think that’s the end of the story because the message has reached its destination, but it’s actually not all the way there. It’s not enough for the data to reach the correct destination host; we need a way to address data to a specific **application process** on the destination host (e.g., a service running on a server). That is the role of Layer 4, the Transport Layer.
 
-Layer 4 port numbers are NOT related to the physical ports on a device that we connect cables to (which are an aspect of Layer 1, the Physical Layer). Same name, different concept.
+Layer 4's `port numbers` are NOT related to the physical ports on a device that we connect cables to (which are an aspect of Layer 1, the Physical Layer). Same name, different concept.
 
 ---
 
@@ -38,7 +38,7 @@ A process (as part of a network application) can have one or more sockets, doors
 
 Because at any given time there can be more than one socket in the receiving host, each socket has a unique identifier. The format of the identifier depends on whether the socket is a UDP or a TCP socket, as we’ll discuss shortly.
 
-Although we have introduced mul-tiplexing and demultiplexing in the context of the Internet transport protocols, it’s important to realize that they are concerns whenever a single protocol at one layer (at the transport layer or elsewhere) is used by multiple protocols at the next higher layer.
+Although we have introduced multiplexing and demultiplexing in the context of the Internet transport protocols, it’s important to realize that they are concerns whenever a single protocol at one layer (at the transport layer or elsewhere) is used by multiple protocols at the next higher layer.
 
 The unique identifier for sockets are the **port number**. Each socket in the host could be assigned a port number, and when a segment arrives at the host, the transport layer examines the destination port number in the segment and directs the segment to the corresponding socket. The segment’s data then passes through the socket into the attached process. As we’ll see, this is basically how UDP does it. However, we’ll also see that multiplexing/ demultiplexing in TCP is yet more subtle.
 

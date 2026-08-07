@@ -380,6 +380,10 @@ mysql -hadrepo-etl-dev.cmcxxxxxxxxx.ap-northeast-1.rds.amazonaws.com -uadrepo -p
 
 có 2 cái forwarding
 
+---
+
+Copy `config.properties` lên `/opt/ag/ag_batch/` & cấp quyền cho `adrepo-batch` và `ubuntu` (user chạy batch `java` trên selenium).
+
 ## ETL Batch
 
 ### Batch Basics
@@ -419,11 +423,9 @@ Hay nói miệng là "import danh sách queue".
 
 `m_input_platform` => m là master
 
-### Constants
+### Constants, Catalogs
 
-`ERROR_TYPE`
-
-error type của của queue lấy report data
+`ERROR_TYPE` của của queue lấy report data
 
 - `0`, `NORMALLY_RESULT`, không tìm thấy auth token trong table
 - `1`, `ERROR_CANNOT_HANDLE`, An error requiring further investigation on the ETL side; not call API and not use S3 yet
@@ -434,6 +436,7 @@ error type của của queue lấy report data
   - Retry 3-4 lần vẫn không thành công thì throw lỗi này
 - `4`, `DOWNLOAD_UNKNOWN_ERROR`, An API error with an unknown cause. In principle, it will resolve itself over time. Đã call API (chứng thực thành công), lỗi, không cần retry vì chắc chắc vẫn sẽ fail
 - `5`, `GENERATE_TSV_ERROR`, If an error occurs during the process of writing data acquired from the platform to a TSV file for S3 upload
+- `INSERT_ERROR` (6)
 
 error type = `null` nghĩa là queue chưa được chạy, chứ nếu đã chạy thì không thể là `null` được
 
@@ -445,34 +448,61 @@ api trả về bad request (request sai format) thì không cần retry => sẽ 
 
 Queue Status, Type
 
-- Queue Status:
-- 0, `NOT_PROCESS`
-- 1, `DOWNLOADING`
-- 2, `DOWNLOADED`
-- 3, `INSERT_SCHEDULED`
-- 4, `INSERTING`
-- 5, `INSERTED`
-- 8, `DOWNLOAD_ERROR`
-- 9, `INSERT_ERROR`
-- 10, `VALIDATION_ERROR`
-
-- Queue type:
-- `CREATED_BY_MANUALLY`, (0)
-- `CREATED_BY_SCREEN`, (1)
-- `CREATED_FOR_YESTERDAY`, (2)
-- `CREATED_FOR_40_DAYS_AGO`, (3)
-- `CREATED_FOR_SYNC_ETL_AND_ADEBIS`, (4)
-- `CREATED_FOR_EXTERNAL_SYSTEM_TRANSFER`, (5)
-
-- Condition Mode:
-- `ALL` (0)
-- `INCLUDE` (1)
-- `EXCLUDE` (2)
+- Report Queue Status (`entity/etlAdrepo/AbstractGetReportQueue.java`):
+  - 0, `NOT_PROCESS`
+  - 1, `DOWNLOADING`
+  - 2, `DOWNLOADED`
+  - 3, `INSERT_SCHEDULED`
+  - 4, `INSERTING`
+  - 5, `INSERTED`
+  - 8, `DOWNLOAD_ERROR`
+  - 9, `INSERT_ERROR`
+  - 10, `VALIDATION_ERROR`
+- Report Queue type:
+  - `CREATED_BY_MANUALLY`, (0)
+  - `CREATED_BY_SCREEN`, (1)
+  - `CREATED_FOR_YESTERDAY`, (2)
+  - `CREATED_FOR_40_DAYS_AGO`, (3)
+  - `CREATED_FOR_SYNC_ETL_AND_ADEBIS`, (4)
+  - `CREATED_FOR_EXTERNAL_SYSTEM_TRANSFER`, (5)
 
 ---
 
+- Master Queue Status (`entity/etlAdrepo/GetMasterQueue.java`):
+  - 0, `NOT_PROCESS`
+  - `DOWNLOADING` (1)
+  - `DOWNLOADED` (2)
+  - `DOWNLOAD_ERROR` (7)
+- Master Queue type (`entity/etlAdrepo/GetMasterQueue.java`)
+  - `CREATED_BY_MANUALLY`, (0)
+  - `CREATED_BY_BATCH`, (1)
+  - `CREATED_BY_SCREEN`, (2)
+  - `CREATED_FOR_SYNC_ETL_AND_ADEBIS`, (4)
+
+---
+
+Mỗi platform sẽ có `REPORT_TYPE` khác nhau, không giống nhau.
+
 - File `catalog/DSP_TYPE.java`
-- Column `m_input_platform_auth.input_platform_id` thì xem trong `catalog/M_INPUT_PLATFORM.java`
+- Column `m_input_platform_auth.input_platform_id` thì xem trong `catalog/M_INPUT_PLATFORM.java`.
+- Platform nào có trong DSP_TYPE mà không có trong `M_INPUT_PLATFORM` thì tức là không còn support. Những platform trong `M_INPUT_PLATFORM` là còn đang support.
+
+| Platform         | M_INPUT_PLATFORM | DSP_TYPE |
+|------------------|------------------|----------|
+| BYPASS           | 36               | 3        |
+| FACEBOOK         | 2                | 10       |
+| TWITTER_API      | 1                | 21       |
+| CRITEO_REST      | 28               | 28       |
+| NEND             | 37               | 18       |
+| LINE             | 27               | 20       |
+| OUTBRAIN         | 14               | 34       |
+| IMOBILE          | 16               | 16       |
+| GOOGLE_ANALYTICS | 3                | ??       |
+| GOOGLE_ADWORDS   | 17               | ??       |
+| DBM              | 18               | 11       |
+| LOGICAD          | 19               | 19       |
+| FREAK_OUT        | 8                | 8        |
+| SCALE_OUT        | 9                | 9        |
 
 ### Batch GetMaster
 
