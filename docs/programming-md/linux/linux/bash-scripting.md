@@ -321,7 +321,7 @@ fi
 
 The `-n` in the echo command suppresses the usual newline, but you could also have used printf here. We cover the if statement’s syntax shortly, but its effect should be obvious here. The `-n` in the if statement evaluates to true if its string argument is not null.
 
-## Command-line arguments and Functions
+## Command-line Arguments
 
 Command-line arguments to a script become variables whose names are numbers. `$1` is the first command-line argument, `$2` is the second, and so on. `$0` is the name by which the script was invoked. That could be something strange such as `../bin/example.sh`, so it’s not a fixed value.
 
@@ -331,7 +331,11 @@ Không có khai báo bao nhiêu argument & types. Cứ dùng mấy cái ở trê
 
 `$@` reads all inputs.
 
-### Exit codes
+## Read user input
+
+k
+
+## Exit codes
 
 `echo $?` the exit code of the previous command. 0 means succesful, other than 0 (nonzero) is failure.
 
