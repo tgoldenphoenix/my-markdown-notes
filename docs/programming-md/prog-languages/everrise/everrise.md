@@ -152,7 +152,7 @@ SEO: <https://ever-rise.backlog.jp/alias/wiki/372411>
 
 Attendance - Equipment Management: <https://docs.google.com/spreadsheets/d/1yvuO-rSCk6Nkhr3GG8g3zJCsikVLkfhDJqV1yut34OI/edit?pli=1&gid=1753145395#gid=1753145395>
 
-## Wifi
+## Wifi công ty everrise
 
 - VNPT là 4cTU1VW1ld
 - FPT là H8givTsbgg 2.4
@@ -176,6 +176,14 @@ Không có IP tĩnh
 
 1. Máy/công việc quan trọng cần thiết thì dùng mạng VNPT
 2. ĐT cá nhân, công việc không quan trong thì xài mạng FPT
+
+### Cannot connect to Bitbucket adrepo
+
+Lâu lâu sẽ gặp lỗi không connect được tới bitbucket. Trong trường hợp này (máy laptop window), vào sửa DNS server thành của google.
+
+Both Google (8.8.8.8 / 8.8.4.4) and Cloudflare (1.1.1.1 / 1.0.0.1) host 100% free public DNS servers. Anyone in the world can configure these IP addresses on their computer, router, or phone without paying or creating an account.
+
+`H8givTs` vô được bitbucket. Còn `Y25mvWY` không vô bitbucket được.
 
 ## Xin nghỉ
 

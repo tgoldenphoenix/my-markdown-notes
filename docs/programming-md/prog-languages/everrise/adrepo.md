@@ -295,6 +295,8 @@ sbt run
 sbt -jvm-debug 9999 run
 ```
 
+Để ứng dụng hoạt động thì cần lưu file application.conf theo đường dẫn: `\opt\web-api-conf\application.conf`
+
 - Playframwork 2.6.9
   - [play framwork doc](https://www.playframework.com/documentation/2.5.8/JavaForms) (2.1.x or 2.6)
 - Velocity version 1.7; Apache Velocity Template Language (VTL)
@@ -330,7 +332,11 @@ db {
 
 ```
 
-### Setup test Web API
+---
+
+3 tables sau phải có dữ liệu: `m_api_token`, `m_login_user`, `m_contract_company`
+
+#### Setup test Web API
 
 Read this wiki <https://ever-rise.backlog.jp/alias/wiki/557867>
 
@@ -383,6 +389,8 @@ có 2 cái forwarding
 ---
 
 Copy `config.properties` lên `/opt/ag/ag_batch/` & cấp quyền cho `adrepo-batch` và `ubuntu` (user chạy batch `java` trên selenium).
+
+web api chỉ có 1 con staging, batch thì có 2 máy (dev, staging)
 
 ## ETL Batch
 
@@ -634,14 +642,14 @@ Form Validation
 
 ### Authenticator
 
-When a request hits a protected controller, the Play Framework automatically calls `BaseLoginAuthenticator.getUsername(Http.Context)` and looks for a very specific response:
+When a request hits a protected controller, the Play Framework automatically calls `BaseLoginAuthenticator.getUsername(Http.Context)`. This method in turn calls `LoginAuthenticator.getLoginUserId()`:
 
 - Success (True): If the method returns any valid `String loginUserId`, the framework considers the user authenticated and allows the controller logic to proceed.
   - This `loginUserId` string is not used anywhere in the controller body. It is only for the authentication steps.
   - Việc lấy thông tin user đăng nhập được thực hiện với service trong controller. Lấy ra từ `Http.Context.current()`.
 - Failure (False): If the method returns `null` (because the user ID is missing or the role check fails), the framework considers the authentication failed.
 
-if `getUsername` returns `null`, the Play Framework intercepts that `null` and automatically triggers `BaseAuthenticator.onUnauthorized(Http.Context)`. This method then returns your standard `401 Unauthorized` JSON response and completely halts the request.
+if `getLoginUserId()` inside `getUsername(ctx)` returns `null`, the Play Framework intercepts that `null` and automatically triggers `BaseAuthenticator.onUnauthorized(Http.Context)`. This method then returns your standard `401 Unauthorized` JSON response and completely halts the request.
 
 ### Velocity Template Engine
 
