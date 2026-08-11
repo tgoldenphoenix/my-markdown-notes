@@ -353,6 +353,16 @@ mysql: root:root or 123
 
 ### AWS Deployment
 
+- ticket release của Vĩ: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7878>
+- Vĩ test batch: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7877>
+- Long & hào test batch (first half): <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7889>
+
+---
+
+- Batch process EC2 có 2 linux user:
+- `ec2-user`: home dir có file `.ETL-DEV-PROCESS`
+- `adrepo-batch`: home directory không có gì nhiều
+
 - `/opt/ag/ag_batch/` chứa file `.jar` chạy batch, chứa `config.properties`, chứa file lock, chứa các file config khác như email
 - build file jar copy lên `~` của `ec2-user`.  Rồi từ đó chạy `/home/ec2-user/deploy_batch.sh` copy file jar qua bên `/opt/ag/ag_batch/`
 
@@ -391,6 +401,24 @@ có 2 cái forwarding
 Copy `config.properties` lên `/opt/ag/ag_batch/` & cấp quyền cho `adrepo-batch` và `ubuntu` (user chạy batch `java` trên selenium).
 
 web api chỉ có 1 con staging, batch thì có 2 máy (dev, staging)
+
+---
+
+Lệnh Ec2
+
+```bash
+sh ./deploy.sh
+date
+java -version
+nginx -v
+cat /etc/nginx/conf.d/client_www.conf
+less deploy.sh
+vim deploy.sh
+ps aux | grep java
+mv etl-harbest-webapi.zip_20260810132227 ..
+mv etl-harbest-webapi.zip_20260810132227 etl-harbest-webapi.zip
+
+```
 
 ## ETL Batch
 
@@ -952,15 +980,9 @@ nhưng kiểu này a thấy khó nhớ => không xài
 
 [Catchup Outline](https://ever-rise.backlog.jp/alias/wiki/566675)
 
-[Release Instruction](https://ever-rise.backlog.jp/alias/wiki/413979#loom-header-2)
-
-[tiktok marketing API](https://business-api.tiktok.com/portal/docs/marketing-api/v1.3)
-
 [Setup for Windows 10](https://ever-rise.backlog.jp/alias/wiki/559246#loom-header-14)
 
 [catchup outline](https://ever-rise.backlog.jp/alias/wiki/566675)
 
 [build project](https://ever-rise.backlog.jp/alias/wiki/559969)
-
-enctypted token tiktok: `DtxDD2ml1zIpmf3vNYy3b+DRWMdp0TVE7cUBT7nfPdDDplajKjyHNSLkYhQWWXxt`
 

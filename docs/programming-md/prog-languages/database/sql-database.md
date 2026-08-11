@@ -67,6 +67,13 @@ Phân biệt giữa việc xóa dữ liệu của bảng bằng `DELETE` và `TR
 - 2 cái này khác nhau khi trong bảng có 1 cột có giá trị tự động tăng Nếu như đang có 100 dòng, mà xóa bằng `DELETE` thì sau khi xóa các dòng xong, mình nhập vào 1 dòng mới thì cột đó vẫn tự động tăng thành giá trị 101; còn khi dùng xóa `TRUNCATE` thì cột đó sẽ có giá trị quay về số 1
 - Vậy thì `TRUNCATE` mới thực sự là xóa hết dữ liệu (reset dữ liệu về trạng thái ban đầu), còn DELETE chỉ là xóa hết các dòng dữ liệu tạm thời
 
+---
+
+- `CURDATE()`
+  - returns only the date `YYYY-MM-DD`
+- `NOW()`
+  - returns both the date and the current time `YYYY-MM-DD HH:MM:SS`
+
 ## SELECT
 
 3 bí kíp bản chất của SQL:
