@@ -7,9 +7,9 @@ To google the code: type a character in traditional font and follow it with 簡�
 
 ## Decomposition Rules
 
-Single-unit characters if includes more than 4 radicals: F3+L
+Single-unit characters if includes more than 4 radicals: `F3+L`
 
-Double-unit characters: F+L // F2+L
+Double-unit characters: `F+L // F2+L`
 
 ---
 
@@ -364,7 +364,7 @@ Triple-unit characters
   - 選 (卜 // 口山 // 金)
 
 - broom
-- 求 (戈十水) - request
+- 求 (戈十水)
 - 彔 (女弓一水)
   - 录 (弓一一水)
   - 碌 (一口 // 女弓水)
@@ -374,9 +374,9 @@ Triple-unit characters
 - 綠 (女火 // 女弓水)
   - 緑 (女火 // 弓一水)
   - 绿 (女一 // 弓一水)
-- 灵 (尸一 // 火)
 - 屬 (尸 // 水 // 田戈) - triple unit
 
+- 尋 (尸一 // 一口 // 戈)
 - 灵 (尸一 // 火)
   - 𠴌 (口 // 尸一火)
 - 雪 (一月 // 尸一)
@@ -483,6 +483,7 @@ Triple-unit characters
   - 聲 (土水 // 尸十) - double unit character
   - 聰 (尸十 // 竹田 // 心) - triple unit
   - 取 (尸十 // 水)
+  - 輯 (十十 // 口 // 尸十)
 - 最 (日 // 尸十 // 水) - triple unit
 - 敢 (一十 // 人大) or (弓十 // 人大) - daring
 
@@ -523,6 +524,7 @@ Triple-unit characters
   - 偏 (人 // 竹尸 // 月) - triple unit
   - 遍 (卜 // 竹尸 // 月)
   - 篇 (竹 // 竹尸 // 月)
+  - 編 (女火 // 竹尸 // 月)
 - 侖 (人一月廿) - academic conference
   - 輪 (十十 // 人一 // 月) - triple unit
   - 轮 (大手 // 人心)
@@ -608,8 +610,8 @@ Triple-unit characters
   - 李 (木 // 弓木)
 - 了 (弓弓) - completed
   - 辽 (卜 // 弓弓)
-- 享 (卜口弓木) - receive
-  - 惇 (心 // 卜口木)
+- 享 (卜 // 口 // 弓木) - receive
+  - 惇 (心 // 卜 // 口木)
 
 - 承 (弓弓手人) - F3+L
 
@@ -640,6 +642,7 @@ Triple-unit characters
 - 气 (人一弓) - air
   - 氣 (人弓 // 火木) - double unit
   - 気 (人弓 // 大) - double unit
+- 訊 (卜口 // 弓十)
 
 - 亢 (卜 // 竹弓) - whirlwind
   - 抗 (手 // 卜竹弓)
@@ -1030,13 +1033,14 @@ Triple-unit characters
 - 巾 (中月) - towel
   - 市 (卜中月) - market
   - 佩 (人 // 竹弓 // 月) - triple unit
-- 帝 (卜月中月) - emperor
-  - 啼 (口卜月月)
+- 帝 (卜月 // 中月) - emperor
+  - 啼 (口 // 卜月 // 月)
 - 制 (竹月 // 中 // 弓) - system
   - 製 (竹弓 // 卜竹女) - double unit
+- 萬 (廿 // 田中月)
 
-- 帛 (竹日中月) - brocade
-  - 錦 (金 // 竹日月)
+- 帛 (竹日 // 中月) - brocade
+  - 錦 (金 // 竹日 // 月)
 
 - 帶 (大心 // 月中月) - sash
   - 带 (廿十 // 月中月)
@@ -1053,15 +1057,6 @@ Triple-unit characters
   - 两 (一人人月)
   - 滿 (水 // 廿中月)
   - 満 (水 // 廿山月)
-
-- 革 (廿中十)
-- 黃 (廿一田金)
-- 嘆 (口 // 廿中人)
-- 寅 (十 // 一中金)
-- 禺 (田中月戈) - F3+L
-- 电 (中田山)
-- 更 (一中田大)
-  - 便 (人 // 一中大)
 
 - 离 (卜 // 山大 // 月) - oddjob, detach
   - 璃 (一土 // 卜 // 山月) - triple unit
@@ -1240,8 +1235,9 @@ Triple-unit characters
 
 - 中 = cloak (衤)
 - 衤 (戈弓中人) - cloak
-- 被 (中 // 木竹水)
-- 褔 (中一口田)
+  - 被 (中 // 木竹水)
+  - 褔 (中 // 一 // 口田)
+  - 裡 (中 // 田土)
 
 - 示 (一一火)
   - 宗 (十 // 一一火)
@@ -1263,6 +1259,8 @@ Triple-unit characters
 - 甲 (田中)
   - 押 (手 // 田中)
 
+- 寅 (十 // 一中金)
+- 革 (廿中十)
 - 央 (中月大) - center
 - 英 (廿 // 中月大) - england
   - 瑛 (一土 // 廿中大) - double unit
@@ -1271,6 +1269,10 @@ Triple-unit characters
 - 电 (中田山)
 - 兎 (竹中日戈) - F3+L
 - 黃 (廿 // 一 // 田金) or V5 (廿 // 一中金)
+- 禺 (田中月戈) - F3+L
+  - 萬 (廿 // 田中月)
+- 更 (一中田大)
+  - 便 (人 // 一中大)
 
 - 婁 (中田中女) or V5 (中中 // 女, double unit) - sniper
   - 樓 (木 // 中田女)
@@ -1415,8 +1417,6 @@ Triple-unit characters
 - 上 (卜一) - above
 - 卡 (卜一卜)
 - 尗 (卜一火)
-
-- 求 (戈十水)
 
 - 尚 (火月口)
 
@@ -1729,7 +1729,7 @@ Triple-unit characters
 - 文 (卜大) - literature
   - 这 (卜 // 卜大)
 
-- 求 (戈十水) - request
+- 求 (戈十水)
 - 彔 (女弓一水)
   - 录 (弓一一水)
   - 碌 (一口 // 女弓水)
@@ -2413,7 +2413,7 @@ Triple-unit characters
 - 岡 (月 // 廿山)
 - 冈 (月大)
   - 刚 (月大 // 中 // 弓)
-- 罔 (月 // 廿 // 卜女)
+- 罔 (月 // 廿卜女) - Rhino
   - 網 (女火 // 月 // 廿女)
   - 网 (月 // 大大)
 
@@ -2519,6 +2519,9 @@ Triple-unit characters
 - 褱 (卜 // 田中 // 女) - triple unit, Darth vader
   - 懷 (心 // 卜田女) - double unit, reminisce
 
+- 賣 (土 // 田中 // 金) - selll
+  - 讀 (卜口 // 土 // 田金)
+
 - 畺 (一田一一) - F3+L
   - 疆 (弓土 // 一田一)
 
@@ -2531,6 +2534,7 @@ Triple-unit characters
 
 - 畐 (一口田) - wealthy
   - 福 (戈火 // 一 // 口田) - triple unit
+  - 褔 (中 // 一 // 口田)
 
 ### Mouth 口
 
@@ -2618,6 +2622,7 @@ Triple-unit characters
   - 儿 (中山) - er, child
 - 叟 (竹難中水)
   - 嫂 (女 // 竹難水)
+  - 搜 (手 // 竹難水)
 - 舀 (月 // 竹難)
   - 滔 (水 // 月 // 竹難)
 
