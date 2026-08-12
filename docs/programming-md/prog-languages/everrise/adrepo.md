@@ -459,6 +459,10 @@ Hay nói miệng là "import danh sách queue".
 
 `m_input_platform` => m là master
 
+---
+
+Decrypt & encrypt access token nằm trong file `AesUtilsTest.testDecrypt()`. Lấy cái key nằm trong `config.properties` thay vô rồi chạy. Trong test không phải key thực tế.
+
 ### Constants, Catalogs
 
 `ERROR_TYPE` của của queue lấy report data
@@ -517,11 +521,13 @@ Queue Status, Type
 
 ---
 
-Mỗi platform sẽ có `REPORT_TYPE` khác nhau, không giống nhau.
+Mỗi platform sẽ có `REPORT_TYPE` khác nhau, không giống nhau. Coi trong `/catalog/REPORT_TYPE.java`.
 
 - File `catalog/DSP_TYPE.java`
 - Column `m_input_platform_auth.input_platform_id` thì xem trong `catalog/M_INPUT_PLATFORM.java`.
 - Platform nào có trong DSP_TYPE mà không có trong `M_INPUT_PLATFORM` thì tức là không còn support. Những platform trong `M_INPUT_PLATFORM` là còn đang support.
+
+input_platform_id = m_input_platform
 
 | Platform         | M_INPUT_PLATFORM | DSP_TYPE |
 |------------------|------------------|----------|
@@ -551,6 +557,16 @@ upload lên S3 tại `adrepo-development/master/{agency id}/{etl input platform 
 `BatchDownloadReportTwitterAPI`
 
 upload lên S3 tại `adrepo-development/report_data/{agency id}/{report type id}/csg.gz`
+
+Twitter report, format của ETL coi trong file `TwitterApiStandardReportDto.toCsvLineAsStringArray()`. Format này phải match với từ API trả về.
+
+ConsumerKey & ConsumerSecret là đi với cái APP (trong `config.properties`)
+
+Project mình chỉ dùng những entity sau: `LINE_ITEM`, `PROMOTED_TWEET`
+
+The `placements` array can include the following values: `ALL_ON_TWITTER`, `SPOTLIGHT`, and `TREND`. It indicates which placements should be requested for the given entity ID.
+
+tạo job async get report rồi. Nhưng report json api trả về không có đủ dữ liệu (chỉ có id). Nên tạo thêm các maps để mapping dữ liệu.
 
 ### Batch Export Import Queue
 
