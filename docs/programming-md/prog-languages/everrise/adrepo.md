@@ -545,6 +545,7 @@ input_platform_id = m_input_platform
 | LOGICAD          | 19               | 19       |
 | FREAK_OUT        | 8                | 8        |
 | SCALE_OUT        | 9                | 9        |
+|         TIKTOK         |         35         |     35     |
 
 ### Batch GetMaster
 
@@ -556,6 +557,9 @@ upload lên S3 tại `adrepo-development/master/{agency id}/{etl input platform 
 
 `BatchDownloadReportTwitterAPI`
 
+??? Còn cái map không hiểu  
+tạo job async get report rồi. Nhưng report json api trả về không có đủ dữ liệu (chỉ có id). Nên tạo thêm các maps để mapping dữ liệu.
+
 upload lên S3 tại `adrepo-development/report_data/{agency id}/{report type id}/csg.gz`
 
 Twitter report, format của ETL coi trong file `TwitterApiStandardReportDto.toCsvLineAsStringArray()`. Format này phải match với từ API trả về.
@@ -566,7 +570,17 @@ Project mình chỉ dùng những entity sau: `LINE_ITEM`, `PROMOTED_TWEET`
 
 The `placements` array can include the following values: `ALL_ON_TWITTER`, `SPOTLIGHT`, and `TREND`. It indicates which placements should be requested for the given entity ID.
 
-tạo job async get report rồi. Nhưng report json api trả về không có đủ dữ liệu (chỉ có id). Nên tạo thêm các maps để mapping dữ liệu.
+Segmented campaign metrics are only available via the asynchronous analytics endpoints. Campaign metrics can be broken out by location, gender, interest, keyword, and more. For a full list of options, see the Metrics and Segmentation page. In order to request segmented metrics, use the `segmentation_type` request parameter when creating the job.
+
+Segmentation Type đang support: `AGE`, `GENDER`, `METROS`, `PLATFORMS`
+
+Method `GetReportTwitterAPIService.sendRequestCreateReportJobForStandardReport()` chứa cấu trúc url post tạo job async.
+
+metric group `MEDIA` không còn support
+
+---
+
+Tiktok
 
 ### Batch Export Import Queue
 
