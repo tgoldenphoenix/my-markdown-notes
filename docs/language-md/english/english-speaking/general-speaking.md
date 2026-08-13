@@ -587,7 +587,7 @@ It’s more natural to use the name of the city: What’s Hangzhou like?
 
 You should **see about** getting your hair cut.
 
-## Others topics
+## Others Topics
 
 Dad, why is the American government the best government?  
 Because of our endless appeals system.  
@@ -617,7 +617,9 @@ Well, all students here start learning English from elementary school. But unfor
 
 Have you ever had any other girlfriends?
 
-Yesterday, I bought Katie a flower and she gave me a kiss on the cheek
+Yesterday, I bought Katie a flower and she gave me a kiss on the cheek.
+
+They don't look like this anymore.
 
 ## Talk about Yourself
 
@@ -652,3 +654,8 @@ If you do something crazy like go mountain biking and you go fast down a hill, y
 When I played soccer the other day, I hurt myself.
 
 You can either, have someone take you to the hospital, or you can call an ambulance.
+
+## Talk with friends
+
+You have to have confidence in yourself.
+

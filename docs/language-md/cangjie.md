@@ -205,6 +205,7 @@ Triple-unit characters
   - 份 (人 // 金尸竹)
 
 - 公 (金戈) - public
+  - 総 (女火 // 金 // 戈心)
 
 - 丫 (金中)
 
@@ -251,7 +252,7 @@ Triple-unit characters
 
 - 倉 (人 // 戈 // 日口) - triple unit
 
-- 今 (人戈弓) - clock
+- 今 (人 // 戈弓) - clock
   - 念 (人 // 戈 // 弓心) - triple unit
   - 仱 (人 // 人 // 戈弓)
 - 令 (人 // 戈 // 弓戈) - triple unit, order
@@ -448,6 +449,7 @@ Triple-unit characters
   - 房 (竹尸 // 卜竹尸)
   - 芳 (廿 // 卜竹尸)
   - 邊 (卜 // 竹山 // 尸)
+  - 放 (卜尸 // 人大)
 - 万 (一尸)
 - 分 (金 // 尸竹) - divide
 - 別/别 (口尸 // 中 // 弓) - separate
@@ -767,6 +769,7 @@ Triple-unit characters
 - 至 (一戈土) - climax
   - 到 (一土 //  中 //  弓) - triple unit character
   - 倒 (人 // 一土 // 弓)
+  - 致 (一土 // 人大)
   - 侄 (人 // 一戈土)
   - 臺 (土 // 口 // 月土) - pedestal
 - 云 (一一戈)
@@ -787,6 +790,7 @@ Triple-unit characters
 - 流 (水 // 卜戈山) - infant Moses
 - 充 (卜戈竹山) - allot
   - 統 (女火 // 卜戈 // 山)
+  - 统 (女一 // 卜戈 // 山)
 
 - 台 (戈口)
   - 治 (水 // 戈口)
@@ -832,17 +836,16 @@ Triple-unit characters
   - 伐 (人戈) - fell
 
 - 弋 (戈心) - arrow
-  - 代 (人 // 戈心) - substitute, age, era
+- 代 (人 // 戈心)
   - 膩 (月 // 戈心 // 金) - triple unit
-  - 式 (戈心 // 一)
-- 武 (一心 // 卜中一) - double unit, quiver, warrior
-  - 賦 (月金 // 一心 // 一) - triple unit
+- 武 (一心 // 卜中一) - double unit
 - 民 (口女心)
 - 尤 (戈大山)
 
 - 淺 (水 // 戈戈) - float
   - 浅 (水 // 戈十)
   - 殘 (一弓 // 戈戈)
+  - 錢 (金 // 戈戈)
 
 - 求 (戈十水)
 
@@ -875,7 +878,10 @@ Triple-unit characters
   - 黛 (人心 // 田土 // 火) - triple unit
     - 黑 (田土 // 火) - double unit
   - 膩 (月 // 戈心 // 金) - triple unit
-- 武 (一心 // 卜中一) - double unit, quiver
+  - 式 (戈心 // 一)
+- 貸 (人心 // 月山金)
+  - 貨 (人心 // 月山金)
+- 武 (一心 // 卜中一) - double unit, quiver, warrior
   - 賦 (月金 // 一心 // 一) - triple unit
 
 - 氏 (竹女心) - family name
@@ -897,6 +903,9 @@ Triple-unit characters
 
 - 化 (人心) - transform
   - 花 (廿 // 人心) - flower
+  - 貨 (人心 // 月山金)
+  - 貸 (人心 // 月山金)
+  - 华 (人心 // 十)
 - 混 (水 // 日 // 心心)
 
 - 旨 (心日) - delicious
@@ -970,6 +979,7 @@ Triple-unit characters
   - 珍 (一土 // 人 // 竹竹)
   - 寥 (十 // 尸一 // 竹) - triple unit
   - 蓼 (廿 // 尸一 // 竹)
+  - 参 (戈大 // 竹竹竹)
 - 髟 (尸戈 // 竹竹竹) - Hairstyle
   - 髮 (尸竹 // 戈大大)
 
@@ -1060,9 +1070,10 @@ Triple-unit characters
   - 病 (大 // 一人月)
 - 兩 (一中月人) - both
   - 両 (一山月)
-  - 两 (一人人月)
   - 滿 (水 // 廿中月)
   - 満 (水 // 廿山月)
+- 两 (一人人月)
+  - 满 (水 // 廿 // 一月)
 
 - 离 (卜 // 山大 // 月) - oddjob, detach
   - 璃 (一土 // 卜 // 山月) - triple unit
@@ -1156,7 +1167,7 @@ Triple-unit characters
 - 多 (弓戈弓戈)
   - 夠 (弓弓 // 心口)
   - 句 (心口) - phrase, sentence
-- 名 (弓戈口) - name
+- 名 (弓戈 // 口) - name
 - 夢 (廿 // 田中 // 弓) - triple unit, dream
 
 - 歹 (一弓戈) - malicious, bones
@@ -1306,6 +1317,7 @@ Triple-unit characters
 
 - 而 (一月中中) - comb
   - 懦 (心 // 一月 // 月)
+- 冊 (月廿)
 
 - 漢 (水 // 廿中人) - scarecrow
 - 嘆 (口 // 廿中人)
@@ -1340,6 +1352,7 @@ Triple-unit characters
 - 少 (火竹) - few
   - 省 (火竹 // 月山)
   - 妙 (女 // 火竹)
+  - 抄 (手 // 火竹)
 - 賓 (十 // 一竹 // 金) - triple unit, vippp
   - 檳 (木 // 十 // 一金)
   - 殯 (一弓 // 十 // 一金)
@@ -1396,8 +1409,9 @@ Triple-unit characters
 
 - owl
 - 巣 (火 // 田木)
-- 單 (口口田十) - simple
-  - 禪 (戈火 // 口口十)
+- 單 (口口 // 田十) - simple
+  - 禪 (戈火 // 口口 // 十)
+  - 彈 (弓 // 口口 // 十)
 - 単 (火田十)
   - 单 (金田十)
 - 兴 (火一金)
@@ -1455,6 +1469,7 @@ Triple-unit characters
   - 憂 (一月 // 心 // 竹水) - melancholy
 - 页 (一月人)
   - 颗 (田木 // 一月人)
+  - 项 (一 // 一月人)
 
 - 首 (廿竹月山)
   - 道 (卜 // 廿竹山)
@@ -1494,9 +1509,9 @@ Triple-unit characters
 - 血 (竹月廿) - blood
 - 蓋 (廿 // 土戈 // 廿) - triple unit
 
-- 無 (人廿火) - nothing
-  - 蕪 (廿 // 人廿火)
-  - 撫 (手 // 人廿火)
+- 無 (人廿 // 火) - nothing
+  - 蕪 (廿 // 人廿 // 火)
+  - 撫 (手 // 人廿 // 火)
 
 - 共 (廿金) - strung together
 - 異 (田 // 廿金)
@@ -1643,19 +1658,17 @@ Triple-unit characters
 - 爿 (女中一)
 
 - 丂 (一女尸)
-- 号 (口一女尸)
+- 号 (口 // 一女尸)
 
 - 頁 (一月山金)
   - 頭 (一廿 // 一月金)
   - 豆 (一口廿)
 - 首 (廿竹月山) - neck, head
-  - 道 (卜 // 廿竹山)
-- 百 (一日) - hundred
-- 白 (竹日) - white, dove
-
 - 道 (卜 // 廿竹山) - double unit, road
   - 導 (卜山 // 木戈)
   - 导 (口山 // 木戈)
+- 百 (一日) - hundred
+- 白 (竹日) - white, dove
 
 - 羽 (尸一 // 尸戈一) - double unit; F+L // F2+L, feather, wing
   - 寥 (十 // 尸一 // 竹) - triple unit
@@ -1735,8 +1748,7 @@ Triple-unit characters
   - 做 (人 // 十口 // 大)
 - 矢 (人大)
 
-- 文 (卜大) - literature
-  - 这 (卜 // 卜大)
+- 文 (卜大)
 
 - 求 (戈十水)
 - 彔 (女弓一水)
@@ -1795,6 +1807,7 @@ Triple-unit characters
 
 - 文 (卜大) - literature
   - 这 (卜 // 卜大)
+  - 產 (卜大 // 一 // 竹一)
 
 - 矢 (人大) - dart
   - 欸 (戈大 // 弓人)
@@ -1876,6 +1889,7 @@ Triple-unit characters
 - 辰 (一一一女)
 - 歷 (一 // 竹木 // 一) - triple unit
 - 压 (一 // 土戈)
+- 历 (一 // 大尸)
 
 - 原 (一 // 竹日火) - meadow
   - 願 (一火 // 一月金)
@@ -2050,6 +2064,7 @@ Triple-unit characters
   - 珠 (一土 // 竹十木)
 - 耒 (手木) - christmas tree
   - 耦 (手木 // 田中月)
+  - 籍 (竹 // 手木 // 日)
 
 - 夫 (手人)
 - 失 (竹手人)
@@ -2105,6 +2120,7 @@ Triple-unit characters
 - 疋 (弓卜人) - zoo
   - 疑 (心大 // 弓戈人) - double unit, zoo
   - 凝 (戈一 // 心大 // 人) - triple unit
+  - 楚 (木木 // 弓卜人)
 - 正 (一卜中一) - correct
 - 從 (竹人 // 人人 // 人) - triple unit
 
@@ -2271,7 +2287,7 @@ Triple-unit characters
   - 韦 (手尸)
   - 圍 (田 // 木一 // 手) - triple unit
   - 衛 (竹人 // 木手 // 弓)
-  - 違 (卜 // 木一手)
+  - 違 (卜 // 木一 // 手)
 - 園 (田 // 土 // 口女) - triple unit
 - 旡 (一女大山)
 - 牙 (一女木竹)
@@ -2375,6 +2391,8 @@ Triple-unit characters
 - 午 (人十) - noon
 - 缶 (人十山) - tin can
   - 淘 (水 // 心 // 人山)
+- 卸 (人一 // 尸中) - wholesale
+  - 御 (竹人 // 人一 // 中)
 - 寶 (十 // 一山 // 金) - triple unit
 - 䍃 (月 // 人十山) - Condor
   - 遙 (卜 // 月 // 人山) - triple unit
@@ -2521,7 +2539,7 @@ Triple-unit characters
 - 鬟 (尸竹 // 田中 // 女)
 - 夢 (廿 // 田中 // 弓) - triple unit, dream
   - 梦 (木木 // 弓戈)
-- 還 (卜 // 田中女)
+- 還 (卜 // 田中 // 女)
 - 澤 (水 // 田中 // 十) - triple unit, espionage
 - 睪 (田中 // 土廿十) - double unit
 - 眾 (田中 // 人人人)
@@ -2595,8 +2613,10 @@ Triple-unit characters
   - 聖 (尸口 // 竹土) - double unit
   - 壬 (竹土) - porter
   - 望 (卜月 // 竹土) - double unit; F+L // F2+L
+  - 皇 (竹日 // 一土)
 
 - 玉 (一土戈) - jade
+  - 国 (田 // 一土戈)
 - 宝 (十一土戈)
   - 寶 (十 // 一山 // 金) - triple unit
 - 全 (人 // 一土) - whole
@@ -2641,6 +2661,8 @@ Triple-unit characters
   - 搜 (手 // 竹難水)
 - 舀 (月 // 竹難)
   - 滔 (水 // 月 // 竹難)
+
+- 印 (竹心 // 尸中) - Staples
 
 - 與 (竹難卜金) - single unit, F3+L
   - 与 (卜尸一)
@@ -2797,4 +2819,3 @@ Hội Nghiên cứu và Ứng dụng Hán Nôm 會研究吧應用漢喃: <https:
 
  Bộ Gõ WinVNKey: <https://winvnkey.sourceforge.net/hannom/SoLuocCachNhapChuHanNom-toanbo.htm>
 
- <https://rime.im/>
