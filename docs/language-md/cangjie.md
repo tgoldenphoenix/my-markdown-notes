@@ -436,6 +436,9 @@ Triple-unit characters
   - 另 (口大尸)
 - 刀 (尸竹) vs. 刃 (尸竹戈)
 
+- 办 (大尸金)
+  - 苏 (廿 // 大尸金)
+
 - 男 (田 // 大尸)
   - 舅 (竹難 // 田 // 大尸)
 
@@ -792,7 +795,7 @@ Triple-unit characters
   - 統 (女火 // 卜戈 // 山)
   - 统 (女一 // 卜戈 // 山)
 
-- 台 (戈口)
+- 台 (戈口) - pedestal
   - 治 (水 // 戈口)
 
 - 或 (戈口一) - orrr
@@ -1228,8 +1231,8 @@ Triple-unit characters
 - 歸 (竹一 // 尸一月)
 - 录 (弓一一水)
 - 当 (火尸一)
-- 尹 (尸大) - mop
-- 君 (尸大口) - old boy
+- 尹 (尸大)
+- 君 (尸大口)
 
 - 止 (卜中一) - footprint
   - 歸 (竹一 // 尸一月)
@@ -1473,7 +1476,7 @@ Triple-unit characters
 
 - 首 (廿竹月山)
   - 道 (卜 // 廿竹山)
-- 百 (一日) - hundred
+- 百 (一日)
 
 - 貝 (月山金) - shell
   - 貼 (月金 // 卜口)
@@ -1668,6 +1671,7 @@ Triple-unit characters
   - 導 (卜山 // 木戈)
   - 导 (口山 // 木戈)
 - 百 (一日) - hundred
+  - 宿 (十 // 人 // 一日)
 - 白 (竹日) - white, dove
 
 - 羽 (尸一 // 尸戈一) - double unit; F+L // F2+L, feather, wing
@@ -1724,6 +1728,7 @@ Triple-unit characters
   - 支 (十水) - branch
   - 臤 (尸中 // 水)
   - 欢 (水 // 弓人)
+  - 汉 (水水)
 - 夂 (竹水) - walking legs
   - 夏 (一山 // 竹水) - double unit
   - 备 (竹水 // 田)
@@ -1954,7 +1959,7 @@ Triple-unit characters
 - 余 (人 // 一木) - scale
   - 除 (弓中 // 人 // 一木)
 
-- 千 (竹十) - thousand
+- 千 (竹十)
 - 重 (竹十田土)
 
 - 寺 (土木戈) - Buddhist temple, pagoda
@@ -2376,6 +2381,7 @@ Triple-unit characters
   - 转 (大手 // 手弓戈) - double unit
   - 辉 (火山 // 月 // 大手) - triple unit
   - 轮 (大手 // 人心)
+  - 军 (月 // 大手)
 - 东 (大木)
 
 - 牛 (竹手) - cow
@@ -2502,7 +2508,8 @@ Triple-unit characters
 - 重 (竹十田土) - heavy
   - 懂 (心 // 廿 // 竹土)
   - 種 (竹木 // 竹十土)
-- 千 (竹十)
+- 千 (竹十) - thousand
+  - 迁 (卜 // 竹十)
 
 - 黑 (田土 // 火) - double unit, black
   - 點 (田火 // 卜口) - double unit
