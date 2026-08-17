@@ -1,49 +1,49 @@
-# English Grammar notes
+# English Grammar Notes
 
 ## Từ loại
 
 There are eight kinds of words, called **parts of speech**:
 
-1. Nouns
+1. Nouns (danh từ)
 2. Pronouns (đại từ)
-3. Adjectives
-4. Verbs
-5. Adverbs phó từ, trạng từ, trạng ngữ
-6. Prepositions: giới từ
-7. Conjunctions: liên từ
-8. Interjections: thán từ
+3. Adjectives (tính từ)
+4. Verbs (động từ)
+5. Adverbs (phó từ, trạng từ, trạng ngữ)
+6. Prepositions (giới từ)
+7. Conjunctions (liên từ)
+8. Interjections (thán từ)
 
-Besides, there are three special form of the verb called **double parts of speech**: The Gerund, The Participle and The Infinitive (Coi thêm trong phần "Verb").
+Besides, there are three special form of the verb called **double parts of speech**: The `Gerund`, The `Participle` and The `Infinitive` (Coi thêm trong phần "Verb").
 
 Danh từ đơn vị = lượng từ, quantifier
 
-- prefix: tiền tố
-- suffix = postfix meaning the end of the word, hậu tố.
+- `prefix`: tiền tố
+- `suffix` (or `postfix`): hậu tố, the end of the word.
 - ["Postfix" or "suffix"?](https://english.stackexchange.com/questions/81263/postfix-or-suffix)
 
-## Sentence structure
+## Sentence Structure
 
-- clause: mệnh đề
-- phrase: cụm từ
+- Clause: mệnh đề
+- Phrase: cụm từ
 
-**Subordinate Clauses** (dependent clause) không thể đi một mình
+`Subordinate Clauses` (dependent clause) không thể đi một mình.
 
-- subject: chủ ngữ
-- predicate: vị ngữ
-- verb
-- object: tân ngữ, túc từ
-- **complement**: required for the **completeness** of the sentence; đặt sau NOUN, mô tả tình trạng **mới**.
-- **modifier** (thành phần phụ nghĩa): optinal, add extra informations, đặt trước NOUN, mô tả tình trạng **cũ**.
+- Subject (chủ ngữ)
+- Predicate (vị ngữ)
+- Verb
+- Object (tân ngữ, túc từ)
+- Complement: required for the **completeness** of the sentence; đặt sau NOUN, mô tả tình trạng **mới**.
+- Modifier (thành phần phụ nghĩa): optinal, add extra informations, đặt trước NOUN, mô tả tình trạng **cũ**.
 
 According to the formation of the Predicate, sentences may be classified into **FIVE BASIC SENTENCE PATTERNS**:
 
 1. `S + V`; plus optional Verb Modifier
-2. `S + V + SC` (Subject Compliment); the verb is called **linking verb**
+2. `S + V + SC` (Subject Compliment); the verb here is called `linking verb`
 3. `S + V + O` (Object)
 4. `S + V + iO + dO` (Indirect Object + Direct Object)
 5. `S + V + O + OC` (Object Compliment)
-anki
-The main sentence elements are `subject, verb, object and complement`. Besides, other words or groups of words called modifiers are used to tell more about the main elements.  
+
+The main sentence elements are `subject, verb, object and complement`. Besides, other words or groups of words called "modifiers" are used to tell more about the main elements.  
 Every main sentence element may take one or more modifiers:
 
 - Subject Modifier `SM`
@@ -64,7 +64,7 @@ There are 4 kinds of sentences:
   4. Exclamations
 - Classification according to the **structure**:
   1. **Simple Sentences** (câu đơn): only one Independent Clause (IC)
-  2. **Compound Sentences** (câu ghép): two/more clauses joined by **co-ordinating conjunctions** (`FOR AND NOR BUT OR YET SO`). Việc sử dụng comma `,` dường như là không bắt buộc (chỉ để cho câu dễ nhìn hơn thôi).
+  2. **Compound Sentences** (câu ghép): two/more clauses joined by `co-ordinating conjunctions` (`FOR AND NOR BUT OR YET SO`). Việc sử dụng comma `,` dường như là không bắt buộc (chỉ để cho câu dễ nhìn hơn thôi).
   3. Complex Sentences (câu phức): one main clause + ONE/more **SUBORDINATE clause** joined by **Subordinating Conjunctions**.
   4. Mixed Sentences (Compound-complex sentence, Câu phức tổng hợp): TWO/more main clause + ONE/more SUBORDINATE clauses.
 
@@ -144,10 +144,10 @@ Many words can be described as particles, e.g. conjunctions such as `and` and 'b
 
 ## Preposition
 
-The Proposition is a word that connects a noun or noun-equivalent with a Verb, an Adjective or another Noun.
+The Preposition (giới từ) is a word that connects a noun or noun-equivalent with a Verb, an Adjective or another Noun.
 
 - Forms of Prepositions:
-  - **Simple** Perpositions: `on, in, at, for, by, to, with, from...`
+  - Simple Perpositions: `on, in, at, for, by, to, with, from...`
 
 ## Nouns
 
@@ -234,7 +234,7 @@ If anyone stops by while I am at the meeting, please take a message from him or 
 
 - Adjectives have only one job: they describe nouns or pronouns.
 - Adverbs (trạng từ) do three different things. They decribe verbs, adjectives, or other adverbs.
-- Adverbs **do NOT** affect verb agreement
+- Adverbs **do NOT** affect verb agreement.
 
 - Examples of Adverb:
   - He `always` goes home late.
@@ -252,8 +252,10 @@ Generally when a word ends in `-ly`, it is an adverb. However, there are a few w
 
 A **prepositional phrase** (cụm giới từ) is a group of words beginning with a preposition (like "in," "on," or "at") and includes its object and any modifiers, forming a single unit that functions as either an adjective or an adverb to add detail or clarify relationships within a sentence.
 
-- Use `year-old` (hyphenated) when the phrase acts as a **compound adjective** describing a noun (e.g., `a 5-year-old child`) or as a noun itself (e.g., "The 5-year-old ran into the room").
-- Use `year old`` (no hyphens) when simply stating a person's age after a noun, which is usually the verb "is" (e.g.,`The child is 5 years old`).
+### Compound Adjective
+
+- Use **year-old** (hyphenated) when the phrase acts as a `compound adjective` describing a noun (e.g., `a 5-year-old child`) or as a noun itself (e.g., "The 5-year-old ran into the room").
+- Use **year old** (no hyphens) when simply stating a person's age after a noun, which is usually the verb "is" (e.g.,The child is 5 years old).
 
 Compound adjectives & nouns:
 
@@ -365,6 +367,13 @@ Phía sau modal verb dùng **base form** of the verb. Ngoại trừ conditional 
 The modal verb `will` expresses certain future actions, predictions, promises, and offers, while `would` is used for hypothetical situations (Second Conditional), polite requests, past habits, and as the past tense of `will` in reported speech. The key is context: `will` is for real future events, and `would` deals with the unreal, the polite, or the past perspective
 
 > Auxiliary verbs and modal verbs are both types of helping verbs, but they differ in function and characteristics. Modal verbs express modality (possibility, ability, necessity, etc.) and are NOT conjugated, while auxiliary verbs help form tenses, moods, and voices of main verbs and are conjugated.
+
+---
+
+- "They succeed." is present simple. `Succeed` is the base form of the verb.
+- Present Continuous: "They are succeeding right now."
+- Past simple: "They succeeded last year."
+- Present perfect: "They have succeeded in their goal."
 
 ### Agreement of Subject and Verb
 
@@ -557,6 +566,8 @@ The `FUTURE PERFECT` is used to expres:
 - The `FUTURE PERFECT CONTINUOUS` is used to express an action going on before another future action or point:
   - I'**ll have been studying** English for years before I go abroad.
   - He **will have been studying** the case before he makes up his mind.
+
+Passive voice (câu bị động)
 
 ### Successive & Simultaneous Actions
 

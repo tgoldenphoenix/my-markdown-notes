@@ -273,7 +273,11 @@ The [harbour porpoise](https://en.wikipedia.org/wiki/Harbour_porpoise) (Phocoena
 
 Plankton (sinh vật phù du) are the diverse collection of organisms that drift in water (or air) but are unable to actively propel themselves against currents (or wind). The individual organisms constituting plankton are called plankters. In the ocean, they provide a crucial source of food to many small and large aquatic organisms, such as bivalves, fish, and baleen whales.
 
-## Other terms
+## Tôm
+
+spiny lobsters: Họ Tôm hùm không càng
+
+## Other Terms
 
 - nocturnal: hoạt động về đêm
 - Diurnality (adj: diurnal, hoạt động ban ngày) is a form of plant and animal behavior characterized by activity during daytime, with a period of sleeping or other inactivity at night.

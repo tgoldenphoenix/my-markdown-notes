@@ -568,7 +568,8 @@ ConsumerKey & ConsumerSecret là đi với cái APP (trong `config.properties`)
 
 Project mình chỉ dùng những entity sau: `LINE_ITEM`, `PROMOTED_TWEET`
 
-The `placements` array can include the following values: `ALL_ON_TWITTER`, `SPOTLIGHT`, and `TREND`. It indicates which placements should be requested for the given entity ID.
+The `placements` array can include the following values: `ALL_ON_TWITTER`, `SPOTLIGHT`, and `TREND`. It indicates which placements should be requested for the given entity ID.  
+Placement determines whether metrics are pulled for ads that served on or off of X. Only a single placement value can be specified per request
 
 Segmented campaign metrics are only available via the asynchronous analytics endpoints. Campaign metrics can be broken out by location, gender, interest, keyword, and more. For a full list of options, see the Metrics and Segmentation page. In order to request segmented metrics, use the `segmentation_type` request parameter when creating the job.
 
@@ -577,6 +578,8 @@ Segmentation Type đang support: `AGE`, `GENDER`, `METROS`, `PLATFORMS`
 Method `GetReportTwitterAPIService.sendRequestCreateReportJobForStandardReport()` chứa cấu trúc url post tạo job async.
 
 metric group `MEDIA` không còn support
+
+End time is **exclusive**. For example, a request with start_time=2026-01-01T00:00:00Z and end_time=2026-01-02T00:00:00Z will return a single day’s worth of analytics metrics (not two) as this time range covers only a 24 hour period.
 
 ---
 
@@ -627,10 +630,22 @@ import từ `adrepo-development/etl`
 Trong `.run()` của batch chính có export status lên S3 `adrepo-development/master/get_advertiser_master_status/Freakout/` (vậy batch này update lên 2 chỗ trên S3)
 
 ```java
-            batchGetAdvertiserListFreakOut.exportStartedStateFileToS3();
-            batchGetAdvertiserListFreakOut.run();
-            batchGetAdvertiserListFreakOut.exportCompletedStateFileToS3();
+batchGetAdvertiserListFreakOut.exportStartedStateFileToS3();
+batchGetAdvertiserListFreakOut.run();
+batchGetAdvertiserListFreakOut.exportCompletedStateFileToS3();
 ```
+
+### Reset status = 0 for report/master queues
+
+`BatchInitializationGetReportQueueError` reset trạng thái của các report queue đang bị lỗi ở RDS ETL (cập nhật status = 8 -> status = 0) để thực hiện retry.
+
+Chạy mỗi giờ 1 lần vào phút 0 `0 * * * * java`
+
+tạo trước 0h là sẽ không retry (reset)
+
+---
+
+`UpdateReportQueueStatus` Cập nhật trạng thái cho các report queue ở RDS Adrepo/ETL. Hiện tại đang sử dụng để reset trạng thái queues (cập nhật status = 1 →「statusTo」) khi kiểm tra hoạt động của các process.
 
 ### Other Batches
 

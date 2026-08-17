@@ -1,6 +1,6 @@
-# Human descriptive terms
+# Human Descriptive terms
 
-[stride](https://www.oxfordlearnersdictionaries.com/definition/english/stride_1?q=stride): sải bước dài  
+`stride`: sải bước dài  
 strode, striding
 
 ## Sound & Speaking

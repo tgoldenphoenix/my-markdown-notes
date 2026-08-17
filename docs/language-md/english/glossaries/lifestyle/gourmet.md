@@ -1,4 +1,4 @@
-# Gourmet terms
+# Gourmet Terms
 
 A [casserole](https://en.wikipedia.org/wiki/Casserole) (French: diminutive of casse, from Provençal cassa, meaning 'pan') is a kind of large, deep pan or bowl used for cooking a variety of dishes in the oven; it is also a category of foods cooked in such a vessel.
 
