@@ -650,13 +650,15 @@ In the octal case, the first octal digit of the specification is for the owner, 
 - `+ - =` (add, remove, set exact)
 - `r w x` (read, write, execute)
 
-The hard part about using the mnemonic syntax is remembering whether o stands for “owner” or “other”; “other” is correct. Just remember u and g by anal-ogy to UID and GID; only one possibility is left.
+The hard part about using the mnemonic syntax is remembering whether `o` stands for “owner” or “other”; “other” is correct. Just remember `u` and `g` by analogy to UID and GID; only one possibility is left.
 
 Example:
 
 - `chmod ug+rw test.txt` add the read and write permissions to a file named `test.txt` for user and group
+- `chmod u+x test.sh` adds execute (`+x`) permission for the User (`u`) AND the Group (`g`).
+- `chmod +x test.sh` adds execute (`+x`) permission for All (a) categories (User, Group, and Others).
 
-This example removes the ability of others (o) to read the file and adds write permissions for the group (g).
+This example removes the ability of others (`o`) to read the file and adds write permissions for the group (`g`).
 
 ```bash
 sudo chmod o-r /bin/zcat
@@ -683,7 +685,7 @@ For a directory (file thì tương tự):
 
 Example:
 
-- `-rw-r-x---` == $(4+2)(4+1)(0)$ == `chmod 650 test.txt`
+- `-rw-r-x---` = $(4+2)(4+1)(0)$ = `chmod 650 test.txt`
 - `chmod 711 myprog` == `rwx--x--x` gives all permissions to the owner and execute-only permission to everyone else.
 
 ## Change File Ownership

@@ -323,17 +323,16 @@ The `-n` in the echo command suppresses the usual newline, but you could also ha
 
 ## Command-line Arguments
 
-Command-line arguments to a script become variables whose names are numbers. `$1` is the first command-line argument, `$2` is the second, and so on. `$0` is the name by which the script was invoked. That could be something strange such as `../bin/example.sh`, so it’s not a fixed value.
+Command-line arguments to a script become variables whose names are numbers. `$1` is the first command-line argument, `$2` is the second, and so on.
+
+`$0` is the name by which the script was invoked. That could be something strange such as `../bin/example.sh`, so it’s not a fixed value. It can be used to create self delete the script file if you need to or just get the name of the script.  
+If you run `zsh ./script.sh`, then `$0` will be `./script.sh`.
 
 The variable `$#` contains **the number** of command-line arguments that were supplied, and the variable `$*` contains all the arguments at once. Neither of these variables includes or counts `$0`.
 
 Không có khai báo bao nhiêu argument & types. Cứ dùng mấy cái ở trên để check.
 
-`$@` reads all inputs.
-
-## Read user input
-
-k
+`$@` reads all inputs (reference all arguments).
 
 ## Exit codes
 
@@ -516,29 +515,35 @@ echo ${var}bar
 # foobar
 ```
 
----
+### Variable Scope
+
+Variables are global within a script, but functions can create their own lo cal vari-ables with a `local` declaration.
+
+## Bash Array
+
+keep in mind that you need to use curly braces and double quotes around array expansions.
+
+- In `Bash`, array are zero-indexed. The first element is of index zero.
+- In `Zsh`, arrays are 1-indexed, meaning the first element is at position 1, not 0.
 
 Arrays (`$var` vs. `$var[@]` vs. `${var[@]}`)
 
-> Referencing an array variable without a subscript is equivalent to referencing the array with a subscript of 0.
-
-In other words, if you don't supply an index with `[]`, you get the first element of the array:
+Referencing an array variable without a subscript is equivalent to referencing the array with an index of `0`. In other words, if you don't supply an index with `[]`, you get the first element of the array:
 
 ```bash
 foo=(a b c)
 echo $foo
 # a
-```
 
-Which is exactly the same as
-
-```bash
+# Which is exactly the same as
 foo=(a b c)
 echo ${foo}
 # a
 ```
 
-To get all the elements of an array, you need to use `@`as the index, e.g. ${foo[@]}. The braces are required with arrays because without them, the shell would expand the $foo part first, giving the first element of the array followed by a literal `[@]`:
+---
+
+To get all the elements of an array, you need to use `@` as the index, e.g. `${foo[@]}`. The braces are required with arrays because without them, the shell would expand the `$foo` part first, giving the first element of the array followed by a literal `[@]`:
 
 ```bash
 foo=(a b c)
@@ -546,18 +551,6 @@ echo ${foo[@]}
 # a b c
 echo $foo[@]
 # a[@]
-```
-
-### Variable Scope
-
-Variables are global within a script, but functions can create their own lo cal vari-ables with a `local` declaration.
-
-## Array
-
-```bash
-index_array=(1 2 3 4 5 6)
-echo ${index_array[0]}
-# 1
 ```
 
 ```bash
@@ -579,6 +572,10 @@ done
 9
 0
 ```
+
+### Array Slicing
+
+kkk
 
 ## Alias
 
@@ -726,6 +723,8 @@ When you install Git Bash on Windows (usually at `C:\Program Files\Git`). Inside
 - `C:\Program Files\Git\usr\bin\bash.exe`
 
 When you launch Git Bash and run your script, Git Bash sets `C:\Program Files\Git\` as the virtual root (`/`).
+
+When you type `./script.sh` (rather than `sh ./script.sh`), you are not choosing between `bash` or sh yourself. Instead, the system uses the shebang line written at the very top inside the script file to decide.
 
 ## Options
 

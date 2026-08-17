@@ -55,6 +55,10 @@ k
 
 華夏蠻貊岡(罔)不率俾XXX水徯我后后来其蘇
 
+### Chùa ngọc hoàng
+
+kkk
+
 ### Bàn thờ thần tài
 
 聚寶堂 "Tụ Bảo Đường"
