@@ -2,9 +2,9 @@
 
 ## Angiospermae Clade
 
-[Flowering plants](https://en.wikipedia.org/wiki/Flowering_plant) are plants that bear flowers and fruits, and form the **clade Angiospermae**, commonly called **angiosperms**. They include all forbs (flowering plants without a woody stem), grasses and grass-like plants, a vast majority of broad-leaved trees, shrubs and vines, and most aquatic plants.
+`Flowering plants` are plants that bear flowers and fruits, and form the clade `Angiospermae`, commonly called `angiosperms`. They include all forbs (flowering plants without a woody stem), grasses and grass-like plants, a vast majority of broad-leaved trees, shrubs and vines, and most aquatic plants.
 
-The term **angiosperm** is derived from the Greek words ἀγγεῖον / angeion ('container, vessel') and σπέρμα / sperma ('seed'), meaning that the seeds are enclosed within a fruit. They are by far the _most diverse_ group of land plants.
+The term `angiosperm` is derived from the Greek words ἀγγεῖον / angeion ('container, vessel') and σπέρμα / sperma ('seed'), meaning that the seeds are enclosed within a fruit. They are by far the _most diverse_ group of land plants.
 
 [Rosaceae](https://en.wikipedia.org/wiki/Rosaceae) the rose family (họ hoa hồng), is a family of flowering plants that includes 4,828 known species in 91 genera.
 
@@ -135,7 +135,7 @@ Rubiaceae (họ Thiến Thảo, họ Cà Phê) is a family of flowering plants, 
 
 ## Corn
 
-[corn kernel](https://en.wikipedia.org/wiki/Corn_kernel)
+`Corn kernels` (hạt ngô) are the fruits of maize (also known as corn). Maize is a grain, and the kernels are used in cooking as a vegetable or a source of starch. A kernel comprises endosperm, germ, pericarp, and tip cap.
 
 stem
 
@@ -145,13 +145,13 @@ cornstalk: the stem of a corn plant, thân cây.
 
 [corncob](https://en.wikipedia.org/wiki/Corncob): cùi bắp; [Corn on the cob](https://en.wikipedia.org/wiki/Corn_on_the_cob)
 
-[Ear](https://en.wikipedia.org/wiki/Ear_(botany)) - ear of corn (tai - bắp ngô). Nhiều người tắc mắc vì sao bắp ngô lại được gọi là "ear of corn" vì hình dạng của bắp ngô trông không giống một cái tai. Thực ra, từ "ear" ở đây có gốc tiếng Anh cổ, chỉ phần ra bông kết hạt của các cây ngũ cốc, khác với từ "ear" tai.
+`Ear` - ear of corn (tai - bắp ngô). Nhiều người tắc mắc vì sao bắp ngô lại được gọi là "ear of corn" vì hình dạng của bắp ngô trông không giống một cái tai. Thực ra, từ "ear" ở đây có gốc tiếng Anh cổ, chỉ phần ra bông kết hạt của các cây ngũ cốc, khác với từ "ear" tai.
 
 [How Many Ears Of Corn Grow On One Stalk?](https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=1368&context=extension_histall)
 
 ## Other terms
 
-[rush](https://en.wikipedia.org/wiki/Juncus): cây bấc; a tall plant like grass that grows near water. Its long thin stems can be dried and used for making baskets, the seats of chairs, etc.
+`rush`: cây bấc; a tall plant like grass that grows near water. Its long thin stems can be dried and used for making baskets, the seats of chairs, etc.
 
 [foliage](https://en.wikipedia.org/wiki/Leaf) = leaf
 

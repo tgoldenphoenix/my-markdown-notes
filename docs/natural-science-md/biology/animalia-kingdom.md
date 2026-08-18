@@ -9,7 +9,7 @@ Coi camera giấu trong bird nest [here](https://www.youtube.com/watch?v=E9bHJM5
 **Ungulates** (nhánh thú móng guốc) are members of the diverse clade **Euungulata** ("true ungulates"), which primarily consists of large mammals with hooves.  
 Latin: unguis (nail)
 
-**Bovines** (subfamily Bovinae, phân họ trâu bò) comprise a diverse group of 10 genera of medium to large-sized ungulates, including cattle, bison, African buffalo, water buffalos, and the four-horned and spiral-horned antelopes.  
+`Bovines` (subfamily Bovinae, phân họ trâu bò) comprise a diverse group of 10 genera of medium to large-sized ungulates, including cattle, bison, African buffalo, water buffalos, and the four-horned and spiral-horned antelopes.  
 A **bison** (pl.: bison, bò rừng bison) is a large bovine in the genus Bison (Greek: "wild ox" (bison)) within the tribe Bovini. Two extant and numerous extinct species are recognised.
 
 ### Artiodactyla Order
@@ -20,16 +20,14 @@ The **yak** (bò tây tạng), also known as the Tartary ox, grunting ox, or hai
 
 **Hippopotamidae** (Họ Hà mã) is a family of stout, naked-skinned, and semiaquatic artiodactyl mammals, possessing three-chambered stomachs and walking on four toes on each foot. While they resemble pigs physiologically, their closest living relatives are the cetaceans (the whale). They are formally referred to as hippopotamids.
 
-The **hippopotamus** (hà mã, river horse, Hippopotamus amphibius) (pl.: hippopotamuses; also shortened to hippo (pl.: hippos) is a large semiaquatic mammal native to sub-Saharan Africa.  
+The `hippopotamus` (hà mã, river horse, Hippopotamus amphibius) (pl.: hippopotamuses; also shortened to hippo (pl.: hippos) is a large semiaquatic mammal native to sub-Saharan Africa.  
 Its name comes from the Ancient Greek for "river horse".
-
-anki
 
 Genus Alces
 
-[Alces](https://en.wikipedia.org/wiki/Alces) (chi nai sừng tấm) is a genus of artiodactyl mammals, that includes the largest species of the deer family. There are two species in genus: the moose (Alces alces) and the fossil Alces gallicus (also known as the Gallic moose), that existed in the Pleistocene about 2 million years ago.
+`Alces` (chi nai sừng tấm) is a genus of artiodactyl mammals, that includes the largest species of the deer family. There are two species in genus: the moose (Alces alces) and the fossil Alces gallicus (also known as the Gallic moose), that existed in the Pleistocene about 2 million years ago.
 
-[Moose](https://en.wikipedia.org/wiki/Moose) or Elk (nai sừng tấm)
+`Moose` or Elk (nai sừng tấm)
 
 ## Osteichthyes superclass
 
@@ -59,9 +57,9 @@ Gastropods (/ˈɡæstrəpɒdz/), commonly known as slugs and snails, belong to a
 
 ## Crustacean
 
-[Crustaceans](https://en.wikipedia.org/wiki/Crustacean) (**động vật giáp xác**, from Latin meaning: "those with shells" or "crusted ones") are invertebrate animals that constitute one group of arthropods that are a part of the **subphylum Crustacea**, a large, diverse group of mainly aquatic arthropods including decapods (shrimps, prawns, crabs, lobsters and crayfish), seed shrimp, branchiopods, fish lice, krill, remipedes, isopods, barnacles, copepods, opossum shrimps, amphipods and mantis shrimp.
+`Crustaceans` (động vật giáp xác, from Latin word "crustacea" meaning: "those with shells" or "crusted ones") are mandibulate arthropods that are traditionally a part of the paraphyletic subphylum Crustacea.
 
-[Barnacles](https://en.wikipedia.org/wiki/Barnacle) (con hà biển) are arthropods of the subclass Cirripedia in the subphylum Crustacea. They are related to crabs and lobsters, with similar nauplius larvae. Barnacles are exclusively marine invertebrates; many species live in shallow and tidal waters. Some 2,100 species have been described.
+`Barnacles` (con hà biển) are arthropods of the subclass Cirripedia in the subphylum Crustacea. They are related to crabs and lobsters, with similar nauplius larvae. Barnacles are exclusively marine invertebrates; many species live in shallow and tidal waters. Some 2,100 species have been described.
 
 [whale barnacle](https://en.wikipedia.org/wiki/Whale_barnacle)
 
@@ -269,13 +267,17 @@ III. the DUODECIMO WHALE
 [Porpoises](https://en.wikipedia.org/wiki/Porpoise) (**Họ Cá heo chuột**) are small dolphin-like cetaceans classified under the **family Phocoenidae**. Although similar in appearance to dolphins, they are more closely related to narwhals and belugas than to the true dolphins.\
 tortoise, turquoise
 
-The [harbour porpoise](https://en.wikipedia.org/wiki/Harbour_porpoise) (Phocoena phocoena) is one of eight extant species of porpoise. It is one of the smallest species of cetacean. As its name implies, it stays close to coastal areas or river estuaries, and as such, is the most familiar porpoise to whale watchers.
+The `harbour porpoise` (Phocoena phocoena) is one of eight extant species of porpoise. It is one of the smallest species of cetacean. As its name implies, it stays close to coastal areas or river estuaries, and as such, is the most familiar porpoise to whale watchers.
 
-Plankton (sinh vật phù du) are the diverse collection of organisms that drift in water (or air) but are unable to actively propel themselves against currents (or wind). The individual organisms constituting plankton are called plankters. In the ocean, they provide a crucial source of food to many small and large aquatic organisms, such as bivalves, fish, and baleen whales.
+`Plankton` (sinh vật phù du) are the diverse collection of organisms that drift in water (or air) but are unable to actively propel themselves against currents (or wind). The individual organisms constituting plankton are called plankters. In the ocean, they provide a crucial source of food to many small and large aquatic organisms, such as bivalves, fish, and baleen whales.
 
-## Tôm
+## Malacostraca Class
 
-spiny lobsters: Họ Tôm hùm không càng
+`Malacostraca` (Lớp Giáp mềm) is the second largest of the six classes of pancrustaceans after insects, containing about 40,000 living species, divided among 16 orders.
+
+spiny lobsters (rock lobsters): họ Tôm hùm không càng
+
+A `decapod` is a crustacean in the large order of `Decapoda` (bộ giáp xác mười chân, from Ancient Greek δέκά déka 'ten' + πούς poús 'foot') within the class Malacostraca, including crabs, lobsters, crayfish, shrimp, and prawns.
 
 ## Other Terms
 

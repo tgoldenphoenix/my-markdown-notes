@@ -553,6 +553,8 @@ Yes, you know what’s really good, coconut milk. Have you ever tried that? => H
 
 ## Where are you from?
 
+I grew up in a small town.
+
 Where are you from? => I was born in …, but I’ve been living here for a while now.
 Are you from around here? => Yes, I was born here and I’ve lived here all my life.
 Are you local? => I’m originally from...
@@ -568,7 +570,7 @@ What’s it like? | What’s your hometown like?=> It’s pretty, but there are 
 Kind of. I was born here, but when I was five my parents moved to Mexico, and I grew up there. I moved back here after I graduated, but I haven’t spent that much time here. => Wow, Mexico! Do you go back often?
 Yeah, once or twice a year. It’s quite far, but I still have some family members and a lot of friends there.
 
-## free time and hobbies
+## Free time and hobbies
 
 Where are you from? => I was born in …, but I’ve been living here for a while now.
 
@@ -621,9 +623,11 @@ Yesterday, I bought Katie a flower and she gave me a kiss on the cheek.
 
 They don't look like this anymore.
 
-## Talk about Yourself
+## Plans, Future
 
-I grew up in a small town.
+I'm gonna attend my friend's wedding ceremony next week.
+
+## Your thoughts, oppinions
 
 If I was to move to this town, I wouldn't want to live on a busy street. I wouldn't want to live on a street where there's lots of trucks and loud cars and noises.
 
