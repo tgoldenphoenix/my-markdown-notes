@@ -1,4 +1,4 @@
-# General speaking
+# General Speaking
 
 I guess this isn't as quiet a street as I thought it was. And I guess sometimes big trucks do go by.
 
@@ -551,6 +551,16 @@ If you had let me bless the well, this wouldn't have happened.
 
 Yes, you know what’s really good, coconut milk. Have you ever tried that? => Haven’t tried it, not. => Really, really good. => Okay
 
+## Daily Routines
+
+I get up at around five thirty AM. Right after getting out of bed, I take a quick shower. Then, I spend about half an hour studying math. After my study session, I grab my key, and drive to work.
+
+Compared to now, my morning routine was quite different when I was younger. Back then, I used to wake up much later since I didn't have to go to work. These days, however, I try to get up earlier because I've set a personal goal to study math, which requires dedicated time before my workday starts.
+
+My morning routine is the same on both weekdays and weekends. Because I’ve set a goal to learn math, I try to stay consistent every single day so I can reach my goal as quickly as possible.
+
+On weekdays, I often skip breakfast altogether just to carve out time for studying math. I only eat breakfast on weekends when I don't have to rush off to work. That way, I can have a proper meal instead of grabbing unhealthy street food on the go, which I feel isn't worth eating anyway.
+
 ## Where are you from?
 
 I grew up in a small town.
@@ -585,29 +595,14 @@ It’s more natural to use the name of the city: What’s Hangzhou like?
 - I’m just having a quiet weekend. => That’s nice sometimes.
 - Actually, I prefer to get outdoors. I do a lot of swimming, but it’s too cold at the moment, so I’m going to be boring and catch up on some housework.
 
-## Staying healthy, advice
+**Where do you live?**  
+Oh, I've just moved to London. I've actually and just move to an area called Wansworth. It's really nice. It's close to the river.
+
+## Giving Advice
 
 You should **see about** getting your hair cut.
 
 ## Others Topics
-
-Dad, why is the American government the best government?  
-Because of our endless appeals system.  
-Joe, you're not writing down what I just said are you? Mm-hmm.  
-Joey, stop for a second. What is the subject of your essay?  
-Why is American government the best government in the world.  
-Your teacher crafted that question?  
-Yeah. Why?  
-Well... I'll look past the obvious problems in syntax for a moment, and I'll focus more on the core of the question.  
-I mean, "A," does America have the best government in the world?  
-And "B," what constitutes a "best government"?  
-Is it crime, is it poverty, literacy?  
-Hmm?  
-And America- definitely not best.  
-Perhaps not even better than most.  
-We do have a very entertaining government...  
-Dad.  
-I'm sorry.
 
 Are you familiar with the term "B.S."?  
 Bullshit.  
@@ -648,8 +643,23 @@ Well, I love anytime when the sun starts to come out. So around spring or early 
 **What do you do when it gets too hot in the summer?**
 I tend to go into any kind of buildings with air conditioning, and I have the fan on every night when it's really hot. So, yeah, when it gets really hot in the summer, I really need a lot of fans and kind of just anything I can hold with me when I go out as well.
 
-**Where do you live?**  
-Oh, I've just moved to London. I've actually and just move to an area called Wansworth. It's really nice. It's close to the river.
+Dad, why is the American government the best government?  
+Because of our endless appeals system.  
+Joe, you're not writing down what I just said are you? Mm-hmm.  
+Joey, stop for a second. What is the subject of your essay?  
+Why is American government the best government in the world.  
+Your teacher crafted that question?  
+Yeah. Why?  
+Well... I'll look past the obvious problems in syntax for a moment, and I'll focus more on the core of the question.  
+I mean, "A," does America have the best government in the world?  
+And "B," what constitutes a "best government"?  
+Is it crime, is it poverty, literacy?  
+Hmm?  
+And America- definitely not best.  
+Perhaps not even better than most.  
+We do have a very entertaining government...  
+Dad.  
+I'm sorry.
 
 ## Injuries, health Care, medicine
 

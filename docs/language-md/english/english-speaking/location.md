@@ -1,4 +1,4 @@
-# Outdoor topics
+# Outdoor Topics
 
 The Sunday ranch is what you're looking for.
 There's a sheep trail that takes you there.
@@ -70,7 +70,7 @@ I really wanted to visit France to see the Eiffel tower.
 ●There is no Wi-Fi available.
 Is wifi available here?
 
-## Describe the food
+## Describing the Food
 
 There was a decent selection of both hot and cold food including what appears to be breakfast with sausages, bacon and eggs.
 

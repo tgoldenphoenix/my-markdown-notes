@@ -47,6 +47,10 @@ Ví dụ 1
 
 commit là phải có test và phải sài được. Không commit những thứ mà mình chưa dùng đến.
 
+## Office
+
+chỗ ngồi: <https://docs.google.com/spreadsheets/d/1yvuO-rSCk6Nkhr3GG8g3zJCsikVLkfhDJqV1yut34OI/edit?pli=1&gid=1753145395#gid=1753145395>
+
 ## Họp kỹ thuật tuần
 
 Họp kỹ thuật thứ 5 xen kẽ (2 tuần 1 lần) vào lúc 4h chiều.
@@ -176,6 +180,8 @@ Không có IP tĩnh
 
 1. Máy/công việc quan trọng cần thiết thì dùng mạng VNPT
 2. ĐT cá nhân, công việc không quan trong thì xài mạng FPT
+
+password: betonamu 24, 25
 
 ### Cannot connect to Bitbucket adrepo
 

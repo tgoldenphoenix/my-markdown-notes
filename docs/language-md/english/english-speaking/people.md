@@ -1,6 +1,6 @@
 # Describe Things
 
-## Describe peoples
+## Describe Peoples
 
 [TEMPLATES](https://www.youtube.com/watch?v=Hrk-cvJyAuo&list=PLdz6EbLJcjJ86-Q7_PtjFy9hxEs7h_8vl&index=2)
 

@@ -2,7 +2,13 @@
 
 ## Current Task
 
-kkk
+Task to do
+
+- đọc batch import, export, viết note lại
+- đọc thông tin vận hành trong wiki (daily checking)
+- play around with the database, write sql to select, insert, delete, etc...
+- cái mapping trong report twitter
+- turn off nginx server and restart (when deploy gặp sự cố)
 
 ## Questions
 
@@ -286,6 +292,8 @@ lấy not process queue từ trong table thì `dsp_type` phải đúng
 Spec & Versions:
 
 dùng junit 4 (cuốn sách bản cũ second edition)
+
+AesUtilsTest có chứa key decrypt
 
 ### Setup Web API
 
