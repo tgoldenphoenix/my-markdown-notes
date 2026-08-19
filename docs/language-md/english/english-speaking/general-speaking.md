@@ -531,7 +531,7 @@ I have to go and deal with this now. You wait here for me.
 
 I'll be back. I'll be back in a minute.
 
-Get me a STH | Get me a hammer!
+Get me a {some object} | Get me a hammer!
 Here you go.
 
 That's enough now.
@@ -580,13 +580,13 @@ What’s it like? | What’s your hometown like?=> It’s pretty, but there are 
 Kind of. I was born here, but when I was five my parents moved to Mexico, and I grew up there. I moved back here after I graduated, but I haven’t spent that much time here. => Wow, Mexico! Do you go back often?
 Yeah, once or twice a year. It’s quite far, but I still have some family members and a lot of friends there.
 
-## Free time and hobbies
+## Free time and Hobbies
 
-Where are you from? => I was born in …, but I’ve been living here for a while now.
+Where are you from? => I was born in …, but I’ve been living here in Saigon for a while now.
 
 Are you from around here? => Yes, I was born here and I’ve lived here all my life.
 
-Are you local? => I’m originally from..
+Are you local? => I originally come from the countryside, but I've been living here in Saigon for a while now.
 
 When you find out where someone is from, you can ask a follow-up question: What’s your hometown like?  
 It’s more natural to use the name of the city: What’s Hangzhou like?
@@ -660,6 +660,9 @@ Perhaps not even better than most.
 We do have a very entertaining government...  
 Dad.  
 I'm sorry.
+
+Do you like watching sport programs on TV?  
+I wouldn't consider myself a huge sports fan, but I occasionally watch big games. For instance, when Vietnam plays against Thailand in the SEA games, I'll definitely watch it.
 
 ## Injuries, health Care, medicine
 

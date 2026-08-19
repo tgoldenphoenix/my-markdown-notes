@@ -83,19 +83,26 @@ There are 4 kinds of sentences:
 
 There are three main types of conjunctions:
 
-1. **Coordinating conjunctions** (liên từ kết hợp), often represented by the acronym **FANBOYS** (`for, and, nor, but, or, yet, so`), connect words, phrases, or independent clauses of **equal grammatical** importance in a sentence.
-2. **Subordinating conjunctions** (liên từ phụ thuộc), including `although, because, that, while, after, if, when, whether`, connect a **dependent clause** to the independent clause of a sentence, indicating a specific logical relationship between the two.
-3. **Correlative Conjunctions** (liên từ tương quan): These conjunctions work **in pairs** to connect grammatically equivalent parts of a sentence. Example: `Either/or, neither/nor, both/and`.
+1. `Coordinating conjunctions` (liên từ kết hợp), often represented by the acronym **FANBOYS** (`for, and, nor, but, or, yet, so`), connect words, phrases, or independent clauses of **equal grammatical** importance in a sentence.
+2. `Subordinating conjunctions` (liên từ phụ thuộc), including `although, because, that, while, after, if, when, whether`, connect a **dependent clause** to the independent clause of a sentence, indicating a specific logical relationship between the two.
+3. `Correlative Conjunctions` (liên từ tương quan): These conjunctions work **in pairs** to connect grammatically equivalent parts of a sentence. Example: `Either/or, neither/nor, both/and`.
 
-You can have either pasta or rice.
+Example: You can have either pasta or rice.
 
-**Sentences with two clauses**: When you have two clauses in an English sentence, you must connect the two clauses correctly. One way to connect two clauses is to use `and, but, or, so or yet` (**coordinate connectors**) between the clauses. Có dùng commma.
+**Sentences with two clauses**: When you have two clauses in an English sentence, you **must** connect the two clauses correctly. One way to connect two clauses is to use `and, but, or, so or yet` (**coordinate connectors**) between the clauses. Có dùng commma.
 
-`and yet but or so for nor`
+- Example:
+- He is happy, for he passed the test.
+- She likes milk, and he likes tea.
+- He does not smoke, nor does he drink.
+- The car is old, but it runs well.
+- You can walk, or you can take a bus.
+- She was tired, yet she kept working.
+- It was raining, so we stayed home.
 
-### conjunctive adverb (trạng từ liên kết)
+### Conjunctive Adverb (trạng từ liên kết)
 
-A **conjunctive adverb** is an adverb (e.g., `alternatively, moreover`) or adverb phrase (e.g., as a result, on the other hand) that connects the ideas in different **independent** clauses or sentences.
+A `conjunctive adverb` is an adverb (e.g., `alternatively, moreover`) or adverb phrase (e.g., `as a result, on the other hand`) that connects the ideas in different **independent** clauses or sentences.
 
 Unlike coordinating conjunctions (for, and, nor, but, or, yet, and so, known as the FANBOYS), conjunctive adverbs cannot grammatically link clauses. Instead, their main purpose is transitioning and describing the relationship between clauses; they are used more to facilitate communication than for grammar.
 
@@ -151,9 +158,10 @@ The Preposition (giới từ) is a word that connects a noun or noun-equivalent 
 
 ## Nouns
 
-- man (singular) > men (plural) => "a" = a man (singular); human
-- woman (singular) > women (plural) => "e" = **E**very man (plural)
-- foot / feet
+- man (singular) > men (plural) => Remember "a" for "a man" (singular) and "e" for **E**very man (plural); human
+  - woman (singular) > women (plural)
+  - human (singular) > humans
+- foot (một bên bàn chân) / feet (cả hai bàn chân)
 - tooth / teeth
 - fish / fish (same as singular)
 
@@ -164,15 +172,15 @@ uncle - aunt; nephew - niece
 - For singular nouns: each, every, single, one, a
 - For plural nouns: both, two, many, several, various
 
-Keywords for countable and un-countable nouns:
+- Keywords for countable and un-countable nouns:
+  - For countable nouns: many, number, few, fewer
+  - For un-countable nouns: much, amount, little, less
 
-- For countable nouns: many, number, few, fewer
-- For un-countable nouns: much, amount, little, less
+- There are three **articles**:
+  - `the` is the **definite article**.
+  - `a/an` are the in-definite articles
 
-There are three **articles**:
-
-- `the` is the **definite article**.
-- `a/an` are the in-definite articles
+---
 
 Plurals of Compound Nouns:
 
@@ -201,12 +209,11 @@ Gerund & Infinitie có thể được dùng như noun:
 
 ### Noun Clauses
 
-Noun clause connectors:
-
-- what, when, where, why, how
-- whatever, whenever
-- whether, if
-- that
+- Noun clause connectors:
+  - what, when, where, why, how
+  - whatever, whenever
+  - whether, if
+  - that
 
 - Chữ `wherever` có `e` ở cuối nên chỉ cần thêm `ver` thay vì thêm `ever` sẽ thành `whereever` là sai  
 - what => what+ever
@@ -306,7 +313,7 @@ Noun clauses **KHÔNG** dùng comma.
   - I went to the office `where` my father works.
   - You can visit me on Sundays when I am usually free.
 
-### Adverb clause
+### Adverb Clause
 
 - Adverb time connector: after, before, since, while, as soon as, once, when
 - Adverb cause connector: as, now that, because, since
@@ -316,7 +323,7 @@ Noun clauses **KHÔNG** dùng comma.
 - Place: where, wherever
 - Purpose, result, comparision
 
-Adverb clause connectors (also called subordinating conjunctions) cannot be the subject of the clause.
+`Adverb clause connectors` (also called `subordinating conjunctions`) cannot be the subject of the clause.
 
 When the connector comes at **the beginning** of the sentence, a comma `,` is required in the middle of the sentence.  
 Noun clauses & adjective clauses **KHÔNG** dùng comma.

@@ -909,6 +909,27 @@ $ git commit -m "the commit message for all of them"
 
 Khi rever nên chọn commit hash là cái mà sẽ được merge into main, nếu chọn cái merge commit, do nó có 2 parents nên nó sẽ bắt mình thêm option nhứt đầu.
 
+---
+
+Trong dự án adrepo, task đã closed nếu code sai thì không được edit commit rồi push -f mà phải tạo một commit revert.  
+đặt tên nhánh là `revert-pr-1786` (revert pull request 1786); commit message `Revert "ER100FUJIYAMA-7917 ER100FUJIYAMA-7907 [Tiktok] [Batch] Thêm logic hủy report task trước khi cho queue kết thúc với lỗi timeout / Bổ sung ContentType cho HTTP POST request (pull request #1786)"`
+
+nhớ copy PR revert vào ticket hôm đã closed và ghi rõ đây là PR dể revert cái PR nào trước đó
+lý do revert là gì
+
+```txt
+Revert nội dung chỉnh sửa không cần thiết
+https://bitbucket.org/everrise-repository/fujiyama_www-batch_fork/pull-requests/1787/diff
+
+Nguyên nhân: lúc trước là do thiếu Content-Type: "application/json" ở request header của endpoint POST https://business-api.tiktok.com/open_api/v1.3/report/task/cancel/ nên xảy ra lỗi
+
+Chứ không phải nguyên nhân là do StringEntity sai charset như chỉnh sửa của task hiện tại
+```
+
+những thứ đã được merge đừng tự ý thay đổi nó theo kiểu -f sẽ gây mất history, và bị vượt quyền. NGUYÊN TẮC: không được thay đổi source code mà không thông qua review
+
+push -f thì source hiển nhiên sẽ được cập nhật mà ko thông qua người review. làm sao biết chú phục hồi có đầy đủ không, có dư không
+
 ## Git Branching
 
 A Git repository is a collection of **objects** and **references**:

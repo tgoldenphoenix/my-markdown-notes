@@ -9,6 +9,7 @@ Task to do
 - play around with the database, write sql to select, insert, delete, etc...
 - cái mapping trong report twitter
 - turn off nginx server and restart (when deploy gặp sự cố)
+- intellij shortcut go to usage
 
 ## Questions
 
