@@ -113,7 +113,7 @@ Triple-unit characters
 - 旡 (一女大山) - waitress
 
 - 兄 (口竹山) - teenager
-- 兌/兑 (金 // 口竹山) - devil
+- 兌/兑 (金 // 口竹山) - devil, horn
   - 說 (卜口 // 金 // 口山)
   - 说 (戈女 // 金 // 口山)
   - 脫 (月 // 金 // 口山)
@@ -646,6 +646,7 @@ Triple-unit characters
   - 風 (竹弓 // 竹中戈) - double unit
   - 没 (水 // 竹弓 // 水)
   - 処 (竹水 // 竹弓)
+  - 机 (木 // 竹弓)
 - 凡 (竹弓戈) - mediocre
 - 鳳 (竹弓 // 一日火) - phoenix
   - 鳥 (竹日卜火)
@@ -732,6 +733,9 @@ Triple-unit characters
 
 - 角 (弓月土) - bound up
 - 換/换 (手 // 弓月大)
+- 負 (弓月山金) - defeat
+  - 负 (弓月人)
+- 包 (心口山)
 
 - 魚 (弓田火) - fish
   - 魯 (弓田 // 火 // 日) - triple unit
@@ -953,7 +957,7 @@ Triple-unit characters
 - 包 (心口山) - wrap
   - 跑 (口一 // 心口山)
   - 抱 (手 // 心口山)
-- 負 (弓月山金) - defeat
+- 負 (弓月山金)
   - 负 (弓月人)
 
 - 钅 (人一心) - metal, gold
@@ -1491,6 +1495,8 @@ Triple-unit characters
   - 貼 (月金 // 卜口)
 - 贝 (月人)
   - 质 (竹 // 十月人)
+  - 负 (弓月人)
+  - 责 (手一 // 月人)
 - 貢 (一月山金)
 - 員 (口 // 月山金) - employee
   - 员 (口 // 月人)
@@ -1610,7 +1616,7 @@ Triple-unit characters
 - 虛 (卜心 // 廿一) - cactus
 - 關 (日弓 // 女戈 // 廿) - triple unit
 
-- 黃 (廿 // 一 // 田金) or V5 (廿 // 一中金) - yellow
+- 黃 (廿 // 一 // 田金) or V5 (廿 // 一中金, không xài được) - yellow
   - 廣 (戈 // 廿 // 一金) - double unit wide
 
 - 義 (廿土 // 竹手戈) - righteous, double unit
@@ -1743,9 +1749,11 @@ Triple-unit characters
   - 欢 (水 // 弓人)
   - 汉 (水水)
   - 双 (難水水)
+  - 对 (水 // 木戈)
 - 夂 (竹水) - walking legs
   - 夏 (一山 // 竹水) - double unit
   - 备 (竹水 // 田)
+  - 务 (竹水 // 大尸)
 - 処 (竹水 // 竹弓)
   - 處 (卜心 // 竹水 // 弓)
 - 各 (竹水口) - to each his own
@@ -2109,7 +2117,7 @@ Triple-unit characters
 - 这 (卜 // 卜大)
   - 透 (卜 // 竹木尸) - double unit
 
-- 外 (弓戈卜)
+- 外 (弓戈 // 卜)
 
 - 雨 (一中月卜) - 卜 is two dấu phết, rain
   - 巾 (中月)
@@ -2465,7 +2473,9 @@ Triple-unit characters
 - shovel
 - 凶 (山大) - villain
   - 兇 (山大竹山)
-  - 区 (尸大)
+  - 脑 (月 // 卜 // 山大)
+- 区 (尸大)
+
 - 函 (山弓水)
   - 涵 (水 // 山 // 弓水) - triple unit
 - 画 (一山田) - a drawing
