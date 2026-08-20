@@ -556,6 +556,19 @@ input_platform_id = m_input_platform
 | SCALE_OUT        | 9                | 9        |
 |         TIKTOK         |         35         |     35     |
 
+---
+
+table const
+
+- type 1 = bộ grouping constant
+  - type 1 = 3 là process max thread
+  - type 1 = 4 là wait time (sleep)
+- type 2 = server id (or dsp type tùy thiết kế)
+- type 3 = batch type
+- type 4 = dsp type
+
+Có 5 values `VALUE1` to `VALUE5`
+
 ### Batch GetMaster
 
 `BatchGetMasterFreakOut`
