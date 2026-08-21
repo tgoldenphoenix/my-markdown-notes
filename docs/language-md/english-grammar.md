@@ -23,8 +23,11 @@ Danh từ đơn vị = lượng từ, quantifier
 
 ## Sentence Structure
 
-- Clause: mệnh đề
-- Phrase: cụm từ
+Words are arranged in different ways to become groups of words called: phrases, clauses and sentences.
+
+- A Phrase (cụm từ) is a group of words that cannot make any sense by itself. It does not contain a verb and its subject. A phrase is used to tell more about a clause.
+- A Clause (mệnh đề) is a group of words that can make sense by itself. It denote a person or a thing (subject) and an action or a state (verb).
+- A Sentence is a group of words that can
 
 `Subordinate Clauses` (dependent clause) không thể đi một mình.
 
@@ -134,15 +137,15 @@ An **appositive** is a noun that comes before or after another noun and has the 
 
 ## Particle & Phrasal Verbs
 
-The fundamental idea of the **particle** (tiểu từ) is to add context to the sentence, expressing a mood or indicating a specific action.  
+The fundamental idea of the `particle` (tiểu từ) is to add context to the sentence, expressing a mood or indicating a specific action.  
 A particle is a word that has a grammatical function but does not fit into the main parts of speech (i.e. noun, verb, adverb). Particles do not change.  
-Don't be confused with **articles**.
+Don't be confused with `articles` (`a`, `an`, and `the`).
 
 The infinitive `to` in `to fly` is an example of a particle, although it can also act as a preposition, e.g. `I'm going to Spain next week`.
 
-Many words can be described as particles, e.g. conjunctions such as `and` and 'but' and **interjections** such as `oh` and 'wow'. Particles appear frequently in the teaching of **phrasal verbs**, which can be grouped for teaching purposes by particle, e.g. 'off', 'on', 'out' etc.
+Many words can be described as particles, e.g. conjunctions such as `and` and `but` and **interjections** such as `oh` and `wow`. Particles appear frequently in the teaching of **phrasal verbs**, which can be grouped for teaching purposes by particle, e.g. 'off', 'on', 'out' etc.
 
-**Phrasal Verbs** (cụm động từ) are made up of a verb and a particle. The particle often changes the meaning of the verb.
+`Phrasal Verbs` (cụm động từ) are made up of a verb and a particle. The particle often changes the meaning of the verb.
 
 - `They've called off the meeting.` (call off = to cancel)
 

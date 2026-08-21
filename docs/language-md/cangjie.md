@@ -2059,6 +2059,9 @@ Triple-unit characters
 
 - 本 (木一)
 
+- 術 (竹人 // 戈金 // 弓) - art
+- 术 (戈木)
+
 ### Ten 十
 
 安 is 十 not 戈

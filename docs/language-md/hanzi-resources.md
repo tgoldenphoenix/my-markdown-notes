@@ -4,10 +4,6 @@
 
 ## Chinese
 
-**Từ điển**
-
-[hanzii gấu trúc đen](https://hanzii.net/?hl=vi)
-
 [từ điển hán nôm thi viện](https://hvdic.thivien.net)
 
 [bộ thủ wiki](https://vi.wikipedia.org/wiki/B%E1%BB%99_th%E1%BB%A7), Khang Hi Bộ Thủ [wiki](https://vi.wikipedia.org/wiki/B%E1%BB%99_th%E1%BB%A7_Khang_Hi)
@@ -20,8 +16,6 @@
 
 ## Cantonese
 
-**Từ điển:**
-
 [Canto Words](https://cantowords.com/)
 
 [Wikitionary](https://www.wiktionary.org/) từ điển tra từ có cả mandarin và cantonese
@@ -29,6 +23,7 @@
 cantonese to jyutping [converter](https://www.cantonesetools.org/en/cantonese-to-jyutping)
 
 lyric bài hát jyutping
+
 - [粤拼歌词](https://www.jyut6.com/) bắt tải app trên appstore?
 - [feitsui](https://www.feitsui.com/) xài ngon
 
@@ -43,3 +38,4 @@ lyric bài hát jyutping
 [conjugation tool](https://conjugator.reverso.net/conjugation-japanese.html)
 
 [animelon.com](https://animelon.com/) coi anime có sub tiếng nhật, anh
+
