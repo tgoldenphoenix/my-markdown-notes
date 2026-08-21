@@ -487,11 +487,17 @@ Decrypt & encrypt access token nằm trong file `AesUtilsTest.testDecrypt()`. L�
 - `5`, `GENERATE_TSV_ERROR`, If an error occurs during the process of writing data acquired from the platform to a TSV file for S3 upload
 - `INSERT_ERROR` (6)
 
+`catalog\GET_REPORT_ERROR_TYPE.java`
+
+Throw object `GetReportException` có 2 input: report error type và string message
+
 error type = `null` nghĩa là queue chưa được chạy, chứ nếu đã chạy thì không thể là `null` được
 
 api trả về bad request (request sai format) thì không cần retry => sẽ không gặp lỗi timeout
 
 [error detail type](https://docs.google.com/spreadsheets/d/11HpIRsqNgSZkRr6mDMRQ8scQSDx76pSoyKUa4kdzQZ4/edit?gid=440079028#gid=440079028)
+
+[backlog wiki error detail type](https://ever-rise.backlog.jp/alias/wiki/567744)
 
 ---
 

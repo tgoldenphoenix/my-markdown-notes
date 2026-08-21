@@ -6,7 +6,7 @@ SQL is a language used to interact with relational database management systems (
 - mySQL: root:password
 - pg admin: password
 
-## CREATE TABLE & Data types
+## CREATE TABLE & Data Types
 
 In SQL Server the default **schema** is `dbo`. There can be multiple schemas inside one database.
 
@@ -46,11 +46,20 @@ Number data types:
 - `DECIMAL or NUMERIC`: 2 cái này giống nhau, dùng khi cần store decimal. `DECIMAL(12,4)` will stored 4 numbers after the decimal point and `12-4=8` whole numbers like `99,345,678.1234`.
 - `FLOAT`: an approximation, dùng OK trừ khi nào cần precision (like accounting systems)
 
+---
+
 Date data types:
 
-- `datetime`: Supports dates from January 1, 1753, to December 31, 9999.
+- `datetime`: Supports dates from January 1, 1753, to December 31, 9999. Insert dùng `CURDATE()`
 - `datetime2`: Offers a much broader range, from January 1, 0001, to December 31, 9999. Both of them store date + time (up to mili-seconds)
+- `datetime(6)`
 - `date`: no time portion
+
+In MySQL, a literal datetime is represented as a formatted string using the `YYYY-MM-DD HH:MM:SS` pattern. To include fractional seconds for `DATETIME(6)`, simply append six microsecond digits: `YYYY-MM-DD HH:MM:SS.ffffff`.
+
+Example: `INSERT INTO your_table (created_at) VALUES ('2026-08-21 14:30:00.123456');`
+
+---
 
 Một bảng chỉ có duy nhất một khóa chính. Kể cả composite key (nhiều cột) vẫn được coi là một khóa chính.  
 Khóa chính là một tập hợp gồm 1 hoặc nhiều cột (field) dùng để xác định duy nhất một dòng trong bảng.
