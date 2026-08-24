@@ -407,7 +407,7 @@ Triple-unit characters
 
 - 刀 (尸竹) - blade, sword, dagger
   - 昭 (日 // 尸竹口)
-  - 留 (竹竹 // 田) - letter openner
+  - 留 (竹竹 // 田) - letter, receipt
   - 分 (金 // 尸竹)
   - 寡 (十 // 一金 // 竹) - triple unit
 - 召 (尸竹 // 口) - seduce
@@ -429,6 +429,7 @@ Triple-unit characters
   - 癆 (大 // 火火 // 尸)
   - 边 (卜 // 大尸)
   - 为 (戈大尸戈)
+  - 捞 (手 // 廿 // 月尸)
 - 加 (大尸 // 口)
   - 賀 (大口 // 月山金) - double unit
   - 咖 (口 // 大尸 // 口)
@@ -474,6 +475,7 @@ Triple-unit characters
 - 馬 (尸手尸火) - horse
   - 碼 (一口 // 尸手火)
   - 驚 (廿大 // 尸手火) - double unit
+  - 嗎 (口 // 尸手火)
 - 马 (弓女尸一)
   - 吗 (口 // 弓女一)
   - 妈 (女 // 弓女一)
@@ -732,7 +734,7 @@ Triple-unit characters
 - 疑 (心大 // 弓戈人) - double unit
 
 - 角 (弓月土) - bound up
-- 換/换 (手 // 弓月大)
+- 換/换 (手 // 弓月 // 大)
 - 負 (弓月山金) - defeat
   - 负 (弓月人)
 - 包 (心口山)
@@ -756,7 +758,8 @@ Triple-unit characters
 
 - 尔 (弓火) - thou
   - 称 (竹木 // 弓火)
-  - 你 (人 // 弓火)
+- 你 (人 // 弓火)
+  - 您 (人火 // 心)
 
 - 勿 (心竹竹)
 - 句 (心口) - phrase
@@ -827,6 +830,9 @@ Triple-unit characters
   - 感 (戈口 // 心) - double unit, cảm
 - 鹹 (卜田 // 戈竹 // 口) - triple unit
   - 鹵 (卜田戈戈) - Rock salt
+
+- 藏 (廿 // 戈一 // 尸)
+- 爿 (女中一)
 
 - 幾 (女戈 // 竹戈)
 - 𢦏 (十戈) - Thanksgiving
@@ -900,6 +906,7 @@ Triple-unit characters
   - 婚 (女 // 竹心 // 日) - triple unit
 - 氐 (竹心 // 一) - double unit, Business card
   - 低 (人 // 竹心 // 一) - triple unit
+  - 底 (戈 // 竹心 // 一)
 
 - 世 (心廿)
 - 也 (心木)
@@ -1176,8 +1183,9 @@ Triple-unit characters
   - 久 (弓人)
 - 外 (弓戈卜)
 - 多 (弓戈弓戈)
-  - 夠 (弓弓 // 心口)
+  - 夠 (弓弓 // 心口) - FL // F2+L
   - 句 (心口) - phrase, sentence
+  - 移 (竹木 // 弓戈 // 弓)
 - 名 (弓戈 // 口) - name
 - 夢 (廿 // 田中 // 弓) - triple unit, dream
 
@@ -1293,9 +1301,6 @@ Triple-unit characters
 
 - 寅 (十 // 一中金)
 - 革 (廿中十)
-- 央 (中月大) - center
-- 英 (廿 // 中月大) - england
-  - 瑛 (一土 // 廿中大) - double unit
 - 春 (手大 // 日)
 - 夫 (手人)
 - 电 (中田山)
@@ -1305,6 +1310,11 @@ Triple-unit characters
   - 萬 (廿 // 田中月)
 - 更 (一中田大)
   - 便 (人 // 一中大)
+
+- 央 (中月大) - center
+- 英 (廿 // 中月大) - england
+  - 瑛 (一土 // 廿中大) - double unit
+- 夬 (木大)
 
 - 婁 (中田中女) or V5 (中中 // 女, double unit) - sniper
   - 樓 (木 // 中田女)
@@ -1376,8 +1386,7 @@ Triple-unit characters
 - 步/歩 (卜中一竹) - walk, F3+L
   - 频 (卜竹 // 一月人)
 
-- 尔 (弓火) - thou
-  - 称 (竹木 // 弓火)
+- 尔 (弓火)
   - 你 (人 // 弓火)
 
 - 不 (一火) - negative
@@ -1568,6 +1577,7 @@ Triple-unit characters
   - 型 (一弓 // 土) - double unit
 - 并 (廿廿) - puzzle
   - 拼 (手 // 廿廿)
+  - 併 (人 // 廿廿)
 
 - 井 (廿廿) - well
   - 进 (卜 // 廿廿)
@@ -1608,9 +1618,10 @@ Triple-unit characters
   - 僻 (人 // 尸口 // 十)
 - 幸 (土廿十) - happy, happiness
   - 達 (卜 // 土廿手)
-- 睪 (田中 // 土廿十) - testicle
-  - 譯 (卜口 // 田中 // 十)
+- 睪 (田中 // 土廿十) - testicle, semen
   - 睾 (竹田 // 土廿十)
+  - 譯 (卜口 // 田中 // 十)
+  - 擇 (手 // 田中 // 十)
 - 南 (十月廿十) - south
 
 - 虛 (卜心 // 廿一) - cactus
@@ -1859,7 +1870,7 @@ Triple-unit characters
   - 厭 (一日月大)
 - 太 (大戈)
 
-- 換/换 (手 // 弓月大)
+- 換/换 (手 // 弓月 // 大)
 
 - 犭 (大尸竹) or (大弓竹) - pack of wild dogs
   - 狼 (大竹 // 戈日女)
@@ -2015,6 +2026,7 @@ Triple-unit characters
   - 決 (水 // 木大)
   - 快 (心 // 木大)
 - 年 (人手)
+- 央 (中月大)
 
 - 书 (戈木尸)
 - 韦 (手尸)
@@ -2053,11 +2065,12 @@ Triple-unit characters
 - 秋 (竹木 // 火)
   - 愁 (竹火 // 心) - double unit
 
-- 呆 (口木)
-  - 保 (人 // 口木)
+- 呆 (口 // 木)
+  - 保 (人 // 口 // 木)
 - 杏 (木口)
 
 - 本 (木一)
+  - 体 (人 // 木一)
 
 - 術 (竹人 // 戈金 // 弓) - art
 - 术 (戈木)
@@ -2163,13 +2176,8 @@ Triple-unit characters
 - 卞 (卜卜)
 - 上 (卜一) - above
 
-- 母 (田卜戈) - mom
-  - 毒 (手一 // 田卜戈)
-- 每 (人 // 田卜戈) - double unit, every
-  - 毎 (人 // 田十)
-  - 海 (水 // 人 // 田卜) - triple unit, sea
-  - 嗨 (口 // 水 // 人卜)
-  - 敏 (人卜 // 人大) - double unit
+- 母 (田卜戈)
+- 每 (人 // 田卜戈) - double unit
 
 - 丹 (月卜) - cinnabar
 - 舟 (竹月卜戈) - boat
@@ -2275,7 +2283,9 @@ Triple-unit characters
 
 - 彔 (女弓一水)
 
-- 叫 (口 // 女中) - cornucopia
+- 丩 (女中) - cornucopia
+- 叫 (口 // 女中)
+- 收 (女中 // 人大)
 
 - 灣 (水 // 女火 // 弓) - triple unit
 
@@ -2285,6 +2295,7 @@ Triple-unit characters
   - 妝 (女一 // 女)
   - 石 (一口)
   - 鼎 (月山 // 女一 // 中)
+  - 藏 (廿 // 戈一 // 尸)
 - 壯 (女一 // 土)
   - 裝 (女土 // 卜竹女)
 
@@ -2381,6 +2392,7 @@ Triple-unit characters
 
 - 夫 (手人) - father, husband
   - 芙 (廿 // 手人)
+  - 替 (手人 // 日)
 - 失 (竹手人) - lose, lost
   - 铁 (人心 // 竹手人)
 - 未 (十木)
@@ -2568,12 +2580,15 @@ Triple-unit characters
   - 攔 (手 // 日弓 // 田) - triple unit
 
 - 母 (田卜戈) - mom, breast
+  - 毒 (手一 // 田卜戈)
 - 毋 (田十)
 - 每 (人 // 田卜戈) - double unit, every
   - 毎 (人 // 田十)
   - 海 (水 // 人 // 田卜) - triple unit, sea
-  - 敏 (人卜 // 人大) - double unit
   - 梅 (木 // 人 // 田卜)
+  - 嗨 (口 // 水 // 人卜)
+- 敏 (人卜 // 人大) - double unit
+  - 繁 (人大 // 女戈火)
 
 - 貫 (田十 // 月山金) - breast
   - 慣 (心 // 田十 // 金) - triple unit

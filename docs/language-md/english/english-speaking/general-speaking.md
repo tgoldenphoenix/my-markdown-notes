@@ -628,6 +628,8 @@ If I was to move to this town, I wouldn't want to live on a busy street. I would
 
 I would If I could.
 
+I don't like the look of those clouds.
+
 I'm going to get fluent in Japanese. It's been 8 years now that I've lived in Vietnam. I know I should be fluent. It's not an easy language to learn.  
 My pronunciation, I think, is very good given the fact that Vietnamese is not my native language
 

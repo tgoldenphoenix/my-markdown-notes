@@ -57,9 +57,11 @@ k
 
 ### Chùa ngọc hoàng
 
-登歡喜地 (đăng hoan hỉ địa)
+- 登歡喜地 (đăng hoan hỉ địa)
+- 玉暎瑤䑓 (ngọc ánh dao đài)
 
-玉暎瑤䑓 (ngọc ánh dao đài)
+- 帝德惠南洋 (đế đức huệ nam dương)
+- 聖恩宏廣澤 (thánh ân hoành quảng trạch)
 
 ### Bàn thờ thần tài
 

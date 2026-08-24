@@ -528,6 +528,8 @@ keep in mind that you need to use curly braces and double quotes around array ex
 
 Arrays (`$var` vs. `$var[@]` vs. `${var[@]}`)
 
+When working with arrays, enclose the parameter expansion in quotes to preserve spaces in array elements.
+
 Referencing an array variable without a subscript is equivalent to referencing the array with an index of `0`. In other words, if you don't supply an index with `[]`, you get the first element of the array:
 
 ```bash
@@ -573,9 +575,11 @@ done
 0
 ```
 
-### Array Slicing
+## String Slicing
 
-kkk
+Note that the second number in the slice notation represents the maximum length of the extracted substring, not the ending index. This is different from some other programming languages like Python.
+
+In Bash, if you specify a length that would extend beyond the end of the string, it will simply stop at the end of the string without raising an error. This behavior can be particularly useful when you're not sure of the exact length of the string you're working with.
 
 ## Alias
 
@@ -590,7 +594,7 @@ kkk
 
 Start your command with an empty space character and it will not be recorded into `history` (depend on Bash version)
 
-## Basic math functions
+## Basic Math functions
 
 Bash evaluate expression command `expr`
 
@@ -599,8 +603,6 @@ Bash evaluate expression command `expr`
 ## Flow Control
 
 When writing scripts, you don't want the script to ask you for confirmations. So you want to use options that eliminate any prompts that you can.
-
-When you use square brackets `[]` in an if statement, bash assumes that you want to use the [test](https://www.ibm.com/docs/en/aix/7.2?topic=t-test-command) command.
 
 The terminator for an if statement is `fi`. To chain your `if` clauses, you can use the `elif` keyword to mean “else if.”
 
@@ -616,7 +618,15 @@ echo '==> Installing nothing'
 fi
 ```
 
+---
+
 Both the peculiar `[]` syntax for comparisons and the command-line optionlike names of the **integer comparison operators** (e.g., `-eq`) are inherited from the original Bourne shell’s channeling of `/bin/test`. The brackets are actually a shorthand way of invoking `test` and are not a syntactic requirement of the if statement.
+
+`[[ ... ]]` is the preferred, modern, and safer way to perform conditional tests in Bash (compared to the older single brackets `[ ... ]`).
+
+When you use square brackets `[]` in an `if` statement, bash assumes that you want to use the `test` command.
+
+---
 
 The table below shows the bash comparison operators for numbers and strings. bash uses textual operators for numbers and symbolic operators for strings, exactly the opposite of Perl.
 
@@ -630,6 +640,8 @@ The table below shows the bash comparison operators for numbers and strings. bas
 | x >= y | x -ge y | x is greater than or equal to y |
 | -n x   | -       | x is not null                   |
 | -z x   | -       | x is null                       |
+
+---
 
 `bash` shines in its options for evaluating the properties of files (again, courtesy of its `/bin/test` legacy). Table below shows a few of bash’s many file-testing and file-comparison operators.
 
@@ -653,10 +665,6 @@ Changes the directory to `/var/backups/`. If no such directory exists, it exits 
 `cd /var/backups || exit 0`
 
 The `||` sequence (sometimes known as a double pipe) can be read as though it’s the word _or_. So this line means: either change directory to /var/backups/ or exit the script. If everything goes according to plan, subsequent script operations will take place in the /var/backups/ directory.
-
-–-
-
-`[[ ... ]]` is the preferred, modern, and safer way to perform conditional tests in Bash (compared to the older single brackets `[ ... ]`).
 
 ### Loops
 

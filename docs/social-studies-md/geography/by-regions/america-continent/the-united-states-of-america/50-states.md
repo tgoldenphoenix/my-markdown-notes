@@ -32,3 +32,9 @@ More than 60% of Minnesotans (about 3.71 million) live in the Minneapolis–Sain
 
 This is a cold state.
 
+## Utah
+
+`Salt Lake City`, often shortened to Salt Lake or SLC, is the capital and most populous city of the U.S. state of Utah.
+
+Slightly over half of all Utahns are `Mormons`, the vast majority of whom are members of the Church of Jesus Christ of Latter-day Saints (LDS Church), which has its world headquarters in Salt Lake City
+
