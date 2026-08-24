@@ -318,6 +318,8 @@ sbt -jvm-debug 9999 run
 
 Sửa trong `conf/application.conf`
 
+Chuyển thông tin config ở path file đã liệt kê ở trên sang nơi lưu trữ mới trên server: `\opt\web-api-conf\application.conf`. Task ER100FUJIYAMA-7829.
+
 ```text
 ## JDBC Datasource
 db {
@@ -345,7 +347,7 @@ db {
 
 3 tables sau phải có dữ liệu: `m_api_token`, `m_login_user`, `m_contract_company`
 
-#### Setup test Web API
+#### Setup Unit Test for Web API
 
 Read this wiki <https://ever-rise.backlog.jp/alias/wiki/557867>
 
@@ -731,6 +733,16 @@ Hàm ''generateBaseJson()'' dùng ''base.vm''
 - batch cũng có chạy mỗi ngày lấy danh sách ad account của tài khoản cha cập nhật lên s3 giống y chang bên web api
 - chủ yếu để cập nhật danh sách ad account luôn mới nhất
 
+### Database
+
+Khi gởi request dùng `token_key` & `token_secret` đi vào table `m_api_token` lấy ra: `login_user_id` và `contract_company_id` 
+
+`m_agency` chứa `contract_company_id`
+
+Trong `m_login_user` chứa `contract_company_id`
+
+`input platform auth` cũng chứa `contract_company_id`
+
 ### Controller & Form
 
 `Forms` are responsible for capturing, filtering, and validating raw data coming from HTTP requests (the "outside world") before it touches your core application logic.
@@ -756,9 +768,19 @@ if `getLoginUserId()` inside `getUsername(ctx)` returns `null`, the Play Framewo
 
 The `BaseController` uses the Apache Velocity engine (specifically the `base.vm` template) to format and generate the foundational JSON structure for all of your API responses.
 
+The `BaseController` injects several variables into the Velocity context during execution
+
+- `$entity`: A Java Map representation of the database record (in this case, an MAgency instance)
+- `$disabledColumnStore`: An instance of your security store that checks whether a user has permissions to view a specific column
+- `$nullTool`: A helper utility to safely check for null values without triggering template errors
+- `$list`: A list of evaluated entity JSON strings (used in base.vm)
+- `$paging`: A serialized JSON object containing page count, offset, and navigation metadata
+
 Template engines like Apache Velocity are most commonly known for generating dynamic HTML for web pages. However, fundamentally, a template engine is just a text-generation tool. It merges dynamic data into a static blueprint to output plain text—which means it can just as easily generate XML, SQL, or, in the case of your API, JSON.
 
 `base.vm` acts as the global, foundational wrapper for every single response your API sends back to the client (who sent request).
+
+Template nằm trong `conf/templates/generated`
 
 ### Ebean ORM
 
