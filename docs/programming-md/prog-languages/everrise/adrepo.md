@@ -358,6 +358,24 @@ accessKey=hoge
 secretKey=fuga
 ```
 
+Vào trong `conf/test.application.conf` check database, schema. File `application.conf` bình thường sẽ không được sử dụng.
+
+```txt
+  default {
+    driver = com.mysql.jdbc.Driver
+    url = "jdbc:mysql://127.0.0.1/hb_test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false"
+    # url = "jdbc:mysql://localhost:3306/hb_test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false"
+    username = "root"
+    password = "root"
+    schema = "hb_test"
+    logSql = true
+    autocommit = true
+  }
+
+```
+
+vào tạo table test trong database, tránh bị mất dữ liệu
+
 ### Passsword & config
 
 mysql: root:root or 123
@@ -742,6 +760,8 @@ Khi gởi request dùng `token_key` & `token_secret` đi vào table `m_api_token
 Trong `m_login_user` chứa `contract_company_id`
 
 `input platform auth` cũng chứa `contract_company_id`
+
+`updated_by` là `m_login_user`
 
 ### Controller & Form
 
