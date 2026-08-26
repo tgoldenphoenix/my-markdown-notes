@@ -66,9 +66,9 @@ There are 4 kinds of sentences:
   3. Commands
   4. Exclamations
 - Classification according to the **structure**:
-  1. **Simple Sentences** (câu đơn): only one Independent Clause (IC)
-  2. **Compound Sentences** (câu ghép): two/more clauses joined by `co-ordinating conjunctions` (`FOR AND NOR BUT OR YET SO`). Việc sử dụng comma `,` dường như là không bắt buộc (chỉ để cho câu dễ nhìn hơn thôi).
-  3. Complex Sentences (câu phức): one main clause + ONE/more **SUBORDINATE clause** joined by **Subordinating Conjunctions**.
+  1. `Simple Sentences` (câu đơn): only one Independent Clause (IC)
+  2. `Compound Sentences` (câu ghép): two/more clauses joined by `co-ordinating conjunctions` (`FOR AND NOR BUT OR YET SO`). Việc sử dụng comma `,` dường như là không bắt buộc (chỉ để cho câu dễ nhìn hơn thôi).
+  3. `Complex Sentences` (câu phức): one main (independent) clause + ONE/more SUBORDINATE (dependent) clause joined by Subordinating Conjunctions.
   4. Mixed Sentences (Compound-complex sentence, Câu phức tổng hợp): TWO/more main clause + ONE/more SUBORDINATE clauses.
 
 - Compound sentence examples:
@@ -81,6 +81,20 @@ There are 4 kinds of sentences:
   - You should call him back, `or` he comes here to talk to you.
   - The weather was cold and wet, `yet` we went camping.
   - Mary missed the bus, `so` she went to school late.
+
+### Compound Predicate
+
+A compound predicate happens when a single subject does two or more actions.
+
+"The cat slept and purred on the rug." (One subject, "cat," does two actions).
+
+- Breaking down and combining smaller reports is not an ideal solution and introduces several potential risks regarding data integrity. => Simple sentence not compound sentence.
+  - Even though it contains the conjunction "and", it only has one independent clause (one main subject performing two actions). This is a compound predicate.
+- Breaking down and combining smaller reports is not an ideal solution, and it introduces several potential risks regarding data integrity. => compound sentence
+
+- These suggestions clearly indicate that the synchronous endpoint is less capable than the asynchronous one and should only be used to retrieve simple reports over short time ranges.
+  - complex sentence; subordinating conjunction `that`
+  - Inside the dependent clause, you have one subject performing two verbs linked by the conjunction "and" (a compound predicate).
 
 ### Conjunctions (liên từ)
 

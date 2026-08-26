@@ -536,8 +536,8 @@ Queue Status, Type
 - Report Queue type:
   - `CREATED_BY_MANUALLY`, (0)
   - `CREATED_BY_SCREEN`, (1)
-  - `CREATED_FOR_YESTERDAY`, (2)
-  - `CREATED_FOR_40_DAYS_AGO`, (3)
+  - `CREATED_FOR_YESTERDAY`, (2) lấy dữ liệu 1 ngày trước
+  - `CREATED_FOR_40_DAYS_AGO`, (3) lấy dữ liệu 40 ngày trước
   - `CREATED_FOR_SYNC_ETL_AND_ADEBIS`, (4)
   - `CREATED_FOR_EXTERNAL_SYSTEM_TRANSFER`, (5)
 
@@ -557,6 +557,8 @@ Queue Status, Type
 ---
 
 Mỗi platform sẽ có `REPORT_TYPE` khác nhau, không giống nhau. Coi trong `/catalog/REPORT_TYPE.java`.
+
+report_type will determine: data_level, metrics, dimensions, target date, data level
 
 - File `catalog/DSP_TYPE.java`
 - Column `m_input_platform_auth.input_platform_id` thì xem trong `catalog/M_INPUT_PLATFORM.java`.
