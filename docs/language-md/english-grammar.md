@@ -66,9 +66,9 @@ There are 4 kinds of sentences:
   3. Commands
   4. Exclamations
 - Classification according to the **structure**:
-  1. `Simple Sentences` (câu đơn): only one Independent Clause (IC)
-  2. `Compound Sentences` (câu ghép): two/more clauses joined by `co-ordinating conjunctions` (`FOR AND NOR BUT OR YET SO`). Việc sử dụng comma `,` dường như là không bắt buộc (chỉ để cho câu dễ nhìn hơn thôi).
-  3. `Complex Sentences` (câu phức): one main (independent) clause + ONE/more SUBORDINATE (dependent) clause joined by Subordinating Conjunctions.
+  1. Simple Sentences (câu đơn): only one Independent Clause (IC)
+  2. Compound Sentences (câu ghép): two/more clauses joined by `co-ordinating conjunctions` (`FOR AND NOR BUT OR YET SO`). Việc sử dụng comma `,` dường như là không bắt buộc (chỉ để cho câu dễ nhìn hơn thôi).
+  3. Complex Sentences (câu phức): one main (independent) clause + ONE/more SUBORDINATE (dependent) clause joined by Subordinating Conjunctions.
   4. Mixed Sentences (Compound-complex sentence, Câu phức tổng hợp): TWO/more main clause + ONE/more SUBORDINATE clauses.
 
 - Compound sentence examples:
@@ -81,6 +81,8 @@ There are 4 kinds of sentences:
   - You should call him back, `or` he comes here to talk to you.
   - The weather was cold and wet, `yet` we went camping.
   - Mary missed the bus, `so` she went to school late.
+
+The two independent clauses in a compound sentence can also be joined together by a semicolon rather than a conjunction.
 
 ### Compound Predicate
 
@@ -293,6 +295,10 @@ Compound adjectives & nouns:
 A **preposition** (giới từ) is a word that shows the relationship between a noun or pronoun and other words in a sentence, often indicating location, time, or direction. Common examples include **in, on, at, to, from, of, by, behind**. Prepositions are essential for clarifying the connections between different parts of a sentence.
 
 Prepositional phrase expressing place at the beginning of the sentence do not need comma.
+
+- It is only subject to the global rate limit.
+  - linking verb `is`
+  - subject complement: `only subject to the global rate limit` (an adjective phrase describing the subject)
 
 ### Adjective Clauses
 
