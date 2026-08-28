@@ -1110,6 +1110,8 @@ Or open the current WSL directory in File Explorer: `explorer.exe .`
 
 MySQL: 3306
 
+nvim, yazi cài trong `C:\Users\anhao\.local\bin\`
+
 ## MacOS File system
 
 [macOS Standard Directories: Where Files Reside](https://developer.apple.com/library/archive/documentation/FileManagement/Conceptual/FileSystemProgrammingGuide/FileSystemOverview/FileSystemOverview.html#//apple_ref/doc/uid/TP40010672-CH2-SW6)

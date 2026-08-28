@@ -27,24 +27,13 @@ get_master_queue => cột `type` là gì?
 - table m_api_token chứa cái gì, khác gì table m_input_platform_auth?
 - token_key vs. token_secret?
   
-### Task điều tra
+### My Questions
 
 ETL-PRD-PROCESS => `PRD` là production?
 
 Tại sao có 2 EC2 chạy batch: process, selenium (imobile)?
 
 table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết queue nào đã được update để mà cập nhật cho phía adrepo (S3)
-
-- `etl_harbest.m_input_platform`
-- `m_input_platform_auth`
-
----
-
-- table m_api_token
-  - token_key vs. token_secret?
-
-- Lấy danh sách agency `/mAgencies/`
-  - API token trong header là của ai?
 
 ## Project Specification, Thiết kế
 
@@ -177,7 +166,13 @@ Nếu được phép push thì phải setting Private, không được để pub
 Tất cả thông tin về dự án (đặc biệt là thông tin tài khỏan, thông tin chứng thực,....) không được sử dụng cho mục đích cá nhân  
 Nếu có tạo Repository cho mục đích học tập cá nhân thì không sử dụng tên công ty, tên dự án của công ty, dù là đặc tên cho dự án, cho thư mục, tên file gì đó
 
-## Tạo Task & báo cáo tiến độ
+## Tạo Task & Báo cáo tiến độ
+
+Task english David tạo: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7939>
+
+- background
+- Problem
+- Impact
 
 - làm không được thì báo cáo là không làm được => không báo cáo láo
 - task thiếu thông tin, task làm ko được thì kiểm chứng => không làm
@@ -907,6 +902,8 @@ An `ad` is the smallest advertising unit and is the content presented to the tar
 You can run a report in `synchronous mode` or `asynchronous mode` (mình dùng async).
 
 With synchronous mode, you make an API request and the data will be returned in the response almost **instantly**. In `asynchronous mode`, you make an API request to create a task for getting the data. You need to wait some time for the task to complete. When the task is completed, you make **another API request** to download the data.
+
+2 queue tạo task có cùng advertiser id, request param (metric, dimension) thì sẽ trả task id giống nhau kể cả khi dùng 2 oauth access token khác nhau
 
 ### Task Check field
 
