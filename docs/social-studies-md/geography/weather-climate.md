@@ -47,6 +47,12 @@ A `thunderstorm` (cơn dông or giông), also known as an electrical storm or a 
 
 bleak: ảm đạm
 
+## Seasons
+
+A `monsoon` (gió mùa) is traditionally a seasonal reversing wind accompanied by corresponding changes in precipitation, but now used to describe seasonal changes in atmospheric circulation and precipitation associated with annual latitudinal oscillation of the Intertropical Convergence Zone, specifically between its limits to the north and south of the equator.
+
+A `sea breeze` (gió biển) or onshore breeze is a wind that blows in the afternoon from a large body of water (the sea) toward or onto a landmass.
+
 ## Time
 
 bình minh, rạng đông: dawn, sunrise.\
