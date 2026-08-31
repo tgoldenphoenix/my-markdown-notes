@@ -491,7 +491,7 @@ Decrypt & encrypt access token nằm trong file `AesUtilsTest.testDecrypt()`. L�
 
 `ERROR_TYPE` của của queue lấy report data
 
-- `0`, `NORMALLY_RESULT`, không tìm thấy auth token trong table
+- `0`, `NORMALLY_RESULT`, không tìm thấy auth token trong table (lỗi do auth Id không tồn tại trong table etl_harbest.m_input_platform_auth)
 - `1`, `ERROR_CANNOT_HANDLE`, An error requiring further investigation on the ETL side; not call API and not use S3 yet
   - nói chính xác hơn là những lỗi liên quan tới logic xử lý nội bộ, setting thiếu...không liên quan đến việc call API
   - vậy nếu error type = 1 thì có thể kết luận 90% là chưa call api, lỗi nằm trước phần call api
@@ -692,6 +692,10 @@ tạo trước 0h là sẽ không retry (reset)
 
 `UpdateReportQueueStatus` Cập nhật trạng thái cho các report queue ở RDS Adrepo/ETL. Hiện tại đang sử dụng để reset trạng thái queues (cập nhật status = 1 →「statusTo」) khi kiểm tra hoạt động của các process.
 
+### Batch Alert
+
+`BatchAlertGetReportQueueState`, `BatchAlertGetMasterQueueState` => gởi email trong file `/opt/ag/ag_batch/alert_report_queue_state_receiver.txt`
+
 ### Other Batches
 
 `BatchInitializationGetReportQueueError`
@@ -703,8 +707,6 @@ Class `AbstractBatch` contains the Logger objects and the methods to print logs.
 `BatchRemoveTemporaryFile` cho chạy start & finish
 
 `BatchBackupEtlRds` chạy sau cùng vì sẽ reset database
-
-`BatchAlertGetReportQueueState`, `BatchAlertGetMasterQueueState` => gởi email trong file `/opt/ag/ag_batch/alert_report_queue_state_receiver.txt`
 
 ### Batch Processing
 
