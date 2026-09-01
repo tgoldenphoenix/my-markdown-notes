@@ -16,4 +16,4 @@ When creating a regular expression, it is more important to consider what it sho
 
 ## So sánh field tiktok
 
-VS Code: `,(?!\[\s0])` => replace with `\n`
+VS Code: `,(?![\s0])` => replace with `\n`

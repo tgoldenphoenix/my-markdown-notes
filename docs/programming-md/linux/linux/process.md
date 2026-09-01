@@ -312,3 +312,20 @@ On MacOS, use the Activity Monitor app
 `uptime` Tell how long the system has been running, load average
 
 [Linux ate my ram](https://www.linuxatemyram.com) for further learning
+
+## Crontab
+
+Every crontab entry uses five fields before the command. They always appear in this order:
+
+- Minute 0-59
+- Hour 0-23
+- Day of month 1-31
+- Month 1-12
+- Day of week 0-6 (0 = Sunday; on some systems, 7 also means Sunday)
+- Command The shell command to execute
+
+All five fields are mandatory. If you don’t care about a particular field, fill it with an asterisk (*). Leaving a field blank breaks the entry and cron won’t tell you about it.
+
+Raw numbers get you only so far. These special characters make cron expressions flexible enough to handle real scheduling needs:
+
+- `*` Matches every possible value for that field.	Example: `*` in the hour field = run every hour

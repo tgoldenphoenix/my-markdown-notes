@@ -260,7 +260,7 @@ If anyone stops by while I am at the meeting, please take a message from him or 
 
 - Adjectives have only one job: they describe nouns or pronouns.
 - Adverbs (trạng từ) do three different things. They decribe verbs, adjectives, or other adverbs.
-- Adverbs **do NOT** affect verb agreement.
+  - Adverbs **do NOT** affect verb agreement.
 
 - Examples of Adverb:
   - He `always` goes home late.
@@ -273,6 +273,9 @@ If anyone stops by while I am at the meeting, please take a message from him or 
   - She `usually gets up` early.
   - He `really does not` understand. | It `really doesn’t` matter.
   - He `really does not` like it.
+  - The file `only contains` data up to July 6th.
+
+`only` can be both an adjective and an adverb.
 
 Generally when a word ends in `-ly`, it is an adverb. However, there are a few words ending in `-ly` that are **adjectives**, and these `-ly` adjectives can cause confusion. Example: `costly, likely, daily, early, lively, weekly, friendly, lonely, monthly, kindly, manly, ...`.
 
@@ -387,12 +390,19 @@ _Gerunds and present participles_ both use the `-ing` form of a verb, but they h
 
 **Auxiliary verbs** (trợ động từ) help form tenses (e.g., "is running," "have finished"), moods (e.g., "was written," passive voice), and voices of main verbs. Example: `be (am, is, are, was, were), have (has, have, had), do (does, do, did)`.
 
+---
+
 **Modal verb** (Động từ khuyết thiếu) show if we believe something is certain, possible or impossible: `can-could, may-might, must, shall-should, will-would`  
-Phía sau modal verb dùng **base form** of the verb. Ngoại trừ conditional loại 2, 3.  
-`always` is an adveb & does not affect verb congjugation
+Phía sau modal verb dùng **base form** of the verb. Ngoại trừ conditional loại 2, 3.
 
 - Everyone `must` give his or her name.
 - `May` God bless you.
+
+`always`, `only` are adverbs and do not affect verb congjugation
+
+- The file can contain up to 100 rows.
+- The file only contains data up to July 6th.
+- The file always contains header rows.
 
 The modal verb `will` expresses certain future actions, predictions, promises, and offers, while `would` is used for hypothetical situations (Second Conditional), polite requests, past habits, and as the past tense of `will` in reported speech. The key is context: `will` is for real future events, and `would` deals with the unreal, the polite, or the past perspective
 

@@ -371,11 +371,11 @@ Vào trong `conf/test.application.conf` check database, schema. File `applicatio
 
 vào tạo table test trong database, tránh bị mất dữ liệu
 
-### Passsword & config
+### Passsword & Config
 
 mysql: root:root or 123
 
-### AWS Deployment
+### AWS Deployment & Test
 
 - ticket release của Vĩ: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7878>
 - Vĩ test batch: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7877>
@@ -385,10 +385,11 @@ mysql: root:root or 123
 
 - Batch process EC2 có 2 linux user:
 - `ec2-user`: home dir có file `.ETL-DEV-PROCESS`
-- `adrepo-batch`: home directory không có gì nhiều
+- `adrepo-batch`: home directory không có gì nhiều; đây là user chạy crontab
 
-- `/opt/ag/ag_batch/` chứa file `.jar` chạy batch, chứa `config.properties`, chứa file lock, chứa các file config khác như email
+- `/opt/ag/ag_batch/` chứa file `.jar` chạy batch, chứa `config.properties`, chứa file lock, chứa các file config khác như email.
 - build file jar copy lên `~` của `ec2-user`.  Rồi từ đó chạy `/home/ec2-user/deploy_batch.sh` copy file jar qua bên `/opt/ag/ag_batch/`
+- File log của batch nằm trong `/opt/ag/logs/`
 
 ```bash
 [ec2-user@ip-172-31-22-123 ag_batch]$ pwd
@@ -428,9 +429,18 @@ web api chỉ có 1 con staging, batch thì có 2 máy (dev, staging)
 
 ---
 
-Lệnh Ec2
+Lệnh EC2
 
 ```bash
+# current crontab is set for `adrepo-batch` user 
+#    => we must switch to adrepo-batch user before backing up it
+$ sudo su adrepo-batch
+$ crontab -l > /opt/ag/ag_batch/backup_cron/crontab_{YYYYMMDD}.backup
+# remove crontab
+crontab -r
+# -l — Flag stands for list.
+crontab -l
+
 sh ./deploy.sh
 date
 java -version
@@ -439,9 +449,12 @@ cat /etc/nginx/conf.d/client_www.conf
 less deploy.sh
 vim deploy.sh
 ps aux | grep java
+
 mv etl-harbest-webapi.zip_20260810132227 ..
 mv etl-harbest-webapi.zip_20260810132227 etl-harbest-webapi.zip
 
+sudo kill -9 pID
+#pID: the second value (after user name) in the process information line
 ```
 
 ## ETL Batch
@@ -535,6 +548,8 @@ Queue Status, Type
   - `CREATED_FOR_40_DAYS_AGO`, (3) lấy dữ liệu 40 ngày trước
   - `CREATED_FOR_SYNC_ETL_AND_ADEBIS`, (4)
   - `CREATED_FOR_EXTERNAL_SYSTEM_TRANSFER`, (5)
+
+Chỉ queu_type 4 mới có status 77
 
 ---
 
@@ -630,24 +645,24 @@ End time is **exclusive**. For example, a request with start_time=2026-01-01T00:
 
 Tiktok
 
-### Batch Export Import Queue
+### Batch Export-Import Queue
 
-Batch export queue (status) cho phía adrepo có input là một dsp_type
+Batch export queue (status) cho phía adrepo có input là một `dsp_type`
 
-Vào `input_adrepo_last_exported_update_time` tìm last update time của dsp_type đó (master 1 dòng, report 1 dòng). Ở đây gọi là $A_1, A_2$.
+- Vào `input_adrepo_last_exported_update_time` tìm last update time của `dsp_type` đó (master 1 dòng, report 1 dòng). Ở đây gọi là $A_1, A_2$.
+- Vào table `get_master_queue` và các tables `get_report_queue_{platform}` của platform tương ứng, lấy tất cả queue có updated time $\geq A_1, \geq A_2$
 
-Vào table queue_master và queue_report của platform tương ứng, lấy tất cả queue có updated time $\geq A_1, \geq A_2$
+Column `queue_id` trong table `input_adrepo_last_exported_update_time` là id của queue có update time gần nhất trong table `get_master_queue` & `get_report_queue`. Mục đích của column này là để có thể sử dụng điều kiện $\geq$ ở bước trên nhưng không sợ lấy duplicate queue.
 
-column `queue_id` trong table `input_adrepo_last_exported_update_time` là id của queue có update time gần nhất trong table get_queue & get_report. Mục đích của column này là để có thể sử dụng điều kiện $\geq$ ở bước trên nhưng không sợ lấy duplicate queue
+Sử dụng time trong `update_micro_time` có micro-second, time trong `updated_at` chỉ chính xác tới second sẽ sinh ra nhiều queue có thời gian giống nhau tới từng giây.
 
-sử dụng time trong `update_micro_time` có micro-second, time trong `updated_at` chỉ chính xác tới second sẽ sinh ra nhiều queue có thời gian giống nhau tới từng giây.
-
-- `input_etl` phía adrepo xuất cho mình
-- `input_adrepo` phía mình xuất cho adrepo
+- import từ `adrepo-development/etl`
+- `input_etl` phía adrepo xuất cho mình (ETL)
+- `input_adrepo` phía mình (ETL) xuất cho adrepo
 - Trong mỗi directory kể trên lại chia ra làm 3 sub-directories:
-  - unprocessed: queue phía etl chưa attempt to import into their tables
-  - completed: import into table của etl thành công
-  - failured: cannot import into table của etl (ko import được vào table thì sẽ không bàn tới chuyện queue status thành công hay thất bại)
+  - `unprocessed`: queue phía etl chưa attempt to import into their tables
+  - `completed`: import into table của etl thành công. File mà đã đọc vào thành công ở phía ETL rồi thì ETL sẽ di chuyển file vào thư mục/directory này
+  - `failured`: cannot import into table của etl (ko import được vào table thì sẽ không bàn tới chuyện queue status thành công hay thất bại). File mà đã đọc vào thất bại ở phía ETL rồi thì ETL sẽ di chuyển file vào thư mục/directory này
 
 - Khi test `BatchExportEtlMasterQueueToAdrepo`
 - Copy một dòng trong `get_master_queue` vào `input_adrepo_last_exported_update_time`
@@ -656,15 +671,26 @@ sử dụng time trong `update_micro_time` có micro-second, time trong `updated
 
 ---
 
-`BatchImportAdrepoMasterQueueToEtl`
+Nếu không có file dữ liệu hợp lệ để xử lý, cập nhật status = 2 (Success) và ERROR_TYPE = 7.  
+Câu này không đúng, chúng ta vẫn phải cho kết thúc với status = 8, status = 2 sẽ làm mất dữ liệu phía Adrepo; vì queue có status 2 sẽ được xử lý download file dữ liệu mới từ S3 (đang rỗng) và cập nhật mất đoạn dữ liệu tương ứng đã có trước đó ở kho lưu trữ dữ liệu của Adrepo (RedShift, BigQuery,...)
 
-import từ `adrepo-development/etl`
+khi status = 2 nghĩa là phía bên mình sẽ kết thúc queue với 1 file dữ liệu được đặt trên S3
+trong trường hợp này thì file sẽ chỉ có header, ko có record data liên quan
 
-[file design](https://docs.google.com/spreadsheets/d/1rtNHZ6TDrQqjUVwkYF7y5VLVKWIY4B4_2GIS-Hr8QSU/edit?gid=765059006#gid=765059006)
+phía Adrepo có 1 batch tên là BatchInsertQueue và 1 batch tên BatchInsertBigQuery
+2 batch này làm công việc lấy ds queue có status = 2 (nó hiểu là queueđã hoàn thành lấy dữ liệu mới từ API)  
+nó lên S3 download file mới đang nằm ở S3 (lúc này ko chứa dữ liệu gì ngoài cái header)
+và coi như đây là file chứa dữ liệu mới nhất  
+do đó nó xóa đi dữ liệu cũ của khoảng ngày liên quan trong RedShift và BigQuery
+để cập nhật dữ liệu mới bằng từ file S3 vừa download mới  
+kết quả là đoạn dữ liệu đã tồn tại trong quá khứ bị update thành rỗng
+
+nếu làm vậy thì ADrepo sẽ phải sửa để loại bỏ status = 2 và error_type = 7 ra khỏi đối tượng xử lý insert dữ liệu đang có ở các batch  
+trong khi nếu status = 8, error_type = 7 họ không cần làm gì hết
 
 ### Batch GetAdvertiserList
 
-đối tượng: agency_id list (account khách hàng của adrepo)
+đối tượng: `agency_id` list (account khách hàng của adrepo)
 
 `BatchGetAdvertiserListFreakOut`
 
@@ -680,7 +706,9 @@ batchGetAdvertiserListFreakOut.run();
 batchGetAdvertiserListFreakOut.exportCompletedStateFileToS3();
 ```
 
-### Reset status = 0 for report/master queues
+### Batch InitializationGetReportQueueError
+
+Reset status = 0 for report/master queues
 
 `BatchInitializationGetReportQueueError` reset trạng thái của các report queue đang bị lỗi ở RDS ETL (cập nhật status = 8 -> status = 0) để thực hiện retry.
 
@@ -688,13 +716,19 @@ Chạy mỗi giờ 1 lần vào phút 0 `0 * * * * java`
 
 tạo trước 0h là sẽ không retry (reset)
 
----
+### checkProcessState.sh
+
+Shell script checkProcessState.sh sẽ chạy mỗi giờ 1 lần vào phút 25 và sau 1 phút trong trường hợp server reboot.
 
 `UpdateReportQueueStatus` Cập nhật trạng thái cho các report queue ở RDS Adrepo/ETL. Hiện tại đang sử dụng để reset trạng thái queues (cập nhật status = 1 →「statusTo」) khi kiểm tra hoạt động của các process.
 
 ### Batch Alert
 
 `BatchAlertGetReportQueueState`, `BatchAlertGetMasterQueueState` => gởi email trong file `/opt/ag/ag_batch/alert_report_queue_state_receiver.txt`
+
+ Kiểm tra số lượng / tỉ lệ các nhóm queues ở trạng thái bất thường, xuất message tương ứng.
+
+- Với nhóm queues `Unfinished (non-error)`, nếu tồn tại (số lượng > 0) thì xuất message: `Delay (There are [<number_unfinished_queues>/<total_queues>] tasks that have not yet been executed)`
 
 ### Other Batches
 
@@ -704,9 +738,21 @@ Class `AbstractBatchMaster` không liên quan đến việc lấy master. It con
 
 Class `AbstractBatch` contains the Logger objects and the methods to print logs.
 
-`BatchRemoveTemporaryFile` cho chạy start & finish
+`BatchRemoveTemporaryFile` chỉ cần cho chạy start & finish
 
-`BatchBackupEtlRds` chạy sau cùng vì sẽ reset database
+`BatchBackupEtlRds` cho test chạy sau cùng vì sẽ reset database
+
+---
+
+`BatchImportAdrepoDailyUniqueAdvertiserListToETL`
+
+I believe the following table exists on the ETL side. It is used to bill Mr. Ilg for ETL usage fees, and the design involves inserting account information from AdRepo on a daily basis. My understanding is that AdRepo outputs a CSV to S3, which the ETL process then ingests and inserts into this table. However, it appears that no new records have been inserted into this table since July 6th. Please investigate whether the CSV ingestion is failing or if the CSV itself is not being generated.
+
+`etl_adrepo.daily_unique_advertiser_list`
+
+---
+
+`BatchIgnoreUnprocessedReportQueue`
 
 ### Batch Processing
 
@@ -807,6 +853,8 @@ kkk
 
 ## Log4j
 
+`/opt/ag/logs/`
+
 Apache Log4j version `1.2`; [documentation](https://logging.apache.org/log4j/1.x/)
 
 In Log4j, a `category` (also commonly referred to as a "logger") is essentially the named channel or routing rule that your Java code uses to send messages.
@@ -840,6 +888,15 @@ log4j.appender.ADIA.layout.ConversionPattern=%-5p %d [%t] %m%n
 In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBUG`.
 
 Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
+
+## S3 Util
+
+the S3 key is not just the folder path — it is the complete path including the file name and its extension
+
+How S3 Keys Work
+
+Flat Storage Architecture: In Amazon S3, there is no real hierarchical folder structure like on a local hard drive. Instead, S3 is a flat key-value store where the key is the entire unique identifier for an object inside a bucket. The slashes (/) are just delimiters used to simulate a directory structure in the AWS console
+
 
 ## Common Terms
 
@@ -907,7 +964,9 @@ With synchronous mode, you make an API request and the data will be returned in 
 
 2 queue tạo task có cùng advertiser id, request param (metric, dimension) thì sẽ trả task id giống nhau kể cả khi dùng 2 oauth access token khác nhau
 
-### Task Check field
+### Task Check field định kỳ
+
+Trường hợp có thay đổi: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7764>
 
 Requests gởi tới API của tiktok để tạo task download report:
 
