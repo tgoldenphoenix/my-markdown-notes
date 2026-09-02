@@ -38,3 +38,33 @@ This is a cold state.
 
 Slightly over half of all Utahns are `Mormons`, the vast majority of whom are members of the Church of Jesus Christ of Latter-day Saints (LDS Church), which has its world headquarters in Salt Lake City
 
+## Nevada
+
+Las Vegas
+
+`Lost Wages` is a nickname for the city or urban area of Las Vegas, Nevada, referring to money losses by tourists due to gambling
+
+## Texas
+
+Plano city anh hải chị vân có đi
+
+The Fort Worth Stockyards is a historic district that is located in Fort Worth, Texas, United States, north of the central business district.
+
+## Georgia (GA)
+
+Nickname(s): Peach State; Empire State of the South
+
+Atlanta, a glob5al city, is both the state's capital and its largest city.
+
+Georgia is named after King George II of Great Britain which ruled Britain in 1773 when Georgia was founded as a colony.
+
+## Illinois notes
+
+chicago
+
+## Massachusetts
+
+Cape Cod
+
+Mũi đất Cod (Cape Cod) was named by English explorer Bartholomew Gosnold in 1602 due to the abundance of codfish (cá tuyết) in the surrounding waters
+
