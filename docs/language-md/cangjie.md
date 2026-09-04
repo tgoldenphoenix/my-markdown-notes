@@ -152,6 +152,7 @@ Triple-unit characters
 - 穴 (十金) - animal leg, hole
   - 空 (十金 // 一) double unit character
   - 穿 (十金 // 一女竹) - double unit
+  - 突 (十金 // 戈大)
 
 - 深 (水 // 月金 // 木) - miniskirt
 - 探 (手 // 月金 // 木)
@@ -484,6 +485,7 @@ Triple-unit characters
   - 放 (卜尸 // 人大)
   - 於 (卜尸 // 人 // 卜)
   - 刀 (尸竹)
+  - 別/别 (口尸 // 中 // 弓)
 - 万 (一尸)
 - 分 (金 // 尸竹) - divide
 - 別/别 (口尸 // 中 // 弓) - separate
@@ -519,7 +521,7 @@ Triple-unit characters
 - 烏 (竹口卜火) - crow
   - 乌 (心女尸一)
 
-- 號 (口尸 // 卜心山)
+- 號 (口尸 // 卜心 // 山)
 
 - 耳 (尸十) - ear
   - 聲 (土水 // 尸十) - double unit character
@@ -897,7 +899,8 @@ Triple-unit characters
 - 民 (口女心)
 - 尤 (戈大山)
 - 发 (戈女大水)
-- 犬 (戈大) - chihuahua
+- 犬 (戈大)
+- 尤 (戈大山)
 
 - 淺 (水 // 戈 // 戈) - float
   - 浅 (水 // 戈十)
@@ -932,11 +935,11 @@ Triple-unit characters
   - 伐 (人戈) - fell
 
 - 弋 (戈心) - arrow
+  - 式 (戈心 // 一)
 - 代 (人 // 戈心) - substitute, age, era
   - 黛 (人心 // 田土 // 火) - triple unit
     - 黑 (田土 // 火) - double unit
   - 膩 (月 // 戈心 // 金) - triple unit
-  - 式 (戈心 // 一)
   - 术 (戈木)
 - 貸 (人心 // 月山金)
   - 貨 (人心 // 月山金)
@@ -1281,9 +1284,13 @@ Triple-unit characters
 
 - 豆 (一 // 口廿) - table, bean
   - 厨 (一 // 一廿 // 戈)
+  - 短 (人大 // 一 // 口廿)
 - 豐 (山十 // 一 // 口廿) - triple unit
 
 - 册 (月月一)
+
+- 奐 (弓月 // 大)
+  - 喚 (口 // 弓月 // 大)
 
 ### Middle 中
 
@@ -2053,6 +2060,7 @@ Triple-unit characters
 - 廟 (戈 // 十十 // 月) - triple unit
 - 膺 (戈 // 人土 // 月)
 - 床 (戈 // 木)
+- 纏 (女火 // 戈 // 田土)
 
 - sick bed: 病 (大 // 一人月)
   - 疼 (大 // 竹水卜)
@@ -2068,6 +2076,7 @@ Triple-unit characters
   - 壽 (土弓一戈) - longevity
   - 守 (十 // 木戈)
   - 專 (十戈 // 木戈) - double unit, specialty
+  - 时 (日 // 木戈)
 - 寺 (土 // 木戈) - Buddhist temple, pagoda
   - 待 (竹人 // 土 // 木戈) - triple unit
   - 時 (日 // 土 // 木戈) - triple unit
@@ -2309,6 +2318,7 @@ Triple-unit characters
 
 - 艮 (日女) - silver
   - 很 (竹人 // 日女)
+  - 退 (卜 // 日女)
 - 良 (戈日女) - halo
   - 浪 (水 // 戈日女)
   - 娘 (女 // 戈日女)
@@ -2347,6 +2357,7 @@ Triple-unit characters
   - 紅 (女火 // 一)
   - 細 (女火 // 田)
   - 繁 (人大 // 女戈火)
+  - 累 (田 // 女戈 // 火)
 - 纯 (女一 // 心山)
   - 综 (女一 // 十 // 一火)
   - 细 (女一 // 田)
@@ -2368,6 +2379,7 @@ Triple-unit characters
 - 亦 (卜中弓金) - apple
   - 变 (卜金 // 水)
   - 赦 (土金 // 人大)
+  - 跡 (口一 // 卜中金)
 - 變 (女火 // 人大)
   - 𤅶 (水 // 女火 // 大) - nôm
 - 樂 (女戈 // 木) - sparkler
