@@ -18,3 +18,5 @@ AI includes components beyond just machine learning, such as natural language pr
 
 Machine learning algorithms learn from data to make predictions or decisions. These algorithms are broadly categorized into supervised, unsupervised, and reinforcement learning.
 
+Supervised learning (học có giám sát) is a machine learning technique that uses labeled data sets to train artificial intelligence (AI) models to identify the underlying patterns and relationships.
+

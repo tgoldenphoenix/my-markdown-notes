@@ -59,25 +59,57 @@ $ pip freeze > requirements.txt
 Now using `uv`:
 
 ```bash
-$ uv init new_app
-# or
-uv init
-$ cd new_app
+uv init new_app
+cd new_app
 
 # Install packages
-$ uv add flask requests
-
+uv add flask requests
 # install OK but stored inside `.venv`, no change to the `pyproject.toml`
 uv pip install numpy
 
 # not `python3 main.py`
-$ uv run main.py
+uv run main.py
 ```
 
 `uv` automatically create a virtual environment when we install package
 
 uv supports managing Python projects, which define their dependencies in a `pyproject.toml` file.  
 In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store package information in `pyproject.toml & .lock` file, deleting `venv` will not cause any damage.
+
+The `.python-version` file contains the default Python version for the current project. This file tells uv which Python version to use when creating a dedicated virtual environment for the project.
+
+Even though uv has an alternative interface that mimics pip, you shouldn’t use it to install dependencies because these commands won’t update the uv.lock file or pyproject.toml automatically like `uv add` does.
+
+---
+
+If you’re working on an existing project and want to migrate from a `requirements.txt` file to using uv, then you can run the following command:
+
+```bash
+uv add -r requirements.txt
+```
+
+This command imports the dependencies declared in your existing requirements.txt file into the uv infrastructure.
+
+---
+
+If you want to start managing an existing project with uv, then navigate to the project directory and run `uv init`.
+
+This command will create the uv project structure for you. It won’t overwrite the main.py file if you have one, but it’ll create the file if it’s missing. It neither modifies your Git repository nor your README.md file.
+
+However, this command won’t work if you already have a `pyproject.toml` file in place. If that’s the case, then you can move the file to another location and run the uv init command. Finally, you can update the new file with any relevant configuration from your old pyproject.toml.
+
+---
+
+```python
+$ uv run main.py
+Using CPython 3.13.2
+Creating virtual environment at: .venv
+Hello from rpcats!
+```
+
+The first time you run this command, it’ll display the Python version you’re currently using for the project. It’ll also inform you that uv has created a dedicated Python virtual environment for the project (`.venv`).
+
+The `uv.lock` file uses the TOML format. You should add this file to version control. However, you shouldn’t edit this file manually.
 
 ---
 
@@ -88,6 +120,10 @@ uv python list
 
 uv python install 3.10
 
+uv --help
+uv --version
+uv self update
+
 # show the dependency tree
 uv tree
 ```
@@ -97,6 +133,55 @@ uv tree
 `venv` (or virtual env) for creating virtual environment
 
 `uv sync` create the `venv` using the `.lock` file.
+
+### Dependency Management
+
+```bash
+uv add --upgrade requests
+```
+
+This command upgrades requests and updates its version information in the uv.lock file. This action allows you to work with the library’s latest version.
+
+remove dependency
+
+```bash
+uv remove <package_name>
+```
+
+This is the list of packages installed in the project’s virtual environment and their specific versions.
+
+```bash
+$ uv pip list
+Package            Version
+------------------ ---------
+certifi            2025.1.31
+charset-normalizer 3.4.1
+idna               3.10
+iniconfig          2.1.0
+packaging          24.2
+pluggy             1.5.0
+pytest             8.3.5
+requests           2.32.3
+urllib3            2.3.0
+```
+
+In the example above, you used the pip interface of uv. In this case, that’s perfectly valid because you aren’t changing the environment but retrieving information from it.
+
+---
+
+In most development environments, you’ll have dependencies that aren’t required for running the code but are vital for developing it. For example, testing libraries like pytest, code formatters like Ruff, and static type checkers like mypy might be some of these development dependencies.
+
+```bash
+uv add --dev pytest
+```
+
+### Locking and Syncing the Environment
+
+As you’ve already learned, uv uses the uv.lock file to lock a project’s dependencies. Locking consists of capturing your project’s specific dependencies in the lockfile. This process makes it possible to reproduce your working environment in all possible configurations, including the Python version and distribution, the operating system, and the architecture.
+
+As a counterpart, syncing is the process of installing the required packages from the lockfile into the project’s development environment.
+
+Both locking and syncing processes are automatically handled by uv. For example, when you execute uv run, the project is locked and synced before the command is invoked. This behavior ensures that your project’s environment is always up to date.
 
 ## Python Command-Line Programs
 
