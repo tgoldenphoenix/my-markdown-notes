@@ -20,3 +20,19 @@ Machine learning algorithms learn from data to make predictions or decisions. Th
 
 Supervised learning (học có giám sát) is a machine learning technique that uses labeled data sets to train artificial intelligence (AI) models to identify the underlying patterns and relationships.
 
+## LLMs
+
+Large Language Models (LLMs) are sophisticated AI systems trained on vast amounts of text data to understand, generate, and manipulate human language.
+
+## Model, Data
+
+Data is represented using table.
+
+Each row is a D-dimensional vector, referred to as an `example` or data point in machine learning.  
+Each column represents a particular `feature` of interest
+about the example.
+
+In supervised learning, each example is associated with a label.
+
+Examples with similar features should have similar labels.
+

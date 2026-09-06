@@ -1099,6 +1099,8 @@ Có các trường hợp merge như sau:
   Git creates a new commit (snapshot) called `merge commit`. This merge commit points to two parent while normal commit only has one parent. Three-way merge always create a new commit.
   Sẽ có conflict nếu 2 branches tips changed the same file AND the same line.
 
+### Conflict
+
 Nếu có merge conflict thì git không tạo merge commit mà pause để user resolve the conflict. If you want to see which files are unmerged at any point after a merge conflict, you can run `git status`. Git auto add **conflict-resolution markers** to the files that have conflicts, so you can open them manually and resolve those conflicts.
 
 Phân biệt git diff marker & git conflict markers.
