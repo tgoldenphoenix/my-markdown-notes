@@ -167,6 +167,18 @@ To live means to struggle.
 
 Money is what she wants now.
 
+The coast of Vietnam winds in the shape of the letter S.
+
+Watching "A Beautiful Mind" movie, I was deeply moved.
+
+Elvis Presley's heyday is over but he is still popular in some sections of the country.
+
+## Story telling
+
+In a low voice, he told us the tale of his trip to Africa.
+
+He came to borrow some money from you but you were out so he went away to a pawn-shop.
+
 ## Phrases
 
 I knew that after crackling loudly, the hen had laid an egg.

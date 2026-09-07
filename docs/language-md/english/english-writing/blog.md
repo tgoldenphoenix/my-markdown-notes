@@ -11,3 +11,4 @@ I don’t really post on a consistent schedule, but I try to put up one or two t
 In late 2018, I started a project (back on tumblr, actually) to write up a blog post for every single chapter of Moby-Dick; or, the Whale, which is one of my favorite books. I've read it several times already, so I thought it would be fun to go through and really examine it more closely.
 
 The posts focus on different things as I go. Chasing down stray biblical and cultural references from the 1840s, examining specific moments in depth, piecing together broad themes. Early on, I got caught up a lot in summarizing the chapters, but I've been focusing more on reacting to it lately.
+

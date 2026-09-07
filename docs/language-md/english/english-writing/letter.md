@@ -70,3 +70,5 @@ I’m so grateful for your work and for everything you have done. Your courses h
 
 If anyone reading this is struggling with mathematics or feels stuck, I want you to know that a solid foundation changes everything. The right teaching can take you from never having opened a textbook to being able to sit with thousands of pages of dense material and actually understand and enjoy it. Fluency takes time, but it is possible. The language of mathematics can be learned, even as an adult, and it is worth every hour you put into it. It's been 7 years since you started posting these videos. 7 years of hard-work to bless the world with your knowledge. Thank you so very, Matt. Truly. God bless you.
 
+Thank you with all my heart.
+
