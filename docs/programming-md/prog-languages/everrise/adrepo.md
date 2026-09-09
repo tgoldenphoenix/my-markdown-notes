@@ -712,15 +712,21 @@ Reset status = 0 for report/master queues
 
 `BatchInitializationGetReportQueueError` reset trạng thái của các report queue đang bị lỗi ở RDS ETL (cập nhật status = 8 -> status = 0) để thực hiện retry.
 
+argument là dsp_types
+
 Chạy mỗi giờ 1 lần vào phút 0 `0 * * * * java`
 
-tạo trước 0h là sẽ không retry (reset)
+- tạo trước 0h là sẽ không retry (reset)
+- queue type 3 lấy dữ liệu 40 ngày trước tạo lúc 11h đêm, nếu qua 0h mà lỗi thì sẽ không được retry. Batch retry chỉ xét type 3.
+- queue type 2 nếu lỗi kiểu này thì khi check server thủ công hằng ngày sẽ retry thủ công
 
 ### checkProcessState.sh
 
-Shell script checkProcessState.sh sẽ chạy mỗi giờ 1 lần vào phút 25 và sau 1 phút trong trường hợp server reboot.
+Shell script `checkProcessState.sh` sẽ chạy mỗi giờ 1 lần vào phút 25 và sau 1 phút trong trường hợp server reboot.
 
 `UpdateReportQueueStatus` Cập nhật trạng thái cho các report queue ở RDS Adrepo/ETL. Hiện tại đang sử dụng để reset trạng thái queues (cập nhật status = 1 →「statusTo」) khi kiểm tra hoạt động của các process.
+
+`UpdateMasterQueueStatus`
 
 ### Batch Alert
 
