@@ -291,6 +291,14 @@ dùng junit 4 (cuốn sách bản cũ second edition)
 
 AesUtilsTest có chứa key decrypt
 
+---
+
+Build ra file .jar trong /target
+
+`mvn clean package -DskipTest`
+
+
+
 ### Setup Web API
 
 ```bash
@@ -724,7 +732,11 @@ Chạy mỗi giờ 1 lần vào phút 0 `0 * * * * java`
 
 Shell script `checkProcessState.sh` sẽ chạy mỗi giờ 1 lần vào phút 25 và sau 1 phút trong trường hợp server reboot.
 
-`UpdateReportQueueStatus` Cập nhật trạng thái cho các report queue ở RDS Adrepo/ETL. Hiện tại đang sử dụng để reset trạng thái queues (cập nhật status = 1 →「statusTo」) khi kiểm tra hoạt động của các process.
+shell script này chạy trong git bash không được vì `sh` is aliased to `bash`
+
+- `UpdateReportQueueStatus,java`
+  - Không có trong crontab nhưng `checkProcessState.sh` sẽ chạy file này
+  - Cập nhật trạng thái cho các report queue ở RDS Adrepo/ETL. Hiện tại đang sử dụng để reset trạng thái queues (cập nhật status = 1 →「statusTo」) khi kiểm tra hoạt động của các process.
 
 `UpdateMasterQueueStatus`
 

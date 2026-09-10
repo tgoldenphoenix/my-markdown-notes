@@ -960,11 +960,13 @@ If you run locate head-to-head against find, locate will almost always return re
 
 These are the real tools, used when searching other paths beside those listed in the search path (using `which`).
 
-`find` find files and directory in a directory hierarchy. This command not only allows you to search file names, it can also accept file size, date of last change and other file properties as criteria for a search. The most common use is for finding file names: `find <path> -name <searchstring>`\
-This can be interpreted as "Look in all files and subdirectories contained in a given path, and print the names of the files containing the search string in their name" (not in their content).
+`find` finds files and directories in a directory hierarchy. This command not only allows you to search file names, it can also accept file size, date of last change and other file properties as criteria for a search. The most common use is for finding file names: `find <path> -name <searchstring>`\
+This can be interpreted as "Look in all files and subdirectories contained in a given path, and print the names of the files containing the search string in their file name" (not in their content).
 
-- filter by file type, file name and a number of other options.
+- Filter by file type, file name and a number of other options.
 - Another application of find is for searching files of a certain size
+
+---
 
 One of the most useful features of `find` is its ability to execute arbitrary shell commands against each file that matches the search. For example:
 

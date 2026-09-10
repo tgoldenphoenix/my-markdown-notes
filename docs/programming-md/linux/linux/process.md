@@ -47,9 +47,9 @@ The shell offers a feature called **job control** which allows easy handling of 
 
 A process has a series of characteristics, which can be viewed with the `ps` command.
 
-Note that **ps** only gives a momentary state of the active processes, it is a one-time recording. The `top` program displays a more precise view by updating the results given by **ps** (with a bunch of options) once every five seconds, generating a new list of the processes causing the heaviest load periodically, meanwhile integrating more information about the swap space in use and the state of the CPU, from the `proc` file system
+Note that `ps` only gives a momentary state of the active processes, it is a one-time recording. The `top` program displays a more precise view by updating the results given by `ps` (with a bunch of options) once every five seconds, generating a new list of the processes causing the heaviest load periodically, meanwhile integrating more information about the swap space in use and the state of the CPU, from the `proc` file system
 
-The first line of `top` contains the same information displayed by the `uptime` command
+The first line of `top` contains the same information displayed by the `uptime` command.
 
 ## Commands
 
@@ -64,9 +64,16 @@ The first line of `top` contains the same information displayed by the `uptime` 
 
 `fg` Puts the job back in the foreground. Every process running in the background gets a number assigned to it. By using the `%` expression a job can be referred to using its number, for instance `fg %2`.
 
-`ps` which processes are active and what numbers these processes have
-
 `kill` get rid of processes. Foreground processes can often be killed by typing `Control-C`
+
+---
+
+`ps` => which processes are active and what numbers these processes have?
+
+`-e` lists every process running on the whole system. Running without `-e` lists only processes running in your current terminal/shell session.
+
+- `pid`: The Process ID number.
+- `cmd`: The full command name and arguments used to launch the process (e.g., java -cp /opt/ag/ag_batch/adrepo_batch.jar ...).
 
 ## Component of a Process
 

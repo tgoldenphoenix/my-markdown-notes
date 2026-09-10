@@ -4,6 +4,12 @@
 
 > count lines, words, and characters
 
+```bash
+wc [OPTIONS] [FILE]...
+```
+
+A word is defined as a non-empty string of characters delimited by whitespace.
+
 Run without options, it displays all three counts:
 
 ```bash
@@ -14,6 +20,9 @@ $ wc /etc/passwd
 Count the number of byte present too.
 
 In the context of scripting, it is more common to supply a `-l, -w, or -c` option to make wc’s output consist of a single number.
+
+- Flags:
+  - `-l` count lines instead of words or bytes
 
 ## `tr` (translate)
 
@@ -54,7 +63,7 @@ $ cut -d: -f7 /etc/passwd | sort | uniq -c
 
 > search text in files
 
-`grep` searches its input text and prints the lines that match a given pattern. Its name is based on the **g**/regular-expression/**p** command from the old **ed** editor that came with the earliest versions of UNIX (and still does).
+`grep` searches its input text and prints the **lines** that match a given pattern. Its name is based on the g/regular-expression/p command from the old `ed` editor that came with the earliest versions of UNIX (and still does).
 
 `grep [OPTION]... PATTERNS [FILE]...`
 
@@ -78,8 +87,7 @@ Search for pieces of matching text in text files such as a csv file that store h
 
 `grep` can be used with **regular expression**. Ex: extract all the different model number from a csv of sale record.
 
-By default, grep will print the entire line of text where a match is found.\
-`-o` flag extract only the matched part of the text.
+By default, grep will print the entire line of text where a match is found. The `-o` flag extract only the matched part of the text.
 
 find and locate are often used in combination with grep to define some serious queries.
 
@@ -96,6 +104,15 @@ Search for multiple terms at once by appending the `-E` option to grep and provi
 ## cut
 
 > separate lines into fields
+
+It can be used to cut parts of a line by delimiter, byte position, and character.
+
+```bash
+cut OPTION... [FILE]...
+```
+
+- Flags:
+  - `-d` (--delimiter): Specify a delimiter that will be used instead of the default “TAB” delimiter.
 
 ## sed - search & replace
 
