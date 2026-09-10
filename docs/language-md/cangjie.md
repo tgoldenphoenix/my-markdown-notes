@@ -115,7 +115,7 @@ Triple-unit characters
 - 先 (竹土竹山) - before
   - 贊 (竹山 // 月山金)
   - 酰 (一田 // 竹土山)
-- 旡 (一女大山) - waitress
+- 旡 (一女大山)
 
 - 兄 (口竹山) - teenager
 - 兌/兑 (金 // 口竹山) - devil, horn
@@ -204,6 +204,7 @@ Triple-unit characters
 - 无 (一大山) - nothing
 - 旡 (一女大山) - Waitress
   - 既 (日戈 // 一女山)
+  - 概 (木 // 日戈 // 山)
   - 贊 (竹山 // 月山金)
 - 冘 (中月山) - sinking, sink
   - 枕 (木 // 中月山)
@@ -2653,6 +2654,8 @@ Triple-unit characters
   - 网 (月 // 大大)
 
 - 缶 (人十山)
+
+- 微 (竹人 // 山山 // 大)
 
 ### Rice Field 田
 

@@ -120,6 +120,14 @@ My name is An Hao, the creator of and, thus far, sole author of this blog.
 
 I was born in Vietnam back in 2002, and have lived there most of my life, excepting a couple of sojourns to Saigon and Cantho for college.
 
+### Job bibliography
+
+I studied at the CTUMP until the early of 2022, when it was temporarily shut down due to the COVID-19 pandemic.
+
+It was fun, but now I’m looking to move into web design, and am currently working on an associate’s degree in that subject at Seattle Central College. You can find my professional website over at <RTVGilder.com>.
+
+After graduating, I got a job at a technical consulting company down in Auburn, called Praece Consulting. I’ve been enjoying this job a lot, and I still can’t really believe that my plan to go back to school and start a new career actually worked. But, it really did.
+
 ## Describing
 
 Watching "Evangelion" show, I was deeply moved.
@@ -130,9 +138,9 @@ I saw a policeman running after a thief.
 
 The coast of Vietnam winds in the shape of the letter S.
 
-He came to borrow some money from you but you were out so he went away to a pawn-shop.
-
 Even little girls dream of becoming astronauts.
+
+In spite of being at the peak of their fame, the Beatles decided to stop giving concerts.
 
 Taking off his cap, lowering his umbrella, and scraping his shoe on the doormat, he rang the door bell.
 
@@ -173,11 +181,13 @@ Watching "A Beautiful Mind" movie, I was deeply moved.
 
 Elvis Presley's heyday is over but he is still popular in some sections of the country.
 
-## Story telling
+## Story Telling
 
 In a low voice, he told us the tale of his trip to Africa.
 
 He came to borrow some money from you but you were out so he went away to a pawn-shop.
+
+Taking off his cap, lowering his umbrella, and scaping his shoes on the doormat, he rang the door bell.
 
 ## Phrases
 
@@ -192,3 +202,6 @@ Before you leave, I will sign the check. => must have comma
 The Smith family arrived at 2:00, while the Jones family arrived an hour later.  
 A comma is often used in the middle of the sentence with a contrast connector. Bình thường chỉ dùng comma khi **adverb connector** đứng đầu câu.
 
+## Reporting
+
+Starvation is a great threat for people living in poor countries.

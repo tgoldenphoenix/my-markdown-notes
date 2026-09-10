@@ -10,13 +10,17 @@ My chief joy comes from learning that the Silmarillion is not rejected with scor
 
 May I wish you bon voyage - and a safe return. I shall look forward to seeing you again.
 
+## Letter to a friend
+
+k
+
 ## Email to a professor
 
 Dear Professor Smith,
 
 My name is Pham An Hao and I am a sophomore in your Tuesday/Thursday General Physics Class. I am writing because in class yesterday you mentioned having some open positions in your research lab.
 
-## Cover letter
+## Cover Letter
 
 Dear Ms. Johnson,
 
