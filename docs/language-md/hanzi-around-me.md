@@ -63,6 +63,10 @@ k
 - 帝德惠南洋 (đế đức huệ nam dương)
 - 聖恩宏廣澤 (thánh ân hoành quảng trạch)
 
+## Ha Binh building
+
+天官賜福 (thiên quan tứ phúc)
+
 ### Bàn thờ thần tài
 
 聚寶堂 "Tụ Bảo Đường"

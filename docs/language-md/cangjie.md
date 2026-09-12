@@ -436,6 +436,7 @@ Triple-unit characters
   - 昭 (日 // 尸竹口)
   - 分 (金 // 尸竹)
   - 寡 (十 // 一金 // 竹) - triple unit
+  - 切 (心 // 尸竹)
 - 召 (尸竹 // 口) - seduce
   - 紹 (女火 // 尸竹 // 口) - triple unit
   - 招 (手 // 尸竹 // 口)
@@ -984,7 +985,8 @@ Triple-unit characters
 
 - 勿 (心竹竹) - knot
   - 物 (竹手 // 心竹竹)
-- 易 (日 // 心竹竹)
+- 易 (日心竹竹) - easy, single unit
+  - 賜 (月金 // 日心竹)
 - 昜 (日 // 一尸竹) - piggy bank
   - 陽 (弓中 // 日 // 一竹) - triple unit
   - 場 (土 // 日 // 一竹) - triple unit
@@ -1843,6 +1845,8 @@ Triple-unit characters
 
 #### Water 水
 
+- 線 (女火 // 竹日 // 水)
+
 - 冬 (竹水卜) & 科 (竹木 // 卜十) - winter
 - 永 (戈弓水) - eternity
   - 樣 (木 // 廿土 // 水) three unit; take last radical of the 3rd unit
@@ -2095,6 +2099,9 @@ Triple-unit characters
 - 詩 (卜口 // 土 // 木戈) - poem
   - 诗 (戈女 // 土 // 木戈)
 
+- 付 (人 // 木戈)
+  - 附 (弓中 // 人 // 木戈)
+
 - 才 (木竹)
 - 牙 (一女木竹) - tusk
   - 呀 (口 // 一女竹)
@@ -2116,6 +2123,7 @@ Triple-unit characters
 - 余 (人 // 一木) - scale
   - 除 (弓中 // 人 // 一木)
   - 途 (卜 // 人 // 一木)
+  - 斜 (人木 // 卜十)
 
 - 千 (竹十)
 - 重 (竹十田土)
@@ -2245,7 +2253,8 @@ Triple-unit characters
 
 ### Fortune/divine Telling 卜
 
-- 通 (卜 // 弓戈月) - road
+- 卜 = road
+- 通 (卜 // 弓戈月)
 - 進 (卜 // 人土)
   - 隹 (人土)
 - 边 (卜 // 大尸)
@@ -2271,6 +2280,7 @@ Triple-unit characters
   - 図 (田卜大)
 - 斗 (卜十) - big dipper
   - 料 (火木 // 卜十)
+  - 斜 (人木 // 卜十)
 - 於 (卜尸 // 人卜)
 
 - 头 (卜大) - bust
@@ -2449,9 +2459,13 @@ Triple-unit characters
 
 - 丂 (一女尸) - snare
   - 巧 (一 // 一女尸)
+  - 朽 (木 // 一女尸)
 - 号 (口 // 一女尸)
   - 號 (口尸 // 卜心 // 山)
 - 元 (一一山)
+
+- 亟 (一水一)
+  - 極 (木 // 一水一) - poles
 
 - 牙 (一女木竹)
 - 旡 (一女大山)
@@ -2644,8 +2658,10 @@ Triple-unit characters
   - 脑 (月 // 卜 // 山大)
 - 区 (尸大)
 
-- 函 (山弓水)
-  - 涵 (水 // 山 // 弓水) - triple unit
+- 卑 (竹竹十, F+L // F)  or V5 (竹田竹 // 十) - lowly
+- 函 (弓山水) or V5 (山 // 弓水)
+  - 涵 (水 // 弓山水) - double unit
+  - 涵 V5 (水 // 山 // 弓水) - triple unit
 - 画 (一山田) - a drawing
 
 - 齒 (卜一 // 山 // 人人) - tooth
