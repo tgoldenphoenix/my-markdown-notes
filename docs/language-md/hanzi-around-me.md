@@ -63,10 +63,6 @@ k
 - 帝德惠南洋 (đế đức huệ nam dương)
 - 聖恩宏廣澤 (thánh ân hoành quảng trạch)
 
-## Ha Binh building
-
-天官賜福 (thiên quan tứ phúc)
-
 ### Bàn thờ thần tài
 
 聚寶堂 "Tụ Bảo Đường"
@@ -75,4 +71,12 @@ Ngũ phương Ngũ thổ Long thần, (五方五土龍神)\
 ngũ phương: Đông, Tây, Nam, Bắc và Trung Tâm
 
 前後地主財神 "Tiền hậu địa Chủ Tài thần"
+
+## Ha Vinh building
+
+天官賜福 (thiên quan tứ phúc)
+
+## Đ. Vành Đai Trong
+
+乐娱神财 (lạc ngu thần tài)
 
