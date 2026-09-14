@@ -512,16 +512,17 @@ Decrypt & encrypt access token nằm trong file `AesUtilsTest.testDecrypt()`. L�
 
 `ERROR_TYPE` của của queue lấy report data
 
-- `0`, `NORMALLY_RESULT`, không tìm thấy auth token trong table (lỗi do auth Id không tồn tại trong table etl_harbest.m_input_platform_auth)
-- `1`, `ERROR_CANNOT_HANDLE`, An error requiring further investigation on the ETL side; not call API and not use S3 yet
+- `0`, `NORMALLY_RESULT`, account is not found, không tìm thấy auth token trong table (lỗi do auth Id không tồn tại trong table etl_harbest.m_input_platform_auth)
+- `1`, `ERROR_CANNOT_HANDLE`, error of ETL process, An error requiring further investigation on the ETL side; not call API and not use S3 yet
   - nói chính xác hơn là những lỗi liên quan tới logic xử lý nội bộ, setting thiếu...không liên quan đến việc call API
   - vậy nếu error type = 1 thì có thể kết luận 90% là chưa call api, lỗi nằm trước phần call api
-- `2`, `ACCOUNT_INFO_ERROR`, authentication fail (đã call API)
-- `3`, `DOWNLOAD_TIMEOUT`, This is usually a problem on the platform side and will resolve itself over time.
+- `2`, `ACCOUNT_INFO_ERROR`, authentication error, authentication fail (đã call API)
+- `3`, `DOWNLOAD_TIMEOUT`, cannot retry, This is usually a problem on the platform side and will resolve itself over time.
   - Retry 3-4 lần vẫn không thành công thì throw lỗi này
-- `4`, `DOWNLOAD_UNKNOWN_ERROR`, An API error with an unknown cause. In principle, it will resolve itself over time. Đã call API (chứng thực thành công), lỗi, không cần retry vì chắc chắc vẫn sẽ fail
+- `4`, `DOWNLOAD_UNKNOWN_ERROR`, unexpected error, An API error with an unknown cause. In principle, it will resolve itself over time. Đã call API (chứng thực thành công), lỗi, không cần retry vì chắc chắc vẫn sẽ fail
 - `5`, `GENERATE_TSV_ERROR`, If an error occurs during the process of writing data acquired from the platform to a TSV file for S3 upload
-- `INSERT_ERROR` (6)
+- `INSERT_ERROR` (6) redshift
+- `7`, Unable to retrieve data; retry not possible (normal result)
 
 `catalog\GET_REPORT_ERROR_TYPE.java`
 
@@ -792,6 +793,10 @@ When a batch processor job begins, its batch processor instance is locked until 
 Inside entity classes, we can have ENUM classes.
 
 `GetMasterQueue` contain no fields, only ENUM and methods. The fields is inside `AbstractGetMasterQueue`
+
+### Convert JSON to CSV
+
+k
 
 ## ETL Web API
 
