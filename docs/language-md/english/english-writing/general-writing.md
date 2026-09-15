@@ -1,7 +1,5 @@
 # Daily Scenarios
 
-I lost my job. If worse comes to worst, I've got to sell out my wedding ring!
-
 How much higher the cost of living has got!
 
 My father's gambling addiction puts the family finance at risk.
@@ -112,6 +110,14 @@ Michael Jackson, the King of Pop, died at the age of 50, on June 25, 2009, in Lo
 
 A true patriot always fights for his country.
 
+## Complex Sentence
+
+kk
+
+### compound-complex sentence
+
+I lost my job. If worse comes to worst, I've got to sell out my wedding ring!
+
 ## Write about yourself
 
 Hi there!
@@ -189,11 +195,17 @@ He came to borrow some money from you but you were out so he went away to a pawn
 
 Taking off his cap, lowering his umbrella, and scaping his shoes on the doormat, he rang the door bell.
 
+Every year, near the end of autumn, when leaves are seen fallen all over the road and whitish clouds (are seen) flying in the sky my hear is alive again with the indefinable remembrance of Black Mondays.
+
 ## Phrases
 
 I knew that after crackling loudly, the hen had laid an egg.
 
-## Sentences with two clauses
+## Clauses
+
+Whether you will succeed or fail depends on your patience.
+
+### Sentences with two clauses
 
 I will sign the check before you leave.
 
@@ -202,6 +214,11 @@ Before you leave, I will sign the check. => must have comma
 The Smith family arrived at 2:00, while the Jones family arrived an hour later.  
 A comma is often used in the middle of the sentence with a contrast connector. Bình thường chỉ dùng comma khi **adverb connector** đứng đầu câu.
 
+## Quotes
+
+Well-grounded in traditional Vietnamese culture and well-informed of Western civilization, you'll be respected everywhere.
+
 ## Reporting
 
 Starvation is a great threat for people living in poor countries.
+

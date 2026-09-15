@@ -1177,6 +1177,7 @@ Triple-unit characters
   - 首 (廿竹月山)
 - 自 (竹月山) - oneself, nose, nostrils
   - 息 (竹山 // 心)
+  - 媳 (女 // 竹山 // 心)
 - 相 (木 // 月山)
   - 湘 (水 // 木 // 月山)
   - 想 (木山 // 心) - double unit
@@ -1454,7 +1455,7 @@ Triple-unit characters
 
 ### Fire 火
 
-- 爾 (一火月大) - thou
+- 爾 (一火月大) - thou, F3+L
   - 彌 (弓 // 一火月)
   - 瀰 (水 // 弓 // 一月) - triple unit
 
@@ -1707,6 +1708,7 @@ Triple-unit characters
   - 意 (卜廿 // 日 // 心)
 - 咅 (卜廿口) - muzzle
   - 部 (卜口 // 弓中) - double unit
+  - 陪 (弓中 // 卜廿 // 口)
 
 - 辛 (卜廿十) - spicy
   - 𨐌 (卜廿手)
@@ -2863,6 +2865,7 @@ Triple-unit characters
 - 舌 (竹十口) - tongue
   - 活 (水 // 竹十口)
   - 甜 (竹口 // 廿一)
+  - 恬 (心 // 竹十口)
 
 ### Ground, soil 土
 
@@ -3000,9 +3003,10 @@ Triple-unit characters
 - 鬥 (中弓) - big dipper
   - 鬧 (中弓 // 卜中月)
 
-- 鬼 (竹山戈) - ghost
+- 鬼 (竹戈) or V5 (竹山戈) - ghost
   - 塊 (土 // 竹山戈)
   - 魔 (戈木 // 竹山戈) - double unit
+  - 寬 (十 // 廿 // 月戈) - triple unit
 - 么 (竹戈)
   - 麼 (戈木 // 女戈) - double unit
 

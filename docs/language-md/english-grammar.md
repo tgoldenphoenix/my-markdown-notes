@@ -147,9 +147,9 @@ The weather app said it would rain today`; however,` no clouds are in the sky.
 
 ## Subject
 
-Object of Preposition (tân ngữ của giới từ) is a noun or pronoun that follows a preposition and completes its meaning. If a word is an object of a preposition, it is not the subject.
+`Object of Preposition` (tân ngữ của giới từ) is a noun or pronoun that follows a preposition and completes its meaning. If a word is an object of a preposition, it is not the subject.
 
-An **appositive** is a noun that comes before or after another noun and has the same meaning. If a word is an appositive, it is not the subject.
+An `appositive` is a noun that comes before or after another noun and has the same meaning. If a word is an appositive, it is not the subject.
 
 ## Particle & Phrasal Verbs
 
@@ -359,7 +359,7 @@ Noun clauses & adjective clauses **KHÔNG** dùng comma.
 
 ## Verb
 
-Hai loại verbs tạo thành 5 mẫu câu là **Transitive Verbs** (vt, ngoại động từ) và **Intransitive Verbs** (vi, nội động từ).
+Hai loại verbs tạo thành 5 mẫu câu là `Transitive Verbs` (vt, ngoại động từ) và `Intransitive Verbs` (vi, nội động từ).
 
 - Pattern I uses a **Complete Intransitive** which requires no Object nor Complement.
 - P. II uses an **Incomplete Intransitive verb** (aka Linking verb) which requires a Subject Complement
@@ -375,12 +375,14 @@ Different forms of verbs in English, with the example verb `know`:
 
 It's called "third person"" because the speaker (first person) is talking about a third party (not the speaker or the person being addressed). It's "singular" because it refers to only one person or thing. So, "third person singular" identifies the grammatical subject as a single, separate entity from the speaker and listener, such as "he," "she," "it," or a singular noun like "the boy" or "the dog"
 
-Gerund (danh động từ): **Walking every day** is good for health.
+---
 
-**Infinitie** (động từ nguyên mẫu): _To obey the laws_ is everyone's duty.  
+`Gerund` (danh động từ): `Walking every day` is good for health.
+
+`Infinitie` (động từ nguyên mẫu): `To obey the laws` is everyone's duty.  
 Trong tiếng Nhật cũng có infinitive.
 
-**Participle** (phân từ) is a word formed from a verb, ending in `-ing` (= the **present participle**) or `-ed, -en, etc`. (= the **past participle**).  
+`Participle` (phân từ) is a word formed from a verb, ending in `-ing` (= the `present participle`) or `-ed, -en, etc`. (= the **past participle**).  
 Don't be confused with **particle** (tiểu từ).
 
 - A present participle is the `-ing` form of the verb. **The present participle can be (1) part of the verb or (2) an adjective**. It is part of the verb when it is accompanied by some form of the verb `be`. It is an adjective when it is not accompanied by some form of the verb `be`.
