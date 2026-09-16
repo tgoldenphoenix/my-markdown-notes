@@ -10,4 +10,4 @@ kk
 
 ## Jackson
 
-kkk
+<https://www.tutorialspoint.com/jackson_annotations/index.htm>

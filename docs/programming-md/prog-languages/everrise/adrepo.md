@@ -297,8 +297,6 @@ Build ra file .jar trong /target
 
 `mvn clean package -DskipTest`
 
-
-
 ### Setup Web API
 
 ```bash
@@ -389,6 +387,10 @@ mysql: root:root or 123
 - Vĩ test batch: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7877>
 - Long & hào test batch (first half): <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7889>
 
+<https://adrepo-etl.client.harbest.jp/swagger>
+
+<https://adrepo-etl-dev.client.harbest.jp/swagger>
+
 ---
 
 - Batch process EC2 có 2 linux user:
@@ -463,6 +465,26 @@ mv etl-harbest-webapi.zip_20260810132227 etl-harbest-webapi.zip
 
 sudo kill -9 pID
 #pID: the second value (after user name) in the process information line
+```
+
+---
+
+`etl-harbest-webapi.zip` sau khi unzip ra & deploy sẽ giống như thế này. File `webapi.log` là file log trong ngày. Mỗi ngày sẽ có batch tự động upload file log này lên `s3://adrepo-etl/etl-harbest-webapi/logs/`.
+
+```bash
+[ec2-user@ip-192-168-0-224 etl-harbest-webapi]$ pwd
+/opt/etl-harbest-webapi
+[ec2-user@ip-192-168-0-224 etl-harbest-webapi]$ ls -la
+total 192
+drwxr-xr-x. 5 ec2-user ec2-user   111 Sep 16 15:47 .
+drwxr-xr-x. 7 root     root       111 Sep 16 15:47 ..
+-rwxr-xr-x. 1 ec2-user ec2-user 12154 Jul 20 14:46 README.md
+-rw-r--r--. 1 ec2-user ec2-user     7 Sep 16 15:47 RUNNING_PID
+drwxr-xr-x. 2 ec2-user ec2-user    62 Sep 16 15:47 bin
+drwxr-xr-x. 5 ec2-user ec2-user 16384 Sep 16 15:47 conf
+drwxr-xr-x. 2 ec2-user ec2-user 16384 Sep 16 15:47 lib
+-rw-------. 1 ec2-user ec2-user 68470 Sep 16 16:23 nohup.out
+-rw-r--r--. 1 ec2-user ec2-user 76128 Sep 16 16:23 webapi.log
 ```
 
 ## ETL Batch

@@ -439,7 +439,7 @@ In java, con trỏ = biến tham chiếu (reference variable). Ví dụ con tr�
 
 **Static variable** (biến của lớp, tất cả đối tượng của lớp đó được dùng chung). Cách khai báo giống instance variable, nằm ngoài methods nhưng phải thêm `static` keyword. Nên dùng cú pháp `CLassName.static_var` để truy cập và **không cần tạo object**.  
 Static variables & methods giúp ta tiết kiệm bộ nhớ ram vì **không phải tạo object** để gọi và có thể dùng chung.  
-`static` Attributes and methods belongs to the class, rather than an object
+`static` Attributes and methods belongs to the class, rather than an object.
 
 A static method does not belong to any individual instance (object) of a class—it belongs to the class itself. Because of this architecture, the JVM sets up, links, and makes static methods fully available for execution long before your code ever calls `new` to create an object of that class.
 
@@ -676,11 +676,11 @@ If a subclass constructor does not explicitly call a superclass constructor usin
 
 ### Exceptions vs. Errors
 
-Error and Exception are both subclasses of the `Throwable` class. Furthermore, only instances of Throwable and its subclasses can be thrown by the Java Virtual Machine or caught in a catch clause.
+`Error` and Exception are both subclasses of the `Throwable` class. Furthermore, only instances of Throwable and its subclasses can be thrown by the Java Virtual Machine or caught in a catch clause.
 
 Further, errors are regarded as `unchecked exceptions`, and applications should NOT try to catch and handle them. Moreover, errors happen at run time and cannot be recovered.
 
-Exceptions are abnormal conditions that applications might want to catch and handle. Exceptions can be recovered using a try-catch block and can happen at both run time and compile time.
+`Exceptions` are abnormal conditions that applications might want to catch and handle. Exceptions can be recovered using a try-catch block and can happen at both run time and compile time.
 
 Exception khác với Errors:
 
