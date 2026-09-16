@@ -114,7 +114,7 @@ A true patriot always fights for his country.
 
 kk
 
-### compound-complex sentence
+### Compound-complex sentence
 
 I lost my job. If worse comes to worst, I've got to sell out my wedding ring!
 
@@ -199,9 +199,21 @@ Every year, near the end of autumn, when leaves are seen fallen all over the roa
 
 ## Phrases
 
-I knew that after crackling loudly, the hen had laid an egg.
+I knew that `after crackling loudly`, the hen had laid an egg.
+
+I don't know `how to make money`.
+
+A policeman showed her `the way to the station`.
 
 ## Clauses
+
+He told us `why he came`.
+
+`The news that came this morning` was a great shock to her.
+
+She can't express `what she thinks`.
+
+Money is `what she wants now`.
 
 Whether you will succeed or fail depends on your patience.
 

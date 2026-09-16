@@ -27,16 +27,18 @@ Words are arranged in different ways to become groups of words called: phrases, 
 
 - A Phrase (cụm từ) is a group of words that cannot make any sense by itself. It does not contain a verb and its subject. A phrase is used to tell more about a clause.
 - A Clause (mệnh đề) is a group of words that can make sense by itself. It denote a person or a thing (subject) and an action or a state (verb).
-- A Sentence is a group of words that can
-
-`Subordinate Clauses` (dependent clause) không thể đi một mình.
+  - A clause is simply any group of words that contains both a subject and a predicate (verb).
+  - `Subordinate Clauses` (dependent clause) không thể đi một mình.
+- A Sentence is a group of words that can express a complete idea. A sentence must contain at least one clause.
 
 - Subject (chủ ngữ)
 - Predicate (vị ngữ)
 - Verb
 - Object (tân ngữ, túc từ)
-- Complement: required for the **completeness** of the sentence; đặt sau NOUN, mô tả tình trạng **mới**.
+- Complement (bổ ngữ): required for the **completeness** of the sentence; đặt sau NOUN, mô tả tình trạng **mới**.
 - Modifier (thành phần phụ nghĩa): optinal, add extra informations, đặt trước NOUN, mô tả tình trạng **cũ**.
+
+---
 
 According to the formation of the Predicate, sentences may be classified into **FIVE BASIC SENTENCE PATTERNS**:
 
@@ -377,20 +379,21 @@ It's called "third person"" because the speaker (first person) is talking about 
 
 ---
 
-`Gerund` (danh động từ): `Walking every day` is good for health.
+A `Gerund` (danh động từ) is a word that is made from a verb, ends in "-ing," and functions as a **noun**.  
+Example: `Walking every day` is good for health.
 
 `Infinitie` (động từ nguyên mẫu): `To obey the laws` is everyone's duty.  
 Trong tiếng Nhật cũng có infinitive.
 
 `Participle` (phân từ) is a word formed from a verb, ending in `-ing` (= the `present participle`) or `-ed, -en, etc`. (= the **past participle**).  
-Don't be confused with **particle** (tiểu từ).
+Don't be confused with `particle` (tiểu từ).
 
-- A present participle is the `-ing` form of the verb. **The present participle can be (1) part of the verb or (2) an adjective**. It is part of the verb when it is accompanied by some form of the verb `be`. It is an adjective when it is not accompanied by some form of the verb `be`.
-- A **Past Participle** often ends in `-ed` but there are also many _irregular past participles_. For many verbs, including `-ed` verbs, the simple past and the past participle are the same and can be easily confused. **The `-ed` form of the verb can be (1) the simple past, (2) the past participle of a verb used in perfect tense, or (3) an adjective**.
+- A `present participle` (hiện tại phân từ) is the `-ing` form of the verb. The present participle can be (1) part of the **verb** or (2) an **adjective**. It is part of the verb when it is accompanied by some form of the verb `be`. It is an adjective when it is not accompanied by some form of the verb `be`.
+- A `Past Participle` often ends in `-ed` but there are also many _irregular past participles_. For many verbs, including `-ed` verbs, the simple past and the past participle are the same and can be easily confused. **The `-ed` form of the verb can be (1) the simple past, (2) the past participle of a verb used in perfect tense, or (3) an adjective**.
 
 _Gerunds and present participles_ both use the `-ing` form of a verb, but they have different grammatical functions. Gerunds act as nouns, while present participles can act as adjectives or part of a verb phrase (continuous tenses).
 
-**Auxiliary verbs** (trợ động từ) help form tenses (e.g., "is running," "have finished"), moods (e.g., "was written," passive voice), and voices of main verbs. Example: `be (am, is, are, was, were), have (has, have, had), do (does, do, did)`.
+**Auxiliary verbs** (trợ động từ) help form tenses (e.g., `is running`, `have finished`), moods (e.g., "was written," passive voice), and voices of main verbs. Example: `be (am, is, are, was, were), have (has, have, had), do (does, do, did)`.
 
 ---
 
