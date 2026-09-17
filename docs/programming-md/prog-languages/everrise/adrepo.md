@@ -2,64 +2,33 @@
 
 ## Current Task
 
-Task to do
+Task TOTO
 
 - đọc batch import, export, viết note lại
 - đọc thông tin vận hành trong wiki (daily checking)
-- play around with the database, write sql to select, insert, delete, etc...
-- cái mapping trong report twitter
 - turn off nginx server and restart (when deploy gặp sự cố)
 - intellij shortcut go to usage
 
-## Questions
-
-Account_id của `get master queue` là account gì, khác gì oauth id?  
-etl agency id?
-
-queue_type 1, queue_type 3 là gì => coi trong class `batch/entity/etlAdrepo/AbstractGetReportQueue`
-
-get_master_queue => cột `type` là gì?
-
----
-
-- Lấy danh sách agency `/mAgencies/`
-- API token trong header là của ai?
-- table m_api_token chứa cái gì, khác gì table m_input_platform_auth?
-- token_key vs. token_secret?
-  
-### My Questions
-
-ETL-PRD-PROCESS => `PRD` là production?
-
-Tại sao có 2 EC2 chạy batch: process, selenium (imobile)?
-
-table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết queue nào đã được update để mà cập nhật cho phía adrepo (S3)
-
 ## Project Specification, Thiết kế
 
-Có các actors: end user, adrepo, platform, etl, web api của everrise
+Có các actors: end user, adrepo, platform (tiktok, twitter), etl, web api của everrise
 
 - End user
   - chạy quảng cáo
   - Vào front end của ad repo đăng ký để được nhận report quảng cáo
   - adrepo re-direct tới web api của everrise
 
-End user có tài khoảng quảng cáo trên các platform là các api của twitter, facebook
-
-Everries làm việc với adrepo, báo cáo cho ads report cho phía adrepo, không làm trược tiếp với khách hàng end user.  
-Adrepo là khách hàng của everrise.
+End user có tài khoản quảng cáo trên các platform (twitter, facebook). Everries làm việc với adrepo, báo cáo cho ads report cho phía adrepo, không làm trược tiếp với khách hàng end user. Adrepo là khách hàng của everrise.
 
 web api (elt harbest) nhận re-direct từ adrepo, cho advertiser authenticate trên platform. Sau đó api lấy token của khách hàng lưu vào database. Phía adrepo không lưu token ủy quyền của khách hàng.
 
 We only lấy thành tích quảng cáo (the only thing we care about). Everries không chạy quảng cáo.
 
-Repository fujiyama lấy report quảng cáo (batch)
-
 Phía everrise không làm front end, đã bán front-end cho phía ad repo
 
 Everrise trả dữ liệu report cho adrepo, adrepo trả cho end user
 
-adrepo **không** có token của khách hàng, mình mới có token và lưu token vào data base của mình. Adrepo redirect user về everrise để ERV lấy token
+adrepo **không** có lưu token của khách hàng, mình mới có token và lưu token vào data base của mình. Adrepo redirect user về everrise để ERV lấy token
 
 end user only work with adrepo (sale), end user không biết sự tồn tại của everrise
 
@@ -218,7 +187,8 @@ add child issues để chia nhỏ một task/batch lớn, một child ticket là
 
 ### Setup Batch
 
-Database dùng MySQL
+- Location jdk java 8 local: `C:\Users\anhao\.jdks\corretto-1.8.0_492`
+- Database dùng MySQL
 
 khi chạy script sql để tạo database & insert data trong `DBeaver` thì phải right-click -> `execute script`
 
@@ -397,13 +367,15 @@ mysql: root:root or 123
 - `ec2-user`: home dir có file `.ETL-DEV-PROCESS`
 - `adrepo-batch`: home directory không có gì nhiều; đây là user chạy crontab
 
-- `/opt/ag/ag_batch/` chứa file `.jar` chạy batch, chứa `config.properties`, chứa file lock, chứa các file config khác như email.
-- build file jar copy lên `~` của `ec2-user`.  Rồi từ đó chạy `/home/ec2-user/deploy_batch.sh` copy file jar qua bên `/opt/ag/ag_batch/`
-- File log của batch nằm trong `/opt/ag/logs/`
+- `/opt/ag/ag_batch/` chứa các thứ sau: file `.jar` chạy batch, `config.properties`, các files lock, các file configs khác như email.
+  - File log của batch nằm trong `/opt/ag/logs/`
+- build file jar copy lên `~` của `ec2-user`. Rồi từ đó chạy `/home/ec2-user/deploy_batch.sh` copy file jar qua bên `/opt/ag/ag_batch/`.
+- Copy `config.properties` lên `/opt/ag/ag_batch/` & cấp quyền cho `adrepo-batch` và `ubuntu` (user chạy batch `java` trên selenium).
 
 ```bash
 [ec2-user@ip-172-31-22-123 ag_batch]$ pwd
 /opt/ag/ag_batch
+
 [ec2-user@ip-172-31-22-123 ag_batch]$ ls
 adrepo_batch.jar                                         alert_master_queue_state_receiver.txt  file_download    report_data
 alert_import_daily_unique_advertiser_list_mail_to.txt    alert_report_queue_state_receiver.txt  file_upload      tmp
@@ -428,14 +400,6 @@ ssh -i ~/.ssh/adrepo-test20200330.pem ec2-user@52.192.196.227
 // At forwarding server, connect to RDS adrepo-etl-staging
 mysql -hadrepo-etl-dev.cmcxxxxxxxxx.ap-northeast-1.rds.amazonaws.com -uadrepo -pYN5kmZWDwxxxxxxxxx
 ```
-
-có 2 cái forwarding
-
----
-
-Copy `config.properties` lên `/opt/ag/ag_batch/` & cấp quyền cho `adrepo-batch` và `ubuntu` (user chạy batch `java` trên selenium).
-
-web api chỉ có 1 con staging, batch thì có 2 máy (dev, staging)
 
 ---
 
@@ -491,16 +455,12 @@ drwxr-xr-x. 2 ec2-user ec2-user 16384 Sep 16 15:47 lib
 
 ### Batch Basics
 
-This is a maven project and it has two parts: ag.war and adrepo_batch.jar. Vì vậy nên nó có 2 file `pom.xml`.
-
-`ag` là code cũ, chạy web, không cần quan tâm
+This is a maven project.
 
 - If using profile. Please check resources in `src/main/resources/conf/${profile.resource.folder}`. Verify the following files:
   - `config.properties`
   - `config.dicon`: file cấu hình của Seasar2 Framework, dependency injection config => không quan tâm `ag` nên không quan tâm file này luôn
   - `log4j.properties`: thư viện `Log4j`, quyết định cách mà `LOG_INFO` và LOG_ERROR (mà bạn đã hỏi) sẽ hoạt động.
-
-location jdk java 8: `C:\Users\anhao\.jdks\corretto-1.8.0_492`
 
 - Khi lấy data có 3 thông tin cần quan tâm:
   1. đối tượng: oauth id, advertiser id
@@ -678,6 +638,8 @@ Tiktok
 
 ### Batch Export-Import Queue
 
+table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết queue nào đã được update để mà cập nhật cho phía adrepo (S3)
+
 Batch export queue (status) cho phía adrepo có input là một `dsp_type`
 
 - Vào `input_adrepo_last_exported_update_time` tìm last update time của `dsp_type` đó (master 1 dòng, report 1 dòng). Ở đây gọi là $A_1, A_2$.
@@ -843,7 +805,7 @@ Hàm ''generateBaseJson()'' dùng ''base.vm''
 
 ### Database
 
-Khi gởi request dùng `token_key` & `token_secret` đi vào table `m_api_token` lấy ra: `login_user_id` và `contract_company_id` 
+Khi gởi request dùng `token_key` & `token_secret` đi vào table `m_api_token` lấy ra: `login_user_id` và `contract_company_id`
 
 `m_agency` chứa `contract_company_id`
 
@@ -941,7 +903,6 @@ the S3 key is not just the folder path — it is the complete path including the
 How S3 Keys Work
 
 Flat Storage Architecture: In Amazon S3, there is no real hierarchical folder structure like on a local hard drive. Instead, S3 is a flat key-value store where the key is the entire unique identifier for an object inside a bucket. The slashes (/) are just delimiters used to simulate a directory structure in the AWS console
-
 
 ## Common Terms
 
@@ -1205,4 +1166,3 @@ nhưng kiểu này a thấy khó nhớ => không xài
 [catchup outline](https://ever-rise.backlog.jp/alias/wiki/566675)
 
 [build project](https://ever-rise.backlog.jp/alias/wiki/559969)
-

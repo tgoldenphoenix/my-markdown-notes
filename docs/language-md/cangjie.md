@@ -458,6 +458,7 @@ Triple-unit characters
   - 認 (卜口 // 尸戈 // 心) - triple unit
 
 - 創 (人口 // 中弓) - saber
+  - 班 (一土 // 戈中 // 土)
 - 前 (廿 // 月 // 中弓) - triple unit
 
 - 力 (大尸) - power
@@ -651,9 +652,10 @@ Triple-unit characters
 
 - 歹 (一弓戈) - malicious, bones
   - 殃 (一弓 // 中月大)
-  - 列 (一弓 // 中 // 弓)
   - 殘 (一弓 // 戈戈)
   - 殖 (一弓 // 十月一)
+- 列 (一弓 // 中 // 弓)
+  - 例 (人 // 一弓 // 弓)
 
 - chop seal
 - 通 (卜 // 弓戈月) - double unit, take F2+L of second unit
@@ -695,6 +697,7 @@ Triple-unit characters
   - 処 (竹水 // 竹弓)
   - 机 (木 // 竹弓)
 - 凡 (竹弓戈) - mediocre
+  - 恐 (一弓 // 心)
 - 鳳 (竹弓 // 一日火)
   - 鳥 (竹日卜火)
   - 凤 (竹弓 // 水)
@@ -1085,12 +1088,14 @@ Triple-unit characters
   - 冠 (月 // 一山 // 戈)
   - 冤 (月 // 弓日戈)
 - 十 = house (roof)
+  - 安 (十 // 女)
 
 - 爭 (月 // 尸木) - claw, vulture
 - 采 (月 // 木)
 - 稱 (竹木 // 月 // 土月)
 
 - 受 (月 // 月 // 水) - Birdhouse
+- 舜 (月 // 月 // 弓手)
 - 愛 (月月 // 心 // 水) - triple unit, love
 - 隱 (弓中 // 月一心) - double unit, take F2+L of the second unit
   - 隐 (弓中 // 弓尸心)
@@ -1284,9 +1289,10 @@ Triple-unit characters
 
 - 典 (廿月金) - code, canon, điến
 - 曲 (廿田) - bent, bend, khúc
-  - 體 (月月 // 廿田 // 廿) - triple unit, body
+  - 體 (月月 // 廿田 // 廿) - triple unit
 
-- 運 (卜 // 月 // 十十) - triple unit
+- 軍 (月 // 十田十)
+  - 運 (卜 // 月 // 十十) - triple unit
 
 - 鬲 (一 // 口 // 月中) - triple unit, camera
   - 融 (一月 // 中一戈)
@@ -1581,6 +1587,8 @@ Triple-unit characters
 
 #### Twenty 廿 (nhập)
 
+- 度 (戈 // 廿 // 水)
+
 - bộ thảo (grass)
 - 懂 (心 // 廿 // 竹土)
   - 重 (竹十田土)
@@ -1622,7 +1630,7 @@ Triple-unit characters
 - 关 (廿大) - goden calf
   - 送 (卜 // 廿大)
 - 前 (廿 // 月 // 中弓) - triple unit
-- 美 (廿土大) - beautiful
+- 美 (廿土 // 大) - beautiful
 - 善 (廿土廿口) - virtuous
 - 羊 (廿手)
 
@@ -2338,6 +2346,7 @@ Triple-unit characters
 - 丹 (月卜) - cinnabar
 - 舟 (竹月卜戈) - boat
   - 般 (竹卜 // 竹弓 // 水) - triple unit
+  - 航 (竹卜 // 卜 // 竹弓)
   - 盤 (竹水 // 月廿)
   - 艦 (竹卜 // 尸戈 // 廿) - triple unit
   - 盘 (竹卜 // 月廿)
@@ -2502,6 +2511,8 @@ Triple-unit characters
 
 - monocle, sunglasses
 - 舛 (弓戈 // 手) - pole dancer, evening...sunglasses
+- 舜 (月 // 月 // 弓手)
+  - 瞬 (月山 // 月 // 月手)
 - 粦 (火木 // 弓戈 // 手)
   - 鄰 (火手 // 弓中) - double unit
   - 憐 (心 // 火木 // 手 )
