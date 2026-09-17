@@ -2,7 +2,11 @@
 
 ## Jargon
 
-f
+An `agentic coding platform` is a software development environment powered by autonomous AI agents that can plan, write, test, debug, and execute multi-step coding tasks from high-level instructions with minimal human intervention. Example: Claude Code, Antigravity
+
+you pay for the model (its token).
+
+Claude Code is CLI tool
 
 ## What's MCP, SLOP and A2A and how can I benefit from it?
 

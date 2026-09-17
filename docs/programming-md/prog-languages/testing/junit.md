@@ -80,9 +80,34 @@ Setup object thì dùng `private`, thêm `final` nếu cần.
 
 Kỹ thuật `import static` trong java.
 
+## fail()
+
 The `fail()` method does not return an exception. Instead, it throws an `AssertionError`.  
 In Java, `AssertionError` is not an `Exception`. Instead, it is a subclass of `Error`. Both Error and Exception are completely separate branches under the top-level `Throwable` class.  
 Because `AssertionError` is an Error and not an Exception, the catch (Exception e) block will NOT catch it.
+
+We can fail a test when it is incomplete or not yet implemented
+
+```java
+@Test
+public void incompleteTest() {
+    fail("Not yet implemented");
+}
+```
+
+We can also do it when we think an exception will happen
+
+```java
+@Test
+public void expectedException() {
+    try {
+        methodThrowsException();
+        fail("Expected exception was not thrown");
+    } catch (Exception e) {
+        assertNotNull(e);
+    }
+}
+```
 
 ## Mockito
 
