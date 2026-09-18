@@ -125,6 +125,7 @@ Triple-unit characters
 
 - 只 (口金) - only
   - 识 (戈女 // 口 // 金)
+  - 织 (女一 // 口金)
 - 总 (金口 // 心)
 
 - 元 (一一山) vs. 克 (十口竹山)
@@ -209,6 +210,9 @@ Triple-unit characters
 - 冘 (中月山) - sinking, sink
   - 枕 (木 // 中月山)
 - 元 (一一山)
+
+- 龙 (戈大心) - dragon
+  - 袭 (戈心 // 卜竹女)
 
 #### Gold, metal 金
 
@@ -696,8 +700,10 @@ Triple-unit characters
   - 没 (水 // 竹弓 // 水)
   - 処 (竹水 // 竹弓)
   - 机 (木 // 竹弓)
+  - 九 (大弓)
 - 凡 (竹弓戈) - mediocre
   - 恐 (一弓 // 心)
+  - 紈 (女火 // 大弓戈)
 - 鳳 (竹弓 // 一日火)
   - 鳥 (竹日卜火)
   - 凤 (竹弓 // 水)
@@ -845,6 +851,7 @@ Triple-unit characters
   - 團 (田 // 十戈 // 戈) - triple unit
   - 傳 (人 // 十戈 // 戈) - triple unit
 - 专 (手弓戈) - corncob pipe
+- 击 (手山)
 
 - 尃 (戈月 // 木戈) - acupuncture
   - 博 (十 // 戈月 // 戈)
@@ -918,6 +925,7 @@ Triple-unit characters
 
 - 淺 (水 // 戈 // 戈) - float
   - 浅 (水 // 戈十)
+  - 线 (女一 // 戈十)
   - 殘 (一弓 // 戈戈)
   - 錢 (金 // 戈 // 戈)
 
@@ -1129,6 +1137,7 @@ Triple-unit characters
 - 雲 (一月 // 一 // 一戈)
 - 云 (一 // 一戈) - rising cloud
   - 転 (十十 // 一 // 一戈)
+  - 运 (卜 // 一 // 一戈)
 
 - 兩 (一中月人) - F3+L
 - 市 (卜中月)
@@ -1142,6 +1151,9 @@ Triple-unit characters
   - 製 (竹弓 // 卜竹女) - double unit
 - 萬 (廿 // 田中月)
 - 禺 (田中月戈) - F3+L
+
+- 布 (大中月) - linen
+  - 怖 (心 // 大中月)
 
 - 帛 (竹日 // 中月) - brocade
   - 錦 (金 // 竹日 // 月)
@@ -1568,7 +1580,8 @@ Triple-unit characters
 - 卡 (卜一卜)
 - 尗 (卜一火)
 
-- 尚 (火月口)
+- 尚 (火月口) - esteem
+  - 趟 (土人 // 火月口)
 
 - 肖 (火月) - candle
   - 銷 (金 // 火月)
@@ -1879,6 +1892,7 @@ Triple-unit characters
 
 - 去 (土戈) - gone
   - 法 (水 // 土戈)
+  - 劫 (土戈 // 大尸)
   - 丟 (竹土戈)
 
 - crotch, again
@@ -1898,6 +1912,7 @@ Triple-unit characters
 - 各 (竹水 // 口) - to each his own
   - 落 (廿 // 水 // 竹口) - triple unit
   - 格 (木 // 竹水 // 口)
+  - 客 (十 // 竹水 // 口)
 
 - 叉 (水戈)
   - 釵 (金 // 水戈)
@@ -2929,6 +2944,7 @@ Triple-unit characters
 - 臼 (竹難) - mortar
   - 舊 (廿 // 人土 // 難) - triple unit
   - 舅 (竹難 // 田 // 大尸)
+  - 稻 (竹木 // 月 // 竹難)
 - 兒 (竹難竹山) - single unit
   - 儿 (中山) - er, child
 - 叟 (竹難中水)
