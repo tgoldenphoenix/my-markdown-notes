@@ -89,7 +89,7 @@ A **GUI** presents the user with a full graphical display (images, buttons, scro
 
 **xterm** is the standard terminal emulator for the X Window System. It allows users to run programs which require a command-line interface.
 
-## Linux installation
+## Linux Installation
 
 balenaEtcher: cài được trên Mac, flash iso cho linux
 
@@ -100,6 +100,8 @@ rufus: flash iso cho window 11
 On windows, vào setting > Personalization > Fonts
 
 Muốn download thì tải về > right-click > install for all user
+
+tải nerd font về, extract ra > vào setting windows cài > vào terminal emulator > chọn font vừa cài
 
 ## Window Installation from USB
 

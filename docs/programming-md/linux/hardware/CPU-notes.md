@@ -1,4 +1,4 @@
-# CPU notes
+# CPU Notes
 
 f
 

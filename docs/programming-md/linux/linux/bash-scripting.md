@@ -626,9 +626,9 @@ Both the peculiar `[]` syntax for comparisons and the command-line optionlike na
 
 When you use square brackets `[]` in an `if` statement, bash assumes that you want to use the `test` command.
 
----
+### Conditional Expressions
 
-The table below shows the bash comparison operators for numbers and strings. bash uses textual operators for numbers and symbolic operators for strings, exactly the opposite of Perl.
+The table below shows the bash comparison operators for numbers and strings. bash uses textual operators for numbers and symbolic operators for strings, exactly the opposite of `Perl`.
 
 | String | Numeric | True if                         |
 |--------|---------|---------------------------------|
@@ -640,6 +640,8 @@ The table below shows the bash comparison operators for numbers and strings. bas
 | x >= y | x -ge y | x is greater than or equal to y |
 | -n x   | -       | x is not null                   |
 | -z x   | -       | x is null                       |
+
+`[[ -z ${name} ]]` returns true (0) if the string length is zero, and false (1) if the string contains one or more characters.
 
 ---
 

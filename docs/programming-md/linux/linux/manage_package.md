@@ -7,11 +7,16 @@ If `XDG_CONFIG_HOME` is not set, the default is `~`
 - `apt`: Advanced Package Tool
 - `apt` is newer, `apt-get` is older, legacy. You should use `apt`.
 
-`apt upgrade -y` will download and install any relevant upgrades. `-y` will automatically answer Yes when asked to confirm the operation.
+```bash
+sudo apt update
+sudo apt upgrade
+```
 
 - Chạy `update` trước `upgrage`.
-- `sudo apt update` update repository indexes (packet indexes), ensuring that APT is aware of all the most recent packages and versions available.
+- `sudo apt update` update repository indexes (packet indexes), ensuring that `APT` is aware of all the most recent packages and versions available.
 - `sudo apt upgrade` installs the software (applies the actual updates)
+
+`apt upgrade -y` will download and install any relevant upgrades. `-y` will automatically answer `Yes` when asked to confirm the operation.
 
 The `update` command connect to the URI of the **official repository** at `https://archive.ubuntu.com/ubuntu/` and downloads the latest package index lists (the "catalogues") to find out what new versions of software are available.
 
@@ -265,9 +270,9 @@ Darwin is the open-source core operating system that underlies Apple's operating
 CPU Processor architectures
 
 - `ARMv6` is a legacy, 32-bit architecture used in older, low-power embedded systems.
-- `ARM64` and `AArch64` are the same thing. AArch64 is the official name for the 64-bit ARM architecture, but some people prefer to call it "ARM64" as a continuation of 32-bit ARM.)
+- `ARM64` and `AArch64` are the same thing. `AArch64` is the official name for the 64-bit ARM architecture, but some people prefer to call it `ARM64` as a continuation of 32-bit ARM.)
 
-`x86-64` (also known as `x64`, `x86_64`, `AMD64`, and Intel 64) is a 64-bit extension of the x86 instruction set.
+`x86-64` (also known as `x64`, `x86_64`, `AMD64`, and `Intel 64`) is a 64-bit extension of the `x86` instruction set.
 
 ---
 
@@ -292,6 +297,8 @@ A .`zip` file is just a container of files, while an `.msi` file contains a data
 
 - `nvim-win64.zip` (or nvim-win-arm64.zip for ARM)
 - `nvim-win64.msi` (or nvim-win-arm64.msi for ARM)
+
+An `MSI` (Microsoft Software Installer) file is a package that contains all the necessary information and instructions for installing, maintaining, and removing software on Windows systems
 
 ## Uninstall
 

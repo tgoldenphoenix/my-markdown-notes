@@ -283,7 +283,8 @@ Triple-unit characters
   - 领 (人戈 // 一月人)
   - 零 (一月 // 人 // 戈戈)
 
-- 陰 (弓中 // 人 // 戈戈) - triple unit
+- 陰 (弓中 // 人 // 戈戈) - triple unit, yang, âmmm
+  - 蔭 (廿 // 弓中 // 戈)
 
 #### Human, Person 人
 
@@ -338,8 +339,8 @@ Triple-unit characters
 - 象 (弓日心人) - one unit character, take F3+L
   - 像 (人 // 弓日人)
 
-- 以 (女戈人) - plow
-  - 似 (人 // 女戈人)
+- 以 (女 // 戈 // 人) - plow
+  - 似 (人 // 女 // 戈人)
 
 - 眾 (田中 // 人人人) - mass
 - 聚 (尸水 // 人人人)
@@ -367,6 +368,7 @@ Triple-unit characters
 
 ### Corpse, flag 尸
 
+- 弓
 - 己 (尸山) - snake
   - 巳 (口山) - sign of the snake
   - 記 (卜口 // 尸山)
@@ -377,7 +379,7 @@ Triple-unit characters
   - 熙 (尸山 // 火) - double unit
 - 已 (尸山)
 - 卩 (尸中)
-- 弓
+- 弓; 乙 (弓山) - fish hook
 - 包 (心口山)
 
 - 㔾 (尸山) - fingerprint
@@ -441,6 +443,7 @@ Triple-unit characters
 - 張 (弓 // 尸一女)
   - 张 (弓心人)
 - 辰 (一一一女) - sign of the dragon
+  - 農 (廿田 // 一一女)
 
 - 刀 (尸竹) - blade, sword, dagger
   - 昭 (日 // 尸竹口)
@@ -593,9 +596,9 @@ Triple-unit characters
   - 崙 (山 // 人 // 一月) - triple unit
   - 淪 (水 // 人 // 一月)
 
-- 叚 (口尸 // 尸水) - nerd
+- 叚 (口卜 // 尸 // 水) or V5 (口尸 // 尸 // 水) - nerd
   - 假 (人 // 口尸 // 水)
-  - 霞 (一月 // 口尸 // 水) - triple unit
+  - 霞 (一月 // 口卜 // 水) or V5 (一月 // 口尸 // 水) - triple unit
 
 - 户 (戈尸)
 - 居 (尸 // 十口) - reside
@@ -730,7 +733,7 @@ Triple-unit characters
 - 行 (竹人 // 一 // 一弓) - column, boulevard, queue
   - 衡 (竹人 // 弓大 // 弓) - triple unit
   - 蘅 (廿 // 竹人 // 弓) - triple unit
-  - 得 (竹人 // 日一 // 戈) - triple unit
+  - 得 (竹人 // 日 // 一戈) - triple unit
 
 - 可 (一弓 // 口) - cannn
   - 啊 (口 // 弓中 // 口) - triple unit
@@ -785,6 +788,7 @@ Triple-unit characters
 - 乾 (十十 // 人弓) - fish hook
 
 - 予 (弓戈弓弓) - beforehand
+  - 序 (戈 // 弓戈弓)
 - 矛 (弓戈弓竹) - halberd, F3+L
   - 務 (弓竹 // 人大 // 尸) - triple unit
 - 疑 (心大 // 弓戈人) - double unit
@@ -1145,6 +1149,7 @@ Triple-unit characters
 - 巾 (中月) - towel
   - 市 (卜中月) - market
   - 佩 (人 // 竹弓 // 月) - triple unit
+  - 帔 (中月 // 木竹水)
 - 帝 (卜月 // 中月) - emperor
   - 啼 (口 // 卜月 // 月)
 - 制 (竹月 // 中 // 弓) - system
@@ -1199,6 +1204,7 @@ Triple-unit characters
   - 湘 (水 // 木 // 月山)
   - 想 (木山 // 心) - double unit
 - 具 (月一一金) - tool
+  - 俱 (人 // 月一金)
 
 - 直 (十月一一) - straightaway, straight
   - 值 (人 // 十月一)
@@ -1331,6 +1337,7 @@ Triple-unit characters
 - 捷 (手 // 十中人)
 - 肅 (中難)
 - 庚 (戈 // 中人)
+  - 夫 (手人)
 - 妻 (十中 // 女)
 
 - 爭 (月 // 尸木)
@@ -1655,6 +1662,7 @@ Triple-unit characters
   - 盡 (中一 // 火 // 月廿) - triple unit
   - 盜 (水人 // 月廿)
   - 蘊 (廿 // 女火 // 廿)
+  - 盆 (金 // 尸竹 // 廿)
 - 盃 (一火 // 月廿)
   - 𢝙 (心 // 一火 // 廿)
 - 血 (竹月廿) - blood
@@ -1816,6 +1824,7 @@ Triple-unit characters
 - 元 (一一山) vs. 克 (十口竹山) - origin
   - 頑 (一山 // 一月金)
   - 远 (卜 // 一一山)
+  - 冠 (月 // 一山 // 戈)
 - 完 (十 // 一 // 一山)
   - 院 (弓中 // 十 // 一山) - triple unit
   - 烷 (火 // 十 // 一山)
@@ -1856,7 +1865,7 @@ Triple-unit characters
 - 久 (弓人)
 
 - 韭 (中一一一) or V5 (中尸一一) - leek, F3+L
-- 韱 (人戈 // 中一一 or 人戈 // 中尸一) - double unit, anime convention
+- 韱 (人戈 // 中一一) or (人戈 // 中尸一) - double unit, anime convention
   - 籤 (竹 // 人戈 // 一) - triple unit
 - 齏 (卜難 // 中一一)
 
@@ -2060,6 +2069,7 @@ Triple-unit characters
   - 扁 (竹尸 // 月廿)
   - 遍 (卜 // 竹尸 // 月)
   - 户 (戈尸)
+  - 妒 (女 // 竹尸)
 
 - 爪 (竹中人) - clawww, vulture
 - 瓜 (竹女戈人) - melon
@@ -2481,6 +2491,7 @@ Triple-unit characters
 - 灣 (水 // 女火 // 弓) - triple unit
 
 - 兆 (中一 // 山人) - turtle shell
+  - 桃 (木 // 中一 // 人)
 - 爿 (女中一) - bunk bed
   - 將 (女一 // 月 // 木戈) - triple unit
   - 妝 (女一 // 女)
@@ -2688,6 +2699,7 @@ Triple-unit characters
   - 畫 (中土田一) - a drawing
 
 - 乙 (弓山) - fish hook
+- 己 (尸山)
 
 - 巳 (口山)
 - 巴 (日山) - mosaic
@@ -2982,7 +2994,7 @@ Triple-unit characters
   - 涕 (水 // 金弓竹)
 
 - 齊 (卜難) - CSGT
-  - 齋 (卜難火) - purification
+  - 齋 (卜難 // 火) - purification
   - 濟 (水 // 卜難)
   - 齏 (卜難 // 中一一)
 - 卍 (弓難)
