@@ -48,7 +48,7 @@ According to the formation of the Predicate, sentences may be classified into **
 4. `S + V + iO + dO` (Indirect Object + Direct Object)
 5. `S + V + O + OC` (Object Compliment)
 
-The main sentence elements are `subject, verb, object and complement`. Besides, other words or groups of words called "modifiers" are used to tell more about the main elements.  
+The main sentence elements are `subject, verb, object` and `complement`. Besides, other words or groups of words called "modifiers" are used to tell more about the main elements.  
 Every main sentence element may take one or more modifiers:
 
 - Subject Modifier `SM`

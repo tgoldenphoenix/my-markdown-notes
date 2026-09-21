@@ -2848,6 +2848,7 @@ Triple-unit characters
 
 - 褱 (卜 // 田中 // 女) - triple unit, Darth vader
   - 懷 (心 // 卜田女) - double unit, reminisce
+- 楽 (戈人 // 木)
 
 - 賣 (土 // 田中 // 金) - selll
   - 讀 (卜口 // 土 // 田金)

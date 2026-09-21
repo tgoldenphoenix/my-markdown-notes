@@ -205,7 +205,11 @@ I don't know `how to make money`.
 
 A policeman showed her `the way to the station`.
 
+We saw towns `destroyed by bombing`.
+
 ## Clauses
+
+He made our company `what it is now`.
 
 He told us `why he came`.
 
