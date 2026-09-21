@@ -11,3 +11,9 @@ Muốn comment 1 đoạn code thì có 2 cách:
 2. Shift + Alt + A (chỉ comment phần selected)
 
 `⌘D` selects the word at the cursor, or the next occurrence of the current selection. Phải select trước rồi mới cmd D. [src](https://code.visualstudio.com/docs/editor/codebasics#_multiple-selections-multicursor)
+
+## IntelliJ
+
+ctrl shift +/- => collapse blocks
+
+alt shift +/- => increase/decrease ui size

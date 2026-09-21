@@ -8,6 +8,7 @@ Task TOTO
 - đọc thông tin vận hành trong wiki (daily checking)
 - turn off nginx server and restart (when deploy gặp sự cố)
 - intellij shortcut go to usage
+- batch alert chạy lúc mấy giờ, phạm vi check bao nhiêu ngày?
 
 ## Project Specification, Thiết kế
 
@@ -135,6 +136,8 @@ Nếu được phép push thì phải setting Private, không được để pub
 Tất cả thông tin về dự án (đặc biệt là thông tin tài khỏan, thông tin chứng thực,....) không được sử dụng cho mục đích cá nhân  
 Nếu có tạo Repository cho mục đích học tập cá nhân thì không sử dụng tên công ty, tên dự án của công ty, dù là đặc tên cho dự án, cho thư mục, tên file gì đó
 
+json trả về từ api có cả null và empty string
+
 ## Tạo Task & Báo cáo tiến độ
 
 Task english David tạo: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7939>
@@ -182,6 +185,12 @@ add child issues để chia nhỏ một task/batch lớn, một child ticket là
   - 08h30 sáng (sau khi họp sáng công ty, trước buổi họp vào lúc 09h00): công việc dự định thực hiện trong ngày, tiến độ hiện tại.
   - 15h00 chiều (trước buổi họp vào lúc 15h30): tiến độ hiện tại.
   - 17h00 chiều: tiến độ hiện tại.
+
+---
+
+naming task use only direct-parent
+
+grand children task tạo độc lập, không bỏ chung nhiều quá
 
 ## Build & Setup the Project
 
@@ -1156,6 +1165,13 @@ Ví dụ: `@return {@code List<Object>}`
 ví dụ: `@return <code>List&lt;Object&gt;</code>`
 
 nhưng kiểu này a thấy khó nhớ => không xài
+
+---
+
+unit test
+
+* dùng assert equal, không dùng is() and assert That
+* dùng assert equal, không dùng assert true, assert false
 
 ## Resources
 
