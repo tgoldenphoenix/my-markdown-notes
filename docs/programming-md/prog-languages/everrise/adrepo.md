@@ -913,27 +913,9 @@ How S3 Keys Work
 
 Flat Storage Architecture: In Amazon S3, there is no real hierarchical folder structure like on a local hard drive. Instead, S3 is a flat key-value store where the key is the entire unique identifier for an object inside a bucket. The slashes (/) are just delimiters used to simulate a directory structure in the AWS console
 
-## Common Terms
+## Exception Handling
 
-`Paid Ads` nghĩa là bạn phải trả tiền để có được lượt hiển thị hoặc truy cập. Còn việc tính tiền thế nào có vài cách khác nhau.
-
-- CPC (Cost Per Click) - Tính tiền theo Lượt Nhấp: chỉ khi nào người dùng click vào link dẫn đến website/app của bạn thì bạn mới bị trừ tiền.
-- CPM (Cost Per Mille) - Tính tiền theo Lượt Hiển Thị: cứ quảng cáo đập vào mắt 1,000 người (không cần biết họ có click hay không), bạn sẽ phải trả một khoản tiền cố định.
-- CPA / oCPM (Cost Per Action / Conversion) - Tính tiền theo Lượt Chuyển Đổi: Bạn đặt mục tiêu là: "Tôi chỉ muốn trả tiền khi có người Mua hàng hoặc Tải app thành công".
-
-### UTM parameters
-
-Marketers use TML to figure out: "Where did my user come from?", how did people found out about their website?
-
-The marketing team of the company adds utm params to the links leading to their website.
-
-- brand name of the traffic source: youtube, twitter, tiktok, facebook, instagram, etc
-- medium (traffic type):
-  - organic traffic: coming from a search engine (`google/organic`, `bing/organic`)
-  - referral: coming from another website (`facebook/referral`)
-  - none: "I'm not sure how they got here" (`(direct)/(none`))
-  - `cpc` or `ppc`
-- Campaign (purpose of the traffic)
+kkk
 
 ## Tiktok
 
@@ -1172,6 +1154,28 @@ unit test
 
 * dùng assert equal, không dùng is() and assert That
 * dùng assert equal, không dùng assert true, assert false
+
+## Advertising Terms
+
+- CPC (Cost Per Click) - Tính tiền theo Lượt Nhấp: chỉ khi nào người dùng click vào link dẫn đến website/app của bạn thì bạn mới bị trừ tiền.
+- CPM (Cost Per Mille) - Tính tiền theo Lượt Hiển Thị: cứ quảng cáo đập vào mắt 1,000 người (không cần biết họ có click hay không), bạn sẽ phải trả một khoản tiền cố định.
+- CPA / oCPM (Cost Per Action / Conversion) - Tính tiền theo Lượt Chuyển Đổi: Bạn đặt mục tiêu là: "Tôi chỉ muốn trả tiền khi có người Mua hàng hoặc Tải app thành công".
+
+---
+
+UTM Parameters
+
+Marketers use TML to figure out: "Where did my user come from?", how did people found out about their website?
+
+The marketing team of the company adds utm params to the links leading to their website.
+
+- brand name of the traffic source: youtube, twitter, tiktok, facebook, instagram, etc
+- medium (traffic type):
+  - organic traffic: coming from a search engine (`google/organic`, `bing/organic`)
+  - referral: coming from another website (`facebook/referral`)
+  - none: "I'm not sure how they got here" (`(direct)/(none`))
+  - `cpc` or `ppc`
+- Campaign (purpose of the traffic)
 
 ## Resources
 

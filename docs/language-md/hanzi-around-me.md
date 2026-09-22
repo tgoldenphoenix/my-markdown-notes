@@ -55,13 +55,15 @@ k
 
 華夏蠻貊岡(罔)不率俾XXX水徯我后后来其蘇
 
-### Chùa ngọc hoàng
+### Chùa ngọc Hoàng
 
 - 登歡喜地 (đăng hoan hỉ địa)
 - 玉暎瑤䑓 (ngọc ánh dao đài)
 
 - 帝德惠南洋 (đế đức huệ nam dương)
 - 聖恩宏廣澤 (thánh ân hoành quảng trạch)
+
+大大肚能容?物 (đại đại đỗ năng dung vạn vật)
 
 ### Bàn thờ thần tài
 

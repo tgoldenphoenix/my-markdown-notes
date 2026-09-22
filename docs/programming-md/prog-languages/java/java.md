@@ -42,6 +42,8 @@ Reference type (kiểu tham chiếu): String, Arrays, Classes
 
 ### Upcasting & Downcasting (ép kiểu)
 
+Downcasting in Java is the process of casting a superclass reference back to a subclass type.
+
 - **Upcasting** can happen implicitly (trẻ nhỏ lớn lên là thuận tự nhiên). Upcasting allows us to treat an object of a subclass as if it were an object of one of its superclasses.
 - **Downcasting** bắt buộc phải tường minh (explicit) (già mà thành nhỏ là phải có giấy tờ khai rõ ràng). Through downcasting, we regain access to the subclass’s methods and fields.
 
@@ -343,7 +345,7 @@ Nên nói là protected == default + class con **kế thừa** được tt và p
 
 ### The `this` & `super` keywords
 
-A subclass inherit from a **super-class** using keyword `extends`. A class can only extend from one parent. One class can have many subclass.
+A subclass inherit from a **super-class** using keyword `extends`. A class can only extend from one parent. But one class can have many subclass.
 
 Cha em có cái nhà, em kế thừa `extends` cha em thì em sẽ lấy blue print của cha để xây cái nhà y chang. Rồi 2 cha con mỗi người ở 1 cái nhà của riêng nhưng 2 cái nhà giống y chang vì tạo ra từ 1 blue-print.
 
@@ -676,7 +678,7 @@ If a subclass constructor does not explicitly call a superclass constructor usin
 
 ### Exceptions vs. Errors
 
-`Error` and Exception are both subclasses of the `Throwable` class. Furthermore, only instances of Throwable and its subclasses can be thrown by the Java Virtual Machine or caught in a catch clause.
+`Error` and `Exception` are both subclasses of the `Throwable` class. Furthermore, only instances of Throwable and its subclasses can be thrown by the Java Virtual Machine or caught in a catch clause.
 
 Further, errors are regarded as `unchecked exceptions`, and applications should NOT try to catch and handle them. Moreover, errors happen at run time and cannot be recovered.
 

@@ -12,8 +12,10 @@ Muốn comment 1 đoạn code thì có 2 cách:
 
 `⌘D` selects the word at the cursor, or the next occurrence of the current selection. Phải select trước rồi mới cmd D. [src](https://code.visualstudio.com/docs/editor/codebasics#_multiple-selections-multicursor)
 
+zoom: `Ctrl +`, `Ctrl -`
+
 ## IntelliJ
 
 ctrl shift +/- => collapse blocks
 
-alt shift +/- => increase/decrease ui size
+`Alt shift +/-` => increase/decrease ui size (zoom)
