@@ -905,6 +905,8 @@ In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBU
 
 Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
 
+An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
+
 ## S3 Util
 
 the S3 key is not just the folder path — it is the complete path including the file name and its extension
@@ -960,6 +962,14 @@ You can run a report in `synchronous mode` or `asynchronous mode` (mình dùng a
 With synchronous mode, you make an API request and the data will be returned in the response almost **instantly**. In `asynchronous mode`, you make an API request to create a task for getting the data. You need to wait some time for the task to complete. When the task is completed, you make **another API request** to download the data.
 
 2 queue tạo task có cùng advertiser id, request param (metric, dimension) thì sẽ trả task id giống nhau kể cả khi dùng 2 oauth access token khác nhau
+
+- `TiktokReportService.generateUntranslatedReportHeader()`
+  - has more fields than `REPORT_TYPE.getQueryMetricList()`. The fields are: ADVERTISER_ID, AD_ID, STAT_TIME_DAY, GENDER, AD_ID_V2 => đây là những field dimension
+  - match exactly with `REPORT_TYPE.getCsvColumnList()` except that `getCsvColumnList()` use `getResponseMetric()` while `generateUntranslatedReportHeader()` uses `getQueryMetric()`)
+
+`getCsvColumnList()` dùng `getResponseMetric()` vì nó được dùng trong writer viết ra dòng đầu tiên (header) cho file csv xuất lên S3 cho phía khách hàng.
+
+`csvColumnPositionMap` chứa field trong header xuất ra s3, key là position trong header của csv tải về từ API
 
 ### Task Check field định kỳ
 

@@ -30,3 +30,18 @@ The `-o` (output flag) instructs `curl` to save the fetched data (instead of pri
 - `curl` is optimized for data transfer and protocol flexibility, making it the primary tool for API interaction and scripting.
 
 `wget` saves output to a file by default, while `curl` Prints to standard output (stdout) by default.
+
+## Download files
+
+```bash
+curl -SL -o lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v0.65.1/lazygit_0.65.1_linux_x86_64.tar.gz"
+
+mkdir -p lazygit_extracted && tar -xzf lazygit.tar.gz -C lazygit_extracted
+
+# move the binary file
+sudo mv lazygit /usr/local/bin
+```
+
+- `-S`: Show error message if it fails
+- `-L`: Follow HTTP redirects (essential for GitHub/GitLab downloads)
+- `-o`: Output file destination

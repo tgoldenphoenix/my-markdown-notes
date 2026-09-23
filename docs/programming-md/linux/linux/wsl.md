@@ -29,6 +29,8 @@ wsl <linux-command>
 
 For example, `wsl ls -la` lists all files in a Windows folder.
 
+binary install thủ công thì `mv` vào `/usr/local/bin`. Còn install thông qua package manager thì nó nằm trong `/usr/bin`
+
 ## Powershell Commands
 
 In PowerShell, `mkdir` is an alias (or built-in function) for the cmdlet `New-Item -ItemType Directory`.
@@ -109,6 +111,13 @@ sudo apt-get install -y nodejs
 ```
 
 git, node and npm commands will now work in either OS. Be wary that they may be different versions.
+
+```bash
+my-markdown-notes on  main [!] via  v24.11.1
+❯ uv self update
+info: Checking for updates...
+success: Upgraded uv from v0.9.13 to v0.12.18! https://github.com/astral-sh/uv/releases/tag/0.12.18
+```
 
 ## Git Bash vs WSL
 

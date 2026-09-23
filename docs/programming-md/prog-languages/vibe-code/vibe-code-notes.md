@@ -12,6 +12,12 @@ Claude Code is CLI tool
 
 k
 
+## Context
+
+skills/: subdirectories containing a SKILL.md file with instructions for the agent.
+
+rules/: markdown files defining behavioral constraints or style guidelines.
+
 ## What's MCP, SLOP and A2A and how can I benefit from it?
 
 An `MCP Server` (Model Context Protocol Server) is a lightweight intermediary program that securely connects AI applications to external data sources, tools, and workflows.

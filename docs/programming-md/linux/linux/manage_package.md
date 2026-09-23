@@ -46,6 +46,19 @@ apt search sensors
 apt show lm-sensors
 ```
 
+version
+
+```bash
+❯ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 24.04.5 LTS
+Release:        24.04
+Codename:       noble
+```
+
+binary install thủ công thì `mv` vào `/usr/local/bin`. Còn install thông qua package manager thì nó nằm trong `/usr/bin`
+
 ## Add a new repo & install package with `dnf`
 
 When need to add the virtualbox repository to Yum.
@@ -232,7 +245,11 @@ You can also see a list of dependencies for the package, if there are any: `brew
 
 Ubuntu
 
-`apt list --manual-installed=true`
+```bash
+apt list --manual-installed=true
+
+apt-mark showmanual
+```
 
 `apt list --installed` show một đống
 
