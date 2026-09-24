@@ -206,27 +206,7 @@ To run both highlighted statements together successfully, you must use DBeaver's
 
 ---
 
-- build no profile thì phải copy file `config.properties` ra bên ngoài
-- build có profile thì nó tự vào thư mục `dev` để lấy file `config`
-
-chỉnh đường dẫn data base trong file `config.properties`. Copy file `config.properties` ra ngoài.
-
-chỉnh bỏ dòng exclude entity
-
-- repo fujiyama có 2 databases schema
-  - etl adrepo chứa queue từ S3
-  - etl harbest : làm với web api
-
-chạy batch cần: file `config.property` & database
-
 đăng nhập vào S3 lấy key trong file `config.property`
-
-bảng `etl_adrepo.consts` phải có data
-
-```bash
-mvn install -Dmaven.test.skip=true
-mvn -f pom\_batch.xml install
-```
 
 Thêm vào `pom.xml`
 
@@ -942,12 +922,6 @@ kkk
 - Cấp độ `Ad Group`: Chắc chắn có nhiều Creative (thông qua việc tạo nhiều Ad).
 - Cấp độ `Ad`: Chỉ có nhiều Creative nếu dùng tính năng Smart Creative/ACO.
 
-`Advertiser access token` của tiktok does not expire.
-
-With the `auth_code` you receive after authorization by the advertiser, you can make a request to the following endpoint to get an `access_token` for subsequent API requests.
-
-The `auth_code` is valid for 1 hour and can be used only once. After the `auth_code` expires, you need to start over and perform the authorization steps again.
-
 `Upgraded Smart+`: một campaign
 
 An `ad` is the smallest advertising unit and is the content presented to the target audience.
@@ -957,9 +931,9 @@ An `ad` is the smallest advertising unit and is the content presented to the tar
 
 ### Async Report
 
-You can run a report in `synchronous mode` or `asynchronous mode` (mình dùng async).
+API Referenre > Ads, Reporting
 
-With synchronous mode, you make an API request and the data will be returned in the response almost **instantly**. In `asynchronous mode`, you make an API request to create a task for getting the data. You need to wait some time for the task to complete. When the task is completed, you make **another API request** to download the data.
+With synchronous mode, you make an API request and the data will be returned in the response almost instantly. In `asynchronous mode`, you make an API request to create a task for getting the data. You need to wait some time for the task to complete. When the task is completed, you make another API request to download the data.
 
 2 queue tạo task có cùng advertiser id, request param (metric, dimension) thì sẽ trả task id giống nhau kể cả khi dùng 2 oauth access token khác nhau
 
@@ -970,6 +944,23 @@ With synchronous mode, you make an API request and the data will be returned in 
 `getCsvColumnList()` dùng `getResponseMetric()` vì nó được dùng trong writer viết ra dòng đầu tiên (header) cho file csv xuất lên S3 cho phía khách hàng.
 
 `csvColumnPositionMap` chứa field trong header xuất ra s3, key là position trong header của csv tải về từ API
+
+---
+
+tiktok có 3 loại, chỉ có loại upgraded nó trả về cả 2 level
+
+upgraded smart plus
+
+chỉ định ad id v2 thì api chỉ trả về ad level
+chỉ định ad id thì api trả về cả 2 level ad & creative
+
+- Different report types support different dimensions.
+- 3501, 3504: report type basic
+- 3502, 3503, 05, 06: report type audience
+
+You can retrieve the creative level data for Upgraded Smart+ Ads when report_type is BASIC, AUDIENCE
+
+<https://business-api.tiktok.com/portal/docs/report-types/v1.3>
 
 ### Task Check field định kỳ
 
@@ -1164,6 +1155,8 @@ unit test
 
 * dùng assert equal, không dùng is() and assert That
 * dùng assert equal, không dùng assert true, assert false
+
+method phải có javadoc
 
 ## Advertising Terms
 

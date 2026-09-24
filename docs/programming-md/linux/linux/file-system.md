@@ -667,6 +667,10 @@ sudo chmod g+w /bin/zcat
 
 ### The numeric (octal) syntax
 
+```bash
+chmod 600 adrepo-etl-webapi-production-keypair.pem
+```
+
 This is the best way to learn and practice permissions.
 
 Each possible combination of permissions can be represented by a number between 0 and 7 (octal digit).
@@ -687,6 +691,16 @@ Example:
 
 - `-rw-r-x---` = $(4+2)(4+1)(0)$ = `chmod 650 test.txt`
 - `chmod 711 myprog` == `rwx--x--x` gives all permissions to the owner and execute-only permission to everyone else.
+
+- `0777`
+  - `0`: Indicates octal notation (base-8).
+  - `7` (Owner): Read ($4$) + Write ($2$) + Execute ($1$) = Full access for the file owner.
+  - `7` (Group): Read ($4$) + Write ($2$) + Execute ($1$) = Full access for anyone in the file's group.
+  - `7` (Others): Read ($4$) + Write ($2$) + Execute ($1$) = Full access for any user on the system.
+- `600`
+  - Owner: read + write
+  - group: no permissions
+  - others: no permissions
 
 ## Change File Ownership
 

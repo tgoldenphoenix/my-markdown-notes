@@ -173,6 +173,18 @@ where signal is the number or symbolic name of the signal to be sent and pid is 
 
 Under Linux, `killall` kills processes by name. For example, the following com-mand kills all Apache web server processes: `ubuntu$ sudo killall httpd`
 
+```bash
+ps aux|grep java
+sudo kill -9 pID
+#pID: the second value (after user name) in the process information line
+#example: 
+# $ ps aux|grep java
+# adrepo-+   853  3.4 11.1 26699284 7168724 ?    Ssl  11:26  10:40 java -Duser.timezone=Japan -cp /opt/ag/ag_batch/adrepo_batch.jar jp.co.everrise.batch.BatchGetMasterFreakOut 2
+#=> pID = 853
+```
+
+`-9` (SIGKILL): Sends the absolute force-kill signal. The operating system instantly terminates the process. It cannot be ignored, caught, or safely shut down by the target application.
+
 ## Process State
 
 A process is not automatically eligible to receive CPU time just because it exists. You need to be  aware of the four execution states listed in Table:
@@ -336,3 +348,15 @@ All five fields are mandatory. If you don’t care about a particular field, fil
 Raw numbers get you only so far. These special characters make cron expressions flexible enough to handle real scheduling needs:
 
 - `*` Matches every possible value for that field.	Example: `*` in the hour field = run every hour
+
+```bash
+# current crontab is set for `adrepo-batch` user 
+#    => we must switch to adrepo-batch user before backing up it
+$ sudo su adrepo-batch
+$ crontab -l > /opt/ag/ag_batch/backup_cron/crontab_{YYYYMMDD}.backup
+```
+
+- `crontab -l`: Outputs the current user's active cron jobs.
+- `>`: Redirects the output to save it as a backup file.
+
+`crontab -r` => remove crontab
