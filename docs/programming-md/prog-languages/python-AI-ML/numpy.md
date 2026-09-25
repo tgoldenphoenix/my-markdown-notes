@@ -59,3 +59,17 @@ array([[ 0,  1,  2,  3,  4],
 
 `.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)` or `.reshape(number of row, number of column, height)`
 
+## Data Types
+
+Pandas typically uses these common `dtype` objects:
+
+- `object`: Often used for text or mixed-type columns. Usually represents categorical data (both nominal and ordinal).
+- `int64`: Represents integer values. Often corresponds to discrete numerical data.
+- `float64`: Represents floating-point (decimal) numbers. Often corresponds to continuous numerical data.
+- `bool`: Represents Boolean (True/False) values. This is a type of categorical data.
+- `category`: A specific Pandas type optimized for `categorical data` (can represent nominal or ordinal).
+- `datetime64`: Represents date and time values.
+
+## Anaconda
+
+k

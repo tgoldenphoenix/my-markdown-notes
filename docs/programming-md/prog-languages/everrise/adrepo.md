@@ -242,19 +242,9 @@ Thêm vào `pom_batch.xml`
 
 hoặc phải bấm nút sync project trong tool intelliJ
 
-lấy not process queue từ trong table thì `dsp_type` phải đúng
-
 Spec & Versions:
 
-dùng junit 4 (cuốn sách bản cũ second edition)
-
 AesUtilsTest có chứa key decrypt
-
----
-
-Build ra file .jar trong /target
-
-`mvn clean package -DskipTest`
 
 ### Setup Web API
 
@@ -262,9 +252,9 @@ Build ra file .jar trong /target
 sbt run
 # or
 sbt -jvm-debug 9999 run
-```
 
-Để ứng dụng hoạt động thì cần lưu file application.conf theo đường dẫn: `\opt\web-api-conf\application.conf`
+# http://localhost:9000/swagger
+```
 
 - Playframwork 2.6.9
   - [play framwork doc](https://www.playframework.com/documentation/2.5.8/JavaForms) (2.1.x or 2.6)
@@ -276,9 +266,9 @@ sbt -jvm-debug 9999 run
 - git bash, unix environment will run `sbt` inside your path. The current directory is completely ignored by default when resolving commands. This is a fundamental security feature designed to prevent malicious scripts from hijacking standard commands (like creating a fake `ls` script in a folder).
 - Use `./sbt` to force use the local
 
-Sửa trong `conf/application.conf`
+---
 
-Chuyển thông tin config ở path file đã liệt kê ở trên sang nơi lưu trữ mới trên server: `\opt\web-api-conf\application.conf`. Task ER100FUJIYAMA-7829.
+Các chỉnh sửa trong `application.conf`
 
 ```text
 ## JDBC Datasource
@@ -306,6 +296,8 @@ db {
 ---
 
 3 tables sau phải có dữ liệu: `m_api_token`, `m_login_user`, `m_contract_company`
+
+Khi query nó get api token => lấy login user id => lấy contract conpany id
 
 #### Setup Unit Test for Web API
 
@@ -440,6 +432,71 @@ drwxr-xr-x. 2 ec2-user ec2-user 16384 Sep 16 15:47 lib
 -rw-r--r--. 1 ec2-user ec2-user 76128 Sep 16 16:23 webapi.log
 ```
 
+### Directory Locations
+
+Batch paths
+
+```bash
+BATCH_ROOT = /opt/ag/ag_batch/
+
+/** The log path of checkProcessState*/
+PROCESS_STATE_LOG_DIR = /opt/ag/ag_batch/process_watcher
+
+# log path
+LOG_DIR = /opt/ag/logs/
+
+# crontab backup
+/opt/ag/ag_batch/backup_cron/crontab_{YYYYMMDD}.backup
+```
+
+- batch_root contain:
+  - Config files: `config.properties`, `alert_import_daily_unique_advertiser_list_mail_to.txt`
+  - `.lock` files
+  - Khi chạy script `deploy.sh` sẽ copy file `.jar` vào đây
+
+---
+
+ETL
+
+Để ứng dụng hoạt động thì cần lưu file `application.conf` theo đường dẫn: `\opt\web-api-conf\application.conf`
+
+Trước khi unzip thì script deploy sẽ kill process web api đang chạy
+
+```bash
+#---Uncomment this block before deployment if a process is already running. Check using: ps aux | grep java---
+runningPID=$(</opt/etl-harbest-webapi/RUNNING_PID)
+if [ -z "$runningPID" ]; then
+      echo "\$runningPID is not found. Please check again"
+      exit 1
+fi
+
+sudo kill -9 ${runningPID}
+#---Uncomment this block before deployment if a process is already running----
+```
+
+Sau đó nó sẽ unzip và move file
+
+```bash
+unzip /home/ec2-user/etl-harbest-webapi.zip
+sudo mv /home/ec2-user/etl-harbest-webapi /opt/
+cd /opt/etl-harbest-webapi/
+nohup ./bin/etl-harbest-webapi &
+```
+
+---
+
+linux ec2 path
+
+copy build file from local to home directory on ec2 instance
+
+- Nơi chứa file jar backup sau khi chạy script deploy:
+  - batch: `~/ag_backup/`
+  - web api: `~/backup/etl-harbest-webapi.zip_${BUILD_DATE}`
+
+---
+
+s3 paths
+
 ## ETL Batch
 
 ### Batch Basics
@@ -573,6 +630,8 @@ input_platform_id = m_input_platform
 | FREAK_OUT        | 8                | 8        |
 | SCALE_OUT        | 9                | 9        |
 |         TIKTOK         |         35         |     35     |
+|            LineApi            |                    |      27      |
+|                Adcent               |                    |       23       |
 
 ---
 
@@ -706,9 +765,9 @@ Chạy mỗi giờ 1 lần vào phút 0 `0 * * * * java`
 
 Shell script `checkProcessState.sh` sẽ chạy mỗi giờ 1 lần vào phút 25 và sau 1 phút trong trường hợp server reboot.
 
-shell script này chạy trong git bash không được vì `sh` is aliased to `bash`
+Chell script này chạy trong `git bash` KHÔNG được vì `sh` is aliased to `bash`
 
-- `UpdateReportQueueStatus,java`
+- `UpdateReportQueueStatus.java`
   - Không có trong crontab nhưng `checkProcessState.sh` sẽ chạy file này
   - Cập nhật trạng thái cho các report queue ở RDS Adrepo/ETL. Hiện tại đang sử dụng để reset trạng thái queues (cập nhật status = 1 →「statusTo」) khi kiểm tra hoạt động của các process.
 
@@ -886,6 +945,10 @@ In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBU
 Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
 
 An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
+
+## JUnit
+
+dùng junit 4 (cuốn sách bản cũ second edition)
 
 ## S3 Util
 

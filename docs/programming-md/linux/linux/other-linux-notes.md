@@ -95,14 +95,6 @@ balenaEtcher: cài được trên Mac, flash iso cho linux
 
 rufus: flash iso cho window 11
 
-## Installing Nerd Font
-
-On windows, vào setting > Personalization > Fonts
-
-Muốn download thì tải về > right-click > install for all user
-
-tải nerd font về, extract ra > vào setting windows cài > vào terminal emulator > chọn font vừa cài
-
 ## Window Installation from USB
 
 download tạo ISO usb is free, activation key là phải mua. Nếu không có activation key thì nó sẽ có watermark & không thể access personalized customization trong phần settings.

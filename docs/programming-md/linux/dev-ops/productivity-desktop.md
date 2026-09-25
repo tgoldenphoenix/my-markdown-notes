@@ -16,13 +16,13 @@ Use alias to shorten commands
 Enable case-sensitive command completion
 display the git branch
 
-## key conflicts need to be resolve
+## Key conflicts need to be resolve
 
 C S 4 take screenshot vs change space (C S 5 also)
 C j anki toggle suspend vs skhd
 `Cmd l` dùng để jump to the url bar is conflicting.
 
-## OS & Browser shortkeys
+## OS & Browser Shortkeys
 
 Window only has `Ctrl` & `Alt` keys plus a key with the window logo. Thứ tự (fn) > Ctrl > window logo > Alt.
 
@@ -35,10 +35,19 @@ The Cmd (on Mac) and Alt (on Window) is also known as the Meta key (M-)
 
 `Ctrl d` exit tmux (compare to `ctrl C`???)
 
-## File Managers
+### Mac Os
 
-Krusader has the most features. Nhiều dependencies (40-50 dependencies). Hard to use. It is the Emac of file manager. It is a KDE application.\
-File sync between drives, comparison between drives
+Previous input `Ctrl space`
+
+`Ctrl opt space` next source in Input menu
+
+Global key to change input source
+
+### Windows
+
+change input method `window space`
+
+## File Managers
 
 Nautilus (or "Files" on GNOME): simple, chỉ có điều nó là GNOME application, nếu dùng với KDE thì khó tương thích.
 
@@ -46,15 +55,17 @@ Nautilus (or "Files" on GNOME): simple, chỉ có điều nó là GNOME applicat
   - Remember your position after closing.
   - Dual-panel mode
 
+### The MacOS finder
+
+`Cmd S .` to view dot files in finder
+
+## Terminal velocity
+
 ### fzf, zoxide
 
 fzf is a command line fuzzy finder
 
 zoxide is a better `cd`
-
-### The MacOS finder
-
-`Cmd S .` to view dot files in finder
 
 ## Desktop Environment, Window Manager
 
@@ -129,6 +140,19 @@ References
 
 [i3 official doc](https://i3wm.org/docs/userguide.html)
 
+### Sketchy bar (macOS)
+
+Config location: `~/.config/sketchybar`
+
+Installation notes:
+
+Dependencies: brew install `font-hack-nerd-font`, `jq` (command line JSON processor), `font-sf-pro`, `sf-symbols`\
+Hide the default MacOs menu bar
+
+`brew services start sketchybar` services will automatically start at computer startup (why???)
+
+`sketchybar --reload` nếu icon bị lỗi
+
 ## Tmux
 
 Kitty có tích hợp multi-plexer giống tmux.
@@ -151,24 +175,7 @@ Key tables may be viewed with the `:list-keys` command.
 `set` is the alias of `set-option`.
 `set -g` is used to set global options and `-ga` appends values to existing settings.
 
-## Sketchy bar (macOS)
-
-Config location: `~/.config/sketchybar`
-
-Installation notes:
-
-Dependencies: brew install `font-hack-nerd-font`, `jq` (command line JSON processor), `font-sf-pro`, `sf-symbols`\
-Hide the default MacOs menu bar
-
-`brew services start sketchybar` services will automatically start at computer startup (why???)
-
-`sketchybar --reload` nếu icon bị lỗi
-
-References
-
-[video](https://www.youtube.com/watch?v=8W06wMNZmo8&t=207s) by Josean Martinez
-
-## Keyboard manager
+## Keyboard Manager
 
 Macos có thể vào setting chỉnh khỏi cài software. Một số keyboard bán có cho phép tải phân mềm về chỉnh firmware. Còn không thì re-map keys bằng software như karabiner trên Mac
 
@@ -283,11 +290,13 @@ promt, PowerLevel 10k
 
 [video youtube](https://www.youtube.com/watch?v=ud7YxC33Z3w&t=591s) của Dream of Autonomy có giải thích vài syntax trong `.zsh` config file
 
-## Terminal emulator
+## Zinit
+
+Zinit is a flexible and fast Zshell plugin manager
+
+## Terminal Emulator
 
 [official doc](https://code.visualstudio.com/docs/terminal/basics#_terminal-profiles) custom terminal emulator in vscode
-
-Zoom in/out of terminal: `C +` or `C -`. Also work in terminal applications like NeoVim
 
 ---
 
@@ -300,15 +309,25 @@ Kitty
   - Zoom Out: `Ctrl + -`
   - Zoom 100%: `Ctrl+0`
 
-## Nerd font
+## Nerd Font
 
-font are stored in `/Users/anhao/Library/Fonts`
+Font are stored in `/Users/anhao/Library/Fonts`
 
 Những chỗ cần chỉnh font:
 
 - VS Code: vào setting
 
 Tóm lại cài font bằng homebrew hay gì gì đó thôi là chưa đủ. Sau khi cài phải vào chỉnh cho nhưng phần mềm như VS Code, terminal emulator dùng cái font mình vừa cài nữa.
+
+---
+
+Installing Nerd Font
+
+On windows, vào setting > Personalization > Fonts
+
+Muốn download thì tải về > right-click > install for all user
+
+tải nerd font về, extract ra > vào setting windows cài > vào terminal emulator > chọn font vừa cài
 
 ## Managing .dotfiles (GNU stow)
 
@@ -340,29 +359,6 @@ References
 ## Logi option+
 
 `sudo pkill -9 -f logiop` [sourse](https://www.reddit.com/r/logitech/comments/17oz6sy/comment/kwjpcy6/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
-
-## Macos
-
-Previous input `Ctrl space`
-
-`Ctrl opt space` next source in Input menu
-
-Global key to change input source
-
-## Windows
-
-`window space`
-
-- In Japanese IME
-  - switch to english: `shift + caps`
-  - katakana `alt caps`
-  - Hiragana `Ctrl caps`
-
-`uv` python install to `C:\Users\anhao\.local\bin`
-
-add vào PATH trên window cho python.
-
-On powershell, run `python.exe --version`
 
 ## Terms
 

@@ -204,50 +204,29 @@ Zombies are processes that have finished execution but have not yet had their st
 
 `ps` is the system administrator’s main tool for monitoring processes.
 
-`ps` can show the PID, UID, priority, and control terminal of processes. It also gives information about how much memory a process is using, how much CPU time it has consumed, and its current status (running, stopped, sleeping, etc.). Zombies show up in a ps listing as `<exiting>` or `<defunct>`.
+`ps` can show the `PID`, UID, priority, and control terminal of processes. It also gives information about how much memory a process is using, how much CPU time it has consumed, and its current status (running, stopped, sleeping, etc.). Zombies show up in a `ps` listing as `<exiting>` or `<defunct>`.
 
-Adding the `-e` argument to ps as you did previously returns not only the processes running in your current child shell, but all the processes from all parent shells right back up to init. 
+Adding the `-e` argument to `ps` as you did previously returns not only the processes running in your current child shell, but all the processes from all parent shells right back up to init. 
 
 A **parent shell** is a shell environment from within which new (child) shells can subsequently be launched and through which programs run. You can think of your GUI desktop session as a shell, and the terminal you open to get a command line as its child. The top-level shell (the grandparent?) is the one that’s run first when Linux boots.
 
 ---
 
-`-f` is the option for "full", hiện đầy đủ thông tin về process.
-
-If you want to visualize parent and child shells/processes, you can use the `pstree` command (adding the `-p` argument to display the PIDs for each process). Note how the first process (assigned PID 1) is `systemd`. On older versions of Linux (Ubuntu 14.04 and earlier, for instance), this would have been called `init` instead
-
 ```bash
-$ pstree -p
-systemd(1)agetty(264)
-            agetty(266)
-            agetty(267)
-            agetty(268)
-            agetty(269)
-            apache2(320)apache2(351)
-                            apache2(352)
-                            apache2(353)
-                            apache2(354)
-                            apache2(355)
-            cron(118)
-            dbus-daemon(109)
-            dhclient(204)
-            dockerd(236)docker-containe(390){docker-containe}(392)
-                                                    {docker-containe}(404)
-                            {dockerd}(306)
-                            {dockerd}(409)
-            mysqld(280){mysqld}(325)
-                           {mysqld}(326)
-                           {mysqld}(399)
-            nmbd(294)
-            rsyslogd(116){in:imklog}(166)
-                             {in:imuxsock}(165)
-                             {rs:main Q:Reg}(167)
-            smbd(174)smbd(203)
-                         smbd(313)
-            sshd(239)sshd(840)sshd(849)bash(850)pstree(15328)
-            systemd-journal(42)
-            systemd-logind(108)
+ps aux | grep java
+ec2-user 1764585(PID)  0.5 23.7 3262036 464956 ?      Sl   Sep16(start date)  68:09 java -Duser.dir=/opt/etl-harbest-webapi -cp /opt
 ```
+
+- uses legacy BSD-style syntax (no leading dash `-`).
+- `a` (All Users): Displays processes for all users on the system, not just your current terminal session.
+- `u` (User-oriented Format): Formats the output to show detailed information like CPU usage, memory consumption, start time, and process owner.
+- `x` (eXtra / Detached Processes): Displays processes that are not attached to a terminal (TTY), such as background system daemons, services, or cron jobs.
+
+`ps -eo lstart,pid,cmd | grep java`
+
+- `-e` (or `-A`) Selects all processes running on the entire system across all users and terminals (not just the current shell session).
+- `-o lstart,pid,cmd`
+  - The `-o` (or `--format`) flag specifies a custom list of output columns/fields:
 
 ## Running in the background
 

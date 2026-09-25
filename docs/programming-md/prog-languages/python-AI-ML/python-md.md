@@ -16,6 +16,12 @@ A `Python interpreter` is a program that reads and executes Python code. It acts
 - Python is included by default on almost every Linux and MacOS system, but you might want to use a different version than the default.
 - Python isn’t usually included by default on Windows
 
+`uv` python install to `C:\Users\anhao\.local\bin`
+
+add vào PATH trên window cho python
+
+On powershell, run `python.exe --version`
+
 ### `python` vs `python3` command line utilities
 
 Tại sao lại có 2 commands: `python --version`, `python3 --version`
@@ -71,7 +77,16 @@ uv pip install numpy
 uv run main.py
 ```
 
-`uv` automatically create a virtual environment when we install package
+---
+
+`uv` automatically create a virtual environment when we install package. Còn nếu muốn tự tạo thì 
+
+```bash
+uv venv
+source .venv/bin/activate
+```
+
+---
 
 uv supports managing Python projects, which define their dependencies in a `pyproject.toml` file.  
 In the old method, nếu xóa `venv` sẽ mất package. Because `uv` store package information in `pyproject.toml & .lock` file, deleting `venv` will not cause any damage.
@@ -100,7 +115,7 @@ However, this command won’t work if you already have a `pyproject.toml` file i
 
 ---
 
-```python
+```bash
 $ uv run main.py
 Using CPython 3.13.2
 Creating virtual environment at: .venv
@@ -126,6 +141,10 @@ uv self update
 
 # show the dependency tree
 uv tree
+
+uv venv
+
+uv sync
 ```
 
 `pip` install packages
@@ -182,6 +201,8 @@ As you’ve already learned, uv uses the uv.lock file to lock a project’s depe
 As a counterpart, syncing is the process of installing the required packages from the lockfile into the project’s development environment.
 
 Both locking and syncing processes are automatically handled by uv. For example, when you execute uv run, the project is locked and synced before the command is invoked. This behavior ensures that your project’s environment is always up to date.
+
+If you have an existing project with a .toml file (e.g., a flocode project from GitHub), you can easily install dependencies by running: `uv sync`
 
 ## Python Command-Line Programs
 

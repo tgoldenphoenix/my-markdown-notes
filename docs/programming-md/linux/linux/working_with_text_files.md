@@ -65,25 +65,11 @@ $ cut -d: -f7 /etc/passwd | sort | uniq -c
 
 `grep` searches its input text and prints the **lines** that match a given pattern. Its name is based on the g/regular-expression/p command from the old `ed` editor that came with the earliest versions of UNIX (and still does).
 
-`grep [OPTION]... PATTERNS [FILE]...`
-
-- Options:
-  * `-c` to print a count of matching lines
-  * `-i` to ignore case when matching
-  * `-v` to print nonmatching (rather than matching) lines
-  * `-l` (lowercase L) makes grep print only the names of matching files rather than printing each line that matches.
-
-```bash
-$ sudo grep -l mdadm /var/log/* 
-/var/log/auth.log 
-/var/log/syslog.0
-```
-
-Above command shows that log entries from mdadm have appeared in two different log files.
+---
 
 Search for pieces of matching text in text files such as a csv file that store historical purchase information for products in a store giống dạng excel.
 
-`grep Sneaker sales.csv` Only show lines in file `sales.csv` that contain the string "Sneaker". Work with millions of lines of text.
+`grep Sneaker sales.csv` Only show lines in file `sales.csv` that contain the string `Sneaker`. Work with millions of lines of text.
 
 `grep` can be used with **regular expression**. Ex: extract all the different model number from a csv of sale record.
 
@@ -91,7 +77,7 @@ By default, grep will print the entire line of text where a match is found. The 
 
 find and locate are often used in combination with grep to define some serious queries.
 
-**Other useful features:**\
+Other useful features:
 
 - recursive searches `-R` that look through all files & sub-directory, showing files and line numbers.
 - disabling case-sensitivity of the matching.
@@ -100,6 +86,32 @@ find and locate are often used in combination with grep to define some serious q
 Search for multiple terms at once by appending the `-E` option to grep and providing the search terms encased in quotations, separated by pipe delimiters.
 
 `sudo dmesg | grep -E "memory|tty"`
+
+### Usage
+
+`grep [OPTION]... PATTERNS [FILE]...`
+
+- Options:
+  * `-c` to print a count of matching lines
+  * `-i` to ignore case sensitivity when matching
+  * `-v` to print nonmatching (rather than matching) lines
+  * `-l` (lowercase L) makes grep print only the names of matching files rather than printing each line that matches.
+  * `-w` (whole word) Search for exact matching word
+
+```bash
+# search for a string in a file
+grep "string" filename
+grep "string" /path/to/file
+grep -i "linux" welcome.txt
+grep -c "Linux" welcome.txt
+```
+
+Search for exact matching word using the -w option
+
+```bash
+grep -w "opensource" welcome.txt # gives result
+grep -w "open" welcome.txt # no result
+```
 
 ## cut
 
@@ -113,6 +125,7 @@ cut OPTION... [FILE]...
 
 - Flags:
   - `-d` (--delimiter): Specify a delimiter that will be used instead of the default “TAB” delimiter.
+  - `-f1` extract the 1st field (column)
 
 ## sed - search & replace
 
