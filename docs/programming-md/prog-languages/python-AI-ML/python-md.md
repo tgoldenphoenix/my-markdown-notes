@@ -40,7 +40,7 @@ Virtual Environment
 
 A best practice among Python developers is to use a project-specific virtual environment.
 
-## `uv` Commands
+### `uv` Commands
 
 The old way of managing a python project.
 
@@ -50,7 +50,6 @@ $ cd old-way/
 
 # Create a virtual environment called .venv
 $ python3 -m venv .venv
-
 # Activate the virtual environment
 $ source .venv/bin/activate
 
@@ -79,11 +78,14 @@ uv run main.py
 
 ---
 
-`uv` automatically create a virtual environment when we install package. Còn nếu muốn tự tạo thì 
+`uv` automatically create a virtual environment when we install package. Còn nếu muốn tự tạo thì
 
 ```bash
 uv venv
 source .venv/bin/activate
+
+# un-source the virtual env
+deactivate
 ```
 
 ---
@@ -145,6 +147,9 @@ uv tree
 uv venv
 
 uv sync
+
+# generate a requirements.txt
+uv pip freeze > requirements.txt
 ```
 
 `pip` install packages
@@ -204,6 +209,34 @@ Both locking and syncing processes are automatically handled by uv. For example,
 
 If you have an existing project with a .toml file (e.g., a flocode project from GitHub), you can easily install dependencies by running: `uv sync`
 
+### Virtual Environment
+
+activating the environment puts .venv/bin at the front of your `$PATH`
+
+Virtual environment activation is purely an in-memory, per-session state. Here is exactly when it stops persisting:
+
+- When you run `deactivate`: It reverts the shell back to your default system state.
+- When you switch to another virtual environment: Sourcing a different `.venv/bin/activate` overwrites $PATH and $VIRTUAL_ENV with the new environment's locations.
+- When you close the terminal session: Because activation only modifies the memory of that specific shell process, closing the tab/window ends it. A newly opened terminal will always start clean (unactivated).
+- It does not leak into other windows: Activating a virtual environment in Terminal Tab A has zero effect on Terminal Tab B, even if they are open at the same time.
+
+---
+
+Check current venv
+
+```bash
+echo $VIRTUAL_ENV
+/Users/anhao/Documents/programming/python/learn-python/learn/.venv
+
+# alternative
+which python3
+# If activated, the path will point directly inside your .venv/bin/python3
+/Users/anhao/Documents/programming/python/learn-python/learn/.venv/bin/python3
+# If not activated, it looks something like this
+which python3
+/opt/homebrew/bin/python3
+```
+
 ## Python Command-Line Programs
 
 In Python, `REPL` is an acronym for Read, Evaluate, Print, and Loop. Developers use REPL Python to communicate with the Python Interpreter.  
@@ -243,7 +276,7 @@ The same `"""` syntax is also used to create multi-line string literals.
 
 ### Built-in Data Types
 
-In Python, an `int` is an object. Unlike languages like Java or C++, Python does **NOT** have the concept of primitive types. Every value you interact with—whether it is an integer, a boolean, or even a function—is a full-blown object.
+In Python, an `int` is an object. Unlike languages like `Java` or `C++`, Python does **NOT** have the concept of primitive types. Every value you interact with—whether it is an integer, a boolean, or even a function—is a full-blown object.
 
 There are three distinct **Numeric Types**: integers, floating-point numbers, and complex numbers (`int`, `float`, `complex`).
 
@@ -375,6 +408,8 @@ Python requires all the items in a set to be unique because under the hood, sets
 
 - Tuples are written with square brackets `()`
 - Lists are written with square brackets `[]`
+
+---
 
 Trong Python, có một syntax gọi là `Tuple Unpacking` gần giống như object destructuring trong javascript.
 

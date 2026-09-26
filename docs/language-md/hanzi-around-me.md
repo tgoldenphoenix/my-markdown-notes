@@ -30,13 +30,14 @@ k
 
 **Đền vua Hùng**: [hoành phi câu đối](http://sondonglapthach.blogspot.com/2014/07/oc-hoanh-phi-cau-oi-cong-en-hung-vuong_2.html)
 
-**Đền Trần Nam Định:**\
+Đền Trần Nam Định:
+
 宮行: Hành cung
 
-**Chùa bà mỏ cày**\
-請  神 恭  [thỉnh thần cung]
-農 [nông]
-大 [đại]
+Chùa bà mỏ cày
+
+請神恭  (thỉnh thần cung)
+農大 (nông đại)
 位 帝 安 [vị đế an]
 
 ---
@@ -45,7 +46,7 @@ k
 
 長山西就
 
-大安堂藥房 \[Đại An Đường dược phòng] nhà thuốc trên đường Hải Thượng Lãn Ông
+大安堂藥房 (Đại An Đường dược phòng) nhà thuốc trên đường Hải Thượng Lãn Ông
 
 ### Phủ tây hồ
 
@@ -55,7 +56,7 @@ k
 
 華夏蠻貊岡(罔)不率俾XXX水徯我后后来其蘇
 
-### Chùa ngọc Hoàng
+### Chùa Ngọc Hoàng
 
 - 登歡喜地 (đăng hoan hỉ địa)
 - 玉暎瑤䑓 (ngọc ánh dao đài)
@@ -69,7 +70,7 @@ k
 
 聚寶堂 "Tụ Bảo Đường"
 
-Ngũ phương Ngũ thổ Long thần, (五方五土龍神)\
+Ngũ phương Ngũ thổ Long thần, (五方五土龍神)  
 ngũ phương: Đông, Tây, Nam, Bắc và Trung Tâm
 
 前後地主財神 "Tiền hậu địa Chủ Tài thần"

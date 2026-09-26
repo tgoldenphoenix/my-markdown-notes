@@ -1,4 +1,4 @@
-# Numpy Notes
+# Numpy & Pandas Notes
 
 ## Jargon
 
@@ -65,11 +65,21 @@ Pandas typically uses these common `dtype` objects:
 
 - `object`: Often used for text or mixed-type columns. Usually represents categorical data (both nominal and ordinal).
 - `int64`: Represents integer values. Often corresponds to discrete numerical data.
-- `float64`: Represents floating-point (decimal) numbers. Often corresponds to continuous numerical data.
+  - `float64`: Represents floating-point (decimal) numbers. Often corresponds to continuous numerical data.
 - `bool`: Represents Boolean (True/False) values. This is a type of categorical data.
 - `category`: A specific Pandas type optimized for `categorical data` (can represent nominal or ordinal).
 - `datetime64`: Represents date and time values.
 
-## Anaconda
+## Data Structure
+
+The most common data structure in Pandas is the `DataFrame`. A DataFrame is essentially a two-dimensional table with labeled axes (rows and columns). You can load data into a DataFrame from various sources, including CSV (Comma Separated Values) files, Excel spreadsheets, databases, and more.
+
+## Jupyter
+
+a `.ipynb` (Interactive Python Notebook) file is a raw JSON file.
+
+`jupyter lab` => open in a web browser
+
+## Pandas
 
 k

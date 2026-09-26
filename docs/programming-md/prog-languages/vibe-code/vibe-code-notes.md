@@ -34,3 +34,7 @@ Output tokens typically cost 2-4x more than input tokens, because generating new
 
 You’ll want to be intentional about how much information you include in your initial context, which we’ll talk about next, and how you steer the model to be concise or detailed in its responses.
 
+## Anti gravity
+
+Planning mode has moved to `/plan`. Use /plan to explicitly ask your agent to generate a structured plan before implementation.
+
