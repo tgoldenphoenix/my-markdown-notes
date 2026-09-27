@@ -156,7 +156,7 @@ uv pip freeze > requirements.txt
 
 `venv` (or virtual env) for creating virtual environment
 
-`uv sync` create the `venv` using the `.lock` file.
+`uv sync` create the `venv` using the `.lock` file. Nếu rename directory thì phải delete `.venv`, run `uv sync` rồi `source` venv again.
 
 ### Dependency Management
 
@@ -399,15 +399,12 @@ Python requires all the items in a set to be unique because under the hood, sets
 ## List & Tuple
 
 - Similarity:
-  - ordered items; objects are accessible through indexing
-  - Allow duplicate values
-- `Tuple`:
-  - is **immutable**; cannot change, add or remove items after the tuple has been created; cannot reassign item
-- `List`:
-  - is mutable; we can append new items to the end of a list, insert items into the middle, change the items, and remove items.
-
-- Tuples are written with square brackets `()`
-- Lists are written with square brackets `[]`
+  - **ordered items**; objects are accessible through indexing
+  - **Allow duplicate** values
+- `Tuple`: is **immutable**; cannot change, add or remove items after the tuple has been created; cannot reassign item
+  - Tuples are written with square brackets `()`
+- `List`: is **mutable**; we can append new items to the end of a list, insert items into the middle, change the items, and remove items.
+  - Lists are written with square brackets `[]`
 
 ---
 

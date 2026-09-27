@@ -9,3 +9,8 @@ In machine learning, statistical methods are used everywhere: from understanding
 ---
 
 Evaluation: When we evaluate a model (e.g., using a `test set`), that test set is another sample. We use its performance on this sample to estimate how well the model will generalize to the population.
+
+---
+
+Histograms are a powerful first step in exploring your numerical data. They complement the summary statistics learned earlier by providing a visual context, helping you understand the shape, center, and spread in a way that numbers alone cannot convey. They are an essential tool for data exploration and preparing data for machine learning models.
+

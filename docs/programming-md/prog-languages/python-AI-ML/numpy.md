@@ -4,8 +4,6 @@
 
 Numpy = numerical Python
 
-`ndarray` = n-dimensional array
-
 These arrays are homogeneous, meaning they contain elements of the same data type, which allows for optimized storage and computation.
 
 ## Basics
@@ -38,7 +36,7 @@ axes = dimensions
 
 Khi print 3D array thì nó print last axis (Oz) top to bottom
 
-## `ndarray`
+## NDArray
 
 - attributes of an `ndarray` object:
   - `ndarray.ndim`: the number of axes (dimensions) of the array.
@@ -55,9 +53,21 @@ array([[ 0,  1,  2,  3,  4],
        [10, 11, 12, 13, 14]])
 ```
 
+The syntax is: `.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)` or `.reshape(number of row, number of column, height)`
+
 ---
 
-`.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)` or `.reshape(number of row, number of column, height)`
+- `NDArray` stands for `N-Dimensional Array`.
+  - 1D array: `array([20.1, 19.5, 25.3, 12.3]) # shape (4,)`
+  - 2D array (matrix); a grid with rows and columns (e.g., a table): `[ [1,2], [3,4] ]`
+  - 3D (tensor):
+
+- A shape of `(3,)` means it is a 1-dimensional array containing 3 elements.
+- `shape (1,3)` => 2D, 1 row, 3 columns
+  - `shape (4, 5)` => 4 rows, 5 columns (4x5 matrix)
+- `shape (3,4,5)` => 3 layers, each layer is 4x5 matrix
+
+`some_array[2,1,0]` => 3rd layer, second row, first column (zero-indexed)
 
 ## Data Types
 
@@ -72,7 +82,14 @@ Pandas typically uses these common `dtype` objects:
 
 ## Data Structure
 
+In pure `NumPy` or standard Python lists, data is purely positional (index 0, index 1, index 2). If you reorder, filter, or combine two lists, matching up the data depends entirely on you keeping track of the array indices.  
+In Pandas, **the label is glued to the value**. The relationship between an observation and its identity travels together automatically through almost every operation.
+
+---
+
 The most common data structure in Pandas is the `DataFrame`. A DataFrame is essentially a two-dimensional table with labeled axes (rows and columns). You can load data into a DataFrame from various sources, including CSV (Comma Separated Values) files, Excel spreadsheets, databases, and more.
+
+`Series` is a one-dimensional labeled array capable of holding any data type (integers, strings, floating point numbers, Python objects, etc.).
 
 ## Jupyter
 
