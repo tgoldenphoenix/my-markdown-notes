@@ -442,7 +442,7 @@ BATCH_ROOT = /opt/ag/ag_batch/
 /** The log path of checkProcessState*/
 PROCESS_STATE_LOG_DIR = /opt/ag/ag_batch/process_watcher
 
-# log path
+# log path (batch log)
 LOG_DIR = /opt/ag/logs/
 
 # crontab backup
@@ -496,6 +496,12 @@ copy build file from local to home directory on ec2 instance
 ---
 
 s3 paths
+
+master data path `adrepo-development/master/{account_id}/{dsp_type}/{masterS3Key}/{getMasterQueue_id}_{advertiser_id}.csv.gz`
+
+account id & advertiser id đều lấy từ queue
+
+report data path `adrepo-development/report_data/{account_id}/{report_type}/{getReportQueue_id}_{advertiser_id}_{rangeFrom}_{rangeTo}.csv.gz`
 
 ## ETL Batch
 
