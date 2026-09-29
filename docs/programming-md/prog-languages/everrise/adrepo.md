@@ -447,11 +447,14 @@ LOG_DIR = /opt/ag/logs/
 
 # crontab backup
 /opt/ag/ag_batch/backup_cron/crontab_{YYYYMMDD}.backup
+
+# TEMP_UPLOADED_CSV_PATH
+/opt/ag/ag_batch/file_upload/csv_upload/ + master/{account_id}/{dsp_type}/{masterS3Key}/{getMasterQueue_id}_{advertiser_id}.csv.gz
 ```
 
-- batch_root contain:
+- batch_root (`/opt/ag/ag_batch/`) contain:
   - Config files: `config.properties`, `alert_import_daily_unique_advertiser_list_mail_to.txt`
-  - `.lock` files
+  - `.lock` files của các batch
   - Khi chạy script `deploy.sh` sẽ copy file `.jar` vào đây
 
 ---
@@ -497,11 +500,15 @@ copy build file from local to home directory on ec2 instance
 
 s3 paths
 
-master data path `adrepo-development/master/{account_id}/{dsp_type}/{masterS3Key}/{getMasterQueue_id}_{advertiser_id}.csv.gz`
+master data path: `{bucket_name}/master/{account_id}/{dsp_type}/{masterS3Key}/{getMasterQueue_id}_{advertiser_id}.csv.gz`
 
 account id & advertiser id đều lấy từ queue
 
-report data path `adrepo-development/report_data/{account_id}/{report_type}/{getReportQueue_id}_{advertiser_id}_{rangeFrom}_{rangeTo}.csv.gz`
+report data path: `{bucket_name}/report_data/{account_id}/{report_type}/{getReportQueue_id}_{advertiser_id}_{rangeFrom}_{rangeTo}.csv.gz`
+
+`account_id` = ADREPO_USER_ID
+
+`bucket_name` can be: `AMAZON_BUCKET_NAME=adrepo | adrepo-development` or `ETL_AMAZON_BUCKET_NAME=adrepo-etl` (in `config.properties`)
 
 ## ETL Batch
 
@@ -638,6 +645,7 @@ input_platform_id = m_input_platform
 |         TIKTOK         |         35         |     35     |
 |            LineApi            |                    |      27      |
 |                Adcent               |                    |       23       |
+|                   AdMatrix                  |                    |        22        |
 
 ---
 
@@ -962,7 +970,7 @@ the S3 key is not just the folder path — it is the complete path including the
 
 How S3 Keys Work
 
-Flat Storage Architecture: In Amazon S3, there is no real hierarchical folder structure like on a local hard drive. Instead, S3 is a flat key-value store where the key is the entire unique identifier for an object inside a bucket. The slashes (/) are just delimiters used to simulate a directory structure in the AWS console
+Flat Storage Architecture: In Amazon S3, there is no real hierarchical folder structure like on a local hard drive. Instead, S3 is a flat key-value store where the key is the entire unique identifier for an object inside a bucket. The slashes (`/`) are just delimiters used to simulate a directory structure in the AWS console
 
 ## Exception Handling
 

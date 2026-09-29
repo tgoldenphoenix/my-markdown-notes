@@ -64,7 +64,12 @@ k
 - 帝德惠南洋 (đế đức huệ nam dương)
 - 聖恩宏廣澤 (thánh ân hoành quảng trạch)
 
-大大肚能容?物 (đại đại đỗ năng dung vạn vật)
+- 大大肚能容萬物 (đại đại đỗ năng dung vạn vật)
+- 微微笑看破群生 (vi vi tiếu khán phá quần sinh)
+
+- 路逢廸(迪)吉 (lộ phùng địch cát)
+
+大雄寶殿 (đại hùng bảo điện)
 
 ### Bàn thờ thần tài
 

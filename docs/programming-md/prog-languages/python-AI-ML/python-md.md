@@ -694,7 +694,7 @@ def generate_stats(measures):
    return measure_mean, measure_std
 ```
 
-although it appears that we’re returning two values in the function definition. These two values are packed into a single tuple object. In other words, strictly speaking, when we appear to return multiple values in a function definition, we’re returning a single variable that is a tuple object consisting of these values. Please note that as discussed regarding tuple unpacking (section 4.4), parentheses are optional for creating a tuple object.
+Although it appears that we’re returning two values in the function definition. These two values are packed into a single `tuple` object. In other words, strictly speaking, when we appear to return multiple values in a function definition, we’re returning a single variable that is a tuple object consisting of these values. Please note that as discussed regarding `tuple unpacking`, parentheses are optional for creating a tuple object.
 
 You can apply the tuple unpacking technique to using the multiple values returned from a function, which is a concise, Pythonic way to access the individual items of the returned tuple object, as shown in the next listing.
 
@@ -808,7 +808,7 @@ def generate_stats(measures: list[float] | tuple[float, ...])
    return measure_mean, measure_std
 ```
 
-### increase function flexibility with `*args` and `**kwargs`
+### Increase function flexibility with `*args` and `**kwargs`
 
 Knowing positional and keyword arguments
 
