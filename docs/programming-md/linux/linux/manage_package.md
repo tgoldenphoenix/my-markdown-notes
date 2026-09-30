@@ -220,12 +220,13 @@ Fedora is the upstream, community-driven project that acts as the testing ground
 
 On Apple silicon, Homebrew installs files into the `/opt/homebrew/` folder, which is not part of the default shell `$PATH`. You'll need to configure your shell environment so Homebrew packages are found and take priority over pre-installed tools.
 
-Show a list of common commands `brew`
+Show a list of common commands `brew`  
 Show help `man brew`
 
 `brew install <formula>` install a formula
 
 To see all the packages in your local environment: `brew list`. It will show dependencies as well as packages you've installed.
+
 You can also see a diagram of packages and dependencies `brew deps --tree --installed`
 
 ## View Installed Packges
