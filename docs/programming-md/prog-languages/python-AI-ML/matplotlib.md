@@ -1,8 +1,12 @@
 # Matplotlib & Seaborn
 
+## Basics
+
 Matplotlib is a paramount data visualization library used extensively by data analysts for generating a wide array of plots and graphs.
 
 `Pyplot` is a state-based interface module within the Matplotlib data visualization library for Python that provides a MATLAB-like way of plotting.
+
+---
 
 Matplotlib supports two styles:
 

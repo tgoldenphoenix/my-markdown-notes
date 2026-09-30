@@ -17,5 +17,3 @@ Histograms are a powerful first step in exploring your numerical data. They comp
 ## Event & Sample Space
 
 In machine learning, we often deal with data points. You can think of observing a single data point (like a customer's purchase amount or whether an email is spam) as an outcome of an experiment. The sample space represents all possible observations, and an event might correspond to observing a data point with specific characteristics (e.g., purchase amount over $100, or email classified as spam).
-
-

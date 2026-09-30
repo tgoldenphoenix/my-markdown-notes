@@ -11,6 +11,22 @@ These arrays are homogeneous, meaning they contain elements of the same data typ
 - NumPy arrays have a **fixed size** at creation, unlike Python lists (which can grow dynamically). Changing the size of an ndarray will create a new array and delete the original.
 - The elements in a NumPy array are all required to be of the same data type, and thus will be the same size in memory.
 
+NumPy exists to solve a single fundamental dilemma: Python is productive for humans to write, but notoriously slow for computers to crunch numbers.  
+The point of `NumPy` and related libraries is to be able to write concise, simple python syntax but running `C` underneath for maximum speed.
+
+## Broadcasting
+
+Subject to certain constraints, the smaller array is “broadcast” across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations so that looping occurs in C instead of Python.
+
+Treating arrays as mathematical vectors rather than programmatic lists, and executing hardware instructions on those vectors simultaneously.
+
+```python
+import numpy as np
+a = np.array([1.0, 2.0, 3.0])
+b = 2.0
+a * b
+```
+
 ## Axes
 
 NumPy axes are the directions along the rows and columns.
@@ -38,7 +54,7 @@ Khi print 3D array thì nó print last axis (Oz) top to bottom
 
 ## NDArray
 
-- attributes of an `ndarray` object:
+- Attributes of an `ndarray` object:
   - `ndarray.ndim`: the number of axes (dimensions) of the array.
   - `ndarray.shape`: the dimensions of the array. This is a tuple of integers indicating the size of the array in each dimension. For a matrix with n rows and m columns, `shape` will be `(n,m)` or `(row, column)`. The length of the `shape` tuple is therefore the number of axes, ndim.
   - `ndarray.size`: the total number of elements of the array. This is equal to the product of the elements of `shape`.
@@ -88,6 +104,13 @@ In Pandas, **the label is glued to the value**. The relationship between an obse
 ---
 
 The most common data structure in Pandas is the `DataFrame`. A DataFrame is essentially a two-dimensional table with labeled axes (rows and columns). You can load data into a DataFrame from various sources, including CSV (Comma Separated Values) files, Excel spreadsheets, databases, and more.
+
+- NumPy 2D `ndarray`
+  - Homogeneous: Every single element must share the exact same `dtype` (e.g., all `float64`).
+- Pandas `DataFrame`
+  - Heterogeneous: Each column can have its own `dtype` (e.g., Column A is `int`, B is `float`, C is `str`).
+
+---
 
 `Series` is a one-dimensional labeled array capable of holding any data type (integers, strings, floating point numbers, Python objects, etc.).
 

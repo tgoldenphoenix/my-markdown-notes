@@ -709,9 +709,11 @@ Unlike Python, a Java method can only return a single value (or `void`). Java is
 
 ---
 
-Nên viết `docstring` cho functions trong python, giống jsdoc, javadoc
+Nên viết `docstring` cho functions trong python, giống jsdoc, `javadoc`.
 
-### Type hints
+### Type Hints
+
+By default, Python does not require or enforce return types in a method signature.
 
 Proper type hints tell users what kinds of arguments our functions take and what value our functions return, making our functions more understandable.
 
@@ -810,7 +812,7 @@ def generate_stats(measures: list[float] | tuple[float, ...])
 
 ### Increase function flexibility with `*args` and `**kwargs`
 
-Knowing positional and keyword arguments
+Knowing `positional` and `keyword arguments`.
 
 You may have noticed that when we call functions, in the parentheses, we sometimes use the arguments directly, and at other times, we use identifiers preceding the specified arguments. We have different terms for these two types of arguments.
 
@@ -845,7 +847,7 @@ For a typical function like `multiply_numbers`, we can set the parameters as eit
 
 ---
 
-Positional-only and keyword-only arguments
+`Positional-only` and `keyword-only arguments`
 
 There are two more advanced ways to specify how the arguments should be set: `positional-only arguments` can be set only positionally, and `keyword-only arguments` can be set only with identifiers. If you recall, the sort method has the following head: `sort(*, key=None, reverse=False)`. The `*` specifies that all the arguments behind it should be set only as keyword-only arguments.
 
