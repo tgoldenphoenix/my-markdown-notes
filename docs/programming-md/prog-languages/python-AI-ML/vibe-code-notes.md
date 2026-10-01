@@ -38,3 +38,9 @@ You’ll want to be intentional about how much information you include in your i
 
 Planning mode has moved to `/plan`. Use /plan to explicitly ask your agent to generate a structured plan before implementation.
 
+## Agent Skills
+
+At its core, a skill is a folder containing a `SKILL.md` file. This file includes metadata (name and description, at minimum) and instructions that tell an agent how to perform a specific task. Skills can also bundle scripts, reference materials, templates, and other resources.
+
+The `SKILL.md` file must contain YAML frontmatter followed by Markdown content.
+
