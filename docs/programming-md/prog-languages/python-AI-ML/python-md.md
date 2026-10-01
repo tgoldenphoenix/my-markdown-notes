@@ -1,9 +1,5 @@
 # Python Notes
 
-## Jargon
-
-`dunder` = double underscore. It refers to special methods or attributes that start and end with two underscores, like `__init__` or `__str__`. These are also called `Magic Methods` because they aren't usually called by you directly. Instead, they are "magically" called by the Python interpreter behind the scenes when you perform certain actions.
-
 ## Installation
 
 [uv](https://docs.astral.sh/uv/) is a Python package and project manager, written in Rust.
@@ -1139,27 +1135,22 @@ we don’t want to fill the try clause with lots of code because it makes it har
 
 ## Class in Python
 
-Python supports multiple inheritance, and Java does not.
+Python supports multiple inheritance (a class can inherit from two or more parent classes), and Java does not.
 
 Python does not have the `extends` keyword.
 
 We use a custom class instead of a named tuple-based data model here. A custom class gives us the flexibility of changing the instance object’s attributes, which we can’t do with a named tuple mode
 
-### `__init__()`
+### The `__init__()` method
 
 The constructor is the `__init__` function that you define.
 
-The `__init__()` method is the most essential method that you almost always define in a custom class.
-
-`def __init__(self):`
-
-`self` refers to the instance objects in the method definitions.
+The `__init__()` method is the most essential method that you almost always define in a custom class.  It is always executed when the class is being initiated.  
+The `__init__()` method is called automatically every time the class is being used to create a new object.
 
 Python creates the instance object by calling `__new__` and sends it to `__init__` as the self argument.
 
 The instance construction is a two-step process that calls `__new__` and `__init__`.
-
-`self` is not a keyword like `def`, `for`, `class`, `lambda`. We’re not required to use self as the parameter name for `__init__()`. We can use any legitimate variable name (but it can’t be a keyword).
 
 ```python
 class Task:
@@ -1393,6 +1384,15 @@ The `@property` decorator makes a method accessible as though it’s an attribut
 
 k
 
+### The self parameter
+
+`self` is just a standard parameter name in Python, not a reserved language keyword.  
+Python has 35 reserved keywords (like def, class, if, return, import, True). self is not on that list.
+
+The `self` parameter is a reference to the current instance of the class.
+
+The self parameter must be the first parameter of any method in the class. It does not have to be named self, you can call it whatever you like, but it has to be the first parameter of any method in the class.
+
 ## Inheritance
 
 ```python
@@ -1414,9 +1414,11 @@ class Supervisor(Employee):
 
 When you define a subclass, you specify the superclass in parentheses following the class’s name. Here, the superclass is `Employee`, so we place it after `Supervisor`.
 
+In Python, the parent class in inheritance literally is an argument passed to a function call.
+
 ---
 
-Python does not have `@Override` annotation.
+Python does not have the `@Override` annotation.
 
 ```python
 class Supervisor(Employee):
@@ -1456,6 +1458,16 @@ Send a vacation request to the employee's supervisor.
 ```
 
 subclasses inherit protected methods; subclass do not inherit private methods
+
+## Dunder Methods
+
+`dunder` = double underscore. It refers to special methods or attributes that start and end with two underscores, like `__init__` or `__str__`. These are also called `Magic Methods` because they aren't usually called by you directly. Instead, they are "magically" called by the Python interpreter behind the scenes when you perform certain actions.
+
+Magic methods are special methods whose names start and end with double underscores, like `__init__()` and `__str__()`. Because of the double underscores, they are also called dunder methods (short for "double underscore").
+
+You do not call magic methods directly. Python calls them for you, automatically, in certain situations - like when an object is created, printed, or compared to another object.
+
+`__init__()` runs automatically when an object is created, and `__str__()` runs automatically when the object is printed.
 
 ## File and Directory Access
 
