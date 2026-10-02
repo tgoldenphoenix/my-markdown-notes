@@ -838,12 +838,10 @@ For a typical function like `multiply_numbers`, we can set the parameters as eit
 
 - Key points regarding the use of positional and keyword arguments:
   - When you use `positional arguments`, the order of these arguments matters. The arguments will be matched with the original parameters in the function head.
-  - When you use `keyword arguments`, the order of these arguments doesn't matter. The arguments will be used according to the supplied keywords/identifiers.
+  - When you use `keyword arguments`, the order of these arguments doesn not matter. The arguments will be used according to the supplied keywords/identifiers.
   - When you use **both** positional and keyword arguments, you have to place positional arguments **before** any keyword arguments. Otherwise, you’ll raise a `SyntaxError`.
 
----
-
-`Positional-only` and `keyword-only arguments`
+### Positional-only and keyword-only arguments
 
 There are two more advanced ways to specify how the arguments should be set: `positional-only arguments` can be set only positionally, and `keyword-only arguments` can be set only with identifiers. If you recall, the sort method has the following head: `sort(*, key=None, reverse=False)`. The `*` specifies that all the arguments behind it should be set only as keyword-only arguments.
 

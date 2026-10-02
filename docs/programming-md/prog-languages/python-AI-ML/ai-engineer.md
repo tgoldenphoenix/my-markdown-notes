@@ -1,3 +1,8 @@
 # AI Engineer
 
 An AI Engineer uses pre-trained models and existing AI tools to improve user experiences. They focus on applying AI in practical ways, without building models from scratch. This is different from AI Researchers and ML Engineers, who focus more on creating new models or developing AI theory.
+
+## LLM
+
+Large Language Models (LLMs) are sophisticated AI systems trained on vast amounts of text data to understand, generate, and manipulate human language.
+
