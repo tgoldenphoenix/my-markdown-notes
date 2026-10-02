@@ -24,7 +24,9 @@ OAuth tokens can limit the client’s access to only the actions that the resour
 
 Nếu mình đưa ai đó full password thì giống như mình đưa họ owner key của một chiếc xe hơi, họ có full permission. Còn đưa token là đưa valet key, mình có thể giới hạn quyền (delegate).
 
-The **authorization server (AS)** is trusted by the protected resource to issue special-purpose security credentials—called OAuth access tokens—to clients. To acquire a token, the client first sends the resource owner to the authorization server in order to request that the resource owner authorize this client. The resource owner authenti-cates to the authorization server and is generally presented with a choice of whether to authorize the client making the request. The client is able to ask for a subset of func-tionality, or scopes, which the resource owner may be able to further diminish. Once the authorization grant has been made, the client can then request an access token from the authorization server. This access token can be used at the protected resource to access the API, as granted by the resource owner.
+The `authorization server` (AS) is trusted by the protected resource to issue special-purpose security credentials—called OAuth access tokens—to clients. To acquire a token, the client first sends the resource owner to the `authorization server` in order to request that the resource owner authorize this client. The resource owner authenticates to the authorization server and is generally presented with a choice of whether to authorize the client making the request. The client is able to ask for a subset of functionality, or scopes, which the resource owner may be able to further diminish. Once the authorization grant has been made, the client can then request an access token from the authorization server. This access token can be used at the protected resource to access the API, as granted by the resource owner.
+
+Harbest Web API là client, send user tới auth server của tiktok. User login, tiktok send auth code to client (harbest web api.)
 
 OAuth isn’t an authentication protocol, even though it can be used to build one.
 
@@ -37,7 +39,7 @@ OAuth isn’t an authentication protocol, even though it can be used to build on
 - Sau khi đã lấy được access token, the client has several methods for presenting the access token to the protected resources:
   * using the `Authorization` header
 
-- OIDC is an identity layer built on top of the OAuth 2.0 authorization framework.
+- `OIDC` is an identity layer built on top of the OAuth 2.0 authorization framework.
   * OAuth 2.0 handles Authorization (What you are allowed to do).
   * OIDC handles Authentication (Who you are).
 
@@ -47,11 +49,13 @@ One key assumption in the design of OAuth 2.0 was that there would always be sev
 
 **A single** `authorization server` can easily protect **multiple** `resource servers`, and there are likely to be many different kinds of clients wanting to consume any given API.
 
-As a consequence of this architectural decision, wherever possible, complexity is shifted away from clients and onto servers. This is good for client developers, as the client becomes the simplest piece of software in the system. Client developers no longer have to deal with signature normalizations or parsing complicated security policy documents, as they would have in previous security protocols, and they no longer have to worry about handling sensitive user credentials. OAuth tokens provide a mechanism that’s only slightly more complex than passwords but significantly more secure when used properly.
+As a consequence of this architectural decision, wherever possible, complexity is shifted away from clients and onto servers. This is good for client developers, as the `client` becomes the **simplest** piece of software in the system. Client developers no longer have to deal with signature normalizations or parsing complicated security policy documents, as they would have in previous security protocols, and they no longer have to worry about handling sensitive user credentials. OAuth tokens provide a mechanism that’s only slightly more complex than passwords but significantly more secure when used properly.
 
 The flip side is that authorization servers and protected resources are now responsible for more of the complexity and security. A client needs to manage securing only its own client credentials and the user’s tokens, and the breach of a single client would be bad but limited in its damage to the users of that client. Breaching the client also doesn’t expose the resource owner’s credentials, since the client never sees them in the first place.
 
 An authorization server, on the other hand, needs to manage and secure the credentials and tokens for all clients and all users on a system. Although this does make it more of a target for attack, it’s significantly easier to make a single authorization server highly secure than it is to make a thousand clients written by independent developers just as secure.
+
+Both auth server & protected resource are owned, hosted, and operated by Google to protect Google's infrastructure and user data.
 
 ---
 
@@ -132,18 +136,18 @@ OAuth systems often follow the principle of `TOFU: Trust On First Use`. In a TOF
 
 The TOFU method strikes a good balance between the flexibility of asking end users to make security decisions in context and the fatigue of asking them to make these decisions constantly. Without the “Trust” portion of TOFU, users would have no say in how these delegations are made. Without the “On First Use” portion of TOFU, users would quickly become numb to an unending barrage of access requests. This kind of security system fatigue breeds workarounds that are usually more insecure than the practices that the security system is attempting to address.
 
-## Getting and using tokens
+## Getting and using Tokens
 
 There are two major steps to an OAuth transaction: issuing a token and using a token. 
 
-The token represents the access that’s been delegated to the client and it plays a central role in every part of OAuth 2.0.
+The token represents the access that’s been delegated to the `client` (harbest web api) and it plays a central role in every part of OAuth 2.0.
 
 - The canonical OAuth transaction consists of the following sequence of events:
-  * The Resource Owner indicates to the Client that they would like the Client to act on their behalf (for example, “Go load my photos from that service so I can print them”).
-  * The Client requests authorization from the Resource Owner at the Authorization Server.
+  * The Resource Owner indicates to the `Client` (harbest web api) that they would like the Client to act on their behalf (for example, “Go load my photos from that service so I can print them”).
+  * The Client requests authorization from the Resource Owner at the `Authorization Server`.
   * The Resource Owner grants authorization to the Client.
-  * The Client receives a Token from the Authorization Server.
-  * The Client presents the Token to the `Protected Resource`.
+  * The Client receives a Token from the `Authorization Server`.
+  * The Client presents the Token to the `Protected Resource` to get the data it needs.
 
 ## OAuth 2.0 Authorization Grant process
 
@@ -161,7 +165,7 @@ The `authorization code grant` uses a temporary credential, the authorization co
 
 The authorization server has two endpoints: the `authorization endpoint` & the `token endpoint`.
 
-Mỗi protected resource có một authorization server ứng với nó. Client phải có cách tìm ra.
+Mỗi `protected resource` có một `authorization server` ứng với nó. Client phải có cách tìm ra. Example Google build its own authorization server to protect its API and its users.
 
 - First, the resource owner goes to the client application and indicates to the client that they would like it to use a particular `protected resource` on their behalf.
 - When the client realizes that it needs to get a new OAuth access token, it sends the resource owner to the authorization server with a request that indicates that the client is asking to be delegated some piece of authority by that resource owner.
@@ -213,7 +217,7 @@ OAuth tokens are opaque to the client, which means that the client has no need (
 
 An OAuth refresh token is similar in concept to the access token, in that it’s issued to the client by the authorization server and the client doesn’t know or care what’s inside the token. What’s different, though, is that the token is never sent to the protected resource. Instead, the client uses the refresh token to request new access tokens without involving the resource owner
 
-## Interactions between OAuth’s actors and components: back channel,- , front channel, and endpoints
+## Interactions between OAuth’s actors and components: back channel, front channel, and endpoints
 
 Many parts of the OAuth process use a normal HTTP request and response format to communicate to each other. Since these requests generally occur outside the purview of the resource owner and user agent, they are collectively referred to as `back-channel communication`.
 
@@ -239,9 +243,9 @@ When the browser follows this redirect, it will be served by the client applicat
 
 ## The OAuth Client
 
-## Register an OAuth client with an authorization server
+## Register an OAuth client with an Authorization Server
 
-the OAuth client and the authorization server need to know a few things about each other before they can talk.
+The OAuth client and the authorization server need to know a few things about each other before they can talk.
 
 An OAuth client is identified by a special string known as the client identifier. The client identifier needs to be unique for each client at a given authorization server, and is therefore almost always assigned by the authorization server to the client.
 

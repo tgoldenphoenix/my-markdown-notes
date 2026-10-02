@@ -885,7 +885,58 @@ Forms contain specific validation logic to ensure user input is safe and correct
 
 You use form `Factory.form` to manually command the play framework to map HTTP data to a Java object.
 
-Form Validation
+---
+
+Fields with `@JsonIgnore` / `@ApiModelProperty(hidden = true)` are internal and ignored from the incoming request body.
+
+### Đăng ký chứng thực cho các PF có Oauth2
+
+Nếu PF không có Oauth2 thì dùng endpoint `POST    /mInputPlatformAuth/`. Chỉ đơn giản là insert new record vào database.
+
+Muốn biết PF nào có Oauth2, PF nào không thì vào enum `INPUT_PLATFORM_AUTH_TYPE` coi.
+
+---
+
+POST /mOnetimeApiToken/
+
+`validateOnCreate(mOnetimeApiTokenPostForm)`
+
+- Checks if `agencyId` exists in the database (`MAgencyService.findById`). Returns `"error.invalid"` if not found.
+- Verifies that `inputPlatformId` exists in `m_input_platform`. Ensures the platform is a valid OAuth platform (`inputPlatformAuthType.isHasOAuthMethod()`).
+
+ Contract Limit & Availability (`mContractLimitHistory`):
+ 
+- Checks that platform configuration limits exist (`MContractLimitHistoryService.findLatestOne()`).
+- Ensures `inputPlatformId` is present in `inputPlatformAvailableIdJson` (if configured) and **not** in `inputPlatformUnavailableIdJson`.
+
+Existing Auth vs New Auth Branching:
+
+Case A: Updating Existing Auth (`inputPlatformAuthId != null`):
+
+- Verifies that `MInputPlatformAuth` exists.
+- Confirms that the auth's `agencyId` matches the request's `agencyId`.
+- Confirms that the auth's `inputPlatformId` matches the request's `inputPlatformId`.
+     
+Case B: Creating New Auth (`inputPlatformAuthId == null`):
+
+Advertiser Check: If `advertiserId` is provided, verifies it exists and belongs to the given `agencyId`.
+
+Platform Application Settings (`PlatformApplicationDto`): Loads configuration settings and validates required OAuth credentials per platform type:
+
+- Twitter: Requires `consumerKey`, `consumerSecret`, and `callbackUrl`.
+- Facebook / Instagram: Requires `appId`, `appSecret`, and `callbackUrl`.
+- Google Adwords: Requires `developerToken`.
+- Yahoo Ads Search / Display: Requires `clientId` and `clientSecret`.
+- Google Analytics / DBM: Requires `authPermanentJson` containing `clientId` and `clientSecret`.
+- TikTok: Requires `authPermanentJson` containing `appId` and `secret`.
+
+---
+
+`censorForm()` is a security and permission-masking mechanism defined in `AbstractLoginAuthenticator.java`
+
+It prevents a user/client from setting or modifying fields/columns that their account role is not permitted to change (based on `m_api_disabled_column`).
+
+Even if a user injects unauthorized fields or parameters into the JSON request body, `censorForm(...)` scrubs or resets them to their default values before the business logic processes and saves the data.
 
 ### Authenticator
 

@@ -68,8 +68,15 @@ k
 - 微微笑看破群生 (vi vi tiếu khán phá quần sinh)
 
 - 路逢廸(迪)吉 (lộ phùng địch cát)
+- 巷遇春老 (hạng ngộ xuân lão)
 
 大雄寶殿 (đại hùng bảo điện)
+
+薦 (tiến)
+
+當 (đương)
+
+廣種福田 (quảng chủng phúc điền)
 
 ### Bàn thờ thần tài
 
