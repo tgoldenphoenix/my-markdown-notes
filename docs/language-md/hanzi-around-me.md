@@ -78,6 +78,10 @@ k
 
 廣種福田 (quảng chủng phúc điền)
 
+- 善果真心正道？乾？ (thiện quả chân tâm chính đạo)
+
+光緒廿六年庚子仲秋吉立 (Quang Tự nhập lục niên canh tý trọng thu cát lập)
+
 ### Bàn thờ thần tài
 
 聚寶堂 "Tụ Bảo Đường"
@@ -86,6 +90,11 @@ Ngũ phương Ngũ thổ Long thần, (五方五土龍神)
 ngũ phương: Đông, Tây, Nam, Bắc và Trung Tâm
 
 前後地主財神 "Tiền hậu địa Chủ Tài thần"
+
+### Đền Hùng
+
+拓始開基四顧山河歸版籍 (Thác thủy khai cơ tứ cố sơn hà quy bản tịch)
+登高望遠群峰羅列似兒孫 (Đăng cao vọng viễn quần phong la liệt tự nhi tôn.)
 
 ## Ha Vinh building
 

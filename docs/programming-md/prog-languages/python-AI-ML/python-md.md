@@ -276,7 +276,7 @@ In Python, an `int` is an object. Unlike languages like `Java` or `C++`, Python 
 
 There are three distinct **Numeric Types**: integers, floating-point numbers, and complex numbers (`int`, `float`, `complex`).
 
-There are 4 built-in data types in Python used to store **collections** of data: Tuple, Dictionary, `List`, `Set`.
+There are 4 built-in data types in Python used to store **collections** of data: `Tuple`, `Dictionary`, `List`, `Set`.
 
 ```python
 # Using literals for instantiation
@@ -291,15 +291,13 @@ set_obj = {1, 2, 3}
 
 ## Dictionary & Set
 
-`Dictionaries` are used to store data values in `key:value` pairs. A dictionary is a collection which is ordered, changeable and do not allow duplicates.
+`Dictionaries` (written with curly brackets `{}`) are used to store data values in `key:value` pairs. A dictionary is a collection which is ordered, changeable and do NOT allow duplicates.
 
 What makes `dict` different from `list`, `tuple`, and set is the fact that it contains key-value pairs instead of individual objects.
 
 - Dictionaries are changeable, meaning that we can change, add or remove items after the dictionary has been created.
 - As of Python version 3.7, dictionaries are ordered. In Python 3.6 and earlier, dictionaries are unordered.
 - Duplicate keys will overwrite existing values (because of the hashing table mechanism). A key of `1.0` float will overwrite the key of `1` integer.
-
-Written with curly brackets `{}`
 
 `dict.keys(), dict.values(), dict.items()` do not return `list` objects. They’re `dict_ keys`, `dict_values`, and dict_items, respectively. What’s most special about these data types is the fact that they’re all `dynamic dictionary view objects`. When the `dict` is updated, the view objects are updated too.  
 This dynamic provides great convenience when we access a dictionary’s data because the data is in perfect sync with the dict object.
@@ -475,16 +473,18 @@ Note: A named tuple is a tuple object, so it’s immutable, and changing its sto
 
 ## Dealing with Sequence Data
 
-One shared characteristic of lists and tuples is that the held items have a specific **order**. These two data structures are examples of the more general data type `sequence`. Python has other sequence data types, such as strings and bytes.
+### Slicing
 
-When we retrieve a subsequence of a list object, we can use slicing. The simplest form of slicing is `list[start:end]`, and the items between the start and end indices (the item at the end index is excluded) are retrieved:
+One shared characteristic of `lists` and `tuples` is that the held items have a specific **order**. These two data structures are examples of the more general data type `sequence`. Python has other sequence data types, such as `strings` and `bytes`.
+
+When we retrieve a subsequence of a `list` object, we can use slicing. The simplest form of slicing is `list[start:end]`, and the items between the start and end indices (the item at the end index is excluded) are retrieved:
 
 ```python
 fruits = ["apple", "orange", "banana", "strawberry"]
 assert fruits[1:3] == ["orange", "banana"]`
 ```
 
-By default, the start index is zero, so if you want to retrieve the first n items, the Pythonic way is by omitting the start index and using `list[:end]`.  
+By default, the start index is zero, so if you want to retrieve the first `n` items, the Pythonic way is by omitting the start index and using `list[:end]`.  
 By default, the end index is the length of the list, and slicing selection doesn’t include the end index, so if you want to retrieve the last n items of a list, you use `list[start:]`. As you can tell, ignoring the start or end index removes the unnecessary code and improves readability:
 
 ```python
@@ -846,6 +846,8 @@ For a typical function like `multiply_numbers`, we can set the parameters as eit
 There are two more advanced ways to specify how the arguments should be set: `positional-only arguments` can be set only positionally, and `keyword-only arguments` can be set only with identifiers. If you recall, the sort method has the following head: `sort(*, key=None, reverse=False)`. The `*` specifies that all the arguments behind it should be set only as keyword-only arguments.
 
 By reinforcing keyword-only arguments, you’re forcing readers to use keyword arguments, so they know exactly what parameters they’re setting. You can use this feature if you want some arguments to be set only as keyword arguments.
+
+---
 
 For positional-only arguments, look at the sum function: `sum(iterable, /, start=0)`. The `/` specifies that the arguments **before** it should be set only as positional arguments. This feature can be useful, but in your code, you rarely need to set arguments that can be used only as positional arguments.
 

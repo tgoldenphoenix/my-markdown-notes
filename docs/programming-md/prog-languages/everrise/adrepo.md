@@ -905,7 +905,7 @@ POST /mOnetimeApiToken/
 - Verifies that `inputPlatformId` exists in `m_input_platform`. Ensures the platform is a valid OAuth platform (`inputPlatformAuthType.isHasOAuthMethod()`).
 
  Contract Limit & Availability (`mContractLimitHistory`):
- 
+
 - Checks that platform configuration limits exist (`MContractLimitHistoryService.findLatestOne()`).
 - Ensures `inputPlatformId` is present in `inputPlatformAvailableIdJson` (if configured) and **not** in `inputPlatformUnavailableIdJson`.
 
@@ -916,7 +916,7 @@ Case A: Updating Existing Auth (`inputPlatformAuthId != null`):
 - Verifies that `MInputPlatformAuth` exists.
 - Confirms that the auth's `agencyId` matches the request's `agencyId`.
 - Confirms that the auth's `inputPlatformId` matches the request's `inputPlatformId`.
-     
+
 Case B: Creating New Auth (`inputPlatformAuthId == null`):
 
 Advertiser Check: If `advertiserId` is provided, verifies it exists and belongs to the given `agencyId`.
@@ -936,7 +936,11 @@ Platform Application Settings (`PlatformApplicationDto`): Loads configuration se
 
 It prevents a user/client from setting or modifying fields/columns that their account role is not permitted to change (based on `m_api_disabled_column`).
 
-Even if a user injects unauthorized fields or parameters into the JSON request body, `censorForm(...)` scrubs or resets them to their default values before the business logic processes and saves the data.
+Even if a user injects unauthorized fields or parameters into the JSON request body, `censorForm(...)` scrubs or resets them to their default values before the business logic processes and saves the data.
+
+---
+
+Có 2 cái re-direct url khác nhau
 
 ### Authenticator
 
@@ -1281,8 +1285,8 @@ nhưng kiểu này a thấy khó nhớ => không xài
 
 unit test
 
-* dùng assert equal, không dùng is() and assert That
-* dùng assert equal, không dùng assert true, assert false
+- dùng assert equal, không dùng is() and assert That
+- dùng assert equal, không dùng assert true, assert false
 
 method phải có javadoc
 
@@ -1317,3 +1321,4 @@ The marketing team of the company adds utm params to the links leading to their 
 [catchup outline](https://ever-rise.backlog.jp/alias/wiki/566675)
 
 [build project](https://ever-rise.backlog.jp/alias/wiki/559969)
+

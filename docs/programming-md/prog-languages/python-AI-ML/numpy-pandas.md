@@ -40,7 +40,7 @@ Pandas typically uses these common `dtype` objects:
 
 ## NDArray (N-Dimensional Array)
 
-### Basics
+### Basics NDArray
 
 NumPy’s main object is the homogeneous multidimensional array. It is a table of elements (usually numbers), all of the same type, indexed by a tuple of non-negative integers. In NumPy dimensions are called `axes`.
 
@@ -60,7 +60,7 @@ NumPy’s main object is the homogeneous multidimensional array. It is a table o
 [[1., 0., 0.],
  [0., 1., 2.]]
 ```
- 
+
 ---
 
 The number of dimensions and items in an array is defined by its `shape`, which is a tuple of N non-negative integers that specify the **sizes of each dimension**.
@@ -68,7 +68,8 @@ The number of dimensions and items in an array is defined by its `shape`, which 
 - A shape of `(3,)` means it is a 1-dimensional array containing 3 elements. `[1, 2, 3]`
   - Has one `axis 0` (`ndim = 1`)
   - The concepts of "rows" and "columns" strictly exist only in 2D arrays. A `(3,)` array is a 1D array
-- `(150,)` => 1D array with 150 elements
+- `(150,)` => 1D array with 150 elements (row vector)
+  - `(150, 1)` => column vector
 
 - Shape `(1,3)` => 2D array (matrix); 1 row, 3 columns `[[1, 2, 3]]`
   - axis 0, axis 1
@@ -119,7 +120,7 @@ The syntax is: `.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)
 
 Khi print 3D array thì nó print last axis (Oz) top to bottom
 
-### Shape manipulation
+### Shape Manipulation
 
 k
 
@@ -128,7 +129,7 @@ k
 In pure `NumPy` or standard Python lists, data is purely positional (index 0, index 1, index 2). If you reorder, filter, or combine two lists, matching up the data depends entirely on you keeping track of the array indices.  
 In Pandas, **the label is glued to the value**. The relationship between an observation and its identity travels together automatically through almost every operation.
 
-### DataFrame
+## DataFrame
 
 The most common data structure in Pandas is the `DataFrame`. A DataFrame is essentially a two-dimensional table with labeled axes (rows and columns). You can load data into a DataFrame from various sources, including CSV (Comma Separated Values) files, Excel spreadsheets, databases, and more.
 
@@ -137,7 +138,17 @@ The most common data structure in Pandas is the `DataFrame`. A DataFrame is esse
 - Pandas `DataFrame`
   - Heterogeneous: Each column can have its own `dtype` (e.g., Column A is `int`, B is `float`, C is `str`).
 
-### Series
+### Indexing and selecting data
+
+In Python, `__getitem__` is a special magic (dunder) method that allows your custom objects to use square-bracket indexing and slicing (`obj[key]`). When you write `obj[key]`, Python automatically translates it to `obj.__getitem__(key)` under the hood.
+
+`df[label]` evaluates to `df.__getitem__(label)`
+
+---
+
+k
+
+## Series
 
 `Series` is a one-dimensional labeled array capable of holding any data type (integers, strings, floating point numbers, Python objects, etc.).
 
@@ -156,7 +167,3 @@ Python's built-in `range()` có chức năng tương tự `np.arange()` nhưng c
 a `.ipynb` (Interactive Python Notebook) file is a raw JSON file.
 
 `jupyter lab` => open in a web browser
-
-## Pandas
-
-k
