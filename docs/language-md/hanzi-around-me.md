@@ -82,6 +82,12 @@ k
 
 光緒廿六年庚子仲秋吉立 (Quang Tự nhập lục niên canh tý trọng thu cát lập)
 
+- 仙佛儒宗 (tiên phật nho tông)
+- 光緒乙巳年冬月吉旦 (quang tự ất tỵ niên đông nguyệt cát đán)
+
+- 南海非遙片念慈航隨濟渡 (nam hải phi diêu, phiến niệm từ hàng tùy tế độ)
+- 西方不遠一聲救苦即通靈 (Tây phương bất viễn, nhất thanh cứu khổ tức thông linh)
+
 ### Bàn thờ thần tài
 
 聚寶堂 "Tụ Bảo Đường"

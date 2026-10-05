@@ -609,9 +609,9 @@ numbers_float = list(map(float, numbers_str))
 assert numbers_float == [1.23, 4.56, 7.89]
 ```
 
----
+### The zip() function
 
-The `zip` function joins the id_numbers and titles side by side, forming a zip iterator that renders elements consisting of one item from each iterable.
+Below, the `zip()` function joins the `id_numbers` and `titles` side by side, forming a zip iterator that renders elements consisting of one item from each iterable.
 
 ```python
 id_numbers = [101, 102, 103]
@@ -630,15 +630,20 @@ You may know that zipping is a file-compression concept. In Python, the `zipfile
 `list comprehension` is a concise way of creating list objects.
 
 ```python
-numbers = [1, 2, 3, 4]
+numbers = [1, 2, 3, 4] # a list using []
 squares = [x * x for x in numbers]
 
 assert squares == [1, 4, 9, 16]
+
+# example 2
+>>> squares = [number * number for number in range(10)]
+>>> squares
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 ```
 
 list comprehension doesn’t look like literals, as it doesn’t list the items directly, but it doesn’t look like the constructor approach either, as it doesn’t call `list()`.
 
-The general syntax is: `[expression for item in iterable]`, in which the expression is a specific operation using each item of the iterable.
+The general syntax is: `[ {expression} for {item} in {iterable} ]`, in which the expression is a specific operation using each item of the iterable.
 
 ```python
 from collections import namedtuple
@@ -669,7 +674,7 @@ for task in tasks:
     title_dict0[task.title] = task.description
 # using comprehension
 title_dict1 = {task.title: task.description for task in tasks}
- 
+
 assert title_dict0 == title_dict1
 ```
 
