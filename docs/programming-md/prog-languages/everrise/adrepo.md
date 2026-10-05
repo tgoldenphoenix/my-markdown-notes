@@ -192,6 +192,22 @@ naming task use only direct-parent
 
 grand children task tạo độc lập, không bỏ chung nhiều quá
 
+---
+
+Báo cáo buổi chiều là
+
+Tổng hợp toàn bộ công việc thực hiện trong ngày, cập nhật tiến độ, task
+
+Hiện tại cả hai đều chỉ đang báo cáo công việc hiện đang thực hiện (những task có làm lúc sáng nhưng đã xong không thấy báo cáo)
+
+Nếu a bê nguyên báo cáo này cho sếp đọc, sếp sẽ nghĩ 2 bạn cả ngày chỉ làm 1 task
+
+Còn nếu hai bạn nghĩ a phải có trách nhiệm lướt lại từng comment để tự thống kê danh sách task hai bạn đã làm từ sáng giờ thì không có chuyện này đâu nhé
+
+====
+
+Cái này đã nhắc rồi chứ không phải chưa
+
 ## Build & Setup the Project
 
 ### Setup Batch
@@ -891,7 +907,7 @@ Fields with `@JsonIgnore` / `@ApiModelProperty(hidden = true)` are internal 
 
 ### Đăng ký chứng thực cho các PF có Oauth2
 
-Nếu PF không có Oauth2 thì dùng endpoint `POST    /mInputPlatformAuth/`. Chỉ đơn giản là insert new record vào database.
+Nếu PF không có Oauth2 thì dùng endpoint `POST    /mInputPlatformAuth/`. Chỉ đơn giản là insert new record vào database. Muốn test endpoint này thì edit code `MInputPlatformAuthController #1054` loại bỏ logic `.verifyCredentialsAndProcessAuthPermanentDto()`.
 
 Muốn biết PF nào có Oauth2, PF nào không thì vào enum `INPUT_PLATFORM_AUTH_TYPE` coi.
 

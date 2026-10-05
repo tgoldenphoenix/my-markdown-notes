@@ -152,6 +152,8 @@ k
 
 `Series` is a one-dimensional labeled array capable of holding any data type (integers, strings, floating point numbers, Python objects, etc.).
 
+A single column in a data frame is a series. So `df['Column_name]` is a series and you can call `.seri_method()` on it.
+
 ## Other methods
 
 `np.arange()` returns an `ndarray` of evenly spaced values.
@@ -161,6 +163,10 @@ k
 - `arange(stop)`: Values are generated within the half-open interval `[0, stop)` (in other words, the interval including start but excluding stop).
 
 Python's built-in `range()` có chức năng tương tự `np.arange()` nhưng chỉ nên dùng trong `for` loops. Còn ngoài ra thì cứ dùng `arange()`.
+
+---
+
+df.duplicated() returns boolean Series denoting duplicate rows. By default, for each set of duplicated values, the first occurrence is set on `False` and all others on `True`.
 
 ## Jupyter
 
