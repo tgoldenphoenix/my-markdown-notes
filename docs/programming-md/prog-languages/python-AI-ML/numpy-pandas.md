@@ -166,7 +166,8 @@ Python's built-in `range()` có chức năng tương tự `np.arange()` nhưng c
 
 ---
 
-df.duplicated() returns boolean Series denoting duplicate rows. By default, for each set of duplicated values, the first occurrence is set on `False` and all others on `True`.
+`df.duplicated()` returns boolean Series denoting duplicate rows. By default, for each set of duplicated values, the first occurrence is set on `False` and all others on `True`.  
+Originl data set has 100 rows, `.duplicated()` will returns a `Series` with 100 false/true values.
 
 ## Jupyter
 
