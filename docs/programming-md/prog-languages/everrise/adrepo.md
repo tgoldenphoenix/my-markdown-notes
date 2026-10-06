@@ -358,6 +358,8 @@ mysql: root:root or 123
 
 <https://adrepo-etl-dev.client.harbest.jp/swagger>
 
+config web api: <https://ever-rise.backlog.jp/alias/wiki/625119>
+
 ---
 
 - Batch process EC2 có 2 linux user:
