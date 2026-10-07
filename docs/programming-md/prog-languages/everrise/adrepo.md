@@ -25,11 +25,7 @@ web api (elt harbest) nhận re-direct từ adrepo, cho advertiser authenticate 
 
 We only lấy thành tích quảng cáo (the only thing we care about). Everries không chạy quảng cáo.
 
-Phía everrise không làm front end, đã bán front-end cho phía ad repo
-
-Everrise trả dữ liệu report cho adrepo, adrepo trả cho end user
-
-adrepo **không** có lưu token của khách hàng, mình mới có token và lưu token vào data base của mình. Adrepo redirect user về everrise để ERV lấy token
+Phía everrise không làm front end, đã bán front-end cho phía ad repo. Everrise trả dữ liệu report cho adrepo, adrepo trả cho end user.
 
 end user only work with adrepo (sale), end user không biết sự tồn tại của everrise
 
@@ -62,10 +58,6 @@ creative (N.): video, hình ảnh của một quảng cáo
 
 - master data là field liên quan tới business, report, khách hàng quan tâm
 - metadata là field technical nerd, khách hàng không quan tâm
-
-cpa, cpg???
-
-campaign type: Upgraded Smar+, Manual, Smart+
 
 - criteo: cty quảng cáo của france
 - AdEbis: Marketing consultant in Japan
@@ -125,9 +117,42 @@ app id: id của phía ETL adrepo (bên mình) khi làm việc với platform đ
 
 Một `Ad ID` có thể chứa một `Creative ID`, nhưng một `Creative ID` (video gốc) có thể được dùng lại trong nhiều chiến dịch khác nhau.
 
-## Facts
+---
 
 Giờ Nhật Bản (`JST` - Japan Standard Time) nhanh hơn giờ Việt Nam (`ICT` - Indochina Time) đúng 2 tiếng. Khi ở Việt Nam là 10:00 sáng, thì tại Nhật Bản đã là 12:00 trưa.
+
+json trả về từ api có cả null và empty string
+
+### Versions
+
+dùng junit 4 (cuốn sách bản cũ second edition)
+
+- Playframwork 2.6.9
+  - [play framwork doc](https://www.playframework.com/documentation/2.5.8/JavaForms) (2.1.x or 2.6)
+- Velocity version 1.7; Apache Velocity Template Language (VTL)
+
+## Project Rules
+
+Dù hiện tại nhiều IDE vẫn hiểu (vẫn render được) khi sử dụng tag `<code>` nhưng theo a mới tìm hiểu thì từ giờ chúng ta sẽ chuyển sang format chuẩn sau đây.
+
+Khi trong Javadoc có các ký tự : `<, >, &` thì nên bọc bằng `{@code ...}`  
+Ví dụ: `@return {@code List<Object>}`
+
+Ở một số thư viện/ngôn ngữ lớn còn 1 style khác là escape HTML  
+ví dụ: `@return <code>List&lt;Object&gt;</code>`
+
+nhưng kiểu này a thấy khó nhớ => không xài
+
+---
+
+unit test
+
+- dùng assert equal, không dùng is() and assert That
+- dùng assert equal, không dùng assert true, assert false
+
+method phải có javadoc
+
+---
 
 Sợ 2 bạn quên nên nhắc lại 1 lần cho chắc nha  
 Với source code của công ty  
@@ -136,9 +161,7 @@ Nếu được phép push thì phải setting Private, không được để pub
 Tất cả thông tin về dự án (đặc biệt là thông tin tài khỏan, thông tin chứng thực,....) không được sử dụng cho mục đích cá nhân  
 Nếu có tạo Repository cho mục đích học tập cá nhân thì không sử dụng tên công ty, tên dự án của công ty, dù là đặc tên cho dự án, cho thư mục, tên file gì đó
 
-json trả về từ api có cả null và empty string
-
-## Tạo Task & Báo cáo tiến độ
+### Tạo Task & Báo cáo tiến độ
 
 Task english David tạo: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7939>
 
@@ -271,10 +294,6 @@ sbt -jvm-debug 9999 run
 
 # http://localhost:9000/swagger
 ```
-
-- Playframwork 2.6.9
-  - [play framwork doc](https://www.playframework.com/documentation/2.5.8/JavaForms) (2.1.x or 2.6)
-- Velocity version 1.7; Apache Velocity Template Language (VTL)
 
 - window command promt, power shell will run the `sbt.bat` before the `sbt` in your path environment. It checks your current directory (.) first before looking anywhere else.
 - Muốn force chạy `sbt` trong path, không chạy `sbt.bat` thì phải làm vài chiêu trò => poor design
@@ -909,6 +928,8 @@ Fields with `@JsonIgnore` / `@ApiModelProperty(hidden = true)` are internal 
 
 ### Đăng ký chứng thực cho các PF có Oauth2
 
+adrepo **không** có lưu token của khách hàng, mình mới có token và lưu token vào data base của mình. Adrepo redirect user về everrise để ERV lấy token
+
 Nếu PF không có Oauth2 thì dùng endpoint `POST    /mInputPlatformAuth/`. Chỉ đơn giản là insert new record vào database. Muốn test endpoint này thì edit code `MInputPlatformAuthController #1054` loại bỏ logic `.verifyCredentialsAndProcessAuthPermanentDto()`.
 
 Muốn biết PF nào có Oauth2, PF nào không thì vào enum `INPUT_PLATFORM_AUTH_TYPE` coi.
@@ -995,8 +1016,6 @@ kkk
 
 ## Log4j
 
-`/opt/ag/logs/`
-
 Apache Log4j version `1.2`; [documentation](https://logging.apache.org/log4j/1.x/)
 
 In Log4j, a `category` (also commonly referred to as a "logger") is essentially the named channel or routing rule that your Java code uses to send messages.
@@ -1032,10 +1051,6 @@ In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBU
 Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
 
 An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
-
-## JUnit
-
-dùng junit 4 (cuốn sách bản cũ second edition)
 
 ## S3 Util
 
@@ -1078,6 +1093,8 @@ An `ad` is the smallest advertising unit and is the content presented to the tar
 
 - `app_id`: An Application identifier used when making API calls. To get app_id, follow the instructions in Get Started - Create a developer app.
 - `secret`: Each application has a unique secret key. The `app_id` and `secret` are obtained together when your application has been approved.
+
+campaign type: Upgraded Smar+, Manual, Smart+
 
 ### Async Report
 
@@ -1285,28 +1302,13 @@ Example (if you requested `start_time=2026-03-05T00:00:00Z` and `granularity=HOU
 
 ## Other Platforms
 
-k
+logicad
 
-## Other Project Rules
+In the case of Logicad, each queue is executed 100% sequentially. Không tạo thread mới. Chỉ có một thread.
 
-Dù hiện tại nhiều IDE vẫn hiểu (vẫn render được) khi sử dụng tag `<code>` nhưng theo a mới tìm hiểu thì từ giờ chúng ta sẽ chuyển sang format chuẩn sau đây.
-
-Khi trong Javadoc có các ký tự : `<, >, &` thì nên bọc bằng `{@code ...}`  
-Ví dụ: `@return {@code List<Object>}`
-
-Ở một số thư viện/ngôn ngữ lớn còn 1 style khác là escape HTML  
-ví dụ: `@return <code>List&lt;Object&gt;</code>`
-
-nhưng kiểu này a thấy khó nhớ => không xài
-
----
-
-unit test
-
-- dùng assert equal, không dùng is() and assert That
-- dùng assert equal, không dùng assert true, assert false
-
-method phải có javadoc
+- Queue 1 starts downloading (download()).
+- The thread waits until Queue 1 completely finishes (or encounters an error and returns).
+- Only then does the loop move to Queue 2 in the for loop.
 
 ## Advertising Terms
 
@@ -1329,14 +1331,3 @@ The marketing team of the company adds utm params to the links leading to their 
   - none: "I'm not sure how they got here" (`(direct)/(none`))
   - `cpc` or `ppc`
 - Campaign (purpose of the traffic)
-
-## Resources
-
-[Catchup Outline](https://ever-rise.backlog.jp/alias/wiki/566675)
-
-[Setup for Windows 10](https://ever-rise.backlog.jp/alias/wiki/559246#loom-header-14)
-
-[catchup outline](https://ever-rise.backlog.jp/alias/wiki/566675)
-
-[build project](https://ever-rise.backlog.jp/alias/wiki/559969)
-
