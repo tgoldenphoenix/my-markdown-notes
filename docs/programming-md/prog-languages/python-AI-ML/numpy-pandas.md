@@ -99,12 +99,6 @@ array([[ 0,  1,  2,  3,  4],
 
 ---
 
-`numpy.reshape()` Returns a reshaped ndarray without changing data.
-
-The syntax is: `.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)` or `.reshape(number of row, number of column, height)`
-
----
-
 ```python
 # 2 axes
 # axis 0 has length 2
@@ -123,6 +117,23 @@ Khi print 3D array thì nó print last axis (Oz) top to bottom
 ### Shape Manipulation
 
 k
+
+### Indexing
+
+`x_train[:, 2]` extracts all rows for the 3rd column from a 2D array or matrix.
+
+```python
+# A 4x4 matrix
+x_train = np.array([
+    [10, 20, 30, 40],   # Row 0
+    [15, 25, 35, 45],   # Row 1
+    [18, 28, 38, 48],   # Row 2
+    [12, 22, 32, 42]    # Row 3
+])
+# Extract column index 2
+feature = x_train[:, 2]
+# Output: array([30, 35, 38, 32])
+```
 
 ## Pandas
 
@@ -154,7 +165,7 @@ k
 
 A single column in a data frame is a series. So `df['Column_name]` is a series and you can call `.seri_method()` on it.
 
-## Other methods
+## Other Methods
 
 `np.arange()` returns an `ndarray` of evenly spaced values.
 
@@ -166,9 +177,28 @@ Python's built-in `range()` có chức năng tương tự `np.arange()` nhưng c
 
 ---
 
+`numpy.reshape()` Returns a reshaped ndarray without changing data.
+
+The syntax is: `.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)` or `.reshape(number of row, number of column, height)`
+
+---
+
 `df.duplicated()` returns boolean Series denoting duplicate rows. By default, for each set of duplicated values, the first occurrence is set on `False` and all others on `True`.  
 Originl data set has 100 rows, `.duplicated()` will returns a `Series` with 100 false/true values.
 
+---
+
+`np.array()` Create an ndarray
+
+```python
+>>> np.array([1, 2, 3])
+array([1, 2, 3])
+
+# More than one dimension
+>>> np.array([[1, 2], [3, 4]])
+array([[1, 2],
+       [3, 4]])
+```
 ## Scikit Learn
 
 `Bunch` is a dictionary-like object

@@ -625,7 +625,7 @@ The zip function joins two or more iterables, with each iterable contributing on
 
 You may know that zipping is a file-compression concept. In Python, the `zipfile` module provides the related functionalities of zipping and unzipping files
 
-### list, dictionary, and set Comprehensions
+### List, dictionary, and Set Comprehensions
 
 `list comprehension` is a concise way of creating list objects.
 
