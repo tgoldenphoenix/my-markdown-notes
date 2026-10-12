@@ -67,6 +67,10 @@ k
 - 大大肚能容萬物 (đại đại đỗ năng dung vạn vật)
 - 微微笑看破群生 (vi vi tiếu khán phá quần sinh)
 
+- 正扶邪推 (chính phù tà suy)
+- 永護僧伽登十地 (vĩnh hộ tăng già đăng thập địa)
+- 長持寶杵應三洲 (trường trì bảo chử ứng tam châu)
+
 - 路逢廸(迪)吉 (lộ phùng địch cát)
 - 巷遇春老 (hạng ngộ xuân lão)
 
