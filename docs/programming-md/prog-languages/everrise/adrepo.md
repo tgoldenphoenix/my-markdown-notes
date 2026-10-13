@@ -369,13 +369,7 @@ mysql: root:root or 123
 
 ### AWS Deployment & Test
 
-- ticket release của Vĩ: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7878>
-- Vĩ test batch: <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7877>
-- Long & hào test batch (first half): <https://ever-rise.backlog.jp/view/ER100FUJIYAMA-7889>
-
 <https://adrepo-etl.client.harbest.jp/swagger>
-
-<https://adrepo-etl-dev.client.harbest.jp/swagger>
 
 config web api: <https://ever-rise.backlog.jp/alias/wiki/625119>
 
@@ -390,34 +384,11 @@ config web api: <https://ever-rise.backlog.jp/alias/wiki/625119>
 - build file jar copy lên `~` của `ec2-user`. Rồi từ đó chạy `/home/ec2-user/deploy_batch.sh` copy file jar qua bên `/opt/ag/ag_batch/`.
 - Copy `config.properties` lên `/opt/ag/ag_batch/` & cấp quyền cho `adrepo-batch` và `ubuntu` (user chạy batch `java` trên selenium).
 
-```bash
-[ec2-user@ip-172-31-22-123 ag_batch]$ pwd
-/opt/ag/ag_batch
-
-[ec2-user@ip-172-31-22-123 ag_batch]$ ls
-adrepo_batch.jar                                         alert_master_queue_state_receiver.txt  file_download    report_data
-alert_import_daily_unique_advertiser_list_mail_to.txt    alert_report_queue_state_receiver.txt  file_upload      tmp
-alert_import_daily_unique_advertiser_list_mail_to.txt~   backup_cron                            process_watcher
-alert_import_queue_to_adrepo_etl_rds_failed_mail_to.txt  config.properties                      report
-```
-
 ---
 
-Chỉ có thể truy cập EC2 release từ ip của con forwarding. Có 2 con EC2 forwarding
+build file ở local, có thể vào file `.jar`, `.zip` coi nội dung file `.class` luôn cho chắc.
 
-```bash
-1. ETL-STG-PROCESS
-// Firstly, connect to forwarding server
-ssh -i ~/.ssh/adrepo-test20200330.pem ec2-user@52.192.196.227
-// At forwarding server, connect to ETL-STG-PROCESS
-ssh -i ~/.ssh/etl-dev-process.pem ec2-user@54.249.169.232
-
-// connect to RDS database
-2. // Firstly, connect to forwarding server
-ssh -i ~/.ssh/adrepo-test20200330.pem ec2-user@52.192.196.227
-// At forwarding server, connect to RDS adrepo-etl-staging
-mysql -hadrepo-etl-dev.cmcxxxxxxxxx.ap-northeast-1.rds.amazonaws.com -uadrepo -pYN5kmZWDwxxxxxxxxx
-```
+web api, sau khi run sh deploy > check màn hình swagger > check process id, start time (`ps aux`)
 
 ---
 
@@ -468,6 +439,16 @@ drwxr-xr-x. 2 ec2-user ec2-user 16384 Sep 16 15:47 lib
 -rw-------. 1 ec2-user ec2-user 68470 Sep 16 16:23 nohup.out
 -rw-r--r--. 1 ec2-user ec2-user 76128 Sep 16 16:23 webapi.log
 ```
+
+### Test account
+
+k
+
+### Compare data
+
+Recursively extract and Keep the Original `.csv.gz` Files in cwd
+
+`find . -name "*.csv.gz" -exec gunzip -k {} +`
 
 ### Directory Locations
 
@@ -522,6 +503,8 @@ sudo mv /home/ec2-user/etl-harbest-webapi /opt/
 cd /opt/etl-harbest-webapi/
 nohup ./bin/etl-harbest-webapi &
 ```
+
+Before deploying, back up webapi.log (`/opt/etl-harbest-webapi/webapi.log`) to S3 (`s3://adrepo-etl/etl-harbest-webapi/logs/`)
 
 ---
 
