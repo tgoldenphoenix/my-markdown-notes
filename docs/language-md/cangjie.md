@@ -1553,6 +1553,7 @@ Triple-unit characters
   - 蟠 (中戈 // 竹木 // 田) - triple unit
   - 藩 (廿 // 水 // 竹田)
   - 播 (手 // 竹木 // 田)
+  - 審 (十 // 竹木 // 田)
 - 乎 (竹火木)
   - 呼 (口 // 竹火木)
 - 平 (一火十) - water lily
@@ -1721,7 +1722,7 @@ Triple-unit characters
   - 算 (竹 // 月山 // 廿)
 - 形 (一廿 // 竹竹竹) - double unit
   - 彡 (竹竹竹)
-- 刑 (一廿 // 中弓)
+- 刑 (一廿 // 中 // 弓)
   - 型 (一弓 // 土) - double unit
 - 并 (廿廿) - puzzle
   - 拼 (手 // 廿廿)
@@ -1910,6 +1911,7 @@ Triple-unit characters
   - 樣 (木 // 廿土 // 水) three unit; take last radical of the 3rd unit
 - 求 (戈十水)
 - 決 (水 // 木大); 治 (水 // 戈口)
+- 拯 (手 // 弓水 // 一)
 
 - 冰 (戈一 // 水)
 - 冷 (戈一 // 人 // 戈戈) - triple unit
@@ -2120,6 +2122,7 @@ Triple-unit characters
 
 - 詹 (弓金 // 卜一口) - verbose
   - 膽 (月 // 弓金 // 口) - triple unit
+  - 擔 (手 // 弓金 // 口)
 
 - 右 (大口) => by one's side là 大
 - 石 (一口) - stone
@@ -2193,10 +2196,10 @@ Triple-unit characters
 - 千 (竹十)
 - 重 (竹十田土)
 
-- 寺 (土木戈) - Buddhist temple, pagoda
-  - 特 (竹手 // 土 木戈)
-  - 時 (日 // 土木戈)
-  - 侍 (人 // 土木戈)
+- 寺 (土 // 木戈) - Buddhist temple, pagoda
+  - 特 (竹手 // 土 // 木戈)
+  - 時 (日 // 土 // 木戈)
+  - 侍 (人 // 土 // 木戈)
 
 - 也 (心木) - scorpion
   - 地 (土 // 心木)
@@ -2315,7 +2318,9 @@ Triple-unit characters
 
 - roof
 - 安 (十 // 女)
+  - 案 (十 // 女 // 木)
 - 灾 (十 // 火)
+- 宋 (十 // 木)
 
 ### Fortune/divine Telling 卜
 
@@ -2941,6 +2946,7 @@ Triple-unit characters
   - 皇 (竹日 // 一土)
 - 壬 (竹土) - porter
   - 淫 (水 // 月 // 竹土)
+  - 任 (人 // 竹土)
 
 - 玉 (一土戈) - jade
   - 国 (田 // 一土戈)

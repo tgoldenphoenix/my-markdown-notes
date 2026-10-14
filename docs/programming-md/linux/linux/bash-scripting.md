@@ -334,22 +334,29 @@ Không có khai báo bao nhiêu argument & types. Cứ dùng mấy cái ở trê
 
 `$@` reads all inputs (reference all arguments).
 
-## Exit codes
+## Exit Codes
 
-`echo $?` the exit code of the previous command. 0 means succesful, other than 0 (nonzero) is failure.
+To display the exit code for the last command you ran on the command line, use the following command: `echo $?`. `0` means succesful, other than 0 (nonzero) is failure.
 
-The `exit` command in Bash is used with the syntax,`exit [n]`. Its function is to terminate a script and return a value to the parent script or shell. It’s a way to signal the end of a script’s execution and optionally return a status code to the calling process.
+The `exit` command in Bash is used with the syntax `exit [n]`. Its function is to terminate a script and return a value to the parent script or shell. It’s a way to signal the end of a script’s execution and optionally return a status code to the calling process.
 
 You can define useful functions in your `~/.bash_profile` file and then use them on the command line as if they were commands. For example, if your site has standardized on net-work port 7988 for the SSH protocol (a form of “security through obscurity”), you might define
 
 ```bash
-function ssh { 
+function ssh {
 /usr/bin/ssh -p 7988 $*
 ```
 
-in your `~/.bash_profile`to make sure ssh is always run with the option `-p 7988`.
+in your `~/.bash_profile` to make sure ssh is always run with the option `-p 7988`.
 
 Like many shells, bash has an `alias` mechanism that can reproduce this limited example even more concisely, but functions are more general and more powerful. Forget aliases and use functions.
+
+## The set command
+
+- `-` (minus): Turns an option ON (enables a feature/strictness).
+- `+` (plus): Turns an option OFF (disables a feature).
+
+(Yes, the minus enabling a flag and plus disabling it is notoriously counterintuitive, but standard across Unix shells.)
 
 ## Output Redirection, Streams & Pipes
 
