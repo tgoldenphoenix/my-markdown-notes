@@ -162,6 +162,9 @@ extract the first column.
   * `-r`: sort in the **reverse order**.
   * `-R`: sort the list **Randomly**. You'll get a different order in each time.
   * `-u`: output unique records only; eliminate duplicate lines chỉ giữ lại 1 dòng
+  * `-V`: enables GNU version sort (natural sort), which correctly handles numbers (so 2 comes before `10`, even inside quotes "") as well as text and dates.
+
+---
 
 - In `alphabetical sorting` (default), the command checks the first letter of each line and moves the lines upward or downward to arrange each line in alphabetical order.
   * Note: Lines starting with a lowercase letter appear before lines beginning with an uppercase letter.
@@ -177,7 +180,7 @@ $ sort -nr numeric.txt
 $ sort -k 2 file2.txt # sort column 2nd
 ```
 
-There is a very small difference in sort and `grep` command.  
+There is a very small difference in `sort` and `grep` command.  
 The sort command arranges data alphabetically or numerically in ascending or descending order. The grep command displays or hides only the required information you want.
 
 ---
@@ -198,6 +201,15 @@ users:x:100:
 ```
 
 `sort` accepts the key specification `-k3` (rather than `-k3,3`), but it probably doesn’t do what you expect. Without the terminating field number, the sort key continues to the end of the line.
+
+---
+
+When sorting by multiple columns, you must use the format `-k StartColumn,EndColumn`. If you only specify a single number (e.g., `-k2`), `sort` will evaluate from column 2 _all the way to the end of the line_, which can cause unexpected results. Explicitly limiting columns with a comma prevents this.
+
+```bash
+# Primary & Secondary Sort (Sort by Column 2, then by Column 1)
+sort -k2,2 -k1,1 file.txt
+```
 
 ### tsort
 

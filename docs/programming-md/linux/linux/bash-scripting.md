@@ -325,10 +325,20 @@ The `-n` in the echo command suppresses the usual newline, but you could also ha
 
 Command-line arguments to a script become variables whose names are numbers. `$1` is the first command-line argument, `$2` is the second, and so on.
 
+`shift`: Shifts positional arguments left by 1 (so `$2` becomes `$1`, $3 becomes $2, etc.).
+
+---
+
 `$0` is the name by which the script was invoked. That could be something strange such as `../bin/example.sh`, so it’s not a fixed value. It can be used to create self delete the script file if you need to or just get the name of the script.  
 If you run `zsh ./script.sh`, then `$0` will be `./script.sh`.
 
+---
+
 The variable `$#` contains **the number** of command-line arguments that were supplied, and the variable `$*` contains all the arguments at once. Neither of these variables includes or counts `$0`.
+
+`./script.sh arg1 arg2` makes `$#` equal to `2`.
+
+---
 
 Không có khai báo bao nhiêu argument & types. Cứ dùng mấy cái ở trên để check.
 
@@ -363,16 +373,32 @@ Like many shells, bash has an `alias` mechanism that can reproduce this limited 
 - Every process has at least three standard communication channels (streams) available to it:
   - `0: STDIN` (`standard input` or standard in)
   - `1: STDOUT` (`standard output` or standard out) for all non-error text, the normal output
-  - `2: STDERR` (`standard error` or standard err.) is just for error information
+  - `2: STDERR` (`standard error` or standard err) is just for error information
 - The kernel sets up these channels on the process’s behalf, so the process itself doesn’t necessarily know where they lead. They might connect to a terminal win-dow, a file, a network connection, or a channel belonging to another process, to name a few possibilities.
-- Most commands accept their input from STDIN and write their output to STD-OUT. They write error messages to STDERR. This convention lets you string commands together like building blocks to create composite pipelines.
+- Most commands accept their input from `STDIN` and write their output to STD-OUT. They write error messages to `STDERR`. This convention lets you string commands together like building blocks to create composite pipelines.
 
-- A `<` symbol connects the command’s STDIN to the contents of an existing file.
-- The `>` and `>>` symbols redirect STDOUT:
-  - `>` replaces the file’s existing contents
+- A `<` symbol connects the command’s `STDIN` to the contents of an existing file.
+- The `>` and `>>` symbols redirect `STDOUT`:
+  - `>` replaces the file’s existing contents.
   - `>>` appends to the existing conntent.
-- To redirect both STDOUT and STDERR to the same place, use the `>&` symbol. To redirect STDERR only, use `2>`.
-- To connect the STDOUT of one command to the STDIN of another, use the pipe (`|`) symbol
+- To redirect both `STDOUT` and STDERR to the same place, use the `>&` symbol. To redirect `STDERR` only, use `2>`.
+- To connect the `STDOUT` of one command to the STDIN of another, use the pipe (`|`) symbol
+
+---
+
+`echo "error message" >&2` redirects to stderr
+
+both stdout and stderr print to your terminal screen by default.
+
+---
+
+If you redirect stderr (2) to `/dev/null`, the error message disappears entirely:
+
+```bash
+./sort.sh 162 2> /dev/null
+```
+
+---
 
 `echo $?` the exit code of the previous command
 

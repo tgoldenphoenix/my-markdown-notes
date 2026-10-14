@@ -95,6 +95,10 @@ As the root user, edit the /etc/sudoers file by running the visudo command:
 
 By default, the file opens in `vi`. The reason for using visudo is that the command locks the /etc/sudoers file and does some basic sanity checking of the file to ensure that it has been edited correctly.
 
+---
+
+sudo the previous command: `sudo !!`
+
 ## Managing users
 
 The `cat /etc/passwd` file stores all the users information including system users. The actual passwords are stored in `sudo cat etc/shadow`

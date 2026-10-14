@@ -970,7 +970,7 @@ And, because we’re talking about find, I should also tell you about a similar 
 
 If you run locate head-to-head against find, locate will almost always return results far faster. What’s the secret? locate isn’t actually searching the file system itself, but simply running your search string against entries in a preexisting index. The catch is that if the index is allowed to fall out of date, the searches become less and less accurate. Normally the index is updated every time the system boots, but you can also manually do the job by running `updatedb`: `sudo updatedb`.
 
-## `find`, `locate`, `which`
+## `find`, `locate`
 
 These are the real tools, used when searching other paths beside those listed in the search path (using `which`).
 
@@ -1005,61 +1005,7 @@ After cloning a repository or un-zipping an archive. You'll wonder "How many fil
 
 `locate`
 
-Later on (in 1999 according to the man pages, after 20 years of `find`), `locate` was developed. This program is easier to use, but more restricted than find, since its output is based on a file index database that is updated only once every day. On the other hand, a search in the locate database uses less resources than find and therefore shows the results nearly instantly. Most Linux distributions use `slocate` these days, security enhanced locate, the modern version of locate that prevents users from getting output they have no right to read.  On most systems, locate is a symbolic link to the slocate program
-
----
-
-- If you want to add your own commands or shell scripts, place them in the bin directory in your home directory (such as /home/chris/bin for the user named chris).
-- To make commands available to all users, add them to `/usr/local/bin`.
-
-Unlike some other operating systems, Linux does not, by default, check the current directory for an executable **before** searching the path. It immediately begins searching the path, and executables in the current directory are run only if they are in the PATH variable or you give their absolute (such as /home/chris/scriptx.sh) or relative (for example,  ./script x.sh) location.
-
-The path directory order is important. Directories are checked from left to right. So, in this example, if there is a command called foo located in both the /usr/bin and /bin direc-tories, the one in /usr/bin is executed. To have the other foo command run, you either type the full path to the command or change your PATH variable.
-
-`which <command>` locate the executable file associated with the given command.
-
-`type` giống `which`
-
-```bash
-$ type bash
-bash is /bin/bash
-
-❯ type which
-which is a shell builtin
-
-❯ type case
-case is a reserved word
-```
-
----
-
-If a command is not in your PATH variable, you can use the `locate` command to try to
-find it. Using locate, you can search any part of the system that is accessible to you. (Some files are only accessible to the root user.) For example, if you wanted to find the loca-tion of the chage command, you could enter the following:
-
-```bash
-$ locate chage
-/usr/bin/chage
-/usr/sbin/lchage
-/usr/share/man/fr/man1/chage.1.gz
-/usr/share/man/it/man1/chage.1.gz
-/usr/share/man/ja/man1/chage.1.gz
-/usr/share/man/man1/chage.1.gz
-/usr/share/man/man1/lchage.1.gz
-/usr/share/man/pl/man1/chage.1.gz
-/usr/share/man/ru/man1/chage.1.gz
-/usr/share/man/sv/man1/chage.1.gz
-/usr/share/man/tr/man1/chage.1.gz
-```
-
-Notice that locate not only found the chage command, it also found the lchage command and a variety of man pages associated with chage for different languages. The locate command looks all over your filesystem, not just in directories that contain com-mands. (If locate does not find files recently added to your system, run `updatedb` as root to update the locate database.)
-
-`which -a ls` show that the `ls` command is in the `/bin` directory (show full path)
-
-`whereis aws`
-
-- `which`:
-  - f
-- `whereis`
+Later on (in 1999 according to the man pages, after 20 years of `find`), `locate` was developed. This program is easier to use, but more restricted than `find`, since its output is based on a file index database that is updated only once every day. On the other hand, a search in the `locate` database uses less resources than find and therefore shows the results nearly instantly. Most Linux distributions use `slocate` these days, security enhanced locate, the modern version of locate that prevents users from getting output they have no right to read. On most systems, locate is a symbolic link to the slocate program.
 
 ## `dd`
 

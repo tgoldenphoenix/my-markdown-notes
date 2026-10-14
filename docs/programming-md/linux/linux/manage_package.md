@@ -127,11 +127,69 @@ Tải `.tar.gz` về > extract ra > move to `/usr/local/` > add to PATH.
 
 There are 2 file extensions because the files are first rolled into a tar file, which combines multiple files and folders into one while keeping all the properties, but does not do any compression. Then the compression algorithm is ran on the combined file, resulting in a compressed archive. You can do this with other compressors as well, like bzip2 (.tar.bz2), xz (.tar.xz) and zstd (.tar.zst). GZip isn't the fastest or most efficient, but it's available everywhere, so it's the standard for compressing stuff on Linux.
 
-Move the directory to `/opt`
+### Where to store?
+
+Move the downloaded binary to `/opt`.
 
 Create symbolic link to `/usr/local/bin`: `sudo ln -s /opt/extracted-app-name/bin/program-executable /usr/local/bin/program-name`
 
-tạo symlink file binary nvim vào usr/bin: `ln -s /opt/nvim-linux-x86_64/bin/nvim /usr/bin/`. Không add thêm vào `$PATH` khiến nó dài ra.
+tạo symlink file binary nvim vào `usr/bin`: `ln -s /opt/nvim-linux-x86_64/bin/nvim /usr/bin/`. Không add thêm vào `$PATH` khiến nó dài ra.
+
+hoặc đem binary bỏ vô `/usr/local/bin/` luôn
+
+---
+
+- If you want to add your own commands or shell scripts, place them in the bin directory in your home directory (such as `/home/chris/bin` for the user named `chris`).
+- To make commands available to all users, add them to `/usr/local/bin`.
+
+Unlike some other operating systems, Linux does not, by default, check the current directory for an executable **before** searching the path. It immediately begins searching the path, and executables in the current directory are run only if they are in the PATH variable or you give their absolute (such as `/home/chris/scriptx.sh`) or relative (for example,  ./script x.sh) location.
+
+The path directory order is important. Directories are checked from left to right. So, in this example, if there is a command called foo located in both the /usr/bin and /bin direc-tories, the one in /usr/bin is executed. To have the other foo command run, you either type the full path to the command or change your PATH variable.
+
+`which <command>` locate the executable file associated with the given command.
+
+`type` giống `which`
+
+```bash
+$ type bash
+bash is /bin/bash
+
+❯ type which
+which is a shell builtin
+
+❯ type case
+case is a reserved word
+```
+
+---
+
+If a command is not in your PATH variable, you can use the `locate` command to try to
+find it. Using locate, you can search any part of the system that is accessible to you. (Some files are only accessible to the root user.) For example, if you wanted to find the loca-tion of the chage command, you could enter the following:
+
+```bash
+$ locate chage
+/usr/bin/chage
+/usr/sbin/lchage
+/usr/share/man/fr/man1/chage.1.gz
+/usr/share/man/it/man1/chage.1.gz
+/usr/share/man/ja/man1/chage.1.gz
+/usr/share/man/man1/chage.1.gz
+/usr/share/man/man1/lchage.1.gz
+/usr/share/man/pl/man1/chage.1.gz
+/usr/share/man/ru/man1/chage.1.gz
+/usr/share/man/sv/man1/chage.1.gz
+/usr/share/man/tr/man1/chage.1.gz
+```
+
+Notice that locate not only found the chage command, it also found the lchage command and a variety of man pages associated with chage for different languages. The locate command looks all over your filesystem, not just in directories that contain com-mands. (If locate does not find files recently added to your system, run `updatedb` as root to update the locate database.)
+
+`which -a ls` show that the `ls` command is in the `/bin` directory (show full path)
+
+`whereis aws`
+
+- `which`:
+  - f
+- `whereis`
 
 ### Binary ZIP archive
 
