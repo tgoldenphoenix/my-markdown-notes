@@ -450,6 +450,11 @@ Recursively extract and Keep the Original `.csv.gz` Files in cwd
 
 `find . -name "*.csv.gz" -exec gunzip -k {} +`
 
+- account id, advertiser id
+- 4, 1769
+- 117, 26972
+- 1015, 26381
+
 ### Directory Locations
 
 Batch paths

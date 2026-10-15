@@ -861,91 +861,7 @@ As you’ll see soon, applying compression to a tar archive is simple and doing 
 
 `.iso` files were images of complete operating systems, specially organized to make it easy to copy the included files to a target computer.
 
-## Archiving files and file systems using `tar`
-
-In computing, `tar` is a computer software utility for collecting many files into one archive file, often referred to as a **tarball**, for distribution or backup purposes.  
-The name is derived from **tape archive**, as it was originally developed to write data to sequential I/O devices with no file system of their own, such as devices that use **magnetic tape**.
-
-- To successfully create your archive, there are three things that will have to happen:
-  - Find and identify the files you want to include.
-  - Identify the location on a storage drive that you want your archive to use.
-  - Add your files to an archive, and save it to its storage location.
-
-Want to knock off all three steps in one go? Use `tar`.
-
-This example copies all the files and directories within and below the current work directory and builds an archive file that I’ve cleverly named `archivename.tar`. Here I use three arguments after the `tar` command:
-
-- the `c` tells tar to create a new archive (compress)
-- `v` sets the screen output to verbose so I’ll get updates
-- and `f` points to the filename I’d like the archive to get
-
-```bash
-$ tar cvf archivename.tar *
-file1 # The verbose argument (v) lists the names of all the files added to the archive.
-file2
-file3
-```
-
-The `tar` command will never move or delete any of the original directories and files you feed it; it only makes archived copies. You should also note that using a dot (.) instead of an asterisk (*) in the previous command will include even hidden files (whose filenames begin with a dot) in the archive.
-
-The `.tar` filename extension isn’t necessary, but it’s always a good idea to clearly communicate the purpose of a file in as many ways as possible.
-
----
-
-To extract the archive, run the tar command against the name of the archive, but this time with the argument x (for extract) rather than `c`:
-
-`$ tar xvf stuff.tar`
-
-**WARNING**: Extracting an archive overwrites any files with the same names in the current directory without warning. Here, that’s fine, but that won’t normally be the case.
-
----
-
-You won’t always want to include all the files within a directory tree in your archive. Suppose you’ve produced some videos, but the originals are currently kept in directories along with all kinds of graphic, audio, and text files (containing your notes). The only files you need to back up are the final video clips using the .mp4 filename extension. Here’s how to do that:
-
-`$ tar cvf archivename.tar *.mp4`
-
-That’s excellent. But those video files are enormous. Wouldn’t it be nice to make that archive a bit smaller using compression? Say no more! Just run the previous command with the `z` (zip) argument. That will tell the `gzip` program to compress the archive. If you want to follow convention, you can also add a `.gz` extension in addition to the `.tar` that’s already there. Remember: clarity. Here’s how that would play out:
-
-`$ tar czvf archivename.tar.gz *.mp4`
-
-You may notice that the `.tar.gz` file isn’t all that much smaller than the .tar file, perhaps 10% or so. What’s with that? Well, the `.mp4` file format is itself compressed, so there’s a lot less room for gzip to do its stuff.
-
----
-
-As tar is fully aware of its Linux environment, you can use it to select files and directories that live outside your current working directory. This example adds all the .mp4 files in the `/home/myuser/Videos/` directory:
-
-`$ tar czvf archivename.tar.gz /home/myuser/Videos/*.mp4`
-
----
-
-Because archive files can get big, it might sometimes make sense to break them down into multiple smaller files, transfer them to their new home, and then re-create the original file at the other end. The split tool is made for this purpose.
-
-In this example, `-b` tells Linux to split the `archivename.tar.gz` file into 1 GB-sized parts; archivename is any name you’d like to give the file. The operation then names each of the parts—`archivename.tar.gz.partaa`, `archivename.tar.gz.partab`, `archivename .tar.gz.partac`, and so on:
-
-`$ split -b 1G archivename.tar.gz "archivename.tar.gz.part"`
-
-On the other side, you re-create the archive by reading each of the parts in sequence (`cat archivename.tar.gz.part*`), then redirect the output to a new file called `archivename.tar.gz`:
-
-`$ cat archivename.tar.gz.part* > archivename.tar.gz`
-
-### Streaming file system archives
-
-```bash
-# tar czvf - --one-file-system / /usr /var \
-  --exclude=/home/andy/ | ssh username@10.0.3.141 \
-  "cat > /home/username/workstation-backup-Apr-10.tar.gz"
-```
-
-```bash
-$ tar czvf - importantstuff/ | ssh username@10.0.3.141 \
-  "cat > /home/username/myfiles.tar.gz"
-```
-
-Let me explain that example. Rather than entering the archive name right after the command arguments (the way you’ve done until now), I used a dash (`czvf -`). The dash **outputs data to standard output**. It lets you push the archive filename details back to the end of the command and tells tar to expect the source content for the archive instead. I then piped (|) the unnamed, compressed archive to an ssh login on a remote server where I was asked for my password. The command enclosed in quotation marks then executed cat against the archive data stream, which wrote the stream contents to a file called `myfiles.tar.gz` in my home directory on the remote host.
-
-One advantage of generating archives this way is that you avoid the overhead of a middle step. There’s no need to even temporarily save a copy of the archive on the local machine. Imagine backing up an installation that fills 110 GB of its 128 GB of available space. Where would the archive go?
-
-### Aggregating files with `find`
+## Aggregating files with `find`
 
 The `find` command searches through a file system looking for objects that match rules you provide. The search outputs the names and locations of the files it discovers to what’s called standard output (`stdout`), which normally prints to the screen. But that output can just as easily be redirected to another command like tar, which would then copy those files to an archive.
 
@@ -1000,6 +916,8 @@ After cloning a repository or un-zipping an archive. You'll wonder "How many fil
 - `find . -not -name *.py`
 
 `find . -not -name '*.py' -delete` => delete all, keep only `.py`. Use single quote to pass wildcard pattern _unchange_ in this case.
+
+Recursively extract and Keep the Original `.csv.gz` Files in cwd: `find . -name "*.csv.gz" -exec gunzip -k {} +`
 
 ---
 
