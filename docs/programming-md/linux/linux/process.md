@@ -165,13 +165,19 @@ Technically, systemd’s primary job is to control the ways individual processes
 
 ## `kill`: Send Signals
 
-As its name implies, the `kill` command is most often used to terminate a process. kill can send any signal, but by default it sends a `TERM`. kill can be used by nor-mal users on their own processes or by root on any process. The syntax is:
+As its name implies, the `kill` command is most often used to terminate a process. kill can send any signal, but by default it sends a `TERM`. `kill` can be used by normal users on their own processes or by root on any process. The syntax is:
 
-`kill [-signal] pid`
+```bash
+kill [-signal] pid
+```
 
-where signal is the number or symbolic name of the signal to be sent and pid is the process identification number of the target process.
+where `[-signal]` is the number or symbolic name of the signal to be sent and pid is the process identification number of the target process.
 
-Under Linux, `killall` kills processes by name. For example, the following com-mand kills all Apache web server processes: `ubuntu$ sudo killall httpd`
+---
+
+Under Linux, `killall` kills processes by name. For example, the following command kills all Apache web server processes: `ubuntu$ sudo killall httpd`
+
+---
 
 ```bash
 ps aux|grep java

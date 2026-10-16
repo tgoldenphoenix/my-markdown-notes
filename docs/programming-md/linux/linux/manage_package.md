@@ -336,15 +336,47 @@ apt-mark showmanual
 
 `apt list --manual-installed`
 
-## Update
+## Update Packages
 
-The command `brew outdated` will list alsl installed packages that have a newer version available. After running `brew outdated`, you can run `brew upgrade` to upgrade all packages or `brew upgrade <package>` to upgrade a specific package.
+The command `brew outdated` will list all installed packages that have a newer version available. After running `brew outdated`, you can run `brew upgrade` to upgrade all packages or `brew upgrade <package>` to upgrade a specific package.
 
 The command `brew update` is for updating Homebrew itself, as well as the Homebrew core packages that are installed by default.
 
 The command `brew autoremove` will remove all unused dependencies remaining in the environment. If you've removed packages, it is likely that abandoned dependencies were left on disk if you didn't run `brew autoremove` immediately.
 
 Homebrew maintains a cache of downloaded packages so repeated installation goes faster. The command `brew cleanup` will remove outdated download files from the cache, as well as old versions of installed packages. By default, `brew cleanup` only removes files more than 120 days old. Force a more recent cleanup with `--prune=all`.
+
+## Environment Variables & Viewing Machine specs
+
+`echo $0` to know which shell you are using
+
+On Linux
+
+On MacOS
+
+Use the `printenv` command to display a list of currently set environment variables. Trong này sẽ có `$PATH`, `$HOME` và nhiều cái khác.
+
+Hiển thị one environment variable: `echo $[variable name]`
+
+`$PATH` environment variable stores a list of directories with executable files, and thus saves the user a lot of typing and memorizing locations of commands.
+
+If you want to display the complete list of shell variables, use the `set` command. The output is very long.
+
+`$HOME`: /Users/anhao
+
+The value you assign to a **temporary** environment variable only lasts until you close the terminal session. This is useful for variables you need to use for one session only or to avoid typing the same value multiple times.
+
+Assign a temporary environment variable with the `export` command. The export command also allows you to add new values to existing environment variables with the `:$` syntax.
+
+**Permanent** environment variables are added to the `.bash_profile` file. Cũng dùng `export` command. Execute the new `.bash_profile` by either restarting the terminal window or using `source ~/.bash-profile`
+
+Use the`unset` command to remove an environment variable.
+
+The primary use of the `eval` command  is to interpret and execute dynamic or complex commands stored in strings or variables. This allows you to generate and run commands dynamically.
+
+References
+
+[how to add folder to PATH](https://phoenixnap.com/kb/linux-add-to-path) by PHOENIXNAP very informative
 
 ## Archiving Files and file systems using `tar`
 

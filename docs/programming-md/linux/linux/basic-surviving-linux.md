@@ -268,17 +268,22 @@ GNU project invented info pages. Có support hyperlink through the documentation
 
 The [ArchWiki](https://wiki.archlinux.org/title/Main_page) page
 
-References:
-
-[Mastering Linux Man Pages - A Definitive Guide](https://www.youtube.com/watch?v=RzAkjX_9B7E) by Linux Training Academy
-
----
+### The info command
 
 The `info` command
 
 The man system is great if you happen to know the name of the command or program you’re after. But suppose the command name is the bit that you’re missing. Type `info` command.
 
 `info COMMAND` read Info pages on command. `info` không dùng `less`, nó dùng Stand-alone GNU Info reader.
+
+### Synopsis Syntax
+
+```bash
+kill  [-signal|-s signal|-p]  [-q value] [-a] [--timeout
+       milliseconds signal] [--] PID[:_inode_]...
+```
+
+`[...]` (Square Brackets): Indicates optional arguments. You can run `kill PID` without specifying a signal, and it defaults to `SIGTERM` (`15`).
 
 ## Command History
 

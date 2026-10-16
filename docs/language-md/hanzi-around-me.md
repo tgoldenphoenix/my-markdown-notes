@@ -94,6 +94,15 @@ k
 
 敬神如神在 (kính thần như thần tại)
 
+- 修行路入有三乘；(Tu hành lộ nhập hữu Tam thừa;)
+- 方便門開無二心。(Phương tiện môn khai vô nhị tâm.)
+
+- 立品心存忠孝；(Lập phẩm tâm tồn trung hiếu;)
+- 讀書志在聖賢。(Độc thư chí tại thánh hiền.)
+
+- 志君子知其所止；(Chí quân tử tri kỳ sở chỉ;)
+- 大丈夫曉我週行。(Đại trượng phu hiểu ngã chu hành.)
+
 ### Bàn thờ thần tài
 
 聚寶堂 "Tụ Bảo Đường"

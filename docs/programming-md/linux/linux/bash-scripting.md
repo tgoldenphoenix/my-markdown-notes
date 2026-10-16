@@ -85,11 +85,11 @@ Name images file.
 
 ## The Basics
 
-`Ctrl Alt t` open the terminal
+`Ctrl Alt t` open the terminal.
 
-`bash` is great for simple scripts that automate things you’d otherwise be typing on the command line. But once a bash script gets above a hundred lines or you need features that bash doesn’t have, it’s time to move on to Perl or Python.
+`bash` is great for simple scripts that automate things you’d otherwise be typing on the command line. But once a bash script gets above a _hundred lines_ or you need features that bash doesn’t have, it’s time to move on to Perl or Python.
 
-`echo $SHELL` to see which shell you are using
+`echo $SHELL` to see which shell you are using.
 
 On Mac, to set bash as the default interactive shell instead of zsh type `chsh -s /bin/bash` then re-open your terminal. To turn back using zsh type `chsh -s /bin/zsh`
 
@@ -769,42 +769,29 @@ When you launch Git Bash and run your script, Git Bash sets `C:\Program Files\Gi
 
 When you type `./script.sh` (rather than `sh ./script.sh`), you are not choosing between `bash` or sh yourself. Instead, the system uses the shebang line written at the very top inside the script file to decide.
 
-## Options
+## Shell Options
 
-`set -e` is an option in Bash/Shell scripting that tells the shell to exit immediately if any command fails (returns a non-zero exit code).  
-By default, Bash is permissive: if a command fails in the middle of a script, Bash prints the error, ignores it, and moves on to execute the next line anyway. set -e turns off that default behavior.
+`set -e` (`errexit`) is an option in Bash/Shell scripting that tells the shell script to exit immediately if any command fails (returns a non-zero exit code).  
+By default, Bash is permissive: if a command fails in the middle of a script, Bash prints the error, ignores it, and moves on to execute the next line anyway. set `-e` turns off that default behavior.
 
-## Environment Variables & Viewing Machine specs
+## Catching Signals
 
-`echo $0` to know which shell you are using
+`Ctrl+C` sends the interrupt signal, sends SIGINT to the job running in the foreground.
 
-On Linux
+The syntax for the trap statement is straightforward:
 
-On MacOS
+```bash
+trap [COMMANDS] [SIGNALS]
+```
 
-Use the `printenv` command to display a list of currently set environment variables. Trong này sẽ có `$PATH`, `$HOME` và nhiều cái khác.
+This instructs the `trap` command to catch the listed `SIGNALS`, which may be signal names with or without the `SIG` prefix, or signal numbers. If a signal is 0 or EXIT, the COMMANDS are executed when the shell exits.
 
-Hiển thị one environment variable: `echo $[variable name]`
+EXIT is not a hardware or OS signal—it is a special pseudo-signal provided by the shell.
 
-`$PATH` environment variable stores a list of directories with executable files, and thus saves the user a lot of typing and memorizing locations of commands.
+The shell triggers an EXIT trap whenever the script terminates for any reason, including:
 
-If you want to display the complete list of shell variables, use the `set` command. The output is very long.
-
-`$HOME`: /Users/anhao
-
-The value you assign to a **temporary** environment variable only lasts until you close the terminal session. This is useful for variables you need to use for one session only or to avoid typing the same value multiple times.
-
-Assign a temporary environment variable with the `export` command. The export command also allows you to add new values to existing environment variables with the `:$` syntax.
-
-**Permanent** environment variables are added to the `.bash_profile` file. Cũng dùng `export` command. Execute the new `.bash_profile` by either restarting the terminal window or using `source ~/.bash-profile`
-
-Use the`unset` command to remove an environment variable.
-
-The primary use of the `eval` command  is to interpret and execute dynamic or complex commands stored in strings or variables. This allows you to generate and run commands dynamically.
-
-References
-
-[how to add folder to PATH](https://phoenixnap.com/kb/linux-add-to-path) by PHOENIXNAP very informative
+- Normal completion (reaching the end of the script).
+- Failure exiting due to set `-e` when a command returns a non-zero exit code.
 
 ## Terminology
 

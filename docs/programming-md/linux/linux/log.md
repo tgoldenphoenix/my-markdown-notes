@@ -70,7 +70,7 @@ rename a sheet: go to the Sheets Sheet, and navigate to the row representing the
 
 To flip back and forth between your current sheet and the previous one, press `Control-^`.
 
-### rows & column
+### Rows & Columns
 
 - `s` Select the current row
 - `u` Unselect the current row
@@ -78,7 +78,7 @@ To flip back and forth between your current sheet and the previous one, press `C
 
 ---
 
-To see all the columns in your dataset, press `Shift-C`. This will open the “Columns Sheet,” which lists each column and its attributes.
+`shift c` open Columns Sheet; view & manage all columns
 
 Rather than guess at your column’s data types, VisiData assumes that they’re all plain-old text.
 
@@ -111,5 +111,17 @@ Sometimes you want to view a dataset’s columns in a different order than they 
 
 - `Shift-H`	Moves column one position to the left
 - `Shift-L`	Moves column one position to the right
+- In the Columns Sheet, each column is represented as a row; you can reposition them using Shift-J and `Shift-K`.
 
 Similarly, you can use Shift-J to move a row down one position, and Shift-K to move a row up one position.
+
+---
+
+To turn a column into a key column (or vice-versa), navigate to that column and press `!`.
+
+### Sorting and Filtering
+
+The keys `[` and `]` sort rows in ascending and descending order, respectively.
+
+You can sort on multiple columns at once by “key”-ing those columns (via `!`) and then typing either `g[` (ascending) or `g]` (descending).
+
