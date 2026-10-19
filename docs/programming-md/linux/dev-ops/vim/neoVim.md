@@ -737,21 +737,6 @@ You can open it with `<Space>gs`. I use it a lot for switching between files re
   * `A` means it is a new file that has been staged in git
 - If the sign shows up in the _first_ column, it means the file has been staged and will be included in the next commit. If it is in the _second_ column, then it means the file is not yet staged. If symbols show up in both columns, some parts of it have been staged and some parts have not.
 
-## Nvim Key mapping
-
-`n` Normal mode map. Defined using `:nmap` or `:nnoremap`.
-`i` Insert mode map. Defined using `:imap` or `:inoremap`.
-`v` Visual and select mode map. Defined using ':vmap' or ':vnoremap'.
-`x` Visual mode map. Defined using `:xmap` or `:xnoremap`.
-`s` Select mode map. Defined using ':smap' or ':snoremap'.
-`c`  Command-line mode map. Defined using ':cmap' or ':cnoremap'.
-`o`  Operator-pending mode map. Defined using ':omap' or ':onoremap'.
-
-`<Space>`  Normal, Visual and operator pending mode map. Defined using `:map` or `:noremap`.
-`!`  Insert and command-line mode map. Defined using `map!` or `noremap!`.
-
-always use `noremap` or its relatives (e.g. `vnoremap`) unless you have an explicit reason not to (e.g. when working with `<Plug>` or `<SID>` mappings, which are meant to be remapped
-
 ## Installing Neovim on Windows
 
 k

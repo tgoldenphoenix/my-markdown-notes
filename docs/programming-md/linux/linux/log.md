@@ -56,10 +56,6 @@ On the command line, `vd` and `visidata` are synonymous. You can use either to l
 
 Press `Control-g` to display your cursor’s row and column number at the bottom of VisiData’s interface.
 
----
-
-`shift f` => frequency table of a column
-
 ### Sheets
 
 VisiData’s “Sheets Sheet” lists all currently-open sheets and makes it easy to jump between sheets.
@@ -125,3 +121,16 @@ The keys `[` and `]` sort rows in ascending and descending order, respectively.
 
 You can sort on multiple columns at once by “key”-ing those columns (via `!`) and then typing either `g[` (ascending) or `g]` (descending).
 
+---
+
+Filtering selected rows with `"`
+
+In VisiData, pressing `"` will create a copy of your current sheet — but one that contains only selected rows.
+
+### Summarizing Data
+
+`shift f` => frequency table of a column
+
+---
+
+To get a bird’s-eye view of your entire dataset, press Shift-I, which will provide summary statistics for each of your columns.
