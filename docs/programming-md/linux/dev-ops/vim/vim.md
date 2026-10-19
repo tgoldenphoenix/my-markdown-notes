@@ -496,6 +496,12 @@ To change every occurrence of a character string between two lines, type   `:#,#
 Type  `:%s/old/new/g`       to change every occurrence in the whole file.
 Type   `:%s/old/new/gc`    to find every occurrence in the whole file, with a prompt whether to substitute or not.
 
+### Search by unicode
+
+`/\%u2212` => search for Unicode character `U+2212` (the minus sign `-`).
+
+`/\%u200D` => search for Unicode character `U+200D` (the invisible Zero-Width Joiner (ZWJ)).
+
 ## Registers
 
 Vim’s `registers` are simply containers that hold text. They can be used in the manner of a clipboard for cutting, copying, and pasting text, or they can be used to record a macro by saving a sequence of keystrokes.

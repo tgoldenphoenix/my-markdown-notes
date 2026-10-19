@@ -103,6 +103,14 @@ k
 - 志君子知其所止；(Chí quân tử tri kỳ sở chỉ;)
 - 大丈夫曉我週行。(Đại trượng phu hiểu ngã chu hành.)
 
+- 頂禮心香祛俗靄；(Đỉnh lễ tâm hương khư tục ái;)
+- 步虛聲律靜羣紛。(Bộ hư thanh luật tĩnh quần phân.)
+
+- 玉磬聲傳同禮斗；(Ngọc khánh thanh truyền đồng lễ Đẩu;)
+- 旃檀氣藹共朝參。(Chiên đàn khí ái cộng triều tham.)
+
+- 明明白白天
+
 ### Bàn thờ thần tài
 
 聚寶堂 "Tụ Bảo Đường"
@@ -124,4 +132,3 @@ ngũ phương: Đông, Tây, Nam, Bắc và Trung Tâm
 ## Đ. Vành Đai Trong
 
 乐娱神财 (lạc ngu thần tài)
-
