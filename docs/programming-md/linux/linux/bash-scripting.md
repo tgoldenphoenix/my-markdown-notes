@@ -151,7 +151,7 @@ Globbing is mainly used to match filenames or searching for content in a file. G
 
 Globbing is used in config files such as a `.gitignore` where you might see `.cache/*`, for example.
 
-Globbing is the expansion of simple pattern-matching characters such as * and ? to form filenames or lists of file-names)
+Globbing is the expansion of simple pattern-matching characters such as `*` and `?` to form filenames or lists of file-names)
 
 Globbing is an operation that is performed by the shell itself and it happens **independently** of the actual command we're running. The shell will **first** attemp to expand the wildcard pattern to match any files that are present before passing their expanded names to the program we want to run.  
 `man 7 glob` to read more.
@@ -235,6 +235,13 @@ Hello world
 ```
 
 Use double quote `""` to prevent Bash from splitting the variable's value into multiple words if it already contains spaces.
+
+---
+
+`${VAR:-default}`
+
+- If VAR is set and not empty: It uses the value of $VAR.
+- If VAR is unset or empty (""): It uses default instead.
 
 ## Command Separators
 
@@ -439,7 +446,7 @@ Some environment variables, such as `PWD` for the current working directory, are
 
 ### Double Quoting variables
 
-You should **always wrap variable references in double quotes** (`"$name"`). This is one of the most important habits to develop in Bash scripting. Without quotes, Bash will perform **word splitting** and **globbing** on the variable's value, which leads to bugs and even security vulnerabilities.
+You should **always wrap variable references in double quotes** (`"$name"`). This is one of the most important habits to develop in Bash scripting. Without quotes, Bash will perform word splitting and **globbing** on the variable's value, which leads to bugs and even security vulnerabilities.
 
 ```bash
 filename="my file.txt"
