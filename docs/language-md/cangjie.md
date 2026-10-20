@@ -1123,7 +1123,7 @@ Triple-unit characters
 - 受 (月 // 月 // 水) - Birdhouse
 - 舜 (月 // 月 // 弓手)
 - 愛 (月月 // 心 // 水) - triple unit, love
-- 隱 (弓中 // 月一心) - double unit, take F2+L of the second unit
+- 隱 (弓中 // 月 // 一心)
   - 隐 (弓中 // 弓尸心)
 - 学 (火月 // 弓木)
 
@@ -1248,6 +1248,7 @@ Triple-unit characters
   - 稱 (竹木 // 月 // 土月)
 - 冓 (廿廿土月) - funnel
   - 講 (卜口 // 廿廿月)
+  - 構 (木 // 廿廿月)
 
 - 角 (弓月土) - angle
   - 嘴 (口 // 卜心 // 月) - triple unit
@@ -1278,6 +1279,7 @@ Triple-unit characters
   - 閩 (日弓 // 中一戈)
 - 蜀 (田中 // 心 // 中戈) - triple unit, Shu Han
   - 獨 (大竹 // 田中 // 戈)
+  - 觸 (弓月 // 田中 // 戈)
 - 屬 (尸 // 水 // 田戈) - triple unit
   - 属 (尸 // 竹中月)
 - 虽 (口中一戈) - although
@@ -1458,6 +1460,7 @@ Triple-unit characters
 - 工 (一中一) - craft
 
 - 貴 (中一 // 月山金) - double unit
+  - 遺 (卜 // 中一 // 金)
 
 - 寅 (十 // 一中金) - sign of the tiger, F3+L
   - 演 (水 // 十 // 一金) - triple unit
@@ -1839,7 +1842,7 @@ Triple-unit characters
 - 勿 (心竹竹)
 
 - 紅 (女火 // 一) - double unit
-- 隱 (弓中 // 月一心) - double unit, take F2+L of the second unit
+- 隱 (弓中 // 月 // 一心)
 
 - 巫 (一人人)
 - 項 (一 // 一月金)
@@ -2385,8 +2388,9 @@ Triple-unit characters
 - 足 (口卜人)
 
 - 𤴓 (一卜人) - mending
-  - 是 (日 // 一卜人) - double unit
   - 定 (十 // 一卜人)
+- 是 (日 // 一卜人) - double unit
+  - 題 (日人 // 一月金)
 - 疋 (弓卜人) - zoo
   - 疑 (心大 // 弓戈人) - double unit, zoo
   - 凝 (戈一 // 心大 // 人) - triple unit
@@ -2570,7 +2574,7 @@ Triple-unit characters
   - 怪 (心 // 水土)
 
 - 衷 (卜 // 中竹女) - double unit
-- 衰 (卜 // 田一女) - double unit
+- 衰 (卜 // 田一 // 女)
 
 - 戉 (戈女)
 
