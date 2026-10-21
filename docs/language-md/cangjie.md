@@ -454,6 +454,7 @@ Triple-unit characters
   - 農 (廿田 // 一一女)
 
 - 喪 (土口口女) - hairpin, funeral
+  - 展 (尸 // 廿女)
 
 - 刀 (尸竹) - blade, sword, dagger
   - 昭 (日 // 尸竹口)
@@ -745,6 +746,7 @@ Triple-unit characters
 - 亍 (一一弓) - nail, spike
 - 行 (竹人 // 一 // 一弓) - column, boulevard, queue
   - 衡 (竹人 // 弓大 // 弓) - triple unit
+  - 衝 (竹人 // 竹土 // 弓)
   - 蘅 (廿 // 竹人 // 弓) - triple unit
   - 得 (竹人 // 日 // 一戈) - triple unit
 
@@ -1407,6 +1409,7 @@ Triple-unit characters
 - 示 (一 // 一火) - altar
   - 宗 (十 // 一 // 一火)
   - 祭 (月人 // 一一火)
+  - 奈 (大 // 一 // 一火)
 - 礻 (戈弓火) - altar
   - 視 (戈火 // 月山山)
   - 祐 (戈火 // 大口)
@@ -1689,6 +1692,7 @@ Triple-unit characters
   - 盜 (水人 // 月廿)
   - 蘊 (廿 // 女火 // 廿)
   - 盆 (金 // 尸竹 // 廿)
+  - 益 (廿 // 金 // 月廿)
 - 盃 (一火 // 月廿)
   - 𢝙 (心 // 一火 // 廿)
 - 血 (竹月廿) - blood
@@ -1725,7 +1729,7 @@ Triple-unit characters
   - 滿 (水 // 廿中月)
   - 満 (水 // 廿山月)
 
-- 展 (尸廿女)
+- 展 (尸 // 廿女)
 
 - 开 (一廿) - two hands, open
   - 算 (竹 // 月山 // 廿)
@@ -2799,7 +2803,7 @@ Triple-unit characters
   - 體 (月月 // 廿田 // 廿) - triple unit
   - 禮 (戈火 // 廿田 // 廿) - triple unit
 
-- 皿 (月廿) - dish
+- 皿 (月廿)
 
 - 回 (田口)
 - 圖 (田 // 口卜 // 田) - map
@@ -2846,6 +2850,7 @@ Triple-unit characters
   - 點 (田火 // 卜口) - double unit
   - 黔 (田火 // 人戈弓)
   - 黛 (人心 // 田土火)
+- 會 (人 // 一 // 田日)
 
 - 東 (木田) - east
   - 陳 (弓中 木田 )
