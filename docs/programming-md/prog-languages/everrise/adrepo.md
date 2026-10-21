@@ -521,11 +521,11 @@ copy build file from local to home directory on ec2 instance
   - batch: `~/ag_backup/`
   - web api: `~/backup/etl-harbest-webapi.zip_${BUILD_DATE}`
 
----
-
-s3 paths
+### s3 paths
 
 master data path: `{bucket_name}/master/{account_id}/{dsp_type}/{masterS3Key}/{getMasterQueue_id}_{advertiser_id}.csv.gz`
+
+The part after `{bucket_name}/` is the `s3 key`
 
 account id & advertiser id đều lấy từ queue
 
@@ -533,7 +533,17 @@ report data path: `{bucket_name}/report_data/{account_id}/{report_type}/{getRepo
 
 `account_id` = ADREPO_USER_ID
 
-`bucket_name` can be: `AMAZON_BUCKET_NAME=adrepo | adrepo-development` or `ETL_AMAZON_BUCKET_NAME=adrepo-etl` (in `config.properties`)
+- `bucket_name` can be:
+  - `AMAZON_BUCKET_NAME=adrepo | adrepo-development` (`s3://adrepo`) or
+  - `ETL_AMAZON_BUCKET_NAME=adrepo-etl` (in `config.properties`)
+
+---
+
+the S3 key is not just the folder path — it is the complete path including the file name and its extension
+
+How S3 Keys Work
+
+Flat Storage Architecture: In Amazon S3, there is no real hierarchical folder structure like on a local hard drive. Instead, S3 is a flat key-value store where the key is the entire unique identifier for an object inside a bucket. The slashes (`/`) are just delimiters used to simulate a directory structure in the AWS console
 
 ## ETL Batch
 
@@ -1039,14 +1049,6 @@ In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBU
 Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
 
 An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
-
-## S3 Util
-
-the S3 key is not just the folder path — it is the complete path including the file name and its extension
-
-How S3 Keys Work
-
-Flat Storage Architecture: In Amazon S3, there is no real hierarchical folder structure like on a local hard drive. Instead, S3 is a flat key-value store where the key is the entire unique identifier for an object inside a bucket. The slashes (`/`) are just delimiters used to simulate a directory structure in the AWS console
 
 ## Exception Handling
 
