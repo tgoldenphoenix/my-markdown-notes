@@ -271,7 +271,7 @@ verify(mockedList).add(argThat(someString -> someString.length() > 5));
 
 ### Spy
 
-`spy()` creates partial mocking, real methods are invoked but still can be verified and stubbed
+`spy()` creates partial mocking, real methods are invoked but still can be verified and stubbed.
 
 A spy is a partial mock in other mocking frameworks (part of the object will be mocked and part will use real method invocations).
 

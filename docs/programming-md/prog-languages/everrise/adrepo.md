@@ -338,12 +338,20 @@ Khi query nó get api token => lấy login user id => lấy contract conpany id
 
 Read this wiki <https://ever-rise.backlog.jp/alias/wiki/557867>
 
+Bật docker image lên
+
 add to `conf/AwsCredentials.properties`
 
 ```txt
 accessKey=hoge
 secretKey=fuga
 ```
+
+tải IntelliJ plugin `Ebean enhancer` => Build > toggle Ebean enhancement
+
+vào setting > `Build, Execution` > Enable annotation processing
+
+run `sbt clean compile`
 
 Vào trong `conf/test.application.conf` check database, schema. File `application.conf` bình thường sẽ không được sử dụng.
 
@@ -978,6 +986,48 @@ Even if a user injects unauthorized fields or parameters into the JSON request b
 ---
 
 Có 2 cái re-direct url khác nhau
+
+---
+
+TikTok expects `auth_permanent_json` when you create the `m_onetime_api_token` to contain:
+
+- `AppId`
+- `Secret` (encrypted using AES)
+
+The table `m_input_platform` (where `input_platform_id = 35`) has `platform_application_json` which specifies TikTok's `redirect_uri` (e.g. `http://localhost:9000/oauth/callback/` or whatever is registered in your TikTok Developer Portal App).
+
+Sau khi tạo one time token key thì call
+
+`http://localhost:9000/oauth/auth/?onetimeTokenKey=tiktok-test-token-001`
+
+Your backend looks up `onetimeTokenKey`. It issues an HTTP 302 redirect to TikTok's OAuth page: `https://ads.tiktok.com/marketing_api/auth?app_id=...&state={"OnetimeTokenKey":"tiktok-test-token-001"}&redirect_uri=...`
+
+Once you click Confirm, TikTok automatically redirects your browser to the configured `redirect_uri` (your backend callback): `http://localhost:9000/oauth/callback/?auth_code=TIKTOK_AUTH_CODE_HERE&state=%7B%22OnetimeTokenKey%22%3A%22tiktok-test-token-001%22%7D`
+
+What your backend executes automatically:
+
+- Extracts `onetimeTokenKey` from `state`.
+- Exchanges `auth_code` with TikTok for a real `accessToken` via `tiktokService.fetchAccessToken(...)`.
+- Fetches your TikTok user info via `tiktokService.fetchUserInfo(...)`.
+- Saves a new record into `m_input_platform_auth` with status `AVAILABLE` (`1`).
+- Executes our `finally` block to **soft-delete** `m_onetime_api_token` (`deleted = 1`).
+- Redirects your browser to oauth_redirect_url with: `https://httpbin.org/get?success=true&inputPlatformAuthId=NEW_ID&onetimeTokenKey=tiktok-test-token-001`
+
+how to verify
+
+```sql
+-- 1. Verify token was soft-deleted
+SELECT onetime_token_key, deleted 
+FROM m_onetime_api_token 
+WHERE onetime_token_key = 'tiktok-test-token-001';
+-- -> deleted should be 1
+
+-- 2. Verify new platform auth record was inserted
+SELECT input_platform_auth_id, input_platform_id, platform_auth_status, auth_permanent_json 
+FROM m_input_platform_auth 
+ORDER BY input_platform_auth_id DESC LIMIT 1;
+-- -> platform_auth_status should be 1 (AVAILABLE)
+```
 
 ### Authenticator
 
