@@ -1029,6 +1029,25 @@ ORDER BY input_platform_auth_id DESC LIMIT 1;
 -- -> platform_auth_status should be 1 (AVAILABLE)
 ```
 
+---
+
+twitter là OAuth 1.0a
+
+lỗi ` PlatformUserId has been already registered.`
+
+In MInputPlatformAuthController.java#L574-578
+
+The application checks whether an active record with the same agencyId, inputPlatformId, and PlatformUserId already exists in the database:
+
+```sql
+SELECT *
+  FROM m_input_platform_auth
+ WHERE m_input_platform_auth.agency_id = :agencyId
+   AND m_input_platform_auth.input_platform_id = :inputPlatformId
+   AND m_input_platform_auth.auth_permanent_json->"$.PlatformUserId" = :platformUserId
+   AND m_input_platform_auth.deleted IS false;
+```
+
 ### Authenticator
 
 When a request hits a protected controller, the Play Framework automatically calls `BaseLoginAuthenticator.getUsername(Http.Context)`. This method in turn calls `LoginAuthenticator.getLoginUserId()`:

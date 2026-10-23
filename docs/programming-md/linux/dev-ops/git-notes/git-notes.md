@@ -393,7 +393,7 @@ How to write atomic commit messages:
 one commit for one change. 10 bugs -> 10 commits  
 present tense, imperative; give order to codebase; no case
 
-### Managing files
+### Managing Files
 
 `git rm <filepath>` remove the file from index & working directory, example is if you add your file with passwords.
 
@@ -403,6 +403,8 @@ If files you have added to your `.gitignore` file are still showing up as untrac
 
 - `git rm --cached <filename>` to remove the files from the Git index (cache) without deleting them locally
 - Or you can `git rm -r --cached .` to remove all files currently in the index (useful if many files are problematic)
+
+`git rm -r --cached <directory_name>`
 
 `git rm --cached README` _keep the file in your working tree_ but remove it from your staging area.
 
