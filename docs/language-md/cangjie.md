@@ -264,6 +264,7 @@ Triple-unit characters
 - 俞 (人 // 一 // 月弓) - triple unit, butcher's meeting
   - 喻 (口 // 人 // 一弓) - triple unit
   - 輸 (十十 // 人 // 一弓) - triple-unit character
+  - 输 (大手 // 人 // 一弓)
 - 前 (廿 // 月 // 中弓) - in front, triple unit
   - 剪 (廿 // 月弓 // 竹)
   - 翦 (廿 // 月弓 // 一)
@@ -341,8 +342,8 @@ Triple-unit characters
 
 - 免 (弓日竹山) - rabbit
   - 晚 (日 // 弓日山) - double unit
-  - 鬼 (竹山戈) - ghost
-- 兔 (弓日竹戈, F3+L) or V5 (弓山 // 戈, double unit)
+- 兔 (弓山 // 戈, double unit) or V5 (弓日竹戈, F3+L)
+  - 鬼 (竹戈) or V5 (竹山 // 戈)
 - 兎 (竹中日戈) - F3+L
 - 象 (弓日心人) - one unit character, take F3+L
   - 像 (人 // 弓日人)
@@ -901,10 +902,13 @@ Triple-unit characters
   - 尗 (卜一火)
 
 - 戌 (戈竹一) - march
-- 咸 (戈竹 // 一口) - hàm
+- 咸 (戈竹 // 一 // 口) - hàm
   - 感 (戈口 // 心) - double unit, cảm
 - 鹹 (卜田 // 戈竹 // 口) - triple unit
   - 鹵 (卜田戈戈) - Rock salt
+
+- 烕 (戈竹 // 一火)
+- 滅 (水 // 戈竹 // 火)
 
 - 藏 (廿 // 戈一 // 尸)
 - 爿 (女中一)
@@ -1057,10 +1061,11 @@ Triple-unit characters
 - 負 (弓月山金)
   - 负 (弓月人)
 
-- 钅 (人一心) - metal, gold
+- 钅 (人一心) - metalll, golddd, kimmm
   - 钟 (人心 // 中)
   - 铁 (人心 // 竹手人)
   - 错 (人心 // 廿 // 日)
+  - 销 (人心 // 火月)
 
 - 想 (木山 // 心) - double unit
 
@@ -1427,6 +1432,7 @@ Triple-unit characters
   - 紳 (女火 // 中田中)
 - 由 (中田) - sprout
   - 抽 (手 // 中田)
+  - 油 (水 // 中田)
 - 甲 (田中)
   - 押 (手 // 田中)
 
@@ -1901,7 +1907,7 @@ Triple-unit characters
 - 齏 (卜難 // 中一一)
 
 - 兆 (中一 // 山人)
-- 非 (中一 // 尸卜) - double unit, jail
+- 非 (中一 // 卜卜卜) or V5 (中一 // 尸卜) - double unit, jail
   - 輩 (中卜 // 十田十) - double unit
   - 悲 (中卜 // 心)
   - 罪 (田中 // 中一 // 卜) - triple unit
@@ -2039,7 +2045,8 @@ Triple-unit characters
 
 - 文 (卜大) - literature
   - 这 (卜 // 卜大)
-  - 產 (卜大 // 一 // 竹一)
+- 產 (卜竹 // 竹手一) or V5 (卜大 // 一 // 竹一)
+  - 产 (卜廿竹)
 
 - 矢 (人大) - dart
   - 欸 (戈大 // 弓人)
@@ -2130,6 +2137,8 @@ Triple-unit characters
 - 歷 (一 // 竹木 // 一) - triple unit
 - 压 (一 // 土戈)
 - 历 (一 // 大尸)
+- 產 (卜竹 // 竹手一) or V5 (卜大 // 一 // 竹一)
+  - 产 (卜廿竹)
 
 - 原 (一 // 竹日火) - meadow
   - 願 (一火 // 一月金)
@@ -2154,8 +2163,12 @@ Triple-unit characters
 - 府 (戈 // 人 // 木戈)
 - 廟 (戈 // 十十 // 月) - triple unit
 - 膺 (戈 // 人土 // 月)
-- 床 (戈 // 木)
 - 纏 (女火 // 戈 // 田土)
+
+- 床 (戈 // 木)
+- 麻 (戈 // 十金 // 金) - hemp
+  - 魔 (戈木 // 竹戈) or V5 (戈木 // 竹山戈) - double unit
+  - 麼 (戈木 // 女戈) - double unit
 
 - sick bed: 病 (大 // 一人月)
   - 疼 (大 // 竹水卜)
@@ -2257,6 +2270,8 @@ Triple-unit characters
 - 東 (木田) - east
   - 陳 (弓中 // 木田 ) - trần
 - 东 (大木)
+  - 炼 (火 // 大女金)
+  - 栋 (木 // 大木)
 - 柬 (木田火)
 - 闌 (日弓 // 木田火) - orchid
   - 攔 (手 // 日弓 // 田) - triple unit
@@ -2695,7 +2710,7 @@ Triple-unit characters
   - 通 (卜 // 弓戈月) - double unit, take F2+L of second unit
 - 備 (人 // 廿竹 // 月)
 
-- 車 (十田十) - carrr
+- 車 (十田十) - carrr, xaaa
   - 連 (卜 // 十田十)
   - 琏 (一土 // 卜 // 大手)
   - 璉 (一土 // 卜 // 十十)
@@ -3101,9 +3116,9 @@ Triple-unit characters
 - 鬥 (中弓) - big dipper
   - 鬧 (中弓 // 卜中月)
 
-- 鬼 (竹戈) or V5 (竹山戈) - ghost
-  - 塊 (土 // 竹山戈)
-  - 魔 (戈木 // 竹山戈) - double unit
+- 鬼 (竹戈) or V5 (竹山 // 戈) - ghost
+  - 塊 (土 // 竹戈) or V5 (土 // 竹山 // 戈)
+  - 魔 (戈木 // 竹戈) or V5 (戈木 // 竹山戈) - double unit
   - 寬 (十 // 廿 // 月戈) - triple unit
 - 么 (竹戈)
   - 麼 (戈木 // 女戈) - double unit
@@ -3121,6 +3136,7 @@ Triple-unit characters
 - 隹 (人土) - turkey
   - 應 (戈土 // 心) or V5 (戈 // 人土 // 心)
   - 集 (人土 // 木)
+  - 售 (人土 // 口)
   - 唯 (口 // 人土)
   - 進 (卜 // 人土)
   - 堆 (土 // 人土)
