@@ -275,6 +275,8 @@ verify(mockedList).add(argThat(someString -> someString.length() > 5));
 
 A spy is a partial mock in other mocking frameworks (part of the object will be mocked and part will use real method invocations).
 
+A spy such as `googleAnalyticsService` runs its real Java methods by default. However, we stub out only the methods that perform real HTTP calls to Google.
+
 ## API Mock
 
 Integration Test with an API stub (like WireMock)
@@ -324,3 +326,12 @@ It’s a best practice to provide an error message for all your assert method ca
 - `assertTrue("message", A)`: Asserts that the A condition is true
 - `assertNotNull("message", A)`: Asserts that the A object isn’t null.
 
+## Test Container
+
+`Testcontainers` is a popular Java library that provides lightweight, throwaway instances of common databases, web browsers, message brokers, or anything else that can run in a Docker container during unit/integration tests.
+
+---
+
+`openConnectionUnchecked()`: Wraps `SQLException` in an unchecked `RuntimeException` so it can be passed cleanly into DAO methods that don't declare checked exceptions.
+
+`java.sql.SQLException` is a _checked exception_ in Java
