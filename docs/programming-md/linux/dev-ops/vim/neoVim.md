@@ -1,15 +1,8 @@
 # Neovim & VimTeX
 
-Vim kick start: 23:13
-
-Try these plugins:
-
-- nvim-surround
-- powerline
-
 ## General Notes
 
-The primeagen có terminal mà khi mở vim cái background transparent hiện wallpaper luôn. Kể cả ở ngoài terminal cũng transparent luôn
+The primeagen có terminal mà khi mở vim cái background transparent hiện wallpaper luôn. Kể cả ở ngoài terminal cũng transparent luôn.
 
 Don't use the text editor (nvim) as a terminal like the built-in terminal in VS-code. Use nvim + tmux for a separate terminal. The Primeagen
 
@@ -156,7 +149,7 @@ press the spacebar to enter “Space mode”. Space mode is a LazyVim concept; i
 
 `Dashboard mode` là cái dashboard khi mới mở neovim lên
 
-### The `lazy.nvim` plugin manager
+## The `lazy.nvim` plugin manager
 
 - `:Lazy`
 - `:LazyExtras`
@@ -194,6 +187,22 @@ require('guess-indent').setup {
   override_editorconfig = false,
   -- more configs...
 }
+```
+
+---
+
+When you specify `opts` in a `lazy.nvim` plugin specification, `lazy.nvim` automatically calls the plugin's `setup()` function behind the scenes:
+
+```lua
+require('lualine').setup(opts)
+```
+
+Setting `opts = {}` is equivalent to writing:
+
+```lua
+config = function()
+    require('lualine').setup({})
+end
 ```
 
 ## Moving around in a File
@@ -479,6 +488,13 @@ You can even nest folds by folding already folded code. If you want to open fold
 The way LazyVim is configured, you don’t have much control over what gets folded, but it will usually do something close to what you expect based on where your cursor is in the document. “What you expect” depends on both the LSP and the TreeSitter grammar for the language you are working on, but I find it best to just let it do its thing and not disagree with it.
 
 If you find that you want way more control over code folding, I recommend reading :help folding in its entirety. More than likely, you’ll decide that actually, you don’t want more control over folding and just want LazyVim to handle it for you!
+
+---
+
+`foldmethod=marker` isn't entirely useless. It still has two legitimate niches where it actually shines:
+
+- Personal Dotfiles & Local Configs
+- Documentation, Personal Notes, or Vimscript Plugins
 
 ## Session
 
