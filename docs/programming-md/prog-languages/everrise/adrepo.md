@@ -743,9 +743,9 @@ Tiktok
 
 ### Batch Export-Import Queue
 
-table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết queue nào đã được update để mà cập nhật cho phía adrepo (S3)
+Table `etl_adrepo.input_adrepo_last_exported_update_time` => dùng để biết queue nào đã được update để mà cập nhật cho phía adrepo (S3).
 
-Batch export queue (status) cho phía adrepo có input là một `dsp_type`
+Batch export queue (status) cho phía adrepo có input là một `dsp_type`.
 
 - Vào `input_adrepo_last_exported_update_time` tìm last update time của `dsp_type` đó (master 1 dòng, report 1 dòng). Ở đây gọi là $A_1, A_2$.
 - Vào table `get_master_queue` và các tables `get_report_queue_{platform}` của platform tương ứng, lấy tất cả queue có updated time $\geq A_1, \geq A_2$

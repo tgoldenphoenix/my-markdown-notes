@@ -670,6 +670,14 @@ Types of Indexes:
 
 Multiple users try to mofidy the same record in the database at the same time (concurrently).
 
+## Locking
+
+By executing `LOCK TABLES <table_name> READ;`:
+
+- MySQL waits for all currently running write statements/transactions on that table to complete before granting the read lock.
+- While the read lock is held during the `SELECT`, no new `INSERT` or `UPDATE` statements can proceed.
+- This guarantees that at the moment the `SELECT` runs, no in-flight write with an earlier `NOW(6)` timestamp is still pending, ensuring no queue updates are missed between export runs.
+
 ## PostgeSQL configurations
 
 The password for the postgres user is the one you entered during the PostgreSQL installation.  
