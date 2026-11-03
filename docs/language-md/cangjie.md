@@ -685,7 +685,7 @@ Triple-unit characters
 
 - chop seal
 - 通 (卜 // 弓戈月) - double unit, take F2+L of second unit
-  - 甬 (弓戈月手) - pogo stick
+  - 甬 (弓戈月手)
 - 爷 (金大 // 尸中)
   - 节 (廿 // 尸中)
 - 疑 (心大 // 弓戈人) - double unit
@@ -1528,6 +1528,10 @@ Triple-unit characters
 - 儿 (中山)
 
 - 师 (中 // 中 // 一月) - triple unit
+
+- walking stick
+- 修 (人 // 中 // 人竹)
+- 傾 (人 // 心 // 一金)
 
 ## Fire 火
 
@@ -2508,6 +2512,7 @@ Triple-unit characters
 
 - 長 (尸一女) - long, mane
   - 长 (心人)
+  - 面 (一田卜中) or V5 (一田尸中)
 - 張 (弓 // 尸一女)
   - 张 (弓 // 心人)
 
@@ -2626,8 +2631,9 @@ Triple-unit characters
 - 巠 (一 // 女女 // 一)
   - 經 (女火 // 一 // 女一) - triple unit
   - 輕 (十十 // 一 // 女一)
-- 圣 (水土) - spool
-  - 怪 (心 // 水土)
+- 圣 (水 // 土) - spool
+  - 怪 (心 // 水 // 土)
+  - 经 (女一 // 弓人 // 一))
 
 - 衷 (卜 // 中竹女) - double unit
 - 衰 (卜 // 田一 // 女)
@@ -2749,6 +2755,7 @@ Triple-unit characters
 - 角 (弓月土)
 - 甬 (弓戈月手) - pogo stick
   - 通 (卜 // 弓戈月) - double unit, take F2+L of second unit
+  - 蛹 (中戈 // 弓戈月)
 - 備 (人 // 廿竹 // 月)
 
 - 車 (十田十) - carrr, xaaa
@@ -3033,6 +3040,7 @@ Triple-unit characters
 - 主 (卜土) - whole
   - 住 (人 // 卜土)
   - 註 (卜口 // 卜土)
+  - 駐 (尸火 // 卜土)
 
 - 王 (一土) - king
   - 聖 (尸口 // 竹土) - double unit
@@ -3064,8 +3072,8 @@ Triple-unit characters
   - 珪 (一土 // 土土)
   - 閨 (日弓 // 土土)
 
-- 吉 (土口) - lucky
-  - 結 (女火 // 土口)
+- 吉 (土 // 口) - lucky
+  - 結 (女火 // 土 // 口)
 
 - 土
 - 士 (十一) - samurai
@@ -3194,6 +3202,7 @@ Triple-unit characters
   - 進 (卜 // 人土)
   - 堆 (土 // 人土)
   - 雄 (大戈 // 人土)
+  - 摧 (手 // 山 // 人土)
 - 隺 (人月土) - coop
   - 鶴 (人土 // 竹日火)
   - 在 (大中土)
