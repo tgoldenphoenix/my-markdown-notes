@@ -809,6 +809,7 @@ Triple-unit characters
 
 - 予 (弓戈弓弓) - beforehand
   - 序 (戈 // 弓戈弓)
+  - 预 (弓弓 // 一月人)
 - 矛 (弓戈弓竹) - halberd, F3+L
   - 務 (弓竹 // 人大 // 尸) - triple unit
 - 疑 (心大 // 弓戈人) - double unit
