@@ -714,7 +714,7 @@ Nên viết `docstring` cho functions trong python, giống jsdoc, `javadoc`.
 
 ### Type Hints
 
-By default, Python does not require or enforce return types in a method signature.
+By default, Python does NOT require or enforce return types in a method signature.
 
 Proper type hints tell users what kinds of arguments our functions take and what value our functions return, making our functions more understandable.
 

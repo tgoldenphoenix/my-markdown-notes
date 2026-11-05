@@ -11,6 +11,10 @@ Behavior diagrams show the dynamic behavior of the objects in a system, which ca
 
 i
 
+## Sequence Diagram
+
+A sequence diagram is a Unified Modeling Language (UML) interaction diagram that maps out how objects and system components communicate with each other in a specific chronological order. 
+
 ## ERD
 
 k
