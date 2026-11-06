@@ -1049,7 +1049,39 @@ The most significant feature to observe is the `yield` keyword, which is the hal
 
 ## Python Modules
 
-k
+```python
+def main():
+    print("This program is running directly!")
+
+if __name__ == "__main__":
+    main()
+```
+
+When run directly (`python script.py`): Python automatically assigns `__name__ = "__main__"`. The `if` condition evaluates to `True`, so `main()` runs.
+
+When imported (`import script` from another file or test suite): Python assigns `__name__` to the file's module name (e.g., `"script"`). The condition evaluates to `False`, so `main()` is skipped.
+
+Without this guard, any top-level executable code runs automatically upon import. Wrapping execution in `if __name__ == "__main__":` allows your file to be safely reusable.
+
+If you write
+
+```python
+# my_module.py
+def helper():
+    return "ready"
+
+def main():
+    print("Pipeline executing!")
+
+main()  # <--- Naked call at file level
+########################
+# test_suite.py
+from my_module import helper
+```
+
+The moment Python hits that `from my_module import helper` line, it runs `my_module.py` entirely, encounters `main()`, and prints `"Pipeline executing!"`—even though you only wanted to import `helper`.
+
+Putting `main()` inside `if __name__ == "__main__":` blocks that execution during an import because `__name__` evaluates to `"my_module"` instead of `"__main__"`.
 
 ## Processing & Formatting Strings
 
