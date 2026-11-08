@@ -197,13 +197,13 @@ uv add --dev pytest
 
 ### Locking and Syncing the Environment
 
-As you’ve already learned, uv uses the uv.lock file to lock a project’s dependencies. Locking consists of capturing your project’s specific dependencies in the lockfile. This process makes it possible to reproduce your working environment in all possible configurations, including the Python version and distribution, the operating system, and the architecture.
+As you’ve already learned, uv uses the `uv.lock` file to lock a project’s dependencies. Locking consists of capturing your project’s specific dependencies in the lockfile. This process makes it possible to reproduce your working environment in all possible configurations, including the Python version and distribution, the operating system, and the architecture.
 
-As a counterpart, syncing is the process of installing the required packages from the lockfile into the project’s development environment.
+As a counterpart, `syncing` is the process of installing the required packages from the lockfile into the project’s development environment.
 
-Both locking and syncing processes are automatically handled by uv. For example, when you execute uv run, the project is locked and synced before the command is invoked. This behavior ensures that your project’s environment is always up to date.
+Both locking and syncing processes are automatically handled by `uv`. For example, when you execute `uv run`, the project is locked and synced before the command is invoked. This behavior ensures that your project’s environment is always up to date.
 
-If you have an existing project with a .toml file (e.g., a flocode project from GitHub), you can easily install dependencies by running: `uv sync`
+If you have an existing project with a `.toml` file (e.g., a clone project from GitHub), you can easily install dependencies by running: `uv sync`
 
 ### Virtual Environment
 
@@ -270,9 +270,49 @@ Run `python3` in the terminal to run python in the terminal. Use `<C-d>` or type
 Use `"""` or three backticks to create multi-line comments in Python.  
 The same `"""` syntax is also used to create multi-line string literals.
 
-### Built-in Data Types
+## The Python Interpreter
 
-In Python, an `int` is an object. Unlike languages like `Java` or `C++`, Python does **NOT** have the concept of primitive types. Every value you interact with—whether it is an integer, a boolean, or even a function—is a full-blown object.
+Python is an interpreted language. No compilation and linking is necessary.
+
+## Python Modules
+
+```python
+def main():
+    print("This program is running directly!")
+
+if __name__ == "__main__":
+    main()
+```
+
+When run directly (`python script.py`): Python automatically assigns `__name__ = "__main__"`. The `if` condition evaluates to `True`, so `main()` runs.
+
+When imported (`import script` from another file or test suite): Python assigns `__name__` to the file's module name (e.g., `"script"`). The condition evaluates to `False`, so `main()` is skipped.
+
+Without this guard, any top-level executable code runs automatically upon import. Wrapping execution in `if __name__ == "__main__":` allows your file to be safely reusable.
+
+If you write:
+
+```python
+# my_module.py
+def helper():
+    return "ready"
+
+def main():
+    print("Pipeline executing!")
+
+main()  # <--- Naked call at file level
+########################
+# test_suite.py
+from my_module import helper
+```
+
+The moment Python hits that `from my_module import helper` line, it runs `my_module.py` entirely, encounters `main()`, and prints `"Pipeline executing!"`—even though you only wanted to import `helper`.
+
+Putting `main()` inside `if __name__ == "__main__":` blocks that execution during an import because `__name__` evaluates to `"my_module"` instead of `"__main__"`.
+
+## Built-in Data Types
+
+In Python, an `int` is an object. Unlike languages like `Java` or `C++`, Python does **NOT** have the concept of `primitive types`. Every value you interact with—whether it is an integer, a boolean, or even a function—is a full-blown object.
 
 There are three distinct **Numeric Types**: integers, floating-point numbers, and complex numbers (`int`, `float`, `complex`).
 
@@ -1047,42 +1087,6 @@ The `perfect_squares` function is a `generator function`. By calling this functi
 
 The most significant feature to observe is the `yield` keyword, which is the hallmark of a generator function. Whenever the operation executes to the yield line, it provides the item `n * n`. The coolest thing about a generator is the fact that **it remembers which item it should yield next**.
 
-## Python Modules
-
-```python
-def main():
-    print("This program is running directly!")
-
-if __name__ == "__main__":
-    main()
-```
-
-When run directly (`python script.py`): Python automatically assigns `__name__ = "__main__"`. The `if` condition evaluates to `True`, so `main()` runs.
-
-When imported (`import script` from another file or test suite): Python assigns `__name__` to the file's module name (e.g., `"script"`). The condition evaluates to `False`, so `main()` is skipped.
-
-Without this guard, any top-level executable code runs automatically upon import. Wrapping execution in `if __name__ == "__main__":` allows your file to be safely reusable.
-
-If you write
-
-```python
-# my_module.py
-def helper():
-    return "ready"
-
-def main():
-    print("Pipeline executing!")
-
-main()  # <--- Naked call at file level
-########################
-# test_suite.py
-from my_module import helper
-```
-
-The moment Python hits that `from my_module import helper` line, it runs `my_module.py` entirely, encounters `main()`, and prints `"Pipeline executing!"`—even though you only wanted to import `helper`.
-
-Putting `main()` inside `if __name__ == "__main__":` blocks that execution during an import because `__name__` evaluates to `"my_module"` instead of `"__main__"`.
-
 ## Processing & Formatting Strings
 
 Python use f-string: `f"string {variable}"`
@@ -1152,7 +1156,7 @@ str.rsplit(separator, maxsplit)
 - `.rsplit()`: Starts scanning the string from the right (end) and moves left.
 - If you don't provide a `maxsplit` argument, both methods behave **exactly the same**.
 
-## Exception Handle
+## Exception Handling
 
 The standard way to handle exceptions in Python is to use the `try...except...` block. Many other languages use `try...catch...` blocks.
 
@@ -1182,7 +1186,7 @@ We use a custom class instead of a named tuple-based data model here. A custom c
 
 The constructor is the `__init__` function that you define.
 
-The `__init__()` method is the most essential method that you almost always define in a custom class.  It is always executed when the class is being initiated.  
+The `__init__()` method is the most essential method that you almost always define in a custom class. It is always executed when the class is being initiated.  
 The `__init__()` method is called automatically every time the class is being used to create a new object.
 
 Python creates the instance object by calling `__new__` and sends it to `__init__` as the self argument.
@@ -1424,7 +1428,7 @@ k
 ### The self parameter
 
 `self` is just a standard parameter name in Python, not a reserved language keyword.  
-Python has 35 reserved keywords (like def, class, if, return, import, True). self is not on that list.
+Python has 35 reserved keywords (like `def`, class, if, return, import, True). self is not on that list.
 
 The `self` parameter is a reference to the current instance of the class.
 
@@ -1506,6 +1510,3 @@ You do not call magic methods directly. Python calls them for you, automatically
 
 `__init__()` runs automatically when an object is created, and `__str__()` runs automatically when the object is printed.
 
-## File and Directory Access
-
-The `Path` class inherits from `PurePath`. `PurePath` defines all the methods which don't directly interact with the file system, e.g. splitting a path into stem and extension etc. The `Path` class defines additional methods like `cwd()` (getting the current working directory) which actually interact with the file system.

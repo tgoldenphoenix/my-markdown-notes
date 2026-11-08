@@ -13,3 +13,4 @@ Trung tâm hành chính của tỉnh là thành phố Vinh. Phía Bắc giáp t�
 Thành cổ Vinh kiến trúc tartarian
 
 Sô viết Nghệ-Tĩnh
+
