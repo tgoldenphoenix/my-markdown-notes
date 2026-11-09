@@ -433,8 +433,8 @@ Python requires all the items in a set to be unique because under the hood, sets
 ## List & Tuple
 
 - Similarity:
-  - **ordered items**; objects are accessible through indexing
-  - **Allow duplicate** values
+  - Ordered items; objects are accessible through indexing
+  - Allow duplicate values
 - `Tuple`: is **immutable**; cannot change, add or remove items after the tuple has been created; cannot reassign item
   - Tuples are written with square brackets `()`
 - `List`: is **mutable**; we can append new items to the end of a list, insert items into the middle, change the items, and remove items.
@@ -450,6 +450,20 @@ Trong Python, có một syntax gọi là `Tuple Unpacking` gần giống như ob
 ---
 
 tuples’ immutability doesn’t prevent you from changing their items’ data. If a tuple contains lists, such as `numbers = ([1, 2], [1, 2])`, it’s valid to change the inner lists, such as adding an item to the first list (`numbers[0] .append(3)`). This operation is valid because although we change the content of the inner object, the reference to the object stays the same.
+
+---
+
+In Python, `==` performs value comparison (element-by-element equality and length check), not reference comparison!
+
+```python
+["a", "b"] == ["a", "b"]  # True (same contents and order)
+["a", "b"] == ["b", "a"]  # False (different order)
+
+a = ["a", "b"]
+b = ["a", "b"]
+a == b  # True
+a is b  # False (different list objects in memory)
+```
 
 ### Sorting
 
@@ -535,7 +549,7 @@ assert fruits[1:] == ["orange", "banana", "strawberry"]
 
 ### Unpack a Sequence, Tuple Unpacking
 
-Unpacking short sequences with one-to-one correspondence
+Unpacking short sequences with one-to-one correspondence.
 
 When we work with tuples that contain a few items and need to use all items, we use one-to-one unpacking, in which each item is assigned to a matching variable:
 
@@ -606,7 +620,18 @@ a, (b, c), d = list
 print(a, b, c, d) # 1 2 3 4
 ```
 
-## Loops, Iterables and iterations
+## Loops
+
+`for` loop basic syntax
+
+```python
+# Iterating over a list
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+```
+
+## Iterables and Iterations
 
 Iterables: string, list, set, dict, tuple, all sequence data types.
 
@@ -665,7 +690,7 @@ The zip function joins two or more iterables, with each iterable contributing on
 
 You may know that zipping is a file-compression concept. In Python, the `zipfile` module provides the related functionalities of zipping and unzipping files
 
-### List, dictionary, and Set Comprehensions
+### List, Dictionary, and Set Comprehensions
 
 `list comprehension` is a concise way of creating list objects.
 
@@ -716,6 +741,23 @@ for task in tasks:
 title_dict1 = {task.title: task.description for task in tasks}
 
 assert title_dict0 == title_dict1
+```
+
+### The enumerate() function
+
+The built-in `enumerate()` function adds a counter to an iterable and returns it as an enumerate object, which can be used directly in loops. 
+
+```python
+>>> list(enumerate(["a", "b", "c", "d"]))
+[(0, 'a'), (1, 'b'), (2, 'c'), (3, 'd')]
+
+>>> letters = ["a", "b", "c"]
+>>> for index, letter in enumerate(letters):
+...     print(index, letter)
+...
+0 a
+1 b
+2 c
 ```
 
 ## Functions
