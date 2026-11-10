@@ -1103,12 +1103,14 @@ Có các trường hợp merge như sau:
 
 ### Conflict
 
+Merge conflicts happen when competing changes are made to the same line of a file, or when one person edits a file and another person deletes the same file.
+
 Nếu có merge conflict thì git không tạo `merge commit` mà pause để user resolve the conflict. If you want to see which files are unmerged at any point after a merge conflict, you can run `git status`. Git auto add **conflict-resolution markers** to the files that have conflicts, so you can open them manually and resolve those conflicts.
 
 Phân biệt git diff marker & git conflict markers.
 
 Keep whatever you want, remove markers & save. You can manually remove the markers `<<<<<` & `=====` or some editor provide buttons that you can just click.  
-Sau khi resolve merge conflict manually in your editor, run `git add` on each file to mark it as resolved. Staging the file marks it as resolved in Git. Run `git status` again to verify that all conflicts have been resolved. Sau đó `git commit -m "resolve merge conflict"`.
+Sau khi resolve merge conflict manually in your editor, run `git add` on each file (or `git add .`) to mark it as resolved. Staging the file marks it as resolved in Git. Run `git status` again to verify that all conflicts have been resolved. Sau đó `git commit -m "resolve merge conflict"`.
 
 Merge 2 branches làm 1 và fastforward đều dùng chung 1 command: Check out the branch you wish to **merge into** (usually `main/master`) and then run the `git merge [branch-name]` command. Think "I'm bringing somthing into me so I want to stand on the final destination".  
 Khi fast-forward merge cái branch mình cần merge sẽ đi trước `main` nhưng mình vẫn sẽ checkout về `main`.  
@@ -1118,17 +1120,28 @@ Ví dụ merge hotfix into main: `git merge hotfix-branch` when standing on `mai
 
 `git mergetool` fires up an appropriate visual merge tool and walks you through the conflicts
 
-How to read conflict marker:
+---
 
-```html
-<<<<<<< HEAD:about.html
-<li>Javascript</li>
+when rebasing
+
+```txt
+<<<<<<< HEAD
+This is the code from the upstream branch you are rebasing onto (e.g., main).
 =======
-<li>EMCAScript</li>
->>>>>>> about2:about.html
+This is YOUR code from the commit you are trying to replay (e.g., your feature branch commit).
+>>>>>>> <commit-hash-or-branch-name>
 ```
 
-Any code that is preceded by “<<<<<<<” is the code in your current branch, and any code suffixed with “>>>>>>>” is from the other branch.
+During `git merge main`:
+
+- You stay on `feature`. So `HEAD` = your feature branch.
+- Incoming = `main`.
+
+During `git rebase main`:
+
+- Git checks out `main` first (making `main` the temporary `HEAD`).
+- Git then tries to take each of your feature branch commits and apply them one by one like patches on top of `main`.
+- Because `main` is checked out at the start of the replay, `HEAD` refers to the upstream target, and your feature branch commit is the incoming patch.
 
 ### Merge --squash
 

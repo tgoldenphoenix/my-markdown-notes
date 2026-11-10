@@ -1008,7 +1008,9 @@ anonymous functions = lambda function/expression. This name is derived from the 
 
 Phải dùng `lambda` keyword thay vì `def` như named functions.
 
-`lambda args: expression`
+```python
+lambda args: expression
+```
 
 Don’t forget that you need to append a colon to the arguments. When the lambda function contains no arguments, the colon is still required before you specify the expression.
 

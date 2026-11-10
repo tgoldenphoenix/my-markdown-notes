@@ -345,3 +345,12 @@ $ crontab -l > /opt/ag/ag_batch/backup_cron/crontab_{YYYYMMDD}.backup
 - `>`: Redirects the output to save it as a backup file.
 
 `crontab -r` => remove crontab
+
+## timedatectl
+
+`sudo timedatectl set-timezone Asia/Ho_Chi_Minh`
+
+```
+❯ date
+Tue Nov 10 08:45:38 +07 2026
+```
