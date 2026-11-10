@@ -1,6 +1,6 @@
-# European areas & Landmark
+# European Areas & Landmark
 
-[The Balkan Peninsula](https://en.wikipedia.org/wiki/Balkans) (Bán đảo Balkan) is in southeastern Europe. The region takes its name from the Balkan Mountains.\
+`The Balkan Peninsula` (Bán đảo Balkan) is in southeastern Europe. The region takes its name from the Balkan Mountains.\
 Chính là Greece.
 
 [Caucasus](https://en.wikipedia.org/wiki/Caucasus) (Kavkaz) It is situated between the Black Sea and the Caspian Sea, mainly comprising Armenia, Azerbaijan, Georgia, and parts of Southern Russia.
@@ -24,4 +24,8 @@ The Iberian Peninsula: Spain and Portugal.
 ## Central Europe
 
 Central Europe is a geographical region of Europe between Eastern, Southern, Western and Northern Europe. Central Europe is known for its cultural diversity; however, countries in this region also share historical and cultural similarities.
+
+## The Baltic Sea
+
+kkk
 
