@@ -485,7 +485,7 @@ LOG_DIR = /opt/ag/logs/
 
 - batch_root (`/opt/ag/ag_batch/`) contain:
   - Config files: `config.properties`, `alert_import_daily_unique_advertiser_list_mail_to.txt`
-  - `.lock` files của các batch
+  - `.lock` files (lock files) của các batch
   - Khi chạy script `deploy.sh` sẽ copy file `.jar` vào đây
 
 ---
@@ -830,6 +830,27 @@ Chell script này chạy trong `git bash` KHÔNG được vì `sh` is aliased to
 
 `UpdateMasterQueueStatus`
 
+test batch này
+
+```bash
+cd /opt/ag/ag_batch/
+touch BatchGetMasterTiktok.lock
+cd /opt/ag/ag_batch/process_watcher/
+cat batch_info # check file này có nội dung hay ko?
+sh checkProcessState.sh
+```
+
+---
+
+Looks up each batch name in `batch_info` (which defines `[batch_name] [limit_hour] [dsp_type]`). If the batch isn't listed in `batch_info`, it skips it.
+
+Case 1: Orphaned Lock File (0 running processes) (Lines 39–55):
+
+If a `.lock` file exists, but no matching Java process is running (e.g., the process crashed or was killed without cleaning up its lock):
+
+- For `AdvertiserList` batches: Immediately deletes the `.lock` file.
+- For `Master` or `Report` batches: Runs `UpdateMasterQueueStatus` or `UpdateReportQueueStatus` to reset stuck queues from status `1` (`DOWNLOADING`) back to `0` (`NOTPROCESS`) for today's queues (and marks older days' stuck queues as timeout error). If the DB update succeeds (`"Update Status is Success"`), it removes the `.lock` file.
+
 ### Batch Alert
 
 `BatchAlertGetReportQueueState`, `BatchAlertGetMasterQueueState` => gởi email trong file `/opt/ag/ag_batch/alert_report_queue_state_receiver.txt`
@@ -837,6 +858,44 @@ Chell script này chạy trong `git bash` KHÔNG được vì `sh` is aliased to
  Kiểm tra số lượng / tỉ lệ các nhóm queues ở trạng thái bất thường, xuất message tương ứng.
 
 - Với nhóm queues `Unfinished (non-error)`, nếu tồn tại (số lượng > 0) thì xuất message: `Delay (There are [<number_unfinished_queues>/<total_queues>] tasks that have not yet been executed)`
+
+kết quả test: Người kiểm thử nhận được mail cảnh báo tương ứng.
+
+### BatchImportAdrepoDailyUniqueAdvertiserListToETL
+
+I believe the following table exists on the ETL side. It is used to bill Mr. Ilg for ETL usage fees, and the design involves inserting account information from AdRepo on a daily basis. My understanding is that AdRepo outputs a CSV to S3, which the ETL process then ingests and inserts into this table. However, it appears that no new records have been inserted into this table since July 6th. Please investigate whether the CSV ingestion is failing or if the CSV itself is not being generated.
+
+`etl_adrepo.daily_unique_advertiser_list`
+
+test insert file trên s3 `adrepo-development/etl_fetch_data_queue/daily_unique_advertiser_list/daily_unique_advertiser_list_2026-08.csv.gz` (tháng 11 thì insert file tháng 10)
+
+chạy batch > vào database check
+
+batch insert vào data base y chang file csv
+
+---
+
+`BatchImportAdrepoDailyUniqueAdvertiserListToETL` is a monthly batch job that imports the previous month's daily unique advertiser list from S3 into the ETL database (`daily_unique_advertiser_list` table) and sends an email notification with the import status.
+
+s3 path sẽ tự động lấy tháng trước (current mont - 1)
+
+### `BatchBackupEtlRds`
+
+cho test chạy sau cùng vì sẽ reset database
+
+sau khi chạy test thì lên s3 chụp hình
+
+`BatchBackupEtlRds` is a database maintenance batch job that backs up queue tables from the ETL Adrepo RDS database to S3 and then purges records older than 30 days from those tables.
+
+It loops through 14 queue tables in the ETL_ADREPO database:
+
+get_master_queue
+
+13 DSP report queue tables: get_report_queue_bypass, get_report_queue_freak_out, get_report_queue_scale_out, get_report_queue_dbm, get_report_queue_imobile, get_report_queue_logicad, get_report_queue_twitter, get_report_queue_admatrix, get_report_queue_adcent, get_report_queue_line, get_report_queue_criteo, get_report_queue_outbrain, and get_report_queue_tiktok.
+
+Uploads the `.sql.gz` dump file to S3 at: `<S3_BACKUP_RDS><ETL_RDS_DB_NAME_ETL_ADREPO>/<yyyy-MM-dd>/<dumpFileName>`
+
+Only if the backup and S3 upload succeed for that table, it deletes rows where `created_date` is older than 30 days ago
 
 ### Other Batches
 
@@ -846,21 +905,15 @@ Class `AbstractBatchMaster` không liên quan đến việc lấy master. It con
 
 Class `AbstractBatch` contains the Logger objects and the methods to print logs.
 
-`BatchRemoveTemporaryFile` chỉ cần cho chạy start & finish
+Khi test `BatchRemoveTemporaryFile` chỉ cần cho chạy start & finish.
 
-`BatchBackupEtlRds` cho test chạy sau cùng vì sẽ reset database
-
----
-
-`BatchImportAdrepoDailyUniqueAdvertiserListToETL`
-
-I believe the following table exists on the ETL side. It is used to bill Mr. Ilg for ETL usage fees, and the design involves inserting account information from AdRepo on a daily basis. My understanding is that AdRepo outputs a CSV to S3, which the ETL process then ingests and inserts into this table. However, it appears that no new records have been inserted into this table since July 6th. Please investigate whether the CSV ingestion is failing or if the CSV itself is not being generated.
-
-`etl_adrepo.daily_unique_advertiser_list`
+khi test `BatchUpdateTokenOutbrain` chạy batch > select trong table `m\_input\_platform\_auth` sẽ thấy cái `auth_permanent_json.AccessToken` được update mới (and `updated_at `)
 
 ---
 
 `BatchIgnoreUnprocessedReportQueue`
+
+test batch này lên wiki đọc
 
 ### Batch Processing
 
