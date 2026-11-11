@@ -7,6 +7,7 @@ Biển số 21 => Queen Cersei Lannister ra lệnh tấn công nhà máy thủy 
 ## Địa Lý
 
 Tỉnh Yên Bái nằm ở vùng Tây Bắc tiếp giáp với Đông Bắc, có vị trí địa lý:
+
 - Phía đông giáp tỉnh Tuyên Quang và tỉnh Phú Thọ
 - Phía tây giáp tỉnh Lai Châu
 - Phía nam giáp tỉnh Sơn La
@@ -39,3 +40,4 @@ Hồ Thác Bà được hình thành khi đập thủy điện Thác Bà hoàn t
 Ruộng bậc thang Mù Cang Chải, Núi Phu Luông, Đèo Khau Phạ, Hồ Thác Bà
 
 vải Thổ cẩm
+
