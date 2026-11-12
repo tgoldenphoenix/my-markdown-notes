@@ -132,6 +132,14 @@ Python project metadata is defined in a `pyproject.toml` file. uv requires this 
 
 It is not recommended to modify the project environment manually, e.g., with `uv pip install`. For project dependencies, use `uv add` to add a package to the environment.
 
+`uv add httpx`
+
+Dependencies declared in a `requirements.txt` file can be added to the project with the `-r` option:
+
+```bash
+uv add -r requirements.txt
+```
+
 ---
 
 ```bash
@@ -320,4 +328,98 @@ Putting `main()` inside `if __name__ == "__main__":` blocks that execution durin
 
 ---
 
-In Python, a module is a single `.py` file containing reusable code, while a package is a directory that groups related modules together
+- Module: An organizational unit that has its own namespace and contains Python objects. Both single files and directories become module objects upon import.
+- Package: Simply a special type of module that has a `__path__` attribute. The presence of `__path__` tells Python's import system: "I can contain submodules or child packages inside me."
+
+```python
+import os
+import urllib
+
+print(type(os))       # <class 'module'>  (implemented as os.py)
+print(type(urllib))   # <class 'module'>  (implemented as urllib/ directory)
+
+print(hasattr(os, "__path__"))      # False -> Not a package
+print(hasattr(urllib, "__path__"))  # True  -> It is a package!
+```
+
+Python packages are expected to contain one or more Python modules, which are directories containing an `__init__.py`. By default, a single root module is expected at `src/<package_name>/__init__.py`.
+
+```txt
+pyproject.toml
+src
+└── foo
+    └── __init__.py
+```
+
+The `src/` directory is the default directory for module discovery.
+
+## wheel
+
+A Python wheel is a pre-built binary package format with a .whl file extension. It is the modern standard for distributing Python software.
+
+Under the hood, a wheel is simply a ZIP archive containing ready-to-install code, package metadata, and any pre-compiled binary extensions. When you run `pip install`, pip prefers downloading a wheel so it can extract the files directly into your environment without running a build process.
+
+A Python wheel (.whl) does not contain bytecode.
+
+- Java Archive (`.jar`) 
+  - Archive Format is `zip` file
+  - Contains Compiled `.class` JVM bytecode
+  - Compiled before packaging (javac compiles `.java` to `.class`)
+  - The JVM reads `.class` bytecode directly from inside the .jar file at runtime without extracting it.
+- Python Wheel (.whl)
+  - Archive Format is also `zip` file
+  - Contains Raw `.py` source files
+  - Compiled on the target machine during installation (`pip`/`uv` generates `.pyc` files in `__pycache__/`)
+  - Python does not normally execute `.whl` files directly. Instead, uv or pip unzips the wheel into .venv/lib/python3.x/site-packages/, and then compiles the .py files into .pyc bytecode files inside `__pycache__/` folders on disk.
+
+## Build backend
+
+ `uv init` creates a packaged project by default; `--no-package` keeps the project layout flat (a `main.py` at the top level instead of a `src/` package).
+
+## Entry Point
+
+```toml
+[project.scripts]
+pdf-converter = "pdf_converter:main"
+```
+
+`pdf_converter` refers to the Python package at `src/pdf_converter` (specifically `src/pdf_converter/__init__.py`), not the root directory.
+
+## src layout vs flat layout
+
+The “flat layout” refers to organising a project’s files in a folder or repository, such that the various configuration files and import packages are all in the top-level directory.
+
+```txt
+.
+├── README.md
+├── noxfile.py
+├── pyproject.toml
+├── setup.py
+├── awesome_package/
+│   ├── __init__.py
+│   └── module.py
+└── tools/
+    ├── generate_awesomeness.py
+    └── decrease_world_suck.py
+```
+
+The “src layout” deviates from the flat layout by moving the code that is intended to be importable (i.e. import awesome_package, also known as import packages) into a subdirectory. This subdirectory is typically named src/, hence “src layout”.
+
+```txt
+.
+├── README.md
+├── noxfile.py
+├── pyproject.toml
+├── setup.py
+├── src/
+│    └── awesome_package/
+│       ├── __init__.py
+│       └── module.py
+└── tools/
+    ├── generate_awesomeness.py
+    └── decrease_world_suck.py
+```
+
+## PVM (Python Virtual Machine).
+
+k

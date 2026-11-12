@@ -1,4 +1,4 @@
-# React & Nextjs notes
+# React & Nextjs Notes
 
 ## React vs nextjs
 
