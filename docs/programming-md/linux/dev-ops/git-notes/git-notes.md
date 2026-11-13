@@ -1105,12 +1105,24 @@ Có các trường hợp merge như sau:
 
 Merge conflicts happen when competing changes are made to the same line of a file, or when one person edits a file and another person deletes the same file.
 
-Nếu có merge conflict thì git không tạo `merge commit` mà pause để user resolve the conflict. If you want to see which files are unmerged at any point after a merge conflict, you can run `git status`. Git auto add **conflict-resolution markers** to the files that have conflicts, so you can open them manually and resolve those conflicts.
+Nếu có merge conflict thì `git` sẽ không tự tạo `merge commit` được mà phải pause để user resolve the conflict. If you want to see which files are unmerged at any point after a merge conflict, you can run `git status`. Git auto add **conflict-resolution markers** to the files that have conflicts, so you can open them manually and resolve those conflicts.
 
 Phân biệt git diff marker & git conflict markers.
 
+The `=======` line is the "center" of the conflict. All the content between the center and the `<<<<<<< HEAD` line is content that exists in the current branch main which the `HEAD` ref is pointing to. Alternatively all content between the center and `>>>>>>> new_branch_to_merge_later` is content that is present in our merging branch.
+
+```txt
+<<<<<<< HEAD
+Your current branch's code
+=======
+Incoming branch's code
+>>>>>>> feature-branch
+```
+
 Keep whatever you want, remove markers & save. You can manually remove the markers `<<<<<` & `=====` or some editor provide buttons that you can just click.  
 Sau khi resolve merge conflict manually in your editor, run `git add` on each file (or `git add .`) to mark it as resolved. Staging the file marks it as resolved in Git. Run `git status` again to verify that all conflicts have been resolved. Sau đó `git commit -m "resolve merge conflict"`.
+
+---
 
 Merge 2 branches làm 1 và fastforward đều dùng chung 1 command: Check out the branch you wish to **merge into** (usually `main/master`) and then run the `git merge [branch-name]` command. Think "I'm bringing somthing into me so I want to stand on the final destination".  
 Khi fast-forward merge cái branch mình cần merge sẽ đi trước `main` nhưng mình vẫn sẽ checkout về `main`.  

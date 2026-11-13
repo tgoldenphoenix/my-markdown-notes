@@ -146,7 +146,9 @@ CommonJS vs ESM
 
 [How to update nodejs and npm](https://nodejs.org/en/download/package-manager)
 
-## Commands
+## npm
+
+### Commands
 
 Show version `node -v`
 

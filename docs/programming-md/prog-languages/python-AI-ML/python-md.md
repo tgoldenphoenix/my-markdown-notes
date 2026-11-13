@@ -26,6 +26,10 @@ dict_obj = {"one": 1, "two": 2}
 set_obj = {1, 2, 3}
 ```
 
+---
+
+In Python, the `None` keyword represents the absence of a value or a null value. It’s an object that serves as a placeholder when you need to specify that a variable doesn’t hold any valid data or when a function doesn’t return any value.
+
 ## Dictionary & Set
 
 `Dictionaries` (written with curly brackets `{}`) are used to store data values in `key:value` pairs. A dictionary is a collection which is ordered, changeable and do NOT allow duplicates.
@@ -228,7 +232,7 @@ Note: A named tuple is a tuple object, so it’s immutable, and changing its sto
 
 One shared characteristic of `lists` and `tuples` is that the held items have a specific **order**. These two data structures are examples of the more general data type `sequence`. Python has other sequence data types, such as `strings` and `bytes`.
 
-When we retrieve a subsequence of a `list` object, we can use slicing. The simplest form of slicing is `list[start:end]`, and the items between the start and end indices (the item at the end index is excluded) are retrieved:
+When we want to retrieve a subsequence of a `list` object, we can use slicing. The simplest form of slicing is `list[start:end]`, and the items between the start and end indices (the item at the end index is excluded) are retrieved:
 
 ```python
 fruits = ["apple", "orange", "banana", "strawberry"]
@@ -236,7 +240,7 @@ assert fruits[1:3] == ["orange", "banana"]`
 ```
 
 By default, the start index is zero, so if you want to retrieve the first `n` items, the Pythonic way is by omitting the start index and using `list[:end]`.  
-By default, the end index is the length of the list, and slicing selection doesn’t include the end index, so if you want to retrieve the last n items of a list, you use `list[start:]`. As you can tell, ignoring the start or end index removes the unnecessary code and improves readability:
+By default, the end index is the length of the list, and slicing selection doesn’t include the end index, so if you want to retrieve the last `n` items of a list, you use `list[start:]`. As you can tell, ignoring the start or end index removes the unnecessary code and improves readability:
 
 ```python
 assert fruits[:3] == ["apple", "orange", "banana"]
