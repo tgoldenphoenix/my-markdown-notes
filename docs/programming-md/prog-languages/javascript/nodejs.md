@@ -138,7 +138,7 @@ In a similar way to auto attach, the JavaScript Debug Terminal will automaticall
 
 Launch configs are the traditional way to set up debugging in VS Code, and provide you the most configuration options for running complex applications.
 
-Debugging configurations are stored in a `launch.json` file located in your workspace's `.vscode` folder.
+Debugging configurations are stored in a `launch.json` file located in your workspace's `.vscode` folder.
 
 ## FAQs
 
@@ -147,6 +147,8 @@ CommonJS vs ESM
 [How to update nodejs and npm](https://nodejs.org/en/download/package-manager)
 
 ## npm
+
+Distinguish `npm`: Node Package Manager vs. `nvm`: Node Version Manager
 
 ### Commands
 
@@ -162,19 +164,7 @@ nvm sẽ cài node vào `C:\Users\anhao\AppData\Local\nvm\v22.21.0`
 
 vào `C:\Users\anhao` tạo `.bashrc` thêm path của node để xài node trong git bash (thay vì power shell cmd).
 
-## Terminologies
-
-npm: Node Package Manager || nvm: Node Version Manager [Distinguish npm vs nvm](https://stackoverflow.com/questions/32660993/difference-between-npm-and-nvm)
-
 ## References
 
 [What the Heck Does “npm” Mean?](https://css-tricks.com/a-clear-definition-of-npm-and-what-it-does/) by CSS Tricks
 
-```bash
-```bash
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-```
-
-dd

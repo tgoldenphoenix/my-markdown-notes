@@ -446,7 +446,7 @@ assert title_dict0 == title_dict1
 
 ### The enumerate() function
 
-The built-in `enumerate()` function adds a counter to an iterable and returns it as an enumerate object, which can be used directly in loops. 
+The built-in `enumerate()` function adds a counter to an iterable and returns it as an enumerate object, which can be used directly in loops.
 
 ```python
 >>> list(enumerate(["a", "b", "c", "d"]))
@@ -594,9 +594,7 @@ def generate_stats(measures: list[float] | tuple[float, ...])
    return measure_mean, measure_std
 ```
 
-### Increase function flexibility with `*args` and `**kwargs`
-
-Knowing `positional` and `keyword arguments`.
+### Positional & keyword arguments
 
 You may have noticed that when we call functions, in the parentheses, we sometimes use the arguments directly, and at other times, we use identifiers preceding the specified arguments. We have different terms for these two types of arguments.
 
@@ -631,7 +629,7 @@ For a typical function like `multiply_numbers`, we can set the parameters as eit
 
 ### Positional-only and keyword-only arguments
 
-There are two more advanced ways to specify how the arguments should be set: `positional-only arguments` can be set only positionally, and `keyword-only arguments` can be set only with identifiers. If you recall, the sort method has the following head: `sort(*, key=None, reverse=False)`. The `*` specifies that all the arguments behind it should be set only as keyword-only arguments.
+There are two more advanced ways to specify how the arguments should be set: `positional-only arguments` can be set only positionally, and `keyword-only arguments` can be set only with identifiers. If you recall, the `sort` method has the following head: `sort(*, key=None, reverse=False)`. The `*` specifies that all the arguments behind it should be set only as keyword-only arguments.
 
 By reinforcing keyword-only arguments, you’re forcing readers to use keyword arguments, so they know exactly what parameters they’re setting. You can use this feature if you want some arguments to be set only as keyword arguments.
 
@@ -639,7 +637,7 @@ By reinforcing keyword-only arguments, you’re forcing readers to use keyword a
 
 For positional-only arguments, look at the sum function: `sum(iterable, /, start=0)`. The `/` specifies that the arguments **before** it should be set only as positional arguments. This feature can be useful, but in your code, you rarely need to set arguments that can be used only as positional arguments.
 
----
+### Increase function flexibility with `*args` and `**kwargs`
 
 How to define a function that accepts a variable number of positional arguments.
 
@@ -701,7 +699,7 @@ def example(arg0, arg1, *args, kwarg0, kwarg1, **kwargs):
 
 ---
 
-Although using `*args` and `**kwargs` helps improve the flexibility of the defined functions, it’s less explicit to the function’s users regarding the applicable parameters. Thus, we shouldn’t abuse this feature. Only when you can’t know how many positional or keyword arguments you expect the function to accept should you consider using *args and **kwargs. In general, it’s preferred to use explicitly named positional and keyword arguments in a function definition, because these argument names clearly indicate what the parameters are presumed to be doing.
+Although using `*args` and `**kwargs` helps improve the flexibility of the defined functions, it’s less explicit to the function’s users regarding the applicable parameters. Thus, we shouldn’t abuse this feature. Only when you can’t know how many positional or keyword arguments you expect the function to accept should you consider using `*args` and **kwargs. In general, it’s preferred to use explicitly named positional and keyword arguments in a function definition, because these argument names clearly indicate what the parameters are presumed to be doing.
 
 ### Lambda Functions
 
@@ -1254,4 +1252,3 @@ Magic methods are special methods whose names start and end with double undersco
 You do not call magic methods directly. Python calls them for you, automatically, in certain situations - like when an object is created, printed, or compared to another object.
 
 `__init__()` runs automatically when an object is created, and `__str__()` runs automatically when the object is printed.
-

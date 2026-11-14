@@ -188,6 +188,7 @@ Triple-unit characters
 - 介 (人 // 中 // 中) - introduce
   - 界 (田人 // 中 // 中) - world
   - 養 (廿人 // 戈日女)
+  - 价 (人 // 人 // 中中)
 - 亦 (卜中弓金)
 - 弗 (中中弓)
   - 佛 (人 // 中中弓)
@@ -205,6 +206,7 @@ Triple-unit characters
   - 就 (卜火 // 戈大山)
   - 扰 (手 // 戈大山)
   - 弋 (戈心) - arrow
+  - 忧 (心 // 戈大山)
 - 无 (一大山) - nothing
 - 旡 (一女大山) - Waitress
   - 既 (日戈 // 一女山)
@@ -221,6 +223,7 @@ Triple-unit characters
 
 - 分 (金 // 尸竹) - divide, parts
   - 份 (人 // 金尸竹)
+  - 盼 (月山 // 金 // 尸竹)
 
 - 公 (金 // 戈) - public
   - 総 (女火 // 金 // 戈心)
@@ -403,6 +406,7 @@ Triple-unit characters
   - 創 (人口 // 中 // 弓) - triple unit
 - 厄 (一 // 尸山) - unlucky
   - 呃 (口 // 一 // 尸山)
+  - 顾 (一山 // 一月人)
 
 - 夗 (弓戈 // 尸山) - mailbox
   - 苑 (廿 // 弓戈 // 山) - triple unit
@@ -525,7 +529,7 @@ Triple-unit characters
   - 刀 (尸竹)
   - 別/别 (口尸 // 中 // 弓)
 - 万 (一尸)
-- 分 (金 // 尸竹) - divide
+- 分 (金 // 尸竹)
 - 別/别 (口尸 // 中 // 弓) - separate
   - 另 (口大尸)
 
@@ -634,10 +638,13 @@ Triple-unit characters
 
 - 匾 (尸竹尸月) - cardboard box
 - 匵 (尸土田金) - single unit
-- 區 (尸口口口) - ward, region
-  - 奩 (大 // 尸口口)
-  - 区 (尸大)
+- 區 (尸 // 口 // 口口) - ward, region
+  - 区 (尸 // 大)
+  - 奩 (大 // 尸 // 口口)
+  - 奁 (大 // 尸 // 大)
 - 凶 (山大) - villain, shovel
+  - 兇 (山大竹山)
+  - 脑 (月 // 卜 // 山大)
 
 - 臣 (尸中尸中) - retainer, slave
   - 臥 (尸中 // 人)
@@ -674,9 +681,9 @@ Triple-unit characters
 
 - 殿 (尸金 // 竹弓 // 水)
 
-- 尼 (尸心) - nun
-  - 怩 (心 // 尸心)
-  - 呢 (口 // 尸心)
+- 尼 (尸 // 心) - nun
+  - 怩 (心 // 尸 // 心)
+  - 呢 (口 // 尸 // 心)
 
 ## 弓, 戈, 心, 竹
 
@@ -924,6 +931,7 @@ Triple-unit characters
 - 戌 (戈竹一) - march
 - 咸 (戈竹 // 一 // 口) - hàm
   - 感 (戈口 // 心) - double unit, cảm
+  - 減 (水 // 戈竹 // 口)
 - 鹹 (卜田 // 戈竹 // 口) - triple unit
   - 鹵 (卜田戈戈) - Rock salt
 
@@ -1061,7 +1069,10 @@ Triple-unit characters
 - 勺 (心戈) - ladle
   - 的 (竹日 // 心戈)
   - 酌 (一田 // 心戈)
+- 約 (女火 // 心戈)
   - 约 (女一 // 心戈)
+  - 药 (廿 // 女一 // 戈)
+
 - 砲 (一口 // 心口山) - double unit
 - 荀 (廿心日)
 - 句 (心口) - phrase, sentence
@@ -1088,6 +1099,9 @@ Triple-unit characters
   - 铁 (人心 // 竹手人)
   - 错 (人心 // 廿 // 日)
   - 销 (人心 // 火月)
+  - 钗 (人心 // 水戈)
+- 讠 (戈弓女)
+  - 谁 (戈女 // 人土)
 
 - 想 (木山 // 心) - double unit
 
@@ -2029,6 +2043,7 @@ Triple-unit characters
 
 - 叉 (水戈)
   - 釵 (金 // 水戈)
+  - 钗 (人心 // 水戈)
 
 - 雙 (人土水)
   - 双 (難水水)
@@ -2110,7 +2125,7 @@ Triple-unit characters
   - 藝 (廿 // 土戈 // 戈) - triple unit
   - 云 (一 // 一戈)
 
-- 又 (弓大) - again, crotch
+- 又 (弓大)
 - 故 (十口 // 人大)
 
 - 文 (卜大) - literature
@@ -2405,6 +2420,8 @@ Triple-unit characters
   - 诗 (戈女 // 土木戈)
   - 记 (戈女 // 尸山)
   - 认 (戈女 // 人)
+- 钅 (人一心)
+  - 钟 (人心 // 中)
 
 - 甫 (戈十月) - dog tag
   - 補 (中 // 戈十月)
@@ -2474,6 +2491,7 @@ Triple-unit characters
 - 卖 (十弓 // 卜大) - sell
   - 续 (女一 // 十弓 // 大)
   - 读 (戈女 // 十弓 // 大)
+  - 椟 (木 // 十弓 // 大)
 - 实 (十 // 卜大)
   - 實 (十 // 田十 // 金) - triple unit
 
@@ -2865,6 +2883,8 @@ Triple-unit characters
   - 畫 (中土田一) - a drawing
 
 - 乙 (弓山) - fish hook
+- 乞 (人 // 弓)
+  - 吃 (口 // 人 // 弓)
 - 己 (尸山)
 
 - 巳 (口山)
@@ -2874,8 +2894,7 @@ Triple-unit characters
 - 色 (弓日山) - color
   - 絕 (女火 // 尸竹 // 山) - triple unit
 
-- shovel
-- 凶 (山大) - villain
+- 凶 (山大)
   - 兇 (山大竹山)
   - 脑 (月 // 卜 // 山大)
 - 区 (尸大)
@@ -2913,6 +2932,10 @@ Triple-unit characters
 - 缶 (人十山)
 
 - 微 (竹人 // 山山 // 大)
+
+- 厄 (一 // 尸山)
+  - 呃 (口 // 一 // 尸山)
+  - 顾 (一山 // 一月人)
 
 ## Rice Field 田
 
@@ -3090,6 +3113,10 @@ Triple-unit characters
   - 甜 (竹口 // 廿一)
   - 恬 (心 // 竹十口)
   - 括 (手 // 竹十口)
+
+- 占 (卜口)
+  - 店 (戈 // 卜口)
+  - 惦 (心 // 戈 // 卜口)
 
 ## Ground, soil 土
 

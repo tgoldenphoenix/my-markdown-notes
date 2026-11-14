@@ -107,16 +107,16 @@ array([[ 0,  1,  2,  3,  4],
  [0., 1., 2.]]
 ```
 
-- 2D array (matrix) => Oy đi `[0, - vô cực]`, Ox đi `[0, + vô cực]`
-- 3D array (cube, lists of matrices) => Oy đi `[0, - vô cực]`, Ox đi `[0, + vô cực]`, Oz đi `[0, + vô cực]` mũi tên hướng về phía đi vào trong màn hình
+- 2D array (matrix) => Oy đi `[0, - vô cực]` (downward), Ox đi `[0, + vô cực]` (rightward.)
+- 3D array (cube, lists of matrices) => Oy đi `[0, - vô cực]`, Ox đi `[0, + vô cực]`, Oz đi `[0, + vô cực]` (mũi tên hướng về phía đi vào trong màn hình.)
 
----
-
-Khi print 3D array thì nó print last axis (Oz) top to bottom
+Khi print 3D array thì nó print last axis (Oz) top to bottom.
 
 ### Shape Manipulation
 
-k
+`numpy.reshape()` Returns a reshaped ndarray without changing data.
+
+The syntax is: `.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)` or `.reshape(number of row, number of column, height)`
 
 ### Indexing
 
@@ -167,19 +167,13 @@ A single column in a data frame is a series. So `df['Column_name]` is a series a
 
 ## Other Methods
 
-`np.arange()` returns an `ndarray` of evenly spaced values.
+`np.arange(n)` returns an `ndarray` of evenly spaced values. It starts at 0 (included) and ending at n (not included). By default, the interval size is 1.
 
 `arange` can be called with a varying number of positional arguments:
 
 - `arange(stop)`: Values are generated within the half-open interval `[0, stop)` (in other words, the interval including start but excluding stop).
 
 Python's built-in `range()` có chức năng tương tự `np.arange()` nhưng chỉ nên dùng trong `for` loops. Còn ngoài ra thì cứ dùng `arange()`.
-
----
-
-`numpy.reshape()` Returns a reshaped ndarray without changing data.
-
-The syntax is: `.reshape(1st axis, 2nd axis, 3rd axis)` or `.reshape(Oy, Ox, Oz)` or `.reshape(number of row, number of column, height)`
 
 ---
 

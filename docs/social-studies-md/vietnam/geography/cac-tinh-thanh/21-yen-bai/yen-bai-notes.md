@@ -6,7 +6,7 @@ Biển số 21 => Queen Cersei Lannister ra lệnh tấn công nhà máy thủy 
 
 ## Địa Lý
 
-Tỉnh Yên Bái nằm ở vùng Tây Bắc tiếp giáp với Đông Bắc, có vị trí địa lý:
+Tỉnh Yên Bái nằm ở vùng Tây Bắc bộ, có vị trí địa lý:
 
 - Phía đông giáp tỉnh Tuyên Quang và tỉnh Phú Thọ
 - Phía tây giáp tỉnh Lai Châu

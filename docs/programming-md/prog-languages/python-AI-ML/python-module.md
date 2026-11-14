@@ -361,7 +361,7 @@ Under the hood, a wheel is simply a ZIP archive containing ready-to-install code
 
 A Python wheel (.whl) does not contain bytecode.
 
-- Java Archive (`.jar`) 
+- Java Archive (`.jar`)
   - Archive Format is `zip` file
   - Contains Compiled `.class` JVM bytecode
   - Compiled before packaging (javac compiles `.java` to `.class`)
@@ -420,6 +420,6 @@ The “src layout” deviates from the flat layout by moving the code that is in
     └── decrease_world_suck.py
 ```
 
-## PVM (Python Virtual Machine).
+## PVM (Python Virtual Machine)
 
 k

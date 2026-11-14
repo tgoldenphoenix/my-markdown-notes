@@ -109,7 +109,7 @@ k
 - 玉磬聲傳同禮斗；(Ngọc khánh thanh truyền đồng lễ Đẩu;)
 - 旃檀氣藹共朝參。(Chiên đàn khí ái cộng triều tham.)
 
-- 明明白白天
+- 是是非非地，明明白白天 (thị thị phi phi địa)
 
 ### Bàn thờ thần tài
 
