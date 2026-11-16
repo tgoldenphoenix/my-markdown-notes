@@ -155,25 +155,96 @@ Hide the default MacOs menu bar
 
 ## Tmux
 
+### Tmux Basics
+
 Kitty có tích hợp multi-plexer giống tmux.
 
-Commands
+tmux is a free, open-source terminal multiplexer. It lets one terminal hold many shells, and keeps them running when you disconnect.
+
+tmux has a client-server design. The first `tmux` command starts a background `server` that owns everything; your terminal is a `client` attached to it. Inside the server are `sessions`, each session has `windows` (shown like tabs in the status line), and each window is split into `panes`, each running its own program. Because the server does not depend on the client, closing the terminal or losing SSH only ends the client: you reattach and everything is still there. 
+
+---
+
+tmux listens for one key combination, the prefix (`Ctrl`+`b` by default), and treats the next key as a command. Everything else goes to the program in the pane. `<prefix> ?` lists all bindings, and pressing the prefix twice sends the prefix key itself to the program.
+
+`tmux list-commands` lists every command
+
+---
+
+A `session` is a named workspace of windows that lives in the server until you kill it. Detach from it and it keeps running; attach from any terminal or SSH login.
+
+```bash
+tmux new -s work          # start a session called "work"
+
+# list sessions
+tmux list-sessions
+tmux ls
+work: 1 windows (created Wed Oct 28 09:14:02 2026)
+
+exit
+
+tmux attach
+tmux attach -t {session-name}
+tmux a -t {session-name}
+
+tmux rename-session -t api backend
+tmux kill-session -t logs    # close one session
+tmux kill-server             # close every session
+```
+
+Inside tmux, `<prefix> d` detaches (everything keeps running)
+
+`<prefix> s` shows a session tree, `<prefix> $` renames.
+
+---
+
+Windows are the tabs of a session, listed in the status line as `0:editor*` (the `*` marks the current one). Each has its own panes.
+
+```bash
+prefix c # new window
+prefix , # rename window
+prefix & # close window
+```
+
+---
+
+Panes split one window into several terminals.
+
+```bash
+prefix % # split left/right
+```
+
+### Other Commands
 
 To enter Command mode, press `Prefix :` (the colon) from within a running tmux session.
 
-Key tables may be viewed with the `:list-keys` command.
-
-`tmux list-sessions` or `tmux ls` list sessions
-`tmux attach`, `exit`
-
-`prefix-%` vertical split
-
-`tmux new-window`
-
 `tmux kill-server`
 
+### Config
+
 `set` is the alias of `set-option`.
+
 `set -g` is used to set global options and `-ga` appends values to existing settings.
+
+---
+
+```txt
+# change the prefix (default is Ctrl-b)
+unbind C-b
+set -g prefix C-Space
+bind C-Space send-prefix
+```
+
+`bind C-Space send-prefix` allows you to pass an actual `Ctrl+Space` keypress through to the program running _inside_ tmux (e.g., Neovim, bash, or a nested tmux session) by pressing `Ctrl+Space` twice (`Ctrl+Space` then `Ctrl+Space`).
+
+So `bind C-Space ...` actually means: when I press `Prefix` + `Ctrl+Space` (which is `Ctrl+Space` twice in a row) => `send-prefix` tells tmux: "Send the `Ctrl+Space` keystroke directly to the app inside the terminal instead of using it for tmux."
+
+In short:
+
+- Press `Ctrl+Space` once → talks to tmux
+- Press `Ctrl+Space` twice → sends `Ctrl+Space` to Neovim / bash / whatever app you're running
+
+All `bind` commands in tmux automatically require the prefix key first. There is no functional difference between `bind` and `bind-key` in tmux. `bind` is simply a built-in alias for `bind-key`, and both commands accept the exact same flags, keys, and arguments.
 
 ## Keyboard Manager
 

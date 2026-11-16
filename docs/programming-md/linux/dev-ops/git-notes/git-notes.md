@@ -329,7 +329,8 @@ prompt> git log --pretty=format:"%h %s" 1.0..HEAD
 
 ### reflog
 
-One of the things Git does in the background while you’re working away is keep a reference log (reflog) — a log of where your HEAD and branch references have been for the last few months.  
+One of the things Git does in the background while you’re working away is keep a reference log (reflog) — a log of where your `HEAD` and branch references have been for the last few months.
+
 Every time your branch tip is updated for any reason (`checkout, reset, merge`), Git stores that information for you in this temporary history. You can use your reflog data to refer to older commits as well.
 
 What happens when you accidentally delete a branch using `git branch -D` or a `git rebase -i` goes wrong?1 This is where Git’s reflog comes in.
