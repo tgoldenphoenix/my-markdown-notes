@@ -266,6 +266,22 @@ git log origin/release..origin/master --oneline
 
 This command displays a list of commits that exist on the remote master branch (origin/master) but are missing from the remote release branch (origin/release).
 
+---
+
+```bash
+# Commits present on `feature` that are missing from `main`.
+git log main..feature --oneline
+
+# Commits on `main` that your `feature` branch does not have yet (updates you are behind on).
+git log feature..main --oneline
+```
+
+Commits unique to either branch (`<` marks commits only in `main`, `>` marks commits only in `feature`).
+
+```bash
+git log main...feature --oneline --left-right
+```
+
 ### Ancestry References
 
 If you place a `^` (caret) **at the end** of a reference, Git resolves it to mean the parent of that commit. Example: `HEAD^`.
