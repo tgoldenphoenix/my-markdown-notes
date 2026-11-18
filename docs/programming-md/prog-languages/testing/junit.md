@@ -33,7 +33,11 @@ JUnit 5 (JUnit Jupiter) does **not** use the concept of a "Runner" class like JU
 
 The JUnit class `Parameterized` is one of JUnit’s many test runners. A test runner allows you to tell JUnit how a test should be run.
 
-JUnit creates a new instance of the test class before invoking each `@Test` method. You cannot reuse instance variable values across test methods.
+---
+
+JUnit creates a brand-new instance of the test class before invoking each `@Test` method. You cannot reuse instance variable values across test methods.
+
+Creating a fresh instance per test method ensures that instance variables modified in `testA()` never leak into `testB()`. Your tests can run in any order (or in parallel) without interfering with each other.
 
 ## JUnit Architecture
 
@@ -70,9 +74,11 @@ JUnit 5 breaks the single JUnit 4 jar file into several smaller files.
 
 `@CsvSource({ “1, One”, “2, Two” })`: Supplies multiple test cases in CSV format.
 
-## Annotations
+## `@Before` Annotations
 
-`@BeforeEach` Denotes that the annotated method should be executed before each `@Test`
+`@BeforeEach` (`@Before`) denotes that the annotated method should be executed before each `@Test` method.
+
+`@Before` belongs to JUnit 4, whereas `@BeforeEach` and `@BeforeAll` belong to JUnit 5 (Jupiter).
 
 Setup object thì dùng `private`, thêm `final` nếu cần.
 

@@ -928,7 +928,7 @@ When a batch processor job begins, its batch processor instance is locked until 
 - lock file được tạo dựa trên name của batch nên mỗi thời điểm chỉ có duy nhất một batch tên `BatchGetMasterTiktok` chạy được thôi.
 - nếu lock file exit thì batch không chạy, batch chạy xong thì delete lock file
 
-### Entity
+### Entity & DAO
 
 `AbstractEntity` contains fields: `deleted`, `createdBy`, `createdAt`, `updateBy`
 
@@ -936,9 +936,13 @@ Inside entity classes, we can have ENUM classes.
 
 `GetMasterQueue` contain no fields, only ENUM and methods. The fields is inside `AbstractGetMasterQueue`
 
-### Convert JSON to CSV
+---
 
-k
+`AbstractGetReportQueueDao`
+
+`AbstractGetReportQueueDaoTest` only tests pure string-building helper methods (`genSql...`, `build...Sql`) that don't touch a database.
+
+`AbstractGetReportQueueDao` is `abstract` (and `AbstractGetReportQueue` is also `abstract` and cannot be instantiated by `convertRsToReportQueueList`). `AbstractGetReportQueueDaoContainerTest` already sets up a concrete `TestGetReportQueueDao` (`dao`) and a concrete `TestGetReportQueue` entity class wired up to the MySQL test container for you—all you have to override are `getTableName()` and `getTableFixtures()`
 
 ## ETL Web API
 
