@@ -212,8 +212,8 @@ Loại tất cả đáp án có số tuổi: 17, 23, 22
 
 - Trong khu đông dân cư:
 - Xe **gắn máy & xe máy chuyên dùng** always `40 km/h` max (tất cả mọi con đường).
-- Tất cả các loại xe còn lại:
-  - Đường đôi (có con lươn, đường một chiều): `60 km/h`
+- Tất cả các loại xe còn lại (kể cả xe airblade mô tô):
+  - Đường đôi (có con lương bê tông cứng ở giữa, đường một chiều): `60 km/h`
   - Đường 2 chiều (chỉ có vạch sơn): `50 km/h`
 - Câu hỏi "trên đường bộ (trừ đường cao tốc), ..., tốc độ khai thác tối đa 50" => chọn xe **chở hàng** bốn bánh có gắn động cơ (không chọn xe chở người bốn bánh)
   - Hỏi tốc độ khai thác 60 hoặc 50 km/h thì không chọn xe gắn máy, xe máy chuyên dùng (chỉ chạy được 40)
@@ -230,6 +230,8 @@ Ngoài khu vực dân cư:
 | Đ. Hai chiều (một chiều có một làn xe cơ giới) | 80     | 70      | 60   | 50  |
 
 Đường đôi = đường một chiều
+
+xe hơi mình chạy là "đến 28" (chạy 90, 80).
 
 Chọn "ô tô kéo rơ moóc" ở đầu câu. Có một ý giống là "xe buýt; ô tô đầu kéo kéo sơ mi rơ moóc" => không được chọn ý này là sai
 
@@ -598,3 +600,4 @@ Không brake quá mức xe dừng hẳn sẽ mất điểm
 Chopsticks (đôi đũa) canh middle of vô lăng ngay vạch màu trắng
 
 Tăng tốc 20 km/h press the clutch pedal BEFORE going through the line. Khi nghe tiếng kêu "ping" thì chuyển số liền
+
