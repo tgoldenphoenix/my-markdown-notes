@@ -19,9 +19,16 @@ working area = working directory. You can `add` changes to the `staging area` th
 
 ## Git Config
 
-Show git config: `git config --list`  
-You can view all of your settings and where they are coming from using:: `git config --list --show-origin`  
-The global gitconfig file on Macbook is at: `/opt/homebrew/etc/gitconfig`
+Show git config: `git config --list`.
+
+To check a specific config value like `fetch.prune`, run `git config fetch.prune`.
+
+Without any scope flag (`--global`, `--system`, `--local`), `git config --list` merges all configuration scopes it can find based on your current working directory:
+
+- Inside a Git repository: Lists **System + Global + Local** (`.git/config`) + Worktree configs combined. If a key is defined in both global and local, both lines appear (with the later/local line overriding the earlier one).
+- Outside a Git repository: Lists only **System + Global** (`~/.gitconfig` or `~/.config/git/config`), silently skipping local repository config since there is no `.git/config`.
+
+You can view all of your settings and where they are coming from using:: `git config --list --show-origin`. The global gitconfig file on Macbook is at: `/opt/homebrew/etc/gitconfig`.
 
 - Mới tải Git về thì run these commands:
   - `git config --global user.name "tgoldenphoenix"`
@@ -369,7 +376,23 @@ f34388b HEAD@{6}: commit: expand on color support
 The syntax to access a git ref is `name@{qualifier}`. In addition to HEAD refs, other branches, tags, remotes, and the Git stash can be referenced as well.
 
 `git gc`, which we talked about in Section 9.1, Compacting Repository History, on page 123, will cause some older reflog entries to expire. For example, the commits we just restored are normally deleted after thirty days. This can be changed by changing the gc.reflogExpireUnreachable config setting. Likewise, normal reflog entries are expired after ninety days, unless you change gc.reflogExpire to something else. That is to keep the reflog from getting too large.
+
 You’ll rarely need to use the reflog, but when you do, it can be a life-saver. Rewriting history can be dangerous, and git reflog is a safety net to help keep you safe from yourself.
+
+---
+
+Git maintains a completely separate reflog file for `HEAD` and for **every individual branch** (including remote-tracking branches).
+
+Every reflog is just a plain text log file stored inside `.git/logs/`:
+
+- `HEAD`; file location `.git/logs/HEAD`;
+- Local branch `foo`; `.git/logs/refs/heads/foo`; it records Every time the tip of branch `foo` moves (even if you weren't checked out on `foo` when it changed, such as `git branch -f`, `git fetch`, or `git branch -m`)
+
+Standing on `A` while modifying `B`: If you force-update, reset, or rename branch `B` while checked out on branch `A`, `.git/logs/HEAD` does not change—only `.git/logs/refs/heads/B` records the movement.
+
+Branch deletion: When you delete a branch (`git branch -D foo`), Git deletes `.git/logs/refs/heads/foo` along with the branch ref, leaving only whatever movements happened while you were checked out on `foo` inside `.git/logs/HEAD`.
+
+In Lazygit: Panel `[4]-Commits - Reflog` displays `.git/logs/HEAD` by default, which is why operations performed on other branches without checking them out won't appear there.
 
 ### git show
 
@@ -1010,9 +1033,6 @@ This command lists all branches, filters out the main branch, and deletes the re
 To delete local branches that have already been merged into the current branch (commonly the main branch): `git branch --merged | grep -v "\*" | xargs git branch -d`  
 This command skips any branches that contain unmerged changes.
 
-Before cleaning remote branches, synchronize your branch list with: `git fetch --prune`  
-This updates your local copy of the remote branch list and removes any references to branches that have been deleted remotely.
-
 Delete local remote-tracking branches: `git remote prune origin`  
 This will remove all references to the remote branch that you may have locally. These references are called "remote tracking branches".
 
@@ -1063,9 +1083,11 @@ git pull \<remote> \<branch>
 git push -u origin HEAD
 ```
 
-### Prune
+### Prune & Local Housekeeping
 
 `git prune` is a low-level Git command for performing garbage collection by deleting "unreachable" or "orphaned" objects (commits, blobs, etc.) from the local repository's object database. These are objects that are no longer referenced by any branch, tag, or other reference, helping to free up disk space and improve performance
+
+You rarely need to run `git prune` manually because `git gc` (garbage collection) calls it automatically.
 
 ```bash
 $ git log --oneline
@@ -1106,6 +1128,13 @@ c18e493 VN_PRO-780 [Kankopi Button] Refactor method handleClick() cho nút Copy
 906945a Merge pull request #14 VN_PRO-770 into main
 4302b66 Dịch Readme sang tiếng Nhật
 ```
+
+---
+
+Before cleaning remote branches, synchronize your branch list with: `git fetch --prune` (or `git fetch -p`)  
+This updates your local copy of the remote branch list and removes any references to branches that have been deleted remotely.
+
+Make Git prune automatically on every future fetch so this never piles up again: `git config --global fetch.prune true`.
 
 ## Merge
 

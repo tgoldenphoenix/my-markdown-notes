@@ -39,6 +39,13 @@ JUnit creates a brand-new instance of the test class before invoking each `@Test
 
 Creating a fresh instance per test method ensures that instance variables modified in `testA()` never leak into `testB()`. Your tests can run in any order (or in parallel) without interfering with each other.
 
+---
+
+When JUnit invokes a `@Test` method via reflection, it wraps the call in a `try/catch (Throwable e)`.
+
+- If the `@Test` method throws any unexpected exception (like `SQLException`), JUnit catches it, marks the test as **ERROR** (failed), and prints the full stack trace in the test report.
+- That is why in JUnit tests, it is standard practice to put `throws SQLException` (or `throws Exception`) on `@Test` methods instead of writing `try { ... } catch (SQLException e) { fail(); }` yourself.
+
 ## JUnit Architecture
 
 JUnit 5 was designed to work with old JUnit 4 code in existing legacy projects through JUnit Vintage.

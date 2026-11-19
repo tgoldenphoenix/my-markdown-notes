@@ -268,6 +268,14 @@ arr = new int[5];
 - The `ArrayList` itself holds an array of references (or pointers) to the objects it contains. This array of references is stored in a single, contiguous block of memory. This contiguity is what allows for efficient random access by index.
 - In comparision to `LinkedList<>` không có contiguous block.
 
+---
+
+Static `Collections.emptyList()` returns an empty list (immutable). This list is serializable.
+
+Create a list: `Arrays.asList(1000L, 1001L, 1002L, 1003L, 9999L)`
+
+`return Collections.singletonList(csvFixture(TABLE, CSV_RESOURCE));`
+
 ### Map & Set
 
 - `Map` (ánh xạ) là một loại collection dạng key-value  

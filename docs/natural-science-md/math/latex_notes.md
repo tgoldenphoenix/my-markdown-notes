@@ -47,6 +47,18 @@ AMS Math packages; AMS stands for "American Mathematical Society"
 
 [how to](https://tex.stackexchange.com/questions/10868/accessing-mac-mactex-install-folder) Find out path of a package on your computer
 
+## include
+
+The `\include` command does three things: it executes `\clearpage`, then it inputs the material from `filename.tex` into the document, and then it does another `\clearpage`. This command can only appear in the document body.
+
+The `\includeonly` command controls which files will be read by LaTeX under subsequent `\include` commands. Its list of filenames is comma-separated. It must appear in the preamble or even earlier, e.g., the command line; it can’t appear in the document body.
+
+The `\includeonly` command lets you compile specific chapters or sections of a large document while preserving page numbers, section counters, and cross-references from the rest of the project. It works by reading saved auxiliary (`.aux`) files for the omitted sections so you do not have to recompile the entire document every time you make an edit.
+
+You must compile the entire document at least once with `\includeonly` commented out so LaTeX can generate the initial `.aux` files for every chapter.
+
+The `\includeonly` command only controls files loaded via `\include{filename}` and has no effect on files loaded with `\input{filename}`.
+
 ## Structure Hierarchy
 
 Một book chia ra nhiều `chapter`. Mỗi `chapter` có nhiều `section`.
