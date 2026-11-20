@@ -39,10 +39,27 @@ When you run the command `uv run pdf-converter Ses3.1sum.pdf`, `Path.resolve()` 
 
 ## argparse
 
-`ArgumentParser.parse_args(args)`
+The `argparse` module makes it easy to write user-friendly command-line interfaces. The program defines what arguments it requires, and `argparse` will figure out how to parse those out of `sys.argv`.
+
+The `argparse` module’s support for command-line interfaces is built around an instance of `argparse.ArgumentParser`. It is a container for argument specifications and has options that apply to the parser as whole:
+
+```python
+parser = argparse.ArgumentParser(
+          prog='ProgramName',
+          description='What the program does',
+          epilog='Text at the bottom of help'
+)
+```
+
+---
+
+The `ArgumentParser.parse_args(args=None)` method runs the parser and places the extracted data in a `argparse.Namespace` object.
 
 when `args` is `None`, it automatically reads `sys.argv[1:]` (everything after the script/command name, i.e., `["Ses3.1sum.pdf"]`).
 
 ## sys
 
+`argv` (short for **argument vector**) is an optional list of command-line arguments passed into `main()`, typed as `list[str] | None = None`.
+
 `argv[0]` is the script name (it is operating system dependent whether this is a full pathname or not).
+

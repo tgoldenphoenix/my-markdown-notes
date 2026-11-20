@@ -639,9 +639,11 @@ Triple-unit characters
 - 匾 (尸竹尸月) - cardboard box
 - 匵 (尸土田金) - single unit
 - 區 (尸 // 口 // 口口) - ward, region
-  - 区 (尸 // 大)
   - 奩 (大 // 尸 // 口口)
+- 区 (尸 // 大)
   - 奁 (大 // 尸 // 大)
+  - 枢 (木 // 尸大)
+
 - 凶 (山大) - villain, shovel
   - 兇 (山大竹山)
   - 脑 (月 // 卜 // 山大)
@@ -772,6 +774,7 @@ Triple-unit characters
   - 衝 (竹人 // 竹土 // 弓)
   - 蘅 (廿 // 竹人 // 弓) - triple unit
   - 得 (竹人 // 日 // 一戈) - triple unit
+  - 衢 (竹人 // 月土 // 弓)
 
 - 可 (一弓 // 口) - cannn
   - 啊 (口 // 弓中 // 口) - triple unit
@@ -902,11 +905,14 @@ Triple-unit characters
 - 尃 (戈月 // 木戈) - acupuncture
   - 博 (十 // 戈月 // 戈)
 
+- 介 (人 // 中 // 中)
 - 㐬 (卜戈 // 竹 // 中山) - infant Moses
   - 流 (水 // 卜戈 // 山)
 - 充 (卜戈竹山) - allot
   - 統 (女火 // 卜戈 // 山)
   - 统 (女一 // 卜戈 // 山)
+
+- 育 (卜戈 // 月)
 
 - 台 (戈口) - pedestal
   - 治 (水 // 戈口)
@@ -2476,7 +2482,7 @@ Triple-unit characters
 
 - 外 (弓戈 // 卜)
 
-- 雨 (一中月卜) - 卜 is two dấu phết, rain
+- 雨 (一中月卜) - 卜 is two dots, hai dấu phết, rain
   - 巾 (中月)
 - 冰 (戈一 // 水) vs. 科 (竹木 // 卜十)
 - 图 (田 // 竹水卜) - map
@@ -2484,6 +2490,7 @@ Triple-unit characters
 - 斗 (卜十) - big dipper
   - 料 (火木 // 卜十)
   - 斜 (人木 // 卜十)
+  - 科 (竹木 // 卜十)
 - 於 (卜尸 // 人卜)
 
 - 头 (卜大) - bust
@@ -3164,6 +3171,7 @@ Triple-unit characters
 
 - 丑 (弓土) - sign of the cow
   - 忸 (心 // 弓土)
+  - 纽 (女一 // 弓土)
 
 ## Others, 難, and Exceptions
 
@@ -3350,4 +3358,3 @@ tool hán nôm của ĐH khoa học tự nhiên: <https://tools.clc.hcmus.edu.vn
 Hội Nghiên cứu và Ứng dụng Hán Nôm 會研究吧應用漢喃: <https://hannom-rcv.org/index.php?uiLang=vi>
 
  Bộ Gõ WinVNKey: <https://winvnkey.sourceforge.net/hannom/SoLuocCachNhapChuHanNom-toanbo.htm>
-

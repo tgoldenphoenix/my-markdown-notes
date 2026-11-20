@@ -18,10 +18,7 @@ Traffic bên ngoài vào firewall > router > switch > hosts inside LAN.
 
 The **IP security protocol**, more commonly known as **IPsec**, provides security at the network layer. IPsec secures IP datagrams between any two network-layer entities, including hosts and routers. Many institutions (corporations, government branches, non-profit organizations, and so on) use IPsec to create virtual private networks (VPNs) that run over the public Internet.
 
-## VPN Notes
-
-VPN: what is it? what technology?
-Pros and Cons
+## VPN
 
 access control mechanisms
 
@@ -29,13 +26,9 @@ Vẫn dùng chung internet chứ ko phải leased line riêng.
 
 VPN có thể là 1 hardware device (router) hoặc là 1 app
 
-Some [quizzed](https://www.proprofs.com/quiz-school/story.php?title=vpn-practice-test)
-
 [Virtual private network vs (actual) private network](https://www.quora.com/What-is-the-difference-between-a-VPN-and-a-private-network). VPN is a private connection over a public network (the Internet).
 
 ## VPN tunnel
-
-[VPN tunnel](https://www.forbes.com/advisor/ca/business/software/what-is-vpn-tunnel/)
 
 The VPN tunnel encrypts the user’s internet traffic and routes it to a remote VPN server. From there, the data is decrypted and delivered to its intended destination.
 
@@ -58,7 +51,7 @@ L2TP use IPSec to provide encryption
 
 IPSec is a set of protocols for security at the network layer of the OSI model. IPSec provides authentication and encryption
 
-The IPsec protocols AH and ESP can be implemented in a host-to-host transport mode, as well as in a network tunneling mode. 
+The IPsec protocols AH and ESP can be implemented in a host-to-host transport mode, as well as in a network tunneling mode.
 
 In transport mode, only the payload of the IP packet is usually encrypted or authenticated. The routing is intact, since the IP header is neither modified nor encrypted
 
@@ -67,14 +60,15 @@ In tunnel mode, the entire IP packet is encrypted and authenticated. It is then 
 ## Terms
 
 confident: tự tin | confidential: bảo mật
+
 leased lines (kênh riêng). Link của [VNPT](https://vnpt.com.vn/doanh-nghiep/san-pham-dich-vu/kenh-thue-rieng/)
 Request for Comments (RFC) [wiki](https://en.wikipedia.org/wiki/Request_for_Comments)
 
  **extra, intra, and inter words**
-Words beginning with three Latin prefixes: Extra means "outside" or "beyond", Intra mean "within" (as in happening within a single thing)
-, Inter means "between" or "among" (as in happening between two things).
-[Learn more](https://www.merriam-webster.com/grammar/intra-and-inter-usage)
+Words beginning with three Latin prefixes: Extra means "outside" or "beyond", Intra mean "within" (as in happening within a single thing), Inter means "between" or "among" (as in happening between two things).
 
-An **intranet** is a computer network for sharing information, easier communication, collaboration tools, operational systems, and other computing services within an organization, usually to the exclusion of access by outsiders. The term is used in contrast to public networks, such as the Internet, but uses the same technology based on the Internet protocol suite.
+An `intranet` is a computer network for sharing information, easier communication, collaboration tools, operational systems, and other computing services within an organization, usually to the exclusion of access by outsiders. The term is used in contrast to public networks, such as the Internet, but uses the same technology based on the Internet protocol suite.
 
 An intranet is sometimes contrasted to an **extranet**. While an intranet is generally restricted to employees of the organization, extranets may also be accessed by customers, suppliers, or other approved parties.
+
+`Ingress` means traffic or data moving into a system, network, or cloud environment, while `egress` means traffic or data moving out of it.
