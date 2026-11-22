@@ -1179,6 +1179,8 @@ The self parameter must be the first parameter of any method in the class. It do
 
 ## Inheritance
 
+In Python, a `subclass` (also called a child or derived class) is a class that inherits attributes and methods from another class, known as its superclass or parent class.
+
 ```python
 class Employee:
    def __init__(self, name, employee_id):
@@ -1196,7 +1198,7 @@ class Supervisor(Employee):
    pass
 ```
 
-When you define a subclass, you specify the superclass in parentheses following the class’s name. Here, the superclass is `Employee`, so we place it after `Supervisor`.
+When you define a `subclass` (also called a child or derived class), you specify the superclass in parentheses following the class’s name. Here, the superclass is `Employee`, so we place it after `Supervisor`.
 
 In Python, the parent class in inheritance literally is an argument passed to a function call.
 

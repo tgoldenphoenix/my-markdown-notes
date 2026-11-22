@@ -34,12 +34,6 @@ k
 
 宮行: Hành cung
 
-Chùa bà mỏ cày
-
-請神恭  (thỉnh thần cung)
-農大 (nông đại)
-位 帝 安 [vị đế an]
-
 ---
 
 堂善積 \[tích thiện đường]
@@ -124,6 +118,16 @@ ngũ phương: Đông, Tây, Nam, Bắc và Trung Tâm
 
 拓始開基四顧山河歸版籍 (Thác thủy khai cơ tứ cố sơn hà quy bản tịch)
 登高望遠群峰羅列似兒孫 (Đăng cao vọng viễn quần phong la liệt tự nhi tôn.)
+
+## Đình rắn
+
+Chùa bà mỏ cày
+
+神農大帝 (thần nông đại đế)
+
+恭請神農位安 (cung thỉnh thần nông an vị)
+
+神恩種穀 (thần
 
 ## Ha Vinh building
 

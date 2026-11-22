@@ -6,7 +6,7 @@ Coi camera giấu trong bird nest [here](https://www.youtube.com/watch?v=E9bHJM5
 
 ## Euungulata glade (móng guốc)
 
-**Ungulates** (nhánh thú móng guốc) are members of the diverse clade **Euungulata** ("true ungulates"), which primarily consists of large mammals with hooves.  
+`Ungulates` (nhánh thú móng guốc) are members of the diverse clade **Euungulata** ("true ungulates"), which primarily consists of large mammals with hooves.  
 Latin: unguis (nail)
 
 `Bovines` (subfamily Bovinae, phân họ trâu bò) comprise a diverse group of 10 genera of medium to large-sized ungulates, including cattle, bison, African buffalo, water buffalos, and the four-horned and spiral-horned antelopes.  
@@ -49,19 +49,23 @@ Gastropods (/ˈɡæstrəpɒdz/), commonly known as slugs and snails, belong to a
 
 [Haliotis](https://en.wikipedia.org/wiki/Haliotis) (họ Bào ngư hay ốc cửu khổng), common name **abalone**, is the only genus in the family **Haliotidae**.
 
-## Arthropoda Phylum (chân khớp)
+## Arthropoda
 
-[Arthropods](https://en.wikipedia.org/wiki/Arthropod) are invertebrates in the **phylum Arthropoda** (ngành chân khớp). They possess an exoskeleton with a cuticle made of chitin, often mineralised with calcium carbonate, a body with differentiated (metameric) segments, and paired jointed appendages.
+`Arthropods` are invertebrates in the phylum `Arthropoda` (ngành chân khớp). They possess an exoskeleton with a cuticle made of chitin, often mineralised with calcium carbonate, a body with differentiated (metameric) segments, and paired jointed appendages.
 
-[Invertebrates](https://en.wikipedia.org/wiki/Invertebrate) (Động vật không xương sống) is an umbrella term describing animals that neither develop nor retain a vertebral column (commonly known as a spine or backbone), which evolved from the notochord. It is a paraphyletic grouping including all animals excluding the chordate subphylum Vertebrata, i.e. vertebrates. Well-known phyla of invertebrates include arthropods, mollusks, annelids, echinoderms, flatworms, cnidarians, and sponges.
+The clade `Mandibulata` (nhóm có hàm dưới) constitutes one of the two major living subdivisions of the phylum Arthropoda,[1] alongside Chelicerata. 
 
-## Crustacean
+### Crustacean
 
-`Crustaceans` (động vật giáp xác, from Latin word "crustacea" meaning: "those with shells" or "crusted ones") are mandibulate arthropods that are traditionally a part of the paraphyletic subphylum Crustacea.
+`Crustaceans` (động vật giáp xác, from Latin word "crustacea" meaning: "those with shells" or "crusted ones") are mandibulate arthropods that are traditionally a part of the paraphyletic subphylum `Crustacea`.
 
 `Barnacles` (con hà biển) are arthropods of the subclass Cirripedia in the subphylum Crustacea. They are related to crabs and lobsters, with similar nauplius larvae. Barnacles are exclusively marine invertebrates; many species live in shallow and tidal waters. Some 2,100 species have been described.
 
 [whale barnacle](https://en.wikipedia.org/wiki/Whale_barnacle)
+
+---
+
+A `shrimp` (pl.: shrimp (US) or shrimps (UK)) is a common name typically used for crustaceans with an elongated body and a primarily swimming mode of locomotion. 
 
 ## Insecta Class
 
@@ -279,35 +283,6 @@ spiny lobsters (rock lobsters): họ Tôm hùm không càng
 
 A `decapod` is a crustacean in the large order of `Decapoda` (bộ giáp xác mười chân, from Ancient Greek δέκά déka 'ten' + πούς poús 'foot') within the class Malacostraca, including crabs, lobsters, crayfish, shrimp, and prawns.
 
-## Other Terms
-
-- nocturnal: hoạt động về đêm
-- Diurnality (adj: diurnal, hoạt động ban ngày) is a form of plant and animal behavior characterized by activity during daytime, with a period of sleeping or other inactivity at night.
-
-grub: ấu trùng; scrub
-grub trong Hollow Knight
-
-Dioecy (tính biệt chu from Ancient Greek διοικία dioikía 'two households'; adj. dioecious) is a characteristic of certain species that have distinct unisexual individuals, each producing either male or female gametes, either directly (in animals) or indirectly (in seed plants).
-
-- A **larva** (ấu trùng) is a distinct juvenile form many animals undergo before metamorphosis into their next life stage. Animals with indirect development such as insects, some arachnids, amphibians, or cnidarians typically have a larval phase of their life cycle.
-- A maggot (giòi hay dòi) is the larva of a fly (order Diptera); it is applied in particular to the larvae of Brachycera flies, such as houseflies, cheese flies, and blowflies, rather than larvae of the Nematocera, such as mosquitoes and crane flies.
-
-A **leaf miner** is any one of numerous species of insects in which the larval stage lives in, and eats, the leaf tissue of plants.
-
-vermin, bigot
-
-locust: cào cào, châu chấu
-
-[gnat](https://en.wikipedia.org/wiki/Gnat)
-
-[midge](https://en.wikipedia.org/wiki/Midge) ruồi muỗi nói chung
-
-[Hermaphrodite](https://en.wikipedia.org/wiki/Hermaphroditus) (sinh vật lưỡng tính)
-
-[Anaerobic](https://en.wikipedia.org/wiki/Anaerobic_organism) (kỵ khí) means "living, active, occurring, or existing in the absence of free oxygen", as opposed to aerobic which means "living, active, or occurring only in the presence of oxygen." Ex: anaerobic bacteria, Anaerobic digestion
-
-[Aerobic](https://en.wikipedia.org/wiki/Aerobic_organism)
-
 ## Un-classified
 
 [beetle](https://en.wikipedia.org/wiki/Beetle)
@@ -333,3 +308,34 @@ seal [the animal](https://en.wikipedia.org/wiki/Pinniped) vs [chinese seal](http
 marlin: cá cờ
 
 [Terrapins](https://en.wikipedia.org/wiki/Terrapin) are a group of several species of small turtle (order Testudines) living in fresh or brackish water. Terrapins do not form a taxonomic unit and may not be closely related. Many belong to the families Geoemydidae and Emydidae.
+
+[gnat](https://en.wikipedia.org/wiki/Gnat)
+
+[midge](https://en.wikipedia.org/wiki/Midge) ruồi muỗi nói chung
+
+## Terminologies
+
+- nocturnal: hoạt động về đêm
+- Diurnality (adj: diurnal, hoạt động ban ngày) is a form of plant and animal behavior characterized by activity during daytime, with a period of sleeping or other inactivity at night.
+
+grub: ấu trùng; scrub
+grub trong Hollow Knight
+
+Dioecy (tính biệt chu from Ancient Greek διοικία dioikía 'two households'; adj. dioecious) is a characteristic of certain species that have distinct unisexual individuals, each producing either male or female gametes, either directly (in animals) or indirectly (in seed plants).
+
+- A **larva** (ấu trùng) is a distinct juvenile form many animals undergo before metamorphosis into their next life stage. Animals with indirect development such as insects, some arachnids, amphibians, or cnidarians typically have a larval phase of their life cycle.
+- A maggot (giòi hay dòi) is the larva of a fly (order Diptera); it is applied in particular to the larvae of Brachycera flies, such as houseflies, cheese flies, and blowflies, rather than larvae of the Nematocera, such as mosquitoes and crane flies.
+
+A **leaf miner** is any one of numerous species of insects in which the larval stage lives in, and eats, the leaf tissue of plants.
+
+vermin, bigot
+
+locust: cào cào, châu chấu
+
+[Hermaphrodite](https://en.wikipedia.org/wiki/Hermaphroditus) (sinh vật lưỡng tính)
+
+[Anaerobic](https://en.wikipedia.org/wiki/Anaerobic_organism) (kỵ khí) means "living, active, occurring, or existing in the absence of free oxygen", as opposed to aerobic which means "living, active, or occurring only in the presence of oxygen." Ex: anaerobic bacteria, Anaerobic digestion
+
+[Aerobic](https://en.wikipedia.org/wiki/Aerobic_organism)
+
+`Invertebrates` (Động vật không xương sống) is an umbrella term describing animals that neither develop nor retain a vertebral column (commonly known as a spine or backbone), which evolved from the notochord. It is a paraphyletic grouping including all animals excluding the chordate subphylum Vertebrata, i.e. vertebrates. Well-known phyla of invertebrates include arthropods, mollusks, annelids, echinoderms, flatworms, cnidarians, and sponges.

@@ -6,17 +6,38 @@ kkk
 
 ## pathlib
 
-The `Path` class inherits from `PurePath`. `PurePath` defines all the methods which don't directly interact with the file system, e.g. splitting a path into stem and extension etc. The `Path` class defines additional methods like `cwd()` (getting the current working directory) which actually interact with the file system.
+This module offers classes representing filesystem paths with semantics appropriate for different operating systems. Path classes are divided between `pure paths`, which provide purely computational operations without I/O, and `concrete paths`, which inherit from pure paths but also provide I/O operations.
 
-Path classes are divided between `pure paths`, which provide purely computational operations without I/O, and `concrete paths`, which inherit from pure paths but also provide I/O operations.
+---
+
+The `pathlib.Path` class inherits from `PurePath`, this class represents concrete paths of the system’s path flavour (instantiating it creates either a `PosixPath` or a WindowsPath).
+
+`PurePath` defines all the methods which don't directly interact with the file system, e.g. splitting a path into stem and extension etc. The `Path` class defines additional methods like `cwd()` (getting the current working directory) which actually interact with the file system.
 
 `Path` instantiates a `concrete path` for the platform the code is running on.
 
 ---
 
+`__file__` is a built-in Python attribute that stores the file path of the currently executing script or imported module. It is automatically set by Python's import system to help code locate itself on the filesystem.
+
+### Pure paths
+
+```python
+p = PureWindowsPath('c:/foo/bar/setup.py')
+
+p.parents[0]
+PureWindowsPath('c:/foo/bar')
+p.parents[1]
+PureWindowsPath('c:/foo')
+p.parents[2]
+PureWindowsPath('c:/')
+```
+
+---
+
 `PurePath.with_suffix(suffix)` Return a new path with the `suffix` changed. If the original path doesn’t have a suffix, the new `suffix` is appended instead. If the `suffix` argument is an empty string, the original suffix is removed
 
-### Expanding and resolving
+### Expanding and resolving paths
 
 `Path.resolve()` converts a file or directory path into a clean, `absolute path`. It also resolves any symbolic links (symlinks) and cleans up relative navigation segments like `.` (current directory) or `..` (parent directory).
 
@@ -36,6 +57,14 @@ print(full_path)
 When you run the command `uv run pdf-converter Ses3.1sum.pdf`, `Path.resolve()` sees a relative path (no leading `/`), it automatically prepends `Path.cwd()` (`/home/anhao/document/pdf-converter`), turning `"Ses3.1sum.pdf"` into: `/home/anhao/document/pdf-converter/Ses3.1sum.pdf`
 
 `Path(__file__).resolve().parents[2] / "rules.md"` is anchored to where `__init__.py` is located on disk (`src/pdf_converter/__init__.py` → up 2 levels → project root), so it always finds the root `rules.md` no matter what directory you run the command from.
+
+---
+
+`Path.expanduser()` return a new path with expanded ~ and ~user constructs, as returned by `os.path.expanduser()`. If a home directory can’t be resolved, RuntimeError is raised.
+
+On Unix and Windows, return the argument with an initial component of `~` or `~user` replaced by that _user_’s home directory.
+
+`expanduser()` replaces a leading ~ or ~user with the user's home directory, while `resolve()` makes a path absolute, normalizes .. segments, and resolves symbolic links.
 
 ## argparse
 

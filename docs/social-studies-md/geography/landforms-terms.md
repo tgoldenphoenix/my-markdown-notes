@@ -1,6 +1,6 @@
-# Landforms & traffic terms
+# Landforms Terms
 
-## Where land meets water
+## Where Land meets water
 
 [shore](https://www.oxfordlearnersdictionaries.com/definition/english/shore_1?q=shore): the land along the edge of the sea, the ocean or a lake  
 [ashore](https://www.oxfordlearnersdictionaries.com/definition/english/ashore?q=ashore): lên bờ; towards, onto or on land, having come from an area of water such as the sea or a river  
@@ -131,13 +131,13 @@ precipitous
 
 [mountain pass](https://en.wikipedia.org/wiki/Mountain_pass)
 
-## Type of land
+## Type of Terrain
 
-In geography, a [plain](https://en.wikipedia.org/wiki/Plain) (đồng bằng hay bình nguyên), commonly known as flatland, is a flat expanse of land that generally does not change much in elevation, and is primarily treeless.
+In geography, a `plain` (đồng bằng hay bình nguyên), commonly known as flatland, is a flat expanse of land that generally does not change much in elevation, and is primarily treeless.
 
 [Upland and lowland](https://en.wikipedia.org/wiki/Upland_and_lowland) are conditional descriptions of a plain based on elevation above sea level.
 
-[sward](https://en.wiktionary.org/wiki/sward): bãi cỏ
+`sward`: bãi cỏ
 
 [turf](<https://en.wikipedia.org/wiki/Turf_(disambiguation)>)\
 [lawn](https://en.wikipedia.org/wiki/Lawn): bãi cỏ; Lawn mower
@@ -171,12 +171,15 @@ Lawn mower
 
 [Pasture](https://en.wikipedia.org/wiki/Pasture) (from the Latin pastus, past participle of pascere, "to feed") is land used for grazing.
 
-## Traffic
-
 ## Plants & Tree
 
-[undergrowth](https://www.oxfordlearnersdictionaries.com/definition/english/undergrowth?q=undergrowth)\
-overgrowth
+`undergrowth`: a mass of bushes and plants that grow close together under trees in woods and forests
+
+overgrowth: too much growth of something, especially something that grows on or over something else
+
+## Islands
+
+An `islet` (cồn chim, cù lao Phụng) is generally a small island.
 
 ## Others
 

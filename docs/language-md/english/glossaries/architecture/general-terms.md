@@ -151,9 +151,9 @@ A [moat](https://en.wikipedia.org/wiki/Moat) is a deep, broad ditch dug around a
 
 [portcullis](https://en.wikipedia.org/wiki/Portcullis) (cửa song sắt)
 
-A [battlement](https://en.wikipedia.org/wiki/Battlement) (thành lũy, chiến lũy), in defensive architecture, such as that of city walls or castles, comprises a parapet (a defensive low wall between chest-height and head-height), in which gaps or indentations, which are often rectangular, occur at intervals to allow for the launch of arrows or other projectiles from within the defences.
+A `battlement` (thành lũy, chiến lũy), in defensive architecture, such as that of city walls or castles, comprises a parapet (a defensive low wall between chest-height and head-height), in which gaps or indentations, which are often rectangular, occur at intervals to allow for the launch of arrows or other projectiles from within the defences.
 
-embankment: a wall or bank of stone or earth made to keep water back or to carry a road or railway over low ground.
+embankment (bờ kè): a wall or bank of stone or earth made to keep water back or to carry a road or railway over low ground.
 
 ### motte-and-bailey
 
