@@ -13,6 +13,16 @@ In Python, an `int` is an object. Unlike languages like `Java` or `C++`, Python 
 
 There are three distinct **Numeric Types**: integers, floating-point numbers, and complex numbers (`int`, `float`, `complex`).
 
+In addition to `int` and `float`, Python supports other types of numbers, such as [`Decimal`](https://docs.python.org/3/library/decimal.html#decimal.Decimal "decimal.Decimal") and `Fraction`. Python also has built-in support for `complex numbers`.
+
+Division (`/`) always returns a float. To do `floor division` and get an integer result you can use the `//` operator; to calculate the remainder you can use `%`:
+
+---
+
+Strings (`str`) can be _indexed_ (subscripted), with the first character having index 0. There is no separate character type; a character is simply a string of size one.
+
+---
+
 There are 4 built-in data types in Python used to store **collections** of data: `Tuple`, `Dictionary`, `List`, `Set`.
 
 ```python
@@ -232,7 +242,7 @@ Note: A named tuple is a tuple object, so it’s immutable, and changing its sto
 
 One shared characteristic of `lists` and `tuples` is that the held items have a specific **order**. These two data structures are examples of the more general data type `sequence`. Python has other sequence data types, such as `strings` and `bytes`.
 
-When we want to retrieve a subsequence of a `list` object, we can use slicing. The simplest form of slicing is `list[start:end]`, and the items between the start and end indices (the item at the end index is excluded) are retrieved:
+When we want to retrieve a subsequence of a `list` object, we can use slicing. The simplest form of slicing is `list[start:end]`, and the items between the start and end indices (the item at the end index is _excluded_) are retrieved:
 
 ```python
 fruits = ["apple", "orange", "banana", "strawberry"]
@@ -246,6 +256,28 @@ By default, the end index is the length of the list, and slicing selection doesn
 assert fruits[:3] == ["apple", "orange", "banana"]
  
 assert fruits[1:] == ["orange", "banana", "strawberry"]
+
+>>> word = 'Python'
+>>> word[:2]   # character from the beginning to position 2 (excluded)
+'Py'
+>>> word[4:]   # characters from position 4 (included) to the end
+'on'
+>>> word[-2:]  # characters from the second-last (included) to the end
+'on'
+```
+
+---
+
+_slicing_ a string `str` returns a substring:
+
+One way to remember how slices work is to think of the indices as pointing _between_ characters, with the left edge of the first character numbered 0. Then the right edge of the last character of a string of _n_ characters has index _n_, for example:
+
+```txt
+ +---+---+---+---+---+---+
+ | P | y | t | h | o | n |
+ +---+---+---+---+---+---+
+ 0   1   2   3   4   5   6
+-6  -5  -4  -3  -2  -1
 ```
 
 ### Unpack a Sequence, Tuple Unpacking

@@ -14,6 +14,10 @@ However, this is not the kind of firewall you need to know for the CCNA. The kin
 A `network firewall` is a separate hardware appliance that serves a purpose similar to a host-based firewall but on a larger scale. It inspects all traffic entering and exiting a network and decides to allow or deny it based on a set of configured rules.  
 Traffic bên ngoài vào firewall > router > switch > hosts inside LAN.
 
+### Windows Firewall
+
+k
+
 ## Network-Layer Security: IPsec and Virtual Private Networks
 
 The **IP security protocol**, more commonly known as **IPsec**, provides security at the network layer. IPsec secures IP datagrams between any two network-layer entities, including hosts and routers. Many institutions (corporations, government branches, non-profit organizations, and so on) use IPsec to create virtual private networks (VPNs) that run over the public Internet.
@@ -72,3 +76,5 @@ An `intranet` is a computer network for sharing information, easier communicatio
 An intranet is sometimes contrasted to an **extranet**. While an intranet is generally restricted to employees of the organization, extranets may also be accessed by customers, suppliers, or other approved parties.
 
 `Ingress` means traffic or data moving into a system, network, or cloud environment, while `egress` means traffic or data moving out of it.
+
+`Living Off the Land Binaries` (LOLBins) are legitimate, pre-installed operating system tools and utilities that attackers abuse to carry out stealthy post-exploitation tasks without dropping custom malware. Because these tools are trusted and signed by the OS vendor, they often blend into normal administrative activity and bypass traditional signature-based security

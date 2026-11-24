@@ -270,9 +270,13 @@ This technique prevent code from being executed when a file is imported as a mod
 
 ## The Python Interpreter
 
-Python is an interpreted language. No compilation and linking is necessary.
+Python is an interpreted language. No compilation and linking is necessary. The interpreter can be used interactively.
 
-### `python` vs `python3` command line utilities
+The Python interpreter is usually installed as `/usr/local/bin/python3.15`.
+
+Typing an end-of-file character (`Control`-`D` on Unix, `Control`-`Z` on Windows) at the primary prompt causes the interpreter to exit with a zero exit status. If that doesn’t work, you can exit the interpreter by typing the following command: `quit()`.
+
+### `python` vs `python3`
 
 Tại sao lại có 2 commands: `python --version`, `python3 --version`
 
