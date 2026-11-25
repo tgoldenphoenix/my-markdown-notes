@@ -463,9 +463,9 @@ Recursively extract and Keep the Original `.csv.gz` Files in cwd
 - 117, 26972
 - 1015, 26381
 
-### Directory Locations
+## Directory Path Locations
 
-Batch paths
+### Batch paths
 
 ```bash
 BATCH_ROOT = /opt/ag/ag_batch/
@@ -488,9 +488,7 @@ LOG_DIR = /opt/ag/logs/
   - `.lock` files (lock files) của các batch
   - Khi chạy script `deploy.sh` sẽ copy file `.jar` vào đây
 
----
-
-ETL
+### ETL Harbest Web api paths
 
 Để ứng dụng hoạt động thì cần lưu file `application.conf` theo đường dẫn: `\opt\web-api-conf\application.conf`
 
@@ -517,11 +515,13 @@ cd /opt/etl-harbest-webapi/
 nohup ./bin/etl-harbest-webapi &
 ```
 
-Before deploying, back up webapi.log (`/opt/etl-harbest-webapi/webapi.log`) to S3 (`s3://adrepo-etl/etl-harbest-webapi/logs/`)
-
 ---
 
-linux ec2 path
+Before deploying, back up webapi.log (`/opt/etl-harbest-webapi/webapi.log`) to S3 (`s3://adrepo-etl/etl-harbest-webapi/logs/`)
+
+According to `logback.xml` and `application.conf`, the full log is written to: `webapi.log` (directly in your project root folder: `c:\Users\anhao\Desktop\document\etl-harbest-practice\webapi.log`)
+
+### linux ec2 path
 
 copy build file from local to home directory on ec2 instance
 
@@ -977,6 +977,70 @@ Trong `m_login_user` chứa `contract_company_id`
 
 `updated_by` là `m_login_user`
 
+### Request Authentication
+
+all the checking (api token, login_user_id, contract company, m_api_authority happen before the first line of the controller is run.
+
+In MAdvertiserController.java, the `create()` method is annotated with:
+
+```java
+@Security.Authenticated(LoginAuthenticator.class)
+public Result create() { ... }
+```
+
+In Play Framework, `@Security.Authenticated` wraps the controller action in an interceptor (`Security.AuthenticatedAction`). Play executes `LoginAuthenticator.getUsername(ctx)` before invoking `create()`:
+
+1. `BaseLoginAuthenticator.getUsername(ctx)1 is called by Play.
+2. `this.getLoginUserId(ctx)` runs:
+   - `AbstractLoginAuthenticator.java`: Checks `m_api_token` (using `X-API-Token-Key` and `X-API-Token-Secret`), then checks `m_login_user`.
+   - `LoginAuthenticator.java`: Checks `m_login_user` and `m_contract_company` (`contract_status = 1`).
+3. `this.checkRole(ctx, loginUserId)` runs:
+   - `AbstractLoginAuthenticator.java` → `AbstractMLoginUserService.java`: Runs `IsApiAccessPermittedByLoginUserId.sql` against `m_api_authority`, `m_role`, and `m_login_user_role_relation`.
+4. Decision:
+   - If any step above returns `null` or `false`, Play immediately calls `BaseAuthenticator.onUnauthorized(ctx)`, returning the `{"data":[{"error":"Unauthorized"}]}` response without ever entering `MAdvertiserController.create()`.
+   - Only if all steps succeed does Play proceed to line 77 of MAdvertiserController.java.
+
+---
+
+When a request hits a protected controller, the Play Framework automatically calls `BaseLoginAuthenticator.getUsername(Http.Context)`. This method in turn calls `LoginAuthenticator.getLoginUserId()`:
+
+- Success (True): If the method returns any valid `String loginUserId`, the framework considers the user authenticated and allows the controller logic to proceed.
+  - This `loginUserId` string is not used anywhere in the controller body. It is only for the authentication steps.
+  - Việc lấy thông tin user đăng nhập được thực hiện với service trong controller. Lấy ra từ `Http.Context.current()`.
+- Failure (False): If the method returns `null` (because the user ID is missing or the role check fails), the framework considers the authentication failed.
+
+if `getLoginUserId()` inside `getUsername(ctx)` returns `null`, the Play Framework intercepts that `null` and automatically triggers `BaseAuthenticator.onUnauthorized(Http.Context)`. This method then returns your standard `401 Unauthorized` JSON response and completely halts the request.
+
+---
+
+After the request's API token, user (`login_user_id = 100011`), and contract company (`contract_company_id = 10011`) all succeeded, it can still fail to to pass the final step: checking route permissions in `m_api_authority`:
+
+Specifically, the query in `IsApiAccessPermittedByLoginUserId.sql` checked whether `login_user_id = 100011` has permission to `POST` to `/mAdvertiser/`, and either found no row or `post_authorized` was `0`.
+
+Check what is currently in `m_api_authority` and `m_login_user_role_relation`
+
+```sql
+-- 1. Check what role_id user 100011 has
+SELECT * FROM m_login_user_role_relation WHERE login_user_id = 100011 AND deleted = 0;
+
+-- 2. Check existing permissions for /mAdvertiser/ or /mAgency/ (for comparison)
+SELECT * FROM m_api_authority WHERE uri LIKE '%mAdvertiser%' OR uri LIKE '%mAgency%';
+```
+
+Insert a row for `/mAdvertiser/` using the same `role_id` that `/mAgency/` uses (or `-1`, which grants access to all roles):
+
+```sql
+INSERT INTO m_api_authority (
+  role_id, uri, get_authorized, post_authorized, put_authorized, delete_authorized,
+  deleted, version, created_by, created_at, updated_by, updated_at
+) VALUES (
+  -1, '/mAdvertiser/', 0, 1, 0, 0,
+  0, 1, 'system', NOW(), 'system', NOW()
+);
+```
+
+Once that query returns a row with `postAuthorized = 1`, your Postman request will pass authentication!
+
 ### Controller & Form
 
 `Forms` are responsible for capturing, filtering, and validating raw data coming from HTTP requests (the "outside world") before it touches your core application logic.
@@ -988,6 +1052,278 @@ You use form `Factory.form` to manually command the play framework to map HTTP d
 ---
 
 Fields with `@JsonIgnore` / `@ApiModelProperty(hidden = true)` are internal and ignored from the incoming request body.
+
+---
+
+```java
+// MAdvertiserController.java
+Form<MAgencyPostForm> form = formFactory.form(MAgencyPostForm.class)
+  .bindFromRequest(new ClassFieldManager(MAgencyPostForm.class)
+  .getAllowedFields()
+);
+if (form.hasErrors()) {
+  return badRequest(form);
+}
+```
+
+`if (form.hasErrors())` checks whether any **type-binding or form-level validation errors** occurred during `.bindFromRequest(...)`.
+
+Specifically, when `.bindFromRequest(...)` runs, Play performs **3 checks** on the incoming JSON request body (filtering to only non-`@JsonIgnore` fields via ClassFieldManager.java, which for `MAdvertiserPostForm` are `agencyId` and `name`):
+
+1. Data Type Binding Errors
+
+Play attempts to convert the JSON values into the Java field types declared in `AbstractMAdvertiserPostForm.java`:
+
+- `agencyId` → `Long` (e.g., if you send `"agencyId": "abc"`, binding fails with an `error.invalid` error on `agencyId`).
+- `name` → `String`
+
+**2. Field Constraint Annotations**
+
+Play checks the validation annotations placed on the fields in AbstractMAdvertiserPostForm.java:
+
+- `agencyId`: `@Max(Long.MAX_VALUE)` and `@Min(Long.MIN_VALUE)`
+- `name`: `@MaxLength(value = 200, message = "error.maxLength")` (fails if `name` is longer than 200 characters)
+
+3. The Form's `validate()` Method
+
+Because `MAdvertiserPostForm.java` is annotated with `@Validate` and implements `Validatable<List<ValidationError>>` (via BaseForm.java), Play automatically calls `MAdvertiserPostForm.validate()`:
+
+- Checks that `agencyId` is not `null` (`error.required`).
+- Checks that `name` is not `null` (`error.required`).
+
+`@Validate` (from `play.data.validation.Constraints.Validate`) is a Play Framework class-level constraint annotation that tells Play's form validator: "After binding the request fields to this class, automatically call this class's `validate()` method."
+
+- **Requires `Validatable` interface:** For `@Validate` to work, the class must implement `play.data.validation.Constraints.Validatable<List<ValidationError>>` (which MAdvertiserPostForm.java inherits from BaseForm.java).
+- Triggers `validate()` during `bindFromRequest(...)`: When MAdvertiserController.java calls:
+
+```java
+Form<MAdvertiserPostForm> form = formFactory.form(MAdvertiserPostForm.class)
+    .bindFromRequest(...);
+```
+
+- Play first checks **field-level annotations** (`@Max`, `@Min`, `@MaxLength`), and then—because `@Validate` is present on the class—calls MAdvertiserPostForm.validate() (lines 60–69).
+- What happens if you remove `@Validate`? If `@Validate` were removed from `MAdvertiserPostForm`, Play would ignore the `validate()` method on lines 60–69 completely! Only field-level annotations (`@MaxLength`, `@Max`, `@Min`) would run, and missing required fields (`agencyId == null` or `name == null`) would not be caught by `form.hasErrors()`.
+
+---
+
+```java
+MAgencyPostForm mAgencyPostForm = form.get();
+List<ValidationError> validationErrors = this.validateOnCreate(mAgencyPostForm);
+if (validationErrors != null && !validationErrors.isEmpty()) {
+  return badRequest(form, validationErrors);
+}
+```
+
+- `if (form.hasErrors())` purely checks the **format, data types, length, and required fields** of the incoming JSON request without touching the database.
+- `validateOnCreate(mAdvertiserPostForm)`: Runs **after** `form.hasErrors()` passes, to perform **database/business logic validation** (such as checking if `agencyId` actually exists in the `m_agency` table on lines 125–128).
+
+When `validateOnCreate` returns `new ValidationError("agencyId", "error.invalid")`, it gets converted into `"data": [{"agencyId": "Invalid value"}]` in 4 steps:
+
+**Step 1: `create()` passes `validationErrors` to `badRequest(...)`**
+
+```java
+List<ValidationError> validationErrors = validateOnCreate(mAdvertiserPostForm);
+if (validationErrors != null && !validationErrors.isEmpty()) {
+  return badRequest(form, validationErrors);
+}
+```
+
+Step 2: `BaseController.generateErrorJson(...)` converts `ValidationError` to `{"agencyId": "Invalid value"}`
+
+In BaseController.java, `badRequest(form, errors)` calls `BaseController.generateErrorJson(validationError)`:
+
+```java
+  protected static String generateErrorJson(@NonNull ValidationError validationError) {
+    return Json.asciiStringify(Json.toJson(new HashMap<String, String>() {
+      {
+        put(validationError.key(), apply(validationError.message(), ...));
+      }
+    }));
+  }
+```
+
+- **`validationError.key()`** is `"agencyId"`.
+- **`validationError.message()`** is `"error.invalid"`, which is passed into `BaseController.apply("error.invalid")`.
+
+Step 3: `BaseController.apply(...)` looks up `"error.invalid"` in `conf/messages`
+
+`BaseController.apply(...)` uses Play's `MessagesApi` (i18n) to translate the message key `"error.invalid"` based on the request's language:
+
+- In `conf/messages` (default / English)
+- In `conf/messages.ja` (Japanese)
+
+Since the default language in common.conf is `"en"`, `"error.invalid"` becomes `"Invalid value"`, producing the JSON string `{"agencyId":"Invalid value"}`.
+
+Step 4: `generateBaseJson(...)` wraps it in `"data": [ ... ]` using `base.vm`
+
+Finally, `BaseController.generateBaseJson(...)` puts that list of error JSON strings into the `$list` variable of the Velocity template **conf/templates/base.vm**:
+
+```txt
+{
+"data": [
+#foreach ($json in $list)
+#if($velocityCount > 1)
+,
+#end
+$json
+#end
+],
+...
+```
+
+---
+
+`censorForm()` is a security and permission-masking mechanism defined in `AbstractLoginAuthenticator.java`
+
+It prevents a user/client from setting or modifying fields/columns that their account role is not permitted to change (based on `m_api_disabled_column`).
+
+Even if a user injects unauthorized fields or parameters into the JSON request body, `censorForm(...)` scrubs or resets them to their default values before the business logic processes and saves the data.
+
+### Velocity Template Engine
+
+The `BaseController` uses the Apache Velocity engine (specifically the `base.vm` template) to format and generate the foundational JSON structure for all of your API responses.
+
+The `BaseController` injects several variables into the Velocity context during execution
+
+- `$entity`: A Java Map representation of the database record (in this case, an MAgency instance)
+- `$disabledColumnStore`: An instance of your security store that checks whether a user has permissions to view a specific column
+- `$nullTool`: A helper utility to safely check for null values without triggering template errors
+- `$list`: A list of evaluated entity JSON strings (used in base.vm)
+- `$paging`: A serialized JSON object containing page count, offset, and navigation metadata
+
+Template engines like Apache Velocity are most commonly known for generating dynamic HTML for web pages. However, fundamentally, a template engine is just a text-generation tool. It merges dynamic data into a static blueprint to output plain text—which means it can just as easily generate XML, SQL, or, in the case of your API, JSON.
+
+`base.vm` acts as the global, foundational wrapper for every single response your API sends back to the client (who sent request).
+
+Template nằm trong `conf/templates/generated`
+
+---
+
+It is a two-stage Velocity rendering pipeline inside BaseController.java:
+
+1. Stage 1 (`generated/mAdvertiser.vm`) renders each individual entity into a JSON object string (e.g. `{"advertiserId": 1, "name": "..."}`).
+2. Stage 2 (`base.vm`) wraps that list of rendered entity JSON strings inside the outer response envelope (`{"data": [ ... ], "request": { ... }}`).
+
+Here is the step-by-step flow when `ok("generated/mAdvertiser.vm", mAdvertiser, form)` is called:
+
+Stage 1: Render the Entity with `generated/mAdvertiser.vm`
+
+In `BaseController.ok(...)`:
+
+1. Single objects are wrapped into a 1-element list (`Collections.nCopies(1, entitiy)`) so single-item and list endpoints share the exact same logic.
+2. For each entity (`mAdvertiser`), it converts the Java object into a `Map<String, Object>` and passes three variables into the Velocity context (lines 464–468):
+   - `$entity` → the `mAdvertiser` fields map (`advertiserId`, `contractCompanyId`, `agencyId`, `name`, `companyJson`, `note`, `deleted`)
+   - `$nullTool` → checks if a field is non-null (`$nullTool.isNotNull(...)`) so `null` fields are omitted
+   - `$disabledColumnStore` → checks `m_api_disabled_column` permissions for the current user (`$disabledColumnStore.isNotDisabled(...)`) to hide or replace restricted columns with default values
+3. Velocity evaluates `mAdvertiser.vm` and adds the resulting JSON string to `jsonizedEntities`:
+
+Stage 2: Wrap inside `base.vm`
+
+Next, line 471 calls `generateBaseJson(jsonizedEntities, form.get(), pagingDto)`:
+
+1. It creates a new `VelocityContext` and sets:
+
+   - `$list` → `jsonizedEntities` (the list of JSON strings produced by `mAdvertiser.vm` in Stage 1)
+   - `$request` → `Json.toJson(form)` (the input parameters you sent in your request body)
+   - `$paging` → `Json.toJson(pagingDto)` (only present for paginated list endpoints)
+
+2. Velocity evaluates `base.vm`.
+3. Finally, line 598 parses and formats the combined string (`Json.asciiStringify(Json.parse(writer.toString()))`) and returns the final HTTP `200 OK` JSON response:
+
+---
+
+`BaseController` có 2 methods `ok()`. Một cái nhận a single `Object entitiy`. Cái kia nhận `List<?> entities` (`MInputPlatformAuthController:1864`).
+
+---
+
+```java
+    // VIEWの生成処理
+    Velocity.init();
+    List<String> jsonizedEntities = new ArrayList<>();
+    entities.stream().forEach(entity -> {
+      @SuppressWarnings("unchecked")
+      Map<String, Object> map = Json.fromJson(Json.toJson(entity), Map.class);
+      for (Map.Entry<String, Object> entry : map.entrySet()) {
+        if (entry.getValue() == null) {
+          continue;
+        }
+        if (String.class.equals(entry.getValue().getClass())) {
+          entry.setValue(entry.getValue().toString().replace("\"", "\\\""));
+        }
+      }
+      StringWriter writer = new StringWriter();
+      VelocityContext context = new VelocityContext();
+      context.put("nullTool", new NullTool());
+      context.put("entity", map);
+      context.put("disabledColumnStore", getDisabledColumnStore());
+      Velocity.evaluate(context, writer, "", entityTemplate);
+      jsonizedEntities.add(writer.toString());
+    });
+    return Controller.ok(generateBaseJson(jsonizedEntities, form.get(), pagingDto));
+```
+
+1. **`StringWriter writer = new StringWriter();` (line 263)** Creates an in-memory text buffer (`StringWriter`) to capture the output of the Velocity template engine for the current `entity`.
+2. `Velocity.evaluate(context, writer, "", entityTemplate);` Runs the Velocity template (such as mAdvertiser.vm) using those variables and **writes the resulting JSON text into `writer`**. At this moment, `writer` holds a string like:
+
+```json
+{
+  "advertiserId": 10,
+  "contractCompanyId": 10011,
+  "agencyId": 1,
+  "name": "Sample Advertiser",
+  "deleted": false
+}
+```
+
+step 3: `jsonizedEntities.add(writer.toString());` Converts the `StringWriter` buffer into a regular Java `String` (`writer.toString()`) and adds it to the `List<String> jsonizedEntities` collection.
+
+After the loop finishes for all `entities`, `jsonizedEntities` holds a `List<String>` of all the individual entity JSON objects, which is then passed to `generateBaseJson(jsonizedEntities, ...)` to be inserted into the `"data": [ ... ]` array in `base.vm`.
+
+---
+
+`base.vm` is the master Apache Velocity template used by `BaseController.generateBaseJson(...)` to construct the top-level JSON structure for **every API response** (both success and error responses).
+
+```txt
+"data": [
+#foreach ($json in $list)
+#if($velocityCount > 1)
+,
+#end
+$json
+#end
+],
+```
+
+- `$list`: Passed from `BaseController.generateBaseJson(...)`.
+  - On a **success response** (`ok(...)`), `$list` is `jsonizedEntities` (the list of JSON strings rendered by templates like mAdvertiser.vm).
+  - On an **error response** (`badRequest(...)`, `unauthorized(...)`, etc.), `$list` is `jsonizedErrors` (e.g. `[{"agencyId": "Invalid value"}]` or `[{"error": "Unauthorized"}]`).
+  - On a **`notFound(...)` response**, `$list` is `null`, so the loop doesn't run and it outputs `"data": [],`.
+- **`#foreach ($json in $list)`**: Loops over each JSON string in `$list`.
+- **`#if($velocityCount > 1) , #end`**: `$velocityCount` is Velocity's built-in 1-based loop counter (`1, 2, 3...`). This outputs a comma `,` **before every item except the first one** (`$velocityCount > 1`) so that the JSON array is valid without a trailing comma.
+- **`$json`**: Outputs the raw JSON object string for that item.
+
+```txt
+#if($paging)
+"paging": $paging,
+#end
+```
+
+- **`$paging`**: Only provided by paginated list endpoints (like `GET /mAgencies/`), where `BaseController` passes a `PagingDto` serialized to JSON (containing `count`, `totalCount`, `page`, `lastPage`, `orderby`, `sort`).
+- **`#if($paging)`**: If `$paging` is present (not `null`), it adds `"paging": { ... },` to the response. For single-item endpoints like `POST /mAdvertiser/`, `$paging` is `null`, so the `"paging"` key is completely omitted.
+
+```txt
+"request":
+#if($request)
+$request
+#else
+{}
+#end
+```
+
+- **`$request`**: The bound request `Form` serialized to JSON (`Json.toJson(form)` in BaseController.java), echoing back the parameters the client sent (excluding `@JsonIgnore` fields).
+- **`#if($request) ... #else {} #end`**:
+  - If a form was bound (e.g. in `create()`, `update()`, `read()`), it outputs the serialized form JSON (e.g. `{"agencyId": 1, "name": "Sample"}`).
+  - If no form exists (for example, when `LoginAuthenticator` rejects a request with `401 Unauthorized` before the controller runs), `$request` is `null`, so it falls back to outputting an empty JSON object `{}`.
 
 ### Đăng ký chứng thực cho các PF có Oauth2
 
@@ -1031,14 +1367,6 @@ Platform Application Settings (`PlatformApplicationDto`): Loads configuration se
 - Yahoo Ads Search / Display: Requires `clientId` and `clientSecret`.
 - Google Analytics / DBM: Requires `authPermanentJson` containing `clientId` and `clientSecret`.
 - TikTok: Requires `authPermanentJson` containing `appId` and `secret`.
-
----
-
-`censorForm()` is a security and permission-masking mechanism defined in `AbstractLoginAuthenticator.java`
-
-It prevents a user/client from setting or modifying fields/columns that their account role is not permitted to change (based on `m_api_disabled_column`).
-
-Even if a user injects unauthorized fields or parameters into the JSON request body, `censorForm(...)` scrubs or resets them to their default values before the business logic processes and saves the data.
 
 ---
 
@@ -1105,38 +1433,24 @@ SELECT *
    AND m_input_platform_auth.deleted IS false;
 ```
 
-### Authenticator
+### Webapi Logging
 
-When a request hits a protected controller, the Play Framework automatically calls `BaseLoginAuthenticator.getUsername(Http.Context)`. This method in turn calls `LoginAuthenticator.getLoginUserId()`:
+Before deploying, back up webapi.log (`/opt/etl-harbest-webapi/webapi.log`) to S3 (`s3://adrepo-etl/etl-harbest-webapi/logs/`)
 
-- Success (True): If the method returns any valid `String loginUserId`, the framework considers the user authenticated and allows the controller logic to proceed.
-  - This `loginUserId` string is not used anywhere in the controller body. It is only for the authentication steps.
-  - Việc lấy thông tin user đăng nhập được thực hiện với service trong controller. Lấy ra từ `Http.Context.current()`.
-- Failure (False): If the method returns `null` (because the user ID is missing or the role check fails), the framework considers the authentication failed.
+According to `logback.xml` and `application.conf`, the full log is written to: `webapi.log` (directly in your project root folder: `c:\Users\anhao\Desktop\document\etl-harbest-practice\webapi.log`)
 
-if `getLoginUserId()` inside `getUsername(ctx)` returns `null`, the Play Framework intercepts that `null` and automatically triggers `BaseAuthenticator.onUnauthorized(Http.Context)`. This method then returns your standard `401 Unauthorized` JSON response and completely halts the request.
+---
 
-### Velocity Template Engine
+According to logback.xml, the log file uses a daily rolling policy (`TimeBasedRollingPolicy`):
 
-The `BaseController` uses the Apache Velocity engine (specifically the `base.vm` template) to format and generate the foundational JSON structure for all of your API responses.
+1. Current Day's Log: All logs for today are appended to webapi.log in your project root (`c:\Users\anhao\Desktop\document\etl-harbest-practice\webapi.log`). Restarting the server on the same day does not overwrite it; it keeps appending.
+2. Daily Rotation & Backup Location: When the date changes (at midnight, or on the first log event of a new day), the previous day's `webapi.log` is automatically compressed and archived in the **same project root directory** with the date in the filename:
+   * `webapi.log.YYYY-MM-DD.gz` (for example: `webapi.log.2026-11-24.gz`)
+3. Retention (`maxHistory`): It keeps up to **30 days** of `.gz` backup files in that folder and automatically deletes backups older than 30 days.
 
-The `BaseController` injects several variables into the Velocity context during execution
+(Note: The folder location is controlled by `charybdis.webapi.logdir = "./"` in application.conf, so both `webapi.log` and all `.gz` backups are stored in your project's root folder unless you change that path).
 
-- `$entity`: A Java Map representation of the database record (in this case, an MAgency instance)
-- `$disabledColumnStore`: An instance of your security store that checks whether a user has permissions to view a specific column
-- `$nullTool`: A helper utility to safely check for null values without triggering template errors
-- `$list`: A list of evaluated entity JSON strings (used in base.vm)
-- `$paging`: A serialized JSON object containing page count, offset, and navigation metadata
-
-Template engines like Apache Velocity are most commonly known for generating dynamic HTML for web pages. However, fundamentally, a template engine is just a text-generation tool. It merges dynamic data into a static blueprint to output plain text—which means it can just as easily generate XML, SQL, or, in the case of your API, JSON.
-
-`base.vm` acts as the global, foundational wrapper for every single response your API sends back to the client (who sent request).
-
-Template nằm trong `conf/templates/generated`
-
-### Ebean ORM
-
-kkk
+Có một cái crontab làm việc backup log files đã được zip lên s3. Crontab này được bật một lần duy nhất lúc bật máy EC2 lên, không cần phải tắt và bật lại lúc deploy.
 
 ## Log4j
 
