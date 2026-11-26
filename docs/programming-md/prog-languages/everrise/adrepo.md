@@ -12,7 +12,9 @@ Task TOTO
 
 ## Project Specification, Thiết kế
 
-Có các actors: end user, adrepo, platform (tiktok, twitter), etl, web api của everrise
+Có các actors: end user, adrepo, platform (tiktok, twitter), etl, web api của everrise.
+
+---
 
 - End user
   - chạy quảng cáo
@@ -21,27 +23,18 @@ Có các actors: end user, adrepo, platform (tiktok, twitter), etl, web api củ
 
 End user có tài khoản quảng cáo trên các platform (twitter, facebook). Everries làm việc với adrepo, báo cáo cho ads report cho phía adrepo, không làm trược tiếp với khách hàng end user. Adrepo là khách hàng của everrise.
 
+---
+
 web api (elt harbest) nhận re-direct từ adrepo, cho advertiser authenticate trên platform. Sau đó api lấy token của khách hàng lưu vào database. Phía adrepo không lưu token ủy quyền của khách hàng.
 
-We only lấy thành tích quảng cáo (the only thing we care about). Everries không chạy quảng cáo.
+Bên mình (Everries ETL) chỉ lấy thành tích quảng cáo, không chạy quảng cáo. ETL chỉ cung cấp data as is returned from API. ETL không biến đổi dữ liệu. Khách hàng muốn biến đổi thì tự họ làm, ETL không làm. Rule dự án: api trả về cái gì thì trả cho khách hàng cái đó, không xào nấu thêm phức tạp
 
 Phía everrise không làm front end, đã bán front-end cho phía ad repo. Everrise trả dữ liệu report cho adrepo, adrepo trả cho end user.
 
 end user only work with adrepo (sale), end user không biết sự tồn tại của everrise
 
-batch nằm trên ec2, rds (relational database) cũng là service trên aws
-
-- ELT harbest -> `play` framwork (for handling the HTTP request stuff), java, only use scala build tool
-- ETL batch -> no framework, java thuần
-
 - batch create queue tạo, tạo rồi batch export
 - batch getReport data, getMaster data
-
-- table names: `queue`, `dsp_advertiser`
-- Cả 2 phía etl & adrepo đều có table `queue` cái tên giống nhau.
-
-ETL chỉ cung cấp data as is returned from API. ETL không biến đổi dữ liệu. Khách hàng muốn biến đổi thì tự họ làm, ETL không làm.  
-rule dự án: api trả về cái gì thì trả cho khách hàng cái đó, không xào nấu thêm phức tạp
 
 Có 2 bên: Adrepo và ETL. ETL chính là bên cty của mình. ETL bao gồm web API & Batch
 
@@ -50,11 +43,6 @@ PF: platform
 - Dự án này có 2 phần:
   1. ETL Batch
   2. ETL Harbest Web API
-
-creative (N.): video, hình ảnh của một quảng cáo
-
-- một ad có nhiều video or images, mỗi video/hình ảnh có một `creative id` định danh. Nhưng sẽ có chung một `ad id`
-- creative name là tên của tấm hình/ video
 
 - master data là field liên quan tới business, report, khách hàng quan tâm
 - metadata là field technical nerd, khách hàng không quan tâm
@@ -907,7 +895,7 @@ Class `AbstractBatch` contains the Logger objects and the methods to print logs.
 
 Khi test `BatchRemoveTemporaryFile` chỉ cần cho chạy start & finish.
 
-khi test `BatchUpdateTokenOutbrain` chạy batch > select trong table `m\_input\_platform\_auth` sẽ thấy cái `auth_permanent_json.AccessToken` được update mới (and `updated_at `)
+khi test `BatchUpdateTokenOutbrain` chạy batch > select trong table `m\_input\_platform\_auth` sẽ thấy cái `auth_permanent_json.AccessToken` được update mới (and `updated_at`)
 
 ---
 
@@ -944,7 +932,49 @@ Inside entity classes, we can have ENUM classes.
 
 `AbstractGetReportQueueDao` is `abstract` (and `AbstractGetReportQueue` is also `abstract` and cannot be instantiated by `convertRsToReportQueueList`). `AbstractGetReportQueueDaoContainerTest` already sets up a concrete `TestGetReportQueueDao` (`dao`) and a concrete `TestGetReportQueue` entity class wired up to the MySQL test container for you—all you have to override are `getTableName()` and `getTableFixtures()`
 
+### Batch Logging
+
+Uses Log4j
+
+Apache Log4j version `1.2`; [documentation](https://logging.apache.org/log4j/1.x/)
+
+In Log4j, a `category` (also commonly referred to as a "logger") is essentially the named channel or routing rule that your Java code uses to send messages.
+
+When you write `log4j.category.<Name> = <LEVEL>, <AppenderAlias>`, you are defining three things:
+
+1. The Name: The string your Java code uses to find this rule (e.g., "AdwordInfoLogger" or `org.seasar`)
+2. The Level: The minimum severity of messages this channel will accept (e.g., `INFO`, `ERROR`, `DEBUG`)
+3. The Appender Alias: A short, custom label linking this category to a specific destination (e.g., `ADIA` or `C`)
+
+An appender defines the physical destination where the log messages will actually be written, as well as how they should be formatted. In your configuration, appenders are defined using `log4j.appender.<AppenderAlias> = <AppenderClass>`.
+
+```txt
+# 1. THE CATEGORY: Creates a channel named "AdwordInfoLogger", accepts "INFO" level messages and above, and routes them to an appender nicknamed "ADIA".
+log4j.category.AdwordInfoLogger=INFO,ADIA
+
+# 2. THE APPENDER TYPE: Defines "ADIA" as a file writer that rolls over daily.
+log4j.appender.ADIA=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.ADIA.encoding=UTF-8
+log4j.appender.ADIA.DatePattern='.'yyyy-MM-dd
+log4j.appender.ADIA.Append=true
+
+# 3. THE APPENDER DESTINATION: Tells "ADIA" exactly where to save the file on your server.
+log4j.appender.ADIA.File=/opt/ag/logs/adword/adword-info.log
+
+# 4. THE APPENDER FORMATTING: Defines the specific layout pattern (Date, Thread, Message) for the text inside the file.
+log4j.appender.ADIA.layout=org.apache.log4j.PatternLayout
+log4j.appender.ADIA.layout.ConversionPattern=%-5p %d [%t] %m%n
+```
+
+In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBUG`.
+
+Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
+
+An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
+
 ## ETL Web API
+
+ELT harbest web api uses `play` framwork (for handling the HTTP request stuff). Written in java not scala. Scala is only used as a build tool.
 
 Play framework uses `Google Guice` as its default dependency injection (DI) framework.
 
@@ -1077,14 +1107,14 @@ Play attempts to convert the JSON values into the Java field types declared in `
 - `agencyId` → `Long` (e.g., if you send `"agencyId": "abc"`, binding fails with an `error.invalid` error on `agencyId`).
 - `name` → `String`
 
-**2. Field Constraint Annotations**
+step 2. Field Constraint Annotations
 
 Play checks the validation annotations placed on the fields in AbstractMAdvertiserPostForm.java:
 
 - `agencyId`: `@Max(Long.MAX_VALUE)` and `@Min(Long.MIN_VALUE)`
 - `name`: `@MaxLength(value = 200, message = "error.maxLength")` (fails if `name` is longer than 200 characters)
 
-3. The Form's `validate()` Method
+step 3. The Form's `validate()` Method
 
 Because `MAdvertiserPostForm.java` is annotated with `@Validate` and implements `Validatable<List<ValidationError>>` (via BaseForm.java), Play automatically calls `MAdvertiserPostForm.validate()`:
 
@@ -1418,7 +1448,7 @@ ORDER BY input_platform_auth_id DESC LIMIT 1;
 
 twitter là OAuth 1.0a
 
-lỗi ` PlatformUserId has been already registered.`
+lỗi `PlatformUserId has been already registered.`
 
 In MInputPlatformAuthController.java#L574-578
 
@@ -1445,54 +1475,12 @@ According to logback.xml, the log file uses a daily rolling policy (`TimeBasedRo
 
 1. Current Day's Log: All logs for today are appended to webapi.log in your project root (`c:\Users\anhao\Desktop\document\etl-harbest-practice\webapi.log`). Restarting the server on the same day does not overwrite it; it keeps appending.
 2. Daily Rotation & Backup Location: When the date changes (at midnight, or on the first log event of a new day), the previous day's `webapi.log` is automatically compressed and archived in the **same project root directory** with the date in the filename:
-   * `webapi.log.YYYY-MM-DD.gz` (for example: `webapi.log.2026-11-24.gz`)
+   - `webapi.log.YYYY-MM-DD.gz` (for example: `webapi.log.2026-11-24.gz`)
 3. Retention (`maxHistory`): It keeps up to **30 days** of `.gz` backup files in that folder and automatically deletes backups older than 30 days.
 
 (Note: The folder location is controlled by `charybdis.webapi.logdir = "./"` in application.conf, so both `webapi.log` and all `.gz` backups are stored in your project's root folder unless you change that path).
 
 Có một cái crontab làm việc backup log files đã được zip lên s3. Crontab này được bật một lần duy nhất lúc bật máy EC2 lên, không cần phải tắt và bật lại lúc deploy.
-
-## Log4j
-
-Apache Log4j version `1.2`; [documentation](https://logging.apache.org/log4j/1.x/)
-
-In Log4j, a `category` (also commonly referred to as a "logger") is essentially the named channel or routing rule that your Java code uses to send messages.
-
-When you write `log4j.category.<Name> = <LEVEL>, <AppenderAlias>`, you are defining three things:
-
-1. The Name: The string your Java code uses to find this rule (e.g., "AdwordInfoLogger" or `org.seasar`)
-2. The Level: The minimum severity of messages this channel will accept (e.g., `INFO`, `ERROR`, `DEBUG`)
-3. The Appender Alias: A short, custom label linking this category to a specific destination (e.g., `ADIA` or `C`)
-
-An appender defines the physical destination where the log messages will actually be written, as well as how they should be formatted. In your configuration, appenders are defined using `log4j.appender.<AppenderAlias> = <AppenderClass>`.
-
-```txt
-# 1. THE CATEGORY: Creates a channel named "AdwordInfoLogger", accepts "INFO" level messages and above, and routes them to an appender nicknamed "ADIA".
-log4j.category.AdwordInfoLogger=INFO,ADIA
-
-# 2. THE APPENDER TYPE: Defines "ADIA" as a file writer that rolls over daily.
-log4j.appender.ADIA=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.ADIA.encoding=UTF-8
-log4j.appender.ADIA.DatePattern='.'yyyy-MM-dd
-log4j.appender.ADIA.Append=true
-
-# 3. THE APPENDER DESTINATION: Tells "ADIA" exactly where to save the file on your server.
-log4j.appender.ADIA.File=/opt/ag/logs/adword/adword-info.log
-
-# 4. THE APPENDER FORMATTING: Defines the specific layout pattern (Date, Thread, Message) for the text inside the file.
-log4j.appender.ADIA.layout=org.apache.log4j.PatternLayout
-log4j.appender.ADIA.layout.ConversionPattern=%-5p %d [%t] %m%n
-```
-
-In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBUG`.
-
-Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
-
-An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
-
-## Exception Handling
-
-kkk
 
 ## Tiktok
 
@@ -1501,8 +1489,17 @@ kkk
   2. `Ad group` level: quyết định Quảng cáo sẽ hiển thị ở đâu và cho ai. Một Chiến dịch có thể chứa nhiều Nhóm quảng cáo.
   3. `ad level`
   4. `creative level`: Video, hình ảnh, văn bản quảng cáo (caption), và nút kêu gọi hành động (CTA).
-  
+
+---
+
 - `Creative` là toàn bộ những gì người dùng thực sự nhìn thấy và nghe thấy trên màn hình điện thoại của họ: video, ad text, CTA button, landing page. `Creative` là một "gói" (package) bao gồm tất cả các yếu tố hiển thị với người dùng, chứ không phải chỉ là cái file video riêng lẻ.
+
+creative (N.): video, hình ảnh của một quảng cáo
+
+- một ad có nhiều video or images, mỗi video/hình ảnh có một `creative id` định danh. Nhưng sẽ có chung một `ad id`
+- creative name là tên của tấm hình/ video
+
+---
 
 - Chế độ Thủ công (Standard Ad) truyền thống: 1 Ad = 1 Creative.
   - Khi bạn tạo một Quảng cáo (Ad), bạn chọn một tổ hợp duy nhất (1 Video + 1 Text + 1 CTA).
@@ -1628,11 +1625,9 @@ The TikTok API for Business isn't a separate, secret advertising system. Instead
 - TikTok API for Business is separated into the following APIs:
   - Marketing API: Interact with `TikTok Ads Manager` functionality at scale, allowing developers to programmatically query data, create and manage ads, and perform a wide variety of other tasks.
 
----
-
 ## Twitter
 
-asynchronous report tạo `job`
+asynchronous report tạo `job`
 
 The `synchronous` endpoint supports **short time ranges** and is ideal for real-time campaign optimizations. The asynchronous endpoints support much longer time ranges and are, thus, intended for fetching much more data, ideal for generating reporting or historical backfills.
 
