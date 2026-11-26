@@ -12,9 +12,7 @@ Task TOTO
 
 ## Project Specification, Thiết kế
 
-Có các actors: end user, adrepo, platform (tiktok, twitter), etl, web api của everrise.
-
----
+Có các actors: end user, adrepo, platform (tiktok, twitter), etl, web api của everrise
 
 - End user
   - chạy quảng cáo
@@ -23,18 +21,27 @@ Có các actors: end user, adrepo, platform (tiktok, twitter), etl, web api củ
 
 End user có tài khoản quảng cáo trên các platform (twitter, facebook). Everries làm việc với adrepo, báo cáo cho ads report cho phía adrepo, không làm trược tiếp với khách hàng end user. Adrepo là khách hàng của everrise.
 
----
-
 web api (elt harbest) nhận re-direct từ adrepo, cho advertiser authenticate trên platform. Sau đó api lấy token của khách hàng lưu vào database. Phía adrepo không lưu token ủy quyền của khách hàng.
 
-Bên mình (Everries ETL) chỉ lấy thành tích quảng cáo, không chạy quảng cáo. ETL chỉ cung cấp data as is returned from API. ETL không biến đổi dữ liệu. Khách hàng muốn biến đổi thì tự họ làm, ETL không làm. Rule dự án: api trả về cái gì thì trả cho khách hàng cái đó, không xào nấu thêm phức tạp
+We only lấy thành tích quảng cáo (the only thing we care about). Everries không chạy quảng cáo.
 
 Phía everrise không làm front end, đã bán front-end cho phía ad repo. Everrise trả dữ liệu report cho adrepo, adrepo trả cho end user.
 
 end user only work with adrepo (sale), end user không biết sự tồn tại của everrise
 
+batch nằm trên ec2, rds (relational database) cũng là service trên aws
+
+- ELT harbest -> `play` framwork (for handling the HTTP request stuff), java, only use scala build tool
+- ETL batch -> no framework, java thuần
+
 - batch create queue tạo, tạo rồi batch export
 - batch getReport data, getMaster data
+
+- table names: `queue`, `dsp_advertiser`
+- Cả 2 phía etl & adrepo đều có table `queue` cái tên giống nhau.
+
+ETL chỉ cung cấp data as is returned from API. ETL không biến đổi dữ liệu. Khách hàng muốn biến đổi thì tự họ làm, ETL không làm.  
+rule dự án: api trả về cái gì thì trả cho khách hàng cái đó, không xào nấu thêm phức tạp
 
 Có 2 bên: Adrepo và ETL. ETL chính là bên cty của mình. ETL bao gồm web API & Batch
 
@@ -43,6 +50,11 @@ PF: platform
 - Dự án này có 2 phần:
   1. ETL Batch
   2. ETL Harbest Web API
+
+creative (N.): video, hình ảnh của một quảng cáo
+
+- một ad có nhiều video or images, mỗi video/hình ảnh có một `creative id` định danh. Nhưng sẽ có chung một `ad id`
+- creative name là tên của tấm hình/ video
 
 - master data là field liên quan tới business, report, khách hàng quan tâm
 - metadata là field technical nerd, khách hàng không quan tâm
@@ -895,7 +907,7 @@ Class `AbstractBatch` contains the Logger objects and the methods to print logs.
 
 Khi test `BatchRemoveTemporaryFile` chỉ cần cho chạy start & finish.
 
-khi test `BatchUpdateTokenOutbrain` chạy batch > select trong table `m\_input\_platform\_auth` sẽ thấy cái `auth_permanent_json.AccessToken` được update mới (and `updated_at`)
+khi test `BatchUpdateTokenOutbrain` chạy batch > select trong table `m\_input\_platform\_auth` sẽ thấy cái `auth_permanent_json.AccessToken` được update mới (and `updated_at `)
 
 ---
 
@@ -932,49 +944,7 @@ Inside entity classes, we can have ENUM classes.
 
 `AbstractGetReportQueueDao` is `abstract` (and `AbstractGetReportQueue` is also `abstract` and cannot be instantiated by `convertRsToReportQueueList`). `AbstractGetReportQueueDaoContainerTest` already sets up a concrete `TestGetReportQueueDao` (`dao`) and a concrete `TestGetReportQueue` entity class wired up to the MySQL test container for you—all you have to override are `getTableName()` and `getTableFixtures()`
 
-### Batch Logging
-
-Uses Log4j
-
-Apache Log4j version `1.2`; [documentation](https://logging.apache.org/log4j/1.x/)
-
-In Log4j, a `category` (also commonly referred to as a "logger") is essentially the named channel or routing rule that your Java code uses to send messages.
-
-When you write `log4j.category.<Name> = <LEVEL>, <AppenderAlias>`, you are defining three things:
-
-1. The Name: The string your Java code uses to find this rule (e.g., "AdwordInfoLogger" or `org.seasar`)
-2. The Level: The minimum severity of messages this channel will accept (e.g., `INFO`, `ERROR`, `DEBUG`)
-3. The Appender Alias: A short, custom label linking this category to a specific destination (e.g., `ADIA` or `C`)
-
-An appender defines the physical destination where the log messages will actually be written, as well as how they should be formatted. In your configuration, appenders are defined using `log4j.appender.<AppenderAlias> = <AppenderClass>`.
-
-```txt
-# 1. THE CATEGORY: Creates a channel named "AdwordInfoLogger", accepts "INFO" level messages and above, and routes them to an appender nicknamed "ADIA".
-log4j.category.AdwordInfoLogger=INFO,ADIA
-
-# 2. THE APPENDER TYPE: Defines "ADIA" as a file writer that rolls over daily.
-log4j.appender.ADIA=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.ADIA.encoding=UTF-8
-log4j.appender.ADIA.DatePattern='.'yyyy-MM-dd
-log4j.appender.ADIA.Append=true
-
-# 3. THE APPENDER DESTINATION: Tells "ADIA" exactly where to save the file on your server.
-log4j.appender.ADIA.File=/opt/ag/logs/adword/adword-info.log
-
-# 4. THE APPENDER FORMATTING: Defines the specific layout pattern (Date, Thread, Message) for the text inside the file.
-log4j.appender.ADIA.layout=org.apache.log4j.PatternLayout
-log4j.appender.ADIA.layout.ConversionPattern=%-5p %d [%t] %m%n
-```
-
-In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBUG`.
-
-Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
-
-An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
-
 ## ETL Web API
-
-ELT harbest web api uses `play` framwork (for handling the HTTP request stuff). Written in java not scala. Scala is only used as a build tool.
 
 Play framework uses `Google Guice` as its default dependency injection (DI) framework.
 
@@ -1009,37 +979,28 @@ Trong `m_login_user` chứa `contract_company_id`
 
 ### Request Authentication
 
-all the checking (api token, login_user_id, contract company, m_api_authority happen before the first line of the controller is run.
+All the authentication checking happen before the first line of the controller is run.
 
-In MAdvertiserController.java, the `create()` method is annotated with:
+In `MAdvertiserController.java`, the `create()` method is annotated with:
 
 ```java
 @Security.Authenticated(LoginAuthenticator.class)
 public Result create() { ... }
 ```
 
-In Play Framework, `@Security.Authenticated` wraps the controller action in an interceptor (`Security.AuthenticatedAction`). Play executes `LoginAuthenticator.getUsername(ctx)` before invoking `create()`:
+In Play Framework, `@Security.Authenticated` wraps the controller action in an interceptor. Play executes `LoginAuthenticator.getUsername(ctx)` before invoking `create()`:
 
-1. `BaseLoginAuthenticator.getUsername(ctx)1 is called by Play.
-2. `this.getLoginUserId(ctx)` runs:
-   - `AbstractLoginAuthenticator.java`: Checks `m_api_token` (using `X-API-Token-Key` and `X-API-Token-Secret`), then checks `m_login_user`.
-   - `LoginAuthenticator.java`: Checks `m_login_user` and `m_contract_company` (`contract_status = 1`).
-3. `this.checkRole(ctx, loginUserId)` runs:
-   - `AbstractLoginAuthenticator.java` → `AbstractMLoginUserService.java`: Runs `IsApiAccessPermittedByLoginUserId.sql` against `m_api_authority`, `m_role`, and `m_login_user_role_relation`.
+1. `LoginAuthenticator.getUsername(Http.Context ctx)` is called by Play.
+2. It calls `.getLoginUserId(ctx)`:
+   - Queries `m_api_token` (`where deleted = 0`) to find `login_user_id`.
+   - Checks `m_contract_company` for `mLoginUser.getContractCompanyId()` has `contract_status = 1` (`AVAILABLE`). If the company is suspended or deleted, authentication fails (`returns null`).
+3. Next, `getUsername(ctx)` calls `.checkRole(ctx, loginUserId)` which runs `mLoginUserService.isApiAccessPermittedByLoginUserId(uri, method, loginUserId)` against `m_api_authority`, `m_role`, and `m_login_user_role_relation`.
 4. Decision:
-   - If any step above returns `null` or `false`, Play immediately calls `BaseAuthenticator.onUnauthorized(ctx)`, returning the `{"data":[{"error":"Unauthorized"}]}` response without ever entering `MAdvertiserController.create()`.
-   - Only if all steps succeed does Play proceed to line 77 of MAdvertiserController.java.
+   - If any step above returns `null` or `false`, Play immediately calls `BaseAuthenticator.onUnauthorized(ctx)`, returning the `{"data":[{"error":"Unauthorized"}]}` response without ever running any line of code inside the controller.
+   - Only if all steps succeed does Play proceed to the first line of code inside the controller.
 
----
-
-When a request hits a protected controller, the Play Framework automatically calls `BaseLoginAuthenticator.getUsername(Http.Context)`. This method in turn calls `LoginAuthenticator.getLoginUserId()`:
-
-- Success (True): If the method returns any valid `String loginUserId`, the framework considers the user authenticated and allows the controller logic to proceed.
-  - This `loginUserId` string is not used anywhere in the controller body. It is only for the authentication steps.
-  - Việc lấy thông tin user đăng nhập được thực hiện với service trong controller. Lấy ra từ `Http.Context.current()`.
-- Failure (False): If the method returns `null` (because the user ID is missing or the role check fails), the framework considers the authentication failed.
-
-if `getLoginUserId()` inside `getUsername(ctx)` returns `null`, the Play Framework intercepts that `null` and automatically triggers `BaseAuthenticator.onUnauthorized(Http.Context)`. This method then returns your standard `401 Unauthorized` JSON response and completely halts the request.
+- `getUsername(ctx)` return `loginUserId`, not the user name. If the method returns any valid `String loginUserId`, the framework considers the user authenticated and allows the controller logic to proceed.
+- If the method returns `null` (because the user ID is missing or the role check fails), the framework considers the authentication failed. Play Framework automatically triggers `BaseAuthenticator.onUnauthorized(Http.Context)`. This method then returns your standard `401 Unauthorized` JSON response and completely halts the request.
 
 ---
 
@@ -1107,14 +1068,14 @@ Play attempts to convert the JSON values into the Java field types declared in `
 - `agencyId` → `Long` (e.g., if you send `"agencyId": "abc"`, binding fails with an `error.invalid` error on `agencyId`).
 - `name` → `String`
 
-step 2. Field Constraint Annotations
+**2. Field Constraint Annotations**
 
 Play checks the validation annotations placed on the fields in AbstractMAdvertiserPostForm.java:
 
 - `agencyId`: `@Max(Long.MAX_VALUE)` and `@Min(Long.MIN_VALUE)`
 - `name`: `@MaxLength(value = 200, message = "error.maxLength")` (fails if `name` is longer than 200 characters)
 
-step 3. The Form's `validate()` Method
+3. The Form's `validate()` Method
 
 Because `MAdvertiserPostForm.java` is annotated with `@Validate` and implements `Validatable<List<ValidationError>>` (via BaseForm.java), Play automatically calls `MAdvertiserPostForm.validate()`:
 
@@ -1213,6 +1174,8 @@ Even if a user injects unauthorized fields or parameters into the JSON request b
 
 The `BaseController` uses the Apache Velocity engine (specifically the `base.vm` template) to format and generate the foundational JSON structure for all of your API responses.
 
+`BaseController` có 2 methods `ok()`. Một cái nhận a single `Object entitiy`. Cái kia nhận `List<?> entities` (`MInputPlatformAuthController:1864`).
+
 The `BaseController` injects several variables into the Velocity context during execution
 
 - `$entity`: A Java Map representation of the database record (in this case, an MAgency instance)
@@ -1227,9 +1190,9 @@ Template engines like Apache Velocity are most commonly known for generating dyn
 
 Template nằm trong `conf/templates/generated`
 
----
+#### Rendering pipeline
 
-It is a two-stage Velocity rendering pipeline inside BaseController.java:
+It is a two-stage Velocity rendering pipeline inside `BaseController.java`:
 
 1. Stage 1 (`generated/mAdvertiser.vm`) renders each individual entity into a JSON object string (e.g. `{"advertiserId": 1, "name": "..."}`).
 2. Stage 2 (`base.vm`) wraps that list of rendered entity JSON strings inside the outer response envelope (`{"data": [ ... ], "request": { ... }}`).
@@ -1241,28 +1204,24 @@ Stage 1: Render the Entity with `generated/mAdvertiser.vm`
 In `BaseController.ok(...)`:
 
 1. Single objects are wrapped into a 1-element list (`Collections.nCopies(1, entitiy)`) so single-item and list endpoints share the exact same logic.
-2. For each entity (`mAdvertiser`), it converts the Java object into a `Map<String, Object>` and passes three variables into the Velocity context (lines 464–468):
+2. For each entity (`mAdvertiser`), it converts the Java object into a `Map<String, Object>` and passes three variables into the Velocity context:
    - `$entity` → the `mAdvertiser` fields map (`advertiserId`, `contractCompanyId`, `agencyId`, `name`, `companyJson`, `note`, `deleted`)
    - `$nullTool` → checks if a field is non-null (`$nullTool.isNotNull(...)`) so `null` fields are omitted
    - `$disabledColumnStore` → checks `m_api_disabled_column` permissions for the current user (`$disabledColumnStore.isNotDisabled(...)`) to hide or replace restricted columns with default values
 3. Velocity evaluates `mAdvertiser.vm` and adds the resulting JSON string to `jsonizedEntities`:
+
+---
 
 Stage 2: Wrap inside `base.vm`
 
 Next, line 471 calls `generateBaseJson(jsonizedEntities, form.get(), pagingDto)`:
 
 1. It creates a new `VelocityContext` and sets:
-
    - `$list` → `jsonizedEntities` (the list of JSON strings produced by `mAdvertiser.vm` in Stage 1)
    - `$request` → `Json.toJson(form)` (the input parameters you sent in your request body)
    - `$paging` → `Json.toJson(pagingDto)` (only present for paginated list endpoints)
-
-2. Velocity evaluates `base.vm`.
-3. Finally, line 598 parses and formats the combined string (`Json.asciiStringify(Json.parse(writer.toString()))`) and returns the final HTTP `200 OK` JSON response:
-
----
-
-`BaseController` có 2 methods `ok()`. Một cái nhận a single `Object entitiy`. Cái kia nhận `List<?> entities` (`MInputPlatformAuthController:1864`).
+2. Velocity evaluates `base.vm` to a `writer` (giống như khi evaluate `mAdvertiser.vm` vào một `writer`).
+3. Finally, it parses and formats the combined string (`Json.asciiStringify(Json.parse(writer.toString()))`) and returns the final HTTP `200 OK` JSON response.
 
 ---
 
@@ -1292,8 +1251,8 @@ Next, line 471 calls `generateBaseJson(jsonizedEntities, form.get(), pagingDto)`
     return Controller.ok(generateBaseJson(jsonizedEntities, form.get(), pagingDto));
 ```
 
-1. **`StringWriter writer = new StringWriter();` (line 263)** Creates an in-memory text buffer (`StringWriter`) to capture the output of the Velocity template engine for the current `entity`.
-2. `Velocity.evaluate(context, writer, "", entityTemplate);` Runs the Velocity template (such as mAdvertiser.vm) using those variables and **writes the resulting JSON text into `writer`**. At this moment, `writer` holds a string like:
+1. `StringWriter writer = new StringWriter();` Creates an in-memory text buffer (`StringWriter`) to capture the output of the Velocity template engine for the current `entity`.
+2. `Velocity.evaluate(context, writer, "", entityTemplate);` Runs the Velocity template (such as mAdvertiser.vm) using those variables and writes the resulting JSON text into `writer`. At this moment, `writer` holds a string like:
 
 ```json
 {
@@ -1309,7 +1268,88 @@ step 3: `jsonizedEntities.add(writer.toString());` Converts the `StringWriter` b
 
 After the loop finishes for all `entities`, `jsonizedEntities` holds a `List<String>` of all the individual entity JSON objects, which is then passed to `generateBaseJson(jsonizedEntities, ...)` to be inserted into the `"data": [ ... ]` array in `base.vm`.
 
+#### entity.vm
+
+Một instance của class `MAdvertiser` được truyền vào `mAdvertiser.vm`. Cái `MAdvertiserPostForm` không được truyền vào `.vm`. Do not confuse Entity vs Form classes.
+
+- In BaseController.java, before the entity is passed to the Velocity template (mAdvertiser.vm), it is first converted into a `Map` using Jackson (`Json.toJson(entity)`).
+- In MAdvertiser.java, `getContractCompanyId()` is annotated with `@JsonIgnore` (along with `getCompanyJson()` and `getNote()`).
+- Because of `@JsonIgnore`, Jackson strips `contractCompanyId` when serializing `MAdvertiser` to the map. When Velocity evaluates `#if($nullTool.isNotNull($entity.contractCompanyId))` in mAdvertiser.vm, `$entity.contractCompanyId` is `null`, so the block is skipped.
+
 ---
+
+Even if `@JsonIgnore` is removed, mAdvertiser.vm also checks:
+
+```txt
+#if(!$disabledColumnStore || $disabledColumnStore.isNotDisabled("contractCompanyId"))
+```
+
+If the authenticated user's role has `contractCompanyId` marked as disabled in `disabledColumnStore` (via `LoginAuthenticator`), it will also be omitted unless a default value is configured.
+
+#### disabledColumnStore
+
+`disabledColumnStore` (implementing `IDisabledColumnStore.java`) is a **role-based field-level permission / column masking mechanism**. Even when a user has permission to call an API endpoint (e.g. `GET`, `POST`, `PUT`), their role might restrict them from **reading** or **modifying** specific fields (columns) on that endpoint.
+
+Where the data comes from (Database)
+
+It is backed by the `m_api_disabled_column` table (`MApiDisabledColumn.java`) and queried via findListByLoginUserId.sql:
+
+- A user (`m_login_user`) belongs to one or more roles (`m_login_user_role_relation` → `m_role`, plus default role `-1`).
+- Each role has endpoint permissions in `m_api_authority` (`uri`, `get_authorized`, `post_authorized`, `put_authorized`, `delete_authorized`).
+- Linked to `m_api_authority` is `m_api_disabled_column`, which lists specific field names (`name`) that are **disabled (forbidden)** for that role on that URI/HTTP method, along with an optional `default_value`.
+
+---
+
+How `disabledColumnStore` is built
+
+In `AbstractLoginAuthenticator.java`, `getDisabledColumnStore()` returns an `IDisabledColumnStore` object that lazily loads the disabled columns for the current request's `(URI, HTTP Method, loginUserId)` into a `Map<String, MApiDisabledColumn>` keyed by column name, and provides 3 methods:
+
+- `isDisabled(columnName)`: returns `true` if the column is restricted for this user on this endpoint.
+- `isNotDisabled(columnName)`: returns `true` if the user is allowed to use/see the column.
+- `getDefaultValue(columnName)`: returns the fallback value configured in `m_api_disabled_column.default_value` (or `null` if none).
+
+---
+
+3. How it is used in the application (Two places)
+
+A. On Input (Request Body Censoring on `POST` / `PUT`)
+
+In controllers like MAdvertiserController.java, before saving form data, the controller calls:
+
+```java
+mAdvertiserPostForm = (MAdvertiserPostForm) loginAuthenticator.censorForm(
+    MAdvertiserPostForm.class, mAdvertiserPostForm, getDisabledColumnStore());
+```
+
+`censorForm(...)` (AbstractLoginAuthenticator.java) uses reflection to loop through every field in the form. If `disabledColumnStore.isDisabled(fieldName)` is `true`, it **overwrites** whatever the user sent in the request with `disabledColumnStore.getDefaultValue(fieldName)` (or `null`), preventing unauthorized users from setting restricted fields.
+
+B. On Output (Response JSON Masking via Velocity Templates)
+
+In BaseController.java, `disabledColumnStore` is injected into the Velocity context:
+
+```java
+context.put("disabledColumnStore", getDisabledColumnStore());
+```
+
+Then, in Velocity templates like mAdvertiser.vm:
+
+```txt
+#if($nullTool.isNotNull($entity.advertiserId))
+    #if(!$disabledColumnStore || $disabledColumnStore.isNotDisabled("advertiserId"))
+        ...
+        "advertiserId": $entity.advertiserId
+    #elseif($disabledColumnStore.getDefaultValue("advertiserId"))
+        ...
+        "advertiserId": ${disabledColumnStore.getDefaultValue("advertiserId")}
+    #end
+#end
+```
+
+- If the column is **not disabled**, it outputs the real value (`$entity.advertiserId`).
+- If the column **is disabled** and has a `defaultValue` in DB, it outputs the masked/default value instead.
+- If the column **is disabled** and has **no** `defaultValue` (`null`), the field is completely omitted from the response JSON.
+
+#### base.vm
 
 `base.vm` is the master Apache Velocity template used by `BaseController.generateBaseJson(...)` to construct the top-level JSON structure for **every API response** (both success and error responses).
 
@@ -1328,7 +1368,7 @@ $json
   - On a **success response** (`ok(...)`), `$list` is `jsonizedEntities` (the list of JSON strings rendered by templates like mAdvertiser.vm).
   - On an **error response** (`badRequest(...)`, `unauthorized(...)`, etc.), `$list` is `jsonizedErrors` (e.g. `[{"agencyId": "Invalid value"}]` or `[{"error": "Unauthorized"}]`).
   - On a **`notFound(...)` response**, `$list` is `null`, so the loop doesn't run and it outputs `"data": [],`.
-- **`#foreach ($json in $list)`**: Loops over each JSON string in `$list`.
+- `#foreach ($json in $list)`: Loops over each JSON string in `$list`.
 - **`#if($velocityCount > 1) , #end`**: `$velocityCount` is Velocity's built-in 1-based loop counter (`1, 2, 3...`). This outputs a comma `,` **before every item except the first one** (`$velocityCount > 1`) so that the JSON array is valid without a trailing comma.
 - **`$json`**: Outputs the raw JSON object string for that item.
 
@@ -1350,10 +1390,184 @@ $request
 #end
 ```
 
-- **`$request`**: The bound request `Form` serialized to JSON (`Json.toJson(form)` in BaseController.java), echoing back the parameters the client sent (excluding `@JsonIgnore` fields).
+- `$request`: The bound request `Form` serialized to JSON (`Json.toJson(form)` in BaseController.java), echoing back the parameters the client sent (excluding `@JsonIgnore` fields).
 - **`#if($request) ... #else {} #end`**:
   - If a form was bound (e.g. in `create()`, `update()`, `read()`), it outputs the serialized form JSON (e.g. `{"agencyId": 1, "name": "Sample"}`).
   - If no form exists (for example, when `LoginAuthenticator` rejects a request with `401 Unauthorized` before the controller runs), `$request` is `null`, so it falls back to outputting an empty JSON object `{}`.
+
+### Web api's Role-Based Access Control (RBAC)
+
+`role_type` in `m_login_user` is a **business/organization tier indicator**, completely separate from the API permission tables (`m_role`, `m_login_user_role_relation`, `m_api_authority`).
+
+1. What `role_type` means
+
+As defined in MNotificationSetting.java, `role_type` represents the **organization level** of the user:
+
+* **`1` (`ADMIN`)**: System Administrator (管理者)
+* **`2` (`CONTRACT_COMPANY`)**: Contract Company user (契約企業 — bound to a `contract_company_id`)
+* **`3` (`AGENCY`)**: Agency user (代理店 — bound to both `contract_company_id` and `agency_id`)
+
+2. Is `m_login_user.role_type` used for API authorization or `disabledColumnStore`?
+
+No. In this codebase:
+
+- `m_login_user.role_type` is never checked during API access authorization (`IsApiAccessPermittedByLoginUserId.sql`) or column masking (`findListByLoginUserId.sql`).
+- Instead, API permissions and `disabledColumnStore` exclusively use the RBAC relational tables: `m_login_user` → `m_login_user_role_relation` (`login_user_id`, `role_id`) → `m_role` (`role_id`) → `m_api_authority` (`role_id`, `uri`) → `m_api_disabled_column` (`api_authority_id`).
+
+---
+
+In a standard Role-Based Access Control (RBAC) database design, `m_role` defines what roles exist, while **`m_login_user_role_relation` assigns those roles to users** (a many-to-many join table).
+
+1. `m_role` (Master table of Roles)
+
+Model: AbstractMRole.java Defines the **roles themselves** (e.g., "System Admin", "Contract Company Editor", "Agency Read-Only").
+
+* `role_id` (PK): Unique ID of the role (e.g., `1`, `2`, or `-1` for default).
+* `role_type`: Which organization tier this role belongs to (`1`: Admin, `2`: Contract Company, `3`: Agency).
+* `name`: Display name of the role.
+* `note`: Description of the role.
+
+`m_api_authority` points to **`m_role.role_id`** to define which endpoints (`uri`) and HTTP methods (`get_authorized`, `post_authorized`, etc.) that role is allowed to access.
+
+2. `m_login_user_role_relation` (User ↔ Role Join/Mapping Table)
+
+Model: AbstractMLoginUserRoleRelation.java Links **a user (`m_login_user`)** to **one or more roles (`m_role`)**:
+
+* `login_user_role_relation_id` (PK)
+* `login_user_id` (FK → `m_login_user.login_user_id`)
+* `role_id` (FK → `m_role.role_id`)
+* `contract_company_id` & `agency_id`: Tenant scoping for the assignment.
+
+Because this join table sits between `m_login_user` and `m_role`:
+
+* One user can be assigned **multiple roles** (multiple rows in `m_login_user_role_relation` with the same `login_user_id`).
+* Many users can share the **same role** (multiple rows with the same `role_id`).
+
+How all 5 tables connect together
+
+- `m_login_user`: Who the user is (`login_user_id`).
+- `m_login_user_role_relation`: Which `role_id`(s) that `login_user_id` has.
+- `m_role`: The role definition (`role_id`).
+- **`m_api_authority`**: Which `uri` + HTTP methods (`GET`/`POST`/`PUT`/`DELETE`) that `role_id` can call.
+- **`m_api_disabled_column`**: Which specific fields (`name`) are hidden or defaulted (`default_value`) for that `api_authority_id`.
+
+---
+
+- `role_id = -1` is a "global / default role" (applies to ALL logged-in users) regardless of whether the user has any rows in `m_login_user_role_relation` or `m_role`.
+- Notice that in `IsApiAccessPermittedByLoginUserId.sql`, the second `SELECT` after `UNION` queries `m_api_authority.role_id = -1` directly without joining `m_role` or `m_login_user_role_relation`. That's why your user can call the API even without a role in `m_login_user_role_relation`!
+
+---
+
+Here is the complete end-to-end lifecycle of how RBAC works when you call an endpoint (e.g., `POST /mAgency/` or `PUT /mAgency/10/`) assuming you pass the authentication steps.
+
+Step 4: Input Field-Level RBAC — "Which request fields can you set?" (`censorForm`)
+
+Once inside the controller (on `POST` or `PUT`), after form binding and validation, the controller calls:
+
+```java
+formObj = loginAuthenticator.censorForm(FormClass.class, formObj, getDisabledColumnStore());
+```
+
+* `getDisabledColumnStore()` runs findListByLoginUserId.sql to fetch all `m_api_disabled_column` rows linked to the user's `m_api_authority` for the current URI and HTTP method.
+* `censorForm` loops over every field in the Form object via Java reflection.
+* If a field name is in `disabledColumnStore`, the value sent by the user is **overwritten** with `m_api_disabled_column.default_value` (converted to `Long`, `Integer`, `Boolean`, etc., or `null` if no default value is set).
+
+---
+
+Step 5: Tenant Data Isolation — "Which rows can you access?" (`BaseModelService`)
+
+When the controller calls a service method like `mAgencyService.findById(agencyId)` or `findPagedList(...)`:
+
+BaseModelService.java automatically calls `addAnyExpressionList(expressionList)`:
+
+```java
+if (this.hasContractCompanyId(modelClazz)) {
+  MLoginUser mLoginUser = this.extractMLoginUser();
+  expressionList.eq("contract_company_id", mLoginUser.getContractCompanyId());
+}
+```
+
+Any model table that has a `contractCompanyId` column is automatically filtered by `WHERE contract_company_id = <logged_in_user's contract_company_id>`, preventing a user from reading or updating another company's data.
+
+---
+
+Step 6: Output Field-Level RBAC — "Which response fields can you see?" (Velocity `.vm`)
+
+Finally, when the controller calls `ok("generated/mAdvertiser.vm", entity, form)`:
+
+1. BaseController.java converts the entity to a `Map` (respecting `@JsonIgnore` on the model) and passes both `entity` and `disabledColumnStore` into Velocity.
+2. The `.vm` template checks every field against `disabledColumnStore`:
+   - **Not disabled**: outputs the real field value (`$entity.fieldName`).
+   - **Disabled + has `default_value`**: outputs `${disabledColumnStore.getDefaultValue("fieldName")}`.
+   - **Disabled + `default_value` is `NULL`**: skips the field completely so it never appears in the response JSON.
+
+### m_login_user
+
+Here is how `MLoginUser` relates to `contract_company_id` and `agency_id`, and the exact constraints enforced when you call any endpoint:
+
+1. The Hierarchy: Contract Company → Agency → Advertiser
+
+- `contract_company_id` (`NOT NULL`): Every `m_login_user` **must** belong to a `m_contract_company`.
+- **`agency_id` (`NULLABLE`)**: `m_login_user.agency_id` is optional (`null` for Contract Company-level users; populated if the user represents a specific agency).
+
+2. Constraints Enforced on `contract_company_id` (Strict & Automatic)
+
+`contract_company_id` is **strictly enforced across the entire application** as the multi-tenant boundary:
+
+1. **On Authentication (LoginAuthenticator.java)**:
+
+- When you call any endpoint, `LoginAuthenticator` checks the user's `m_contract_company`:
+- If the user's `contract_company_id` does not exist in `m_contract_company`, is soft-deleted (`deleted = 1`), or its `contract_status != 1`, the request is rejected with `401 Unauthorized`.
+
+---
+
+On Every Database Query (`GET` / `PUT` / `DELETE` via BaseModelService.java):
+
+- Every service extends `BaseModelService<T>`. Whenever `findById`, `findList`, or `findPagedList` runs on any model that has a `contractCompanyId` field (like `MAgency`, `MAdvertiser`, `MInputPlatformAuth`, etc.), `addAnyExpressionList()` automatically appends:
+- Constraint: A user can **never** view, update, or delete an Agency, Advertiser, or Auth record belonging to a different `contract_company_id` (it will return `404 Not Found` or `400 Bad Request`).
+
+On Creation (`POST` in Controllers like MAdvertiserController.java & MAgencyController.java): Even if you pass a `contractCompanyId` in the JSON body, the controller ignores it and forces `contractCompanyId = mLoginUser.getContractCompanyId()` when inserting new rows.
+
+---
+
+Constraints Enforced on `agency_id` (Validated per Endpoint, NOT isolated by `m_login_user.agency_id`)
+
+Surprisingly, **`m_login_user.agency_id` is NOT used by `BaseModelService` to restrict queries**! Instead, `agency_id` is constrained by **parent-child ownership under the user's `contract_company_id`**:
+
+1. **`agencyId` must exist and belong to the user's `contract_company_id`**:
+
+- When you call `POST /mAdvertiserNew/` (or `POST /mOnetimeApiToken/`, `POST /mInputPlatformAuth/`), you pass `agencyId` in the request body.
+- The controller's `validateOnCreate` (MAdvertiserController.java) runs:
+- Because `mAgencyService.findById(agencyId)` automatically filters by `WHERE agency_id = :agencyId AND contract_company_id = :userContractCompanyId`, if you pass an `agencyId` that doesn't exist or belongs to another `contract_company_id`, `mAgency` will be `null` and you will get **`400 Bad Request` (`"agencyId": "Invalid value"`)**.
+
+Cross-entity consistency (`agencyId` ↔ `advertiserId` / `inputPlatformAuthId`):
+
+  * In endpoints like `POST /mOnetimeApiToken/` (MOnetimeApiTokenController.java), if you pass both `agencyId` and `advertiserId` (or `inputPlatformAuthId`), it validates that `mAdvertiser.getAgencyId().equals(form.getAgencyId())`. If they don't match, it returns `400 Bad Request`.
+
+
+### HTTP response config
+
+This project has a global HTTP filter that forces almost all responses to have `Content-Type: application/json`.
+
+By default in Play Framework, `Controller.ok(String)` returns a response with `Content-Type: text/plain`. However, this project registers SessionFilter.java (enabled in common.conf), which intercepts **every response** after your controller returns and overwrites its MIME type to `application/json`:
+
+```java
+// MimeTypeの書き換え (SessionFilter.java lines 55-58)
+if (!"OPTIONS".equals(method) && !"HEAD".equals(method) && !requestHeader.path().contains("swagger")) {
+  result = ResultUtil.changeMineTypeOnResult(result, ContentType.APPLICATION_JSON.getMimeType());
+}
+```
+
+And in BaseController.java, the `String` passed into `Controller.ok(...)` is produced by `generateBaseJson(...)` (BaseController.java), which renders base.vm into a JSON-formatted string.
+
+---
+
+You can call Play's `Controller.ok("any string here")` (or `ok("add new advertiser successfully!")`) instead of `BaseController`'s `ok(templatePath, entity, form)`.
+
+- **The response body itself** will be whatever raw string you pass to `Controller.ok("...")` (because `SessionFilter` only changes the `Content-Type` header via ResultUtil.java, it does not parse or alter the body bytes).
+- **However**, because SessionFilter.java unconditionally overwrites the `Content-Type` header to `application/json` (even if you chain `.as("text/plain")` in your controller), Postman will still see `Content-Type: application/json` in the response headers and try to pretty-print or validate the body as JSON unless:
+  1. You switch the Postman response viewer tab from **JSON** to **Text/Raw**, or
+  2. You update SessionFilter.java so it doesn't overwrite the `Content-Type` when one is already explicitly set (or for specific routes).
 
 ### Đăng ký chứng thực cho các PF có Oauth2
 
@@ -1448,7 +1662,7 @@ ORDER BY input_platform_auth_id DESC LIMIT 1;
 
 twitter là OAuth 1.0a
 
-lỗi `PlatformUserId has been already registered.`
+lỗi ` PlatformUserId has been already registered.`
 
 In MInputPlatformAuthController.java#L574-578
 
@@ -1475,12 +1689,54 @@ According to logback.xml, the log file uses a daily rolling policy (`TimeBasedRo
 
 1. Current Day's Log: All logs for today are appended to webapi.log in your project root (`c:\Users\anhao\Desktop\document\etl-harbest-practice\webapi.log`). Restarting the server on the same day does not overwrite it; it keeps appending.
 2. Daily Rotation & Backup Location: When the date changes (at midnight, or on the first log event of a new day), the previous day's `webapi.log` is automatically compressed and archived in the **same project root directory** with the date in the filename:
-   - `webapi.log.YYYY-MM-DD.gz` (for example: `webapi.log.2026-11-24.gz`)
+   * `webapi.log.YYYY-MM-DD.gz` (for example: `webapi.log.2026-11-24.gz`)
 3. Retention (`maxHistory`): It keeps up to **30 days** of `.gz` backup files in that folder and automatically deletes backups older than 30 days.
 
 (Note: The folder location is controlled by `charybdis.webapi.logdir = "./"` in application.conf, so both `webapi.log` and all `.gz` backups are stored in your project's root folder unless you change that path).
 
 Có một cái crontab làm việc backup log files đã được zip lên s3. Crontab này được bật một lần duy nhất lúc bật máy EC2 lên, không cần phải tắt và bật lại lúc deploy.
+
+## Log4j
+
+Apache Log4j version `1.2`; [documentation](https://logging.apache.org/log4j/1.x/)
+
+In Log4j, a `category` (also commonly referred to as a "logger") is essentially the named channel or routing rule that your Java code uses to send messages.
+
+When you write `log4j.category.<Name> = <LEVEL>, <AppenderAlias>`, you are defining three things:
+
+1. The Name: The string your Java code uses to find this rule (e.g., "AdwordInfoLogger" or `org.seasar`)
+2. The Level: The minimum severity of messages this channel will accept (e.g., `INFO`, `ERROR`, `DEBUG`)
+3. The Appender Alias: A short, custom label linking this category to a specific destination (e.g., `ADIA` or `C`)
+
+An appender defines the physical destination where the log messages will actually be written, as well as how they should be formatted. In your configuration, appenders are defined using `log4j.appender.<AppenderAlias> = <AppenderClass>`.
+
+```txt
+# 1. THE CATEGORY: Creates a channel named "AdwordInfoLogger", accepts "INFO" level messages and above, and routes them to an appender nicknamed "ADIA".
+log4j.category.AdwordInfoLogger=INFO,ADIA
+
+# 2. THE APPENDER TYPE: Defines "ADIA" as a file writer that rolls over daily.
+log4j.appender.ADIA=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.ADIA.encoding=UTF-8
+log4j.appender.ADIA.DatePattern='.'yyyy-MM-dd
+log4j.appender.ADIA.Append=true
+
+# 3. THE APPENDER DESTINATION: Tells "ADIA" exactly where to save the file on your server.
+log4j.appender.ADIA.File=/opt/ag/logs/adword/adword-info.log
+
+# 4. THE APPENDER FORMATTING: Defines the specific layout pattern (Date, Thread, Message) for the text inside the file.
+log4j.appender.ADIA.layout=org.apache.log4j.PatternLayout
+log4j.appender.ADIA.layout.ConversionPattern=%-5p %d [%t] %m%n
+```
+
+In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBUG`.
+
+Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
+
+An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
+
+## Exception Handling
+
+kkk
 
 ## Tiktok
 
@@ -1489,17 +1745,8 @@ Có một cái crontab làm việc backup log files đã được zip lên s3. C
   2. `Ad group` level: quyết định Quảng cáo sẽ hiển thị ở đâu và cho ai. Một Chiến dịch có thể chứa nhiều Nhóm quảng cáo.
   3. `ad level`
   4. `creative level`: Video, hình ảnh, văn bản quảng cáo (caption), và nút kêu gọi hành động (CTA).
-
----
-
+  
 - `Creative` là toàn bộ những gì người dùng thực sự nhìn thấy và nghe thấy trên màn hình điện thoại của họ: video, ad text, CTA button, landing page. `Creative` là một "gói" (package) bao gồm tất cả các yếu tố hiển thị với người dùng, chứ không phải chỉ là cái file video riêng lẻ.
-
-creative (N.): video, hình ảnh của một quảng cáo
-
-- một ad có nhiều video or images, mỗi video/hình ảnh có một `creative id` định danh. Nhưng sẽ có chung một `ad id`
-- creative name là tên của tấm hình/ video
-
----
 
 - Chế độ Thủ công (Standard Ad) truyền thống: 1 Ad = 1 Creative.
   - Khi bạn tạo một Quảng cáo (Ad), bạn chọn một tổ hợp duy nhất (1 Video + 1 Text + 1 CTA).
@@ -1625,9 +1872,11 @@ The TikTok API for Business isn't a separate, secret advertising system. Instead
 - TikTok API for Business is separated into the following APIs:
   - Marketing API: Interact with `TikTok Ads Manager` functionality at scale, allowing developers to programmatically query data, create and manage ads, and perform a wide variety of other tasks.
 
+---
+
 ## Twitter
 
-asynchronous report tạo `job`
+asynchronous report tạo `job`
 
 The `synchronous` endpoint supports **short time ranges** and is ideal for real-time campaign optimizations. The asynchronous endpoints support much longer time ranges and are, thus, intended for fetching much more data, ideal for generating reporting or historical backfills.
 

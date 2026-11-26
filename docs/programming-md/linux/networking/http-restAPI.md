@@ -184,7 +184,7 @@ A `3xx redirection` status indicates that the client must take additional action
 A `4xx client error` status code is for situations in which an error seems to have been caused **by the client** (the one sending the request). The server should include an entity containing an explanation of the error situation. 
 
 - `400 Bad Request`: This is a generic error code indicating that the request could not be understood by the server. The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).
-  - Đã được authorized thành công nhưng 
+  - Đã được authorized thành công, vượt qua lỗi `401 Unauthorized`.
 - `401 Unauthorized`: The HTTP `401` Unauthorized status code is a bit ambiguous. Usually, it’s used to represent a **failed authentication** rather than an authorization. Developers employ it in the design of the application for cases such as missing or incor-rect credentials. For a failed authorization, we’d probably use the 403 Forbidden status. Generally, an HTTP 403 means that the server identified the caller of the request, but they don’t have the needed privileges for the call that they are trying to make.
 - `403 Forbidden`: The request was valid, but the server refuses action. This may be due to the user not having permission to a resource or needing an account of some sort, or attempting a prohibited action (e.g. creating a duplicate record where only one is allowed)
 - `404 Not Found`: The requested document does not exist on this server.
