@@ -2,8 +2,6 @@
 
 SQL is a language used to interact with relational database management systems (RDBMS). Mỗi RDBMS có một flavour SQL khác nhau.
 
-- sql server: SA:MyStrongPass123
-- mySQL: root:password
 - pg admin: password
 
 ## CREATE TABLE & Data Types
@@ -95,15 +93,15 @@ Lệnh `SELECT` dùng để lấy ra các dòng (row) phù hợp với một ti�
 
 Cú pháp của lệnh `SELECT` có 6 chữ (và bổ sung thêm 1 `JOIN`). Ngoài `SELECT` chạy sau cùng ra thì thứ tự thực hiện các câu lệnh là:
 
-1. `SELECT` (viết đầu tiên nhưng được chạy sau cùng)
-2. Đầu tiên là thực hiện `FROM` rồi tới `JOIN` rồi tới `WHERE`
-3. `WHERE` lọc những dòng trong bảng tạm trả về từ phép nối `JOIN` nếu có
-4. `GROUP BY`
-5. `HAVING`
-6. `ORDER BY`
-7. `TOP`, `LIMIT`, `OFFSET`, `FETCH FIRST`
+1. Đầu tiên là thực hiện `FROM` rồi tới `JOIN` (including `ON`) rồi tới `WHERE`
+2. `WHERE` lọc những **dòng** (filter individual rows) trong bảng tạm trả về từ `FROM` và phép nối `JOIN` (nếu có)
+3. `GROUP BY` groups **rows** into buckets
+4. `HAVING` filters grouped buckets
+5. `SELECT`/`DISTINCT` (viết đầu tiên nhưng được chạy sau cùng) computes expressions and pick output **columns**. `DISTINCT` Remove duplicate output rows.
+6. `ORDER BY` sorts the final result
+7. `TOP`, `LIMIT`, `OFFSET`, `FETCH FIRST` slice the returned rows
 
-Mnemonic: So Few Junior Workers Go Home On-time  
+Mnemonic (writing order, not execution order): So Few Junior Workers Go Home On-time  
 This is the order of execution.
 
 ### WHERE
@@ -325,20 +323,24 @@ LIMIT 3;
 
 Một bảng 3 columns `JOIN` với một bảng 2 columns sẽ trả về một bảng tạm 5 cột chứ không phải 4. Hai cái cột dùng để join là hai cột khác nhau.
 
-Cái namespace `SV.` and `L.` chỉ cần thêm vào khi có sự trùng tên cột của 2 bảng tham gia phép nối, còn không thì không cần thêm.
+Chỉ cần thêm mấy cái namespaces (`SV.` and `L.`) vào khi có sự trùng tên cột của 2 bảng tham gia phép nối, còn không thì không cần thêm.
 
 Khi muốn select cột từ nhiều bảng thì dùng JOIN. Sau đó mới đặt câu hỏi là dùng loại JOIN nào cho phù hợp.
 
-`INNER JOIN` returns ONLY the rows where there is a match in the join column(s) in both tables. Records from either table that do not have a corresponding match in the other table are excluded from the result set.  
-When the type of `JOIN` is not explicitly specified, the default JOIN is an `INNER JOIN`.
+### INNER JOIN
+
+`INNER JOIN` returns only rows with a match in both tables. This means that if there is a product with no CategoryID, or with a CategoryID not present in the Categories table, that row will not be returned in the result.
+
+`INNER JOIN` returns ONLY the rows where there is a match in the join column(s) in both tables. Records from either table that do not have a corresponding match in the other table are excluded from the result set.
+
+Writing `JOIN` by itself without `INNER` is shorthand for `INNER JOIN` in SQL—both behave identically.
 
 ```sql
 SELECT
   customer.customer_id, customer.first_name, customer.last_name,
   payment.amount, payment.payment_date
-FROM
-  customer INNER JOIN payment ON payment.customer_id = customer.customer_id
-  -- INNER JOIN payment USING(customer_id)
+FROM customer
+INNER JOIN payment ON payment.customer_id = customer.customer_id
 ORDER BY payment.payment_date;
 
 -- Show the team1, team2 and player for every goal scored by a player called Mario
@@ -348,22 +350,89 @@ FROM game ga JOIN goal go ON (ga.id = go.matchid)
 WHERE player LIKE 'Mario%';
 ```
 
-The `LEFT JOIN` clause joins a left table with the right table and returns **ALL the rows from the left table** that may or may not have corresponding rows in the right table. In case the values do not equal, the left join also creates a new row that contains columns from both tables and adds it to the result set (bảng tạm). However, it fills the columns of the right table with `NULL`.  
+---
+
+```txt
+SELECT 
+    c.customerNumber,
+    c.customerName,
+    o.orderNumber,
+    o.orderDate,
+    o.status
+FROM customers c
+INNER JOIN orders o ON c.customerNumber = o.customerNumber
+ORDER BY c.customerNumber, o.orderNumber;
+
+customerNumber|customerName                      |orderNumber|orderDate |status    |
+--------------+----------------------------------+-----------+----------+----------+
+           103|Atelier graphique                 |      10123|2003-05-20|Shipped   |
+           103|Atelier graphique                 |      10298|2004-09-27|Shipped   |
+           103|Atelier graphique                 |      10345|2004-11-25|Shipped   |
+           112|Signal Gift Stores                |      10124|2003-05-21|Shipped   |
+           112|Signal Gift Stores                |      10278|2004-08-06|Shipped   |
+           112|Signal Gift Stores                |      10346|2004-11-29|Shipped   |
+           114|Australian Collectors, Co.        |      10120|2003-04-29|Shipped   |
+           114|Australian Collectors, Co.        |      10125|2003-05-21|Shipped   |
+           114|Australian Collectors, Co.        |      10223|2004-02-20|Shipped   |
+           114|Australian Collectors, Co.        |      10342|2004-11-24|Shipped   |
+```
+
+- `customers` has 122 rows, and `orders` has 326 rows.
+- Every order in `orders` belongs to a valid customer, so all 326 orders appear in the output.
+- The 24 customers with zero orders (like `168`) are dropped completely because they have no match in `orders`.
+- Customers with multiple orders (like `103` or `124`) still appear once per order:
+
+In real queries, you chain multiple `INNER JOIN`s together to connect normalized tables—for example, seeing which exact model cars a customer ordered:
+
+```txt
+SELECT 
+    c.customerName,
+    o.orderNumber,
+    p.productName,
+    od.quantityOrdered,
+    od.priceEach,
+    (od.quantityOrdered * od.priceEach) AS lineTotal
+FROM customers c
+INNER JOIN orders o ON c.customerNumber = o.customerNumber
+INNER JOIN orderdetails od ON o.orderNumber = od.orderNumber
+INNER JOIN products p ON od.productCode = p.productCode
+WHERE o.orderNumber = 10123;
+
+customerName     |orderNumber|productName                   |quantityOrdered|priceEach|lineTotal|
+-----------------+-----------+------------------------------+---------------+---------+---------+
+Atelier graphique|      10123|1965 Aston Martin DB5         |             26|   120.71|  3138.46|
+Atelier graphique|      10123|1999 Indy 500 Monte Carlo SS  |             46|   114.84|  5282.64|
+Atelier graphique|      10123|1948 Porsche Type 356 Roadster|             34|   117.26|  3986.84|
+Atelier graphique|      10123|1966 Shelby Cobra 427 S/C     |             50|    43.27|  2163.50|
+```
+
+This is 1 order (`10123`) containing 4 different line items (products) in the `orderdetails` table.
+
+In `classicmodels`, `orders` and `orderdetails` have a one-to-many (1:N) relationship:
+
+- `orders` (Header table): 1 row for order `10123` (placed by 1 customer, `Atelier graphique`).
+- `orderdetails` (Line-item table): 4 rows for order `10123`, because the customer bought 4 different model cars in that single shopping cart. Its primary key is composite: `(orderNumber, productCode)`.
+
+When you join `orders` to `orderdetails`, the single `10123` header row repeats 4 times so each purchased product gets its own row.
+
+Notice that in the table, `customerName` and `orderNumber` are identical across all 4 rows, while `productName`, `quantityOrdered`, and `priceEach` are different on every row.
+
+### LEFT JOIN, RIGHT JOIN
+
+The `LEFT JOIN` clause joins a left table with the right table and returns **ALL the rows from the left table** that may or may not have corresponding rows in the right table. In case the values do not equal, the left join also creates a new row that contains columns from **both tables** and adds it to the result set (bảng tạm). However, it fills the columns of the right table with `NULL`.
+
 The clause `LEFT JOIN` is the same as writing `LEFT OUTER JOIN` so you can use them interchangeably.
 
 ```sql
--- LEFT JOIN result
-apple apple
-orange orange
-banana null
-cucumber null
+-- The INNER JOIN misses the teachers with no department and the departments with no teacher.
+SELECT teacher.name, dept.name
+FROM teacher
+INNER JOIN dept ON teacher.dept=dept.id;
 
--- Note the INNER JOIN misses the teachers with no department and the departments with no teacher.
+-- All teachers are listed
 SELECT teacher.name, dept.name
- FROM teacher INNER JOIN dept ON (teacher.dept=dept.id)
--- all teachers are listed
-SELECT teacher.name, dept.name
-  FROM teacher LEFT JOIN dept ON (teacher.dept=dept.id)
+FROM teacher
+LEFT JOIN dept ON teacher.dept=dept.id;
 ```
 
 Example:
@@ -371,9 +440,105 @@ Example:
 - `LEFT JOIN`: liệt kê tất cả sinh viên (kể cả sv chưa được phân lớp)
 - `RIGHT JOIN`: liệt kể chỉ những người đã được phân vào đúng lớp
 
+---
+
+```txt
+SELECT
+    c.customerNumber as lCustomerNumber,
+    o.customerNumber as rCustomerNumber,
+    o.orderNumber
+FROM customers c
+LEFT JOIN orders o ON c.customerNumber = o.customerNumber;
+
+lCustomerNumber|rCustomerNumber|orderNumber|
+---------------+---------------+-----------+
+            168|               |           |
+            103|            103|      10123|
+            103|            103|      10298|
+            103|            103|      10345|
+```
+
+A `NULL` in `rCustomerNumber` means that customer exists in the `customers` table, but has zero matching rows in the `orders` table (they have never placed an order).
+
+- `LEFT JOIN` keeps every row from `customers`: Regardless of whether a match exists on the right, every customer (like `168`) is included in the output.
+- Database searches `orders` for `o.customerNumber = 168`: No rows are found.
+- Database `NULL`-pads all columns from `orders`: Because there is no right-hand row to pull values from, SQL fills every column belonging to alias `o` (`rCustomerNumber`, `orderNumber`, `orderDate`, `status`, etc.) with `NULL`.
+
+---
+
+A `JOIN` produces every valid pair of `(left_row, right_row)` that satisfies the `ON` condition. If 1 customer has 3 orders, that customer row is repeated 3 times in the result set.
+
+Customer `103` (`Atelier graphique`) placed 3 orders (`10123`, `10298`, `10345`), while Customer `168` (`American Souvenirs Inc`) placed 0 orders:
+
+```txt
+SELECT 
+    c.customerNumber,
+    c.customerName,
+    o.orderNumber,
+    o.orderDate
+FROM customers c
+LEFT JOIN orders o ON c.customerNumber = o.customerNumber
+WHERE c.customerNumber IN (103, 168);
+
+customerNumber|customerName          |orderNumber|orderDate |
+--------------+----------------------+-----------+----------+
+           103|Atelier graphique     |      10123|2003-05-20|
+           103|Atelier graphique     |      10298|2004-09-27|
+           103|Atelier graphique     |      10345|2004-11-25|
+           168|American Souvenirs Inc|           |          |
+```
+
+---
+
 Khi dùng `LEFT JOIN` hoặc `RIGHT JOIN` ta sẽ thấy cái cột primary key và cột foreign key để join là 2 cột có cùng tên nhưng data khác nhau.
 
+`SELECT *` with `ON` literally concatenates all columns from `customers` followed by all columns from `orders`, so `customerNumber` appears twice.
+
+Customer `124` has 17 different orders in the `orders` table—so the `LEFT JOIN` outputs one row per order. If you add `o.orderNumber` to your `SELECT`, you'll see the hidden column making each row distinct:
+
+```txt
+SELECT
+    c.customerNumber,
+    o.customerNumber,
+    o.orderNumber
+FROM customers c
+LEFT JOIN orders o ON c.customerNumber = o.customerNumber
+WHERE c.customerNumber = 124;
+
+customerNumber|customerNumber|orderNumber|
+--------------+--------------+-----------+
+           124|           124|      10113|
+           124|           124|      10135|
+           124|           124|      10142|
+           124|           124|      10182|
+           124|           124|      10229|
+           124|           124|      10271|
+           124|           124|      10282|
+           124|           124|      10312|
+           124|           124|      10335|
+           124|           124|      10357|
+           124|           124|      10368|
+           124|           124|      10371|
+           124|           124|      10382|
+           124|           124|      10385|
+           124|           124|      10390|
+           124|           124|      10396|
+           124|           124|      10421|
+```
+
+---
+
+Putting a condition in `JOIN ... ON ... AND ...` versus `WHERE ... AND ...` produces the exact same result for an `INNER JOIN`, but behaves **completely differently for a `LEFT JOIN` (or `RIGHT JOIN`)**.
+
+SQL's logical execution order is `FROM` $\rightarrow$ `JOIN` (including `ON`) $\rightarrow$ `WHERE`.
+
+In a `LEFT JOIN` (or `RIGHT JOIN`) both `ON` and `WHERE` evaluate boolean filter conditions, and the crucial difference is **when** they filter—and therefore whether unmatched rows get `NULL`-padded or deleted.
+
+### OUTER JOIN
+
 `FULL OUTER JOIN` returns a result set that contains all rows from both left and right tables, with the matching rows from both sides if available. In case there is no match, the columns of the table will be filled with `NULL`.
+
+### JOIN USING
 
 The `JOIN ... USING` clause is a shorthand syntax used to simplify JOIN operations when the common column(s) between the two tables being joined have the same name.
 
@@ -392,6 +557,10 @@ INNER JOIN Customers USING (CustomerID);
 
 `UNION, UNION ALL, INTERSECT và EXCEPT` là các phép quan hệ operators that allows you to combine the result sets of two or more `SELECT` statements into a single result set. `JOIN` only has one `SELECT`.
 
+In essence, `UNION` lets you run multiple separate `SELECT` queries and stack their rows vertically into a single result set. Whereas a `JOIN` combines columns **horizontally** (side-by-side) based on a matching key, a `UNION` appends rows **vertically** (top-to-bottom) from two or more independent queries that share the same column structure.
+
+---
+
 Các phép quan hệ:
 
 - `UNION`: phép hợp, bỏ những dòng trùng nhau chỉ giữ lại 1 dòng. To retain the duplicate rows, you use the `UNION ALL` instead.
@@ -407,7 +576,7 @@ Dùng những phép này khi đọc đề bài thấy chẳng liên quan gì v�
 - employee who had sell bột giặt OMO **và** chưa bao giờ đi công viên
 
 - Liệt kê những SV đã từng thi môn toán **hoặc** có quê Quảng Nam
-- Liệt ke nhung SV da từng thi môn toán **và** những SV co que o quang nam
+- Liệt kê nhung SV da từng thi môn toán **và** những SV co que o quang nam
 
 ```sql
 (Select MaSV
@@ -677,36 +846,6 @@ By executing `LOCK TABLES <table_name> READ;`:
 - MySQL waits for all currently running write statements/transactions on that table to complete before granting the read lock.
 - While the read lock is held during the `SELECT`, no new `INSERT` or `UPDATE` statements can proceed.
 - This guarantees that at the moment the `SELECT` runs, no in-flight write with an earlier `NOW(6)` timestamp is still pending, ensuring no queue updates are missed between export runs.
-
-## PostgeSQL configurations
-
-The password for the postgres user is the one you entered during the PostgreSQL installation.  
-PostgesSQL password khác với pgadmin password. Nhưng có thể đặt trùng cũng được.
-
-username: root
-password: password (postgres password & pgadmin password)
-
-**psql** is a terminal-based front-end to PostgreSQL. It enables you to type in queries interactively, issue them to PostgreSQL, and see the query results. Alternatively, input can be from a file or from command line arguments.
-
-### command-line tool
-
-`psql` là command-line tool của postgres
-
-`\?` Coi bảng command in psql mode
-cái nữa là `help` hiện ra bảng nhỏ hơn or `psql --help` (cái này dùng ở ngoài psql mode nhé)
-
-`\l` show list of database
-
-You can either use lowercase or uppercase. You are recommend to use UPPERCASE for SQL commands. That way, you can tell what is syntax and what is not. Remember to have semi-colon ở cuối command nhé.
-
-`psql -h localhost -p 5432 -U <username> <DB name>` -> connect to a DB  
-`-h` là host, nếu connecting to a remote server thì phải type ip ra.  
-`-p` là port, default là 5432 như hình 1  
-`-U` là username
-
-The other way to connect to a psql DB
-`psql` > `\l` > `\c <DB name>`
-\c for “connect”. You can switch between DBs using the same command. Ko cần phải exit ra rồi vô cái mới.
 
 ## References
 

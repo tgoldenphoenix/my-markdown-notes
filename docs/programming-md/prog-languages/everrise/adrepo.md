@@ -371,10 +371,6 @@ Vào trong `conf/test.application.conf` check database, schema. File `applicatio
 
 vào tạo table test trong database, tránh bị mất dữ liệu
 
-### Passsword & Config
-
-mysql: root:root or 123
-
 ### AWS Deployment & Test
 
 <https://adrepo-etl.client.harbest.jp/swagger>
@@ -944,6 +940,44 @@ Inside entity classes, we can have ENUM classes.
 
 `AbstractGetReportQueueDao` is `abstract` (and `AbstractGetReportQueue` is also `abstract` and cannot be instantiated by `convertRsToReportQueueList`). `AbstractGetReportQueueDaoContainerTest` already sets up a concrete `TestGetReportQueueDao` (`dao`) and a concrete `TestGetReportQueue` entity class wired up to the MySQL test container for you—all you have to override are `getTableName()` and `getTableFixtures()`
 
+### Batch Logging
+
+Apache Log4j version `1.2`; [documentation](https://logging.apache.org/log4j/1.x/)
+
+In Log4j, a `category` (also commonly referred to as a "logger") is essentially the named channel or routing rule that your Java code uses to send messages.
+
+When you write `log4j.category.<Name> = <LEVEL>, <AppenderAlias>`, you are defining three things:
+
+1. The Name: The string your Java code uses to find this rule (e.g., "AdwordInfoLogger" or `org.seasar`)
+2. The Level: The minimum severity of messages this channel will accept (e.g., `INFO`, `ERROR`, `DEBUG`)
+3. The Appender Alias: A short, custom label linking this category to a specific destination (e.g., `ADIA` or `C`)
+
+An appender defines the physical destination where the log messages will actually be written, as well as how they should be formatted. In your configuration, appenders are defined using `log4j.appender.<AppenderAlias> = <AppenderClass>`.
+
+```txt
+# 1. THE CATEGORY: Creates a channel named "AdwordInfoLogger", accepts "INFO" level messages and above, and routes them to an appender nicknamed "ADIA".
+log4j.category.AdwordInfoLogger=INFO,ADIA
+
+# 2. THE APPENDER TYPE: Defines "ADIA" as a file writer that rolls over daily.
+log4j.appender.ADIA=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.ADIA.encoding=UTF-8
+log4j.appender.ADIA.DatePattern='.'yyyy-MM-dd
+log4j.appender.ADIA.Append=true
+
+# 3. THE APPENDER DESTINATION: Tells "ADIA" exactly where to save the file on your server.
+log4j.appender.ADIA.File=/opt/ag/logs/adword/adword-info.log
+
+# 4. THE APPENDER FORMATTING: Defines the specific layout pattern (Date, Thread, Message) for the text inside the file.
+log4j.appender.ADIA.layout=org.apache.log4j.PatternLayout
+log4j.appender.ADIA.layout.ConversionPattern=%-5p %d [%t] %m%n
+```
+
+In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBUG`.
+
+Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
+
+An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
+
 ## ETL Web API
 
 Play framework uses `Google Guice` as its default dependency injection (DI) framework.
@@ -1034,28 +1068,29 @@ Once that query returns a row with `postAuthorized = 1`, your Postman request wi
 
 ### Controller & Form
 
-`Forms` are responsible for capturing, filtering, and validating raw data coming from HTTP requests (the "outside world") before it touches your core application logic.
+`Forms` are responsible for capturing, filtering, and validating raw data coming from HTTP requests (the "outside world") before it touches your core application logic. Forms contain specific validation logic to ensure user input is safe and correct.
 
-Forms contain specific validation logic to ensure user input is safe and correct.
-
-You use form `Factory.form` to manually command the play framework to map HTTP data to a Java object.
+Play framework's `FormFactory` maps HTTP data to the form objects such as `MAdvertiserPostForm`.
 
 ---
 
-Fields with `@JsonIgnore` / `@ApiModelProperty(hidden = true)` are internal and ignored from the incoming request body.
-
----
+The controller binds the request using `ClassFieldManager`.
 
 ```java
 // MAdvertiserController.java
-Form<MAgencyPostForm> form = formFactory.form(MAgencyPostForm.class)
-  .bindFromRequest(new ClassFieldManager(MAgencyPostForm.class)
-  .getAllowedFields()
-);
+Form<MAdvertiserPostForm> form = formFactory.form(MAdvertiserPostForm.class)
+	.bindFromRequest(new ClassFieldManager(MAdvertiserPostForm.class)
+	.getAllowedFields());
 if (form.hasErrors()) {
   return badRequest(form);
 }
 ```
+
+`ClassFieldManager.java` scans all fields and methods of `MAdvertiserPostForm` and its superclasses, excluding any field whose getter/setter/field has `@JsonIgnore`.
+
+`ClassFieldManager` sees `@JsonIgnore` on `getNote()`, adds `"note"` to `ignoredFields`, and excludes it from `getAllowedFields()`. Play's `bindFromRequest` refuses to bind `"note"` even if the client sends it.
+
+---
 
 `if (form.hasErrors())` checks whether any **type-binding or form-level validation errors** occurred during `.bindFromRequest(...)`.
 
@@ -1288,7 +1323,7 @@ If the authenticated user's role has `contractCompanyId` marked as disabled in `
 
 #### disabledColumnStore
 
-`disabledColumnStore` (implementing `IDisabledColumnStore.java`) is a **role-based field-level permission / column masking mechanism**. Even when a user has permission to call an API endpoint (e.g. `GET`, `POST`, `PUT`), their role might restrict them from **reading** or **modifying** specific fields (columns) on that endpoint.
+`disabledColumnStore` (implementing `IDisabledColumnStore.java`) is a role-based field-level permission / column masking mechanism. Even when a user has permission to call an API endpoint (e.g. `GET`, `POST`, `PUT`), their role might restrict them from **reading** or **modifying** specific fields (columns) on that endpoint.
 
 Where the data comes from (Database)
 
@@ -1397,35 +1432,28 @@ $request
 
 ### Web api's Role-Based Access Control (RBAC)
 
-`role_type` in `m_login_user` is a **business/organization tier indicator**, completely separate from the API permission tables (`m_role`, `m_login_user_role_relation`, `m_api_authority`).
+`m_login_user.role_type` is a business/organization tier indicator, completely _separate_ from the API permission tables (`m_role`, `m_login_user_role_relation`, `m_api_authority`).
 
-1. What `role_type` means
+As defined in `MNotificationSetting.java`, `role_type` represents the organization level of the user:
 
-As defined in MNotificationSetting.java, `role_type` represents the **organization level** of the user:
+- `1` (`ADMIN`): System Administrator (管理者)
+- `2` (`CONTRACT_COMPANY`): Contract Company user (契約企業 — bound to a `contract_company_id`)
+- `3` (`AGENCY`): Agency user (代理店 — bound to both `contract_company_id` and `agency_id`)
 
-* **`1` (`ADMIN`)**: System Administrator (管理者)
-* **`2` (`CONTRACT_COMPANY`)**: Contract Company user (契約企業 — bound to a `contract_company_id`)
-* **`3` (`AGENCY`)**: Agency user (代理店 — bound to both `contract_company_id` and `agency_id`)
-
-2. Is `m_login_user.role_type` used for API authorization or `disabledColumnStore`?
-
-No. In this codebase:
-
+- `m_login_user.role_type` is not used for API authorization or `disabledColumnStore`
 - `m_login_user.role_type` is never checked during API access authorization (`IsApiAccessPermittedByLoginUserId.sql`) or column masking (`findListByLoginUserId.sql`).
 - Instead, API permissions and `disabledColumnStore` exclusively use the RBAC relational tables: `m_login_user` → `m_login_user_role_relation` (`login_user_id`, `role_id`) → `m_role` (`role_id`) → `m_api_authority` (`role_id`, `uri`) → `m_api_disabled_column` (`api_authority_id`).
 
 ---
 
-In a standard Role-Based Access Control (RBAC) database design, `m_role` defines what roles exist, while **`m_login_user_role_relation` assigns those roles to users** (a many-to-many join table).
+In a standard Role-Based Access Control (RBAC) database design, table `m_role` defines what roles exist, while table `m_login_user_role_relation` assigns those roles to users (a many-to-many join table).
 
-1. `m_role` (Master table of Roles)
+Table `m_role` defines the roles themselves (e.g., "System Admin", "Contract Company Editor", "Agency Read-Only"). Model: `AbstractMRole.java`.
 
-Model: AbstractMRole.java Defines the **roles themselves** (e.g., "System Admin", "Contract Company Editor", "Agency Read-Only").
-
-* `role_id` (PK): Unique ID of the role (e.g., `1`, `2`, or `-1` for default).
-* `role_type`: Which organization tier this role belongs to (`1`: Admin, `2`: Contract Company, `3`: Agency).
-* `name`: Display name of the role.
-* `note`: Description of the role.
+- `role_id` (PK): Unique ID of the role (e.g., `1`, `2`, or `-1` for default).
+- `role_type`: Which organization tier this role belongs to (`1`: Admin, `2`: Contract Company, `3`: Agency).
+- `name`: Display name of the role.
+- `note`: Description of the role.
 
 `m_api_authority` points to **`m_role.role_id`** to define which endpoints (`uri`) and HTTP methods (`get_authorized`, `post_authorized`, etc.) that role is allowed to access.
 
@@ -1501,6 +1529,10 @@ Finally, when the controller calls `ok("generated/mAdvertiser.vm", entity, form)
    - **Disabled + has `default_value`**: outputs `${disabledColumnStore.getDefaultValue("fieldName")}`.
    - **Disabled + `default_value` is `NULL`**: skips the field completely so it never appears in the response JSON.
 
+#### IsApiAccessPermittedByLoginUserId.sql
+
+k
+
 ### m_login_user
 
 Here is how `MLoginUser` relates to `contract_company_id` and `agency_id`, and the exact constraints enforced when you call any endpoint:
@@ -1542,8 +1574,7 @@ Surprisingly, **`m_login_user.agency_id` is NOT used by `BaseModelService` to re
 
 Cross-entity consistency (`agencyId` ↔ `advertiserId` / `inputPlatformAuthId`):
 
-  * In endpoints like `POST /mOnetimeApiToken/` (MOnetimeApiTokenController.java), if you pass both `agencyId` and `advertiserId` (or `inputPlatformAuthId`), it validates that `mAdvertiser.getAgencyId().equals(form.getAgencyId())`. If they don't match, it returns `400 Bad Request`.
-
+- In endpoints like `POST /mOnetimeApiToken/` (MOnetimeApiTokenController.java), if you pass both `agencyId` and `advertiserId` (or `inputPlatformAuthId`), it validates that `mAdvertiser.getAgencyId().equals(form.getAgencyId())`. If they don't match, it returns `400 Bad Request`.
 
 ### HTTP response config
 
@@ -1580,6 +1611,17 @@ Muốn biết PF nào có Oauth2, PF nào không thì vào enum `INPUT_PLATFORM_
 ---
 
 POST /mOnetimeApiToken/
+
+Format của json body nếu gởi json
+
+```json
+{
+  "agencyId": 2,
+  "name": "eren",
+  "companyJson": "{\"a\": \"b\"}",
+  "note": "string note"
+}
+```
 
 `validateOnCreate(mOnetimeApiTokenPostForm)`
 
@@ -1696,47 +1738,24 @@ According to logback.xml, the log file uses a daily rolling policy (`TimeBasedRo
 
 Có một cái crontab làm việc backup log files đã được zip lên s3. Crontab này được bật một lần duy nhất lúc bật máy EC2 lên, không cần phải tắt và bật lại lúc deploy.
 
-## Log4j
+### Pearl Auto-generated Classes
 
-Apache Log4j version `1.2`; [documentation](https://logging.apache.org/log4j/1.x/)
+`AbstractMAdvertiserPostForm.java` is an auto-generated class containing all columns from the `m_advertiser` database table (`contractCompanyId`, `agencyId`, `name`, `companyJson`, `note`).
 
-In Log4j, a `category` (also commonly referred to as a "logger") is essentially the named channel or routing rule that your Java code uses to send messages.
+* Because it is in `forms.generated.*`, you shouldn't edit it directly (any changes would be overwritten when code is regenerated).
+* Each field in the parent class is annotated with Lombok's `@Getter` and `@Setter`, plus `@ApiModelProperty()`:
 
-When you write `log4j.category.<Name> = <LEVEL>, <AppenderAlias>`, you are defining three things:
+---
 
-1. The Name: The string your Java code uses to find this rule (e.g., "AdwordInfoLogger" or `org.seasar`)
-2. The Level: The minimum severity of messages this channel will accept (e.g., `INFO`, `ERROR`, `DEBUG`)
-3. The Appender Alias: A short, custom label linking this category to a specific destination (e.g., `ADIA` or `C`)
+`AbstractMAdvertiserPostForm` is auto-generated by a custom **Perl code generator** in the `generator/` directory that inspects the live MySQL database schema and renders Template Toolkit (`.tt`) templates.
 
-An appender defines the physical destination where the log messages will actually be written, as well as how they should be formatted. In your configuration, appenders are defined using `log4j.appender.<AppenderAlias> = <AppenderClass>`.
+The Perl generator (generator.pl) actually scaffolds almost the **entire application** across 11 different tasks (configured in generator/config.json).
 
-```txt
-# 1. THE CATEGORY: Creates a channel named "AdwordInfoLogger", accepts "INFO" level messages and above, and routes them to an appender nicknamed "ADIA".
-log4j.category.AdwordInfoLogger=INFO,ADIA
+Here is everything `generator.pl` generates from the MySQL tables:
 
-# 2. THE APPENDER TYPE: Defines "ADIA" as a file writer that rolls over daily.
-log4j.appender.ADIA=org.apache.log4j.DailyRollingFileAppender
-log4j.appender.ADIA.encoding=UTF-8
-log4j.appender.ADIA.DatePattern='.'yyyy-MM-dd
-log4j.appender.ADIA.Append=true
+1: Application Layers (Models, Services, Controllers, Forms)
 
-# 3. THE APPENDER DESTINATION: Tells "ADIA" exactly where to save the file on your server.
-log4j.appender.ADIA.File=/opt/ag/logs/adword/adword-info.log
-
-# 4. THE APPENDER FORMATTING: Defines the specific layout pattern (Date, Thread, Message) for the text inside the file.
-log4j.appender.ADIA.layout=org.apache.log4j.PatternLayout
-log4j.appender.ADIA.layout.ConversionPattern=%-5p %d [%t] %m%n
-```
-
-In my project, there is only two levels `INFO` & `ERROR`, không có level `DEBUG`.
-
-Class `LogUtils` is a custom class. We only use methods `error()` & `info()`. We do not use the other methods.
-
-An Apache `Logger` object instanct will prints to the log file  (and optionally the console depending on how Log4j appenders are configured in `log4j.xml` or `log4j.properties`).
-
-## Exception Handling
-
-kkk
+- `model` (`app/models/generated/Abstract*.java` & `app/models/*.java`): Generates Ebean ORM entity classes with column annotations (`@Id`, `@Column`), getters/setters, and column name constants.
 
 ## Tiktok
 

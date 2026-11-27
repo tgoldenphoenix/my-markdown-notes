@@ -26,4 +26,30 @@ kk
 
 ## Jackson
 
-<https://www.tutorialspoint.com/jackson_annotations/index.htm>
+In Jackson (the default JSON library in Play Framework and Spring Boot), **serialization** converts a Java object into JSON, and **deserialization** parses JSON back into a Java object.
+
+---
+
+Jackson relies on standard JavaBeans conventions (which is why **Lombok `@Getter` / `@Setter` / `@NoArgsConstructor`** pair with it automatically)
+
+Both Jackson and Swagger inspect a class's **JavaBean properties** (combining fields, getters, and setters) rather than just raw fields.
+
+## Swagger
+
+`@ApiModelProperty` is an annotation from **Swagger 2 / Springfox** used on Java DTO/model fields or getters to document their schema, description, example values, and validation constraints in generated OpenAPI/Swagger UI documentation.
+
+## Lombok
+
+Lombok's `@Getter` and `@Setter` work at **compile time**.
+
+**Class-level vs. Field-level:** Placing `@Getter`/`@Setter` on a class generates methods for all non-static fields. Placing it on a single field generates them only for that field (and overrides class-level settings).
+
+## Thymeleaf
+
+Trong thymeleaf, `xmlns`: xml name space. `th` là týp đầu ngữ
+
+Thymeleaf syntax:
+biến (variable) `${}`
+url, links `@{}`
+attribute `*{}`
+message `#{}`
